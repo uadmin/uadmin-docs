@@ -92,6 +92,7 @@
     <span class="nx">ApprovalDate</span>      <span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
     <span class="nx">ApprovalBy</span>        <span class="kt">string</span>
     <span class="nx">ApprovalID</span>        <span class="kt">uint</span>
+    <span class="nx">Stringer</span>          <span class="kt">bool</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -134,6 +135,7 @@
 <li><p><strong>ApprovalDate</strong> - The date when the value of the field record was approved</p></li>
 <li><p><strong>ApprovalBy</strong> - Returns the username who approved the value of the field record</p></li>
 <li><p><strong>ApprovalID</strong> - Returns the user ID who approved the value of the field record</p></li>
+<li><p><strong>Stringer</strong> - A feature that assigns a field as a unique type</p></li>
 </ul>
 <p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
 <p>One-by-one initialization:</p>
@@ -173,6 +175,7 @@
 <ul class="simple">
 <li><p>Change the actual name that is different from the name initialized in the model struct</p></li>
 <li><p>Assign a value automatically if you are creating a new record</p></li>
+<li><p>Assign a help note to instruct the user what to do on that field</p></li>
 <li><p>Set the field as Required</p></li>
 <li><p>Set a pattern and error message where only letters are acceptable</p></li>
 <li><p>Hide the field in the form and list</p></li>
@@ -262,7 +265,7 @@
 </pre></div>
 </div>
 <p>Run your application and go to Category model. As expected, the name has changed to “CATEGORY NAME”.</p>
-<img alt="../_images/categorydisplayname.png" class="align-center" src="../_images/categorydisplayname.png" />
+<img alt="../_images/categorydisplayname.png" src="../_images/categorydisplayname.png" />
 </div>
 <div class="section" id="name-field-in-category-model-defaultvalue">
 <h2><strong>Name Field in Category Model - DefaultValue</strong><a class="headerlink" href="#name-field-in-category-model-defaultvalue" title="Permalink to this headline">¶</a></h2>
@@ -296,7 +299,7 @@
     <span class="c1">// Field configurations</span>
     <span class="nx">field</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">F</span><span class="p">{</span>
         <span class="c1">// Some codes</span>
-        <span class="nx">Help</span><span class="p">:</span> <span class="s">&quot;Input a category name for your Todo List&quot;</span><span class="p">,</span>
+        <span class="nx">Help</span><span class="p">:</span> <span class="s">&quot;Input a category name for your Todo List.&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="c1">// Some codes</span>

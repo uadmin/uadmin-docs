@@ -240,6 +240,13 @@
 <td></td>
 </tr>
 <tr class="row-even"><td><ul class="simple">
+<li><p><a class="reference internal" href="#stringer">stringer</a></p></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
 <li><p><a class="reference internal" href="#upload-to">upload_to</a></p></li>
 </ul>
 </td>
@@ -744,6 +751,29 @@
 </div>
 <p>Search the word “mini” and see what happens.</p>
 <img alt="_images/searchtagappliedoutput.png" src="_images/searchtagappliedoutput.png" />
+</div>
+<div class="section" id="stringer">
+<h3><strong>stringer</strong><a class="headerlink" href="#stringer" title="Permalink to this headline">¶</a></h3>
+<p>A feature that assigns a field as a unique type</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="s">`uadmin:&quot;stringer&quot;`</span>
+</pre></div>
+</div>
+<p>Open your Todo List project, go to friend.go inside the models folder, and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Friend model ...</span>
+<span class="kd">type</span> <span class="nx">Friend</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+
+    <span class="c1">// Apply the stringer tag to show that this is the unique field</span>
+    <span class="c1">// when we fetch data to the API</span>
+    <span class="nx">Name</span>     <span class="kt">string</span> <span class="s">`uadmin:&quot;stringer&quot;`</span>
+
+    <span class="nx">Email</span>    <span class="kt">string</span>
+    <span class="nx">Password</span> <span class="kt">string</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Go to <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#uadmin-getstringer">uadmin.Stringer</a> in the API Reference for the continuation.</p>
 </div>
 <div class="section" id="upload-to">
 <h3><strong>upload_to</strong><a class="headerlink" href="#upload-to" title="Permalink to this headline">¶</a></h3>

@@ -48,6 +48,7 @@ Here are all public functions in the uAdmin, their format, and how to use them i
 * `uadmin.GetID`_
 * `uadmin.GetSetting`_
 * `uadmin.GetString`_
+* `uadmin.GetStringer`_
 * `uadmin.GetUserFromRequest`_
 * `uadmin.GroupPermission`_
 * `uadmin.HideInDashboarder`_
@@ -2039,6 +2040,7 @@ Structure:
         ApprovalBy        string
         ApprovalID        uint
         WebCam            bool
+        Stringer          bool
     }
 
 Parameters:
@@ -2081,6 +2083,7 @@ Parameters:
 * **ApprovalBy** - Returns the username who approved the value of the field record
 * **ApprovalID** - Returns the user ID who approved the value of the field record
 * **WebCam** - A feature which adds web can access directly from the image and file fields
+* **Stringer** - A feature that assigns a field as a unique type
 
 There are 2 ways you can do for initialization process using this function: one-by-one and by group.
 
@@ -3039,6 +3042,70 @@ Run your application and check the terminal to see the result.
 .. code-block:: bash
 
     [  INFO  ]   GetString is Family.
+
+**uadmin.GetStringer**
+^^^^^^^^^^^^^^^^^^^^^^
+GetStringer fetches the first record from the database matching query and args and get only fields tagged with `stringer` tag. If no field has `stringer` tag, then it gets all the fields.
+
+Function:
+
+.. code-block:: go
+
+    func(a interface{}, query interface{}, args ...interface{}) (err error)
+
+Parameters:
+
+    **a interface{}:** Is the variable where the model was initialized
+
+    **query interface{}:** Is an action that you want to perform in your database
+
+    **args ...interface{}:** Is the series of arguments for query input
+
+Before we proceed to the example, read `Tutorial Part 7 - Introduction to API`_ to familiarize how API works in uAdmin.
+
+.. _Tutorial Part 7 - Introduction to API: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html
+
+Suppose you have a record in the Friend model that has an ID of 1 where Name field has a `stringer` tag.
+
+.. image:: assets/friendjohndoe.png
+
+Create a file named get_stringer.go inside the api folder with the following codes below:
+
+.. code-block:: go
+
+    // GetStringerHandler !
+    func GetStringerHandler(w http.ResponseWriter, r *http.Request) {
+        // r.URL.Path creates a new path called /get_stringer
+        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/get_stringer")
+
+        // Set the parameter as friend_id
+        friendID := r.FormValue("friend_id")
+
+        // Get a record from DB that fetches a field with a stringer tag
+        friend := models.Friend{}
+        uadmin.GetStringer(&friend, "id = ?", friendID)
+
+        // Print result in JSON format
+        uadmin.ReturnJSON(w, r, friend)
+    }
+
+Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+
+        // GetStringerHandler
+        http.HandleFunc("/get_stringer/", api.GetStringerHandler)
+    }
+
+api is the folder name while GetStringerHandler is the name of the function inside get_stringer.go.
+
+Run your application. Search for the first ID on the friend_id parameter in the address bar and see what happens.
+
+.. image:: assets/getstringerapi.png
+   :align: center
 
 **uadmin.GetUserFromRequest**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

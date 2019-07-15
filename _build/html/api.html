@@ -99,6 +99,7 @@
 <li><p><a class="reference internal" href="#uadmin-getid">uadmin.GetID</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getsetting">uadmin.GetSetting</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getstring">uadmin.GetString</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-getstringer">uadmin.GetStringer</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getuserfromrequest">uadmin.GetUserFromRequest</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-grouppermission">uadmin.GroupPermission</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-hideindashboarder">uadmin.HideInDashboarder</a></p></li>
@@ -1745,6 +1746,7 @@ main.main<span class="o">()</span>
     <span class="nx">ApprovalBy</span>        <span class="kt">string</span>
     <span class="nx">ApprovalID</span>        <span class="kt">uint</span>
     <span class="nx">WebCam</span>            <span class="kt">bool</span>
+    <span class="nx">Stringer</span>          <span class="kt">bool</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1788,6 +1790,7 @@ main.main<span class="o">()</span>
 <li><p><strong>ApprovalBy</strong> - Returns the username who approved the value of the field record</p></li>
 <li><p><strong>ApprovalID</strong> - Returns the user ID who approved the value of the field record</p></li>
 <li><p><strong>WebCam</strong> - A feature which adds web can access directly from the image and file fields</p></li>
+<li><p><strong>Stringer</strong> - A feature that assigns a field as a unique type</p></li>
 </ul>
 <p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
 <p>One-by-one initialization:</p>
@@ -2561,6 +2564,53 @@ main.main<span class="o">()</span>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   GetString is Family.
 </pre></div>
 </div>
+</div>
+<div class="section" id="uadmin-getstringer">
+<h3><strong>uadmin.GetStringer</strong><a class="headerlink" href="#uadmin-getstringer" title="Permalink to this headline">¶</a></h3>
+<p>GetStringer fetches the first record from the database matching query and args and get only fields tagged with <cite>stringer</cite> tag. If no field has <cite>stringer</cite> tag, then it gets all the fields.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
+<p><strong>query interface{}:</strong> Is an action that you want to perform in your database</p>
+<p><strong>args …interface{}:</strong> Is the series of arguments for query input</p>
+</div></blockquote>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">Tutorial Part 7 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Suppose you have a record in the Friend model that has an ID of 1 where Name field has a <cite>stringer</cite> tag.</p>
+<img alt="_images/friendjohndoe.png" src="_images/friendjohndoe.png" />
+<p>Create a file named get_stringer.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// GetStringerHandler !</span>
+<span class="kd">func</span> <span class="nx">GetStringerHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called /get_stringer</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/get_stringer&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Set the parameter as friend_id</span>
+    <span class="nx">friendID</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">FormValue</span><span class="p">(</span><span class="s">&quot;friend_id&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Get a record from DB that fetches a field with a stringer tag</span>
+    <span class="nx">friend</span> <span class="o">:=</span> <span class="nx">models</span><span class="p">.</span><span class="nx">Friend</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetStringer</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">friend</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="nx">friendID</span><span class="p">)</span>
+
+    <span class="c1">// Print result in JSON format</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">friend</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// GetStringerHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/get_stringer/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">GetStringerHandler</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while GetStringerHandler is the name of the function inside get_stringer.go.</p>
+<p>Run your application. Search for the first ID on the friend_id parameter in the address bar and see what happens.</p>
+<img alt="_images/getstringerapi.png" class="align-center" src="_images/getstringerapi.png" />
 </div>
 <div class="section" id="uadmin-getuserfromrequest">
 <h3><strong>uadmin.GetUserFromRequest</strong><a class="headerlink" href="#uadmin-getuserfromrequest" title="Permalink to this headline">¶</a></h3>
@@ -4758,11 +4808,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 <blockquote>
 <div><p><strong>to []string:</strong> This is who you are primarily writing the email to, it’s clear to both the writer and the recipient who is writing the email and to whom it intended.</p>
 <p><strong>cc []string:</strong> This means carbon copy and it includes people who might be interested in knowing that there was an email between the sender and the primary TO, typically CC’s are not meant to respond, only the primary sender. Everyone can see who was included in the To and CC.</p>
-<<<<<<< HEAD
 <p><strong>bcc []string:</strong> This means blind carbon copy. The sender has added people that the receiving TO and CC are not able to see as a part of the email, someone on BCC is not to respond and they will not be included in the response from the TO or CC. BCC is often used to include a stakeholder like a boss to make sure they are aware of a situation but they can’t respond. <a class="footnote-reference brackets" href="#f2" id="id27">2</a></p>
-=======
-<p><strong>bcc []string:</strong> This means blind carbon copy. The sender has added people that the receiving TO and CC are not able to see as a part of the email, someone on BCC is not to respond and they will not be included in the response from the TO or CC. BCC is often used to include a stakeholder like a boss to make sure they are aware of a situation but they can’t respond. <a class="footnote-reference brackets" href="#f2" id="id24">2</a></p>
->>>>>>> parent of 9b45714... Added stringer function
 <p><strong>subject string:</strong> This means what your email content is all about.</p>
 <p><strong>body string:</strong> This means the content of your email. It would be either a job application, the letter of your friend, notifications from your subscribed website, etc.</p>
 </div></blockquote>
@@ -4788,11 +4834,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-session">
 <h3><strong>uadmin.Session</strong><a class="headerlink" href="#uadmin-session" title="Permalink to this headline">¶</a></h3>
-<<<<<<< HEAD
 <p>Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. <a class="footnote-reference brackets" href="#f1" id="id28">1</a></p>
-=======
-<p>Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. <a class="footnote-reference brackets" href="#f1" id="id25">1</a></p>
->>>>>>> parent of 9b45714... Added stringer function
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Session</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
@@ -6049,17 +6091,10 @@ VerifyOTP is <span class="nb">true</span>
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="footnote brackets">
-<<<<<<< HEAD
 <dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id28">1</a></span></dt>
 <dd><p>QuinStreet Inc. (2018). User Session. Retrieved from <a class="reference external" href="https://www.webopedia.com/TERM/U/user_session.html">https://www.webopedia.com/TERM/U/user_session.html</a></p>
 </dd>
 <dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id27">2</a></span></dt>
-=======
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id25">1</a></span></dt>
-<dd><p>QuinStreet Inc. (2018). User Session. Retrieved from <a class="reference external" href="https://www.webopedia.com/TERM/U/user_session.html">https://www.webopedia.com/TERM/U/user_session.html</a></p>
-</dd>
-<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id24">2</a></span></dt>
->>>>>>> parent of 9b45714... Added stringer function
 <dd><p>Corbin, Anke (2017, Feb 27). What is the meaning of TO, CC and BCC in e-mail? Retrieved from <a class="reference external" href="https://www.quora.com/What-is-the-meaning-of-TO-CC-and-BCC-in-e-mail">https://www.quora.com/What-is-the-meaning-of-TO-CC-and-BCC-in-e-mail</a></p>
 </dd>
 <dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
