@@ -270,7 +270,7 @@
             <div class="selection-group"><input type="radio" name="Q15" id="rQ15A1" value="Q15A1"> <span id="Q15A1"><b>A.</b> uadmin.FilterList(&EmployeeSchema, "id", true, 0, 32, &Employee, "id IN (?) AND (fn LIKE %? OR ln LIKE ?%)", listOfEmployees, firstNameSearch, lastNameSearch)</span><br></div>
             <div class="selection-group"><input type="radio" name="Q15" id="rQ15A2" value="Q15A2"> <span id="Q15A2"><b>B.</b> uadmin.FilterList(&EmployeeSchema, "id", true, 0, 32, &Employee, "id IN (?) AND (fn LIKE ? OR ln LIKE ?)", listOfEmployees, firstNameSearch, lastNameSearch)</span><br></div>
             <div data-correct="true" class="selection-group"><input type="radio" name="Q15" id="rQ15A3" value="Q15A3"> <span id="Q15A3"><b>C.</b> uadmin.FilterList(&EmployeeSchema, "id", true, 0, 32, &Employee, "id IN (?) AND (fn LIKE ?% OR ln LIKE %?)", listOfEmployees, firstNameSearch, lastNameSearch)</span><br></div>
-            <div class="selection-group"><input type="radio" name="Q15" id="rQ15A4" value="Q15A4"> <span id="Q15A4"><b>D.</b> uadmin.AdminPage(&EmployeeSchema, "id", true, 0, 32, &Employee, "id IN (?) AND (ln LIKE %?% OR fn LIKE %?%)", listOfEmployees, firstNameSearch, lastNameSearch)</span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q15" id="rQ15A4" value="Q15A4"> <span id="Q15A4"><b>D.</b> uadmin.FilterList(&EmployeeSchema, "id", true, 0, 32, &Employee, "id IN (?) AND (ln LIKE %?% OR fn LIKE %?%)", listOfEmployees, firstNameSearch, lastNameSearch)</span><br></div><br>
         </form>
     </div><br>
 
