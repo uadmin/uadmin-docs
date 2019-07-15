@@ -1,0 +1,397 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>uadmin.Setting &#8212; uadmin 0.3 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quick Reference" href="../quick_reference.html" />
+    <link rel="prev" title="uadmin.Schema" href="schema.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../quick_reference.html" title="Quick Reference"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="schema.html" title="uadmin.Schema"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="uadmin-setting">
+<h1>uadmin.Setting<a class="headerlink" href="#uadmin-setting" title="Permalink to this headline">¶</a></h1>
+<p>Setting is a system in uAdmin that is used to display information for an application as a whole.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Setting</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Model</span>
+    <span class="nx">Name</span>         <span class="kt">string</span>
+    <span class="nx">DefaultValue</span> <span class="kt">string</span>
+    <span class="nx">DataType</span>     <span class="nx">DataType</span>
+    <span class="nx">Value</span>        <span class="kt">string</span>
+    <span class="nx">Help</span>         <span class="kt">string</span>
+    <span class="nx">Category</span>     <span class="nx">SettingCategory</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">CategoryID</span>   <span class="kt">uint</span>
+    <span class="nx">Code</span>         <span class="kt">string</span> <span class="s">`uadmin:&quot;read_only&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Data Type has 7 Data Type:</p>
+<ul class="simple">
+<li><p><strong>Boolean</strong> - A data type that has one of two possible values (usually denoted true and false), intended to represent the two truth values of logic and Boolean algebra</p></li>
+<li><p><strong>DateTime</strong> - Provides functionality for measuring and displaying time</p></li>
+<li><p><strong>File</strong> - A data type used in order to upload a file in the database</p></li>
+<li><p><strong>Float</strong> - Used in various programming languages to define a variable with a fractional value</p></li>
+<li><p><strong>Image</strong> - Used to upload and crop an image in the database</p></li>
+<li><p><strong>Integer</strong> - Used to represent a whole number that ranges from -2147483647 to 2147483647 for 9 or 10 digits of precision</p></li>
+<li><p><strong>String</strong> - Used to represent text rather than numbers</p></li>
+</ul>
+<p>There are 5 functions that you can use in Setting:</p>
+<ul class="simple">
+<li><p><strong>ApplyValue()</strong> - Applies the assigned value based on filter</p></li>
+<li><p><strong>GetValue()</strong> - Fetch the first value from the record</p></li>
+<li><p><strong>HideInDashboarder()</strong> - Return true and auto hide this from setting</p></li>
+<li><p><strong>ParseFormValue</strong> - Parses a boolean and date time string values to its standard format</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">v</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Go to <a class="reference internal" href="#example-4-parseformvalue-function">Example #4: ParseFormValue function</a> to see how ParseFormValue works.</p>
+<ul class="simple">
+<li><p><strong>Save()</strong> - Saves the object in the database</p></li>
+</ul>
+<p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
+<p>One-by-one initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">settingCategory</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">SettingCategory</span><span class="p">{}</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Category</span> <span class="p">=</span> <span class="nx">settingCategory</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">CategoryID</span> <span class="p">=</span> <span class="mi">1</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Code</span> <span class="p">=</span> <span class="s">&quot;Code&quot;</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">DataType</span> <span class="p">=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DataType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">String</span><span class="p">(),</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">DefaultValue</span> <span class="p">=</span> <span class="s">&quot;Default Setting Value&quot;</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Help</span> <span class="p">=</span> <span class="s">&quot;Help&quot;</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Name</span> <span class="p">=</span> <span class="s">&quot;Setting Name&quot;</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Value</span> <span class="p">=</span> <span class="s">&quot;Setting Value&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>By group initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">settingCategory</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">SettingCategory</span><span class="p">{}</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{</span>
+        <span class="nx">Category</span><span class="p">:</span>     <span class="nx">settingCategory</span><span class="p">,</span>
+        <span class="nx">CategoryID</span><span class="p">:</span>   <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">Code</span><span class="p">:</span>         <span class="s">&quot;Code&quot;</span><span class="p">,</span>
+        <span class="nx">DataType</span><span class="p">:</span>     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DataType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">String</span><span class="p">(),</span>
+        <span class="nx">DefaultValue</span><span class="p">:</span> <span class="s">&quot;Default Setting Value&quot;</span><span class="p">,</span>
+        <span class="nx">Help</span><span class="p">:</span>         <span class="s">&quot;Help&quot;</span><span class="p">,</span>
+        <span class="nx">Name</span><span class="p">:</span>         <span class="s">&quot;Setting Name&quot;</span><span class="p">,</span>
+        <span class="nx">Value</span><span class="p">:</span>        <span class="s">&quot;Setting Value&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the following examples, we will use “by group” initialization process.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#example-1-assigning-values-in-setting-fields">Example #1: Assigning values in Setting fields</a></p></li>
+<li><p><a class="reference internal" href="#example-2-applyvalue-function">Example #2: ApplyValue function</a></p></li>
+<li><p><a class="reference internal" href="#example-3-getvalue-function">Example #3: GetValue function</a></p></li>
+<li><p><a class="reference internal" href="#example-4-parseformvalue-function">Example #4: ParseFormValue function</a></p></li>
+</ul>
+<div class="section" id="example-1-assigning-values-in-setting-fields">
+<h2><strong>Example #1:</strong> Assigning values in Setting fields<a class="headerlink" href="#example-1-assigning-values-in-setting-fields" title="Permalink to this headline">¶</a></h2>
+<p>Suppose you have a Health record in Setting Category system model that has an ID of 2.</p>
+<img alt="../_images/settingcategoryhealthresult.png" src="../_images/settingcategoryhealthresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to main.go and apply the following codes below to create a Setting that has a record of “Water Daily Intake for Men”:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="c1">// Setting configuration that assigns setting field values</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{</span>
+        <span class="nx">CategoryID</span><span class="p">:</span>   <span class="mi">2</span><span class="p">,</span> <span class="c1">// Health</span>
+        <span class="nx">Code</span><span class="p">:</span>         <span class="s">&quot;Health.WaterDailyIntakeforMen&quot;</span><span class="p">,</span>
+        <span class="nx">DataType</span><span class="p">:</span>     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DataType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Integer</span><span class="p">(),</span>
+        <span class="nx">DefaultValue</span><span class="p">:</span> <span class="s">&quot;13&quot;</span><span class="p">,</span>
+        <span class="nx">Help</span><span class="p">:</span>         <span class="s">&quot;A total cup of water recommended by the Institute of Medicine (IOM)&quot;</span><span class="p">,</span>
+        <span class="nx">Name</span><span class="p">:</span>         <span class="s">&quot;Water Daily Intake for Men&quot;</span><span class="p">,</span>
+        <span class="nx">Value</span><span class="p">:</span>        <span class="s">&quot;13&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Save setting in the database</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application. From uAdmin dashboard, click on “SETTINGS”.</p>
+<img alt="../_images/settingshighlighted.png" src="../_images/settingshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As a result, the record “Water Daily Intake for Men” was saved in the database. Now go to Settings page by clicking on the wrench icon on the top right part to see the result.</p>
+<img alt="../_images/waterdailyintakeformensaved.png" src="../_images/waterdailyintakeformensaved.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/waterdailyintakeformenresult.png" class="align-center" src="../_images/waterdailyintakeformenresult.png" />
+</div>
+<div class="section" id="example-2-applyvalue-function">
+<h2><strong>Example #2:</strong> ApplyValue function<a class="headerlink" href="#example-2-applyvalue-function" title="Permalink to this headline">¶</a></h2>
+<p>Example:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Initialize the Setting model</span>
+    <span class="nx">settings</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+
+    <span class="c1">// Some business logic here</span>
+
+    <span class="c1">// Apply the value assigned in the specified record</span>
+    <span class="nx">settings</span><span class="p">.</span><span class="nx">ApplyValue</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-3-getvalue-function">
+<h2><strong>Example #3:</strong> GetValue function<a class="headerlink" href="#example-3-getvalue-function" title="Permalink to this headline">¶</a></h2>
+<p>Suppose you have built-in records containing uAdmin functions in the Setting model.</p>
+<img alt="../_images/defaultsettingrecords.png" src="../_images/defaultsettingrecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to the main.go and let’s get all the values of the built-in setting records.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Initialize the Setting model</span>
+    <span class="nx">settings</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+
+    <span class="c1">// Fetch all records</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">All</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">settings</span><span class="p">)</span>
+
+    <span class="c1">// Print the value of each built-in setting records</span>
+    <span class="k">for</span> <span class="nx">s</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">settings</span> <span class="p">{</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="nx">settings</span><span class="p">[</span><span class="nx">s</span><span class="p">].</span><span class="nx">Name</span><span class="o">+</span><span class="s">&quot;: %v&quot;</span><span class="p">,</span> <span class="nx">settings</span><span class="p">[</span><span class="nx">s</span><span class="p">].</span><span class="nx">GetValue</span><span class="p">())</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and check the result in your terminal.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  DEBUG <span class="o">]</span>   Theme: default
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Site Name: Todo List
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Reporting Level: <span class="m">0</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Report Time Stamp: <span class="nb">false</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Debug DB: <span class="nb">false</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Page Length: <span class="m">100</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Max Image Height: <span class="m">600</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Max Image Width: <span class="m">800</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Max Upload File Size: <span class="m">26214400</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Port: <span class="m">8000</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Email From:
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Email Username:
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Email Password:
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Email SMTP Server:
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Email SMTP Server Port: <span class="m">0</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Root URL: /admin/
+<span class="o">[</span>  DEBUG <span class="o">]</span>   OTP Algorithm: sha1
+<span class="o">[</span>  DEBUG <span class="o">]</span>   OTP Digits: <span class="m">6</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   OTP Period: <span class="m">30</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   OTP Skew: <span class="m">5</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Public Media: <span class="nb">false</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Log Delete: <span class="nb">true</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Log Add: <span class="nb">true</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Log Edit: <span class="nb">true</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Log Read: <span class="nb">false</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Cache Translation: <span class="nb">false</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Allowed IPs: *
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Blocked IPs:
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Restrict Session IP: <span class="nb">false</span>
+<span class="o">[</span>  DEBUG <span class="o">]</span>   Retain Media Versions: <span class="nb">true</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-4-parseformvalue-function">
+<h2><strong>Example #4:</strong> ParseFormValue function<a class="headerlink" href="#example-4-parseformvalue-function" title="Permalink to this headline">¶</a></h2>
+<p><strong>Date Time</strong></p>
+<p>Suppose you have this record as shown below that has an ID of 1:</p>
+<img alt="../_images/earthhourdata.png" src="../_images/earthhourdata.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to main.go and apply the following codes below after the Register and before StartServer sections.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Initialize the Setting model from uAdmin</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+
+    <span class="c1">// Get the first record in Setting model</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;id = 1&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Parse assigned Date Time value to its standard format</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;2020-03-28 20:30&quot;</span><span class="p">})</span>
+
+    <span class="c1">// Save the setting record</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application. From uAdmin dashboard, click on “SETTINGS”.</p>
+<img alt="../_images/settingshighlighted.png" src="../_images/settingshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the Date Time value has parsed to its standard format where :00 was appended in the value.</p>
+<img alt="../_images/earthhourdataresult.png" src="../_images/earthhourdataresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Boolean</strong></p>
+<p>Suppose you have this record as shown below that has an ID of 1:</p>
+<img alt="../_images/isearthhourdata.png" src="../_images/isearthhourdata.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to main.go and apply the following codes below after the Register and before StartServer sections.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Initialize the Setting model from uAdmin</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+
+    <span class="c1">// Get the first record in Setting model</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;id = 1&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Parse assigned Boolean value to its standard format</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;on&quot;</span><span class="p">})</span>
+
+    <span class="c1">// Save the setting record</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application. From uAdmin dashboard, click on “SETTINGS”.</p>
+<img alt="../_images/settingshighlighted.png" src="../_images/settingshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the Boolean value has parsed to its standard format that prints 1. 1 means true in boolean.</p>
+<img alt="../_images/isearthhourdataresult.png" src="../_images/isearthhourdataresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If you click on the wrench icon, the Earth Hour status is Active in the Settings page.</p>
+<img alt="../_images/isearthouractivesettings.png" src="../_images/isearthouractivesettings.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="schema.html"
+                        title="previous chapter">uadmin.Schema</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../quick_reference.html"
+                        title="next chapter">Quick Reference</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/setting.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../quick_reference.html" title="Quick Reference"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="schema.html" title="uadmin.Schema"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

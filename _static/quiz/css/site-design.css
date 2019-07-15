@@ -1,0 +1,82 @@
+.address-bar{
+    border: 1px solid black;
+    padding: 5px 10px;
+    background-color: rgb(200, 200, 200);
+    color: rgb(53, 53, 53);
+    width: 850px;
+}
+.address-bar-textbox{
+    width: 740px;
+    font-size: 18px;
+}
+.arrow:hover{
+    color: black;
+    cursor: pointer;
+}
+.button{
+    background-color: #337ab7; /* Blue */
+    border: none;
+    color: white;
+    padding: 3px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.close{
+    float: right;
+    font-size: 24px;
+    padding-top: 5px;
+}
+.close:hover{
+    color: white;
+    cursor: pointer;
+}
+.custom-image-model{
+    margin-top: 10px;
+}
+.resize{
+    font-size: 16px;
+    width: 98.5%;
+}
+.resize-textarea{
+    width: 98.5%;
+    resize: none;
+}
+.setting-category{
+    width: 200px;
+    padding-top:10px !important;
+}
+.site-title{
+    padding-top: 10px;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;    
+}
+.table-session-format{
+    font-size:9.5px;
+    table-layout:fixed;
+}
+.title-bar{
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 0px 10px 10px 10px;
+    margin-top: 10px;
+    background-color: rgb(53, 53, 53);
+    color: rgb(200, 200, 200);
+}
+.u-turn{
+    content: "\27F3";
+}
+.u-turn:hover{
+    color: black;
+    cursor: pointer;
+}

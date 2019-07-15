@@ -1,0 +1,2310 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>System Reference &#8212; uadmin 0.3 documentation</title>
+    <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tag Reference" href="tags.html" />
+    <link rel="prev" title="Quick Reference" href="quick_reference.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tags.html" title="Tag Reference"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="quick_reference.html" title="Quick Reference"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="system-reference">
+<h1>System Reference<a class="headerlink" href="#system-reference" title="Permalink to this headline">¶</a></h1>
+<p>In this section, we will cover the features of each following systems in-depth listed below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#approval">Approval</a></p></li>
+<li><p><a class="reference internal" href="#dashboard-menu">Dashboard Menu</a></p></li>
+<li><p><a class="reference internal" href="#export-to-excel">Export to Excel</a></p></li>
+<li><p><a class="reference internal" href="#group-permission">Group Permission</a></p></li>
+<li><p><a class="reference internal" href="#language">Language</a></p></li>
+<li><p><a class="reference internal" href="#log">Log</a></p></li>
+<li><p><a class="reference internal" href="#profile">Profile</a></p></li>
+<li><p><a class="reference internal" href="#session">Session</a></p></li>
+<li><p><a class="reference internal" href="#setting">Setting</a></p></li>
+<li><p><a class="reference internal" href="#setting-category">Setting Category</a></p></li>
+<li><p><a class="reference internal" href="#user">User</a></p></li>
+<li><p><a class="reference internal" href="#user-group">User Group</a></p></li>
+<li><p><a class="reference internal" href="#user-permission">User Permission</a></p></li>
+</ul>
+<div class="section" id="approval">
+<h2>Approval<a class="headerlink" href="#approval" title="Permalink to this headline">¶</a></h2>
+<p>Approval is a system in uAdmin that is used to set an approval permission in the field.</p>
+<p>Here are the following fields and their definitions:</p>
+<ul class="simple">
+<li><p><strong>ModelName</strong> - The name of the Model in small letters</p></li>
+<li><p><strong>ModelPK</strong> - Used to uniquely identify each row in the table</p></li>
+<li><p><strong>ColumnName</strong> - The name of the column in the model</p></li>
+<li><p><strong>OldValue</strong> - A value that was assigned before</p></li>
+<li><p><strong>NewValue</strong> - A value that you want to replace from the old value</p></li>
+<li><p><strong>NewValueDescription</strong> - A value that was stored from the new value after saving</p></li>
+<li><p><strong>ChangedBy</strong> - Returns the username who changed the value of the field record</p></li>
+<li><p><strong>ChangedDate</strong> - The date when the value of the field record was changed</p></li>
+<li><p><strong>ApprovalAction</strong> - A selection of approval actions. There are two selections: Approved and Declined.</p></li>
+<li><p><strong>ApprovalBy</strong> - Returns the username who approved the value of the field record</p></li>
+<li><p><strong>ApprovalDate</strong> - The date when the value of the field record was approved</p></li>
+<li><p><strong>ViewRecord</strong> - A link to view the information of the actual record</p></li>
+<li><p><strong>UpdatedBy</strong> - Returns the username who updated the record</p></li>
+</ul>
+<p>Suppose there is a record created by “johndoe” that needs an approval for the Name.</p>
+<img alt="_images/johndoenameempty.png" src="_images/johndoenameempty.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Login your admin account.</p>
+<img alt="_images/loginformadmin.png" class="align-center" src="_images/loginformadmin.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From uAdmin dashboard, go to the Friends model, click the record that you have created, and in the input box of the Name field, there is a yellow warning sign on the left side that means it needs an approval to someone who has approval access. Now click the highlighted area below.</p>
+<img alt="_images/johndoeapprovalbutton.png" class="align-center" src="_images/johndoeapprovalbutton.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The admin will review the record that was created by a “johndoe” user. If you think his record is satisfactory, choose Approved in Approval Action then click Save and Continue on the bottom right corner of the screen.</p>
+<img alt="_images/johndoeapprovalreview.png" src="_images/johndoeapprovalreview.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It is shown that the one who approved the record is an admin with an approved date. Now click View Record button to see the result.</p>
+<img alt="_images/johndoeviewrecord.png" class="align-center" src="_images/johndoeviewrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The input Name field has a checkmark sign that means the record created by “johndoe” was approved.</p>
+<img alt="_images/johndoeapprovedrecord.png" class="align-center" src="_images/johndoeapprovedrecord.png" />
+</div>
+<div class="section" id="dashboard-menu">
+<h2>Dashboard Menu<a class="headerlink" href="#dashboard-menu" title="Permalink to this headline">¶</a></h2>
+<p>Dashboard Menu is a system in uAdmin that is used to add, modify, and delete the elements of a model. Making it look good and customizing it to meet your customers requirements is important to the success of your app.</p>
+<img alt="_images/dashboardmenu.png" src="_images/dashboardmenu.png" />
+<p>Here are the following fields in this system:</p>
+<ul class="simple">
+<li><p><strong>Dashboard Menu</strong> - The name of the model</p></li>
+<li><p><strong>URL</strong> - The path where the model can be accessed</p></li>
+<li><p><strong>Tool Tip</strong> - A message that appears when a cursor is positioned over an icon, image, hyperlink, or other element in a graphical user interface</p></li>
+<li><p><strong>Icon</strong> - A picture, image, or other representation to display in the dashboard</p></li>
+<li><p><strong>Cat</strong> - Used to set a highlight label for a model</p></li>
+<li><p><strong>Hidden</strong> - A feature to make the model invisible in the dashboard</p></li>
+</ul>
+<p>Let’s create a new dashboard menu called “Expressions” with a URL of “expression”.</p>
+<img alt="_images/expressionaddsystem.png" src="_images/expressionaddsystem.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Once you are done, go back to your dashboard to see if the Expression model was created.</p>
+<img alt="_images/expressionaddsystemoutput.png" src="_images/expressionaddsystemoutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Nice! Now let’s go back to the dashboard menu. Upload the image file in the Icon field. If you don’t have any pictures or icons in your computer, I would recommend you to go over <a class="reference external" href="https://www.flaticon.com/">flaticon.com</a>, but you can browse anywhere online. Once you search for an icon, download the PNG version and choose the size 128 pixels.</p>
+<img alt="_images/expressionicon.png" src="_images/expressionicon.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Once you are done, go back to your dashboard to see if your image file was uploaded.</p>
+<img alt="_images/expressioniconoutput.png" src="_images/expressioniconoutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>That’s cool man! Now let’s make it more realistic. Go back to the dashboard menu again. This time let’s input the value of the Tool Tip to “Hello everyone! Welcome to uAdmin, the Golang Web Framework.”.</p>
+<img alt="_images/expressiontooltip.png" src="_images/expressiontooltip.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Once you are done, go back to your dashboard to see if the Tool Tip is functional.</p>
+<img alt="_images/expressiontooltipoutput.png" src="_images/expressiontooltipoutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Great! Now let’s go back to the dashboard menu again and set the value of the Cat to “Meow!”.</p>
+<img alt="_images/expressioncat.png" src="_images/expressioncat.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Once you are done, go back to your dashboard to see if the Cat is functional.</p>
+<img alt="_images/expressioncatoutput.png" src="_images/expressioncatoutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Well done! Okay let’s go back to the dashboard menu. This time toggle the Hidden field of the Expression model to <strong>true</strong>.</p>
+<img alt="_images/expressionhidden.png" src="_images/expressionhidden.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Once you are done, go back to your dashboard to see if the Expression model is hidden.</p>
+<img alt="_images/uadmindashboard.png" src="_images/uadmindashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>And it’s gone. Now go to the dashboard menu. Finally, delete the Expression model in the list.</p>
+<img alt="_images/expressiondelete.png" src="_images/expressiondelete.png" />
+<p>Well done! Now you know how to configure your dashboard menu by adding, updating, customizing and deleting a model.</p>
+</div>
+<div class="section" id="export-to-excel">
+<h2>Export to Excel<a class="headerlink" href="#export-to-excel" title="Permalink to this headline">¶</a></h2>
+<p>Export is one of the features of uAdmin that can replicate the data inside the model to the Excel file.</p>
+<p>First of all, open any models in the dashboard (e.g. TODOS).</p>
+<img alt="_images/todoshighlightedlog.png" src="_images/todoshighlightedlog.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In this example, create at least 10 records in the Todo model. Once you are done, click Export button located at the bottom right corner of the screen.</p>
+<img alt="_images/exporttoexcel.png" src="_images/exporttoexcel.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will get the encrypted filename in the Excel file for security purposes.</p>
+<img alt="_images/encryptedfilenameexcel.png" class="align-center" src="_images/encryptedfilenameexcel.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Open that file. The data that you have created in the uAdmin model will be replicated to the Excel file.</p>
+<img alt="_images/todosexceldata.png" src="_images/todosexceldata.png" />
+<p>Well done! Now you know how to export a model to Excel file in uAdmin.</p>
+</div>
+<div class="section" id="group-permission">
+<h2>Group Permission<a class="headerlink" href="#group-permission" title="Permalink to this headline">¶</a></h2>
+<p>Group Permission sets the permission of a user group handled by an administrator.</p>
+<img alt="_images/grouppermissioncreated.png" src="_images/grouppermissioncreated.png" />
+<p>Here are the following fields in this system:</p>
+<ul class="simple">
+<li><p><strong>Group Permission</strong> - Returns the ID number of itself</p></li>
+<li><p><strong>Dashboard Menu</strong> - Fetches the name of the model</p></li>
+<li><p><strong>User Group</strong> - Fetches the name of the group</p></li>
+<li><p><strong>Read</strong> - Sets the Read access to the user</p></li>
+<li><p><strong>Add</strong> - Sets the Add access to the user</p></li>
+<li><p><strong>Edit</strong> - Sets the Edit access to the user</p></li>
+<li><p><strong>Delete</strong> - Sets the Delete access to the user</p></li>
+<li><p><strong>Approval</strong> - Sets the Approval access to the user</p></li>
+</ul>
+<p>First of all, make it sure that your existing account is not an Admin (example below is Even Demata) and it is part of the User Group (example below is Front Desk).</p>
+<img alt="_images/adminusergrouphighlighted.png" src="_images/adminusergrouphighlighted.png" />
+<p>Click the Front Desk highlighted below.</p>
+<img alt="_images/frontdeskhighlighted.png" src="_images/frontdeskhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to the Group Permission tab. Afterwards, click Add New Group Permission button at the right side.</p>
+<img alt="_images/addnewgrouppermission.png" src="_images/addnewgrouppermission.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Set the Dashboard Menu to “Todos” model, User linked to “Even Demata”, and activate the “Read” only. It means Front Desk User Group has restricted access to adding, editing, deleting and approving a record in the Todos model.</p>
+<img alt="_images/grouppermissionadd.png" class="align-center" src="_images/grouppermissionadd.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/grouppermissionaddoutput.png" src="_images/grouppermissionaddoutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Log out your System Admin account. This time login your username and password using the user account that has group permission. Now click on TODOS model.</p>
+<img alt="_images/userpermissiondashboard.png" src="_images/userpermissiondashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As you will see, your user account is restricted to add, edit, or delete a record in the Todo model. You can only read what is inside this model.</p>
+<img alt="_images/useraddeditdeleterestricted.png" src="_images/useraddeditdeleterestricted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>To remove these restrictions, login your System Admin account, go to Group Permission and activate “Add”, “Edit”, and “Delete” access to Front Desk group.</p>
+<img alt="_images/groupaddeditdelete.png" class="align-center" src="_images/groupaddeditdelete.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Login your Even Demata account and see what happens.</p>
+<img alt="_images/useraccessadddelete.png" src="_images/useraccessadddelete.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s open the “Read a book” record to see if the user can have access to edit.</p>
+<img alt="_images/useraccessedit.png" src="_images/useraccessedit.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Nice! You have full access to everything in the TODOS model. What if the user group has no access to “Read” but can add, edit, or delete a record? Login your System account and remove “Read” access to Front Desk.</p>
+<img alt="_images/groupnoaccessread.png" class="align-center" src="_images/groupnoaccessread.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Login your Even Demata account and see what happens.</p>
+<img alt="_images/dashboardmenuempty.png" src="_images/dashboardmenuempty.png" />
+<p>TODOS model does not show up in the dashboard. Even if you remove access to “Add”, “Edit” and “Delete” to Front Desk group, it will display the same output.</p>
+<p>Login your System Admin account. Finally, delete the Group Permission in the Front Desk User Group.</p>
+<img alt="_images/grouppermissiondelete.png" src="_images/grouppermissiondelete.png" />
+<p>Well done! Now you know how to set the group permission to the user group, changing the access in the model and deleting the group permission.</p>
+</div>
+<div class="section" id="language">
+<h2>Language<a class="headerlink" href="#language" title="Permalink to this headline">¶</a></h2>
+<p>Language is a system in uAdmin that is used to add, modify, and delete the elements of a language. There are a total of 184 languages.</p>
+<table class="colwidths-given docutils align-center" id="id4">
+<caption><span class="caption-text"><strong>LIST OF AVAILABLE LANGUAGES</strong></span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 9%" />
+<col style="width: 45%" />
+<col style="width: 9%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>English Name</p></th>
+<th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"></th>
+<th class="head"><p>Tag</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Abkhaz</p></td>
+<td></td>
+<td><p>аҧсуа бызшәа, аҧсшәа</p></td>
+<td></td>
+<td><p>ab</p></td>
+</tr>
+<tr class="row-odd"><td><p>Afar</p></td>
+<td></td>
+<td><p>Afaraf</p></td>
+<td></td>
+<td><p>aa</p></td>
+</tr>
+<tr class="row-even"><td><p>Afrikaans</p></td>
+<td></td>
+<td><p>Afrikaans</p></td>
+<td></td>
+<td><p>af</p></td>
+</tr>
+<tr class="row-odd"><td><p>Akan</p></td>
+<td></td>
+<td><p>Akan</p></td>
+<td></td>
+<td><p>ak</p></td>
+</tr>
+<tr class="row-even"><td><p>Albanian</p></td>
+<td></td>
+<td><p>Shqip</p></td>
+<td></td>
+<td><p>sq</p></td>
+</tr>
+<tr class="row-odd"><td><p>Arabic</p></td>
+<td></td>
+<td><p>العربية</p></td>
+<td></td>
+<td><p>ar</p></td>
+</tr>
+<tr class="row-even"><td><p>Aragonese</p></td>
+<td></td>
+<td><p>aragonés</p></td>
+<td></td>
+<td><p>an</p></td>
+</tr>
+<tr class="row-odd"><td><p>Armenian</p></td>
+<td></td>
+<td><p>Հայերեն</p></td>
+<td></td>
+<td><p>hy</p></td>
+</tr>
+<tr class="row-even"><td><p>Assamese</p></td>
+<td></td>
+<td><p>অসমীয়া</p></td>
+<td></td>
+<td><p>as</p></td>
+</tr>
+<tr class="row-odd"><td><p>Avaric</p></td>
+<td></td>
+<td><p>авар мацӀ, магӀарул мацӀ</p></td>
+<td></td>
+<td><p>av</p></td>
+</tr>
+<tr class="row-even"><td><p>Avestan</p></td>
+<td></td>
+<td><p>avesta</p></td>
+<td></td>
+<td><p>ae</p></td>
+</tr>
+<tr class="row-odd"><td><p>Aymara</p></td>
+<td></td>
+<td><p>aymar aru</p></td>
+<td></td>
+<td><p>ay</p></td>
+</tr>
+<tr class="row-even"><td><p>Azerbaijani</p></td>
+<td></td>
+<td><p>azərbaycan dili</p></td>
+<td></td>
+<td><p>az</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bambara</p></td>
+<td></td>
+<td><p>bamanankan</p></td>
+<td></td>
+<td><p>bm</p></td>
+</tr>
+<tr class="row-even"><td><p>Bashkir</p></td>
+<td></td>
+<td><p>башҡорт теле</p></td>
+<td></td>
+<td><p>ba</p></td>
+</tr>
+<tr class="row-odd"><td><p>Basque</p></td>
+<td></td>
+<td><p>euskara, euskera</p></td>
+<td></td>
+<td><p>eu</p></td>
+</tr>
+<tr class="row-even"><td><p>Belarusian</p></td>
+<td></td>
+<td><p>беларуская мова</p></td>
+<td></td>
+<td><p>be</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bengali, Bangla</p></td>
+<td></td>
+<td><p>বাংলা</p></td>
+<td></td>
+<td><p>bn</p></td>
+</tr>
+<tr class="row-even"><td><p>Bihari</p></td>
+<td></td>
+<td><p>भोजपुरी</p></td>
+<td></td>
+<td><p>bh</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bislama</p></td>
+<td></td>
+<td><p>Bislama</p></td>
+<td></td>
+<td><p>bi</p></td>
+</tr>
+<tr class="row-even"><td><p>Bosnian</p></td>
+<td></td>
+<td><p>bosanski jezik</p></td>
+<td></td>
+<td><p>bs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Breton</p></td>
+<td></td>
+<td><p>brezhoneg</p></td>
+<td></td>
+<td><p>br</p></td>
+</tr>
+<tr class="row-even"><td><p>Bulgarian</p></td>
+<td></td>
+<td><p>български език</p></td>
+<td></td>
+<td><p>bg</p></td>
+</tr>
+<tr class="row-odd"><td><p>Burmese</p></td>
+<td></td>
+<td><p>ဗမာစာ</p></td>
+<td></td>
+<td><p>my</p></td>
+</tr>
+<tr class="row-even"><td><p>Catalan</p></td>
+<td></td>
+<td><p>català</p></td>
+<td></td>
+<td><p>ca</p></td>
+</tr>
+<tr class="row-odd"><td><p>Chamorro</p></td>
+<td></td>
+<td><p>Chamoru</p></td>
+<td></td>
+<td><p>ch</p></td>
+</tr>
+<tr class="row-even"><td><p>Chechen</p></td>
+<td></td>
+<td><p>нохчийн мотт</p></td>
+<td></td>
+<td><p>ce</p></td>
+</tr>
+<tr class="row-odd"><td><p>Chichewa, Chewa, Nyanja</p></td>
+<td></td>
+<td><p>chiCheŵa, chinyanja</p></td>
+<td></td>
+<td><p>ny</p></td>
+</tr>
+<tr class="row-even"><td><p>Chinese</p></td>
+<td></td>
+<td><p>中文 (Zhōngwén), 汉语, 漢語</p></td>
+<td></td>
+<td><p>zh</p></td>
+</tr>
+<tr class="row-odd"><td><p>Chuvash</p></td>
+<td></td>
+<td><p>чӑваш чӗлхи</p></td>
+<td></td>
+<td><p>cv</p></td>
+</tr>
+<tr class="row-even"><td><p>Cornish</p></td>
+<td></td>
+<td><p>Kernewek</p></td>
+<td></td>
+<td><p>kw</p></td>
+</tr>
+<tr class="row-odd"><td><p>Corsican</p></td>
+<td></td>
+<td><p>corsu, lingua corsa</p></td>
+<td></td>
+<td><p>co</p></td>
+</tr>
+<tr class="row-even"><td><p>Cree</p></td>
+<td></td>
+<td><p>ᓀᐦᐃᔭᐍᐏᐣ</p></td>
+<td></td>
+<td><p>cr</p></td>
+</tr>
+<tr class="row-odd"><td><p>Croatian</p></td>
+<td></td>
+<td><p>hrvatski jezik</p></td>
+<td></td>
+<td><p>hr</p></td>
+</tr>
+<tr class="row-even"><td><p>Czech</p></td>
+<td></td>
+<td><p>čeština, český jazyk</p></td>
+<td></td>
+<td><p>cs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Danish</p></td>
+<td></td>
+<td><p>dansk</p></td>
+<td></td>
+<td><p>da</p></td>
+</tr>
+<tr class="row-even"><td><p>Divehi, Dhivehi, Maldivian</p></td>
+<td></td>
+<td><p>ދިވެހި</p></td>
+<td></td>
+<td><p>dv</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dutch</p></td>
+<td></td>
+<td><p>Nederlands, Vlaams</p></td>
+<td></td>
+<td><p>nl</p></td>
+</tr>
+<tr class="row-even"><td><p>Dzongkha</p></td>
+<td></td>
+<td><p>རྫོང་ཁ</p></td>
+<td></td>
+<td><p>dz</p></td>
+</tr>
+<tr class="row-odd"><td><p>English</p></td>
+<td></td>
+<td><p>English</p></td>
+<td></td>
+<td><p>en</p></td>
+</tr>
+<tr class="row-even"><td><p>Esperanto</p></td>
+<td></td>
+<td><p>Esperanto</p></td>
+<td></td>
+<td><p>eo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Estonian</p></td>
+<td></td>
+<td><p>eesti, eesti keel</p></td>
+<td></td>
+<td><p>et</p></td>
+</tr>
+<tr class="row-even"><td><p>Ewe</p></td>
+<td></td>
+<td><p>Eʋegbe</p></td>
+<td></td>
+<td><p>ee</p></td>
+</tr>
+<tr class="row-odd"><td><p>Faroese</p></td>
+<td></td>
+<td><p>føroyskt</p></td>
+<td></td>
+<td><p>fo</p></td>
+</tr>
+<tr class="row-even"><td><p>Fijian</p></td>
+<td></td>
+<td><p>vosa Vakaviti</p></td>
+<td></td>
+<td><p>fj</p></td>
+</tr>
+<tr class="row-odd"><td><p>Filipino</p></td>
+<td></td>
+<td><p>Filipino</p></td>
+<td></td>
+<td><p>fl</p></td>
+</tr>
+<tr class="row-even"><td><p>Finnish</p></td>
+<td></td>
+<td><p>suomi, suomen kieli</p></td>
+<td></td>
+<td><p>fi</p></td>
+</tr>
+<tr class="row-odd"><td><p>French</p></td>
+<td></td>
+<td><p>français, langue française</p></td>
+<td></td>
+<td><p>fr</p></td>
+</tr>
+<tr class="row-even"><td><p>Fula, Fulah, Pulaar, Pular</p></td>
+<td></td>
+<td><p>Fulfulde, Pulaar, Pular</p></td>
+<td></td>
+<td><p>ff</p></td>
+</tr>
+<tr class="row-odd"><td><p>Galician</p></td>
+<td></td>
+<td><p>galego</p></td>
+<td></td>
+<td><p>gl</p></td>
+</tr>
+<tr class="row-even"><td><p>Ganda</p></td>
+<td></td>
+<td><p>Luganda</p></td>
+<td></td>
+<td><p>lg</p></td>
+</tr>
+<tr class="row-odd"><td><p>Georgian</p></td>
+<td></td>
+<td><p>ქართული</p></td>
+<td></td>
+<td><p>ka</p></td>
+</tr>
+<tr class="row-even"><td><p>German</p></td>
+<td></td>
+<td><p>Deutsch</p></td>
+<td></td>
+<td><p>de</p></td>
+</tr>
+<tr class="row-odd"><td><p>Greek (modern)</p></td>
+<td></td>
+<td><p>ελληνικά</p></td>
+<td></td>
+<td><p>el</p></td>
+</tr>
+<tr class="row-even"><td><p>Guaraní</p></td>
+<td></td>
+<td><p>Avañe’ẽ</p></td>
+<td></td>
+<td><p>gn</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gujarati</p></td>
+<td></td>
+<td><p>ગુજરાતી</p></td>
+<td></td>
+<td><p>gu</p></td>
+</tr>
+<tr class="row-even"><td><p>Haitian, Haitian Creole</p></td>
+<td></td>
+<td><p>Kreyòl ayisyen</p></td>
+<td></td>
+<td><p>ht</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hausa</p></td>
+<td></td>
+<td><p>(Hausa) هَوُسَ</p></td>
+<td></td>
+<td><p>ha</p></td>
+</tr>
+<tr class="row-even"><td><p>Hebrew (modern)</p></td>
+<td></td>
+<td><p>עברית</p></td>
+<td></td>
+<td><p>he</p></td>
+</tr>
+<tr class="row-odd"><td><p>Herero</p></td>
+<td></td>
+<td><p>Otjiherero</p></td>
+<td></td>
+<td><p>hz</p></td>
+</tr>
+<tr class="row-even"><td><p>Hindi</p></td>
+<td></td>
+<td><p>हिन्दी, हिंदी</p></td>
+<td></td>
+<td><p>hi</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hiri Motu</p></td>
+<td></td>
+<td><p>Hiri Motu</p></td>
+<td></td>
+<td><p>ho</p></td>
+</tr>
+<tr class="row-even"><td><p>Hungarian</p></td>
+<td></td>
+<td><p>magyar</p></td>
+<td></td>
+<td><p>hu</p></td>
+</tr>
+<tr class="row-odd"><td><p>Icelandic</p></td>
+<td></td>
+<td><p>Íslenska</p></td>
+<td></td>
+<td><p>is</p></td>
+</tr>
+<tr class="row-even"><td><p>Ido</p></td>
+<td></td>
+<td><p>Ido</p></td>
+<td></td>
+<td><p>io</p></td>
+</tr>
+<tr class="row-odd"><td><p>Igbo</p></td>
+<td></td>
+<td><p>Asụsụ Igbo</p></td>
+<td></td>
+<td><p>ig</p></td>
+</tr>
+<tr class="row-even"><td><p>Indonesian</p></td>
+<td></td>
+<td><p>Bahasa Indonesia</p></td>
+<td></td>
+<td><p>id</p></td>
+</tr>
+<tr class="row-odd"><td><p>Interlingua</p></td>
+<td></td>
+<td><p>Interlingua</p></td>
+<td></td>
+<td><p>ia</p></td>
+</tr>
+<tr class="row-even"><td><p>Interlingue</p></td>
+<td></td>
+<td><p>Originally called Occidental; then Interlingue after WWII</p></td>
+<td></td>
+<td><p>ie</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inuktitut</p></td>
+<td></td>
+<td><p>ᐃᓄᒃᑎᑐᑦ</p></td>
+<td></td>
+<td><p>iu</p></td>
+</tr>
+<tr class="row-even"><td><p>Inupiaq</p></td>
+<td></td>
+<td><p>Iñupiaq, Iñupiatun</p></td>
+<td></td>
+<td><p>ik</p></td>
+</tr>
+<tr class="row-odd"><td><p>Irish</p></td>
+<td></td>
+<td><p>Gaeilge</p></td>
+<td></td>
+<td><p>ga</p></td>
+</tr>
+<tr class="row-even"><td><p>Italian</p></td>
+<td></td>
+<td><p>Italiano</p></td>
+<td></td>
+<td><p>it</p></td>
+</tr>
+<tr class="row-odd"><td><p>Japanese</p></td>
+<td></td>
+<td><p>日本語 (にほんご)</p></td>
+<td></td>
+<td><p>ja</p></td>
+</tr>
+<tr class="row-even"><td><p>Javanese</p></td>
+<td></td>
+<td><p>ꦧꦱꦗꦮ, Basa Jawa</p></td>
+<td></td>
+<td><p>jv</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kalaallisut, Greenlandic</p></td>
+<td></td>
+<td><p>kalaallisut, kalaallit oqaasii</p></td>
+<td></td>
+<td><p>kl</p></td>
+</tr>
+<tr class="row-even"><td><p>Kannada</p></td>
+<td></td>
+<td><p>ಕನ್ನಡ</p></td>
+<td></td>
+<td><p>kn</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kanuri</p></td>
+<td></td>
+<td><p>Kanuri</p></td>
+<td></td>
+<td><p>kr</p></td>
+</tr>
+<tr class="row-even"><td><p>Kashmiri</p></td>
+<td></td>
+<td><p>कश्मीरी, كشميري‎</p></td>
+<td></td>
+<td><p>ks</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kazakh</p></td>
+<td></td>
+<td><p>қазақ тілі</p></td>
+<td></td>
+<td><p>kk</p></td>
+</tr>
+<tr class="row-even"><td><p>Khmer</p></td>
+<td></td>
+<td><p>ខ្មែរ, ខេមរភាសា, ភាសាខ្មែរ</p></td>
+<td></td>
+<td><p>km</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kikuyu, Gikuyu</p></td>
+<td></td>
+<td><p>Gĩkũyũ</p></td>
+<td></td>
+<td><p>ki</p></td>
+</tr>
+<tr class="row-even"><td><p>Kinyarwanda</p></td>
+<td></td>
+<td><p>Ikinyarwanda</p></td>
+<td></td>
+<td><p>rw</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kirundi</p></td>
+<td></td>
+<td><p>Ikirundi</p></td>
+<td></td>
+<td><p>rn</p></td>
+</tr>
+<tr class="row-even"><td><p>Komi</p></td>
+<td></td>
+<td><p>коми кыв</p></td>
+<td></td>
+<td><p>kv</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kongo</p></td>
+<td></td>
+<td><p>Kikongo</p></td>
+<td></td>
+<td><p>kg</p></td>
+</tr>
+<tr class="row-even"><td><p>Korean</p></td>
+<td></td>
+<td><p>한국어</p></td>
+<td></td>
+<td><p>ko</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kurdish</p></td>
+<td></td>
+<td><p>Kurdî, كوردی‎</p></td>
+<td></td>
+<td><p>ku</p></td>
+</tr>
+<tr class="row-even"><td><p>Kwanyama, Kuanyama</p></td>
+<td></td>
+<td><p>Kuanyama</p></td>
+<td></td>
+<td><p>kj</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kyrgyz</p></td>
+<td></td>
+<td><p>Кыргызча, Кыргыз тили</p></td>
+<td></td>
+<td><p>ky</p></td>
+</tr>
+<tr class="row-even"><td><p>Lao</p></td>
+<td></td>
+<td><p>ພາສາລາວ</p></td>
+<td></td>
+<td><p>lo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Latin</p></td>
+<td></td>
+<td><p>latine, lingua latina</p></td>
+<td></td>
+<td><p>la</p></td>
+</tr>
+<tr class="row-even"><td><p>Latvian</p></td>
+<td></td>
+<td><p>latviešu valoda</p></td>
+<td></td>
+<td><p>lv</p></td>
+</tr>
+<tr class="row-odd"><td><p>Limburgish, Limburgan, Limburger</p></td>
+<td></td>
+<td><p>Limburgs</p></td>
+<td></td>
+<td><p>li</p></td>
+</tr>
+<tr class="row-even"><td><p>Lingala</p></td>
+<td></td>
+<td><p>Lingála</p></td>
+<td></td>
+<td><p>ln</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lithuanian</p></td>
+<td></td>
+<td><p>lietuvių kalba</p></td>
+<td></td>
+<td><p>lt</p></td>
+</tr>
+<tr class="row-even"><td><p>Luba-Katanga</p></td>
+<td></td>
+<td><p>Tshiluba</p></td>
+<td></td>
+<td><p>lu</p></td>
+</tr>
+<tr class="row-odd"><td><p>Luxembourgish, Letzeburgesch</p></td>
+<td></td>
+<td><p>Lëtzebuergesch</p></td>
+<td></td>
+<td><p>lb</p></td>
+</tr>
+<tr class="row-even"><td><p>Macedonian</p></td>
+<td></td>
+<td><p>македонски јазик</p></td>
+<td></td>
+<td><p>mk</p></td>
+</tr>
+<tr class="row-odd"><td><p>Malagasy</p></td>
+<td></td>
+<td><p>fiteny malagasy</p></td>
+<td></td>
+<td><p>mg</p></td>
+</tr>
+<tr class="row-even"><td><p>Malay</p></td>
+<td></td>
+<td><p>bahasa Melayu, بهاس ملايو‎”</p></td>
+<td></td>
+<td><p>ms</p></td>
+</tr>
+<tr class="row-odd"><td><p>Malayalam</p></td>
+<td></td>
+<td><p>മലയാളം</p></td>
+<td></td>
+<td><p>ml</p></td>
+</tr>
+<tr class="row-even"><td><p>Maltese</p></td>
+<td></td>
+<td><p>Malti</p></td>
+<td></td>
+<td><p>mt</p></td>
+</tr>
+<tr class="row-odd"><td><p>Manx</p></td>
+<td></td>
+<td><p>Gaelg, Gailck</p></td>
+<td></td>
+<td><p>gv</p></td>
+</tr>
+<tr class="row-even"><td><p>Māori</p></td>
+<td></td>
+<td><p>te reo Māori</p></td>
+<td></td>
+<td><p>mi</p></td>
+</tr>
+<tr class="row-odd"><td><p>Marathi (Marāṭhī)</p></td>
+<td></td>
+<td><p>मराठी</p></td>
+<td></td>
+<td><p>mr</p></td>
+</tr>
+<tr class="row-even"><td><p>Marshallese</p></td>
+<td></td>
+<td><p>Kajin M̧ajeļ</p></td>
+<td></td>
+<td><p>mh</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mongolian</p></td>
+<td></td>
+<td><p>Монгол хэл</p></td>
+<td></td>
+<td><p>mn</p></td>
+</tr>
+<tr class="row-even"><td><p>Nauruan</p></td>
+<td></td>
+<td><p>Dorerin Naoero</p></td>
+<td></td>
+<td><p>na</p></td>
+</tr>
+<tr class="row-odd"><td><p>Navajo, Navaho</p></td>
+<td></td>
+<td><p>Diné bizaad</p></td>
+<td></td>
+<td><p>nv</p></td>
+</tr>
+<tr class="row-even"><td><p>Ndonga</p></td>
+<td></td>
+<td><p>Owambo</p></td>
+<td></td>
+<td><p>ng</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nepali</p></td>
+<td></td>
+<td><p>नेपाली</p></td>
+<td></td>
+<td><p>ne</p></td>
+</tr>
+<tr class="row-even"><td><p>Northern Ndebele</p></td>
+<td></td>
+<td><p>isiNdebele</p></td>
+<td></td>
+<td><p>nd</p></td>
+</tr>
+<tr class="row-odd"><td><p>Northern Sami</p></td>
+<td></td>
+<td><p>Davvisámegiella</p></td>
+<td></td>
+<td><p>se</p></td>
+</tr>
+<tr class="row-even"><td><p>Norwegian</p></td>
+<td></td>
+<td><p>Norsk</p></td>
+<td></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-odd"><td><p>Norwegian Bokmål</p></td>
+<td></td>
+<td><p>Norsk bokmål</p></td>
+<td></td>
+<td><p>nb</p></td>
+</tr>
+<tr class="row-even"><td><p>Norwegian Nynorsk</p></td>
+<td></td>
+<td><p>Norsk nynorsk</p></td>
+<td></td>
+<td><p>nn</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nuosu</p></td>
+<td></td>
+<td><p>ꆈꌠ꒿ Nuosuhxop</p></td>
+<td></td>
+<td><p>ii</p></td>
+</tr>
+<tr class="row-even"><td><p>Occitan</p></td>
+<td></td>
+<td><p>occitan, lenga d’òc</p></td>
+<td></td>
+<td><p>oc</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ojibwe, Ojibwa</p></td>
+<td></td>
+<td><p>ᐊᓂᔑᓈᐯᒧᐎᓐ</p></td>
+<td></td>
+<td><p>oj</p></td>
+</tr>
+<tr class="row-even"><td><p>Old Church Slavonic, Church Slavonic, Old Bulgarian</p></td>
+<td></td>
+<td><p>ѩзыкъ словѣньскъ</p></td>
+<td></td>
+<td><p>cu</p></td>
+</tr>
+<tr class="row-odd"><td><p>Oriya</p></td>
+<td></td>
+<td><p>ଓଡ଼ିଆ</p></td>
+<td></td>
+<td><p>or</p></td>
+</tr>
+<tr class="row-even"><td><p>Oromo</p></td>
+<td></td>
+<td><p>Afaan Oromoo</p></td>
+<td></td>
+<td><p>om</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ossetian, Ossetic</p></td>
+<td></td>
+<td><p>ирон æвзаг</p></td>
+<td></td>
+<td><p>os</p></td>
+</tr>
+<tr class="row-even"><td><p>(Eastern) Punjabi</p></td>
+<td></td>
+<td><p>ਪੰਜਾਬੀ</p></td>
+<td></td>
+<td><p>pa</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pāli</p></td>
+<td></td>
+<td><p>पाऴि</p></td>
+<td></td>
+<td><p>pi</p></td>
+</tr>
+<tr class="row-even"><td><p>Pashto, Pushto</p></td>
+<td></td>
+<td><p>پښتو</p></td>
+<td></td>
+<td><p>ps</p></td>
+</tr>
+<tr class="row-odd"><td><p>Persian (Farsi)</p></td>
+<td></td>
+<td><p>فارسی</p></td>
+<td></td>
+<td><p>fa</p></td>
+</tr>
+<tr class="row-even"><td><p>Polish</p></td>
+<td></td>
+<td><p>język polski, polszczyzna</p></td>
+<td></td>
+<td><p>pl</p></td>
+</tr>
+<tr class="row-odd"><td><p>Portuguese</p></td>
+<td></td>
+<td><p>Português</p></td>
+<td></td>
+<td><p>pt</p></td>
+</tr>
+<tr class="row-even"><td><p>Quechua</p></td>
+<td></td>
+<td><p>Runa Simi, Kichwa</p></td>
+<td></td>
+<td><p>qu</p></td>
+</tr>
+<tr class="row-odd"><td><p>Romanian</p></td>
+<td></td>
+<td><p>Română</p></td>
+<td></td>
+<td><p>ro</p></td>
+</tr>
+<tr class="row-even"><td><p>Romansh</p></td>
+<td></td>
+<td><p>rumantsch grischun</p></td>
+<td></td>
+<td><p>rm</p></td>
+</tr>
+<tr class="row-odd"><td><p>Russian</p></td>
+<td></td>
+<td><p>Русский</p></td>
+<td></td>
+<td><p>ru</p></td>
+</tr>
+<tr class="row-even"><td><p>Samoan</p></td>
+<td></td>
+<td><p>gagana fa’a Samoa</p></td>
+<td></td>
+<td><p>sm</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sango</p></td>
+<td></td>
+<td><p>yângâ tî sängö</p></td>
+<td></td>
+<td><p>sg</p></td>
+</tr>
+<tr class="row-even"><td><p>Sanskrit (Saṁskṛta)</p></td>
+<td></td>
+<td><p>संस्कृतम्</p></td>
+<td></td>
+<td><p>sa</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sardinian</p></td>
+<td></td>
+<td><p>sardu</p></td>
+<td></td>
+<td><p>sc</p></td>
+</tr>
+<tr class="row-even"><td><p>Scottish Gaelic, Gaelic</p></td>
+<td></td>
+<td><p>Gàidhlig</p></td>
+<td></td>
+<td><p>gd</p></td>
+</tr>
+<tr class="row-odd"><td><p>Serbian</p></td>
+<td></td>
+<td><p>српски језик</p></td>
+<td></td>
+<td><p>sr</p></td>
+</tr>
+<tr class="row-even"><td><p>Shona</p></td>
+<td></td>
+<td><p>chiShona</p></td>
+<td></td>
+<td><p>sn</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sindhi</p></td>
+<td></td>
+<td><p>सिन्धी, سنڌي، سندھی‎</p></td>
+<td></td>
+<td><p>sd</p></td>
+</tr>
+<tr class="row-even"><td><p>Sinhalese, Sinhala</p></td>
+<td></td>
+<td><p>සිංහල</p></td>
+<td></td>
+<td><p>si</p></td>
+</tr>
+<tr class="row-odd"><td><p>Slovak</p></td>
+<td></td>
+<td><p>slovenčina, slovenský jazyk</p></td>
+<td></td>
+<td><p>sk</p></td>
+</tr>
+<tr class="row-even"><td><p>Slovene</p></td>
+<td></td>
+<td><p>slovenski jezik, slovenščina</p></td>
+<td></td>
+<td><p>sl</p></td>
+</tr>
+<tr class="row-odd"><td><p>Somali</p></td>
+<td></td>
+<td><p>Soomaaliga, af Soomaali</p></td>
+<td></td>
+<td><p>so</p></td>
+</tr>
+<tr class="row-even"><td><p>Southern Ndebele</p></td>
+<td></td>
+<td><p>isiNdebele</p></td>
+<td></td>
+<td><p>nr</p></td>
+</tr>
+<tr class="row-odd"><td><p>Southern Sotho</p></td>
+<td></td>
+<td><p>Sesotho</p></td>
+<td></td>
+<td><p>st</p></td>
+</tr>
+<tr class="row-even"><td><p>Spanish</p></td>
+<td></td>
+<td><p>Español</p></td>
+<td></td>
+<td><p>es</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sundanese</p></td>
+<td></td>
+<td><p>Basa Sunda</p></td>
+<td></td>
+<td><p>su</p></td>
+</tr>
+<tr class="row-even"><td><p>Swahili</p></td>
+<td></td>
+<td><p>Kiswahili</p></td>
+<td></td>
+<td><p>sw</p></td>
+</tr>
+<tr class="row-odd"><td><p>Swati</p></td>
+<td></td>
+<td><p>SiSwati</p></td>
+<td></td>
+<td><p>ss</p></td>
+</tr>
+<tr class="row-even"><td><p>Swedish</p></td>
+<td></td>
+<td><p>svenska</p></td>
+<td></td>
+<td><p>sv</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tagalog</p></td>
+<td></td>
+<td><p>Wikang Tagalog</p></td>
+<td></td>
+<td><p>tl</p></td>
+</tr>
+<tr class="row-even"><td><p>Tahitian</p></td>
+<td></td>
+<td><p>Reo Tahiti</p></td>
+<td></td>
+<td><p>ty</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tajik</p></td>
+<td></td>
+<td><p>тоҷикӣ, toçikī, تاجیکی‎</p></td>
+<td></td>
+<td><p>tg</p></td>
+</tr>
+<tr class="row-even"><td><p>Tamil</p></td>
+<td></td>
+<td><p>தமிழ்</p></td>
+<td></td>
+<td><p>ta</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tatar</p></td>
+<td></td>
+<td><p>татар теле, tatar tele</p></td>
+<td></td>
+<td><p>tt</p></td>
+</tr>
+<tr class="row-even"><td><p>Telugu</p></td>
+<td></td>
+<td><p>తెలుగు</p></td>
+<td></td>
+<td><p>te</p></td>
+</tr>
+<tr class="row-odd"><td><p>Thai</p></td>
+<td></td>
+<td><p>ไทย</p></td>
+<td></td>
+<td><p>th</p></td>
+</tr>
+<tr class="row-even"><td><p>Tibetan Standard, Tibetan, Central</p></td>
+<td></td>
+<td><p>བོད་ཡིག</p></td>
+<td></td>
+<td><p>bo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tigrinya</p></td>
+<td></td>
+<td><p>ትግርኛ</p></td>
+<td></td>
+<td><p>ti</p></td>
+</tr>
+<tr class="row-even"><td><p>Tonga (Tonga Islands)</p></td>
+<td></td>
+<td><p>faka Tonga</p></td>
+<td></td>
+<td><p>to</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tsonga</p></td>
+<td></td>
+<td><p>Xitsonga</p></td>
+<td></td>
+<td><p>ts</p></td>
+</tr>
+<tr class="row-even"><td><p>Tswana</p></td>
+<td></td>
+<td><p>Setswana</p></td>
+<td></td>
+<td><p>tn</p></td>
+</tr>
+<tr class="row-odd"><td><p>Turkish</p></td>
+<td></td>
+<td><p>Türkçe</p></td>
+<td></td>
+<td><p>tr</p></td>
+</tr>
+<tr class="row-even"><td><p>Turkmen</p></td>
+<td></td>
+<td><p>Türkmen, Түркмен</p></td>
+<td></td>
+<td><p>tk</p></td>
+</tr>
+<tr class="row-odd"><td><p>Twi</p></td>
+<td></td>
+<td><p>Twi</p></td>
+<td></td>
+<td><p>tw</p></td>
+</tr>
+<tr class="row-even"><td><p>Uyghur</p></td>
+<td></td>
+<td><p>ئۇيغۇرچە‎, Uyghurche</p></td>
+<td></td>
+<td><p>ug</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ukrainian</p></td>
+<td></td>
+<td><p>Українська</p></td>
+<td></td>
+<td><p>uk</p></td>
+</tr>
+<tr class="row-even"><td><p>Urdu</p></td>
+<td></td>
+<td><p>اردو</p></td>
+<td></td>
+<td><p>ur</p></td>
+</tr>
+<tr class="row-odd"><td><p>Uzbek</p></td>
+<td></td>
+<td><p>Oʻzbek, Ўзбек, أۇزبېك‎</p></td>
+<td></td>
+<td><p>uz</p></td>
+</tr>
+<tr class="row-even"><td><p>Venda</p></td>
+<td></td>
+<td><p>Tshivenḓa</p></td>
+<td></td>
+<td><p>ve</p></td>
+</tr>
+<tr class="row-odd"><td><p>Vietnamese</p></td>
+<td></td>
+<td><p>Tiếng Việt</p></td>
+<td></td>
+<td><p>vi</p></td>
+</tr>
+<tr class="row-even"><td><p>Volapük</p></td>
+<td></td>
+<td><p>Volapük</p></td>
+<td></td>
+<td><p>vo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Walloon</p></td>
+<td></td>
+<td><p>walon</p></td>
+<td></td>
+<td><p>wa</p></td>
+</tr>
+<tr class="row-even"><td><p>Welsh</p></td>
+<td></td>
+<td><p>Cymraeg</p></td>
+<td></td>
+<td><p>cy</p></td>
+</tr>
+<tr class="row-odd"><td><p>Western Frisian</p></td>
+<td></td>
+<td><p>Frysk</p></td>
+<td></td>
+<td><p>fy</p></td>
+</tr>
+<tr class="row-even"><td><p>Wolof</p></td>
+<td></td>
+<td><p>Wollof</p></td>
+<td></td>
+<td><p>wo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Xhosa</p></td>
+<td></td>
+<td><p>isiXhosa</p></td>
+<td></td>
+<td><p>xh</p></td>
+</tr>
+<tr class="row-even"><td><p>Yiddish</p></td>
+<td></td>
+<td><p>ייִדיש</p></td>
+<td></td>
+<td><p>yi</p></td>
+</tr>
+<tr class="row-odd"><td><p>Yoruba</p></td>
+<td></td>
+<td><p>Yorùbá</p></td>
+<td></td>
+<td><p>yo</p></td>
+</tr>
+<tr class="row-even"><td><p>Zhuang, Chuang</p></td>
+<td></td>
+<td><p>Saɯ cueŋƅ, Saw cuengh</p></td>
+<td></td>
+<td><p>za</p></td>
+</tr>
+<tr class="row-odd"><td><p>Zulu</p></td>
+<td></td>
+<td><p>isiZulu</p></td>
+<td></td>
+<td><p>zu</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/language.png" src="_images/language.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Here are the following fields in this system:</p>
+<ul class="simple">
+<li><p><strong>Language</strong> - Tag for a specific language</p></li>
+<li><p><strong>English Name</strong> - International name</p></li>
+<li><p><strong>Name</strong> - Local name</p></li>
+<li><p><strong>Active</strong> - If you want to activate the language in your application</p></li>
+<li><p><strong>Available in GUI</strong> - If you want to make the language available in the GUI</p></li>
+</ul>
+<p>First of all, go to the Dashboard Menus.</p>
+<img alt="_images/dashboardmenuhighlighted1.png" src="_images/dashboardmenuhighlighted1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Select Todos model in the list.</p>
+<img alt="_images/todoshighlighted.png" src="_images/todoshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As you notice, English (en) is the only language available in the field.</p>
+<img alt="_images/menunamelanguage.png" src="_images/menunamelanguage.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If you want to add more languages to show in the Dashboard Menu, go to the Languages in the uAdmin dashboard.</p>
+<img alt="_images/languageshighlighted1.png" src="_images/languageshighlighted1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s say I want to add Chinese and Tagalog in the menu name of the Todo model. In order to do that, set the Active as enabled.</p>
+<img alt="_images/activehighlighted.png" src="_images/activehighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the Dashboard Menus, select Todos model in the list and you will notice that Chinese (zh) and Tagalog (tl) are added in the Menu Name field. Put your translated text into the related language manually.</p>
+<img alt="_images/chinesetagalogdashboardmenu.png" src="_images/chinesetagalogdashboardmenu.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Once you are done, log out your account then login. Set your language to <strong>中文 (Zhōngwén), 汉语, 漢語 (Chinese)</strong>.</p>
+<img alt="_images/loginformchinese.png" src="_images/loginformchinese.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>When you notice, the Todos model is now translated to Chinese. That’s cool!</p>
+<img alt="_images/todoschinese.png" src="_images/todoschinese.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now log out your account then login again. This time set your language to <strong>Wikang Tagalog (Tagalog)</strong> and let’s see what happens.</p>
+<img alt="_images/loginformtagalog.png" src="_images/loginformtagalog.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/todostagalog.png" src="_images/todostagalog.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Nice! The Todos model is successfully translated to Tagalog.</p>
+<p>Now let’s try something more. Go to the Languages, search for Vietnamese, and set it as Default and Active.</p>
+<img alt="_images/vietnamesedefaultactive.png" src="_images/vietnamesedefaultactive.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Inside the Language model, search for English then click that record.</p>
+<img alt="_images/searchenglish.png" src="_images/searchenglish.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Disable the active status then click Save.</p>
+<img alt="_images/englishnotactive.png" class="align-center" src="_images/englishnotactive.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>On the top right corner, click the blue button then select Logout.</p>
+<img alt="_images/logouthighlighted.png" class="align-center" src="_images/logouthighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Log out your account and see what happens.</p>
+<img alt="_images/vietnameseassigned.png" class="align-center" src="_images/vietnameseassigned.png" />
+<p>It automatically sets the value of the Language field to <strong>Tiếng Việt (Vietnamese)</strong>.</p>
+<p>Login your account again, go to the Languages, search for Arabic, and activate RTL (Right-to-left) and Active.</p>
+<img alt="_images/arabicrtl1.png" src="_images/arabicrtl1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Log out your account then login again. Set your language to <strong>(Arabic)  العربية</strong> and let’s see what happens.</p>
+<img alt="_images/loginformarabic.png" class="align-center" src="_images/loginformarabic.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The login page has aligned from right to left.</p>
+<p>If you go to any models in the dashboard (example below is Dashboard Menus), it aligns the form automatically from right to left.</p>
+<img alt="_images/dashboardmenurighttoleft.png" src="_images/dashboardmenurighttoleft.png" />
+<p>Well done! Now you know how to activate your languages, set it to default, and using RTL (Right-to-left).</p>
+</div>
+<div class="section" id="log">
+<h2>Log<a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h2>
+<p>Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities. It keeps track of many things by default.</p>
+<img alt="_images/log.png" src="_images/log.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Here are the following fields in this system:</p>
+<ul class="simple">
+<li><p><strong>Log</strong> - Returns the ID number of itself</p></li>
+<li><p><strong>Username</strong> - An identification used by a person</p></li>
+<li><p><strong>Action</strong> - See <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#uadmin-action">uadmin.Action</a> for more details.</p></li>
+<li><p><strong>Table Name</strong> - The name of the model</p></li>
+<li><p><strong>Table</strong> - ID number of the table</p></li>
+<li><p><strong>Activity</strong> - This shows you what are the fields that you put in your record. It also adds one field for the IP “_IP” the user was using for security.</p></li>
+<li><p><strong>Roll Back</strong> - Undo the changes for edit and delete logs</p></li>
+<li><p><strong>Created At</strong> - Displays the date where the log was created</p></li>
+</ul>
+<p>Let’s open our app to see how these things work. Login your account using “admin” as username and password.</p>
+<img alt="_images/loginformadmin.png" class="align-center" src="_images/loginformadmin.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to “LOGS” model in your dashboard.</p>
+<img alt="_images/logshighlighted.png" src="_images/logshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will notice that you have logs for the action “Login Successful” that you have taken in your app which is what we have done a while ago. Log is served as the history of all your activities in your app.</p>
+<img alt="_images/loginsuccessful.png" src="_images/loginsuccessful.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If you open any of these logs, you will see all the details of that log:</p>
+<img alt="_images/logdetails.png" src="_images/logdetails.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The activity is the main part of your log. This shows you what are the fields that you put in your record. It also adds one field for the IP “IP” the user was using for security.</p>
+<p>Let’s go back to the previous page, refresh your browser and see what happens.</p>
+<img alt="_images/goback.png" src="_images/goback.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/read.png" src="_images/read.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will notice that there is another type of action called “Read” using the admin account because we opened a record in the log table.</p>
+<p>Go back to the uAdmin Dashboard and open “TODOS” model.</p>
+<img alt="_images/todoshighlightedlog.png" src="_images/todoshighlightedlog.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click Add New TODO.</p>
+<img alt="_images/todomodel.png" src="_images/todomodel.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Fill up the fields like in the example below:</p>
+<img alt="_images/todomodelcreate.png" src="_images/todomodelcreate.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Save it and new data will be added to your model.</p>
+<img alt="_images/todomodeloutput.png" src="_images/todomodeloutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Open your created record in Todo model. Notice that you have a “History” button when you open any record:</p>
+<img alt="_images/history.png" src="_images/history.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>This “History” button will give you logs related to this record:</p>
+<img alt="_images/readadded.png" src="_images/readadded.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As you notice, the logs keep track of what we have added in the Todo model as well as we have opened a while ago.</p>
+<p>Open “TODOS” model and let’s change the record from “Read a book” to “Read a magazine”.</p>
+<img alt="_images/readamagazine.png" src="_images/readamagazine.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now if I go to “LOGS”, you will notice that the action says we “Modified” a record in the todo table. There’s also a Rollback button which means we can undo any changes.</p>
+<img alt="_images/modifiedrollback.png" src="_images/modifiedrollback.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click on “Roll Back” and see what happens.</p>
+<img alt="_images/reverthandler.png" src="_images/reverthandler.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will not see anything in the screen except the white background. To fix this, type <strong>0.0.0.0:8000</strong> in the address bar. Once you are done, you will see the uAdmin dashboard again. Open “TODOS” model.</p>
+<img alt="_images/todoshighlightedlog.png" src="_images/todoshighlightedlog.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will notice that the name field has reverted from “Read a magazine” to “Read a book”.</p>
+<img alt="_images/todomodeloutput.png" src="_images/todomodeloutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s delete a record in the Todo model.</p>
+<img alt="_images/deleterecord.png" src="_images/deleterecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now if I go to “LOGS”, you will notice that the action says we “Deleted” a record in the todo table. There’s also a Rollback button which means we can undo any changes. This is a good feature for the user who accidentally delete their records in the model.</p>
+<img alt="_images/logdeleted.png" src="_images/logdeleted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click on “Roll Back” and see what happens.</p>
+<img alt="_images/reverthandlerlog7.png" src="_images/reverthandlerlog7.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will not see anything in the screen except the white background. To fix this, type <strong>0.0.0.0:8000</strong> in the address bar. Once you are done, you will see the uAdmin dashboard again. Open “TODOS” model.</p>
+<img alt="_images/todoshighlightedlog.png" src="_images/todoshighlightedlog.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, we recovered a record in the Todo model.</p>
+<img alt="_images/todomodeloutput.png" src="_images/todomodeloutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now click the profile icon on the top right corner then choose “Logout”.</p>
+<img alt="_images/logoutfromtodo.png" src="_images/logoutfromtodo.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Input your username and password that is not existing in the User System Model then click Login.</p>
+<img alt="_images/loginformnonexistent.png" src="_images/loginformnonexistent.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will see an error that says “Invalid Username”. Now login using “admin as username and password.</p>
+<img alt="_images/loginforminvaliduser.png" src="_images/loginforminvaliduser.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go to “LOGS” again. If you scroll it down, you will notice that your logout and login denied actions were recorded in the list.</p>
+<img alt="_images/logindeniedlogout.png" src="_images/logindeniedlogout.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to the uAdmin Dashboard then select “USERS”.</p>
+<img alt="_images/usershighlighted1.png" src="_images/usershighlighted1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Choose System Admin account then input your email. Email is necessary for exchanging messages between people or for password recovery.</p>
+<img alt="_images/systemadminemail.png" src="_images/systemadminemail.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Make it sure that you have a ready-made email configurations in main.go.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">EmailFrom</span> <span class="p">=</span> <span class="s">&quot;myemail@integritynet.biz&quot;</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">EmailUsername</span> <span class="p">=</span> <span class="s">&quot;myemail@integritynet.biz&quot;</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">EmailPassword</span> <span class="p">=</span> <span class="s">&quot;abc123&quot;</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">EmailSMTPServer</span> <span class="p">=</span> <span class="s">&quot;smtp.integritynet.biz&quot;</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">EmailSMTPServerPort</span> <span class="p">=</span> <span class="mi">587</span>
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Once you are done, rebuild your application first (if you haven’t set the email configurations yet) before you log out your account. At the moment, you suddenly forgot your password. How can we retrieve our account? Click Forgot Password at the bottom of the login form.</p>
+<img alt="_images/forgotpasswordhighlighted.png" src="_images/forgotpasswordhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Input your email address based on the user account you wish to retrieve it back.</p>
+<img alt="_images/forgotpasswordinputemail.png" src="_images/forgotpasswordinputemail.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Once you are done, open your email account. You will receive a password reset notification from the Todo List support. To reset your password, click the link highlighted below.</p>
+<img alt="_images/passwordresetnotification.png" src="_images/passwordresetnotification.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will be greeted by the reset password form. For now, try not to match the new and confirm reset password and see what happens.</p>
+<img alt="_images/newconfirmresetnotmatch.png" src="_images/newconfirmresetnotmatch.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/passwordresetforminvalid.png" src="_images/passwordresetforminvalid.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In uAdmin, you can only use one reset password per key. In this case, go back to the login form, select Forget Password, type your email to resend the request. This time input the following information that does match in order to create a new password for you.</p>
+<p>Once you are done, you can now access your account using your new password.</p>
+<p>Go to “LOGS” again, scroll it down and you will see that our password reset is denied on the first attempt then we reset the password successfully on our last attempt. That’s how powerful the uAdmin log is, the way it keeps track of many things.</p>
+<img alt="_images/passwordresetactions.png" src="_images/passwordresetactions.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Logs can accumulate so fast and it will get harder to find specific actions when you need to like when conducting an audit and investigating something in your system. Use “Filter” to narrow down what you are looking for:</p>
+<img alt="_images/filterlog.png" src="_images/filterlog.png" />
+<p>Congrats, now you know how to understand records you have in your app and how to audit them and revert back actions when you need to.</p>
+</div>
+<div class="section" id="profile">
+<h2>Profile<a class="headerlink" href="#profile" title="Permalink to this headline">¶</a></h2>
+<p>uAdmin has a feature that allows you to customize your own profile. In order to do that, click the profile icon on the top right corner then select admin highlighted below.</p>
+<img alt="_images/adminhighlighted.png" src="_images/adminhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>By default, there is no profile photo inserted on the top left corner. If you want to add it in your profile, click the Choose File button to browse the image on your computer.</p>
+<img alt="_images/choosefilephotohighlighted.png" src="_images/choosefilephotohighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Once you are done, click Save Changes on the left corner and refresh the webpage to see the output.</p>
+<img alt="_images/profilepicadded1.png" src="_images/profilepicadded1.png" />
+<p>No matter what small or large the pixels you upload in your profile, it will automatically resize the photo to static format.</p>
+<p>You can also enable two factor authentication in your profile. In uAdmin, it uses QR code which is typically used for storing URLs or other information for reading by the camera on a smartphone. In order to do that, you can use Google Authenticator (<a class="reference external" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en">Android</a>, <a class="reference external" href="https://itunes.apple.com/ph/app/google-authenticator/id388497605?mt=8">iOS</a>). It is a software-based authenticator that implements two-step verification services using the Time-based One-time Password Algorithm and HMAC-based One-time Password algorithm, for authenticating users of mobile applications by Google. <a class="footnote-reference brackets" href="#f2" id="id1">2</a></p>
+<img alt="_images/enable2fa.png" src="_images/enable2fa.png" />
+<p>If there is a problem, you may go to your terminal and check the OTP verification code for login.</p>
+</div>
+<div class="section" id="session">
+<h2>Session<a class="headerlink" href="#session" title="Permalink to this headline">¶</a></h2>
+<p>Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. <a class="footnote-reference brackets" href="#f1" id="id2">1</a></p>
+<img alt="_images/sessioninterface.png" src="_images/sessioninterface.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Here are the following fields in this system:</p>
+<ul class="simple">
+<li><p><strong>Key</strong> - Displays a random string</p></li>
+<li><p><strong>User</strong> - Returns the first and last name</p></li>
+<li><p><strong>Login Time</strong> - This is when the user logins to the dashboard.</p></li>
+<li><p><strong>Last Login</strong> - This is when the user has last access to the account.</p></li>
+<li><p><strong>Active</strong> - If it is not checked, you will not be able to login with that user.</p></li>
+<li><p><strong>IP</strong> - Numerical label assigned to the session from the address bar that user connects to</p></li>
+<li><p><strong>Pending OTP</strong> - If the user has not verifying the OTP in the login</p></li>
+<li><p><strong>Expires On</strong> -  This is when the cookie will expire.</p></li>
+</ul>
+<p>Let’s open our app to see how these things work. Login your account using “admin” as username and password.</p>
+<img alt="_images/loginformadmin.png" class="align-center" src="_images/loginformadmin.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The Session model is hidden in the uAdmin Dashboard by default. In order to show it, go to “DASHBOARD MENUS” first.</p>
+<img alt="_images/dashboardmenuhighlighted1.png" src="_images/dashboardmenuhighlighted1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Select Sessions model in the list.</p>
+<img alt="_images/sessionshighlighted.png" src="_images/sessionshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Turn off the Hidden field so that the Session model will become visible in the uAdmin Dashboard.</p>
+<img alt="_images/sessionshiddenturnoff.png" src="_images/sessionshiddenturnoff.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to the uAdmin Dashboard and open “SESSIONS”.</p>
+<img alt="_images/sessionshighlighteddashboard.png" src="_images/sessionshighlighteddashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If this is your first time to run an application, you will see only one session in the list as shown below.</p>
+<img alt="_images/sessionlist.png" src="_images/sessionlist.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If you open the record, you will see all the details of that session. Let’s turn off the Active, save it and see what happens.</p>
+<img alt="_images/activeturnoff.png" src="_images/activeturnoff.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It will automatically redirect you to the login page which means your session has been deactivated. Login your account again using “admin” as username and password.</p>
+<img alt="_images/logoutfromsession.png" src="_images/logoutfromsession.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Your session automatically generates a new key for you.</p>
+<img alt="_images/sessionautomaticcreate.png" src="_images/sessionautomaticcreate.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Before we proceed to Pending OTP, go to the uAdmin Dashboard and select “USERS”.</p>
+<img alt="_images/usershighlighted1.png" src="_images/usershighlighted1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Choose System Admin and activate the OTP required.</p>
+<img alt="_images/otprequired.png" src="_images/otprequired.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to Sessions model then click the previous record.</p>
+<img alt="_images/firstsession.png" src="_images/firstsession.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Enable the “Active” and “Pending OTP” then click Save.</p>
+<img alt="_images/activepending.png" src="_images/activepending.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now log out your account. Login again using “admin” as username and password then see what happens.</p>
+<p>You will be asked to input a verification code in the login form. Check your terminal to see the OTP code.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   User: admin OTP: <span class="m">245421</span>
+</pre></div>
+</div>
+<img alt="_images/loginformotp.png" src="_images/loginformotp.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Open “SESSIONS” model. You will notice that the second session is no longer active after you logout. The last login has changed because you reuse that session. It was reused because you set that session as Active before you logout. Lastly, the Pending OTP is no longer checked because you already verified OTP code given by your terminal.</p>
+<img alt="_images/sessionchanges.png" src="_images/sessionchanges.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Finally, set the Expires On value to now.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Use it at your own risk. Once the session expires, your account will be permanently deactivated. In this case, you must have an extra user account in the User database.</p>
+</div>
+<img alt="_images/sessionexpireson.png" src="_images/sessionexpireson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Save it and see what happens.</p>
+<img alt="_images/sessionloginform.png" src="_images/sessionloginform.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It will automatically redirect you to the login page which means your session has expired. In this case, you must login using another account that has no expiry date in the session.</p>
+<p>Well done! Now you know how to configure your sessions by using Active, Pending OTP, and Expires On.</p>
+</div>
+<div class="section" id="setting">
+<h2>Setting<a class="headerlink" href="#setting" title="Permalink to this headline">¶</a></h2>
+<p>Setting is a system in uAdmin that is used to display information for an application as a whole.</p>
+<img alt="_images/defaultsettingrecords.png" src="_images/defaultsettingrecords.png" />
+<p>Here are the following fields in this system:</p>
+<ul class="simple">
+<li><p><strong>Name</strong> - The name of the setting that you want to assign</p></li>
+<li><p><strong>Default Value</strong> - The value that will be assigned in the header inside the square brackets</p></li>
+<li><p><strong>Data Type</strong> - The data type that you want to select in the drop down list</p></li>
+<li><p><strong>Value</strong> - The value that will be assigned in the text box</p></li>
+<li><p><strong>Help</strong> - A feature that gives solution(s) to solve advanced tasks</p></li>
+<li><p><strong>Category</strong> - Used for classifying settings</p></li>
+<li><p><strong>Code</strong> - A read only field that is used to get a setting</p></li>
+</ul>
+<p>Data Type has 7 choices:</p>
+<ul class="simple">
+<li><p><strong>Boolean</strong> - A data type that has one of two possible values (usually denoted true and false), intended to represent the two truth values of logic and Boolean algebra</p></li>
+<li><p><strong>DateTime</strong> - Provides functionality for measuring and displaying time</p></li>
+<li><p><strong>File</strong> - A data type used in order to upload a file in the database</p></li>
+<li><p><strong>Float</strong> - Used in various programming languages to define a variable with a fractional value</p></li>
+<li><p><strong>Image</strong> - Used to upload and crop an image in the database</p></li>
+<li><p><strong>Integer</strong> - Used to represent a whole number that ranges from -2147483647 to 2147483647 for 9 or 10 digits of precision</p></li>
+<li><p><strong>String</strong> - Used to represent text rather than numbers</p></li>
+</ul>
+<p>First of all, go to uAdmin dashboard and click on “SETTINGS”.</p>
+<img alt="_images/settingshighlighted.png" src="_images/settingshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click “Add New Setting”.</p>
+<img alt="_images/addnewsetting.png" src="_images/addnewsetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s input two records: A Water Daily Intake for Men and Women.</p>
+<p><strong>First record</strong></p>
+<img alt="_images/waterdailyintakeformen.png" class="align-center" src="_images/waterdailyintakeformen.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Second record</strong></p>
+<img alt="_images/waterdailyintakeforwomen.png" class="align-center" src="_images/waterdailyintakeforwomen.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/settingdataresult.png" src="_images/settingdataresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go to Settings page by clicking on the wrench icon on the top right part to see the result.</p>
+<img alt="_images/wrenchiconfromsetting.png" src="_images/wrenchiconfromsetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/settingresult.png" class="align-center" src="_images/settingresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Congrats! Now you know how to create a setting by assigning the name, default value, data type, value, help, category, and displaying the results in the Settings page.</p>
+</div>
+<div class="section" id="setting-category">
+<h2>Setting Category<a class="headerlink" href="#setting-category" title="Permalink to this headline">¶</a></h2>
+<p>Setting Category is a system in uAdmin that is used for classifying settings and its records.</p>
+<p>Here are the following fields in this system:</p>
+<ul class="simple">
+<li><p><strong>Name</strong> - The name of the setting category that you want to assign</p></li>
+<li><p><strong>Icon</strong> - A small picture or symbol for setting category</p></li>
+</ul>
+<p>First of all, go to uAdmin dashboard and click on “SETTING CATEGORIES”.</p>
+<img alt="_images/settingcategoryshighlighted.png" src="_images/settingcategoryshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click “Add New Setting Category”.</p>
+<img alt="_images/addnewsettingcategory.png" src="_images/addnewsettingcategory.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Fill up the following data to create a new setting category (e.g. Health).</p>
+<img alt="_images/settingcategoryhealth.png" src="_images/settingcategoryhealth.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/settingcategoryhealthresult.png" src="_images/settingcategoryhealthresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go to Settings page by clicking on the wrench icon on the top right part to see the result.</p>
+<img alt="_images/wrenchiconfromsettingcategory.png" src="_images/wrenchiconfromsettingcategory.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/settingcategoryresult.png" src="_images/settingcategoryresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Congrats! Now you know how to create a setting category by assigning the name and icon, and displaying the result in the Settings page.</p>
+</div>
+<div class="section" id="user">
+<h2>User<a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h2>
+<p>User is a system in uAdmin that is used to add, modify and delete the elements of the user. By default, the system creates one user which is the admin user who has full permission to read, add edit and delete data from every model.</p>
+<img alt="_images/user.png" src="_images/user.png" />
+<p>Here are the following fields in this system:</p>
+<ul class="simple">
+<li><p><strong>User</strong> - Returns the first and last name</p></li>
+<li><p><strong>Username</strong> - An identification used by a person</p></li>
+<li><p><strong>First Name</strong> - Given name</p></li>
+<li><p><strong>Last Name</strong> - Surname</p></li>
+<li><p><strong>Email</strong> - An electronic mail address used for exchanging messages between people or for password recovery</p></li>
+<li><p><strong>Active</strong> - If it is not checked, you will not be able to login with that user.</p></li>
+<li><p><strong>Admin</strong> - Allows full access to everything where you can set permissions to the user</p></li>
+<li><p><strong>Remote Access</strong> - If it is not checked, you will only be able to login if you are connected to the server using a private IP e.g. (10.x.x.x,192.168.x.x, 127.x.x.x or ::1).</p></li>
+<li><p><strong>User Group</strong> - To belong a specific user to the group. If the user group has permissions, the user can access to something with some restrictions.</p></li>
+<li><p><strong>Photo</strong> - This is where you can upload your profile picture in your account.</p></li>
+<li><p><strong>Last Login</strong> - This is when the user has last access to the account.</p></li>
+<li><p><strong>Expires On</strong> -  This is when the cookie will expire.</p></li>
+<li><p><strong>OTP Required</strong> - Adds an extra layer of security by sending the verification code</p></li>
+</ul>
+<p>Let’s create a new user account called “even” with the First Name “Even” and the Last Name “Demata”. Set the Active, Admin, and Remote Access fields to <strong>true</strong>.</p>
+<img alt="_images/useraddsystem.png" src="_images/useraddsystem.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/useraddsystemoutput.png" src="_images/useraddsystemoutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now log out your account and login again using the name “even”.</p>
+<img alt="_images/loginformeven.png" src="_images/loginformeven.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, you will see the same dashboard like using your System Admin account. It’s because you are an admin and has full permissions to everything. For now, let’s set an email address to “<a class="reference external" href="mailto:myemail&#37;&#52;&#48;integritynet&#46;biz">myemail<span>&#64;</span>integritynet<span>&#46;</span>biz</a>”.</p>
+<img alt="_images/useremailhighlighted.png" src="_images/useremailhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Make it sure that you have set an email configurations in main.go.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">EmailFrom</span> <span class="p">=</span> <span class="s">&quot;myemail@integritynet.biz&quot;</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">EmailUsername</span> <span class="p">=</span> <span class="s">&quot;myemail@integritynet.biz&quot;</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">EmailPassword</span> <span class="p">=</span> <span class="s">&quot;abc123&quot;</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">EmailSMTPServer</span> <span class="p">=</span> <span class="s">&quot;smtp.integritynet.biz&quot;</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">EmailSMTPServerPort</span> <span class="p">=</span> <span class="mi">587</span>
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Log out your account. At the moment, you suddenly forgot your password. How can we retrieve our account? Click Forgot Password at the bottom of the login form.</p>
+<img alt="_images/forgotpasswordhighlighted.png" src="_images/forgotpasswordhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Input your email address based on the user account you wish to retrieve it back.</p>
+<img alt="_images/forgotpasswordinputemail.png" src="_images/forgotpasswordinputemail.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Once you are done, open your email account. You will receive a password reset notification from the Todo List support. To reset your password, click the link highlighted below.</p>
+<img alt="_images/passwordresetnotification.png" src="_images/passwordresetnotification.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will be greeted by the reset password form. Input the following information in order to create a new password for you.</p>
+<img alt="_images/resetpasswordform.png" src="_images/resetpasswordform.png" />
+<p>Once you are done, you can now access your account using your new password.</p>
+<p>Login your System Admin account. Turn off the Admin and Remote Access fields in Even Demata account.</p>
+<img alt="_images/adminremoteturnedoff.png" src="_images/adminremoteturnedoff.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Logout your System Admin account and login the Even Demata account. Let’s see what happens.</p>
+<img alt="_images/dashboardmenuempty.png" src="_images/dashboardmenuempty.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The dashboard menu is empty. How can we get access to it at least some of them? We need to set the user permission to Even Demata account so login your System account, go to Users model, select Even Demata account then go to the User Permission tab. Afterwards, click Add New User Permission button at the right side.</p>
+<img alt="_images/addnewuserpermission.png" src="_images/addnewuserpermission.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Set the Dashboard Menu to “Todos” model, User linked to “Even Demata”, and activate the “Read” only. It means Even Demata user account has restricted access to adding, editing, deleting, and approving a record in the Todos model.</p>
+<img alt="_images/userpermissionevendemata.png" class="align-center" src="_images/userpermissionevendemata.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/userpermissionevendemataoutput.png" src="_images/userpermissionevendemataoutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Log out your System Admin account. This time login your username and password using the user account that has user permission. Afterwards, you will see that only the Todos model is shown in the dashboard because your user account is not an admin and has no remote access to it. Now click on TODOS model.</p>
+<img alt="_images/userpermissiondashboard.png" src="_images/userpermissiondashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As you will see, your user account is restricted to add, edit, or delete a record in the Todo model. You can only read what is inside this model.</p>
+<img alt="_images/useraddeditdeleterestricted.png" src="_images/useraddeditdeleterestricted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Login your System Admin account again, go to the User Group and create a group named “Front Desk”.</p>
+<img alt="_images/usergroupcreated.png" src="_images/usergroupcreated.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Link your created user group to Even Demata account.</p>
+<img alt="_images/useraccountfrontdesklinked.png" src="_images/useraccountfrontdesklinked.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Afterwards, click the Front Desk highlighted below.</p>
+<img alt="_images/frontdeskhighlighted.png" src="_images/frontdeskhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to the Group Permission tab. Afterwards, click Add New Group Permission button at the right side.</p>
+<img alt="_images/addnewgrouppermission.png" src="_images/addnewgrouppermission.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Set the Dashboard Menu to “Todos” model, User linked to “Even Demata”, and activate the “Add” only. It means Even Demata user account has restricted access to reading, editing and deleting a record in the Todos model.</p>
+<img alt="_images/grouppermissionevendemata.png" src="_images/grouppermissionevendemata.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/grouppermissionevendemataoutput.png" src="_images/grouppermissionevendemataoutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Log out your System Admin account. This time login your username and password using the user account that has group permission. Now click on TODOS model.</p>
+<img alt="_images/userpermissiondashboard.png" src="_images/userpermissiondashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As you will see, your user account is still restricted to add, edit, or delete a record in the Todo model even if your group permission has access to “Read” only. It’s because the user permission has no access to “Read” even if Even Demata is part of the Front Desk group. In other words, user permission prioritizes more than group permission.</p>
+<img alt="_images/useraddeditdeleterestricted.png" src="_images/useraddeditdeleterestricted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Login your System Admin account again. Go back to the Users model, select Even Demata account, and let’s upload a profile picture. If you don’t have any pictures or icons in your computer, I would recommend you to go over <a class="reference external" href="https://www.flaticon.com/">flaticon.com</a>, but you can browse anywhere online. Once you search for an icon, download the PNG version and choose the size 128 pixels.</p>
+<img alt="_images/userphotohighlighted.png" src="_images/userphotohighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Logout your System Admin account. Login your Even Demata account, click on profile icon then select “even” highlighted below.</p>
+<img alt="_images/evenhighlighted.png" src="_images/evenhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will notice that your profile picture has been uploaded in your user account.</p>
+<img alt="_images/profileeven.png" src="_images/profileeven.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Login your System Admin account again. Go back to the Users model, select Even Demata account, and activate the OTP Required.</p>
+<img alt="_images/otprequiredeven.png" src="_images/otprequiredeven.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Logout your System Admin account then Login Even Demata account. Afterwards, you will see the second form as shown below. It requires you to input a Verification Code given by your terminal.</p>
+<p><strong>Terminal</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   User: even OTP: <span class="m">812567</span>
+</pre></div>
+</div>
+<img alt="_images/loginformwithotp.png" src="_images/loginformwithotp.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Once you are done, it will redirect you to the uAdmin dashboard. Login your System Admin account again, go back to the Users model, select Even Demata account, and set the Expires On to now.</p>
+<img alt="_images/expiresoneven.png" src="_images/expiresoneven.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Log out your System Admin account, login Even Demata account and see what happens.</p>
+<img alt="_images/logoutredirect.png" src="_images/logoutredirect.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It will log you out automatically because Even Demata account has already expired.</p>
+<p>Login your System Admin account. Go to Users model and finally, delete the Even Demata account.</p>
+<img alt="_images/deleteuser.png" src="_images/deleteuser.png" />
+<p>Well done! Now you know how to configure your user by adding, updating, customizing and deleting a user account.</p>
+</div>
+<div class="section" id="user-group">
+<h2>User Group<a class="headerlink" href="#user-group" title="Permalink to this headline">¶</a></h2>
+<p>User Group is a system in uAdmin used to add, modify, and delete the group name, the only field in this system. It has only one field: <strong>Group Name</strong>. It is useful if you want to belong a specific user to the group. If the user group has permissions, the user can access to something with some restrictions.</p>
+<p>Let’s create a new user group named “Front Desk”.</p>
+<img alt="_images/usergroupcreated.png" src="_images/usergroupcreated.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Afterwards, link it to any of your existing user accounts.</p>
+<img alt="_images/useraccountfrontdesklinked.png" src="_images/useraccountfrontdesklinked.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/frontdeskhighlighted.png" src="_images/frontdeskhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Finally, delete the Front Desk User Group.</p>
+<img alt="_images/usergroupdelete.png" src="_images/usergroupdelete.png" />
+<p>Well done! Now you know how to add a user group, link it to your existing user accounts, and deleting the user group.</p>
+</div>
+<div class="section" id="user-permission">
+<h2>User Permission<a class="headerlink" href="#user-permission" title="Permalink to this headline">¶</a></h2>
+<p>User Permission sets the permission of a user handled by an administrator.</p>
+<img alt="_images/userpermissioncreated.png" src="_images/userpermissioncreated.png" />
+<p>Here are the following fields in this system:</p>
+<ul class="simple">
+<li><p><strong>User Permission</strong> - Returns the ID number of itself</p></li>
+<li><p><strong>Dashboard Menu</strong> - Fetches the name of the model</p></li>
+<li><p><strong>User</strong> - Fetches the first and last name of the user</p></li>
+<li><p><strong>Read</strong> - Sets the Read access to the user</p></li>
+<li><p><strong>Add</strong> - Sets the Add access to the user</p></li>
+<li><p><strong>Edit</strong> - Sets the Edit access to the user</p></li>
+<li><p><strong>Delete</strong> - Sets the Delete access to the user</p></li>
+<li><p><strong>Approval</strong> - Sets the Approval access to the user</p></li>
+</ul>
+<p>First of all, make it sure that your existing account is not an Admin (example below is Even Demata).</p>
+<img alt="_images/adminhighlighted1.png" src="_images/adminhighlighted1.png" />
+<p>Set the Dashboard Menu to any of your existing models (example below is Todos), link it to any of your existing accounts, and activate the “Read” only. It means Even Demata account has restricted access to adding, editing, deleting, and approving a record in the Todos model.</p>
+<img alt="_images/userpermissionevendemata.png" class="align-center" src="_images/userpermissionevendemata.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/userpermissionevendemataoutput.png" src="_images/userpermissionevendemataoutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Log out your System Admin account. This time login your username and password using the user account that has user permission. Afterwards, you will see that only the Todos model is shown in the dashboard because your user account is not an admin and has no remote access to it. Now click on TODOS model.</p>
+<img alt="_images/userpermissiondashboard.png" src="_images/userpermissiondashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As you will see, your user account is restricted to add, edit, or delete a record in the Todo model. You can only read what is inside this model.</p>
+<img alt="_images/useraddeditdeleterestricted.png" src="_images/useraddeditdeleterestricted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>To remove those restrictions, login your System Admin account, go to User Permission and activate “Add”, “Edit”, and “Delete” access to Even Demata account.</p>
+<img alt="_images/useraddeditdelete.png" class="align-center" src="_images/useraddeditdelete.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Login your Even Demata account and see what happens.</p>
+<img alt="_images/useraccessadddelete.png" src="_images/useraccessadddelete.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s open the “Read a book” record to see if the user can have access to edit.</p>
+<img alt="_images/useraccessedit.png" src="_images/useraccessedit.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Nice! You have full access to everything in the TODOS model. What if the user has no access to “Read” but can add, edit, or delete a record? Login your System account and remove “Read” access to Even Demata.</p>
+<img alt="_images/usernoaccessread.png" class="align-center" src="_images/usernoaccessread.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Login your Even Demata account and see what happens.</p>
+<img alt="_images/dashboardmenuempty.png" src="_images/dashboardmenuempty.png" />
+<p>TODOS model does not show up in the dashboard. Even if you remove access to “Add”, “Edit” and “Delete” to Even Demata account, it will display the same output.</p>
+<p>Login your System Admin account. Finally, delete the User Permission in Even Demata account.</p>
+<img alt="_images/userpermissiondelete.png" src="_images/userpermissiondelete.png" />
+<p>Well done! Now you know how to set the user permission to the user account, changing the access in the model and deleting the user permission.</p>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>QuinStreet Inc. (2018). User Session. Retrieved from <a class="reference external" href="https://www.webopedia.com/TERM/U/user_session.html">https://www.webopedia.com/TERM/U/user_session.html</a></p>
+</dd>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dd><p>No author (28 May 2019). Google Authenticator. Retrieved from <a class="reference external" href="https://en.wikipedia.org/wiki/Google_Authenticator">https://en.wikipedia.org/wiki/Google_Authenticator</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="quick_reference.html"
+                        title="previous chapter">Quick Reference</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tags.html"
+                        title="next chapter">Tag Reference</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/system_reference.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tags.html" title="Tag Reference"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="quick_reference.html" title="Quick Reference"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

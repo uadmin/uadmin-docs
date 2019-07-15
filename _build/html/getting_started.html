@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Getting Started &#8212; uadmin 0.3 documentation</title>
+    <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="uAdmin Tutorials" href="coverage.html" />
+    <link rel="prev" title="uAdmin the Golang Web Framework" href="index.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="coverage.html" title="uAdmin Tutorials"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="uAdmin the Golang Web Framework"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>Before you start, make sure you have Golang 1.10.3 or later installed on your machine and configured.
+To install Golang, follow instructions for your OS on <a class="reference external" href="https://golang.org/dl/">Golang Downloads</a>.</p>
+<p>If you are not familiar with Golang, we advise you to go over <a class="reference external" href="https://tour.golang.org/">Golang Tour</a>.</p>
+<div class="section" id="apple-macos">
+<h2>Apple macOS<a class="headerlink" href="#apple-macos" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ nano .bash_profile
+</pre></div>
+</div>
+<p>Add the following codes inside it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$HOME</span>/go
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$GOPATH</span>/bin
+</pre></div>
+</div>
+<p>For detailed instructions, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/install/Apple%20macOS%20Installation.pdf">Golang and uAdmin Apple macOS Installation</a>.</p>
+</div>
+<div class="section" id="linux">
+<h2>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ nano .profile
+</pre></div>
+</div>
+<p>Add the following codes inside it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># set PATH so it includes user&#39;s private bin directories</span>
+
+<span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/bin:</span><span class="nv">$HOME</span><span class="s2">/.local/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
+<span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$HOME</span>/go
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$GOPATH</span>/bin
+</pre></div>
+</div>
+<p>For detailed instructions, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/install/Linux%20Installation.pdf">Golang and uAdmin Linux Installation</a>.</p>
+</div>
+<div class="section" id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
+<p>You have to set your ENVIRONMENT VARIABLES. Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/install/Windows%20Installation.pdf">here</a> for the detailed instructions.</p>
+<img alt="_images/environmentvariables.png" src="_images/environmentvariables.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If you have encountered a problem that are looking for gcc, please install <a class="reference external" href="http://tdm-gcc.tdragon.net/download">this</a> to aid the problem.</p>
+<img alt="_images/gccerror.png" src="_images/gccerror.png" />
+</div>
+<div class="section" id="tutorial">
+<h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h2>
+<p>This is a <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/coverage.html">15</a> part tutorial that will guide you through building upon your Todo list application.</p>
+<p>Before you start the tutorial, make sure you finish this part from <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/index.html">Your First Application</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">uAdmin the Golang Web Framework</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="coverage.html"
+                        title="next chapter">uAdmin Tutorials</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/getting_started.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="coverage.html" title="uAdmin Tutorials"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="uAdmin the Golang Web Framework"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

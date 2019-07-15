@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>uAdmin Tutorial Part 10 - Introduction to HTML Template &#8212; uadmin 0.3 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="uAdmin Tutorial Part 11 - Accessing an HTML file" href="part11.html" />
+    <link rel="prev" title="uAdmin Tutorial Part 9 - Inserting and Saving the Record" href="part9.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="part11.html" title="uAdmin Tutorial Part 11 - Accessing an HTML file"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="part9.html" title="uAdmin Tutorial Part 9 - Inserting and Saving the Record"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../coverage.html" accesskey="U">uAdmin Tutorials</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="uadmin-tutorial-part-10-introduction-to-html-template">
+<h1>uAdmin Tutorial Part 10 - Introduction to HTML Template<a class="headerlink" href="#uadmin-tutorial-part-10-introduction-to-html-template" title="Permalink to this headline">¶</a></h1>
+<p>In this part, we will discuss about designing a table in HTML and setting up a template file.</p>
+<p>Before you proceed, make sure you have at least the basic knowledge of HTML. If you are not familiar with HTML, we advise you to go over <a class="reference external" href="https://www.w3schools.com/">W3Schools</a>.</p>
+<p>In this tutorial, we will use Bootstrap 4. For the tutorials, click <a class="reference external" href="https://www.w3schools.com/bootstrap4/default.asp">here</a>.</p>
+<p>First of all, go to your project folder and select templates.</p>
+<img alt="../_images/templatesfolderhighlighted1.png" class="align-center" src="../_images/templatesfolderhighlighted1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Inside the templates folder, create a new file named <strong>todo.html</strong>.</p>
+<img alt="../_images/todohtmlcreate.png" class="align-center" src="../_images/todohtmlcreate.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Inside the todo.html, create an HTML5 structure following the codes below and change the title from Document to Todo List.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;ie=edge&quot;</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Latest compiled and minified CSS --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Change the title from Document to Todo List --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Todo List<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Save the file. Run your application in the browser and see what happens.</p>
+<img alt="../_images/todolisthtmltitle.png" class="align-center" src="../_images/todolisthtmltitle.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The title bar is named as Todo List. Now inside the &lt;body&gt;, create a table header following the code structure below. You can choose which class of Bootstrap table that you want to display in your application. In this tutorial, we will use table-striped.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container-fluid&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;table table-striped&quot;</span><span class="p">&gt;</span>
+        <span class="c">&lt;!-- Todo Fields --&gt;</span>
+        <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Name<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Description<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Category<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Friend<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Item<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Target Date<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Progress<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Save the file. Run your application in the browser and see what happens.</p>
+<img alt="../_images/todolisthtmlheader.png" src="../_images/todolisthtmlheader.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Nice! Now go back to your project folder then select views.</p>
+<img alt="../_images/viewsfolderhighlighted.png" class="align-center" src="../_images/viewsfolderhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Inside the views folder, create a new file named <strong>view.go</strong>.</p>
+<img alt="../_images/viewgofile.png" src="../_images/viewgofile.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part11.html">next part</a>, we will talk about establishing a connection to the HTTP Handler, setting the URL path name, and executing an HTML file.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="part9.html"
+                        title="previous chapter">uAdmin Tutorial Part 9 - Inserting and Saving the Record</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="part11.html"
+                        title="next chapter">uAdmin Tutorial Part 11 - Accessing an HTML file</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/part10.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="part11.html" title="uAdmin Tutorial Part 11 - Accessing an HTML file"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="part9.html" title="uAdmin Tutorial Part 9 - Inserting and Saving the Record"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../coverage.html" >uAdmin Tutorials</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

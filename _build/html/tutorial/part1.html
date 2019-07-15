@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>uAdmin Tutorial Part 1 - Build A Project &#8212; uadmin 0.3 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="uAdmin Tutorial Part 2 - Internal vs. External Models" href="part2.html" />
+    <link rel="prev" title="uAdmin Tutorials" href="../coverage.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="part2.html" title="uAdmin Tutorial Part 2 - Internal vs. External Models"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../coverage.html" title="uAdmin Tutorials"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../coverage.html" accesskey="U">uAdmin Tutorials</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="uadmin-tutorial-part-1-build-a-project">
+<h1>uAdmin Tutorial Part 1 - Build A Project<a class="headerlink" href="#uadmin-tutorial-part-1-build-a-project" title="Permalink to this headline">¶</a></h1>
+<p>In this part, we will build upon the Todo list from home.</p>
+<div class="section" id="folder-structure">
+<h2>Folder Structure<a class="headerlink" href="#folder-structure" title="Permalink to this headline">¶</a></h2>
+<p>There is no required folder structure, but from experience we found the following structure
+to work and scale well for a uAdmin projects:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/go/src/github.com/your_name/project/
+    models/     <span class="c1"># Automatically Generated - DB models</span>
+        a.go
+        b.go
+    api/        <span class="c1"># Automatically Generated - Custom API</span>
+        api.go
+        some_handler.go
+    views/      <span class="c1"># Automatically Generated - Custom UI HTTP Handlers</span>
+        view.go
+        some_view.go
+    media/      <span class="c1"># Automatically Generated - User uploads</span>
+        files           <span class="c1"># This is where your uploaded files are stored.</span>
+        images          <span class="c1"># This is where your uploaded images are stored.</span>
+        otp             <span class="c1"># This is where your OTPs are stored in PNG format.</span>
+    static/     <span class="c1"># Automatically Generated - Static files (images/js/css...)</span>
+        i18n            <span class="c1"># This is where the JSON files for translation are stored.</span>
+        uadmin          <span class="c1"># Built-in files for uadmin</span>
+    templates/  <span class="c1"># Automatically Generated - HTML Templates</span>
+    main.go
+</pre></div>
+</div>
+<p>The first time you run your project, these folders are automatically generated for you.</p>
+<p><strong>Models</strong> is where your external models are located. In order to access those models in the dashboard, <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#uadmin-register">uadmin.Register</a> function is necessary to be done in main.go which will be discussed in the next part of this tutorial.</p>
+<p><strong>API</strong> is where back-end and front-end will communicate. Either the records stored in uAdmin database or the data that was stored in AJAX function from Javascript will pass to the JSON based on the query by matching the fields from a specific model and their values. AJAX call will perform the tasks.</p>
+<p><strong>Views</strong> is where back-end and front-end will communicate. Unlike in API, handlers does not use a query or JSON to store data. Instead, it creates a replicate model struct based on uAdmin model(s) to store values on each field then pass the context variable into the ExecuteTemplate function which will be discussed in the later part of this tutorial.</p>
+<p><strong>Media</strong> is where your uploaded multimedia files are located. It can be files, images, OTPs, sounds, and many others.</p>
+<p><strong>Static</strong> is where the built-in files for uAdmin such as JSON for translation are located.</p>
+<p><strong>Templates</strong> is where the themes for uAdmin are located.</p>
+<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part2.html">next part</a> we will talk about creating and moving a model as well as cropping an image.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../coverage.html"
+                        title="previous chapter">uAdmin Tutorials</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="part2.html"
+                        title="next chapter">uAdmin Tutorial Part 2 - Internal vs. External Models</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/part1.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="part2.html" title="uAdmin Tutorial Part 2 - Internal vs. External Models"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../coverage.html" title="uAdmin Tutorials"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../coverage.html" >uAdmin Tutorials</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>
