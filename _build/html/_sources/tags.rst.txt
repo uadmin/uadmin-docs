@@ -121,7 +121,7 @@ Suppose you have "johndoe" account in the User model that is not an admin.
 
 |
 
-And you have user permissions for that user in Approvals and Friends models without an approval access.
+And you have user permissions for that user in Friends model without an approval access.
 
 .. image:: api/assets/johndoeuserpermissionapproval.png
 
@@ -150,7 +150,7 @@ Run your application and login your account using "johndoe".
 
 |
 
-As you can see, only the Approvals and Friends models are accessible in the dashboard. It is based on the user permission that was assigned on that user. Now click on "FRIENDS".
+As you can see, only the Friends model is accessible in the dashboard. It is based on the user permission that was assigned on that user. Now click on "FRIENDS".
 
 .. image:: api/assets/friendsapprovalhighlighted.png
 
