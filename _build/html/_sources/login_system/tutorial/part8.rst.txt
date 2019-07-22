@@ -61,7 +61,7 @@ Exit your application. Now create a handler that fetches the user record based o
         }
 
         // Pass the userContext data object to the HTML file
-        uadmin.RenderHTML(w, userContext, "templates/home.html")
+        uadmin.RenderHTML(w, "templates/home.html", userContext)
         return
     }
 

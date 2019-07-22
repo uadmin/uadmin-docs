@@ -4349,7 +4349,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part11.html">uAdmin Tutorial Part 11 - Accessing an HTML file</a></p></li>
 </ul>
-<p>Create an HTML file in views folder named <strong>friends.html</strong> with the following codes below:</p>
+<p>Create an HTML file in templates folder named <strong>friends.html</strong> with the following codes below:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -4418,11 +4418,11 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
     <span class="p">}</span>
 
     <span class="c1">// Pass Friends data object to the specified HTML path</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RenderHTML</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="s">&quot;views/friends.html&quot;</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RenderHTML</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&quot;templates/friends.html&quot;</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Go back to friends.html in views folder. Inside the &lt;tbody&gt; tag, add the following codes shown below.</p>
+<p>Go back to friends.html in templates folder. Inside the &lt;tbody&gt; tag, add the following codes shown below.</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{{range .Friends}}
 <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{.Name}}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>

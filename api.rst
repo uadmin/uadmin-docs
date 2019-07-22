@@ -5289,7 +5289,7 @@ Used in the tutorial:
 
 .. _uAdmin Tutorial Part 11 - Accessing an HTML file: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part11.html
 
-Create an HTML file in views folder named **friends.html** with the following codes below:
+Create an HTML file in templates folder named **friends.html** with the following codes below:
 
 .. code-block:: html
 
@@ -5363,10 +5363,10 @@ In views folder, create a new file named **friends_list.go** with the following 
         }
 
         // Pass Friends data object to the specified HTML path
-        uadmin.RenderHTML(w, c, "views/friends.html")
+        uadmin.RenderHTML(w, "templates/friends.html", c)
     }
 
-Go back to friends.html in views folder. Inside the <tbody> tag, add the following codes shown below.
+Go back to friends.html in templates folder. Inside the <tbody> tag, add the following codes shown below.
 
 .. code-block:: html
 

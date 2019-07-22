@@ -73,7 +73,7 @@ Below the UserContext struct, create a LoginHandler function that creates a new 
         userContext := UserContext{}
 
         // Pass the userContext data object to the HTML file
-        uadmin.RenderHTML(w, userContext, "templates/login.html")
+        uadmin.RenderHTML(w, "templates/login.html", userContext)
         return
     }
 
