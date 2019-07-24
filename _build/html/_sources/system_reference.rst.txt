@@ -2,6 +2,7 @@ System Reference
 ================
 In this section, we will cover the features of each following systems in-depth listed below:
 
+* `AB Test`_
 * `Approval`_
 * `Dashboard Menu`_
 * `Export to Excel`_
@@ -15,6 +16,353 @@ In this section, we will cover the features of each following systems in-depth l
 * `User`_
 * `User Group`_
 * `User Permission`_
+
+AB Test
+-------
+AB Test is a system in uAdmin that is used to compare two or more values and checks which one has the best impressions, clicks and click through rate.
+
+Here are the following fields and their definitions:
+
+* **Name** - The name of the A/B Test
+* **Type** - A list of test types from a dropdown menu
+* **StaticPath** - The path assigned in the static
+* **ModelName** - A list of registered models
+* **Field** - A list of fields from schema for a registered model
+* **PrimaryKey** - Used to uniquely identify each row in the table
+* **Active** - Checks whether the A/B Test is Active
+* **Group** - The name of the group
+
+Prerequisites:
+
+* `HTML Template`_
+* `Static Images`_
+* `Image Source Reference`_
+* `Campaign Info Model`_
+* `API Click Handler`_
+* `Get A/B Test`_
+* `Dynamic Values in Name and Button`_
+
+Examples:
+
+* `Example #1: Static`_
+* `Example #2: Model`_
+
+.. _HTML Template: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-1-html-template
+.. _Static Images: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-2-static-handler
+.. _Image Source Reference: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-5-image-testing
+.. _Campaign Info Model: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-1-campaign-info-model
+.. _API Click Handler: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-4-api-click-handler
+.. _Get A/B Test: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-5-get-a-b-test
+.. _Dynamic Values in Name and Button: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-6-button-testing
+
+**Example #1: Static**
+^^^^^^^^^^^^^^^^^^^^^^
+First of all, login your admin account.
+
+.. image:: api/assets/loginformadmin.png
+   :align: center
+
+|
+
+From uAdmin dashboard, click "AB Tests".
+
+.. image:: api/assets/abtestshighlighted.png
+
+|
+
+Click "Add New ABTest" button on the upper right corner.
+
+.. image:: assets/addnewabtest.png
+
+|
+
+Create a new record named "Photo Test" with the following information below.
+
+.. image:: assets/phototestnewrecord.png
+   :align: center
+
+|
+
+Result. Now click the Photo Test record that you have created.
+
+.. image:: api/assets/phototestrecord.png
+
+|
+
+From here, click "ABTEST VALUE" inline.
+
+.. image:: api/assets/abtestvalueinlinephototest.png
+   :align: center
+
+|
+
+Let's create two records for Donate and Contribute. Click "Add New AB Test Value" button on the upper right corner.
+
+.. image:: assets/addnewabtestvalue.png
+
+|
+
+**First Record**
+
+.. image:: assets/donatephototestnewrecord.png
+   :align: center
+
+|
+
+**Second Record**
+
+.. image:: assets/contributephototestnewrecord.png
+   :align: center
+
+|
+
+Result
+
+.. image:: api/assets/phototestvalues.png
+
+|
+
+Now go to /campaign/ path in the address bar (e.g. http://0.0.0.0:8080/campaign/).
+
+.. image:: api/assets/campaigndonate.png
+   :align: center
+
+|
+
+Right click your mouse then select Inspect or just press Ctrl + Shift + I on your keyboard to open the inspect element tab.
+
+.. image:: api/assets/inspecthighlighted.png
+   :align: center
+
+|
+
+From here, click Application tab.
+
+.. image:: api/assets/applicationinspectelement.png
+   :align: center
+
+|
+
+In Storage, click on Cookies on the left side then select http://localhost:8080. You will see that there is an abt cookie in the table list. In A/B test, we will focus on the value. It is randomly generated. If the value is an even number, we are getting the original image that is the path of the A/B test value is equal to the A/B test static path. Otherwise, we are getting the different image. In addition to this, abt cookie will expire every midnight.
+
+.. image:: api/assets/abtcookieinfo.png
+
+|
+
+Now let's delete the abt cookie.
+
+.. image:: api/assets/abtcookiedeleted.png
+
+|
+
+Refresh the webpage and see what happens.
+
+.. image:: api/assets/abtcookieoddvalue.png
+
+|
+
+The image displays differently because the abt cookie value is an odd number. Repeat the same process until you get an even number.
+
+.. image:: api/assets/abtcookieevennumber.png
+
+|
+
+It displays an original image once again because the abt cookie value is an even number.
+
+Now go back to A/B Test Value in the Photo Test record. You will see the impression count in each record. This is the number of your visits.
+
+.. image:: api/assets/phototestvalueresult.png
+
+|
+
+Based on the result, the contribute image has higher impressions than donate ones.
+
+**Example #2: Model**
+^^^^^^^^^^^^^^^^^^^^^
+First of all, login your admin account.
+
+.. image:: api/assets/loginformadmin.png
+   :align: center
+
+|
+
+From uAdmin dashboard, click on "CAMPAIGN INFOS".
+
+.. image:: api/assets/campaigninfohighlighted.png
+
+|
+
+Click "Add New Campaign Info".
+
+.. image:: api/assets/addnewcampaigninfo.png
+
+|
+
+Create a Donate record for Name and Button.
+
+.. image:: api/assets/campaigninfodonate.png
+   :align: center
+
+|
+
+Result
+
+.. image:: api/assets/campaigninfodonateresult.png
+
+|
+
+Now go back to the uAdmin dashboard then click on "AB Tests".
+
+.. image:: api/assets/abtestshighlighted.png
+
+|
+
+Let's create two tests for Name and Button. Click "Add New ABTest" button on the upper right corner.
+
+.. image:: assets/addnewabtestmodel.png
+
+|
+
+**First Record**
+
+.. image:: assets/buttontestnewrecord.png
+   :align: center
+
+|
+
+**Second Record**
+
+.. image:: assets/nametestnewrecord.png
+   :align: center
+
+|
+
+Result
+
+.. image:: assets/namebuttontestcreatedsystem.png
+
+|
+
+Let's create two A/B Test Values for Name and Button tests. The values to be compared are Donate and Contribute. In order to do that, first, click the Name Test record.
+
+.. image:: assets/nametesthighlightedsystem.png
+
+|
+
+Click "ABTEST VALUE" inline.
+
+.. image:: api/assets/abtestvalueinlinenametest.png
+   :align: center
+
+|
+
+Click "Add New AB Test Value" button in the upper right corner.
+
+.. image:: assets/addnewabtestvaluename.png
+
+|
+
+**First Record**
+
+.. image:: assets/abtestvaluenamedonate.png
+   :align: center
+
+|
+
+**Second Record**
+
+.. image:: assets/abtestvaluenamecontribute.png
+   :align: center
+
+|
+
+Result
+
+.. image:: api/assets/nametestvalues.png
+
+|
+
+Similarly, they also go with the Button Test record.
+
+.. image:: api/assets/buttontestvalues.png
+
+|
+
+Now go to /campaign/ path in the address bar (e.g. http://0.0.0.0:8080/campaign/).
+
+.. image:: api/assets/campaigndonatemodel.png
+   :align: center
+
+|
+
+Let's click the Donate button and see what happens.
+
+.. image:: api/assets/alertboxmessageuserclick.png
+   :align: center
+
+|
+
+The alert box message appears on your screen. If you go to A/B Test Value inline in the Button Test record, you will see that the number of clicks in Donate record is 1 and the Click Through Rate is 100% because the number of impressions and clicks are equal.
+
+.. image:: api/assets/donate1click.png
+
+|
+
+Right click your mouse then select Inspect or just press Ctrl + Shift + I on your keyboard to open the inspect element tab.
+
+.. image:: api/assets/inspecthighlighted.png
+   :align: center
+
+|
+
+From here, click Application tab.
+
+.. image:: api/assets/applicationinspectelement2.png
+   :align: center
+
+|
+
+In Storage, click on Cookies on the left side then select http://localhost:8080. You will see that there is an abt cookie in the table list. In A/B test, we will focus on the value. It is randomly generated. If the value is an even number, we are getting the original value from Campaign Info model in the Name and Button. Otherwise, we are getting the different results. In addition to this, abt cookie will expire every midnight.
+
+.. image:: api/assets/abtcookieinfo.png
+
+|
+
+Now let's delete the abt cookie.
+
+.. image:: api/assets/abtcookiedeleted.png
+
+|
+
+Refresh the webpage and see what happens.
+
+.. image:: api/assets/abtcookieoddvaluemodel.png
+
+|
+
+We get a different result because the abt cookie value is an odd number. Repeat the same process until you get an even number.
+
+.. image:: api/assets/abtcookieevennumbermodel.png
+
+|
+
+They display original values once again because the abt cookie value is an even number.
+
+Now go back to A/B Test Value in the Name and Button Test records. You will see the impression count, click count, and Click Through Rate in each record.
+
+**Name Test Result**
+
+.. image:: api/assets/nametestvalueresult.png
+
+|
+
+**Button Test Result**
+
+.. image:: api/assets/buttontestvalueresult.png
+
+|
+
+Based on the results, the contribute record has higher impressions than donate ones while the donate ones has higher clicks and click through rate than contribute ones for both Name Test and Button Test records.
 
 Approval
 --------

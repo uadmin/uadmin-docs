@@ -44,7 +44,7 @@ Now assign the value of the login, login2fa, and otp in the UserContext struct.
         }
 
         // Pass the userContext data object to the HTML file
-        uadmin.RenderHTML(w, "templates/home.html", userContext)
+        uadmin.RenderHTML(w, r, "templates/home.html", userContext)
         return
     }
 
@@ -60,7 +60,7 @@ Now assign the value of the login, login2fa, and otp in the UserContext struct.
         }
 
         // Pass the userContext data object to the HTML file
-        uadmin.RenderHTML(w, "templates/home.html", userContext)
+        uadmin.RenderHTML(w, r, "templates/home.html", userContext)
         return
     }
 

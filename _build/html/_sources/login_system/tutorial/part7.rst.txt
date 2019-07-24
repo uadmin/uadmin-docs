@@ -55,7 +55,7 @@ Now go to login.go in views folder and apply the following codes below to delete
         http.SetCookie(w, usersession)
 
         // Pass the userContext data object to the HTML file
-        uadmin.RenderHTML(w, "templates/login.html", userContext)
+        uadmin.RenderHTML(w, r, "templates/login.html", userContext)
         return
     }
 

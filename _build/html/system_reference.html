@@ -53,6 +53,7 @@
 <h1>System Reference<a class="headerlink" href="#system-reference" title="Permalink to this headline">¶</a></h1>
 <p>In this section, we will cover the features of each following systems in-depth listed below:</p>
 <ul class="simple">
+<li><p><a class="reference internal" href="#ab-test">AB Test</a></p></li>
 <li><p><a class="reference internal" href="#approval">Approval</a></p></li>
 <li><p><a class="reference internal" href="#dashboard-menu">Dashboard Menu</a></p></li>
 <li><p><a class="reference internal" href="#export-to-excel">Export to Excel</a></p></li>
@@ -67,6 +68,277 @@
 <li><p><a class="reference internal" href="#user-group">User Group</a></p></li>
 <li><p><a class="reference internal" href="#user-permission">User Permission</a></p></li>
 </ul>
+<div class="section" id="ab-test">
+<h2>AB Test<a class="headerlink" href="#ab-test" title="Permalink to this headline">¶</a></h2>
+<p>AB Test is a system in uAdmin that is used to compare two or more values and checks which one has the best impressions, clicks and click through rate.</p>
+<p>Here are the following fields and their definitions:</p>
+<ul class="simple">
+<li><p><strong>Name</strong> - The name of the A/B Test</p></li>
+<li><p><strong>Type</strong> - A list of test types from a dropdown menu</p></li>
+<li><p><strong>StaticPath</strong> - The path assigned in the static</p></li>
+<li><p><strong>ModelName</strong> - A list of registered models</p></li>
+<li><p><strong>Field</strong> - A list of fields from schema for a registered model</p></li>
+<li><p><strong>PrimaryKey</strong> - Used to uniquely identify each row in the table</p></li>
+<li><p><strong>Active</strong> - Checks whether the A/B Test is Active</p></li>
+<li><p><strong>Group</strong> - The name of the group</p></li>
+</ul>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-1-html-template">HTML Template</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-2-static-handler">Static Images</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-5-image-testing">Image Source Reference</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-1-campaign-info-model">Campaign Info Model</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-4-api-click-handler">API Click Handler</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-5-get-a-b-test">Get A/B Test</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-6-button-testing">Dynamic Values in Name and Button</a></p></li>
+</ul>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#example-1-static">Example #1: Static</a></p></li>
+<li><p><a class="reference internal" href="#example-2-model">Example #2: Model</a></p></li>
+</ul>
+<div class="section" id="example-1-static">
+<h3><strong>Example #1: Static</strong><a class="headerlink" href="#example-1-static" title="Permalink to this headline">¶</a></h3>
+<p>First of all, login your admin account.</p>
+<img alt="_images/loginformadmin.png" class="align-center" src="_images/loginformadmin.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From uAdmin dashboard, click “AB Tests”.</p>
+<img alt="_images/abtestshighlighted.png" src="_images/abtestshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click “Add New ABTest” button on the upper right corner.</p>
+<img alt="_images/addnewabtest.png" src="_images/addnewabtest.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Create a new record named “Photo Test” with the following information below.</p>
+<img alt="_images/phototestnewrecord.png" class="align-center" src="_images/phototestnewrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result. Now click the Photo Test record that you have created.</p>
+<img alt="_images/phototestrecord.png" src="_images/phototestrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click “ABTEST VALUE” inline.</p>
+<img alt="_images/abtestvalueinlinephototest.png" class="align-center" src="_images/abtestvalueinlinephototest.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s create two records for Donate and Contribute. Click “Add New AB Test Value” button on the upper right corner.</p>
+<img alt="_images/addnewabtestvalue.png" src="_images/addnewabtestvalue.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>First Record</strong></p>
+<img alt="_images/donatephototestnewrecord.png" class="align-center" src="_images/donatephototestnewrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Second Record</strong></p>
+<img alt="_images/contributephototestnewrecord.png" class="align-center" src="_images/contributephototestnewrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/phototestvalues.png" src="_images/phototestvalues.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go to /campaign/ path in the address bar (e.g. <a class="reference external" href="http://0.0.0.0:8080/campaign/">http://0.0.0.0:8080/campaign/</a>).</p>
+<img alt="_images/campaigndonate.png" class="align-center" src="_images/campaigndonate.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Right click your mouse then select Inspect or just press Ctrl + Shift + I on your keyboard to open the inspect element tab.</p>
+<img alt="_images/inspecthighlighted.png" class="align-center" src="_images/inspecthighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click Application tab.</p>
+<img alt="_images/applicationinspectelement.png" class="align-center" src="_images/applicationinspectelement.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In Storage, click on Cookies on the left side then select <a class="reference external" href="http://localhost:8080">http://localhost:8080</a>. You will see that there is an abt cookie in the table list. In A/B test, we will focus on the value. It is randomly generated. If the value is an even number, we are getting the original image that is the path of the A/B test value is equal to the A/B test static path. Otherwise, we are getting the different image. In addition to this, abt cookie will expire every midnight.</p>
+<img alt="_images/abtcookieinfo.png" src="_images/abtcookieinfo.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s delete the abt cookie.</p>
+<img alt="_images/abtcookiedeleted.png" src="_images/abtcookiedeleted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Refresh the webpage and see what happens.</p>
+<img alt="_images/abtcookieoddvalue.png" src="_images/abtcookieoddvalue.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The image displays differently because the abt cookie value is an odd number. Repeat the same process until you get an even number.</p>
+<img alt="_images/abtcookieevennumber.png" src="_images/abtcookieevennumber.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It displays an original image once again because the abt cookie value is an even number.</p>
+<p>Now go back to A/B Test Value in the Photo Test record. You will see the impression count in each record. This is the number of your visits.</p>
+<img alt="_images/phototestvalueresult.png" src="_images/phototestvalueresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Based on the result, the contribute image has higher impressions than donate ones.</p>
+</div>
+<div class="section" id="example-2-model">
+<h3><strong>Example #2: Model</strong><a class="headerlink" href="#example-2-model" title="Permalink to this headline">¶</a></h3>
+<p>First of all, login your admin account.</p>
+<img alt="_images/loginformadmin.png" class="align-center" src="_images/loginformadmin.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From uAdmin dashboard, click on “CAMPAIGN INFOS”.</p>
+<img alt="_images/campaigninfohighlighted.png" src="_images/campaigninfohighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click “Add New Campaign Info”.</p>
+<img alt="_images/addnewcampaigninfo.png" src="_images/addnewcampaigninfo.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Create a Donate record for Name and Button.</p>
+<img alt="_images/campaigninfodonate.png" class="align-center" src="_images/campaigninfodonate.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/campaigninfodonateresult.png" src="_images/campaigninfodonateresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the uAdmin dashboard then click on “AB Tests”.</p>
+<img alt="_images/abtestshighlighted.png" src="_images/abtestshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s create two tests for Name and Button. Click “Add New ABTest” button on the upper right corner.</p>
+<img alt="_images/addnewabtestmodel.png" src="_images/addnewabtestmodel.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>First Record</strong></p>
+<img alt="_images/buttontestnewrecord.png" class="align-center" src="_images/buttontestnewrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Second Record</strong></p>
+<img alt="_images/nametestnewrecord.png" class="align-center" src="_images/nametestnewrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/namebuttontestcreatedsystem.png" src="_images/namebuttontestcreatedsystem.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s create two A/B Test Values for Name and Button tests. The values to be compared are Donate and Contribute. In order to do that, first, click the Name Test record.</p>
+<img alt="_images/nametesthighlightedsystem.png" src="_images/nametesthighlightedsystem.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click “ABTEST VALUE” inline.</p>
+<img alt="_images/abtestvalueinlinenametest.png" class="align-center" src="_images/abtestvalueinlinenametest.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click “Add New AB Test Value” button in the upper right corner.</p>
+<img alt="_images/addnewabtestvaluename.png" src="_images/addnewabtestvaluename.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>First Record</strong></p>
+<img alt="_images/abtestvaluenamedonate.png" class="align-center" src="_images/abtestvaluenamedonate.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Second Record</strong></p>
+<img alt="_images/abtestvaluenamecontribute.png" class="align-center" src="_images/abtestvaluenamecontribute.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="_images/nametestvalues.png" src="_images/nametestvalues.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Similarly, they also go with the Button Test record.</p>
+<img alt="_images/buttontestvalues.png" src="_images/buttontestvalues.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go to /campaign/ path in the address bar (e.g. <a class="reference external" href="http://0.0.0.0:8080/campaign/">http://0.0.0.0:8080/campaign/</a>).</p>
+<img alt="_images/campaigndonatemodel.png" class="align-center" src="_images/campaigndonatemodel.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s click the Donate button and see what happens.</p>
+<img alt="_images/alertboxmessageuserclick.png" class="align-center" src="_images/alertboxmessageuserclick.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The alert box message appears on your screen. If you go to A/B Test Value inline in the Button Test record, you will see that the number of clicks in Donate record is 1 and the Click Through Rate is 100% because the number of impressions and clicks are equal.</p>
+<img alt="_images/donate1click.png" src="_images/donate1click.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Right click your mouse then select Inspect or just press Ctrl + Shift + I on your keyboard to open the inspect element tab.</p>
+<img alt="_images/inspecthighlighted.png" class="align-center" src="_images/inspecthighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click Application tab.</p>
+<img alt="_images/applicationinspectelement2.png" class="align-center" src="_images/applicationinspectelement2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In Storage, click on Cookies on the left side then select <a class="reference external" href="http://localhost:8080">http://localhost:8080</a>. You will see that there is an abt cookie in the table list. In A/B test, we will focus on the value. It is randomly generated. If the value is an even number, we are getting the original value from Campaign Info model in the Name and Button. Otherwise, we are getting the different results. In addition to this, abt cookie will expire every midnight.</p>
+<img alt="_images/abtcookieinfo.png" src="_images/abtcookieinfo.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s delete the abt cookie.</p>
+<img alt="_images/abtcookiedeleted.png" src="_images/abtcookiedeleted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Refresh the webpage and see what happens.</p>
+<img alt="_images/abtcookieoddvaluemodel.png" src="_images/abtcookieoddvaluemodel.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>We get a different result because the abt cookie value is an odd number. Repeat the same process until you get an even number.</p>
+<img alt="_images/abtcookieevennumbermodel.png" src="_images/abtcookieevennumbermodel.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>They display original values once again because the abt cookie value is an even number.</p>
+<p>Now go back to A/B Test Value in the Name and Button Test records. You will see the impression count, click count, and Click Through Rate in each record.</p>
+<p><strong>Name Test Result</strong></p>
+<img alt="_images/nametestvalueresult.png" src="_images/nametestvalueresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Button Test Result</strong></p>
+<img alt="_images/buttontestvalueresult.png" src="_images/buttontestvalueresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Based on the results, the contribute record has higher impressions than donate ones while the donate ones has higher clicks and click through rate than contribute ones for both Name Test and Button Test records.</p>
+</div>
+</div>
 <div class="section" id="approval">
 <h2>Approval<a class="headerlink" href="#approval" title="Permalink to this headline">¶</a></h2>
 <p>Approval is a system in uAdmin that is used to set an approval permission in the field.</p>

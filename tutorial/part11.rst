@@ -72,7 +72,7 @@ Create a file named todo_view.go inside the views folder with the following code
         c := Context{}
 
         // Pass TodoList data object to the specified HTML path
-        uadmin.RenderHTML(w, "templates/todo.html", c)
+        uadmin.RenderHTML(w, r, "templates/todo.html", c)
     }
 
 Finally, add this piece of code in the view.go shown below. This will establish a communication between the HTTPHandler and the TodoHandler.

@@ -2,6 +2,9 @@ API Reference
 =============
 Here are all public functions in the uAdmin, their format, and how to use them in the project.
 
+* `uadmin.ABTest`_
+* `uadmin.ABTestClick`_
+* `uadmin.ABTestValue`_
 * `uadmin.Action`_
 * `uadmin.AdminPage`_
 * `uadmin.All`_
@@ -36,6 +39,7 @@ Here are all public functions in the uAdmin, their format, and how to use them i
 * `uadmin.ERROR`_
 * `uadmin.ErrorHandleFunc`_
 * `uadmin.F`_
+* `uadmin.FieldList`_
 * `uadmin.FieldType`_
 * `uadmin.Filter`_
 * `uadmin.FilterBuilder`_
@@ -43,9 +47,12 @@ Here are all public functions in the uAdmin, their format, and how to use them i
 * `uadmin.GenerateBase32`_
 * `uadmin.GenerateBase64`_
 * `uadmin.Get`_
+* `uadmin.GetABTest`_
 * `uadmin.GetDB`_
+* `uadmin.GetFieldsAPI`_
 * `uadmin.GetForm`_
 * `uadmin.GetID`_
+* `uadmin.GetModelsAPI`_
 * `uadmin.GetSetting`_
 * `uadmin.GetString`_
 * `uadmin.GetStringer`_
@@ -68,6 +75,7 @@ Here are all public functions in the uAdmin, their format, and how to use them i
 * `uadmin.MaxImageWidth`_
 * `uadmin.MaxUploadFileSize`_
 * `uadmin.Model`_
+* `uadmin.ModelList`_
 * `uadmin.ModelSchema`_
 * `uadmin.NewModel`_
 * `uadmin.NewModelArray`_
@@ -102,6 +110,8 @@ Here are all public functions in the uAdmin, their format, and how to use them i
 * `uadmin.SiteName`_
 * `uadmin.StartSecureServer`_
 * `uadmin.StartServer`_
+* `uadmin.StaticHandler`_
+* `uadmin.TestType`_
 * `uadmin.Tf`_
 * `uadmin.Theme`_
 * `uadmin.Trail`_
@@ -117,6 +127,191 @@ Here are all public functions in the uAdmin, their format, and how to use them i
 
 Functions
 ---------
+
+**uadmin.ABTest**
+^^^^^^^^^^^^^^^^^
+ABTest is a model that stores an A/B test.
+
+Structure:
+
+.. code-block:: go
+
+    type ABTest struct {
+        Model
+        Name       string   `uadmin:"required"`
+        Type       TestType `uadmin:"required"`
+        StaticPath string
+        ModelName  ModelList
+        Field      FieldList
+        PrimaryKey int
+        Active     bool
+        Group      string
+    }
+
+Here are the following fields and their definitions:
+
+* **Name** - The name of the A/B Test
+* **Type** - A list of test types from a dropdown menu
+* **StaticPath** - The path assigned in the static
+* **ModelName** - A list of registered models
+* **Field** - A list of fields from schema for a registered model
+* **PrimaryKey** - Used to uniquely identify each row in the table
+* **Active** - Checks whether the A/B Test is Active
+* **Group** - The name of the group
+
+There are 2 ways you can do for initialization process using this function: one-by-one and by group.
+
+One-by-one initialization:
+
+.. code-block:: go
+
+    func main(){
+        // Some codes
+        abtest := uadmin.ABTest{}
+        abtest.Name = "Name"
+        abtest.Type = uadmin.TestType(0).Static()
+        abtest.StaticPath = "Static Path"
+    }
+
+By group initialization:
+
+.. code-block:: go
+
+    func main(){
+        // Some codes
+        abtest := uadmin.ABTest{
+            Name:       "Name",
+            Type:       uadmin.TestType(0).Static(),
+            StaticPath: "Static Path",
+        }
+    }
+
+In the following examples, we will use “by group” initialization process.
+
+* `Example #1: Static`_
+    * `Part 1: HTML Template`_
+    * `Part 2: Static Handler`_
+    * `Part 3: A/B Test Function for Static`_
+    * `Part 4: A/B Test Value Function for Static`_
+    * `Part 5: Image Testing`_
+
+* `Example #2: Models`_
+    * `Part 1: Campaign Info Model`_
+    * `Part 2: A/B Test Function for Model`_
+    * `Part 3: A/B Test Value Function for Model`_
+    * `Part 4: API Click Handler`_
+    * `Part 5: Get A/B Test`_
+    * `Part 6: Button Testing`_
+
+.. _Example #1\: Static: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#example-1-static
+.. _Part 1\: HTML Template: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-1-html-template
+.. _Part 2\: Static Handler: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-2-static-handler
+.. _Part 3\: A/B Test Function for Static: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-3-a-b-test-function-for-static
+.. _Part 4\: A/B Test Value Function for Static: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-4-a-b-test-value-function-for-static
+.. _Part 5\: Image Testing: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-5-image-testing
+
+.. _Example #2\: Models: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#example-2-models
+.. _Part 1\: Campaign Info Model: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-1-campaign-info-model
+.. _Part 2\: A/B Test Function for Model: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-2-a-b-test-function-for-model
+.. _Part 3\: A/B Test Value Function for Model: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-3-a-b-test-value-function-for-model
+.. _Part 4\: API Click Handler: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-4-api-click-handler
+.. _Part 5\: Get A/B Test: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-5-get-a-b-test
+.. _Part 6\: Button Testing: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-6-button-testing
+
+Page:
+
+.. toctree::
+   :maxdepth: 1
+
+   api/abtest
+
+**uadmin.ABTestClick**
+^^^^^^^^^^^^^^^^^^^^^^
+ABTestClick is a function to register a click for an ABTest group.
+
+Function:
+
+.. code-block:: go
+
+    func(r *http.Request, group string)
+
+Parameters:
+
+    **r \*http.Request**: Is a data structure that represents the client HTTP request
+
+    **group string** : Is the name of the group
+
+See `Part 4: API Click Handler`_ for the example.
+
+.. _Part 4\: API Click Handler: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-4-api-click-handler
+
+**uadmin.ABTestValue**
+^^^^^^^^^^^^^^^^^^^^^^
+ABTest is a model that stores a value for an A/B test.
+
+Structure:
+
+.. code-block:: go
+
+    type ABTestValue struct {
+        Model
+        ABTest      ABTest
+        ABTestID    uint
+        Value       string
+        Active      bool
+        Impressions int
+        Clicks      int
+    }
+
+Here are the following fields and their definitions:
+
+* **ABTest** - A model that stores an A/B test
+* **ABTestID** - An ID of the A/B Test model
+* **Value** - The value that you want to assign in A/B Test
+* **Active** - Checks whether the A/B Test is Active
+* **Impressions** - The number of visits
+* **Clicks** - The number of clicks
+
+There are 4 functions that you can use in ABTestValue:
+
+* **String()** - Returns the value
+* **ClickThroughRate()** - Returns the rate/percentage of the user clicks
+* **ClickThroughRate__Form__List()** - Displays the rate/percentage of the user clicks in the form and the list
+* **HideInDashboard()** - Return true and auto hide this from dashboard
+
+There are 2 ways you can do for initialization process using this function: one-by-one and by group.
+
+One-by-one initialization:
+
+.. code-block:: go
+
+    func main(){
+        // Some codes
+        abtestvalue := uadmin.ABTestValue{}
+        abtestvalue.ABTest = ABTest
+        abtestvalue.ABTestID = 1
+        abtestvalue.Value = "Value"
+    }
+
+By group initialization:
+
+.. code-block:: go
+
+    func main(){
+        // Some codes
+        abtestvalue := uadmin.ABTestValue{
+            ABTest:   ABTest,
+            ABTestID: 1,
+            Value:    "Value",
+        }
+    }
+
+In the following examples, we will use “by group” initialization process.
+
+See `Part 4: A/B Test Value Function for Static`_ and `Part 3: A/B Test Value Function for Model`_ for examples.
+
+.. _Part 4\: A/B Test Value Function for Static: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-4-a-b-test-value-function-for-static
+.. _Part 3\: A/B Test Value Function for Model: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-3-a-b-test-value-function-for-model
 
 **uadmin.Action**
 ^^^^^^^^^^^^^^^^^
@@ -2135,8 +2330,24 @@ Page:
 
    api/f
 
+**uadmin.FieldList**
+^^^^^^^^^^^^^^^^^^^^
+FieldList is a list of fields from schema for a registered model.
+
+Type:
+
+.. code-block:: go
+
+    int
+
+See `Part 3: A/B Test Function for Static`_ for the example.
+
+.. _Part 3\: A/B Test Function for Static: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-3-a-b-test-function-for-static
+
 **uadmin.FieldType**
 ^^^^^^^^^^^^^^^^^^^^
+FieldType is a list of field types from dropdown menu.
+
 Type:
 
 .. code-block:: go
@@ -2705,6 +2916,30 @@ Run your application. Search for the third ID on the todo_id parameter in the ad
 .. image:: assets/getlistapi.png
    :align: center
 
+**uadmin.GetABTest**
+^^^^^^^^^^^^^^^^^^^^
+GetABTest is a function that gets an active A/B tests for any field in AB Test model.
+
+Function:
+
+.. code-block:: go
+
+    func(r *http.Request, a interface{}, query interface{}, args ...interface{}) (err error)
+
+Parameters:
+
+    **r \*http.Request:** Is a data structure that represents the client HTTP request
+
+    **a interface{}:** Is the variable where the model was initialized
+
+    **query interface{}:** Is an action that you want to perform in your database
+
+    **args ...interface{}:** Is the series of arguments for query input
+
+See `Part 5: Get A/B Test`_ for the example.
+
+.. _Part 5\: Get A/B Test: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-5-get-a-b-test
+
 **uadmin.GetDB**
 ^^^^^^^^^^^^^^^^
 GetDB returns a pointer to the DB.
@@ -2768,6 +3003,77 @@ api is the folder name while CustomTodoHandler is the name of the function insid
 Run your application and see what happens.
 
 .. image:: assets/getdbjson.png
+
+**uadmin.GetFieldsAPI**
+^^^^^^^^^^^^^^^^^^^^^^^
+GetFieldsAPI is a function that gets all fields based on an assigned model name.
+
+Function:
+
+.. code-block:: go
+
+    func(w http.ResponseWriter, r *http.Request, session *Session)
+
+Parameters:
+
+    **w http.ResponseWriter:** Assembles the HTTP server's response; by writing to it, we send data to the HTTP client
+
+    **r \*http.Request** Is a data structure that represents the client HTTP request
+
+    **session \*Session** Is an activity that a user with a unique IP address spends on a Web site during a specified period of time
+
+Create a file named get_fields_api.go inside the api folder with the following codes below:
+
+.. code-block:: go
+
+    package api
+
+    import (
+        "net/http"
+        "strings"
+
+        "github.com/uadmin/uadmin"
+    )
+
+    // GetFieldsAPIHandler !
+    func GetFieldsAPIHandler(w http.ResponseWriter, r *http.Request) {
+        // r.URL.Path creates a new path called /get_fields_api
+        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/get_fields_api")
+
+        // Get the session key
+        session := uadmin.IsAuthenticated(r)
+
+        // Get fields in the API based on the assigned model name
+        uadmin.GetFieldsAPI(w, r, session)
+    }
+
+Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+
+        // Get Fields API Handler
+        http.HandleFunc("/get_fields_api/", api.GetFieldsAPIHandler)
+    }
+
+api is the folder name while GetFieldsAPIHandler is the name of the function inside get_fields_api.go.
+
+Run your application and login using “admin” as username and password.
+
+.. image:: tutorial/assets/loginform.png
+
+|
+
+Now go to /get_fields_api/ path in the address bar where m is equal to an assigned model name (e.g. http://0.0.0.0:8080/get_fields_api/?m=dashboardmenu).
+
+.. image:: assets/getfieldsapiresult.png
+   :align: center
+
+|
+
+It returns all fields in the Dashboard Menu model.
 
 **uadmin.GetForm**
 ^^^^^^^^^^^^^^^^^^
@@ -2959,6 +3265,77 @@ Run your application and check the terminal to see the result.
 .. code-block:: bash
 
     [  INFO  ]   GetID is 3.
+
+**uadmin.GetModelsAPI**
+^^^^^^^^^^^^^^^^^^^^^^^
+GetModelsAPI is a function that gets all models in the dashboard.
+
+Function:
+
+.. code-block:: go
+
+    func(w http.ResponseWriter, r *http.Request, session *Session)
+
+Parameters:
+
+    **w http.ResponseWriter:** Assembles the HTTP server's response; by writing to it, we send data to the HTTP client
+
+    **r \*http.Request** Is a data structure that represents the client HTTP request
+
+    **session \*Session** Is an activity that a user with a unique IP address spends on a Web site during a specified period of time
+
+Create a file named get_models_api.go inside the api folder with the following codes below:
+
+.. code-block:: go
+
+    package api
+
+    import (
+        "net/http"
+        "strings"
+
+        "github.com/uadmin/uadmin"
+    )
+
+    // GetModelsAPIHandler !
+    func GetModelsAPIHandler(w http.ResponseWriter, r *http.Request) {
+        // r.URL.Path creates a new path called /get_models_api
+        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/get_models_api")
+
+        // Get the session key
+        session := uadmin.IsAuthenticated(r)
+
+        // Get all models from uAdmin dashboard
+        uadmin.GetModelsAPI(w, r, session)
+    }
+
+Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+
+        // Get Models API Handler
+        http.HandleFunc("/get_models_api/", api.GetModelsAPIHandler)
+    }
+
+api is the folder name while GetModelsAPIHandler is the name of the function inside get_models_api.go.
+
+Run your application and login using “admin” as username and password.
+
+.. image:: tutorial/assets/loginform.png
+
+|
+
+Now go to /get_models_api/ path in the address bar to see the result (e.g. http://0.0.0.0:8080/get_models_api/).
+
+.. image:: assets/getmodelsapiresult.png
+   :align: center
+
+|
+
+It returns all models that you have in the uAdmin dashboard.
 
 **uadmin.GetSetting**
 ^^^^^^^^^^^^^^^^^^^^^
@@ -4529,6 +4906,20 @@ In every struct, uadmin.Model must always come first before creating a field.
         // Some codes here
     }
 
+**uadmin.ModelList**
+^^^^^^^^^^^^^^^^^^^^
+ModelList a list of registered models.
+
+Type:
+
+.. code-block:: go
+
+    int
+
+See `Part 3: A/B Test Function for Static`_ for the example.
+
+.. _Part 3\: A/B Test Function for Static: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-3-a-b-test-function-for-static
+
 **uadmin.ModelSchema**
 ^^^^^^^^^^^^^^^^^^^^^^
 ModelSchema is a representation of a plan or theory in the form of an outline or model.
@@ -5275,13 +5666,13 @@ Example:
 
 **uadmin.RenderHTML**
 ^^^^^^^^^^^^^^^^^^^^^
-RenderHTML creates a new template and applies a parsed template to the specified data object.
+RenderHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 ...etc.
 
 Function:
 
 .. code-block:: go
 
-    func(w http.ResponseWriter, data interface{}, path string, funcs ...interface{})
+    func(w http.ResponseWriter, r *http.Request, data interface{}, path string, funcs ...interface{})
 
 Used in the tutorial:
 
@@ -5363,7 +5754,7 @@ In views folder, create a new file named **friends_list.go** with the following 
         }
 
         // Pass Friends data object to the specified HTML path
-        uadmin.RenderHTML(w, "templates/friends.html", c)
+        uadmin.RenderHTML(w, r, "templates/friends.html", c)
     }
 
 Go back to friends.html in templates folder. Inside the <tbody> tag, add the following codes shown below.
@@ -6405,6 +6796,46 @@ Now to run your code:
      / / / / /| |/ __  / __  __ \/ / __ \
     / /_/ / ___ / /_/ / / / / / / / / / /
     \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
+
+**uadmin.StaticHandler**
+^^^^^^^^^^^^^^^^^^^^^^^^
+StaticHandler is a function that serves static files.
+
+Function:
+
+.. code-block:: go
+
+    func(w http.ResponseWriter, r *http.Request)
+
+Parameters:
+
+    **w http.ResponseWriter:** Assembles the HTTP server's response; by writing to it, we send data to the HTTP client
+
+    **r \*http.Request** Is a data structure that represents the client HTTP request
+
+See `Part 2: Static Handler`_ for the example.
+
+.. _Part 2\: Static Handler: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-2-static-handler
+
+**uadmin.TestType**
+^^^^^^^^^^^^^^^^^^^
+TestType is a list of test types from a dropdown menu.
+
+Type:
+
+.. code-block:: go
+
+    int
+
+TestType has 2 functions:
+
+* **Static()** - Test static files
+* **Model()** - Test registered models
+
+See `Part 3: A/B Test Function for Static`_ and `Part 3: A/B Test Value Function for Model`_ for examples.
+
+.. _Part 3\: A/B Test Function for Static: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-3-a-b-test-function-for-static
+.. _Part 3\: A/B Test Value Function for Model: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-3-a-b-test-value-function-for-model
 
 **uadmin.Tf**
 ^^^^^^^^^^^^^
