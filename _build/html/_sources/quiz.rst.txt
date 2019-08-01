@@ -4,6 +4,7 @@ In this section, you can test your uAdmin skills and knowledge with various quiz
 
 **A**
 
+* `A/B Test Functions`_
 * `Action and Log`_
 * `Admin Page`_
 * `All and Get`_
@@ -37,6 +38,7 @@ In this section, you can test your uAdmin skills and knowledge with various quiz
 **G**
 
 * `Get ID and Get String`_
+* `Get Fields API and Get Models API`_
 * `Get Form, Get Stringer, and Filter List`_
 * `Get Setting, Setting and Setting Category`_
 * `Get User From Request`_
@@ -101,6 +103,8 @@ In this section, you can test your uAdmin skills and knowledge with various quiz
 * `Update`_
 * `User and User Permission`_
 
+.. _A/B Test Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/a-b-test-functions.html
+
 .. _Action and Log: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/action-and-log.html
 .. _Admin Page: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/admin-page.html
 .. _All and Get: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/all-and-get.html
@@ -122,6 +126,7 @@ In this section, you can test your uAdmin skills and knowledge with various quiz
 .. _Foreign Key and Register Inlines: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/foreign-key-and-register-inline.html
 .. _Get ID and Get String: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-id-and-get-string.html
 
+.. _Get Fields API and Get Models API: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-fields-api-and-get-models-api.html
 .. _Get Form, Get Stringer, and Filter List: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-form-stringer-and-filter-list.html
 .. _Get Setting, Setting and Setting Category: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-setting-category.html
 

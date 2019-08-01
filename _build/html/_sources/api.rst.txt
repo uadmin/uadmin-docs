@@ -2342,8 +2342,6 @@ Type:
 
 See `Part 3: A/B Test Function for Static`_ for the example.
 
-.. _Part 3\: A/B Test Function for Static: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-3-a-b-test-function-for-static
-
 **uadmin.FieldType**
 ^^^^^^^^^^^^^^^^^^^^
 FieldType is a list of field types from dropdown menu.
@@ -4918,8 +4916,6 @@ Type:
 
 See `Part 3: A/B Test Function for Static`_ for the example.
 
-.. _Part 3\: A/B Test Function for Static: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-3-a-b-test-function-for-static
-
 **uadmin.ModelSchema**
 ^^^^^^^^^^^^^^^^^^^^^^
 ModelSchema is a representation of a plan or theory in the form of an outline or model.
@@ -6832,10 +6828,7 @@ TestType has 2 functions:
 * **Static()** - Test static files
 * **Model()** - Test registered models
 
-See `Part 3: A/B Test Function for Static`_ and `Part 3: A/B Test Value Function for Model`_ for examples.
-
-.. _Part 3\: A/B Test Function for Static: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-3-a-b-test-function-for-static
-.. _Part 3\: A/B Test Value Function for Model: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-3-a-b-test-value-function-for-model
+See `Part 3: A/B Test Function for Static`_ and `Part 2: A/B Test Function for Model`_ for examples.
 
 **uadmin.Tf**
 ^^^^^^^^^^^^^
