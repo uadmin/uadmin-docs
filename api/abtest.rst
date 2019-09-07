@@ -9,7 +9,7 @@ Structure:
     type ABTest struct {
         Model
         Name       string   `uadmin:"required"`
-        Type       TestType `uadmin:"required"`
+        Type       ABTestType `uadmin:"required"`
         StaticPath string
         ModelName  ModelList
         Field      FieldList
@@ -39,7 +39,7 @@ One-by-one initialization:
         // Some codes
         abtest := uadmin.ABTest{}
         abtest.Name = "Name"
-        abtest.Type = uadmin.TestType(0).Static()
+        abtest.Type = uadmin.ABTestType(0).Static()
         abtest.StaticPath = "Static Path"
     }
 
@@ -51,7 +51,7 @@ By group initialization:
         // Some codes
         abtest := uadmin.ABTest{
             Name:       "Name",
-            Type:       uadmin.TestType(0).Static(),
+            Type:       uadmin.ABTestType(0).Static(),
             StaticPath: "Static Path",
         }
     }
@@ -246,7 +246,7 @@ Let's create an A/B test for images in main.go.
         uadmin.Register()
         abtest := uadmin.ABTest{
             Name:       "Photo Test",
-            Type:       uadmin.TestType(0).Static(),
+            Type:       uadmin.ABTestType(0).Static(),
             StaticPath: "/campaign-ui/donate.jpg",
             ModelName:  uadmin.ModelList(0),
             Field:      uadmin.FieldList(0),
@@ -277,7 +277,7 @@ First of all, delete/comment out the AB Test code that you have created.
 
     // abtest := uadmin.ABTest{
     // 	Name:       "Photo Test",
-    // 	Type:       uadmin.TestType(0).Static(),
+    // 	Type:       uadmin.ABTestType(0).Static(),
     // 	StaticPath: "/campaign-ui/donate.jpg",
     // 	ModelName:  uadmin.ModelList(0),
     // 	Field:      uadmin.FieldList(0),
@@ -477,7 +477,7 @@ Let's create an A/B test for name and button in main.go.
 
         button := uadmin.ABTest{
             Name:       "Button Test",
-            Type:       uadmin.TestType(0).Model(),
+            Type:       uadmin.ABTestType(0).Model(),
             PrimaryKey: 1,
             Active:     true,
             Group:      "campaign",
@@ -486,7 +486,7 @@ Let's create an A/B test for name and button in main.go.
 
         name := uadmin.ABTest{
             Name:       "Name Test",
-            Type:       uadmin.TestType(0).Model(),
+            Type:       uadmin.ABTestType(0).Model(),
             PrimaryKey: 1,
             Active:     true,
             Group:      "campaign",
@@ -546,7 +546,7 @@ First of all, delete/comment out the AB Test code that you have created.
 
     // button := uadmin.ABTest{
     // 	Name:       "Button Test",
-    // 	Type:       uadmin.TestType(0).Model(),
+    // 	Type:       uadmin.ABTestType(0).Model(),
     // 	PrimaryKey: 1,
     // 	Active:     true,
     // 	Group:      "campaign",
@@ -555,7 +555,7 @@ First of all, delete/comment out the AB Test code that you have created.
 
     // name := uadmin.ABTest{
     // 	Name:       "Name Test",
-    // 	Type:       uadmin.TestType(0).Model(),
+    // 	Type:       uadmin.ABTestType(0).Model(),
     // 	PrimaryKey: 1,
     // 	Active:     true,
     // 	Group:      "campaign",

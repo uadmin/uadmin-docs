@@ -57,7 +57,7 @@
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">ABTest</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
     <span class="nx">Name</span>       <span class="kt">string</span>   <span class="s">`uadmin:&quot;required&quot;`</span>
-    <span class="nx">Type</span>       <span class="nx">TestType</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">Type</span>       <span class="nx">ABTestType</span> <span class="s">`uadmin:&quot;required&quot;`</span>
     <span class="nx">StaticPath</span> <span class="kt">string</span>
     <span class="nx">ModelName</span>  <span class="nx">ModelList</span>
     <span class="nx">Field</span>      <span class="nx">FieldList</span>
@@ -84,7 +84,7 @@
     <span class="c1">// Some codes</span>
     <span class="nx">abtest</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTest</span><span class="p">{}</span>
     <span class="nx">abtest</span><span class="p">.</span><span class="nx">Name</span> <span class="p">=</span> <span class="s">&quot;Name&quot;</span>
-    <span class="nx">abtest</span><span class="p">.</span><span class="nx">Type</span> <span class="p">=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">TestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Static</span><span class="p">()</span>
+    <span class="nx">abtest</span><span class="p">.</span><span class="nx">Type</span> <span class="p">=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Static</span><span class="p">()</span>
     <span class="nx">abtest</span><span class="p">.</span><span class="nx">StaticPath</span> <span class="p">=</span> <span class="s">&quot;Static Path&quot;</span>
 <span class="p">}</span>
 </pre></div>
@@ -94,7 +94,7 @@
     <span class="c1">// Some codes</span>
     <span class="nx">abtest</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTest</span><span class="p">{</span>
         <span class="nx">Name</span><span class="p">:</span>       <span class="s">&quot;Name&quot;</span><span class="p">,</span>
-        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">TestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Static</span><span class="p">(),</span>
+        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Static</span><span class="p">(),</span>
         <span class="nx">StaticPath</span><span class="p">:</span> <span class="s">&quot;Static Path&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -269,7 +269,7 @@
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">()</span>
     <span class="nx">abtest</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTest</span><span class="p">{</span>
         <span class="nx">Name</span><span class="p">:</span>       <span class="s">&quot;Photo Test&quot;</span><span class="p">,</span>
-        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">TestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Static</span><span class="p">(),</span>
+        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Static</span><span class="p">(),</span>
         <span class="nx">StaticPath</span><span class="p">:</span> <span class="s">&quot;/campaign-ui/donate.jpg&quot;</span><span class="p">,</span>
         <span class="nx">ModelName</span><span class="p">:</span>  <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ModelList</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
         <span class="nx">Field</span><span class="p">:</span>      <span class="nx">uadmin</span><span class="p">.</span><span class="nx">FieldList</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
@@ -296,7 +296,7 @@
 <p>First of all, delete/comment out the AB Test code that you have created.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// abtest := uadmin.ABTest{</span>
 <span class="c1">//  Name:       &quot;Photo Test&quot;,</span>
-<span class="c1">//  Type:       uadmin.TestType(0).Static(),</span>
+<span class="c1">//  Type:       uadmin.ABTestType(0).Static(),</span>
 <span class="c1">//  StaticPath: &quot;/campaign-ui/donate.jpg&quot;,</span>
 <span class="c1">//  ModelName:  uadmin.ModelList(0),</span>
 <span class="c1">//  Field:      uadmin.FieldList(0),</span>
@@ -466,7 +466,7 @@
 
     <span class="nx">button</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTest</span><span class="p">{</span>
         <span class="nx">Name</span><span class="p">:</span>       <span class="s">&quot;Button Test&quot;</span><span class="p">,</span>
-        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">TestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Model</span><span class="p">(),</span>
+        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Model</span><span class="p">(),</span>
         <span class="nx">PrimaryKey</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="nx">Active</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
         <span class="nx">Group</span><span class="p">:</span>      <span class="s">&quot;campaign&quot;</span><span class="p">,</span>
@@ -475,7 +475,7 @@
 
     <span class="nx">name</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTest</span><span class="p">{</span>
         <span class="nx">Name</span><span class="p">:</span>       <span class="s">&quot;Name Test&quot;</span><span class="p">,</span>
-        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">TestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Model</span><span class="p">(),</span>
+        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Model</span><span class="p">(),</span>
         <span class="nx">PrimaryKey</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="nx">Active</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
         <span class="nx">Group</span><span class="p">:</span>      <span class="s">&quot;campaign&quot;</span><span class="p">,</span>
@@ -524,7 +524,7 @@
 <p>First of all, delete/comment out the AB Test code that you have created.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// button := uadmin.ABTest{</span>
 <span class="c1">//  Name:       &quot;Button Test&quot;,</span>
-<span class="c1">//  Type:       uadmin.TestType(0).Model(),</span>
+<span class="c1">//  Type:       uadmin.ABTestType(0).Model(),</span>
 <span class="c1">//  PrimaryKey: 1,</span>
 <span class="c1">//  Active:     true,</span>
 <span class="c1">//  Group:      &quot;campaign&quot;,</span>
@@ -533,7 +533,7 @@
 
 <span class="c1">// name := uadmin.ABTest{</span>
 <span class="c1">//  Name:       &quot;Name Test&quot;,</span>
-<span class="c1">//  Type:       uadmin.TestType(0).Model(),</span>
+<span class="c1">//  Type:       uadmin.ABTestType(0).Model(),</span>
 <span class="c1">//  PrimaryKey: 1,</span>
 <span class="c1">//  Active:     true,</span>
 <span class="c1">//  Group:      &quot;campaign&quot;,</span>

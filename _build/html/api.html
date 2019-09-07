@@ -55,6 +55,7 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#uadmin-abtest">uadmin.ABTest</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-abtestclick">uadmin.ABTestClick</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-abtesttype">uadmin.ABTestType</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-abtestvalue">uadmin.ABTestValue</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-action">uadmin.Action</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-adminpage">uadmin.AdminPage</a></p></li>
@@ -162,7 +163,6 @@
 <li><p><a class="reference internal" href="#uadmin-startsecureserver">uadmin.StartSecureServer</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-startserver">uadmin.StartServer</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-statichandler">uadmin.StaticHandler</a></p></li>
-<li><p><a class="reference internal" href="#uadmin-testtype">uadmin.TestType</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-tf">uadmin.Tf</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-theme">uadmin.Theme</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-trail">uadmin.Trail</a></p></li>
@@ -185,7 +185,7 @@
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">ABTest</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
     <span class="nx">Name</span>       <span class="kt">string</span>   <span class="s">`uadmin:&quot;required&quot;`</span>
-    <span class="nx">Type</span>       <span class="nx">TestType</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">Type</span>       <span class="nx">ABTestType</span> <span class="s">`uadmin:&quot;required&quot;`</span>
     <span class="nx">StaticPath</span> <span class="kt">string</span>
     <span class="nx">ModelName</span>  <span class="nx">ModelList</span>
     <span class="nx">Field</span>      <span class="nx">FieldList</span>
@@ -212,7 +212,7 @@
     <span class="c1">// Some codes</span>
     <span class="nx">abtest</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTest</span><span class="p">{}</span>
     <span class="nx">abtest</span><span class="p">.</span><span class="nx">Name</span> <span class="p">=</span> <span class="s">&quot;Name&quot;</span>
-    <span class="nx">abtest</span><span class="p">.</span><span class="nx">Type</span> <span class="p">=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">TestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Static</span><span class="p">()</span>
+    <span class="nx">abtest</span><span class="p">.</span><span class="nx">Type</span> <span class="p">=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Static</span><span class="p">()</span>
     <span class="nx">abtest</span><span class="p">.</span><span class="nx">StaticPath</span> <span class="p">=</span> <span class="s">&quot;Static Path&quot;</span>
 <span class="p">}</span>
 </pre></div>
@@ -222,7 +222,7 @@
     <span class="c1">// Some codes</span>
     <span class="nx">abtest</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTest</span><span class="p">{</span>
         <span class="nx">Name</span><span class="p">:</span>       <span class="s">&quot;Name&quot;</span><span class="p">,</span>
-        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">TestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Static</span><span class="p">(),</span>
+        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Static</span><span class="p">(),</span>
         <span class="nx">StaticPath</span><span class="p">:</span> <span class="s">&quot;Static Path&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -274,6 +274,20 @@
 <p><strong>group string</strong> : Is the name of the group</p>
 </div></blockquote>
 <p>See <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-4-api-click-handler">Part 4: API Click Handler</a> for the example.</p>
+</div>
+<div class="section" id="uadmin-abtesttype">
+<h3><strong>uadmin.ABTestType</strong><a class="headerlink" href="#uadmin-abtesttype" title="Permalink to this headline">¶</a></h3>
+<p>ABTestType is a list of test types from a dropdown menu.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+</pre></div>
+</div>
+<p>ABTestType has 2 functions:</p>
+<ul class="simple">
+<li><p><strong>Static()</strong> - Test static files</p></li>
+<li><p><strong>Model()</strong> - Test registered models</p></li>
+</ul>
+<p>See <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-3-a-b-test-function-for-static">Part 3: A/B Test Function for Static</a> and <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-2-a-b-test-function-for-model">Part 2: A/B Test Function for Model</a> for examples.</p>
 </div>
 <div class="section" id="uadmin-abtestvalue">
 <h3><strong>uadmin.ABTestValue</strong><a class="headerlink" href="#uadmin-abtestvalue" title="Permalink to this headline">¶</a></h3>
@@ -669,7 +683,7 @@
 <h3><strong>uadmin.ApprovalHandleFunc</strong><a class="headerlink" href="#uadmin-approvalhandlefunc" title="Permalink to this headline">¶</a></h3>
 <p>ApprovalHandleFunc is a function that will be called everytime a model is called. It receives a parameter for an approval system model.</p>
 <p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Approval</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Approval</span><span class="p">)</span> <span class="kt">bool</span>
 </pre></div>
 </div>
 <p>Before you proceed to this example, see <a class="reference internal" href="#uadmin-approval">uadmin.Approval</a>, <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tags.html#approval">Approval Tag</a>, or <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#approval">Approval System</a>.</p>
@@ -797,7 +811,7 @@
 </div>
 <div class="section" id="uadmin-checkratelimit">
 <h3><strong>uadmin.CheckRateLimit</strong><a class="headerlink" href="#uadmin-checkratelimit" title="Permalink to this headline">¶</a></h3>
-<p>CheckRateLimit checks the maximum number of requests/second for any unique IP.</p>
+<p>CheckRateLimit checks if the request has remaining quota or not. If it returns false, the IP in the request has exceeded their quota.</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span>
 </pre></div>
@@ -5569,20 +5583,6 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 <p><strong>r *http.Request</strong> Is a data structure that represents the client HTTP request</p>
 </div></blockquote>
 <p>See <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-2-static-handler">Part 2: Static Handler</a> for the example.</p>
-</div>
-<div class="section" id="uadmin-testtype">
-<h3><strong>uadmin.TestType</strong><a class="headerlink" href="#uadmin-testtype" title="Permalink to this headline">¶</a></h3>
-<p>TestType is a list of test types from a dropdown menu.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
-</pre></div>
-</div>
-<p>TestType has 2 functions:</p>
-<ul class="simple">
-<li><p><strong>Static()</strong> - Test static files</p></li>
-<li><p><strong>Model()</strong> - Test registered models</p></li>
-</ul>
-<p>See <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-3-a-b-test-function-for-static">Part 3: A/B Test Function for Static</a> and <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-2-a-b-test-function-for-model">Part 2: A/B Test Function for Model</a> for examples.</p>
 </div>
 <div class="section" id="uadmin-tf">
 <h3><strong>uadmin.Tf</strong><a class="headerlink" href="#uadmin-tf" title="Permalink to this headline">¶</a></h3>

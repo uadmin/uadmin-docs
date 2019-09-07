@@ -4,6 +4,7 @@ Here are all public functions in the uAdmin, their format, and how to use them i
 
 * `uadmin.ABTest`_
 * `uadmin.ABTestClick`_
+* `uadmin.ABTestType`_
 * `uadmin.ABTestValue`_
 * `uadmin.Action`_
 * `uadmin.AdminPage`_
@@ -111,7 +112,6 @@ Here are all public functions in the uAdmin, their format, and how to use them i
 * `uadmin.StartSecureServer`_
 * `uadmin.StartServer`_
 * `uadmin.StaticHandler`_
-* `uadmin.TestType`_
 * `uadmin.Tf`_
 * `uadmin.Theme`_
 * `uadmin.Trail`_
@@ -139,7 +139,7 @@ Structure:
     type ABTest struct {
         Model
         Name       string   `uadmin:"required"`
-        Type       TestType `uadmin:"required"`
+        Type       ABTestType `uadmin:"required"`
         StaticPath string
         ModelName  ModelList
         Field      FieldList
@@ -169,7 +169,7 @@ One-by-one initialization:
         // Some codes
         abtest := uadmin.ABTest{}
         abtest.Name = "Name"
-        abtest.Type = uadmin.TestType(0).Static()
+        abtest.Type = uadmin.ABTestType(0).Static()
         abtest.StaticPath = "Static Path"
     }
 
@@ -181,7 +181,7 @@ By group initialization:
         // Some codes
         abtest := uadmin.ABTest{
             Name:       "Name",
-            Type:       uadmin.TestType(0).Static(),
+            Type:       uadmin.ABTestType(0).Static(),
             StaticPath: "Static Path",
         }
     }
@@ -244,6 +244,23 @@ Parameters:
 See `Part 4: API Click Handler`_ for the example.
 
 .. _Part 4\: API Click Handler: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-4-api-click-handler
+
+**uadmin.ABTestType**
+^^^^^^^^^^^^^^^^^^^^^
+ABTestType is a list of test types from a dropdown menu.
+
+Type:
+
+.. code-block:: go
+
+    int
+
+ABTestType has 2 functions:
+
+* **Static()** - Test static files
+* **Model()** - Test registered models
+
+See `Part 3: A/B Test Function for Static`_ and `Part 2: A/B Test Function for Model`_ for examples.
 
 **uadmin.ABTestValue**
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -722,7 +739,7 @@ Function:
 
 .. code-block:: go
 
-    func(a *uadmin.Approval)
+    func(a *uadmin.Approval) bool
 
 Before you proceed to this example, see `uadmin.Approval`_, `Approval Tag`_, or `Approval System`_.
 
@@ -881,7 +898,7 @@ Example:
 
 **uadmin.CheckRateLimit**
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-CheckRateLimit checks the maximum number of requests/second for any unique IP.
+CheckRateLimit checks if the request has remaining quota or not. If it returns false, the IP in the request has exceeded their quota.
 
 Function:
 
@@ -6812,23 +6829,6 @@ Parameters:
 See `Part 2: Static Handler`_ for the example.
 
 .. _Part 2\: Static Handler: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-2-static-handler
-
-**uadmin.TestType**
-^^^^^^^^^^^^^^^^^^^
-TestType is a list of test types from a dropdown menu.
-
-Type:
-
-.. code-block:: go
-
-    int
-
-TestType has 2 functions:
-
-* **Static()** - Test static files
-* **Model()** - Test registered models
-
-See `Part 3: A/B Test Function for Static`_ and `Part 2: A/B Test Function for Model`_ for examples.
 
 **uadmin.Tf**
 ^^^^^^^^^^^^^
