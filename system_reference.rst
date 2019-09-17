@@ -19,7 +19,9 @@ In this section, we will cover the features of each following systems in-depth l
 
 AB Test
 -------
-AB Test is a system in uAdmin that is used to compare two or more values and checks which one has the best impressions, clicks and click through rate.
+AB Test is a system in uAdmin that is used to compare two or more values and checks which one has the best impressions, clicks and click through rate. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 Here are the following fields and their definitions:
 
@@ -366,7 +368,9 @@ Based on the results, the contribute record has higher impressions than donate o
 
 Approval
 --------
-Approval is a system in uAdmin that is used to set an approval permission in the field.
+Approval is a system in uAdmin that is used to set an approval permission in the field. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 Here are the following fields and their definitions:
 
@@ -424,7 +428,9 @@ The input Name field has a checkmark sign that means the record created by "john
 
 Dashboard Menu
 --------------
-Dashboard Menu is a system in uAdmin that is used to add, modify, and delete the elements of a model. Making it look good and customizing it to meet your customers requirements is important to the success of your app.
+Dashboard Menu is a system in uAdmin that is used to add, modify, and delete the elements of a model. Making it look good and customizing it to meet your customers requirements is important to the success of your app. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 .. image:: assets/dashboardmenu.png
 
@@ -507,7 +513,9 @@ Well done! Now you know how to configure your dashboard menu by adding, updating
 
 Export to Excel
 ---------------
-Export is one of the features of uAdmin that can replicate the data inside the model to the Excel file.
+Export is one of the features of uAdmin that can replicate the data inside the model to the Excel file. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 First of all, open any models in the dashboard (e.g. TODOS).
 
@@ -536,7 +544,9 @@ Well done! Now you know how to export a model to Excel file in uAdmin.
 
 Group Permission
 ----------------
-Group Permission sets the permission of a user group handled by an administrator.
+Group Permission sets the permission of a user group handled by an administrator. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 .. image:: assets/grouppermissioncreated.png
 
@@ -632,7 +642,9 @@ Well done! Now you know how to set the group permission to the user group, chang
 
 Language
 --------
-Language is a system in uAdmin that is used to add, modify, and delete the elements of a language. There are a total of 184 languages.
+Language is a system in uAdmin that is used to add, modify, and delete the elements of a language. There are a total of 184 languages. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 .. list-table:: **LIST OF AVAILABLE LANGUAGES**
    :widths: 20 7 36 7 10
@@ -1697,7 +1709,9 @@ Well done! Now you know how to activate your languages, set it to default, and u
 
 Log
 ---
-Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities. It keeps track of many things by default.
+Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities. It keeps track of many things by default. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 .. image:: assets/log.png
 
@@ -1952,7 +1966,9 @@ Congrats, now you know how to understand records you have in your app and how to
 
 Profile
 -------
-uAdmin has a feature that allows you to customize your own profile. In order to do that, click the profile icon on the top right corner then select admin highlighted below.
+uAdmin has a feature that allows you to customize your own profile. In order to do that, click the profile icon on the top right corner then select admin highlighted below. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 .. image:: tutorial/assets/adminhighlighted.png
 
@@ -1981,7 +1997,9 @@ If there is a problem, you may go to your terminal and check the OTP verificatio
 
 Session
 -------
-Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. [#f1]_
+Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. [#f1]_ (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 .. image:: assets/sessioninterface.png
 
@@ -2116,7 +2134,9 @@ Well done! Now you know how to configure your sessions by using Active, Pending 
 
 Setting
 -------
-Setting is a system in uAdmin that is used to display information for an application as a whole.
+Setting is a system in uAdmin that is used to display information for an application as a whole. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 .. image:: api/assets/defaultsettingrecords.png
 
@@ -2214,7 +2234,9 @@ Congrats! Now you know how to create a setting by assigning the name, default va
 
 Setting Category
 ----------------
-Setting Category is a system in uAdmin that is used for classifying settings and its records.
+Setting Category is a system in uAdmin that is used for classifying settings and its records. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 Here are the following fields in this system:
 
@@ -2261,7 +2283,9 @@ Congrats! Now you know how to create a setting category by assigning the name an
 
 User
 ----
-User is a system in uAdmin that is used to add, modify and delete the elements of the user. By default, the system creates one user which is the admin user who has full permission to read, add edit and delete data from every model.
+User is a system in uAdmin that is used to add, modify and delete the elements of the user. By default, the system creates one user which is the admin user who has full permission to read, add edit and delete data from every model. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 .. image:: assets/user.png
 
@@ -2493,7 +2517,9 @@ Well done! Now you know how to configure your user by adding, updating, customiz
 
 User Group
 ----------
-User Group is a system in uAdmin used to add, modify, and delete the group name, the only field in this system. It has only one field: **Group Name**. It is useful if you want to belong a specific user to the group. If the user group has permissions, the user can access to something with some restrictions.
+User Group is a system in uAdmin used to add, modify, and delete the group name, the only field in this system. It has only one field: **Group Name**. It is useful if you want to belong a specific user to the group. If the user group has permissions, the user can access to something with some restrictions. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 Let's create a new user group named "Front Desk".
 
@@ -2521,7 +2547,9 @@ Well done! Now you know how to add a user group, link it to your existing user a
 
 User Permission
 ---------------
-User Permission sets the permission of a user handled by an administrator.
+User Permission sets the permission of a user handled by an administrator. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 
 .. image:: assets/userpermissioncreated.png
 

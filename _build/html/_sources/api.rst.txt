@@ -130,7 +130,9 @@ Functions
 
 **uadmin.ABTest**
 ^^^^^^^^^^^^^^^^^
-ABTest is a model that stores an A/B test.
+ABTest is a model that stores an A/B test. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -227,7 +229,9 @@ Page:
 
 **uadmin.ABTestClick**
 ^^^^^^^^^^^^^^^^^^^^^^
-ABTestClick is a function to register a click for an ABTest group.
+ABTestClick is a function to register a click for an ABTest group. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -247,7 +251,9 @@ See `Part 4: API Click Handler`_ for the example.
 
 **uadmin.ABTestType**
 ^^^^^^^^^^^^^^^^^^^^^
-ABTestType is a list of test types from a dropdown menu.
+ABTestType is a list of test types from a dropdown menu. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -264,7 +270,9 @@ See `Part 3: A/B Test Function for Static`_ and `Part 2: A/B Test Function for M
 
 **uadmin.ABTestValue**
 ^^^^^^^^^^^^^^^^^^^^^^
-ABTest is a model that stores a value for an A/B test.
+ABTest is a model that stores a value for an A/B test. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -332,7 +340,9 @@ See `Part 4: A/B Test Value Function for Static`_ and `Part 3: A/B Test Value Fu
 
 **uadmin.Action**
 ^^^^^^^^^^^^^^^^^
-Action is the process of doing something where you can check the status of your activities in the uAdmin project.
+Action is the process of doing something where you can check the status of your activities in the uAdmin project. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -413,7 +423,9 @@ More examples of this function can be found in `uadmin.Log`_.
     
 **uadmin.AdminPage**
 ^^^^^^^^^^^^^^^^^^^^
-AdminPage fetches records from the database with some standard rules such as sorting data, multiples of, and setting a limit that can be used in pagination.
+AdminPage fetches records from the database with some standard rules such as sorting data, multiples of, and setting a limit that can be used in pagination. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -485,7 +497,9 @@ Run your application and see what happens.
 
 **uadmin.All**
 ^^^^^^^^^^^^^^
-All fetches all object in the database.
+All fetches all object in the database. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -543,7 +557,9 @@ Run your application and see what happens.
 
 **uadmin.AllowedIPs**
 ^^^^^^^^^^^^^^^^^^^^^
-AllowedIPs is a list of allowed IPs to access uAdmin interface in one of the following formats:
+AllowedIPs is a list of allowed IPs to access uAdmin interface in one of the following formats: (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 - "*" = Allow all
 - "" = Allow none
@@ -575,7 +591,9 @@ Run your application and see what happens.
 
 **uadmin.Approval**
 ^^^^^^^^^^^^^^^^^^^
-Approval is a feature used to set an approval permission in the field.
+Approval is a feature used to set an approval permission in the field. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -721,7 +739,9 @@ As expected, the old approval record has been updated. Now click on View Record 
 
 **uadmin.ApprovalAction**
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-ApprovalAction is a selection of approval actions. There are two functions: Approved and Rejected.
+ApprovalAction is a selection of approval actions. There are two functions: Approved and Rejected. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -733,7 +753,9 @@ See `uadmin.Approval`_  and `uadmin.ApprovalHandleFunc`_ for the examples.
 
 **uadmin.ApprovalHandleFunc**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ApprovalHandleFunc is a function that will be called everytime a model is called. It receives a parameter for an approval system model.
+ApprovalHandleFunc is a function that will be called everytime a model is called. It receives a parameter for an approval system model. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -801,7 +823,9 @@ As expected, the email on that record was changed.
 
 **uadmin.BindIP**
 ^^^^^^^^^^^^^^^^^
-BindIP is the IP the application listens to.
+BindIP is the IP the application listens to. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -838,7 +862,9 @@ But if you connect to other private IP addresses, it will not work as shown belo
 
 **uadmin.BlockedIPs**
 ^^^^^^^^^^^^^^^^^^^^^
-BlockedIPs is a list of blocked IPs from accessing uAdmin interface in one of the following formats:
+BlockedIPs is a list of blocked IPs from accessing uAdmin interface in one of the following formats: (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 - "*" = Block all
 - "" = Block none
@@ -870,7 +896,9 @@ Run your application and see what happens.
 
 **uadmin.CacheTranslation**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-CacheTranslation allows a translation to store data in a cache memory.
+CacheTranslation allows a translation to store data in a cache memory. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -898,7 +926,9 @@ Example:
 
 **uadmin.CheckRateLimit**
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-CheckRateLimit checks if the request has remaining quota or not. If it returns false, the IP in the request has exceeded their quota.
+CheckRateLimit checks if the request has remaining quota or not. If it returns false, the IP in the request has exceeded their quota. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -992,7 +1022,9 @@ It means the website is crashing. In order to work, either delete the uadmin.db 
 
 **uadmin.Choice**
 ^^^^^^^^^^^^^^^^^
-Choice is a struct for the list of choices.
+Choice is a struct for the list of choices. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -1081,7 +1113,9 @@ Congrats, now you know how to create a choice by building an empty choice, fetch
 
 **uadmin.ClearDB**
 ^^^^^^^^^^^^^^^^^^
-ClearDB clears the database object.
+ClearDB clears the database object. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -1196,7 +1230,9 @@ As expected, all previous records were gone in the model. It does not mean that 
 
 **uadmin.CookieTimeout**
 ^^^^^^^^^^^^^^^^^^^^^^^^
-CookieTimeout is the timeout of a login cookie in seconds.
+CookieTimeout is the timeout of a login cookie in seconds. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -1224,7 +1260,9 @@ It will redirect you to the login form because your cookie has already been expi
 
 **uadmin.Count**
 ^^^^^^^^^^^^^^^^
-Count return the count of records in a table based on a filter.
+Count return the count of records in a table based on a filter. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -1282,7 +1320,9 @@ Check your terminal to see the result.
 
 **uadmin.CustomTranslation**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-CustomTranslation is a list of string where you could add URLs to JSON files that uAdmin will save for translation.
+CustomTranslation is a list of string where you could add URLs to JSON files that uAdmin will save for translation. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -1311,7 +1351,9 @@ Every JSON file is per language. In other words, if you have 2 languages availab
 
 **uadmin.DashboardMenu**
 ^^^^^^^^^^^^^^^^^^^^^^^^
-DashboardMenu is a system in uAdmin that is used to add, modify and delete the elements of a model.
+DashboardMenu is a system in uAdmin that is used to add, modify and delete the elements of a model. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -1368,7 +1410,9 @@ Now run your application and see what happens.
 
 **uadmin.Database**
 ^^^^^^^^^^^^^^^^^^^
-Database is the active Database settings.
+Database is the active Database settings. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -1423,6 +1467,10 @@ See `uadmin.DBSettings`_ for the process of configuring your database in MySQL.
 
 **uadmin.DataType**
 ^^^^^^^^^^^^^^^^^^^
+ `Back To Top`_
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
+
 Type:
 
 .. code-block:: go
@@ -1443,7 +1491,9 @@ See `uadmin.Setting`_ for the examples.
 
 **uadmin.DBSettings**
 ^^^^^^^^^^^^^^^^^^^^^
-DBSettings is a feature that allows a user to configure the settings of a database.
+DBSettings is a feature that allows a user to configure the settings of a database. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -1585,7 +1635,9 @@ Congrats, now you know how to configure your database settings in both SQLite an
 
 **uadmin.DEBUG**
 ^^^^^^^^^^^^^^^^
-DEBUG is the display tag under Trail. It is the process of identifying and removing errors.
+DEBUG is the display tag under Trail. It is the process of identifying and removing errors. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -1642,7 +1694,9 @@ Check your terminal to see the result.
 
 **uadmin.DefaultMediaPermission**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-DefaultMediaPermission is the default permission applied to files uploaded to the system.
+DefaultMediaPermission is the default permission applied to files uploaded to the system. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -1707,7 +1761,9 @@ Example:
 
 **uadmin.Delete**
 ^^^^^^^^^^^^^^^^^
-Delete records from database.
+Delete records from database. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -1851,7 +1907,9 @@ All previous records are deleted from the database.
 
 **uadmin.DeleteList**
 ^^^^^^^^^^^^^^^^^^^^^
-Delete the list of records from database.
+Delete the list of records from database. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -2006,7 +2064,9 @@ All custom records are deleted from the database.
 
 **uadmin.EmailFrom**
 ^^^^^^^^^^^^^^^^^^^^
-EmailFrom identifies where the email is coming from.
+EmailFrom identifies where the email is coming from. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -2065,7 +2125,9 @@ Once you are done, you can now access your account using your new password.
 
 **uadmin.EmailPassword**
 ^^^^^^^^^^^^^^^^^^^^^^^^
-EmailPassword assigns the password of an email.
+EmailPassword assigns the password of an email. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -2077,7 +2139,9 @@ See `uadmin.EmailFrom`_ for the example.
 
 **uadmin.EmailSMTPServer**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-EmailSMTPServer assigns the name of the SMTP Server in an email.
+EmailSMTPServer assigns the name of the SMTP Server in an email. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -2089,7 +2153,9 @@ See `uadmin.EmailFrom`_ for the example.
 
 **uadmin.EmailSMTPServerPort**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-EmailSMTPServerPort assigns the port number of an SMTP Server in an email.
+EmailSMTPServerPort assigns the port number of an SMTP Server in an email. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -2101,7 +2167,9 @@ See `uadmin.EmailFrom`_ for the example.
 
 **uadmin.EmailUsername**
 ^^^^^^^^^^^^^^^^^^^^^^^^
-EmailUsername assigns the username of an email.
+EmailUsername assigns the username of an email. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -2113,7 +2181,9 @@ See `uadmin.EmailFrom`_ for the example.
 
 **uadmin.EncryptKey**
 ^^^^^^^^^^^^^^^^^^^^^
-EncryptKey is a key for encryption and decryption of data in the DB.
+EncryptKey is a key for encryption and decryption of data in the DB. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -2143,7 +2213,9 @@ In your terminal, type **cat .key** to see the result.
 
 **uadmin.ERROR**
 ^^^^^^^^^^^^^^^^
-ERROR is a status to notify the user that there is a problem in an application.
+ERROR is a status to notify the user that there is a problem in an application. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -2155,7 +2227,9 @@ See `uadmin.Trail`_ for the example.
 
 **uadmin.ErrorHandleFunc**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-ErrorHandleFunc is a function that will be called everytime Trail is called. It receives one parameter for error level, one for error message and one for runtime stack trace
+ErrorHandleFunc is a function that will be called everytime Trail is called. It receives one parameter for error level, one for error message and one for runtime stack trace. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -2207,7 +2281,9 @@ Now run your application in your terminal. Based on the output, the error is the
 
 **uadmin.F**
 ^^^^^^^^^^^^
-F is a field.
+F is a field. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -2349,7 +2425,9 @@ Page:
 
 **uadmin.FieldList**
 ^^^^^^^^^^^^^^^^^^^^
-FieldList is a list of fields from schema for a registered model.
+FieldList is a list of fields from schema for a registered model. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -2361,7 +2439,9 @@ See `Part 3: A/B Test Function for Static`_ for the example.
 
 **uadmin.FieldType**
 ^^^^^^^^^^^^^^^^^^^^
-FieldType is a list of field types from dropdown menu.
+FieldType is a list of field types from dropdown menu. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -2393,7 +2473,9 @@ FieldType has 19 functions:
 
 **uadmin.Filter**
 ^^^^^^^^^^^^^^^^^
-Filter fetches records from the database.
+Filter fetches records from the database. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -2530,7 +2612,9 @@ See `uadmin.Preload`_ for more examples of using this function.
 
 **uadmin.FilterBuilder**
 ^^^^^^^^^^^^^^^^^^^^^^^^
-FilterBuilder changes a map filter into a query.
+FilterBuilder changes a map filter into a query. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -2615,7 +2699,9 @@ Run your application and see what happens.
 
 **uadmin.FilterList**
 ^^^^^^^^^^^^^^^^^^^^^
-FilterList fetches the all record from the database matching query and args where it selects only visible fields in the form based on given schema.
+FilterList fetches the all record from the database matching query and args where it selects only visible fields in the form based on given schema. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -2772,7 +2858,9 @@ As expected, the API is now returning a CreatedAt value because the CreatedAt fi
 
 **uadmin.GenerateBase32**
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-GenerateBase32 generates a base32 string of length.
+GenerateBase32 generates a base32 string of length. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -2821,7 +2909,9 @@ As you notice, the Base32 value changed automatically.
 
 **uadmin.GenerateBase64**
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-GenerateBase64 generates a base64 string of length.
+GenerateBase64 generates a base64 string of length. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -2870,7 +2960,9 @@ As you notice, the Base64 value changed automatically.
 
 **uadmin.Get**
 ^^^^^^^^^^^^^^
-Get fetches the first record from the database.
+Get fetches the first record from the database. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -2933,7 +3025,9 @@ Run your application. Search for the third ID on the todo_id parameter in the ad
 
 **uadmin.GetABTest**
 ^^^^^^^^^^^^^^^^^^^^
-GetABTest is a function that gets an active A/B tests for any field in AB Test model.
+GetABTest is a function that gets an active A/B tests for any field in AB Test model. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -2957,7 +3051,9 @@ See `Part 5: Get A/B Test`_ for the example.
 
 **uadmin.GetDB**
 ^^^^^^^^^^^^^^^^
-GetDB returns a pointer to the DB.
+GetDB returns a pointer to the DB. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -3021,7 +3117,9 @@ Run your application and see what happens.
 
 **uadmin.GetFieldsAPI**
 ^^^^^^^^^^^^^^^^^^^^^^^
-GetFieldsAPI is a function that gets all fields based on an assigned model name.
+GetFieldsAPI is a function that gets all fields based on an assigned model name. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -3092,7 +3190,9 @@ It returns all fields in the Dashboard Menu model.
 
 **uadmin.GetForm**
 ^^^^^^^^^^^^^^^^^^
-GetForm fetches the first record from the database matching query and args where it selects only visible fields in the form based on given schema.
+GetForm fetches the first record from the database matching query and args where it selects only visible fields in the form based on given schema. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -3233,7 +3333,9 @@ As expected, the API is now returning a CreatedAt value because the CreatedAt fi
 
 **uadmin.GetID**
 ^^^^^^^^^^^^^^^^
-GetID returns an ID number of a field.
+GetID returns an ID number of a field. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -3283,7 +3385,9 @@ Run your application and check the terminal to see the result.
 
 **uadmin.GetModelsAPI**
 ^^^^^^^^^^^^^^^^^^^^^^^
-GetModelsAPI is a function that gets all models in the dashboard.
+GetModelsAPI is a function that gets all models in the dashboard. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -3354,7 +3458,9 @@ It returns all models that you have in the uAdmin dashboard.
 
 **uadmin.GetSetting**
 ^^^^^^^^^^^^^^^^^^^^^
-GetSetting returns the value of the setting based on the data type selected.
+GetSetting returns the value of the setting based on the data type selected. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -3387,7 +3493,9 @@ Now run your application and check the result in your terminal.
 
 **uadmin.GetString**
 ^^^^^^^^^^^^^^^^^^^^
-GetString returns string representation on an instance of a model.
+GetString returns string representation on an instance of a model. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -3437,7 +3545,9 @@ Run your application and check the terminal to see the result.
 
 **uadmin.GetStringer**
 ^^^^^^^^^^^^^^^^^^^^^^
-GetStringer fetches the first record from the database matching query and args and get only fields tagged with `stringer` tag. If no field has `stringer` tag, then it gets all the fields.
+GetStringer fetches the first record from the database matching query and args and get only fields tagged with `stringer` tag. If no field has `stringer` tag, then it gets all the fields. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -3501,7 +3611,9 @@ Run your application. Search for the first ID on the friend_id parameter in the 
 
 **uadmin.GetUserFromRequest**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-GetUserFromRequest returns a user from a request.
+GetUserFromRequest returns a user from a request. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -3611,7 +3723,9 @@ Check your terminal for the result.
 
 **uadmin.GroupPermission**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-GroupPermission sets the permission of a user group handled by an administrator.
+GroupPermission sets the permission of a user group handled by an administrator. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -3763,7 +3877,9 @@ The Todo model is now hidden from the dashboard. If you login your System Admin 
 
 **uadmin.HideInDashboarder**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-HideInDashboarder is used to check if a model should be hidden in the dashboard.
+HideInDashboarder is used to check if a model should be hidden in the dashboard. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -3850,7 +3966,9 @@ As expected, Friends and Expressions models are now hidden in the dashboard. If 
 
 **uadmin.INFO**
 ^^^^^^^^^^^^^^^
-INFO is the display tag under Trail. It is a data that is presented within a context that gives it meaning and relevance.
+INFO is the display tag under Trail. It is a data that is presented within a context that gives it meaning and relevance. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -3862,7 +3980,9 @@ See `uadmin.Trail`_ for the example.
 
 **uadmin.IsAuthenticated**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-IsAuthenticated returns the session of the user.
+IsAuthenticated returns the session of the user. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -3964,7 +4084,9 @@ And if you go back to the home page, your account has been logged out automatica
 
 **uadmin.JSONMarshal**
 ^^^^^^^^^^^^^^^^^^^^^^
-JSONMarshal returns the JSON encoding of v.
+JSONMarshal returns the JSON encoding of v. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -4047,7 +4169,9 @@ Run your application and see what happens.
 
 **uadmin.Language**
 ^^^^^^^^^^^^^^^^^^^
-Language is a system in uAdmin that is used to add, modify and delete the elements of a language.
+Language is a system in uAdmin that is used to add, modify and delete the elements of a language. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -4114,7 +4238,9 @@ Page:
 
 **uadmin.Log**
 ^^^^^^^^^^^^^^
-Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities.
+Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -4217,7 +4343,9 @@ Page:
 
 **uadmin.LogAdd**
 ^^^^^^^^^^^^^^^^^
-LogAdd adds a log when a record is added.
+LogAdd adds a log when a record is added. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -4313,7 +4441,9 @@ See `uadmin.LogRead`_ for the continuation.
 
 **uadmin.LogDelete**
 ^^^^^^^^^^^^^^^^^^^^
-LogAdd adds a log when a record is deleted.
+LogAdd adds a log when a record is deleted. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -4395,7 +4525,9 @@ As you can see, the log content remains the same. Well done!
 
 **uadmin.LogEdit**
 ^^^^^^^^^^^^^^^^^^
-LogAdd adds a log when a record is edited.
+LogAdd adds a log when a record is edited. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -4501,7 +4633,9 @@ See `uadmin.LogDelete`_ for the continuation.
 
 **uadmin.Login**
 ^^^^^^^^^^^^^^^^
-Login returns the pointer of User and a bool for Is OTP Required.
+Login returns the pointer of User and a bool for Is OTP Required. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -4569,7 +4703,9 @@ Page:
 
 **uadmin.Login2FA**
 ^^^^^^^^^^^^^^^^^^^
-Login2FA returns the pointer of User with a two-factor authentication.
+Login2FA returns the pointer of User with a two-factor authentication. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -4661,7 +4797,9 @@ Page:
 
 **uadmin.Logout**
 ^^^^^^^^^^^^^^^^^
-Logout deactivates the session.
+Logout deactivates the session. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -4727,7 +4865,9 @@ Page:
 
 **uadmin.LogRead**
 ^^^^^^^^^^^^^^^^^^
-LogRead adds a log when a record is read.
+LogRead adds a log when a record is read. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -4819,7 +4959,9 @@ See `uadmin.LogEdit`_ for the continuation.
 
 **uadmin.MaxImageHeight**
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-MaxImageHeight sets the maximum height of an image.
+MaxImageHeight sets the maximum height of an image. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -4831,7 +4973,9 @@ See `uadmin.MaxImageWidth`_ for the example.
 
 **uadmin.MaxImageWidth**
 ^^^^^^^^^^^^^^^^^^^^^^^^
-MaxImageWidth sets the maximum width of an image.
+MaxImageWidth sets the maximum width of an image. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -4876,7 +5020,9 @@ As expected, the profile pic will be uploaded to the user profile that automatic
 
 **uadmin.MaxUploadFileSize**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-MaxUploadFileSize is the maximum upload file size in kilobytes.
+MaxUploadFileSize is the maximum upload file size in kilobytes. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -4901,7 +5047,9 @@ The profile picture has failed to upload in the user profile because the file si
 
 **uadmin.Model**
 ^^^^^^^^^^^^^^^^
-Model is the standard struct to be embedded in any other struct to make it a model for uAdmin.
+Model is the standard struct to be embedded in any other struct to make it a model for uAdmin. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -4923,7 +5071,9 @@ In every struct, uadmin.Model must always come first before creating a field.
 
 **uadmin.ModelList**
 ^^^^^^^^^^^^^^^^^^^^
-ModelList a list of registered models.
+ModelList a list of registered models. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -4935,7 +5085,9 @@ See `Part 3: A/B Test Function for Static`_ for the example.
 
 **uadmin.ModelSchema**
 ^^^^^^^^^^^^^^^^^^^^^^
-ModelSchema is a representation of a plan or theory in the form of an outline or model.
+ModelSchema is a representation of a plan or theory in the form of an outline or model. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -5048,7 +5200,9 @@ Page:
 
 **uadmin.NewModel**
 ^^^^^^^^^^^^^^^^^^^
-NewModel creates a new model from a model name.
+NewModel creates a new model from a model name. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -5119,7 +5273,9 @@ Run your application and see what happens.
 
 **uadmin.NewModelArray**
 ^^^^^^^^^^^^^^^^^^^^^^^^
-NewModelArray creates a new model array from a model name.
+NewModelArray creates a new model array from a model name. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -5185,7 +5341,9 @@ Run your application and see what happens.
 
 **uadmin.OK**
 ^^^^^^^^^^^^^
-OK is the display tag under Trail. It is a status to show that the application is doing well.
+OK is the display tag under Trail. It is a status to show that the application is doing well. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5197,7 +5355,9 @@ See `uadmin.Trail`_ for the example.
 
 **uadmin.OptimizeSQLQuery**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-OptimizeSQLQuery selects columns during rendering a form a list to visible fields. This means during the filtering of a form the select statement will not include any field with `hidden` tag. For list it will not select any field with `list_exclude`.
+OptimizeSQLQuery selects columns during rendering a form a list to visible fields. This means during the filtering of a form the select statement will not include any field with `hidden` tag. For list it will not select any field with `list_exclude`. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5221,7 +5381,9 @@ Example:
 
 **uadmin.OTPAlgorithm**
 ^^^^^^^^^^^^^^^^^^^^^^^
-OTPAlgorithm is the hashing algorithm of OTP.
+OTPAlgorithm is the hashing algorithm of OTP. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5247,7 +5409,9 @@ You can apply any of these in main.go.
 
 **uadmin.OTPDigits**
 ^^^^^^^^^^^^^^^^^^^^
-OTPDigits is the number of digits for the OTP.
+OTPDigits is the number of digits for the OTP. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5274,7 +5438,9 @@ As shown above, it has 8 OTP digits.
 
 **uadmin.OTPPeriod**
 ^^^^^^^^^^^^^^^^^^^^
-OTPPeriod is the number of seconds for the OTP to change.
+OTPPeriod is the number of seconds for the OTP to change. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5303,7 +5469,9 @@ Run your application, login your account, and check your terminal afterwards to 
 
 **uadmin.OTPSkew**
 ^^^^^^^^^^^^^^^^^^
-OTPSkew is the number of minutes to search around the OTP.
+OTPSkew is the number of minutes to search around the OTP. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5330,7 +5498,9 @@ It redirects to the same webpage which means your OTP code is no longer valid.
 
 **uadmin.PageLength**
 ^^^^^^^^^^^^^^^^^^^^^
-PageLength is the list view max number of records.
+PageLength is the list view max number of records. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5353,7 +5523,9 @@ Run your application, go to the Item model, inside it you have 6 total elements.
 
 **uadmin.Port**
 ^^^^^^^^^^^^^^^
-Port is the port used for http or https server.
+Port is the port used for http or https server. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5386,7 +5558,9 @@ In the Server Started, it will redirect you to port number **8000**.
 
 **uadmin.Preload**
 ^^^^^^^^^^^^^^^^^^
-Preload accesses the information of the fields in another model.
+Preload accesses the information of the fields in another model. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -5470,7 +5644,9 @@ In my list, Willie Revillame wins 85 points and Even Demata wins 130 points.
 
 **uadmin.PublicMedia**
 ^^^^^^^^^^^^^^^^^^^^^^
-PublicMedia allows public access to media handler without authentication.
+PublicMedia allows public access to media handler without authentication. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5507,7 +5683,9 @@ Result
 
 **uadmin.RateLimit**
 ^^^^^^^^^^^^^^^^^^^^
-RateLimit is the maximum number of requests/second for any unique IP.
+RateLimit is the maximum number of requests/second for any unique IP. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5550,7 +5728,9 @@ Run your application again and do the same process as shown above. Afterwards, c
 
 **uadmin.RateLimitBurst**
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-RateLimitBurst is the maximum number of requests for an idle user.
+RateLimitBurst is the maximum number of requests for an idle user. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5585,7 +5765,9 @@ The website is crashed because our request exceeds the limit that we have assign
 
 **uadmin.Register**
 ^^^^^^^^^^^^^^^^^^^
-Register is used to register models to uAdmin.
+Register is used to register models to uAdmin. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -5632,7 +5814,9 @@ If you click the Todos model, it will display this result as shown below.
 
 **uadmin.RegisterInlines**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-RegisterInlines is a function to register a model as an inline for another model
+RegisterInlines is a function to register a model as an inline for another model. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -5679,7 +5863,9 @@ Example:
 
 **uadmin.RenderHTML**
 ^^^^^^^^^^^^^^^^^^^^^
-RenderHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 ...etc.
+RenderHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 ...etc. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -5820,7 +6006,9 @@ Now run your application, go to /friends/ path and see what happens.
 
 **uadmin.ReportingLevel**
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-ReportingLevel is the standard reporting level.
+ReportingLevel is the standard reporting level. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5882,7 +6070,9 @@ The database was initialized. The server has started. However the error message 
 
 **uadmin.ReportTimeStamp**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-ReportTimeStamp set this to true to have a time stamp in your logs.
+ReportTimeStamp set this to true to have a time stamp in your logs. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5913,7 +6103,9 @@ If you run your code,
 
 **uadmin.RestrictSessionIP**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-RestrictSessionIP is to block access of a user if their IP changes from their original IP during login.
+RestrictSessionIP is to block access of a user if their IP changes from their original IP during login. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -5941,7 +6133,9 @@ Example:
 
 **uadmin.RetainMediaVersions**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-RetainMediaVersions is to allow the system to keep files uploaded even after they are changed. This allows the system to "Roll Back" to an older version of the file.
+RetainMediaVersions is to allow the system to keep files uploaded even after they are changed. This allows the system to "Roll Back" to an older version of the file. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -6033,7 +6227,9 @@ From your project folder, go to /media/files/ path. Inside it, there are two gen
 
 **uadmin.ReturnJSON**
 ^^^^^^^^^^^^^^^^^^^^^
-ReturnJSON returns JSON to the client.
+ReturnJSON returns JSON to the client. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -6061,7 +6257,9 @@ Used in the tutorial:
 
 **uadmin.RootURL**
 ^^^^^^^^^^^^^^^^^^
-RootURL is where the listener is mapped to.
+RootURL is where the listener is mapped to. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -6091,7 +6289,9 @@ Result
 
 **uadmin.Salt**
 ^^^^^^^^^^^^^^^
-Salt is extra salt added to password hashing.
+Salt is extra salt added to password hashing. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -6138,7 +6338,9 @@ Now go to the Friend model and put the password as 123456. Save it and check the
 
 **uadmin.Save**
 ^^^^^^^^^^^^^^^
-Save saves the object in the database.
+Save saves the object in the database. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -6197,7 +6399,9 @@ Result
 
 **uadmin.Schema**
 ^^^^^^^^^^^^^^^^^
-Schema is the global schema of the system.
+Schema is the global schema of the system. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -6264,7 +6468,9 @@ Page:
 
 **uadmin.SendEmail**
 ^^^^^^^^^^^^^^^^^^^^
-SendEmail sends email using system configured variables.
+SendEmail sends email using system configured variables. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -6309,7 +6515,9 @@ Once you are done, open your email account. You will receive an email from a sen
 
 **uadmin.Session**
 ^^^^^^^^^^^^^^^^^^
-Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. [#f1]_
+Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. [#f1]_ (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -6479,7 +6687,9 @@ Now run your application, go to "DASHBOARD MENUS" and you will notice that Sessi
 
 **uadmin.Setting**
 ^^^^^^^^^^^^^^^^^^
-Setting is a system in uAdmin that is used to display information for an application as a whole.
+Setting is a system in uAdmin that is used to display information for an application as a whole. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -6582,7 +6792,9 @@ Page:
 
 **uadmin.SettingCategory**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-Setting Category is a system in uAdmin that is used for classifying settings and its records.
+Setting Category is a system in uAdmin that is used for classifying settings and its records. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -6663,7 +6875,9 @@ Result
 
 **uadmin.SiteName**
 ^^^^^^^^^^^^^^^^^^^
-SiteName is the name of the website that shows on title and dashboard.
+SiteName is the name of the website that shows on title and dashboard. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -6693,7 +6907,9 @@ Run your application and see the changes above the web browser.
 
 **uadmin.StartSecureServer**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-StartSecureServer is the process of activating a uAdmin server using a localhost IP or an apache with SSL security.
+StartSecureServer is the process of activating a uAdmin server using a localhost IP or an apache with SSL security. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -6768,7 +6984,9 @@ You will see the following information in the certificate viewer.
 
 **uadmin.StartServer**
 ^^^^^^^^^^^^^^^^^^^^^^
-StartServer is the process of activating a uAdmin server using a localhost IP or an apache.
+StartServer is the process of activating a uAdmin server using a localhost IP or an apache. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -6812,7 +7030,9 @@ Now to run your code:
 
 **uadmin.StaticHandler**
 ^^^^^^^^^^^^^^^^^^^^^^^^
-StaticHandler is a function that serves static files.
+StaticHandler is a function that serves static files. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -6832,7 +7052,9 @@ See `Part 2: Static Handler`_ for the example.
 
 **uadmin.Tf**
 ^^^^^^^^^^^^^
-Tf is a function for translating strings into any given language.
+Tf is a function for translating strings into any given language. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -6946,7 +7168,9 @@ Congrats, now you know how to translate your sentence using uadmin.Tf.
 
 **uadmin.Theme**
 ^^^^^^^^^^^^^^^^
-Theme is the name of the theme used in uAdmin.
+Theme is the name of the theme used in uAdmin. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -7014,7 +7238,9 @@ Run your application to see the result.
 
 **uadmin.Trail**
 ^^^^^^^^^^^^^^^^
-Trail prints to the log.
+Trail prints to the log. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -7065,7 +7291,9 @@ The output shows the different colors per tag.
 
 **uadmin.Translate**
 ^^^^^^^^^^^^^^^^^^^^
-Translate is used to get a translation from a multilingual fields.
+Translate is used to get a translation from a multilingual fields. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -7134,7 +7362,9 @@ Run your application and see what happens.
 
 **uadmin.Update**
 ^^^^^^^^^^^^^^^^^
-Update updates the field name and value of an interface.
+Update updates the field name and value of an interface. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -7185,7 +7415,9 @@ The Todo name has updated from "Read a book" to "Read a magazine".
 
 **uadmin.User**
 ^^^^^^^^^^^^^^^
-User is a system in uAdmin that is used to add, modify and delete the elements of the user.
+User is a system in uAdmin that is used to add, modify and delete the elements of the user. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -7459,7 +7691,9 @@ Page:
    
 **uadmin.UserGroup**
 ^^^^^^^^^^^^^^^^^^^^
-UserGroup is a system in uAdmin used to add, modify, and delete the group name. 
+UserGroup is a system in uAdmin used to add, modify, and delete the group name. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -7599,7 +7833,9 @@ Congrats, now you know how to add the UserGroup from code, fetching the record f
 
 **uadmin.UserPermission**
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-UserPermission sets the permission of a user handled by an administrator.
+UserPermission sets the permission of a user handled by an administrator. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Structure:
 
@@ -7736,7 +7972,9 @@ The Todo model is now hidden from the dashboard. If you login your System Admin 
 
 **uadmin.ValidateIP**
 ^^^^^^^^^^^^^^^^^^^^^
-ValidateIP is a function to check if the IP in the request is allowed in the allowed based on allowed and block strings.
+ValidateIP is a function to check if the IP in the request is allowed in the allowed based on allowed and block strings. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Function:
 
@@ -7811,7 +8049,9 @@ This will not display anything in the webpage but a white screen. Go to your ter
 
 **uadmin.Version**
 ^^^^^^^^^^^^^^^^^^
-Version number as per Semantic Versioning 2.0.0 (semver.org)
+Version number as per Semantic Versioning 2.0.0 (semver.org) (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -7850,7 +8090,9 @@ You can also directly check it by typing **uadmin version** in your terminal.
 
 **uadmin.WARNING**
 ^^^^^^^^^^^^^^^^^^
-WARNING is the display tag under Trail. It is the statement or event that indicates a possible problems occurring in an application.
+WARNING is the display tag under Trail. It is the statement or event that indicates a possible problems occurring in an application. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 
@@ -7862,7 +8104,9 @@ See `uadmin.Trail`_ for the example.
 
 **uadmin.WORKING**
 ^^^^^^^^^^^^^^^^^^
-OK is the display tag under Trail. It is a status to show that the application is working.
+OK is the display tag under Trail. It is a status to show that the application is working. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#
 
 Type:
 

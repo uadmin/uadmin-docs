@@ -180,7 +180,7 @@
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="uadmin-abtest">
 <h3><strong>uadmin.ABTest</strong><a class="headerlink" href="#uadmin-abtest" title="Permalink to this headline">¶</a></h3>
-<p>ABTest is a model that stores an A/B test.</p>
+<p>ABTest is a model that stores an A/B test. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">ABTest</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
@@ -263,7 +263,7 @@
 </div>
 <div class="section" id="uadmin-abtestclick">
 <h3><strong>uadmin.ABTestClick</strong><a class="headerlink" href="#uadmin-abtestclick" title="Permalink to this headline">¶</a></h3>
-<p>ABTestClick is a function to register a click for an ABTest group.</p>
+<p>ABTestClick is a function to register a click for an ABTest group. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">group</span> <span class="kt">string</span><span class="p">)</span>
 </pre></div>
@@ -277,7 +277,7 @@
 </div>
 <div class="section" id="uadmin-abtesttype">
 <h3><strong>uadmin.ABTestType</strong><a class="headerlink" href="#uadmin-abtesttype" title="Permalink to this headline">¶</a></h3>
-<p>ABTestType is a list of test types from a dropdown menu.</p>
+<p>ABTestType is a list of test types from a dropdown menu. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -291,7 +291,7 @@
 </div>
 <div class="section" id="uadmin-abtestvalue">
 <h3><strong>uadmin.ABTestValue</strong><a class="headerlink" href="#uadmin-abtestvalue" title="Permalink to this headline">¶</a></h3>
-<p>ABTest is a model that stores a value for an A/B test.</p>
+<p>ABTest is a model that stores a value for an A/B test. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">ABTestValue</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
@@ -347,7 +347,7 @@
 </div>
 <div class="section" id="uadmin-action">
 <h3><strong>uadmin.Action</strong><a class="headerlink" href="#uadmin-action" title="Permalink to this headline">¶</a></h3>
-<p>Action is the process of doing something where you can check the status of your activities in the uAdmin project.</p>
+<p>Action is the process of doing something where you can check the status of your activities in the uAdmin project. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -420,7 +420,7 @@
 </div>
 <div class="section" id="uadmin-adminpage">
 <h3><strong>uadmin.AdminPage</strong><a class="headerlink" href="#uadmin-adminpage" title="Permalink to this headline">¶</a></h3>
-<p>AdminPage fetches records from the database with some standard rules such as sorting data, multiples of, and setting a limit that can be used in pagination.</p>
+<p>AdminPage fetches records from the database with some standard rules such as sorting data, multiples of, and setting a limit that can be used in pagination. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">offset</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">limit</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -474,7 +474,7 @@
 </div>
 <div class="section" id="uadmin-all">
 <h3><strong>uadmin.All</strong><a class="headerlink" href="#uadmin-all" title="Permalink to this headline">¶</a></h3>
-<p>All fetches all object in the database.</p>
+<p>All fetches all object in the database. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -516,7 +516,7 @@
 </div>
 <div class="section" id="uadmin-allowedips">
 <h3><strong>uadmin.AllowedIPs</strong><a class="headerlink" href="#uadmin-allowedips" title="Permalink to this headline">¶</a></h3>
-<p>AllowedIPs is a list of allowed IPs to access uAdmin interface in one of the following formats:</p>
+<p>AllowedIPs is a list of allowed IPs to access uAdmin interface in one of the following formats: (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <ul class="simple">
 <li><p>“*” = Allow all</p></li>
 <li><p>“” = Allow none</p></li>
@@ -541,7 +541,7 @@
 </div>
 <div class="section" id="uadmin-approval">
 <h3><strong>uadmin.Approval</strong><a class="headerlink" href="#uadmin-approval" title="Permalink to this headline">¶</a></h3>
-<p>Approval is a feature used to set an approval permission in the field.</p>
+<p>Approval is a feature used to set an approval permission in the field. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Approval</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">ModelName</span>           <span class="kt">string</span>
@@ -672,7 +672,7 @@
 </div>
 <div class="section" id="uadmin-approvalaction">
 <h3><strong>uadmin.ApprovalAction</strong><a class="headerlink" href="#uadmin-approvalaction" title="Permalink to this headline">¶</a></h3>
-<p>ApprovalAction is a selection of approval actions. There are two functions: Approved and Rejected.</p>
+<p>ApprovalAction is a selection of approval actions. There are two functions: Approved and Rejected. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -681,7 +681,7 @@
 </div>
 <div class="section" id="uadmin-approvalhandlefunc">
 <h3><strong>uadmin.ApprovalHandleFunc</strong><a class="headerlink" href="#uadmin-approvalhandlefunc" title="Permalink to this headline">¶</a></h3>
-<p>ApprovalHandleFunc is a function that will be called everytime a model is called. It receives a parameter for an approval system model.</p>
+<p>ApprovalHandleFunc is a function that will be called everytime a model is called. It receives a parameter for an approval system model. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Approval</span><span class="p">)</span> <span class="kt">bool</span>
 </pre></div>
@@ -734,7 +734,7 @@
 </div>
 <div class="section" id="uadmin-bindip">
 <h3><strong>uadmin.BindIP</strong><a class="headerlink" href="#uadmin-bindip" title="Permalink to this headline">¶</a></h3>
-<p>BindIP is the IP the application listens to.</p>
+<p>BindIP is the IP the application listens to. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
 </pre></div>
@@ -762,7 +762,7 @@
 </div>
 <div class="section" id="uadmin-blockedips">
 <h3><strong>uadmin.BlockedIPs</strong><a class="headerlink" href="#uadmin-blockedips" title="Permalink to this headline">¶</a></h3>
-<p>BlockedIPs is a list of blocked IPs from accessing uAdmin interface in one of the following formats:</p>
+<p>BlockedIPs is a list of blocked IPs from accessing uAdmin interface in one of the following formats: (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <ul class="simple">
 <li><p>“*” = Block all</p></li>
 <li><p>“” = Block none</p></li>
@@ -787,7 +787,7 @@
 </div>
 <div class="section" id="uadmin-cachetranslation">
 <h3><strong>uadmin.CacheTranslation</strong><a class="headerlink" href="#uadmin-cachetranslation" title="Permalink to this headline">¶</a></h3>
-<p>CacheTranslation allows a translation to store data in a cache memory.</p>
+<p>CacheTranslation allows a translation to store data in a cache memory. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
 </pre></div>
@@ -811,7 +811,7 @@
 </div>
 <div class="section" id="uadmin-checkratelimit">
 <h3><strong>uadmin.CheckRateLimit</strong><a class="headerlink" href="#uadmin-checkratelimit" title="Permalink to this headline">¶</a></h3>
-<p>CheckRateLimit checks if the request has remaining quota or not. If it returns false, the IP in the request has exceeded their quota.</p>
+<p>CheckRateLimit checks if the request has remaining quota or not. If it returns false, the IP in the request has exceeded their quota. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span>
 </pre></div>
@@ -880,7 +880,7 @@
 </div>
 <div class="section" id="uadmin-choice">
 <h3><strong>uadmin.Choice</strong><a class="headerlink" href="#uadmin-choice" title="Permalink to this headline">¶</a></h3>
-<p>Choice is a struct for the list of choices.</p>
+<p>Choice is a struct for the list of choices. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Choice</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">V</span>        <span class="kt">string</span>
@@ -957,7 +957,7 @@
 </div>
 <div class="section" id="uadmin-cleardb">
 <h3><strong>uadmin.ClearDB</strong><a class="headerlink" href="#uadmin-cleardb" title="Permalink to this headline">¶</a></h3>
-<p>ClearDB clears the database object.</p>
+<p>ClearDB clears the database object. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">()</span>
 </pre></div>
@@ -1059,7 +1059,7 @@
 </div>
 <div class="section" id="uadmin-cookietimeout">
 <h3><strong>uadmin.CookieTimeout</strong><a class="headerlink" href="#uadmin-cookietimeout" title="Permalink to this headline">¶</a></h3>
-<p>CookieTimeout is the timeout of a login cookie in seconds.</p>
+<p>CookieTimeout is the timeout of a login cookie in seconds. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -1081,7 +1081,7 @@
 </div>
 <div class="section" id="uadmin-count">
 <h3><strong>uadmin.Count</strong><a class="headerlink" href="#uadmin-count" title="Permalink to this headline">¶</a></h3>
-<p>Count return the count of records in a table based on a filter.</p>
+<p>Count return the count of records in a table based on a filter. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">int</span>
 </pre></div>
@@ -1127,7 +1127,7 @@
 </div>
 <div class="section" id="uadmin-customtranslation">
 <h3><strong>uadmin.CustomTranslation</strong><a class="headerlink" href="#uadmin-customtranslation" title="Permalink to this headline">¶</a></h3>
-<p>CustomTranslation is a list of string where you could add URLs to JSON files that uAdmin will save for translation.</p>
+<p>CustomTranslation is a list of string where you could add URLs to JSON files that uAdmin will save for translation. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span><span class="kt">string</span>
 </pre></div>
@@ -1149,7 +1149,7 @@
 </div>
 <div class="section" id="uadmin-dashboardmenu">
 <h3><strong>uadmin.DashboardMenu</strong><a class="headerlink" href="#uadmin-dashboardmenu" title="Permalink to this headline">¶</a></h3>
-<p>DashboardMenu is a system in uAdmin that is used to add, modify and delete the elements of a model.</p>
+<p>DashboardMenu is a system in uAdmin that is used to add, modify and delete the elements of a model. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">DashboardMenu</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
@@ -1198,7 +1198,7 @@
 </div>
 <div class="section" id="uadmin-database">
 <h3><strong>uadmin.Database</strong><a class="headerlink" href="#uadmin-database" title="Permalink to this headline">¶</a></h3>
-<p>Database is the active Database settings.</p>
+<p>Database is the active Database settings. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DBSettings</span>
 </pre></div>
@@ -1245,6 +1245,9 @@
 </div>
 <div class="section" id="uadmin-datatype">
 <h3><strong>uadmin.DataType</strong><a class="headerlink" href="#uadmin-datatype" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a></p>
+</div></blockquote>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -1263,7 +1266,7 @@
 </div>
 <div class="section" id="uadmin-dbsettings">
 <h3><strong>uadmin.DBSettings</strong><a class="headerlink" href="#uadmin-dbsettings" title="Permalink to this headline">¶</a></h3>
-<p>DBSettings is a feature that allows a user to configure the settings of a database.</p>
+<p>DBSettings is a feature that allows a user to configure the settings of a database. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">DBSettings</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Type</span>     <span class="kt">string</span> <span class="c1">// SQLLite, MySQL</span>
@@ -1375,7 +1378,7 @@
 </div>
 <div class="section" id="uadmin-debug">
 <h3><strong>uadmin.DEBUG</strong><a class="headerlink" href="#uadmin-debug" title="Permalink to this headline">¶</a></h3>
-<p>DEBUG is the display tag under Trail. It is the process of identifying and removing errors.</p>
+<p>DEBUG is the display tag under Trail. It is the process of identifying and removing errors. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
 </pre></div>
@@ -1423,7 +1426,7 @@
 </div>
 <div class="section" id="uadmin-defaultmediapermission">
 <h3><strong>uadmin.DefaultMediaPermission</strong><a class="headerlink" href="#uadmin-defaultmediapermission" title="Permalink to this headline">¶</a></h3>
-<p>DefaultMediaPermission is the default permission applied to files uploaded to the system.</p>
+<p>DefaultMediaPermission is the default permission applied to files uploaded to the system. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">FileMode</span>
 </pre></div>
@@ -1478,7 +1481,7 @@
 </div>
 <div class="section" id="uadmin-delete">
 <h3><strong>uadmin.Delete</strong><a class="headerlink" href="#uadmin-delete" title="Permalink to this headline">¶</a></h3>
-<p>Delete records from database.</p>
+<p>Delete records from database. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -1595,7 +1598,7 @@
 </div>
 <div class="section" id="uadmin-deletelist">
 <h3><strong>uadmin.DeleteList</strong><a class="headerlink" href="#uadmin-deletelist" title="Permalink to this headline">¶</a></h3>
-<p>Delete the list of records from database.</p>
+<p>Delete the list of records from database. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -1722,7 +1725,7 @@
 </div>
 <div class="section" id="uadmin-emailfrom">
 <h3><strong>uadmin.EmailFrom</strong><a class="headerlink" href="#uadmin-emailfrom" title="Permalink to this headline">¶</a></h3>
-<p>EmailFrom identifies where the email is coming from.</p>
+<p>EmailFrom identifies where the email is coming from. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
 </pre></div>
@@ -1768,7 +1771,7 @@
 </div>
 <div class="section" id="uadmin-emailpassword">
 <h3><strong>uadmin.EmailPassword</strong><a class="headerlink" href="#uadmin-emailpassword" title="Permalink to this headline">¶</a></h3>
-<p>EmailPassword assigns the password of an email.</p>
+<p>EmailPassword assigns the password of an email. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
 </pre></div>
@@ -1777,7 +1780,7 @@
 </div>
 <div class="section" id="uadmin-emailsmtpserver">
 <h3><strong>uadmin.EmailSMTPServer</strong><a class="headerlink" href="#uadmin-emailsmtpserver" title="Permalink to this headline">¶</a></h3>
-<p>EmailSMTPServer assigns the name of the SMTP Server in an email.</p>
+<p>EmailSMTPServer assigns the name of the SMTP Server in an email. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
 </pre></div>
@@ -1786,7 +1789,7 @@
 </div>
 <div class="section" id="uadmin-emailsmtpserverport">
 <h3><strong>uadmin.EmailSMTPServerPort</strong><a class="headerlink" href="#uadmin-emailsmtpserverport" title="Permalink to this headline">¶</a></h3>
-<p>EmailSMTPServerPort assigns the port number of an SMTP Server in an email.</p>
+<p>EmailSMTPServerPort assigns the port number of an SMTP Server in an email. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -1795,7 +1798,7 @@
 </div>
 <div class="section" id="uadmin-emailusername">
 <h3><strong>uadmin.EmailUsername</strong><a class="headerlink" href="#uadmin-emailusername" title="Permalink to this headline">¶</a></h3>
-<p>EmailUsername assigns the username of an email.</p>
+<p>EmailUsername assigns the username of an email. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
 </pre></div>
@@ -1804,7 +1807,7 @@
 </div>
 <div class="section" id="uadmin-encryptkey">
 <h3><strong>uadmin.EncryptKey</strong><a class="headerlink" href="#uadmin-encryptkey" title="Permalink to this headline">¶</a></h3>
-<p>EncryptKey is a key for encryption and decryption of data in the DB.</p>
+<p>EncryptKey is a key for encryption and decryption of data in the DB. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span><span class="kt">byte</span>
 </pre></div>
@@ -1827,7 +1830,7 @@
 </div>
 <div class="section" id="uadmin-error">
 <h3><strong>uadmin.ERROR</strong><a class="headerlink" href="#uadmin-error" title="Permalink to this headline">¶</a></h3>
-<p>ERROR is a status to notify the user that there is a problem in an application.</p>
+<p>ERROR is a status to notify the user that there is a problem in an application. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
 </pre></div>
@@ -1836,7 +1839,7 @@
 </div>
 <div class="section" id="uadmin-errorhandlefunc">
 <h3><strong>uadmin.ErrorHandleFunc</strong><a class="headerlink" href="#uadmin-errorhandlefunc" title="Permalink to this headline">¶</a></h3>
-<p>ErrorHandleFunc is a function that will be called everytime Trail is called. It receives one parameter for error level, one for error message and one for runtime stack trace</p>
+<p>ErrorHandleFunc is a function that will be called everytime Trail is called. It receives one parameter for error level, one for error message and one for runtime stack trace. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span>
 </pre></div>
@@ -1882,7 +1885,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-f">
 <h3><strong>uadmin.F</strong><a class="headerlink" href="#uadmin-f" title="Permalink to this headline">¶</a></h3>
-<p>F is a field.</p>
+<p>F is a field. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">F</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Name</span>              <span class="kt">string</span>
@@ -2010,7 +2013,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-fieldlist">
 <h3><strong>uadmin.FieldList</strong><a class="headerlink" href="#uadmin-fieldlist" title="Permalink to this headline">¶</a></h3>
-<p>FieldList is a list of fields from schema for a registered model.</p>
+<p>FieldList is a list of fields from schema for a registered model. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -2019,7 +2022,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-fieldtype">
 <h3><strong>uadmin.FieldType</strong><a class="headerlink" href="#uadmin-fieldtype" title="Permalink to this headline">¶</a></h3>
-<p>FieldType is a list of field types from dropdown menu.</p>
+<p>FieldType is a list of field types from dropdown menu. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -2043,13 +2046,13 @@ main.main<span class="o">()</span>
 <li><p><strong>Multilingual()</strong> - Allows the user to use more than two languages for input</p></li>
 <li><p><strong>Password()</strong> - A string of characters that hides the input data for security</p></li>
 <li><p><strong>ProgressBar()</strong> - A feature used to measure the progress of the activity</p></li>
-<li><p><strong>StaticList()</strong> - Retains the exact record IDs that matched your criteria at the time the list was saved <a class="footnote-reference brackets" href="#f3" id="id7">3</a></p></li>
+<li><p><strong>StaticList()</strong> - Retains the exact record IDs that matched your criteria at the time the list was saved <a class="footnote-reference brackets" href="#f3" id="id45">3</a></p></li>
 <li><p><strong>String()</strong> - Used to represent text rather than numbers</p></li>
 </ul>
 </div>
 <div class="section" id="uadmin-filter">
 <h3><strong>uadmin.Filter</strong><a class="headerlink" href="#uadmin-filter" title="Permalink to this headline">¶</a></h3>
-<p>Filter fetches records from the database.</p>
+<p>Filter fetches records from the database. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -2158,7 +2161,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-filterbuilder">
 <h3><strong>uadmin.FilterBuilder</strong><a class="headerlink" href="#uadmin-filterbuilder" title="Permalink to this headline">¶</a></h3>
-<p>FilterBuilder changes a map filter into a query.</p>
+<p>FilterBuilder changes a map filter into a query. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">params</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{})</span>
 </pre></div>
@@ -2227,7 +2230,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-filterlist">
 <h3><strong>uadmin.FilterList</strong><a class="headerlink" href="#uadmin-filterlist" title="Permalink to this headline">¶</a></h3>
-<p>FilterList fetches the all record from the database matching query and args where it selects only visible fields in the form based on given schema.</p>
+<p>FilterList fetches the all record from the database matching query and args where it selects only visible fields in the form based on given schema. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">offset</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">limit</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -2354,7 +2357,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-generatebase32">
 <h3><strong>uadmin.GenerateBase32</strong><a class="headerlink" href="#uadmin-generatebase32" title="Permalink to this headline">¶</a></h3>
-<p>GenerateBase32 generates a base32 string of length.</p>
+<p>GenerateBase32 generates a base32 string of length. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">length</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">string</span>
 </pre></div>
@@ -2393,7 +2396,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-generatebase64">
 <h3><strong>uadmin.GenerateBase64</strong><a class="headerlink" href="#uadmin-generatebase64" title="Permalink to this headline">¶</a></h3>
-<p>GenerateBase64 generates a base64 string of length.</p>
+<p>GenerateBase64 generates a base64 string of length. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">length</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">string</span>
 </pre></div>
@@ -2432,7 +2435,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-get">
 <h3><strong>uadmin.Get</strong><a class="headerlink" href="#uadmin-get" title="Permalink to this headline">¶</a></h3>
-<p>Get fetches the first record from the database.</p>
+<p>Get fetches the first record from the database. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -2478,7 +2481,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-getabtest">
 <h3><strong>uadmin.GetABTest</strong><a class="headerlink" href="#uadmin-getabtest" title="Permalink to this headline">¶</a></h3>
-<p>GetABTest is a function that gets an active A/B tests for any field in AB Test model.</p>
+<p>GetABTest is a function that gets an active A/B tests for any field in AB Test model. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -2494,7 +2497,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-getdb">
 <h3><strong>uadmin.GetDB</strong><a class="headerlink" href="#uadmin-getdb" title="Permalink to this headline">¶</a></h3>
-<p>GetDB returns a pointer to the DB.</p>
+<p>GetDB returns a pointer to the DB. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">()</span> <span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span>
 </pre></div>
@@ -2544,7 +2547,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-getfieldsapi">
 <h3><strong>uadmin.GetFieldsAPI</strong><a class="headerlink" href="#uadmin-getfieldsapi" title="Permalink to this headline">¶</a></h3>
-<p>GetFieldsAPI is a function that gets all fields based on an assigned model name.</p>
+<p>GetFieldsAPI is a function that gets all fields based on an assigned model name. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">session</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span>
 </pre></div>
@@ -2602,7 +2605,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-getform">
 <h3><strong>uadmin.GetForm</strong><a class="headerlink" href="#uadmin-getform" title="Permalink to this headline">¶</a></h3>
-<p>GetForm fetches the first record from the database matching query and args where it selects only visible fields in the form based on given schema.</p>
+<p>GetForm fetches the first record from the database matching query and args where it selects only visible fields in the form based on given schema. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -2717,7 +2720,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-getid">
 <h3><strong>uadmin.GetID</strong><a class="headerlink" href="#uadmin-getid" title="Permalink to this headline">¶</a></h3>
-<p>GetID returns an ID number of a field.</p>
+<p>GetID returns an ID number of a field. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">reflectValue</span><span class="p">)</span> <span class="kt">uint</span>
 </pre></div>
@@ -2760,7 +2763,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-getmodelsapi">
 <h3><strong>uadmin.GetModelsAPI</strong><a class="headerlink" href="#uadmin-getmodelsapi" title="Permalink to this headline">¶</a></h3>
-<p>GetModelsAPI is a function that gets all models in the dashboard.</p>
+<p>GetModelsAPI is a function that gets all models in the dashboard. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">session</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span>
 </pre></div>
@@ -2818,7 +2821,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-getsetting">
 <h3><strong>uadmin.GetSetting</strong><a class="headerlink" href="#uadmin-getsetting" title="Permalink to this headline">¶</a></h3>
-<p>GetSetting returns the value of the setting based on the data type selected.</p>
+<p>GetSetting returns the value of the setting based on the data type selected. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">code</span> <span class="kt">string</span><span class="p">)</span> <span class="kd">interface</span><span class="p">{}</span>
 </pre></div>
@@ -2843,7 +2846,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-getstring">
 <h3><strong>uadmin.GetString</strong><a class="headerlink" href="#uadmin-getstring" title="Permalink to this headline">¶</a></h3>
-<p>GetString returns string representation on an instance of a model.</p>
+<p>GetString returns string representation on an instance of a model. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">string</span>
 </pre></div>
@@ -2886,7 +2889,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-getstringer">
 <h3><strong>uadmin.GetStringer</strong><a class="headerlink" href="#uadmin-getstringer" title="Permalink to this headline">¶</a></h3>
-<p>GetStringer fetches the first record from the database matching query and args and get only fields tagged with <cite>stringer</cite> tag. If no field has <cite>stringer</cite> tag, then it gets all the fields.</p>
+<p>GetStringer fetches the first record from the database matching query and args and get only fields tagged with <cite>stringer</cite> tag. If no field has <cite>stringer</cite> tag, then it gets all the fields. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -2933,7 +2936,7 @@ main.main<span class="o">()</span>
 </div>
 <div class="section" id="uadmin-getuserfromrequest">
 <h3><strong>uadmin.GetUserFromRequest</strong><a class="headerlink" href="#uadmin-getuserfromrequest" title="Permalink to this headline">¶</a></h3>
-<p>GetUserFromRequest returns a user from a request.</p>
+<p>GetUserFromRequest returns a user from a request. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span>
 </pre></div>
@@ -3020,7 +3023,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-grouppermission">
 <h3><strong>uadmin.GroupPermission</strong><a class="headerlink" href="#uadmin-grouppermission" title="Permalink to this headline">¶</a></h3>
-<p>GroupPermission sets the permission of a user group handled by an administrator.</p>
+<p>GroupPermission sets the permission of a user group handled by an administrator. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">GroupPermission</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
@@ -3149,7 +3152,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-hideindashboarder">
 <h3><strong>uadmin.HideInDashboarder</strong><a class="headerlink" href="#uadmin-hideindashboarder" title="Permalink to this headline">¶</a></h3>
-<p>HideInDashboarder is used to check if a model should be hidden in the dashboard.</p>
+<p>HideInDashboarder is used to check if a model should be hidden in the dashboard. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">HideInDashboarder</span> <span class="kd">interface</span><span class="p">{</span>
     <span class="nx">HideInDashboard</span><span class="p">()</span> <span class="kt">bool</span>
@@ -3222,7 +3225,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-info">
 <h3><strong>uadmin.INFO</strong><a class="headerlink" href="#uadmin-info" title="Permalink to this headline">¶</a></h3>
-<p>INFO is the display tag under Trail. It is a data that is presented within a context that gives it meaning and relevance.</p>
+<p>INFO is the display tag under Trail. It is a data that is presented within a context that gives it meaning and relevance. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
 </pre></div>
@@ -3231,7 +3234,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-isauthenticated">
 <h3><strong>uadmin.IsAuthenticated</strong><a class="headerlink" href="#uadmin-isauthenticated" title="Permalink to this headline">¶</a></h3>
-<p>IsAuthenticated returns the session of the user.</p>
+<p>IsAuthenticated returns the session of the user. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span>
 </pre></div>
@@ -3315,7 +3318,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-jsonmarshal">
 <h3><strong>uadmin.JSONMarshal</strong><a class="headerlink" href="#uadmin-jsonmarshal" title="Permalink to this headline">¶</a></h3>
-<p>JSONMarshal returns the JSON encoding of v.</p>
+<p>JSONMarshal returns the JSON encoding of v. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">v</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">safeEncoding</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -3381,7 +3384,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-language">
 <h3><strong>uadmin.Language</strong><a class="headerlink" href="#uadmin-language" title="Permalink to this headline">¶</a></h3>
-<p>Language is a system in uAdmin that is used to add, modify and delete the elements of a language.</p>
+<p>Language is a system in uAdmin that is used to add, modify and delete the elements of a language. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Language</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
@@ -3436,7 +3439,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-log">
 <h3><strong>uadmin.Log</strong><a class="headerlink" href="#uadmin-log" title="Permalink to this headline">¶</a></h3>
-<p>Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities.</p>
+<p>Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Log</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
@@ -3519,7 +3522,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-logadd">
 <h3><strong>uadmin.LogAdd</strong><a class="headerlink" href="#uadmin-logadd" title="Permalink to this headline">¶</a></h3>
-<p>LogAdd adds a log when a record is added.</p>
+<p>LogAdd adds a log when a record is added. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
 </pre></div>
@@ -3598,7 +3601,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-logdelete">
 <h3><strong>uadmin.LogDelete</strong><a class="headerlink" href="#uadmin-logdelete" title="Permalink to this headline">¶</a></h3>
-<p>LogAdd adds a log when a record is deleted.</p>
+<p>LogAdd adds a log when a record is deleted. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
 </pre></div>
@@ -3665,7 +3668,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-logedit">
 <h3><strong>uadmin.LogEdit</strong><a class="headerlink" href="#uadmin-logedit" title="Permalink to this headline">¶</a></h3>
-<p>LogAdd adds a log when a record is edited.</p>
+<p>LogAdd adds a log when a record is edited. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
 </pre></div>
@@ -3751,7 +3754,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-login">
 <h3><strong>uadmin.Login</strong><a class="headerlink" href="#uadmin-login" title="Permalink to this headline">¶</a></h3>
-<p>Login returns the pointer of User and a bool for Is OTP Required.</p>
+<p>Login returns the pointer of User and a bool for Is OTP Required. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">username</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">password</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
 </pre></div>
@@ -3799,7 +3802,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-login2fa">
 <h3><strong>uadmin.Login2FA</strong><a class="headerlink" href="#uadmin-login2fa" title="Permalink to this headline">¶</a></h3>
-<p>Login2FA returns the pointer of User with a two-factor authentication.</p>
+<p>Login2FA returns the pointer of User with a two-factor authentication. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">username</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">password</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">otpPass</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span>
 </pre></div>
@@ -3868,7 +3871,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-logout">
 <h3><strong>uadmin.Logout</strong><a class="headerlink" href="#uadmin-logout" title="Permalink to this headline">¶</a></h3>
-<p>Logout deactivates the session.</p>
+<p>Logout deactivates the session. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>
 </pre></div>
@@ -3918,7 +3921,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-logread">
 <h3><strong>uadmin.LogRead</strong><a class="headerlink" href="#uadmin-logread" title="Permalink to this headline">¶</a></h3>
-<p>LogRead adds a log when a record is read.</p>
+<p>LogRead adds a log when a record is read. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
 </pre></div>
@@ -3992,7 +3995,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-maximageheight">
 <h3><strong>uadmin.MaxImageHeight</strong><a class="headerlink" href="#uadmin-maximageheight" title="Permalink to this headline">¶</a></h3>
-<p>MaxImageHeight sets the maximum height of an image.</p>
+<p>MaxImageHeight sets the maximum height of an image. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -4001,7 +4004,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-maximagewidth">
 <h3><strong>uadmin.MaxImageWidth</strong><a class="headerlink" href="#uadmin-maximagewidth" title="Permalink to this headline">¶</a></h3>
-<p>MaxImageWidth sets the maximum width of an image.</p>
+<p>MaxImageWidth sets the maximum width of an image. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -4035,7 +4038,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-maxuploadfilesize">
 <h3><strong>uadmin.MaxUploadFileSize</strong><a class="headerlink" href="#uadmin-maxuploadfilesize" title="Permalink to this headline">¶</a></h3>
-<p>MaxUploadFileSize is the maximum upload file size in kilobytes.</p>
+<p>MaxUploadFileSize is the maximum upload file size in kilobytes. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int64</span>
 </pre></div>
@@ -4053,7 +4056,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-model">
 <h3><strong>uadmin.Model</strong><a class="headerlink" href="#uadmin-model" title="Permalink to this headline">¶</a></h3>
-<p>Model is the standard struct to be embedded in any other struct to make it a model for uAdmin.</p>
+<p>Model is the standard struct to be embedded in any other struct to make it a model for uAdmin. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Model</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">ID</span>        <span class="kt">uint</span>       <span class="s">`gorm:&quot;primary_key&quot;`</span>
@@ -4071,7 +4074,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-modellist">
 <h3><strong>uadmin.ModelList</strong><a class="headerlink" href="#uadmin-modellist" title="Permalink to this headline">¶</a></h3>
-<p>ModelList a list of registered models.</p>
+<p>ModelList a list of registered models. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -4080,7 +4083,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-modelschema">
 <h3><strong>uadmin.ModelSchema</strong><a class="headerlink" href="#uadmin-modelschema" title="Permalink to this headline">¶</a></h3>
-<p>ModelSchema is a representation of a plan or theory in the form of an outline or model.</p>
+<p>ModelSchema is a representation of a plan or theory in the form of an outline or model. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">ModelSchema</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Name</span>          <span class="kt">string</span> <span class="c1">// Name of the Model</span>
@@ -4168,7 +4171,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-newmodel">
 <h3><strong>uadmin.NewModel</strong><a class="headerlink" href="#uadmin-newmodel" title="Permalink to this headline">¶</a></h3>
-<p>NewModel creates a new model from a model name.</p>
+<p>NewModel creates a new model from a model name. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">pointer</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">Value</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
 </pre></div>
@@ -4225,7 +4228,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-newmodelarray">
 <h3><strong>uadmin.NewModelArray</strong><a class="headerlink" href="#uadmin-newmodelarray" title="Permalink to this headline">¶</a></h3>
-<p>NewModelArray creates a new model array from a model name.</p>
+<p>NewModelArray creates a new model array from a model name. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">pointer</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">Value</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
 </pre></div>
@@ -4276,7 +4279,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-ok">
 <h3><strong>uadmin.OK</strong><a class="headerlink" href="#uadmin-ok" title="Permalink to this headline">¶</a></h3>
-<p>OK is the display tag under Trail. It is a status to show that the application is doing well.</p>
+<p>OK is the display tag under Trail. It is a status to show that the application is doing well. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
 </pre></div>
@@ -4285,7 +4288,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-optimizesqlquery">
 <h3><strong>uadmin.OptimizeSQLQuery</strong><a class="headerlink" href="#uadmin-optimizesqlquery" title="Permalink to this headline">¶</a></h3>
-<p>OptimizeSQLQuery selects columns during rendering a form a list to visible fields. This means during the filtering of a form the select statement will not include any field with <cite>hidden</cite> tag. For list it will not select any field with <cite>list_exclude</cite>.</p>
+<p>OptimizeSQLQuery selects columns during rendering a form a list to visible fields. This means during the filtering of a form the select statement will not include any field with <cite>hidden</cite> tag. For list it will not select any field with <cite>list_exclude</cite>. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
 </pre></div>
@@ -4305,7 +4308,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-otpalgorithm">
 <h3><strong>uadmin.OTPAlgorithm</strong><a class="headerlink" href="#uadmin-otpalgorithm" title="Permalink to this headline">¶</a></h3>
-<p>OTPAlgorithm is the hashing algorithm of OTP.</p>
+<p>OTPAlgorithm is the hashing algorithm of OTP. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
 </pre></div>
@@ -4327,7 +4330,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-otpdigits">
 <h3><strong>uadmin.OTPDigits</strong><a class="headerlink" href="#uadmin-otpdigits" title="Permalink to this headline">¶</a></h3>
-<p>OTPDigits is the number of digits for the OTP.</p>
+<p>OTPDigits is the number of digits for the OTP. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -4347,7 +4350,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-otpperiod">
 <h3><strong>uadmin.OTPPeriod</strong><a class="headerlink" href="#uadmin-otpperiod" title="Permalink to this headline">¶</a></h3>
-<p>OTPPeriod is the number of seconds for the OTP to change.</p>
+<p>OTPPeriod is the number of seconds for the OTP to change. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">uint</span>
 </pre></div>
@@ -4370,7 +4373,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-otpskew">
 <h3><strong>uadmin.OTPSkew</strong><a class="headerlink" href="#uadmin-otpskew" title="Permalink to this headline">¶</a></h3>
-<p>OTPSkew is the number of minutes to search around the OTP.</p>
+<p>OTPSkew is the number of minutes to search around the OTP. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">uint</span>
 </pre></div>
@@ -4389,7 +4392,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-pagelength">
 <h3><strong>uadmin.PageLength</strong><a class="headerlink" href="#uadmin-pagelength" title="Permalink to this headline">¶</a></h3>
-<p>PageLength is the list view max number of records.</p>
+<p>PageLength is the list view max number of records. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -4406,7 +4409,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-port">
 <h3><strong>uadmin.Port</strong><a class="headerlink" href="#uadmin-port" title="Permalink to this headline">¶</a></h3>
-<p>Port is the port used for http or https server.</p>
+<p>Port is the port used for http or https server. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -4432,7 +4435,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-preload">
 <h3><strong>uadmin.Preload</strong><a class="headerlink" href="#uadmin-preload" title="Permalink to this headline">¶</a></h3>
-<p>Preload accesses the information of the fields in another model.</p>
+<p>Preload accesses the information of the fields in another model. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">preload</span> <span class="o">...</span><span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -4502,7 +4505,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-publicmedia">
 <h3><strong>uadmin.PublicMedia</strong><a class="headerlink" href="#uadmin-publicmedia" title="Permalink to this headline">¶</a></h3>
-<p>PublicMedia allows public access to media handler without authentication.</p>
+<p>PublicMedia allows public access to media handler without authentication. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
 </pre></div>
@@ -4531,7 +4534,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-ratelimit">
 <h3><strong>uadmin.RateLimit</strong><a class="headerlink" href="#uadmin-ratelimit" title="Permalink to this headline">¶</a></h3>
-<p>RateLimit is the maximum number of requests/second for any unique IP.</p>
+<p>RateLimit is the maximum number of requests/second for any unique IP. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int64</span>
 </pre></div>
@@ -4564,7 +4567,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-ratelimitburst">
 <h3><strong>uadmin.RateLimitBurst</strong><a class="headerlink" href="#uadmin-ratelimitburst" title="Permalink to this headline">¶</a></h3>
-<p>RateLimitBurst is the maximum number of requests for an idle user.</p>
+<p>RateLimitBurst is the maximum number of requests for an idle user. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int64</span>
 </pre></div>
@@ -4592,7 +4595,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-register">
 <h3><strong>uadmin.Register</strong><a class="headerlink" href="#uadmin-register" title="Permalink to this headline">¶</a></h3>
-<p>Register is used to register models to uAdmin.</p>
+<p>Register is used to register models to uAdmin. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">m</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
 </pre></div>
@@ -4629,7 +4632,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-registerinlines">
 <h3><strong>uadmin.RegisterInlines</strong><a class="headerlink" href="#uadmin-registerinlines" title="Permalink to this headline">¶</a></h3>
-<p>RegisterInlines is a function to register a model as an inline for another model</p>
+<p>RegisterInlines is a function to register a model as an inline for another model. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">RegisterInlines</span><span class="p">(</span><span class="nx">model</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">fk</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span>
 </pre></div>
@@ -4668,7 +4671,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-renderhtml">
 <h3><strong>uadmin.RenderHTML</strong><a class="headerlink" href="#uadmin-renderhtml" title="Permalink to this headline">¶</a></h3>
-<p>RenderHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 …etc.</p>
+<p>RenderHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 …etc. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">data</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">path</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">funcs</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
 </pre></div>
@@ -4790,7 +4793,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-reportinglevel">
 <h3><strong>uadmin.ReportingLevel</strong><a class="headerlink" href="#uadmin-reportinglevel" title="Permalink to this headline">¶</a></h3>
-<p>ReportingLevel is the standard reporting level.</p>
+<p>ReportingLevel is the standard reporting level. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -4841,7 +4844,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-reporttimestamp">
 <h3><strong>uadmin.ReportTimeStamp</strong><a class="headerlink" href="#uadmin-reporttimestamp" title="Permalink to this headline">¶</a></h3>
-<p>ReportTimeStamp set this to true to have a time stamp in your logs.</p>
+<p>ReportTimeStamp set this to true to have a time stamp in your logs. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
 </pre></div>
@@ -4866,7 +4869,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-restrictsessionip">
 <h3><strong>uadmin.RestrictSessionIP</strong><a class="headerlink" href="#uadmin-restrictsessionip" title="Permalink to this headline">¶</a></h3>
-<p>RestrictSessionIP is to block access of a user if their IP changes from their original IP during login.</p>
+<p>RestrictSessionIP is to block access of a user if their IP changes from their original IP during login. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
 </pre></div>
@@ -4890,7 +4893,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-retainmediaversions">
 <h3><strong>uadmin.RetainMediaVersions</strong><a class="headerlink" href="#uadmin-retainmediaversions" title="Permalink to this headline">¶</a></h3>
-<p>RetainMediaVersions is to allow the system to keep files uploaded even after they are changed. This allows the system to “Roll Back” to an older version of the file.</p>
+<p>RetainMediaVersions is to allow the system to keep files uploaded even after they are changed. This allows the system to “Roll Back” to an older version of the file. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
 </pre></div>
@@ -4959,7 +4962,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-returnjson">
 <h3><strong>uadmin.ReturnJSON</strong><a class="headerlink" href="#uadmin-returnjson" title="Permalink to this headline">¶</a></h3>
-<p>ReturnJSON returns JSON to the client.</p>
+<p>ReturnJSON returns JSON to the client. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">v</span> <span class="kd">interface</span><span class="p">{})</span>
 </pre></div>
@@ -4979,7 +4982,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-rooturl">
 <h3><strong>uadmin.RootURL</strong><a class="headerlink" href="#uadmin-rooturl" title="Permalink to this headline">¶</a></h3>
-<p>RootURL is where the listener is mapped to.</p>
+<p>RootURL is where the listener is mapped to. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
 </pre></div>
@@ -5001,7 +5004,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-salt">
 <h3><strong>uadmin.Salt</strong><a class="headerlink" href="#uadmin-salt" title="Permalink to this headline">¶</a></h3>
-<p>Salt is extra salt added to password hashing.</p>
+<p>Salt is extra salt added to password hashing. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
 </pre></div>
@@ -5042,7 +5045,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-save">
 <h3><strong>uadmin.Save</strong><a class="headerlink" href="#uadmin-save" title="Permalink to this headline">¶</a></h3>
-<p>Save saves the object in the database.</p>
+<p>Save saves the object in the database. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -5087,7 +5090,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-schema">
 <h3><strong>uadmin.Schema</strong><a class="headerlink" href="#uadmin-schema" title="Permalink to this headline">¶</a></h3>
-<p>Schema is the global schema of the system.</p>
+<p>Schema is the global schema of the system. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ModelSchema</span>
 </pre></div>
@@ -5127,7 +5130,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-sendemail">
 <h3><strong>uadmin.SendEmail</strong><a class="headerlink" href="#uadmin-sendemail" title="Permalink to this headline">¶</a></h3>
-<p>SendEmail sends email using system configured variables.</p>
+<p>SendEmail sends email using system configured variables. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="nx">cc</span><span class="p">,</span> <span class="nx">bcc</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">subject</span><span class="p">,</span> <span class="nx">body</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -5136,7 +5139,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 <blockquote>
 <div><p><strong>to []string:</strong> This is who you are primarily writing the email to, it’s clear to both the writer and the recipient who is writing the email and to whom it intended.</p>
 <p><strong>cc []string:</strong> This means carbon copy and it includes people who might be interested in knowing that there was an email between the sender and the primary TO, typically CC’s are not meant to respond, only the primary sender. Everyone can see who was included in the To and CC.</p>
-<p><strong>bcc []string:</strong> This means blind carbon copy. The sender has added people that the receiving TO and CC are not able to see as a part of the email, someone on BCC is not to respond and they will not be included in the response from the TO or CC. BCC is often used to include a stakeholder like a boss to make sure they are aware of a situation but they can’t respond. <a class="footnote-reference brackets" href="#f2" id="id31">2</a></p>
+<p><strong>bcc []string:</strong> This means blind carbon copy. The sender has added people that the receiving TO and CC are not able to see as a part of the email, someone on BCC is not to respond and they will not be included in the response from the TO or CC. BCC is often used to include a stakeholder like a boss to make sure they are aware of a situation but they can’t respond. <a class="footnote-reference brackets" href="#f2" id="id132">2</a></p>
 <p><strong>subject string:</strong> This means what your email content is all about.</p>
 <p><strong>body string:</strong> This means the content of your email. It would be either a job application, the letter of your friend, notifications from your subscribed website, etc.</p>
 </div></blockquote>
@@ -5162,7 +5165,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-session">
 <h3><strong>uadmin.Session</strong><a class="headerlink" href="#uadmin-session" title="Permalink to this headline">¶</a></h3>
-<p>Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. <a class="footnote-reference brackets" href="#f1" id="id32">1</a></p>
+<p>Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. <a class="footnote-reference brackets" href="#f1" id="id133">1</a> (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Session</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
@@ -5308,7 +5311,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-setting">
 <h3><strong>uadmin.Setting</strong><a class="headerlink" href="#uadmin-setting" title="Permalink to this headline">¶</a></h3>
-<p>Setting is a system in uAdmin that is used to display information for an application as a whole.</p>
+<p>Setting is a system in uAdmin that is used to display information for an application as a whole. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Setting</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
@@ -5397,7 +5400,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-settingcategory">
 <h3><strong>uadmin.SettingCategory</strong><a class="headerlink" href="#uadmin-settingcategory" title="Permalink to this headline">¶</a></h3>
-<p>Setting Category is a system in uAdmin that is used for classifying settings and its records.</p>
+<p>Setting Category is a system in uAdmin that is used for classifying settings and its records. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">SettingCategory</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
@@ -5463,7 +5466,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-sitename">
 <h3><strong>uadmin.SiteName</strong><a class="headerlink" href="#uadmin-sitename" title="Permalink to this headline">¶</a></h3>
-<p>SiteName is the name of the website that shows on title and dashboard.</p>
+<p>SiteName is the name of the website that shows on title and dashboard. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
 </pre></div>
@@ -5485,7 +5488,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-startsecureserver">
 <h3><strong>uadmin.StartSecureServer</strong><a class="headerlink" href="#uadmin-startsecureserver" title="Permalink to this headline">¶</a></h3>
-<p>StartSecureServer is the process of activating a uAdmin server using a localhost IP or an apache with SSL security.</p>
+<p>StartSecureServer is the process of activating a uAdmin server using a localhost IP or an apache with SSL security. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">certFile</span><span class="p">,</span> <span class="nx">keyFile</span> <span class="kt">string</span><span class="p">)</span>
 </pre></div>
@@ -5538,7 +5541,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-startserver">
 <h3><strong>uadmin.StartServer</strong><a class="headerlink" href="#uadmin-startserver" title="Permalink to this headline">¶</a></h3>
-<p>StartServer is the process of activating a uAdmin server using a localhost IP or an apache.</p>
+<p>StartServer is the process of activating a uAdmin server using a localhost IP or an apache. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">()</span>
 </pre></div>
@@ -5572,7 +5575,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-statichandler">
 <h3><strong>uadmin.StaticHandler</strong><a class="headerlink" href="#uadmin-statichandler" title="Permalink to this headline">¶</a></h3>
-<p>StaticHandler is a function that serves static files.</p>
+<p>StaticHandler is a function that serves static files. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>
 </pre></div>
@@ -5586,7 +5589,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 </div>
 <div class="section" id="uadmin-tf">
 <h3><strong>uadmin.Tf</strong><a class="headerlink" href="#uadmin-tf" title="Permalink to this headline">¶</a></h3>
-<p>Tf is a function for translating strings into any given language.</p>
+<p>Tf is a function for translating strings into any given language. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">path</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">lang</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">term</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">string</span>
 </pre></div>
@@ -5676,7 +5679,7 @@ the default language.</p>
 </div>
 <div class="section" id="uadmin-theme">
 <h3><strong>uadmin.Theme</strong><a class="headerlink" href="#uadmin-theme" title="Permalink to this headline">¶</a></h3>
-<p>Theme is the name of the theme used in uAdmin.</p>
+<p>Theme is the name of the theme used in uAdmin. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
 </pre></div>
@@ -5731,7 +5734,7 @@ the default language.</p>
 </div>
 <div class="section" id="uadmin-trail">
 <h3><strong>uadmin.Trail</strong><a class="headerlink" href="#uadmin-trail" title="Permalink to this headline">¶</a></h3>
-<p>Trail prints to the log.</p>
+<p>Trail prints to the log. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">level</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">msg</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">i</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
 </pre></div>
@@ -5772,7 +5775,7 @@ the default language.</p>
 </div>
 <div class="section" id="uadmin-translate">
 <h3><strong>uadmin.Translate</strong><a class="headerlink" href="#uadmin-translate" title="Permalink to this headline">¶</a></h3>
-<p>Translate is used to get a translation from a multilingual fields.</p>
+<p>Translate is used to get a translation from a multilingual fields. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">raw</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">lang</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kt">bool</span><span class="p">)</span> <span class="kt">string</span>
 </pre></div>
@@ -5825,7 +5828,7 @@ the default language.</p>
 </div>
 <div class="section" id="uadmin-update">
 <h3><strong>uadmin.Update</strong><a class="headerlink" href="#uadmin-update" title="Permalink to this headline">¶</a></h3>
-<p>Update updates the field name and value of an interface.</p>
+<p>Update updates the field name and value of an interface. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">fieldName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">value</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
@@ -5865,7 +5868,7 @@ the default language.</p>
 </div>
 <div class="section" id="uadmin-user">
 <h3><strong>uadmin.User</strong><a class="headerlink" href="#uadmin-user" title="Permalink to this headline">¶</a></h3>
-<p>User is a system in uAdmin that is used to add, modify and delete the elements of the user.</p>
+<p>User is a system in uAdmin that is used to add, modify and delete the elements of the user. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
@@ -6099,7 +6102,7 @@ VerifyOTP is <span class="nb">true</span>
 </div>
 <div class="section" id="uadmin-usergroup">
 <h3><strong>uadmin.UserGroup</strong><a class="headerlink" href="#uadmin-usergroup" title="Permalink to this headline">¶</a></h3>
-<p>UserGroup is a system in uAdmin used to add, modify, and delete the group name.</p>
+<p>UserGroup is a system in uAdmin used to add, modify, and delete the group name. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">UserGroup</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
@@ -6210,7 +6213,7 @@ VerifyOTP is <span class="nb">true</span>
 </div>
 <div class="section" id="uadmin-userpermission">
 <h3><strong>uadmin.UserPermission</strong><a class="headerlink" href="#uadmin-userpermission" title="Permalink to this headline">¶</a></h3>
-<p>UserPermission sets the permission of a user handled by an administrator.</p>
+<p>UserPermission sets the permission of a user handled by an administrator. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">UserPermission</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
@@ -6327,7 +6330,7 @@ VerifyOTP is <span class="nb">true</span>
 </div>
 <div class="section" id="uadmin-validateip">
 <h3><strong>uadmin.ValidateIP</strong><a class="headerlink" href="#uadmin-validateip" title="Permalink to this headline">¶</a></h3>
-<p>ValidateIP is a function to check if the IP in the request is allowed in the allowed based on allowed and block strings.</p>
+<p>ValidateIP is a function to check if the IP in the request is allowed in the allowed based on allowed and block strings. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">allow</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">block</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span>
 </pre></div>
@@ -6382,7 +6385,7 @@ VerifyOTP is <span class="nb">true</span>
 </div>
 <div class="section" id="uadmin-version">
 <h3><strong>uadmin.Version</strong><a class="headerlink" href="#uadmin-version" title="Permalink to this headline">¶</a></h3>
-<p>Version number as per Semantic Versioning 2.0.0 (semver.org)</p>
+<p>Version number as per Semantic Versioning 2.0.0 (semver.org) (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">string</span>
 </pre></div>
@@ -6413,7 +6416,7 @@ VerifyOTP is <span class="nb">true</span>
 </div>
 <div class="section" id="uadmin-warning">
 <h3><strong>uadmin.WARNING</strong><a class="headerlink" href="#uadmin-warning" title="Permalink to this headline">¶</a></h3>
-<p>WARNING is the display tag under Trail. It is the statement or event that indicates a possible problems occurring in an application.</p>
+<p>WARNING is the display tag under Trail. It is the statement or event that indicates a possible problems occurring in an application. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
 </pre></div>
@@ -6422,7 +6425,7 @@ VerifyOTP is <span class="nb">true</span>
 </div>
 <div class="section" id="uadmin-working">
 <h3><strong>uadmin.WORKING</strong><a class="headerlink" href="#uadmin-working" title="Permalink to this headline">¶</a></h3>
-<p>OK is the display tag under Trail. It is a status to show that the application is working.</p>
+<p>OK is the display tag under Trail. It is a status to show that the application is working. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#">Back To Top</a>)</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
 </pre></div>
@@ -6433,13 +6436,13 @@ VerifyOTP is <span class="nb">true</span>
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id32">1</a></span></dt>
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id133">1</a></span></dt>
 <dd><p>QuinStreet Inc. (2018). User Session. Retrieved from <a class="reference external" href="https://www.webopedia.com/TERM/U/user_session.html">https://www.webopedia.com/TERM/U/user_session.html</a></p>
 </dd>
-<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id31">2</a></span></dt>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id132">2</a></span></dt>
 <dd><p>Corbin, Anke (2017, Feb 27). What is the meaning of TO, CC and BCC in e-mail? Retrieved from <a class="reference external" href="https://www.quora.com/What-is-the-meaning-of-TO-CC-and-BCC-in-e-mail">https://www.quora.com/What-is-the-meaning-of-TO-CC-and-BCC-in-e-mail</a></p>
 </dd>
-<dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id7">3</a></span></dt>
+<dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id45">3</a></span></dt>
 <dd><p>eTrigue Support. (n.d.). What is the difference between a dynamic and static list? Retrieved from <a class="reference external" href="https://support.etrigue.com/hc/en-us/articles/231552027-What-is-the-difference-between-a-dynamic-and-static-list">https://support.etrigue.com/hc/en-us/articles/231552027-What-is-the-difference-between-a-dynamic-and-static-list</a>-</p>
 </dd>
 </dl>

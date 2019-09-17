@@ -107,7 +107,9 @@ Meta Tags
 
 **approval**
 ^^^^^^^^^^^^
-A feature used to set an approval permission in the field
+A feature used to set an approval permission in the field (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -209,7 +211,9 @@ The input Name field has a checkmark sign that means the record created by "john
 
 **categorical_filter**
 ^^^^^^^^^^^^^^^^^^^^^^
-A section of code that is designed to process user input and output request to produce a new data structure containing exactly those elements of the original data structure in the form of combo box
+A section of code that is designed to process user input and output request to produce a new data structure containing exactly those elements of the original data structure in the form of combo box (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -240,7 +244,9 @@ Let's run the application to see the output.
 
 **default_value**
 ^^^^^^^^^^^^^^^^^
-Mainly used in the input field on which value you want to initialize. It is applicable only for string data type.
+Mainly used in the input field on which value you want to initialize. It is applicable only for string data type. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -271,7 +277,9 @@ Let's run the application to see the output.
 
 **display_name**
 ^^^^^^^^^^^^^^^^
-A feature to set the actual name in the field
+A feature to set the actual name in the field (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -302,7 +310,9 @@ Let's run the application to see the output.
 
 **encrypt**
 ^^^^^^^^^^^
-A feature used to encrypt the value in the database. It was released in version 0.1.0-beta.3.
+A feature used to encrypt the value in the database. It was released in version 0.1.0-beta.3. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -350,7 +360,9 @@ The password is shown again which means it is decrypted.
 
 **filter**
 ^^^^^^^^^^
-A section of code that is designed to process user input and output request to produce a new data structure containing exactly those elements of the original data structure in the form of fill-up text
+A section of code that is designed to process user input and output request to produce a new data structure containing exactly those elements of the original data structure in the form of fill-up text (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -387,7 +399,9 @@ Now let's filter the word "iPad" and see what happens.
 
 **help**
 ^^^^^^^^
-A feature that gives solution(s) to solve advanced tasks
+A feature that gives solution(s) to solve advanced tasks (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -418,7 +432,9 @@ Let's run the application to see the output.
 
 **hidden**
 ^^^^^^^^^^
-A feature to hide the component in the editing section of the data
+A feature to hide the component in the editing section of the data (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -455,7 +471,9 @@ CreatedAt does not show up in the editing section of the data because it is set 
 
 **list_exclude**
 ^^^^^^^^^^^^^^^^
-A feature that will hide the field or column name in the model structure
+A feature that will hide the field or column name in the model structure (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -487,7 +505,9 @@ Password does not show up in the model structure because it is set as "list_excl
 
 **max**
 ^^^^^^^
-Mainly used in the input field to set the maximum value
+Mainly used in the input field to set the maximum value (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -520,7 +540,9 @@ It returns an error because the value is greater than 5 which is the maximum val
 
 **min**
 ^^^^^^^
-Mainly used in the input field to set the minimum value
+Mainly used in the input field to set the minimum value (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -553,7 +575,9 @@ It returns an error because the value is lesser than 1 which is the minimum valu
 
 **pattern**
 ^^^^^^^^^^^
-Equivalent to regular expression that describes a pattern of characters
+Equivalent to regular expression that describes a pattern of characters (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -590,7 +614,9 @@ Output
 
 **pattern_msg**
 ^^^^^^^^^^^^^^^
-Notifies the user once the input has been done following the given pattern
+Notifies the user once the input has been done following the given pattern (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -623,7 +649,9 @@ It returns an error because the input value has letters and special symbols.
 
 **read_only**
 ^^^^^^^^^^^^^
-A feature that cannot be modified
+A feature that cannot be modified (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -658,7 +686,9 @@ Let's run the application to see the output.
 
 **required**
 ^^^^^^^^^^^^
-A section of code that the user must perform the given tasks. It cannot be skipped or left empty.
+A section of code that the user must perform the given tasks. It cannot be skipped or left empty. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -689,7 +719,9 @@ It returns an error because the input value is empty. * symbol indicates that th
 
 **search**
 ^^^^^^^^^^
-A feature that allows the user to search for a field or column name
+A feature that allows the user to search for a field or column name (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -726,7 +758,9 @@ Search the word "mini" and see what happens.
 
 **stringer**
 ^^^^^^^^^^^^
-A feature that assigns a field as a unique type
+A feature that assigns a field as a unique type (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -756,7 +790,9 @@ Go to `uadmin.Stringer`_ in the API Reference for the continuation.
 
 **upload_to**
 ^^^^^^^^^^^^^
-A feature where the uploaded file will save in the specified path on your project folder
+A feature where the uploaded file will save in the specified path on your project folder (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -802,7 +838,9 @@ Type Tags
 
 **code**
 ^^^^^^^^
-A set of instructions that will be executed by a computer
+A set of instructions that will be executed by a computer (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -844,7 +882,9 @@ Well done! The execution code has performed successfully in the message field.
 
 **email**
 ^^^^^^^^^
-It identifies an email box to which email messages are delivered. It follows the format as follows: (name)@(domain).
+It identifies an email box to which email messages are delivered. It follows the format as follows: (name)@(domain). (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 e.g. abc123@gmail.com
 
@@ -878,7 +918,9 @@ It returns an error because the input value does not follow the email format.
 
 **file**
 ^^^^^^^^
-A tag that enables the user to upload files/attachments in the model
+A tag that enables the user to upload files/attachments in the model (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -920,7 +962,9 @@ Result
 
 **html**
 ^^^^^^^^
-A tag that allows the user to modify text in HTML format
+A tag that allows the user to modify text in HTML format (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -970,7 +1014,9 @@ Result
 
 **image**
 ^^^^^^^^^
-A tag to mark a field as an image
+A tag to mark a field as an image (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -1047,7 +1093,9 @@ The raw images are the highlighted ones as shown below.
 
 **link**
 ^^^^^^^^
-This type will display a button in the model.
+This type will display a button in the model. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -1092,7 +1140,9 @@ Result
 
 **money**
 ^^^^^^^^^
-This will set the type of currency.
+This will set the type of currency. (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -1123,7 +1173,9 @@ Let's run the application and see what happens.
 
 **multilingual**
 ^^^^^^^^^^^^^^^^
-A tag that allows the user to use more than two languages for input
+A tag that allows the user to use more than two languages for input (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -1178,7 +1230,9 @@ To customize your own languages, click `here`_ for the instructions.
 
 **password**
 ^^^^^^^^^^^^
-A string of characters that hides the input data for security
+A string of characters that hides the input data for security (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
@@ -1210,7 +1264,9 @@ In this case, the string of characters will hide every time you input something 
 
 **progress_bar**
 ^^^^^^^^^^^^^^^^
-A feature used to measure the progress of the activity
+A feature used to measure the progress of the activity (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure (default):
 
@@ -1351,7 +1407,9 @@ Well done! You have mastered the concepts of creating and modifying the progress
 
 **webcam**
 ^^^^^^^^^^
-A feature which adds web can access directly from the image and file fields
+A feature which adds web can access directly from the image and file fields (`Back To Top`_)
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tags.html#id2
 
 Structure:
 
