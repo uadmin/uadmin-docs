@@ -47,7 +47,7 @@ In this section, we will discuss on URL mapping, security, data query and authen
     * `$q`_
     * `$next`_
     * `$preload`_
-    * `$stats`_
+    * `$stat`_
     * `$allmodels`_
 * `Writing Data Symbol`_
 * `uAdmin Functions`_
@@ -2019,7 +2019,7 @@ Special Parameters
 * `$q`_
 * `$next`_
 * `$preload`_
-* `$stats`_
+* `$stat`_
 * `$allmodels`_
 
 **$or**
@@ -2814,8 +2814,8 @@ Structure:
 
     # d stands for data
     # $ represents a symbol for special parameters
-    # stats_value can be either 0 (disabled) or 1 (enabled)
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/?$stat=(stats_value)
+    # stat_value can be either 0 (disabled) or 1 (enabled)
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/?$stat=(stat_value)
 
 Suppose you have five records in the Item model.
 
@@ -2828,7 +2828,7 @@ Run your application and call this URL to check the query execution time and its
 .. code-block:: bash
 
     # item is the model name
-    # To enable stats, ?$stat=1
+    # To enable stat, ?$stat=1
     http://api.example.com/{ROOT_URL}/api/d/item/?$stat=1
 
 Result:
@@ -2838,7 +2838,7 @@ Result:
 
 |
 
-It returns a record that reads all item records and stats containing the query execution time and its related details when you perform an action that reads all records in the Item model.
+It returns a record that reads all item records and stat containing the query execution time and its related details when you perform an action that reads all records in the Item model.
 
 "qtime" is in milliseconds.
 
