@@ -2,31 +2,7 @@ Login System Tutorial Part 5 - Session and Cookie
 =================================================
 In this tutorial, we will talk about getting the session key if the user login is valid and setting an HTTP cookie for the user session.
 
-Go to login.go in views folder and call the login function from the user that passes the password and OTP. If both parameters are valid, it will return the session key.
-
-.. code-block:: go
-
-    // Pass the requested password and OTP code to return the
-    // session key
-    session := user.Login(password, otpPass)
-
-    // Print the result
-    uadmin.Trail(uadmin.DEBUG, "Session: %s", session)
-
-Now go to the login path in the address bar (e.g. http://0.0.0.0:8080/login/). Assign the username, password, and OTP password fetched from the 2FA image in /admin/profile/ path in the address bar or assigned on your terminal in the login form (e.g. admin, admin, 123456). Click Login button to submit.
-
-.. image:: assets/adminloginformdatatest.png
-   :align: center
-
-|
-
-Check your terminal for the result.
-
-.. code-block:: bash
-
-    [  DEBUG ]   Session: oje80dRvSM7cOXZgheqatsfw
-
-Exit your application. Go to login.go in views folder and apply the following codes below:
+Go to login.go in views folder and apply the following codes below:
 
 .. code-block:: go
 
@@ -56,7 +32,7 @@ Exit your application. Go to login.go in views folder and apply the following co
 
 The single most important job of a cookie is to keep a user logged in as they browse from page to page. A user's browsing history becomes part of a database which the website then uses to improve the user experience. [#f1]_
 
-Run your application. Go to the login path in the address bar (e.g. http://0.0.0.0:8080/login/). Assign the username, password, and OTP password fetched from the 2FA image in /admin/profile/ path in the address bar or assigned on your terminal in the login form (e.g. admin, admin, 123456). Click Login button to submit.
+Run your application. Go to the login path in the address bar (e.g. http://localhost:8080/login/). Assign the username, password, and OTP password fetched from the 2FA image in /admin/profile/ path in the address bar or assigned on your terminal in the login form (e.g. admin, admin, 123456). Click Login button to submit.
 
 .. image:: assets/adminloginformdatatest.png
    :align: center
@@ -77,9 +53,9 @@ As expected, the user_session cookie was stored in the domain with the value of 
 
 |
 
-In the `next part`_, we will discuss about redirecting a webpage after the user submits a form and passing the data object to the Home Page.
+Click `here`_ to view our progress so far.
 
-Click `here`_ to view the full source code in this part.
+In the `next part`_, we will discuss about redirecting a webpage after the user submits a form and passing the data object to the Home Page.
 
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part6.html
 

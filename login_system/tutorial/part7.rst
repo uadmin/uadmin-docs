@@ -2,35 +2,35 @@ Login System Tutorial Part 7 - Logout
 =====================================
 In this tutorial, we will talk about logging out a user account from the home page.
 
-First of all, go to home.html in the templates folder and add logout button below the user login status.
+First of all, go to **home.html** in the templates folder and add logout button below the user login status.
 
 .. code-block:: html
 
     <body>
-        <h1>Login as {{.User}}
-        {{if eq .OTP true}} with {{else}} without {{end}}
-        2FA Authentication</h1>
+      <h1>Login as {{.User}}
+      {{if eq .OTP true}} with {{else}} without {{end}}
+      2FA Authentication</h1>
 
-        <!-- ADD THIS PIECE OF CODE TO CREATE LOGOUT BUTTON -->
-        <form method="POST">
-            <button type="submit" name="request" value="logout">Logout</button>
-        </form>
+      <!-- ADD THIS PIECE OF CODE TO CREATE LOGOUT BUTTON -->
+      <form method="POST">
+        <button type="submit" name="request" value="logout">Logout</button>
+      </form>
     </body>
 
-Go to login.html and add this piece of code to notify the user that he logged out his account.
+Go to **login.html** and add this piece of code to notify the user that he logged out his account.
 
 .. code-block:: html
 
     <body>
-        <!-- ADD THIS PIECE OF CODE TO CREATE LOGOUT NOTIFICATION -->
-        <p>{{.Message}}</p>
+      <!-- ADD THIS PIECE OF CODE TO CREATE LOGOUT NOTIFICATION -->
+      <p>{{.Message}}</p>
 
-        <form method="POST">
-            <!-- Some input fields -->
-        </form>
+      <form method="POST">
+        <!-- Some input fields -->
+      </form>
     </body>
 
-Now go to login.go in views folder and apply the following codes below to delete the cookie when the user logged out his account:
+Now go to **login.go** in views folder and apply the following codes below to delete the cookie when the user logged out his account:
 
 .. code-block:: go
 
@@ -59,7 +59,7 @@ Now go to login.go in views folder and apply the following codes below to delete
         return
     }
 
-Run your application. Go to the login path in the address bar (e.g. http://0.0.0.0:8080/login/). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.
+Run your application. Go to the login path in the address bar (e.g. http://localhost:8080/login/). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.
 
 .. image:: assets/adminusernamepassword.png
    :align: center
@@ -85,9 +85,9 @@ Now check the user_session cookie to ensure that it was deleted.
 
 |
 
-In the `next part`_, we will discuss about reading a cookie and getting the user from the model based on the value of the cookie to ensure that the user is active.
+Click `here`_ to view our progress so far.
 
-Click `here`_ to view the full source code in this part.
+In the `next part`_, we will discuss about reading a cookie and getting the user from the model based on the value of the cookie to ensure that the user is active.
 
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part8.html
 

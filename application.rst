@@ -15,6 +15,11 @@ Document System allows you to get user and group permissions, customize the Coun
 
 Tutorial Link: https://uadmin-docs.readthedocs.io/en/latest/document_system/coverage.html
 
+.. toctree::
+   :maxdepth: 1
+
+   document_system/coverage
+
 **Login System**
 ----------------
 
@@ -23,6 +28,11 @@ Tutorial Link: https://uadmin-docs.readthedocs.io/en/latest/document_system/cove
 Login System allows you to login in two ways: either with or without OTP, and log out on custom HTML template.
 
 Tutorial Link: https://uadmin-docs.readthedocs.io/en/latest/login_system/coverage.html
+
+.. toctree::
+   :maxdepth: 1
+
+   login_system/coverage
 
 **Todo List**
 -------------
@@ -36,4 +46,4 @@ Tutorial Link: https://uadmin-docs.readthedocs.io/en/latest/coverage.html
 .. toctree::
    :maxdepth: 1
 
-   document_system/coverage
+   coverage

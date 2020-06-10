@@ -1,101 +1,104 @@
-uAdmin Tutorial Part 11 - Accessing an HTML file
-================================================
-In this part, we will talk about establishing a connection to the HTTP Handler, setting the URL path name, and executing an HTML file.
-
-Go to view.go inside the views folder with the following codes below:
+uAdmin Tutorial Part 11 - Inserting and Saving the Record
+=========================================================
+Create a file named **add_friend.go** inside the api folder with the following codes below:
 
 .. code-block:: go
 
-    package views
-
-    import (
-        "net/http"
-        "strings"
-    )
-
-    // HTTPHandler !
-    func HTTPHandler(w http.ResponseWriter, r *http.Request) {
-        // r.URL.Path creates a new path called /http_handler
-        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/http_handler")
-    }
-
-Establish a connection in the main.go to the views by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.
-
-.. code-block:: go
+    package api
 
     import (
         "net/http"
 
         // Specify the username that you used inside github.com folder
-        "github.com/username/todo/api"
         "github.com/username/todo/models"
-
-        // Import this library
-        "github.com/username/todo/views"
-
         "github.com/uadmin/uadmin"
     )
 
-    func main() {
-        // Some codes
+    // AddFriendAPIHandler !
+    func AddFriendAPIHandler(w http.ResponseWriter, r *http.Request) {
+        res := map[string]interface{}{}
 
-        // HTTP UI Handler
-        http.HandleFunc("/http_handler/", views.HTTPHandler)
-    }
+        // Fetch data from Friend DB
+        friend := models.Friend{}
 
-Create a file named todo_view.go inside the views folder with the following codes below:
+        // Set the parameters of Name, Email, and Password
+        friendName := r.FormValue("name")
+        friendEmail := r.FormValue("email")
+        friendPassword := r.FormValue("password")
 
-.. code-block:: go
-
-    package views
-
-    import (
-        "html/template"
-        "net/http"
-        "strings"
-
-        "github.com/uadmin/uadmin"
-    )
-
-    // TodoHandler !
-    func TodoHandler(w http.ResponseWriter, r *http.Request) {
-        // r.URL.Path creates a new path called /todo
-        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/todo")
-
-        // TodoList field inside the Context that will be used in Golang
-        // HTML template
-        type Context struct {
-            TodoList []map[string]interface{}
-        }
-
-        // Assigns Context struct to the c variable
-        c := Context{}
-
-        // Pass TodoList data object to the specified HTML path
-        uadmin.RenderHTML(w, r, "templates/todo.html", c)
-    }
-
-Finally, add this piece of code in the view.go shown below. This will establish a communication between the HTTPHandler and the TodoHandler.
-
-.. code-block:: go
-
-    // HTTPHandler !
-    func HTTPHandler(w http.ResponseWriter, r *http.Request) {
-        // r.URL.Path creates a new path called /http_handler
-        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/http_handler")
-
-        if strings.HasPrefix(r.URL.Path, "/todo") {
-            TodoHandler(w, r)
+        // Validate if the friendName variable is empty.
+        if friendName == "" {
+            res["status"] = "ERROR"
+            res["err_msg"] = "Name is required."
+            uadmin.ReturnJSON(w, r, res)
             return
         }
+
+        // Store input into the Name, Email, and Password fields
+        friend.Name = friendName
+        friend.Email = friendEmail
+        friend.Password = friendPassword
+
+        // Store input in the Friend model
+        uadmin.Save(&friend)
+
+        res["status"] = "ok"
+        uadmin.ReturnJSON(w, r, res)
     }
 
-Now run your application, go to http_handler/todo path and see what happens.
+Finally, add the following pieces of code in the api.go shown below. This will establish a communication between the AddFriendHandler and the APIHandler.
 
-.. image:: assets/todohtmlaccess.png
+.. code-block:: go
+
+    func APIHandler(w http.ResponseWriter, r *http.Request) {
+
+        // Some codes contained in this part
+
+        // --------------------- ADD THIS CODE ---------------------
+        if strings.HasPrefix(r.URL.Path, "/add_friend") {
+            AddFriendAPIHandler(w, r)
+            return
+        }
+        // ---------------------------------------------------------
+    }
+
+Now run your application. In order to insert the information in the Friend model, put the **?** symbol after /api/add_friend path which means **WHERE** in SQL, followed by the parameter name. Set the value of each parameter to store your input and save into the Friend model. **&** symbol is equivalent to **AND** in SQL.
+
+* name = Allen
+* email = allen@gmail.com
+* password = 123456
+
+.. code-block:: bash
+
+    http://localhost:8080/api/add_friend?name=Allen&email=allen@gmail.com&password=123456
+
+.. code-block:: json
+
+    {
+      "status": "ok"
+    }
 
 |
 
-In the `next part`_, we will discuss about fetching the records in the API and migrating the data from API to HTML that will display the records using Go template.
+Go back to the Friend model. You will notice that Allen was added inside it.
 
+.. image:: assets/todomodeladdfriend.png
+
+|
+
+Congrats, now you know how to insert and save a record to the model in the API using multiple parameters.
+
+See `API Reference`_ for more examples.
+
+Click `here`_ to view our progress so far.
+
+In the `next part`_, we will discuss about designing a table in HTML and setting up a template file.
+
+.. _API Reference: https://uadmin-docs.readthedocs.io/en/latest/api.html
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part12.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part11

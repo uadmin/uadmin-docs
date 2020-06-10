@@ -82,9 +82,9 @@ Check your terminal for the result.
     [  DEBUG ]   Password: admin
     [  DEBUG ]   OTP Password: 123456
 
-In the `next part`_, we will discuss about checking the status of the user login with and without OTP validation.
+Click `here`_ to view our progress so far.
 
-Click `here`_ to view the full source code in this part.
+In the `next part`_, we will discuss about checking the status of the user login with and without OTP validation.
 
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part4.html
 

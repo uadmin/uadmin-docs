@@ -1,0 +1,617 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Print Functions &#8212; uadmin 0.4 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Register Functions" href="register_functions.html" />
+    <link rel="prev" title="Metric Functions" href="metric_functions.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="register_functions.html" title="Register Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="metric_functions.html" title="Metric Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="print-functions">
+<h1>Print Functions<a class="headerlink" href="#print-functions" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
+<p>In this section, we will cover the following functions in-depth listed below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#uadmin-alert">uadmin.ALERT</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-critical">uadmin.CRITICAL</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-debug">uadmin.DEBUG</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-emergency">uadmin.EMERGENCY</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-error">uadmin.ERROR</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-errorhandlefunc">uadmin.ErrorHandleFunc</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-info">uadmin.INFO</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-jsonmarshal">uadmin.JSONMarshal</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-ok">uadmin.OK</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-reportinglevel">uadmin.ReportingLevel</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-reporttimestamp">uadmin.ReportTimeStamp</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-returnjson">uadmin.ReturnJSON</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-trail">uadmin.Trail</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-version">uadmin.Version</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-warning">uadmin.WARNING</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-working">uadmin.WORKING</a></p></li>
+</ul>
+<div class="section" id="uadmin-alert">
+<h2>uadmin.ALERT<a class="headerlink" href="#uadmin-alert" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>ALERT is the display tag under Trail. It is rated as Level 7 (0 being the least priority and 8 being the highest priority).</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
+</div>
+<div class="section" id="uadmin-critical">
+<h2>uadmin.CRITICAL<a class="headerlink" href="#uadmin-critical" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>CRITICAL is the display tag under Trail. It is rated as Level 6 (0 being the least priority and 8 being the highest priority).</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
+</div>
+<div class="section" id="uadmin-debug">
+<h2>uadmin.DEBUG<a class="headerlink" href="#uadmin-debug" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>DEBUG is the display tag under Trail. It is the process of identifying and removing errors.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
+</div>
+<div class="section" id="uadmin-emergency">
+<h2>uadmin.EMERGENCY<a class="headerlink" href="#uadmin-emergency" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>EMERGENCY is the display tag under Trail. It is rated as Level 8 (0 being the least priority and 8 being the highest priority).</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
+</div>
+<div class="section" id="uadmin-error">
+<h2>uadmin.ERROR<a class="headerlink" href="#uadmin-error" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>ERROR is a status to notify the user that there is a problem in an application.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
+</div>
+<div class="section" id="uadmin-errorhandlefunc">
+<h2>uadmin.ErrorHandleFunc<a class="headerlink" href="#uadmin-errorhandlefunc" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>ErrorHandleFunc is a function that will be called everytime Trail is called. It receives one parameter for error level, one for error message and one for runtime stack trace.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There are 6 different reporting levels:</p>
+<ul class="simple">
+<li><p>DEBUG</p></li>
+<li><p>WORKING</p></li>
+<li><p>INFO</p></li>
+<li><p>OK</p></li>
+<li><p>WARNING</p></li>
+<li><p>ERROR</p></li>
+</ul>
+<p>Go to main.go and create an invalid code (e.g. Get function that does not meet the standard requirements).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Checks error(s) in your application based on a reporting level</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ErrorHandleFunc</span> <span class="p">=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">level</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">stack</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">level</span> <span class="o">&gt;=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">WARNING</span> <span class="p">{</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;ERROR MESSAGE:\n&quot;</span> <span class="o">+</span> <span class="nx">msg</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;STACK:\n&quot;</span> <span class="o">+</span> <span class="nx">stack</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// This is an invalid code because the first parameter checks the</span>
+    <span class="c1">// database but assigns an empty string that is unsupported.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application in your terminal. Based on the output, the error is the Get function where the assigned values are unsupported. The memory address (e.g. 0x977520) are the actual values inside the Get function. Below the message, it also checks which line of code does the error occurs in the file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ERROR MESSAGE:
+DB error in Get<span class="o">(</span>string<span class="o">)</span>-<span class="o">()</span>. unsupported destination, should be slice or struct
+
+STACK:
+github.com/uadmin/uadmin.Get<span class="o">(</span>0x977520, 0xaa3330, 0x977520, 0xaa3340, 0x0, 0x0, 0x0, 0x4, 0x8<span class="o">)</span>
+    /home/dev1/go/src/github.com/uadmin/uadmin/db.go:242 +0x268
+main.main<span class="o">()</span>
+    /home/dev1/go/src/github.com/rn1hd/todo/main.go:49 +0x62f
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/error-handle-func.html">Error Handle Func</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-info">
+<h2>uadmin.INFO<a class="headerlink" href="#uadmin-info" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>INFO is the display tag under Trail. It is a data that is presented within a context that gives it meaning and relevance.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
+</div>
+<div class="section" id="uadmin-jsonmarshal">
+<h2>uadmin.JSONMarshal<a class="headerlink" href="#uadmin-jsonmarshal" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>JSONMarshal returns the JSON encoding of v.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">v</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">safeEncoding</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>v interface{}:</strong> Is the variable where the model was initialized</p>
+<p><strong>safeEncoding bool:</strong> Ensures the security of the data</p>
+</div></blockquote>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html">Tutorial Part 9 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Create a file named friend_list.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// FriendListHandler !</span>
+<span class="kd">func</span> <span class="nx">FriendListHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called /friend_list</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/friend_list&quot;</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Fetch Data from DB</span>
+    <span class="nx">friend</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">models</span><span class="p">.</span><span class="nx">Friend</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">All</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">friend</span><span class="p">)</span>
+
+    <span class="c1">// Place it here</span>
+    <span class="nx">output</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">JSONMarshal</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">friend</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+
+    <span class="c1">// Prints the output to the terminal in JSON format</span>
+    <span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">output</span><span class="p">)</span>
+
+    <span class="c1">// Unmarshal parses the JSON-encoded data and stores the result in the</span>
+    <span class="c1">// value pointed to by v.</span>
+    <span class="nx">json</span><span class="p">.</span><span class="nx">Unmarshal</span><span class="p">(</span><span class="nx">output</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">friend</span><span class="p">)</span>
+
+    <span class="c1">// Prints the JSON format in the API webpage</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">friend</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// FriendListHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/friend_list/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">api</span><span class="p">.</span><span class="nx">FriendListHandler</span><span class="p">))</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while FriendListHandler is the name of the function inside friend_list.go.</p>
+<p>Run your application and see what happens.</p>
+<p><strong>Terminal</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">&quot;ID&quot;</span>: <span class="m">1</span>,
+        <span class="s2">&quot;DeletedAt&quot;</span>: null,
+        <span class="s2">&quot;Name&quot;</span>: <span class="s2">&quot;John Doe&quot;</span>,
+        <span class="s2">&quot;Email&quot;</span>: <span class="s2">&quot;john.doe@gmail.com&quot;</span>,
+        <span class="s2">&quot;Password&quot;</span>: <span class="s2">&quot;123456&quot;</span>,
+        <span class="s2">&quot;Nationality&quot;</span>: <span class="m">3</span>,
+        <span class="s2">&quot;Invite&quot;</span>: <span class="s2">&quot;https://uadmin.io/&quot;</span>
+    <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>API</strong></p>
+<img alt="../_images/friendlistjsonmarshal.png" class="align-center" src="../_images/friendlistjsonmarshal.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/json-marshal.html">JSON Marshal</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-ok">
+<h2>uadmin.OK<a class="headerlink" href="#uadmin-ok" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>OK is the display tag under Trail. It is a status to show that the application is doing well.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
+</div>
+<div class="section" id="uadmin-reportinglevel">
+<h2>uadmin.ReportingLevel<a class="headerlink" href="#uadmin-reportinglevel" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>ReportingLevel is the standard reporting level.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+</pre></div>
+</div>
+<p>There are 6 different levels:</p>
+<ul class="simple">
+<li><p>DEBUG = 0</p></li>
+<li><p>WORKING = 1</p></li>
+<li><p>INFO = 2</p></li>
+<li><p>OK = 3</p></li>
+<li><p>WARNING = 4</p></li>
+<li><p>ERROR = 5</p></li>
+</ul>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#reporting-level">Reporting Level</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>Let’s set the ReportingLevel to 1 to show that the debugging process is working.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReportingLevel</span> <span class="p">=</span> <span class="mi">1</span>
+
+    <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
+
+    <span class="c1">// Assign the Reporting Level value to 1</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.ReportingLevel&quot;</span><span class="p">)</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;1&quot;</span><span class="p">})</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Result</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>What if I set the value to 5?</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Assign the Reporting Level value to 5</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.ReportingLevel&quot;</span><span class="p">)</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;5&quot;</span><span class="p">})</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Result</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>The database was initialized. The server has started. However the error message did not show up because the reporting level is assigned to 5 which is ERROR.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-reporttimestamp">
+<h2>uadmin.ReportTimeStamp<a class="headerlink" href="#uadmin-reporttimestamp" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>ReportTimeStamp set this to true to have a time stamp in your logs.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#report-time-stamp">Report Time Stamp</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>Go to the main.go and set the ReportTimeStamp value as true.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReportTimeStamp</span> <span class="p">=</span> <span class="kc">true</span>
+
+    <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
+
+    <span class="c1">// Assign the Port value as &quot;on&quot; to set the value as true</span>
+    <span class="c1">// in the settings</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.ReportTimeStamp&quot;</span><span class="p">)</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;on&quot;</span><span class="p">})</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you run your code,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="m">2018</span>/11/07 <span class="m">08</span>:52:14 <span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-returnjson">
+<h2>uadmin.ReturnJSON<a class="headerlink" href="#uadmin-returnjson" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>ReturnJSON returns JSON to the client.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">v</span> <span class="kd">interface</span><span class="p">{})</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>w http.ResponseWriter:</strong> Assembles the HTTP server’s response; by writing to it, we send data to the HTTP client</p>
+<p><strong>r *http.Request</strong> Is a data structure that represents the client HTTP request</p>
+<p><strong>v interface{}</strong> Is the arbitrary JSON objects and arrays that you want to return with</p>
+</div></blockquote>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html">uAdmin Tutorial Part 9 - Introduction to API</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part10.html">uAdmin Tutorial Part 10 - Customizing your API Handler</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part11.html">uAdmin Tutorial Part 11 - Inserting and Saving the Record</a></p></li>
+</ul>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/return-json.html">Return JSON</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-trail">
+<h2>uadmin.Trail<a class="headerlink" href="#uadmin-trail" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>Trail prints to the log.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">level</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">msg</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">i</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>level int:</strong> This is where we apply Trail tags.</p>
+<p><strong>msg interface{}:</strong> Is the string of characters used for output.</p>
+<p><strong>i …interface{}:</strong> A variable or container that can be used to store a value in the msg interface{}.</p>
+</div></blockquote>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part9.html">Document System Tutorial Part 9 - Updating the Document Version</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part13.html">Document System Tutorial Part 13 - Custom AdminPage function</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part3.html">Login System Tutorial Part 3 - Sending Request</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part4.html">Login System Tutorial Part 4 - Login Access Debugging</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part5.html">Login System Tutorial Part 5 - Session and Cookie</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part8.html">Login System Tutorial Part 8 - Webpage Manipulation</a></p></li>
+</ul>
+<p>Trail has 9 different tags:</p>
+<ul class="simple">
+<li><p>DEBUG</p></li>
+<li><p>WORKING</p></li>
+<li><p>INFO</p></li>
+<li><p>OK</p></li>
+<li><p>WARNING</p></li>
+<li><p>ERROR</p></li>
+<li><p>CRITICAL</p></li>
+<li><p>ALERT</p></li>
+<li><p>EMERGENCY</p></li>
+</ul>
+<p>Let’s apply them in the overriding save function under the friend.go.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Save !</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="o">*</span><span class="nx">Friend</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">f</span><span class="p">.</span><span class="nx">Invite</span> <span class="p">=</span> <span class="s">&quot;https://uadmin.io/&quot;</span>
+
+    <span class="c1">// Declare temp variable</span>
+    <span class="nx">temp</span> <span class="o">:=</span> <span class="s">&quot;saved&quot;</span>
+    <span class="c1">// Used DEBUG tag</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="s">&quot;Your friend has been %s.&quot;</span><span class="p">,</span> <span class="nx">temp</span><span class="p">)</span>
+    <span class="c1">// Used WORKING tag</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">WORKING</span><span class="p">,</span> <span class="s">&quot;Your friend has been %s.&quot;</span><span class="p">,</span> <span class="nx">temp</span><span class="p">)</span>
+    <span class="c1">// Used INFO tag</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Your friend has been %s.&quot;</span><span class="p">,</span> <span class="nx">temp</span><span class="p">)</span>
+    <span class="c1">// Used OK tag</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;Your friend has been %s.&quot;</span><span class="p">,</span> <span class="nx">temp</span><span class="p">)</span>
+    <span class="c1">// Used WARNING tag</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">WARNING</span><span class="p">,</span> <span class="s">&quot;Someone %s your friend.&quot;</span><span class="p">,</span> <span class="nx">temp</span><span class="p">)</span>
+    <span class="c1">// Used ERROR tag</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;Your friend has not been %s.&quot;</span><span class="p">,</span> <span class="nx">temp</span><span class="p">)</span>
+    <span class="c1">// Used CRITICAL tag</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">CRITICAL</span><span class="p">,</span> <span class="s">&quot;Your friend has not been %s.&quot;</span><span class="p">,</span> <span class="nx">temp</span><span class="p">)</span>
+    <span class="c1">// Used ALERT tag</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ALERT</span><span class="p">,</span> <span class="s">&quot;Your friend has not been %s.&quot;</span><span class="p">,</span> <span class="nx">temp</span><span class="p">)</span>
+    <span class="c1">// Used EMERGENCY tag</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">EMERGENCY</span><span class="p">,</span> <span class="s">&quot;Your friend has not been %s.&quot;</span><span class="p">,</span> <span class="nx">temp</span><span class="p">)</span>
+
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application, go to the Friend model and save any of the elements inside it. Check your terminal afterwards to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  DEBUG <span class="o">]</span>   Your friend has been saved.
+<span class="o">[</span>  INFO  <span class="o">]</span>   Your friend has been saved.
+<span class="o">[</span>   OK   <span class="o">]</span>   Your friend has been saved.
+<span class="o">[</span> WARNING<span class="o">]</span>   Someone saved your friend.
+<span class="o">[</span>  ERROR <span class="o">]</span>   Your friend has not been saved.
+<span class="o">[</span>CRITICAL<span class="o">]</span>   Your friend has not been saved.
+<span class="o">[</span>  ALERT <span class="o">]</span>   Your friend has not been saved.
+<span class="o">[</span>  EMERG <span class="o">]</span>   Your friend has not been saved.
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/trail.html">Trail</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-version">
+<h2>uadmin.Version<a class="headerlink" href="#uadmin-version" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>Version number as per Semantic Versioning 2.0.0 (semver.org)</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>Let’s check what version of uAdmin are we using.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Version</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Result</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="o">[</span>  INFO  <span class="o">]</span>   <span class="m">0</span>.4
+<span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>You can also directly check it by typing <strong>uadmin version</strong> in your terminal.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ uadmin version
+<span class="o">[</span>  INFO  <span class="o">]</span>   <span class="m">0</span>.4
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-warning">
+<h2>uadmin.WARNING<a class="headerlink" href="#uadmin-warning" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>WARNING is the display tag under Trail. It is the statement or event that indicates a possible problems occurring in an application.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
+</div>
+<div class="section" id="uadmin-working">
+<h2>uadmin.WORKING<a class="headerlink" href="#uadmin-working" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<p>OK is the display tag under Trail. It is a status to show that the application is working.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="metric_functions.html"
+                        title="previous chapter">Metric Functions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="register_functions.html"
+                        title="next chapter">Register Functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/print_functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="register_functions.html" title="Register Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="metric_functions.html" title="Metric Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    </div>
+  </body>
+</html>

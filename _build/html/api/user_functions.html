@@ -1,0 +1,1102 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>User Functions &#8212; uadmin 0.4 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="dAPI Reference" href="../dapi.html" />
+    <link rel="prev" title="uadmin.FieldType" href="field_type.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../dapi.html" title="dAPI Reference"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="field_type.html" title="uadmin.FieldType"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="user-functions">
+<h1>User Functions<a class="headerlink" href="#user-functions" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
+<p>In this section, we will cover the following functions in-depth listed below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#uadmin-cookietimeout">uadmin.CookieTimeout</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-getuserfromrequest">uadmin.GetUserFromRequest</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-isauthenticated">uadmin.IsAuthenticated</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-login">uadmin.Login</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-login2fa">uadmin.Login2FA</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-logout">uadmin.Logout</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-session">uadmin.Session</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-user">uadmin.User</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-usergroup">uadmin.UserGroup</a></p></li>
+</ul>
+<div class="section" id="uadmin-cachepermissions">
+<h2>uadmin.CachePermissions<a class="headerlink" href="#uadmin-cachepermissions" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
+<p>CachePermissions allows uAdmin to store permissions data in memory.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-cachesessions">
+<h2>uadmin.CacheSessions<a class="headerlink" href="#uadmin-cachesessions" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
+<p>CacheSessions allows uAdmin to store sessions data in memory.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-cookietimeout">
+<h2>uadmin.CookieTimeout<a class="headerlink" href="#uadmin-cookietimeout" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
+<p>CookieTimeout is the timeout of a login cookie in seconds.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+</pre></div>
+</div>
+<p>Let’s apply this function in the main.go.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">CookieTimeout</span> <span class="p">=</span> <span class="mi">10</span> <span class="c1">// &lt;--  place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Use it at your own risk. Once the cookie expires, your account will be permanently deactivated. In this case, you must have an extra admin account in the User database.</p>
+</div>
+<p>Login your account, wait for 10 seconds and see what happens.</p>
+<img alt="../_images/loginform.png" class="align-center" src="../_images/loginform.png" />
+<p>It will redirect you to the login form because your cookie has already been expired.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-getuserfromrequest">
+<h2>uadmin.GetUserFromRequest<a class="headerlink" href="#uadmin-getuserfromrequest" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
+<p>GetUserFromRequest returns a user from a request.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span>
+</pre></div>
+</div>
+<p>Parameter:</p>
+<blockquote>
+<div><p><strong>r *http.Request:</strong> Is a data structure that represents the client HTTP request</p>
+</div></blockquote>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html">Tutorial Part 9 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Suppose that the admin account has logined.</p>
+<img alt="../_images/adminhighlighted.png" src="../_images/adminhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Create a file named info.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// InfoHandler !</span>
+<span class="kd">func</span> <span class="nx">InfoHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/info&quot;</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Place it here</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;GetUserFromRequest: %s&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetUserFromRequest</span><span class="p">(</span><span class="nx">r</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// InfoHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/info/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">api</span><span class="p">.</span><span class="nx">InfoHandler</span><span class="p">))</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while InfoHandler is the name of the function inside info.go.</p>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/infoapi.png" src="../_images/infoapi.png" />
+<p>Check your terminal for the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   GetUserFromRequest: System Admin
+</pre></div>
+</div>
+<p>The result is coming from the user in the dashboard.</p>
+<img alt="../_images/getuserfromrequest.png" src="../_images/getuserfromrequest.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>There is another way of using this function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// InfoHandler !</span>
+<span class="kd">func</span> <span class="nx">InfoHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/info&quot;</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+
+    <span class="nx">getuser</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetUserFromRequest</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+    <span class="nx">getuser</span><span class="p">.</span><span class="nx">XXXX</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>XXXX contains user fields and functions that you can use. See <a class="reference internal" href="#uadmin-user">uadmin.User</a> for the list and examples.</p>
+<p>Go to the info.go in API folder containing the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// InfoHandler !</span>
+<span class="kd">func</span> <span class="nx">InfoHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/info&quot;</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Get the User that returns the first and last name</span>
+    <span class="nx">getuser</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetUserFromRequest</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+
+    <span class="c1">// Print the result using Golang fmt</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;GetActiveSession() is&quot;</span><span class="p">,</span> <span class="nx">getuser</span><span class="p">.</span><span class="nx">GetActiveSession</span><span class="p">())</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;GetDashboardMenu() is&quot;</span><span class="p">,</span> <span class="nx">getuser</span><span class="p">.</span><span class="nx">GetDashboardMenu</span><span class="p">())</span>
+
+    <span class="c1">// Print the result using Trail</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;GetOTP() is %s.&quot;</span><span class="p">,</span> <span class="nx">getuser</span><span class="p">.</span><span class="nx">GetOTP</span><span class="p">())</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;String() is %s.&quot;</span><span class="p">,</span> <span class="nx">getuser</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/infoapi.png" src="../_images/infoapi.png" />
+<p>Check your terminal for the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>GetActiveSession<span class="o">()</span> is Pfr7edaO7bBjv9zL9j1Yi01I
+GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard Menus Users User Groups Sessions User Permissions Group Permissions Languages Logs Todos Categorys Friends Items<span class="o">]</span>
+<span class="o">[</span>  INFO  <span class="o">]</span>   GetOTP<span class="o">()</span> is <span class="m">363669</span>.
+<span class="o">[</span>  INFO  <span class="o">]</span>   String<span class="o">()</span> is System Admin.
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-user-from-request.html">Get User From Request</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-isauthenticated">
+<h2>uadmin.IsAuthenticated<a class="headerlink" href="#uadmin-isauthenticated" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
+<p>IsAuthenticated returns the session of the user.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span>
+</pre></div>
+</div>
+<p>Parameter:</p>
+<blockquote>
+<div><p><strong>r *http.Request:</strong> Is a data structure that represents the client HTTP request</p>
+</div></blockquote>
+<p>See <a class="reference internal" href="#uadmin-session">uadmin.Session</a> for the list of fields and functions that you can use in IsAuthenticated.</p>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html">Tutorial Part 9 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Suppose that the admin account has logined.</p>
+<img alt="../_images/adminhighlighted.png" src="../_images/adminhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Create a file named custom_todo.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// CustomTodoHandler !</span>
+<span class="kd">func</span> <span class="nx">CustomTodoHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/custom_todo&quot;</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Get the session key</span>
+    <span class="nx">session</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">IsAuthenticated</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+
+    <span class="c1">// If there is no value in the session, it will return the</span>
+    <span class="c1">// LoginHandler.</span>
+    <span class="k">if</span> <span class="nx">session</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">LoginHandler</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Fetch the values from a User model using session IsAuthenticated</span>
+    <span class="nx">user</span> <span class="o">:=</span> <span class="nx">session</span><span class="p">.</span><span class="nx">User</span>
+    <span class="nx">userid</span> <span class="o">:=</span> <span class="nx">session</span><span class="p">.</span><span class="nx">UserID</span>
+    <span class="nx">username</span> <span class="o">:=</span> <span class="nx">session</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">Username</span>
+    <span class="nx">active</span> <span class="o">:=</span> <span class="nx">session</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">Active</span>
+
+    <span class="c1">// Print the result</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Session / Key: %s&quot;</span><span class="p">,</span> <span class="nx">session</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;User: %s&quot;</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;UserID: %d&quot;</span><span class="p">,</span> <span class="nx">userid</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Username: %s&quot;</span><span class="p">,</span> <span class="nx">username</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Active: %v&quot;</span><span class="p">,</span> <span class="nx">active</span><span class="p">)</span>
+
+    <span class="c1">// Deactivates a session</span>
+    <span class="nx">session</span><span class="p">.</span><span class="nx">Logout</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// CustomTodoHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/custom_todo/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">api</span><span class="p">.</span><span class="nx">CustomTodoHandler</span><span class="p">))</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while CustomTodoHandler is the name of the function inside custom_todo.go.</p>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/customtodoapi.png" src="../_images/customtodoapi.png" />
+<p>Check your terminal for the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   Session / Key: Pfr7edaO7bBjv9zL9j1Yi01I
+<span class="o">[</span>  INFO  <span class="o">]</span>   Username: System Admin
+<span class="o">[</span>  INFO  <span class="o">]</span>   UserID: <span class="m">1</span>
+<span class="o">[</span>  INFO  <span class="o">]</span>   Username: admin
+<span class="o">[</span>  INFO  <span class="o">]</span>   Active: <span class="nb">true</span>
+</pre></div>
+</div>
+<p>The result is coming from the session in the dashboard.</p>
+<img alt="../_images/isauthenticated.png" src="../_images/isauthenticated.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>And the values in the User model by calling the User, UserID, Username, and Active fields.</p>
+<img alt="../_images/usersession.png" src="../_images/usersession.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>And if you go back to the home page, your account has been logged out automatically that redirects you to the login page.</p>
+<img alt="../_images/loginform.png" class="align-center" src="../_images/loginform.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/is-authenticated.html">Is Authenticated</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-login">
+<h2>uadmin.Login<a class="headerlink" href="#uadmin-login" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
+<p>Login returns the pointer of User and a bool for Is OTP Required.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">username</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">password</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>r *http.Request:</strong> Is a data structure that represents the client HTTP request</p>
+<p><strong>username string:</strong> Is the account username</p>
+<p><strong>password string:</strong> Is the password of the user account</p>
+</div></blockquote>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part4.html">Login System Tutorial Part 4 - Login Access Debugging</a></p></li>
+</ul>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html">Tutorial Part 9 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Create a file named info.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// InfoHandler !</span>
+<span class="kd">func</span> <span class="nx">InfoHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/info&quot;</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Login</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="s">&quot;admin&quot;</span><span class="p">,</span> <span class="s">&quot;admin&quot;</span><span class="p">))</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// InfoHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/info/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">api</span><span class="p">.</span><span class="nx">InfoHandler</span><span class="p">))</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while InfoHandler is the name of the function inside info.go.</p>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/infoapi.png" src="../_images/infoapi.png" />
+<p>Check your terminal for the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>LF0tldVcup0TA145mJMBfMiL <span class="nb">false</span>
+</pre></div>
+</div>
+<p>The result is coming from the session model that links to the user.</p>
+<img alt="../_images/sessionlinkuser.png" src="../_images/sessionlinkuser.png" />
+<p>And the user OTP for the System Admin is not enabled.</p>
+<img alt="../_images/systemadminotphighlighted.png" src="../_images/systemadminotphighlighted.png" />
+<p>Visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/coverage.html">Login System Tutorials</a> for more examples.</p>
+<p>Page:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../login_system/coverage.html">Login System Tutorials</a></li>
+</ul>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/login-logout.html">Login, Login2FA, and Logout</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-login2fa">
+<h2>uadmin.Login2FA<a class="headerlink" href="#uadmin-login2fa" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
+<p>Login2FA returns the pointer of User with a two-factor authentication.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">username</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">password</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">otpPass</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>r *http.Request:</strong> Is a data structure that represents the client HTTP request</p>
+<p><strong>username string:</strong> Is the account username</p>
+<p><strong>password string:</strong> Is the password of the user account</p>
+<p><strong>otpPass string:</strong> Is the OTP code assigned by your terminal</p>
+</div></blockquote>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part4.html">Login System Tutorial Part 4 - Login Access Debugging</a></p></li>
+</ul>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html">Tutorial Part 9 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>First of all, activate the OTP Required in your System Admin account.</p>
+<img alt="../_images/otprequired.png" src="../_images/otprequired.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Afterwards, logout your account then login again to get the OTP verification code in your terminal.</p>
+<img alt="../_images/loginformwithotp.png" src="../_images/loginformwithotp.png" />
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   User: admin OTP: <span class="m">445215</span>
+</pre></div>
+</div>
+<p>Now create a file named info.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// InfoHandler !</span>
+<span class="kd">func</span> <span class="nx">InfoHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/info&quot;</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Place it here</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Login2FA</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="s">&quot;admin&quot;</span><span class="p">,</span> <span class="s">&quot;admin&quot;</span><span class="p">,</span> <span class="s">&quot;445215&quot;</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// InfoHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/info/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">api</span><span class="p">.</span><span class="nx">InfoHandler</span><span class="p">))</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while InfoHandler is the name of the function inside info.go.</p>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/infoapi.png" src="../_images/infoapi.png" />
+<p>Check your terminal for the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>LF0tldVcup0TA145mJMBfMiL
+</pre></div>
+</div>
+<p>The result is coming from the session model that is currently used.</p>
+<img alt="../_images/sessionlogin2fa.png" src="../_images/sessionlogin2fa.png" />
+<p>Visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/coverage.html">Login System Tutorials</a> for more examples.</p>
+<p>Page:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../login_system/coverage.html">Login System Tutorials</a></li>
+</ul>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/login-logout.html">Login, Login2FA, and Logout</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-logout">
+<h2>uadmin.Logout<a class="headerlink" href="#uadmin-logout" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
+<p>Logout deactivates the session.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameter:</p>
+<blockquote>
+<div><p><strong>r *http.Request:</strong> Is a data structure that represents the client HTTP request</p>
+</div></blockquote>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part7.html">Login System Tutorial Part 7 - Logout</a></p></li>
+</ul>
+<p>Suppose that the admin account has logined.</p>
+<img alt="../_images/adminhighlighted.png" src="../_images/adminhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Create a file named logout.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// LogoutHandler !</span>
+<span class="kd">func</span> <span class="nx">LogoutHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/logout&quot;</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Logout</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// LogoutHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/logout/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">api</span><span class="p">.</span><span class="nx">LogoutHandler</span><span class="p">))</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while LogoutHandler is the name of the function inside logout.go.</p>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/logoutapi.png" src="../_images/logoutapi.png" />
+<p>Refresh your browser and see what happens.</p>
+<img alt="../_images/loginform.png" class="align-center" src="../_images/loginform.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Your account has been logged out automatically that redirects you to the login page.</p>
+<p>Visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/coverage.html">Login System Tutorials</a> for more examples.</p>
+<p>Page:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../login_system/coverage.html">Login System Tutorials</a></li>
+</ul>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/login-logout.html">Login, Login2FA, and Logout</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-session">
+<h2>uadmin.Session<a class="headerlink" href="#uadmin-session" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
+<p>Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. <a class="footnote-reference brackets" href="#f1" id="id4">1</a></p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Session</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Model</span>
+    <span class="nx">Key</span>        <span class="kt">string</span>
+    <span class="nx">User</span>       <span class="nx">User</span> <span class="s">`gorm:&quot;ForeignKey:UserID&quot; uadmin:&quot;filter&quot;`</span>
+    <span class="nx">UserID</span>     <span class="kt">uint</span> <span class="s">`fk:&quot;true&quot; displayName:&quot;User&quot;`</span>
+    <span class="nx">LoginTime</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+    <span class="nx">LastLogin</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+    <span class="nx">Active</span>     <span class="kt">bool</span>   <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">IP</span>         <span class="kt">string</span> <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">PendingOTP</span> <span class="kt">bool</span>   <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">ExpiresOn</span>  <span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>There are 5 functions that you can use in Session:</p>
+<ul class="simple">
+<li><p><strong>GenerateKey()</strong> - Automatically generates a random string of characters for you</p></li>
+<li><p><strong>HideInDashboard()</strong> - Return true and auto hide this from dashboard</p></li>
+<li><p><strong>Logout()</strong> - Deactivates a session</p></li>
+<li><p><strong>Save()</strong> - Saves the object in the database</p></li>
+<li><p><strong>String()</strong> - Returns the value of the Key</p></li>
+</ul>
+<p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
+<p>One-by-one initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">session</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span><span class="p">{}</span>
+    <span class="nx">session</span><span class="p">.</span><span class="nx">Key</span> <span class="p">=</span> <span class="s">&quot;Key&quot;</span>
+    <span class="nx">session</span><span class="p">.</span><span class="nx">UserID</span> <span class="p">=</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>By group initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">session</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span><span class="p">{</span>
+        <span class="nx">Key</span><span class="p">:</span>    <span class="s">&quot;Key&quot;</span><span class="p">,</span>
+        <span class="nx">UserID</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, we will use “by group” initialization process.</p>
+<p>Go to the main.go and apply the following codes below after the RegisterInlines section.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+
+    <span class="c1">// Some codes</span>
+
+    <span class="nx">now</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span>
+    <span class="nx">then</span> <span class="o">:=</span> <span class="nx">now</span><span class="p">.</span><span class="nx">AddDate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">session</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span><span class="p">{</span>
+
+        <span class="c1">// Generates a random string dynamically</span>
+        <span class="nx">Key</span><span class="p">:</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GenerateBase64</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+
+        <span class="c1">// UserID of System Admin account</span>
+        <span class="nx">UserID</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+
+        <span class="nx">LoginTime</span><span class="p">:</span>  <span class="nx">now</span><span class="p">,</span>
+        <span class="nx">LastLogin</span><span class="p">:</span>  <span class="nx">now</span><span class="p">,</span>
+        <span class="nx">Active</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">IP</span><span class="p">:</span>         <span class="s">&quot;&quot;</span><span class="p">,</span>
+        <span class="nx">PendingOTP</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">ExpiresOn</span><span class="p">:</span>  <span class="o">&amp;</span><span class="nx">then</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">// This will create a new session based on the information assigned in</span>
+    <span class="c1">// the session variable.</span>
+    <span class="nx">session</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+
+    <span class="c1">// Returns the value of the key</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;String() returns %s&quot;</span><span class="p">,</span> <span class="nx">session</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application and see what happens.</p>
+<p><strong>Terminal</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   String<span class="o">()</span> returns 0G81O_LecZLru3CTm_Qz
+</pre></div>
+</div>
+<img alt="../_images/sessioncreated.png" src="../_images/sessioncreated.png" />
+<p>The other way around is you can use <strong>GenerateKey()</strong> function instead of initializing the Key field inside the uadmin.Session. Omit the session.Save() as well because session.Logout() has the ability to save it.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">now</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span>
+    <span class="nx">then</span> <span class="o">:=</span> <span class="nx">now</span><span class="p">.</span><span class="nx">AddDate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">session</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span><span class="p">{</span>
+
+        <span class="c1">// ------------ KEY FIELD REMOVED ------------</span>
+
+        <span class="c1">// UserID of System Admin account</span>
+        <span class="nx">UserID</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+
+        <span class="nx">LoginTime</span><span class="p">:</span>  <span class="nx">now</span><span class="p">,</span>
+        <span class="nx">LastLogin</span><span class="p">:</span>  <span class="nx">now</span><span class="p">,</span>
+        <span class="nx">Active</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">IP</span><span class="p">:</span>         <span class="s">&quot;&quot;</span><span class="p">,</span>
+        <span class="nx">PendingOTP</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">ExpiresOn</span><span class="p">:</span>  <span class="o">&amp;</span><span class="nx">then</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Automatically generates a random string of characters for you</span>
+    <span class="nx">session</span><span class="p">.</span><span class="nx">GenerateKey</span><span class="p">()</span>
+
+    <span class="c1">// Deactivates a session</span>
+    <span class="nx">session</span><span class="p">.</span><span class="nx">Logout</span><span class="p">()</span>
+
+    <span class="c1">// ------------ SESSION.SAVE() REMOVED ------------</span>
+
+    <span class="c1">// Returns the value of the key</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;String() returns %s&quot;</span><span class="p">,</span> <span class="nx">session</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application and see what happens.</p>
+<p><strong>Terminal</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   String<span class="o">()</span> returns 8dDjMOvX8onCVuRUJstZ1Jrl
+</pre></div>
+</div>
+<img alt="../_images/sessioncreated2.png" src="../_images/sessioncreated2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose that “SESSIONS” model is visible in the dashboard.</p>
+<img alt="../_images/sessionshighlighteddashboard.png" src="../_images/sessionshighlighteddashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In order to hide it, you can use <strong>HideInDashboard()</strong> built-in function from uadmin.Session. Go to the main.go and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Initialize the session and dashboardmenu</span>
+    <span class="nx">session</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span><span class="p">{}</span>
+    <span class="nx">dashboardmenu</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DashboardMenu</span><span class="p">{}</span>
+
+    <span class="c1">// Checks the url from the dashboardmenu. If it matches, it will</span>
+    <span class="c1">// update the value of the Hidden field.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">dashboardmenu</span><span class="p">,</span> <span class="s">&quot;Hidden&quot;</span><span class="p">,</span> <span class="nx">session</span><span class="p">.</span><span class="nx">HideInDashboard</span><span class="p">(),</span> <span class="s">&quot;url = ?&quot;</span><span class="p">,</span> <span class="s">&quot;session&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application, go to “DASHBOARD MENUS” and you will notice that Sessions is now hidden.</p>
+<img alt="../_images/sessionshidden.png" src="../_images/sessionshidden.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/session.html">Session</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-user">
+<h2>uadmin.User<a class="headerlink" href="#uadmin-user" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
+<p>User is a system in uAdmin that is used to add, modify and delete the elements of the user.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Model</span>
+    <span class="nx">Username</span>     <span class="kt">string</span>    <span class="s">`uadmin:&quot;required;filter&quot;`</span>
+    <span class="nx">FirstName</span>    <span class="kt">string</span>    <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">LastName</span>     <span class="kt">string</span>    <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">Password</span>     <span class="kt">string</span>    <span class="s">`uadmin:&quot;required;password;help:To reset password, clear the field and type a new password.;list_exclude&quot;`</span>
+    <span class="nx">Email</span>        <span class="kt">string</span>    <span class="s">`uadmin:&quot;email&quot;`</span>
+    <span class="nx">Active</span>       <span class="kt">bool</span>      <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">Admin</span>        <span class="kt">bool</span>      <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">RemoteAccess</span> <span class="kt">bool</span>      <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">UserGroup</span>    <span class="nx">UserGroup</span> <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">UserGroupID</span>  <span class="kt">uint</span>
+    <span class="nx">Photo</span>        <span class="kt">string</span> <span class="s">`uadmin:&quot;image&quot;`</span>
+    <span class="nx">LastLogin</span>   <span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span> <span class="s">`uadmin:&quot;read_only&quot;`</span>
+    <span class="nx">ExpiresOn</span>   <span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+    <span class="nx">OTPRequired</span> <span class="kt">bool</span>
+    <span class="nx">OTPSeed</span>     <span class="kt">string</span> <span class="s">`uadmin:&quot;list_exclude;hidden;read_only&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here are the following fields and their definitions:</p>
+<ul class="simple">
+<li><p><strong>Username</strong> - The username that you can use in login process and CreatedBy which is a reserved word in uAdmin</p></li>
+<li><p><strong>FirstName</strong> - The given name of the user</p></li>
+<li><p><strong>LastName</strong> - The surname of the user</p></li>
+<li><p><strong>Password</strong> - A secret word or phrase that must be used to gain admission to something. This field is automatically hashed for security protection.</p></li>
+<li><p><strong>Email</strong> - A method of exchanging messages between people using electronic devices.</p></li>
+<li><p><strong>Active</strong> - Checks whether the user is logged in</p></li>
+<li><p><strong>Admin</strong> - Checks whether the user is authorized to access all features in the system</p></li>
+<li><p><strong>RemoteAccess</strong> - Checks whether the user has access to remote devices</p></li>
+<li><p><strong>UserGroup</strong> - Returns the GroupName</p></li>
+<li><p><strong>UserGroupID</strong> - An ID to access the UserGroup</p></li>
+<li><p><strong>Photo</strong> - Profile picture of the user</p></li>
+<li><p><strong>LastLogin</strong> - The date when the user last logged in his account</p></li>
+<li><p><strong>ExpiresOn</strong> - The date when the user account expires</p></li>
+<li><p><strong>OTPRequired</strong> - Checks whether the OTP is Active</p></li>
+<li><p><strong>OTPSeed</strong> - Private field for OTP</p></li>
+</ul>
+<p>There are 10 functions that you can use in User:</p>
+<ul class="simple">
+<li><p><strong>GetAccess</strong> - Returns the user’s permission to a dashboard menu based on their admin status, group and user permissions</p></li>
+<li><p><strong>GetActiveSession()</strong> - Returns an active session key</p></li>
+<li><p><strong>GetDashboardMenu()</strong> - Returns the list of models in the dashboard menu</p></li>
+<li><p><strong>GetOTP()</strong> - Returns a string of OTP code</p></li>
+<li><p><strong>HasAccess</strong> - Searches for the url in the modelName. Uses this format as shown below:</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">UserPermission</span>
+</pre></div>
+</div>
+<p><strong>Login</strong> - Returns the pointer of User and a bool for Is OTP Required. It uses this format as shown below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">pass</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">otp</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Save()</strong> - Saves the object in the database</p></li>
+<li><p><strong>String()</strong> - Returns the first name and the last name</p></li>
+<li><p><strong>Validate()</strong> - Validate user when saving from uadmin. It returns (ret map[string]string).</p></li>
+<li><p><strong>VerifyOTP</strong> - Verifies the OTP of the user. It uses this format as shown below:</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">pass</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span>
+</pre></div>
+</div>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part14.html">Document System Tutorial Part 14 - Permissions Form</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part15.html">Document System Tutorial Part 15 - Schema Form Modifier</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part16.html">Document System Tutorial Part 16 - Schema List Modifier</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part3.html">Login System Tutorial Part 3 - Sending Request</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part4.html">Login System Tutorial Part 4 - Login Access Debugging</a></p></li>
+</ul>
+<p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
+<p>One-by-one initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">user</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">{}</span>
+    <span class="nx">user</span><span class="p">.</span><span class="nx">Username</span> <span class="p">=</span> <span class="s">&quot;Username&quot;</span>
+    <span class="nx">user</span><span class="p">.</span><span class="nx">FirstName</span> <span class="p">=</span> <span class="s">&quot;First Name&quot;</span>
+    <span class="nx">user</span><span class="p">.</span><span class="nx">LastName</span> <span class="p">=</span> <span class="s">&quot;Last Name&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>By group initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">user</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">{</span>
+        <span class="nx">Username</span><span class="p">:</span> <span class="s">&quot;Username&quot;</span><span class="p">,</span>
+        <span class="nx">FirstName</span><span class="p">:</span> <span class="s">&quot;First Name&quot;</span><span class="p">,</span>
+        <span class="nx">LastName</span><span class="p">:</span> <span class="s">&quot;Last Name&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, we will use “by group” initialization process.</p>
+<p>Go to the main.go and apply the following codes below after the RegisterInlines section.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+
+    <span class="c1">// Some codes</span>
+
+    <span class="nx">now</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span>
+    <span class="nx">user</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">{</span>
+        <span class="nx">Username</span><span class="p">:</span>     <span class="s">&quot;even&quot;</span><span class="p">,</span>
+        <span class="nx">FirstName</span><span class="p">:</span>    <span class="s">&quot;Even&quot;</span><span class="p">,</span>
+        <span class="nx">LastName</span><span class="p">:</span>     <span class="s">&quot;Demata&quot;</span><span class="p">,</span>
+        <span class="nx">Password</span><span class="p">:</span>     <span class="s">&quot;123456&quot;</span><span class="p">,</span>
+        <span class="nx">Email</span><span class="p">:</span>        <span class="s">&quot;evendemata@gmail.com&quot;</span><span class="p">,</span>
+        <span class="nx">Active</span><span class="p">:</span>       <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">Admin</span><span class="p">:</span>        <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">RemoteAccess</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">UserGroupID</span><span class="p">:</span>  <span class="mi">1</span><span class="p">,</span> <span class="c1">// Front Desk</span>
+        <span class="nx">Photo</span><span class="p">:</span>        <span class="s">&quot;/media/images/users.png&quot;</span><span class="p">,</span>
+        <span class="nx">LastLogin</span><span class="p">:</span>    <span class="o">&amp;</span><span class="nx">now</span><span class="p">,</span>
+        <span class="nx">OTPRequired</span><span class="p">:</span>  <span class="kc">false</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">// This will create a new user based on the information assigned in</span>
+    <span class="c1">// the user variable.</span>
+    <span class="nx">user</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+
+    <span class="c1">// Returns the first name and the last name</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;String() returns %s.&quot;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application and see what happens.</p>
+<p><strong>Terminal</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   String<span class="o">()</span> returns Even Demata.
+</pre></div>
+</div>
+<img alt="../_images/usercreated.png" src="../_images/usercreated.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Select “Even Demata” account in the list.</p>
+<img alt="../_images/evendematahighlighted.png" src="../_images/evendematahighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to the User Permission tab. Afterwards, click Add New User Permission button at the right side.</p>
+<img alt="../_images/addnewuserpermission.png" src="../_images/addnewuserpermission.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Set the Dashboard Menu to “Todos” model, User linked to “Even Demata”, and activate the “Read” only. It means Even Demata user account has restricted access to adding, editing and deleting a record in the Todos model.</p>
+<img alt="../_images/userpermissionevendemata.png" class="align-center" src="../_images/userpermissionevendemata.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/userpermissionevendemataoutput.png" src="../_images/userpermissionevendemataoutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Log out your System Admin account. This time login your username and password using the user account that has user permission. Afterwards, you will see that only the Todos model is shown in the dashboard because your user account is not an admin and has no remote access to it.</p>
+<img alt="../_images/userpermissiondashboard.png" src="../_images/userpermissiondashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the main.go and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Initialize the User function</span>
+    <span class="nx">user</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">{}</span>
+
+    <span class="c1">// Fetch the username record as &quot;even&quot; from the user</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">user</span><span class="p">,</span> <span class="s">&quot;username = ?&quot;</span><span class="p">,</span> <span class="s">&quot;even&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Print the results</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;GetAccess is&quot;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">GetAccess</span><span class="p">(</span><span class="s">&quot;todo&quot;</span><span class="p">))</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;GetActiveSession() is&quot;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">GetActiveSession</span><span class="p">())</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;GetDashboardMenu() is&quot;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">GetDashboardMenu</span><span class="p">())</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;GetOTP() is&quot;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">GetOTP</span><span class="p">())</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;HasAccess is&quot;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">HasAccess</span><span class="p">(</span><span class="s">&quot;todo&quot;</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application and check your terminal to see the results.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>GetAccess is <span class="m">1</span>
+GetActiveSession<span class="o">()</span> is GOzo21lIBCIaj3YkXJsCZXnj
+GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Todos<span class="o">]</span>
+GetOTP<span class="o">()</span> is <span class="m">251553</span>
+HasAccess is <span class="m">1</span>
+</pre></div>
+</div>
+<p>Take note the value of the GetOTP(). Go to the main.go again and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">user</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">user</span><span class="p">,</span> <span class="s">&quot;username = ?&quot;</span><span class="p">,</span> <span class="s">&quot;even&quot;</span><span class="p">)</span>
+
+    <span class="c1">// First parameter is password and second parameter is the value from</span>
+    <span class="c1">// GetOTP()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Login is&quot;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">Login</span><span class="p">(</span><span class="s">&quot;123456&quot;</span><span class="p">,</span> <span class="s">&quot;251553&quot;</span><span class="p">))</span>
+
+    <span class="c1">// The parameter is the value from GetOTP()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;VerifyOTP is&quot;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">VerifyOTP</span><span class="p">(</span><span class="s">&quot;251553&quot;</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application and check your terminal to see the results.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Login is GOzo21lIBCIaj3YkXJsCZXnj
+VerifyOTP is <span class="nb">true</span>
+</pre></div>
+</div>
+<p>If your Login does not return anything and VerifyOTP is false, it means your OTP is no longer valid. You need to use GetOTP() again to get a new one. OTP usually takes 5 minutes of validity by default.</p>
+<p><strong>Validate()</strong> function allows you to search if the user already exists. For instance, the username is “even” and all of the contents about him are there which was already included in the User model. Go to the main.go and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">now</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span>
+    <span class="nx">user</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">{</span>
+        <span class="nx">Username</span><span class="p">:</span>     <span class="s">&quot;even&quot;</span><span class="p">,</span>
+        <span class="nx">FirstName</span><span class="p">:</span>    <span class="s">&quot;Even&quot;</span><span class="p">,</span>
+        <span class="nx">LastName</span><span class="p">:</span>     <span class="s">&quot;Demata&quot;</span><span class="p">,</span>
+        <span class="nx">Password</span><span class="p">:</span>     <span class="s">&quot;123456&quot;</span><span class="p">,</span>
+        <span class="nx">Email</span><span class="p">:</span>        <span class="s">&quot;evendemata@gmail.com&quot;</span><span class="p">,</span>
+        <span class="nx">Active</span><span class="p">:</span>       <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">Admin</span><span class="p">:</span>        <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">RemoteAccess</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">UserGroupID</span><span class="p">:</span>  <span class="mi">1</span><span class="p">,</span> <span class="c1">// Front Desk</span>
+        <span class="nx">Photo</span><span class="p">:</span>        <span class="s">&quot;/media/images/users.png&quot;</span><span class="p">,</span>
+        <span class="nx">LastLogin</span><span class="p">:</span>    <span class="o">&amp;</span><span class="nx">now</span><span class="p">,</span>
+        <span class="nx">OTPRequired</span><span class="p">:</span>  <span class="kc">false</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Validate is&quot;</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">Validate</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application and check your terminal to see the results.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Validate is map<span class="o">[</span>Username:Username is already Taken.<span class="o">]</span>
+</pre></div>
+</div>
+<p>Congrats, now you know how to configure the User fields, fetching the username record and applying the functions of the User.</p>
+<p>Visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/coverage.html">Login System Tutorials</a> for more examples.</p>
+<p>Page:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../login_system/coverage.html">Login System Tutorials</a></li>
+</ul>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/user-and-user-permission.html">User and User Permission</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-usergroup">
+<h2>uadmin.UserGroup<a class="headerlink" href="#uadmin-usergroup" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
+<p>UserGroup is a system in uAdmin used to add, modify, and delete the group name.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">UserGroup</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Model</span>
+    <span class="nx">GroupName</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;filter&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>There are 2 functions that you can use in UserGroup:</p>
+<p><strong>HasAccess()</strong> - Returns the Group Permission ID. It uses this format as shown below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GroupPermission</span>
+</pre></div>
+</div>
+<p><strong>String()</strong> - Returns the GroupName</p>
+<p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
+<p>One-by-one initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">usergroup</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">UserGroup</span><span class="p">{}</span>
+    <span class="nx">user</span><span class="p">.</span><span class="nx">GroupName</span> <span class="p">=</span> <span class="s">&quot;Group Name&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>By group initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">usergroup</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">UserGroup</span><span class="p">{</span>
+        <span class="nx">GroupName</span><span class="p">:</span> <span class="s">&quot;Group Name&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, we will use “by group” initialization process.</p>
+<p>Go to the main.go and apply the following codes below after the RegisterInlines section.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+
+    <span class="c1">// Some codes</span>
+
+    <span class="nx">usergroup</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">UserGroup</span><span class="p">{</span>
+        <span class="nx">GroupName</span><span class="p">:</span> <span class="s">&quot;Front Desk&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">// This will create a new user group based on the information assigned</span>
+    <span class="c1">// in the usergroup variable.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">usergroup</span><span class="p">)</span>
+
+    <span class="c1">// Returns the GroupName</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;String() returns %s.&quot;</span><span class="p">,</span> <span class="nx">usergroup</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application and see what happens.</p>
+<p><strong>Terminal</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   String<span class="o">()</span> returns Front Desk.
+</pre></div>
+</div>
+<img alt="../_images/usergroupcreated.png" src="../_images/usergroupcreated.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Link your created user group to any of your existing accounts (example below is Even Demata).</p>
+<img alt="../_images/useraccountfrontdesklinked.png" src="../_images/useraccountfrontdesklinked.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Afterwards, click the Front Desk highlighted below.</p>
+<img alt="../_images/frontdeskhighlighted.png" src="../_images/frontdeskhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to the Group Permission tab. Afterwards, click Add New Group Permission button at the right side.</p>
+<img alt="../_images/addnewgrouppermission.png" src="../_images/addnewgrouppermission.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Set the Dashboard Menu to “Todos” model, User linked to “Even Demata”, and activate the “Read” only. It means Front Desk User Group has restricted access to adding, editing and deleting a record in the Todos model.</p>
+<img alt="../_images/grouppermissionadd.png" class="align-center" src="../_images/grouppermissionadd.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/grouppermissionaddoutput.png" src="../_images/grouppermissionaddoutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Log out your System Admin account. This time login your username and password using the user account that has group permission.</p>
+<img alt="../_images/userpermissiondashboard.png" src="../_images/userpermissiondashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the main.go and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Initializes the UserGroup function</span>
+    <span class="nx">usergroup</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">UserGroup</span><span class="p">{}</span>
+
+    <span class="c1">// Fetches the Group Permission ID from the user</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">usergroup</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">// Prints the HasAccess result</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;HasAccess is&quot;</span><span class="p">,</span> <span class="nx">usergroup</span><span class="p">.</span><span class="nx">HasAccess</span><span class="p">(</span><span class="s">&quot;todo&quot;</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application and check your terminal to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>HasAccess is <span class="m">1</span>
+</pre></div>
+</div>
+<p>Congrats, now you know how to add the UserGroup from code, fetching the record from ID and applying the functions of the UserGroup.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/group-permission-and-user-group.html">Group Permission and User Group</a></p></li>
+</ul>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id4">1</a></span></dt>
+<dd><p>QuinStreet Inc. (2018). User Session. Retrieved from <a class="reference external" href="https://www.webopedia.com/TERM/U/user_session.html">https://www.webopedia.com/TERM/U/user_session.html</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="field_type.html"
+                        title="previous chapter">uadmin.FieldType</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../dapi.html"
+                        title="next chapter">dAPI Reference</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/user_functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../dapi.html" title="dAPI Reference"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="field_type.html" title="uadmin.FieldType"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    </div>
+  </body>
+</html>

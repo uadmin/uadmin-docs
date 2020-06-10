@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>uAdmin Quizzes &#8212; uadmin 0.3 documentation</title>
+    <title>uAdmin Quizzes &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="API Reference" href="api.html" />
-    <link rel="prev" title="Document System Tutorial Part 17 - Wrapping Up Your Application" href="document_system/tutorial/part17.html" />
+    <link rel="prev" title="Login System Tutorial Part 8 - Webpage Manipulation (Current Progress)" href="login_system/tutorial/full_code/part8.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -38,9 +38,9 @@
           <a href="api.html" title="API Reference"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="document_system/tutorial/part17.html" title="Document System Tutorial Part 17 - Wrapping Up Your Application"
+          <a href="login_system/tutorial/full_code/part8.html" title="Login System Tutorial Part 8 - Webpage Manipulation (Current Progress)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -80,17 +80,15 @@
 </ul>
 <p><strong>F</strong></p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/f-modelschema-schema.html">F, ModelSchema, and Schema</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter.html">Filter</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz//filter-builder.html">Filter Builder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter-list-get-form-and-stringer.html">Filter List, Get Form, and Get Stringer</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/foreign-key-and-register-inline.html">Foreign Key and Register Inlines</a></p></li>
 </ul>
 <p><strong>G</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-id-and-get-string.html">Get ID and Get String</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-fields-api-and-get-models-api.html">Get Fields API and Get Models API</a></p></li>
-<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-form-stringer-and-filter-list.html">Get Form, Get Stringer, and Filter List</a></p></li>
-<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-setting-category.html">Get Setting, Setting and Setting Category</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-user-from-request.html">Get User From Request</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/group-permission-and-user-group.html">Group Permission and User Group</a></p></li>
 </ul>
@@ -141,7 +139,9 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/salt.html">Salt</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/schema-basics.html">Schema Basics</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/schema-functions.html">Schema Functions</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/session.html">Session</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/setting-functions.html">Setting Functions</a></p></li>
 </ul>
 <p><strong>T</strong></p>
 <ul class="simple">
@@ -168,6 +168,7 @@
 <li class="toctree-l1"><a class="reference internal" href="application.html">uAdmin Applications</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tags.html">Tag Reference</a></li>
@@ -178,8 +179,8 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="document_system/tutorial/part17.html"
-                        title="previous chapter">Document System Tutorial Part 17 - Wrapping Up Your Application</a></p>
+  <p class="topless"><a href="login_system/tutorial/full_code/part8.html"
+                        title="previous chapter">Login System Tutorial Part 8 - Webpage Manipulation (Current Progress)</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="api.html"
                         title="next chapter">API Reference</a></p>
@@ -214,14 +215,14 @@
           <a href="api.html" title="API Reference"
              >next</a> |</li>
         <li class="right" >
-          <a href="document_system/tutorial/part17.html" title="Document System Tutorial Part 17 - Wrapping Up Your Application"
+          <a href="login_system/tutorial/full_code/part8.html" title="Login System Tutorial Part 8 - Webpage Manipulation (Current Progress)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

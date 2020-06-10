@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Model Functions &#8212; uadmin 0.4 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Language Functions" href="language_functions.html" />
+    <link rel="prev" title="IP Functions" href="ip_functions.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="language_functions.html" title="Language Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ip_functions.html" title="IP Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="model-functions">
+<h1>Model Functions<a class="headerlink" href="#model-functions" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
+<p>In this section, we will cover the following functions in-depth listed below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#uadmin-dashboardmenu">uadmin.DashboardMenu</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-hideindashboarder">uadmin.HideInDashboarder</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-model">uadmin.Model</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-newmodel">uadmin.NewModel</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-newmodelarray">uadmin.NewModelArray</a></p></li>
+</ul>
+<div class="section" id="uadmin-dashboardmenu">
+<h2>uadmin.DashboardMenu<a class="headerlink" href="#uadmin-dashboardmenu" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions">Back To Top</a></p>
+<p>DashboardMenu is a system in uAdmin that is used to add, modify and delete the elements of a model.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">DashboardMenu</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Model</span>
+    <span class="nx">MenuName</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;required;list_exclude;multilingual;filter&quot;`</span>
+    <span class="nx">URL</span>      <span class="kt">string</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">ToolTip</span>  <span class="kt">string</span>
+    <span class="nx">Icon</span>     <span class="kt">string</span> <span class="s">`uadmin:&quot;image&quot;`</span>
+    <span class="nx">Cat</span>      <span class="kt">string</span> <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">Hidden</span>   <span class="kt">bool</span>   <span class="s">`uadmin:&quot;filter&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>There is a function that you can use in DashboardMenu:</p>
+<ul class="simple">
+<li><p><strong>String()</strong> - Returns the MenuName</p></li>
+</ul>
+<p>Go to the main.go and apply the following codes below after the RegisterInlines section.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+
+    <span class="c1">// Some codes</span>
+
+    <span class="nx">dashboardmenu</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DashboardMenu</span><span class="p">{</span>
+        <span class="nx">MenuName</span><span class="p">:</span> <span class="s">&quot;Expressions&quot;</span><span class="p">,</span>
+        <span class="nx">URL</span><span class="p">:</span>      <span class="s">&quot;expression&quot;</span><span class="p">,</span>
+        <span class="nx">ToolTip</span><span class="p">:</span>  <span class="s">&quot;&quot;</span><span class="p">,</span>
+        <span class="nx">Icon</span><span class="p">:</span>     <span class="s">&quot;/media/images/expression.png&quot;</span><span class="p">,</span>
+        <span class="nx">Cat</span><span class="p">:</span>      <span class="s">&quot;Yeah!&quot;</span><span class="p">,</span>
+        <span class="nx">Hidden</span><span class="p">:</span>   <span class="kc">false</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">// This will create a new model based on the information assigned in</span>
+    <span class="c1">// the dashboardmenu variable.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">dashboardmenu</span><span class="p">)</span>
+
+    <span class="c1">// Returns the MenuName</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;String() returns %s.&quot;</span><span class="p">,</span> <span class="nx">dashboardmenu</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application and see what happens.</p>
+<p><strong>Terminal</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   String<span class="o">()</span> returns Expressions.
+</pre></div>
+</div>
+<img alt="../_images/expressionmodelcreated.png" src="../_images/expressionmodelcreated.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/dashboard-menu.html">Dashboard Menu</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-hideindashboarder">
+<h2>uadmin.HideInDashboarder<a class="headerlink" href="#uadmin-hideindashboarder" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions">Back To Top</a></p>
+<p>HideInDashboarder is used to check if a model should be hidden in the dashboard.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">HideInDashboarder</span> <span class="kd">interface</span><span class="p">{</span>
+    <span class="nx">HideInDashboard</span><span class="p">()</span> <span class="kt">bool</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Suppose I have five models in my dashboard: Todos, Categorys, Items, Friends, and Expressions. I want Friends and Expressions models to be hidden in the dashboard. In order to do that, go to the friend.go and expression.go inside the models folder and apply the HideInDashboard() function. Set the return value to <strong>true</strong> inside it.</p>
+<p><strong>friend.go</strong></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">Friend</span><span class="p">)</span> <span class="nx">HideInDashboard</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>expression.go</strong></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">Expression</span><span class="p">)</span> <span class="nx">HideInDashboard</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now go to the main.go and apply the following codes below inside the main function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Initialize the Expression and Friend models inside the modelList with</span>
+<span class="c1">// the array type of interface</span>
+<span class="nx">modelList</span> <span class="o">:=</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}{</span>
+    <span class="nx">models</span><span class="p">.</span><span class="nx">Expression</span><span class="p">{},</span>
+    <span class="nx">models</span><span class="p">.</span><span class="nx">Friend</span><span class="p">{},</span>
+<span class="p">}</span>
+
+<span class="c1">// Loop the execution process based on the modelList count</span>
+<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">modelList</span> <span class="p">{</span>
+
+    <span class="c1">// Returns the reflection type that represents the dynamic type of i</span>
+    <span class="nx">t</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">TypeOf</span><span class="p">(</span><span class="nx">modelList</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+
+    <span class="c1">// Calls the HideInDashboarder function to access the HideInDashboard</span>
+    <span class="c1">// function</span>
+    <span class="nx">hideItem</span> <span class="o">:=</span> <span class="nx">modelList</span><span class="p">[</span><span class="nx">i</span><span class="p">].(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">HideInDashboarder</span><span class="p">).</span><span class="nx">HideInDashboard</span><span class="p">()</span>
+
+    <span class="c1">// Initializes the dashboardmenu variable to assign the DashboardMenu</span>
+    <span class="nx">dashboardmenu</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DashboardMenu</span><span class="p">{</span>
+
+        <span class="c1">// Returns the name of the model based on reflection</span>
+        <span class="nx">MenuName</span><span class="p">:</span> <span class="nx">t</span><span class="p">.</span><span class="nx">Name</span><span class="p">(),</span>
+
+        <span class="c1">// Returns the boolean value based on the assigned return in the</span>
+        <span class="c1">// HideInDashboard()</span>
+        <span class="nx">Hidden</span><span class="p">:</span>   <span class="nx">hideItem</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Prints the information of the dashboardmenu</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;MenuName: %s,  Hidden: %t&quot;</span><span class="p">,</span> <span class="nx">dashboardmenu</span><span class="p">.</span><span class="nx">MenuName</span><span class="p">,</span> <span class="nx">dashboardmenu</span><span class="p">.</span><span class="nx">Hidden</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Go back to your application. Open the DashboardMenu then delete the Expressions and Friends model.</p>
+<img alt="../_images/deletetwomodels.png" src="../_images/deletetwomodels.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now rerun your application and see what happens.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   MenuName: Expression,  Hidden: <span class="nb">true</span>
+<span class="o">[</span>  INFO  <span class="o">]</span>   MenuName: Friend,  Hidden: <span class="nb">true</span>
+</pre></div>
+</div>
+<img alt="../_images/twomodelshidden.png" src="../_images/twomodelshidden.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, Friends and Expressions models are now hidden in the dashboard. If you go to the Dashboard Menus, you will see that they are checked in the Hidden field.</p>
+<img alt="../_images/twomodelshiddenchecked.png" src="../_images/twomodelshiddenchecked.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions-2.html">Miscellaneous Functions (2)</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-model">
+<h2>uadmin.Model<a class="headerlink" href="#uadmin-model" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions">Back To Top</a></p>
+<p>Model is the standard struct to be embedded in any other struct to make it a model for uAdmin.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Model</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">ID</span>        <span class="kt">uint</span>       <span class="s">`gorm:&quot;primary_key&quot;`</span>
+    <span class="nx">DeletedAt</span> <span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span> <span class="s">`sql:&quot;index&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In every struct, uadmin.Model must always come first before creating a field.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="p">(</span><span class="nx">struct_name</span><span class="p">)</span> <span class="kd">struct</span><span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span> <span class="c1">// &lt;-- place it here</span>
+    <span class="c1">// Some codes here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-newmodel">
+<h2>uadmin.NewModel<a class="headerlink" href="#uadmin-newmodel" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions">Back To Top</a></p>
+<p>NewModel creates a new model from a model name.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">pointer</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">Value</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>modelName string:</strong> Is the model you want to call in the function</p>
+<p><strong>pointer bool</strong> Points to the interface</p>
+</div></blockquote>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">Tutorial Part 7 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Suppose I have four records in my Category model.</p>
+<ul class="simple">
+<li><p>Education ID = 4</p></li>
+<li><p>Family ID = 3</p></li>
+<li><p>Work ID = 2</p></li>
+<li><p>Travel ID = 1</p></li>
+</ul>
+<img alt="../_images/categorylist1.png" src="../_images/categorylist1.png" />
+<p>Create a file named custom_todo.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// CustomTodoHandler !</span>
+<span class="kd">func</span> <span class="nx">CustomTodoHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/custom_todo&quot;</span><span class="p">)</span>
+
+    <span class="nx">res</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{}</span>
+
+    <span class="c1">// Call the category model and set the pointer to true</span>
+    <span class="nx">m</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">NewModel</span><span class="p">(</span><span class="s">&quot;category&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+
+    <span class="c1">// Get the third record in the category model</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">Interface</span><span class="p">(),</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1">// Assign the m.Interface() to the newmodel</span>
+    <span class="nx">newmodel</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Interface</span><span class="p">()</span>
+
+    <span class="c1">// Print the result in JSON format</span>
+    <span class="nx">res</span><span class="p">[</span><span class="s">&quot;status&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;ok&quot;</span>
+    <span class="nx">res</span><span class="p">[</span><span class="s">&quot;category&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">newmodel</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// CustomTodoHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/custom_todo/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">CustomTodoHandler</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while CustomTodoHandler is the name of the function inside custom_todo.go.</p>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/newmodeljson.png" src="../_images/newmodeljson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/new-model-and-new-model-array.html">New Model and New Model Array</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-newmodelarray">
+<h2>uadmin.NewModelArray<a class="headerlink" href="#uadmin-newmodelarray" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions">Back To Top</a></p>
+<p>NewModelArray creates a new model array from a model name.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">pointer</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">Value</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>modelName string:</strong> Is the model you want to call in the function</p>
+<p><strong>pointer bool</strong> Points to the interface</p>
+</div></blockquote>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">Tutorial Part 7 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Suppose I have four records in my Category model.</p>
+<img alt="../_images/categorylist1.png" src="../_images/categorylist1.png" />
+<p>Create a file named custom_todo.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// CustomTodoHandler !</span>
+<span class="kd">func</span> <span class="nx">CustomTodoHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/custom_todo&quot;</span><span class="p">)</span>
+
+    <span class="nx">res</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{}</span>
+
+    <span class="c1">// Call the category model and set the pointer to true</span>
+    <span class="nx">m</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">NewModelArray</span><span class="p">(</span><span class="s">&quot;category&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+
+    <span class="c1">// Fetch the records of the category model</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Filter</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">Interface</span><span class="p">(),</span> <span class="s">&quot;id &gt;= ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">// Assign the m.Interface() to the newmodelarray</span>
+    <span class="nx">newmodelarray</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Interface</span><span class="p">()</span>
+
+    <span class="c1">// Print the result in JSON format</span>
+    <span class="nx">res</span><span class="p">[</span><span class="s">&quot;status&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;ok&quot;</span>
+    <span class="nx">res</span><span class="p">[</span><span class="s">&quot;category&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">newmodelarray</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// CustomTodoHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/custom_todo/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">CustomTodoHandler</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while CustomTodoHandler is the name of the function inside custom_todo.go.</p>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/newmodelarrayjson.png" src="../_images/newmodelarrayjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/new-model-and-new-model-array.html">New Model and New Model Array</a></p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ip_functions.html"
+                        title="previous chapter">IP Functions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="language_functions.html"
+                        title="next chapter">Language Functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/model_functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="language_functions.html" title="Language Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ip_functions.html" title="IP Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

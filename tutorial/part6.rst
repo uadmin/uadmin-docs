@@ -1,14 +1,60 @@
-uAdmin Tutorial Part 6 - Back-end Validation
-============================================
-For more advanced validation, sometimes you need to implement some validation from the back-end. This is the case for validation that required access to the database to check for duplicate entries or check some permissions like “You are not allowed to assign this task to people outside your department”. Regardless of the case this is how to implement back-end validation.
-
-Let’s say we don’t want people to add duplicate entries for todo. The way we will do that is check the database and see if there is another todo record with the same name. If we find another record, we can return a message that tells the user that the todo item has been added to the system already.
-
-Open /models/todo.go and add a new method called Validate to your Todo struct.
+uAdmin Tutorial Part 6 - Applying uAdmin Tags
+=============================================
+Create a file named **item.go** inside your models folder with the following codes below:
 
 .. code-block:: go
 
-    // Todo model ...
+    package models
+
+    import (
+        "github.com/uadmin/uadmin"
+    )
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        Name        string `uadmin:"required"`
+        Description string
+        Cost        int
+        Rating      int
+    }
+
+Now register the model on main.go where `models` is the package name and `Item` is the model name:
+
+.. code-block:: go
+
+    func main() {
+        uadmin.Register(
+            models.Todo{},
+            models.Category{},
+            models.Friend{},
+            models.Item{},  //  <-- place it here
+        )
+
+        // Existing RegisterInlines code
+
+        // ----------- ADD THIS CODE -----------
+        uadmin.RegisterInlines(models.Item{}, map[string]string{
+            "Todo": "ItemID",
+        })
+        // ----------- ADD THIS CODE -----------
+
+        uadmin.StartServer()
+    }
+
+Set the foreign key of an Item model to the Todo model and apply the tag `help` to inform the user what are the requirements needed in order to accomplish his activity.
+
+.. code-block:: go
+
+    package models
+
+    import (
+        "time"
+
+        "github.com/uadmin/uadmin"
+    )
+
+    // Todo Model !
     type Todo struct {
         uadmin.Model
         Name        string
@@ -17,42 +63,221 @@ Open /models/todo.go and add a new method called Validate to your Todo struct.
         CategoryID  uint
         Friend      Friend `uadmin:"help:Who will be a part of your activity?"`
         FriendID    uint
+        
+        // Item Model
         Item        Item `uadmin:"help:What are the requirements needed in order to accomplish your activity?"`
+        // Item ID
         ItemID      uint
+
         TargetDate  time.Time
         Progress    int `uadmin:"progress_bar"`
     }
 
-    // Save model ...
-    func (t *Todo) Save() {
-        // Save the model to DB
-        uadmin.Save(t)
-        // Some other business Logic ...
+Now let's try something much cooler that we can apply in the Item model by adding different types of tags. Before we proceed, add more data in your Item model. Once you are done, let's add the `search` tag in the name field of item.go and see what happens.
+
+.. code-block:: go
+
+    package models
+
+    import (
+        "github.com/uadmin/uadmin"
+    )
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        Name        string `uadmin:"required;search"` // <-- place it here
+        Description string
+        Cost        int
+        Rating      int
     }
 
-    // Validate function ...
-    func (t Todo) Validate() (errMsg map[string]string) {
-        // Initialize the error messages
-        errMsg = map[string]string{}
-        // Get any records from the database that maches the name of
-        // this record and make sure the record is not the record we are
-        // editing right now
-        todo := Todo{}
-        if uadmin.Count(&todo, "name = ? AND id <> ?", t.Name, t.ID) != 0 {
-            errMsg["Name"] = "This todo name is already in the system"
-        }
-        return
-    }
+Result
 
-Notice that the receiver for Validate() is not a pointer but the struct type. Also notice that the return is a map where the key is the field name and the value is the error message.
+.. image:: assets/searchtagapplied.png
 
-If you try now to add a new record with an existing todo record’s name, it will show me this error:
+|
 
-.. image:: assets/todobackendvalidate.png
+Search the word **mini** and see what happens.
+
+.. image:: assets/searchtagappliedoutput.png
+
+|
+
+Nice! Now go back to item.go and apply the tag `categorical_filter` and `filter` in the Name field and see what happens.
+
+.. code-block:: go
+
+    `categorical_filter;filter`
+
+.. code-block:: go
+
+	Name string `uadmin:"required;search;categorical_filter;filter"`
+
+Rebuild your application. In Item model, click the filter button on the upper right.
+
+Result
+
+.. image:: assets/filtertagapplied.png
+
+|
+
+Now let's filter the word **iPad** and see what happens.
+
+.. image:: assets/filtertagappliedoutput.png
+
+|
+
+We can also apply `display_name` tag with a given value such as **Product Name**.
+
+.. code-block:: go
+
+    `display_name:Product Name`
+
+.. code-block:: go
+
+    Name string `uadmin:"required;search;categorical_filter;filter;display_name:Product Name"`
+
+|
+
+Result
+
+.. image:: assets/displaynametagapplied.png
    :align: center
 
 |
 
-You may also do the same process of applying validate function in the other models that you have, this time with using different variables related to the model and different error messages as part of your challenge. Once you master them, congrats! You are now ready to proceed with `configuring APIs`_.
+uAdmin has a `default_value` tag which will generate a value automatically in the field. Let's say **Computer**.
 
-.. _configuring APIs: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html
+.. code-block:: go
+
+    `default_value:Computer`
+
+.. code-block:: go
+
+    Name string `uadmin:"required;search;categorical_filter;filter;display_name:Product Name;default_value:Computer"`
+
+|
+
+Result
+
+.. image:: assets/defaultvaluetagapplied.png
+   :align: center
+
+|
+
+You can also add `multilingual` tag in the Description field.
+
+.. code-block:: go
+
+    Description string `uadmin:"multilingual"`
+
+|
+
+Result
+
+.. image:: assets/multilingualtagapplied.png
+
+|
+
+If you want to add more languages in your model, go to the Languages in the uAdmin dashboard.
+
+.. image:: assets/languageshighlighted.png
+
+|
+
+Let's say I want to add Chinese and Tagalog in the Items model. In order to do that, set the Active as enabled.
+
+.. image:: assets/activehighlighted.png
+   :align: center
+
+|
+
+Now go back to the Items model and see what happens.
+
+.. image:: assets/multilingualtagappliedmultiple.png
+
+To customize your own languages, visit `Language`_ for the instructions.
+
+.. _Language: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#language
+
+|
+
+In the Cost field, set the `money` tag and see what happens.
+
+.. code-block:: go
+
+    Cost int `uadmin:"money"`
+
+|
+
+Result
+
+.. image:: assets/moneytagapplied.png
+
+|
+
+You can also set `pattern` and `pattern_msg` tag in the Cost field. This means the user must input numbers only. If he inputs otherwise, the pattern message will show up on the screen.
+
+.. code-block:: go
+
+    Cost int `uadmin:"money;pattern:^[0-9]*$;pattern_msg:Your input must be a number."`
+
+|
+
+Result
+
+.. image:: assets/patterntagapplied.png
+
+|
+
+To solve this case, we can use a help tag feature in order to give users a solution to the complex tasks encountered in the model.
+
+.. code-block:: go
+
+    `help:Input numeric characters only in this field.`
+
+.. code-block:: go
+
+    Cost int `uadmin:"money;pattern:^[0-9]*$;pattern_msg:Your input must be a number.;help:Input numeric characters only in this field."`
+
+|
+
+Result
+
+.. image:: assets/helptagapplied.png
+   :align: center
+
+|
+
+We can also use min and max tags in the Rating field. Min tag means the minimum value that a user can input and the max one means the maximum value. Let's set the min value as 1 and the max value as 5.
+
+.. code-block:: go
+
+    Rating int `uadmin:"min:1;max:5"`
+
+|
+
+See what happens if the user inputs the value outside the range.
+
+.. image:: assets/minmaxtagapplied.png
+
+|
+
+Well done! Now you know how to apply most of the tags available in our uAdmin framework that are functional in our Todo List project.
+
+See `Tag Reference`_ for more examples.
+
+Click `here`_ to view our progress so far.
+
+In the `next part`_, we will talk on the concept of M2M and how is it useful in our project.
+
+
+.. _Tag Reference: https://uadmin-docs.readthedocs.io/en/latest/tags.html
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html
+.. _next part: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part6

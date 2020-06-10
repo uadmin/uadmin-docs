@@ -2,7 +2,7 @@ Document System Tutorial Part 8 - Drop Down List in a Separate Library
 ======================================================================
 In this part, we will discuss about creating a separate library that contains a drop down list.
 
-Let’s create a new file as a separate library in the models folder named “format.go” with the following codes below:
+Let’s create a new file as a separate library in the models folder named **format.go** with the following codes below:
 
 .. code-block:: go
 
@@ -30,7 +30,7 @@ The return values 1 and 2 are the ID of the drop down list values.
 
 Format is essential if you want to specify the extension of the file that you have uploaded in your application.
 
-Now let's import our created library to document.go and document_version.go and set the tag as "list_exclude" that hides the field or column name in the model structure.
+Now let's import our created library to **document.go** and **document_version.go** and set the tag as **list_exclude** that hides the field or column name in the model structure.
 
 **document.go**
 
@@ -69,7 +69,7 @@ Now let's import our created library to document.go and document_version.go and 
 
 As you can see, there is no FormatID field because Format is a not a model. It is a drop down list. Format is placed in the models folder because we are importing this drop down list in the Document and DocumentVersion models.
 
-Now let's run your application. Go to Document System Dashboard then open "DOCUMENTS".
+Now let's run your application. Go to Document System Dashboard then open **DOCUMENTS**.
 
 .. image:: assets/documentshighlighted.png
 
@@ -81,13 +81,13 @@ Click the existing record that you have.
 
 |
 
-As you notice, the Format field is a drop down list that contains three values: PDF, TXT, and Others. In fact that  our file is named "responsive" with PNG file extension, let's choose "Others" in the Format field. Click Save button afterwards.
+As you notice, the Format field is a drop down list that contains three values: PDF, TXT, and Others. In fact that  our file is named **responsive** with PNG file extension, let's choose **Others** in the Format field. Click Save button afterwards.
 
 .. image:: assets/dropdownlistdocument.png
 
 |
 
-Go back to Document System Dashboard then open "DOCUMENT VERSIONS".
+Go back to Document System Dashboard then open **DOCUMENT VERSIONS**.
 
 .. image:: assets/documentversionshighlighted.png
 
@@ -99,7 +99,7 @@ Click the existing record that you have.
 
 |
 
-As you notice, the Format field is a drop down list that contains three values: PDF, TXT, and Others. In fact that  our file is named "responsive" with PNG file extension, let's choose "Others" in the Format field.
+As you notice, the Format field is a drop down list that contains three values: PDF, TXT, and Others. In fact that  our file is named **responsive** with PNG file extension, let's choose **Others** in the Format field.
 
 .. image:: assets/dropdownlistdocumentversion.png
 
@@ -111,6 +111,14 @@ Result
 
 |
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will talk about updating the document version automatically if the file has changed by the user after saving the specific document in the model.
 
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part8.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part9.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part8

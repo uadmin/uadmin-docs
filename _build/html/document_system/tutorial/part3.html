@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Document System Tutorial Part 3 - Linking Models (Folders) &#8212; uadmin 0.3 documentation</title>
+    <title>Document System Tutorial Part 3 - Linking Models (Folders) &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
@@ -18,8 +18,8 @@
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Document System Tutorial Part 4 - Creating Records in Folders" href="part4.html" />
-    <link rel="prev" title="Document System Tutorial Part 2 - Creating and Registering a Model" href="part2.html" />
+    <link rel="next" title="Document System Tutorial Part 3 - Linking Models (Current Progress)" href="full_code/part3.html" />
+    <link rel="prev" title="Document System Tutorial Part 2 - Creating and Registering a Model (Current Progress)" href="full_code/part2.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -35,12 +35,12 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="part4.html" title="Document System Tutorial Part 4 - Creating Records in Folders"
+          <a href="full_code/part3.html" title="Document System Tutorial Part 3 - Linking Models (Current Progress)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="part2.html" title="Document System Tutorial Part 2 - Creating and Registering a Model"
+          <a href="full_code/part2.html" title="Document System Tutorial Part 2 - Creating and Registering a Model (Current Progress)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../coverage.html" accesskey="U">Document System Tutorials</a> &#187;</li> 
       </ul>
@@ -55,7 +55,7 @@
 <h1>Document System Tutorial Part 3 - Linking Models (Folders)<a class="headerlink" href="#document-system-tutorial-part-3-linking-models-folders" title="Permalink to this headline">¶</a></h1>
 <p>Linking a model to another model is as simple as creating a field using a foreign key. Foreign Key is the key used to link two models together.</p>
 <p><strong>What is the purpose of the foreign key?</strong> The purpose of the foreign key is to ensure referential integrity of the data. In other words, only values that are supposed to appear in the database are permitted.</p>
-<p>Let’s create a new file in the models folder named “folder_user.go” with the following codes below:</p>
+<p>Let’s create a new file in the models folder named <strong>folder_user.go</strong> with the following codes below:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -87,9 +87,9 @@
 </pre></div>
 </div>
 <p>In the example above, we declared the User field that calls the uadmin.User. This is a built-in system model where we can access the returning data inside which is the full name. UserID field was initialized because this is where we can fetch the returning data to be stored in the User field.</p>
-<p>We also declared a Folder field that calls the model name “Folder” together with FolderID as a uint data type. This is our created model that was discussed in the previous chapter.</p>
+<p>We also declared a Folder field that calls the model name <strong>Folder</strong> together with FolderID as a uint data type. This is our created model that was discussed in the previous chapter.</p>
 <p>Let’s add Read, Add, Edit, and Delete permissions to the user with the data type as bool (True or False). This is important especially if the folder contains confidential information. In this way, we cannot give access to all users who can read, add, edit, and delete the contents of the specific folder. We can give all access to the administrators. We can give access to some users but limited to what administrators can do. For instance, the administrators can read, add, edit and delete that specific folder. For some users, they can only read the folder but cannot add, edit and delete it because they have no access into it. That is how user permissions work.</p>
-<p>Let’s create another file in the models folder named “folder_group.go” with the following codes below:</p>
+<p>Let’s create another file in the models folder named <strong>folder_group.go</strong> with the following codes below:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -141,7 +141,13 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part3.html">here</a> to view our progress so far.</p>
 <p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part4.html">next part</a>, we will discuss about folder concepts and how to create records in an application.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="full_code/part3.html">Document System Tutorial Part 3 - Linking Models (Current Progress)</a></li>
+</ul>
+</div>
 </div>
 
 
@@ -157,6 +163,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quiz.html">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tags.html">Tag Reference</a></li>
@@ -167,11 +174,11 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="part2.html"
-                        title="previous chapter">Document System Tutorial Part 2 - Creating and Registering a Model</a></p>
+  <p class="topless"><a href="full_code/part2.html"
+                        title="previous chapter">Document System Tutorial Part 2 - Creating and Registering a Model (Current Progress)</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="part4.html"
-                        title="next chapter">Document System Tutorial Part 4 - Creating Records in Folders</a></p>
+  <p class="topless"><a href="full_code/part3.html"
+                        title="next chapter">Document System Tutorial Part 3 - Linking Models (Current Progress)</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -200,19 +207,19 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="part4.html" title="Document System Tutorial Part 4 - Creating Records in Folders"
+          <a href="full_code/part3.html" title="Document System Tutorial Part 3 - Linking Models (Current Progress)"
              >next</a> |</li>
         <li class="right" >
-          <a href="part2.html" title="Document System Tutorial Part 2 - Creating and Registering a Model"
+          <a href="full_code/part2.html" title="Document System Tutorial Part 2 - Creating and Registering a Model (Current Progress)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../coverage.html" >Document System Tutorials</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

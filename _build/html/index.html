@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>uAdmin the Golang Web Framework &#8212; uadmin 0.3 documentation</title>
+    <title>uAdmin the Golang Web Framework &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">uadmin 0.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">uadmin 0.4 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -93,55 +93,26 @@ following code in “main.go”.</p>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
-    <span class="s">&quot;time&quot;</span>
 <span class="p">)</span>
 
-<span class="c1">// Todo model ...</span>
-<span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
-        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
-        <span class="nx">Name</span>        <span class="kt">string</span>
-        <span class="nx">Description</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;html&quot;`</span>
-        <span class="nx">TargetDate</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
-        <span class="nx">Progress</span>    <span class="kt">int</span> <span class="s">`uadmin:&quot;progress_bar&quot;`</span>
-<span class="p">}</span>
-
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span><span class="nx">Todo</span><span class="p">{})</span>
-        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">()</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>In Windows, you need to use localhost in order to run your application (e.g. <a class="reference external" href="http://localhost:8080">http://localhost:8080</a>). Another way is to set your loopback Internet protocol (IP) address by using uadmin.BindIP to establish an IP connection to the same machine or computer being used by the end-user.</p>
-</div>
-<p>Sample:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
-    <span class="c1">// Put this code before uadmin.StartServer</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">BindIP</span> <span class="p">=</span> <span class="s">&quot;127.0.0.1&quot;</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">()</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Now to run your code (Linux and Apple macOS):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ go build<span class="p">;</span> ./todo
-<span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">9</span>/9<span class="o">]</span>
-<span class="o">[</span>   OK   <span class="o">]</span>   Initializing Languages: <span class="o">[</span><span class="m">185</span>/185<span class="o">]</span>
-<span class="o">[</span>  INFO  <span class="o">]</span>   Auto generated admin user. Username: admin, Password: admin.
-<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">30</span>/30<span class="o">]</span>
-<span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
-         ___       __          _
-  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
- / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
-/ /_/ / ___ / /_/ / / / / / / / / / /
-<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>go build<span class="p">;</span> ./todo
 </pre></div>
 </div>
 <p>In Windows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; go build <span class="o">&amp;&amp;</span> todo.exe
-<span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">9</span>/9<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>go build <span class="p">&amp;</span> todo
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
 <span class="o">[</span>   OK   <span class="o">]</span>   Initializing Languages: <span class="o">[</span><span class="m">185</span>/185<span class="o">]</span>
 <span class="o">[</span>  INFO  <span class="o">]</span>   Auto generated admin user. Username: admin, Password: admin.
-<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">30</span>/30<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
 <span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
          ___       __          _
   __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
@@ -150,31 +121,29 @@ following code in “main.go”.</p>
 <span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
 </pre></div>
 </div>
-<p>If you go to the explorer, you will notice that there are automatically generated <strong>.key</strong> and <strong>.salt</strong> files hidden in your computer. <strong>.key</strong> is used for authentication process to assure that the key of the user (“person A” for instance) held by “person B” belongs to the authenticated user which is “person A”. <strong>.salt</strong> is extra salt added to password hashing. They add an extra security to your application. Once they have been deleted, no one can login to your application unless you use the recovery admin account that is automatically generated by your terminal.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In Windows, you need to use localhost in order to run your application (e.g. <a class="reference external" href="http://localhost:8080">http://localhost:8080</a>).</p>
+</div>
+<p>If you go to the explorer, you will notice that there are automatically generated <strong>.key</strong> and <strong>.salt</strong> files hidden in your computer.</p>
+<p><strong>.key</strong> is used for authentication process to assure that the key of the user (“person A” for instance) held by “person B” belongs to the authenticated user which is “person A”.</p>
+<p><strong>.salt</strong> is extra salt added to password hashing. They add an extra security to your application.</p>
+<p>Once they have been deleted, no one can login to your application unless you use the recovery admin account that is automatically generated by your terminal.</p>
 <img alt="_images/keysalt.png" class="align-center" src="_images/keysalt.png" />
-<p>Open your browser and type the IP address above. Then login using “admin” as username and password.</p>
-<img alt="_images/loginform.png" src="_images/loginform.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>You will be greeted by the uAdmin dashboard. System models are built in to uAdmin, and the rest are the ones we created, in this case TODOS model. Open the TODOS model.</p>
-<img alt="_images/todoshighlightedlog.png" src="_images/todoshighlightedlog.png" />
+<p>Open your browser and go to <a class="reference external" href="http://localhost:8080">http://localhost:8080</a>. Then login using “admin” as username and password.</p>
+<img alt="_images/loginform2.png" class="align-center" src="_images/loginform2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Click Add New TODO.</p>
-<img alt="_images/todomodel.png" src="_images/todomodel.png" />
+<p>Well done! You have created your first application with the following <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html">system models</a> in the uAdmin dashboard.</p>
+<img alt="_images/uadmindashboard1.png" src="_images/uadmindashboard1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Fill up the fields like in the example below:</p>
-<img alt="_images/todomodelcreate.png" src="_images/todomodelcreate.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Save it and new data will be added to your model.</p>
-<img alt="_images/todomodeloutput.png" src="_images/todomodeloutput.png" />
-<p>Well done! You have created your first application.</p>
+<p>Go to <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/coverage.html">uAdmin Tutorials</a> section for the continuation.</p>
 </div>
 <div class="section" id="publish-your-app">
 <h2>Publish your app<a class="headerlink" href="#publish-your-app" title="Permalink to this headline">¶</a></h2>
@@ -196,10 +165,10 @@ Enter the port that your server run on <span class="o">[</span><span class="m">8
 <div class="section" id="update-uadmin-to-latest-version">
 <h2>Update uAdmin to latest version<a class="headerlink" href="#update-uadmin-to-latest-version" title="Permalink to this headline">¶</a></h2>
 <p>Open your terminal and apply the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/go/src/github.com/uadmin/uadmin/cmd/uadmin
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/go/src/github.com/uadmin/uadmin
 $ go install
 $ uadmin version
-<span class="o">[</span>  INFO  <span class="o">]</span>   <span class="m">0</span>.3.1
+<span class="o">[</span>  INFO  <span class="o">]</span>   <span class="m">0</span>.4
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">
@@ -209,6 +178,7 @@ $ uadmin version
 <li class="toctree-l1"><a class="reference internal" href="application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quiz.html">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tags.html">Tag Reference</a></li>
@@ -234,6 +204,7 @@ $ uadmin version
 <li class="toctree-l1"><a class="reference internal" href="application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quiz.html">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tags.html">Tag Reference</a></li>
@@ -276,12 +247,12 @@ $ uadmin version
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">uadmin 0.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">uadmin 0.4 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

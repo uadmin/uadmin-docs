@@ -1,0 +1,61 @@
+{
+  "display_name": "Translate me ---> Setting",
+  "fields": {
+    "Category": {
+      "display_name": "Translate me ---> Category",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Code": {
+      "display_name": "Translate me ---> Code",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "DataType": {
+      "display_name": "Translate me ---> Data Type",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "DefaultValue": {
+      "display_name": "Translate me ---> Default Value",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Help": {
+      "display_name": "Translate me ---> Help",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Name": {
+      "display_name": "Translate me ---> Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Value": {
+      "display_name": "Translate me ---> Value",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

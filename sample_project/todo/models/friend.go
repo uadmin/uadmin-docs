@@ -1,31 +1,33 @@
 package models
 
-import "github.com/uadmin/uadmin"
+import (
+	"github.com/uadmin/uadmin"
+)
 
-// Nationality ...
+// Nationality Field !
 type Nationality int
 
-// Chinese ...
+// Chinese !
 func (Nationality) Chinese() Nationality {
 	return 1
 }
 
-// Filipino ...
+// Filipino !
 func (Nationality) Filipino() Nationality {
 	return 2
 }
 
-// Others ...
+// Others !
 func (Nationality) Others() Nationality {
 	return 3
 }
 
-// Friend model ...
+// Friend Model !
 type Friend struct {
 	uadmin.Model
 	Name        string `uadmin:"required"`
 	Email       string `uadmin:"email"`
-	Password    string `uadmin:"password;list_exclude;encrypt"`
+	Password    string `uadmin:"password;list_exclude"`
 	Nationality Nationality
 	Invite      string `uadmin:"link"`
 }

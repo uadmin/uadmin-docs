@@ -1,0 +1,2187 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>uAdmin Settings &#8212; uadmin 0.4 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tag Reference" href="../tags.html" />
+    <link rel="prev" title="System Reference" href="../system_reference.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../tags.html" title="Tag Reference"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../system_reference.html" title="System Reference"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../system_reference.html" accesskey="U">System Reference</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="uadmin-settings">
+<h1>uAdmin Settings<a class="headerlink" href="#uadmin-settings" title="Permalink to this headline">¶</a></h1>
+<p>Here are all build-in uAdmin Settings, their format, and how to use them in the project.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#allowed-ips">Allowed IPs</a></p></li>
+<li><p><a class="reference internal" href="#api-disabled-add">API Disabled Add</a></p></li>
+<li><p><a class="reference internal" href="#api-disabled-delete">API Disabled Delete</a></p></li>
+<li><p><a class="reference internal" href="#api-disabled-edit">API Disabled Edit</a></p></li>
+<li><p><a class="reference internal" href="#api-disabled-read">API Disabled Read</a></p></li>
+<li><p><a class="reference internal" href="#api-disabled-schema">API Disabled Schema</a></p></li>
+<li><p><a class="reference internal" href="#api-log-add">API Log Add</a></p></li>
+<li><p><a class="reference internal" href="#api-log-delete">API Log Delete</a></p></li>
+<li><p><a class="reference internal" href="#api-log-edit">API Log Edit</a></p></li>
+<li><p><a class="reference internal" href="#api-log-read">API Log Read</a></p></li>
+<li><p><a class="reference internal" href="#api-log-schema">API Log Schema</a></p></li>
+<li><p><a class="reference internal" href="#api-post-query-add">API Post Query Add</a></p></li>
+<li><p><a class="reference internal" href="#api-post-query-delete">API Post Query Delete</a></p></li>
+<li><p><a class="reference internal" href="#api-post-query-edit">API Post Query Edit</a></p></li>
+<li><p><a class="reference internal" href="#api-post-query-read">API Post Query Read</a></p></li>
+<li><p><a class="reference internal" href="#api-post-query-schema">API Post Query Schema</a></p></li>
+<li><p><a class="reference internal" href="#api-pre-query-add">API Pre Query Add</a></p></li>
+<li><p><a class="reference internal" href="#api-pre-query-delete">API Pre Query Delete</a></p></li>
+<li><p><a class="reference internal" href="#api-pre-query-edit">API Pre Query Edit</a></p></li>
+<li><p><a class="reference internal" href="#api-pre-query-read">API Pre Query Read</a></p></li>
+<li><p><a class="reference internal" href="#api-pre-query-schema">API Pre Query Schema</a></p></li>
+<li><p><a class="reference internal" href="#api-public-add">API Public Add</a></p></li>
+<li><p><a class="reference internal" href="#api-public-delete">API Public Delete</a></p></li>
+<li><p><a class="reference internal" href="#api-public-edit">API Public Edit</a></p></li>
+<li><p><a class="reference internal" href="#api-public-read">API Public Read</a></p></li>
+<li><p><a class="reference internal" href="#api-public-schema">API Public Schema</a></p></li>
+<li><p><a class="reference internal" href="#blocked-ips">Blocked IPs</a></p></li>
+<li><p><a class="reference internal" href="#cache-permissions">Cache Permissions</a></p></li>
+<li><p><a class="reference internal" href="#cache-sessions">Cache Sessions</a></p></li>
+<li><p><a class="reference internal" href="#cache-translation">Cache Translation</a></p></li>
+<li><p><a class="reference internal" href="#debugdb">DebugDB</a></p></li>
+<li><p><a class="reference internal" href="#email-from">Email From</a></p></li>
+<li><p><a class="reference internal" href="#email-password">Email Password</a></p></li>
+<li><p><a class="reference internal" href="#email-smtp-server">Email SMTP Server</a></p></li>
+<li><p><a class="reference internal" href="#email-smtp-server-port">Email SMTP Server Port</a></p></li>
+<li><p><a class="reference internal" href="#email-username">Email Username</a></p></li>
+<li><p><a class="reference internal" href="#http-log-format">HTTP Log Format</a></p></li>
+<li><p><a class="reference internal" href="#log-add">Log Add</a></p></li>
+<li><p><a class="reference internal" href="#log-delete">Log Delete</a></p></li>
+<li><p><a class="reference internal" href="#log-edit">Log Edit</a></p></li>
+<li><p><a class="reference internal" href="#log-http-requests">Log HTTP Requests</a></p></li>
+<li><p><a class="reference internal" href="#log-read">Log Read</a></p></li>
+<li><p><a class="reference internal" href="#log-trail">Log Trail</a></p></li>
+<li><p><a class="reference internal" href="#max-image-width">Max Image Width</a></p></li>
+<li><p><a class="reference internal" href="#max-image-height">Max Image Height</a></p></li>
+<li><p><a class="reference internal" href="#max-upload-file-size">Max Upload File Size</a></p></li>
+<li><p><a class="reference internal" href="#optimize-sql-query">Optimize SQL Query</a></p></li>
+<li><p><a class="reference internal" href="#otp-algorithm">OTP Algorithm</a></p></li>
+<li><p><a class="reference internal" href="#otp-digits">OTP Digits</a></p></li>
+<li><p><a class="reference internal" href="#otp-period">OTP Period</a></p></li>
+<li><p><a class="reference internal" href="#otp-skew">OTP Skew</a></p></li>
+<li><p><a class="reference internal" href="#page-length">Page Length</a></p></li>
+<li><p><a class="reference internal" href="#port">Port</a></p></li>
+<li><p><a class="reference internal" href="#public-media">Public Media</a></p></li>
+<li><p><a class="reference internal" href="#rate-limit">Rate Limit</a></p></li>
+<li><p><a class="reference internal" href="#rate-limit-burst">Rate Limit Burst</a></p></li>
+<li><p><a class="reference internal" href="#report-time-stamp">Report Time Stamp</a></p></li>
+<li><p><a class="reference internal" href="#reporting-level">Reporting Level</a></p></li>
+<li><p><a class="reference internal" href="#restrict-session-ip">Restrict Session IP</a></p></li>
+<li><p><a class="reference internal" href="#retain-media-versions">Retain Media Versions</a></p></li>
+<li><p><a class="reference internal" href="#root-url">Root URL</a></p></li>
+<li><p><a class="reference internal" href="#site-name">Site Name</a></p></li>
+<li><p><a class="reference internal" href="#system-metrics">System Metrics</a></p></li>
+<li><p><a class="reference internal" href="#theme">Theme</a></p></li>
+<li><p><a class="reference internal" href="#trail-logging-level">Trail Logging Level</a></p></li>
+<li><p><a class="reference internal" href="#user-metrics">User Metrics</a></p></li>
+</ul>
+<div class="section" id="allowed-ips">
+<h2>Allowed IPs<a class="headerlink" href="#allowed-ips" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Allowed IPs is a list of allowed IPs to access uAdmin interface in one of the following formats:</p>
+<ul class="simple">
+<li><p>“*” = Allow all</p></li>
+<li><p>“” = Allow none</p></li>
+<li><p>“192.168.1.1” = Only allow this IP</p></li>
+<li><p>“192.168.1.0/24” = Allow all IPs from 192.168.1.1 to 192.168.1.254</p></li>
+</ul>
+<p>You can also create a list of the above formats using comma to separate them.</p>
+<p>For example: “192.168.1.1, 192.168.1.2, 192.168.0.0/24”</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: *</p></li>
+<li><p><strong>Data Type</strong>: String</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-allowedips">uAdmin.AllowedIPs</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, assign your IP address connected on your PC in the AllowedIPs function.</p>
+<img alt="../_images/allowedipssetting.png" src="../_images/allowedipssetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now link the host to your IP and see what happens.</p>
+<img alt="../_images/allowedipsresult1.png" src="../_images/allowedipsresult1.png" />
+</div>
+<div class="section" id="api-disabled-add">
+<h2>API Disabled Add<a class="headerlink" href="#api-disabled-add" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Disabled Add controls the data API’s disabled for add commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledadd">uAdmin.APIDisabledAdd</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-disabled-delete">
+<h2>API Disabled Delete<a class="headerlink" href="#api-disabled-delete" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Disabled Delete controls the data API’s disabled for delete commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisableddelete">uAdmin.APIDisabledDelete</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-disabled-edit">
+<h2>API Disabled Edit<a class="headerlink" href="#api-disabled-edit" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Disabled Edit controls the data API’s disabled for edit commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisablededit">uAdmin.APIDisabledEdit</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-disabled-read">
+<h2>API Disabled Read<a class="headerlink" href="#api-disabled-read" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Disabled Read controls the data API’s disabled for read commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledread">uAdmin.APIDisabledRead</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-disabled-schema">
+<h2>API Disabled Schema<a class="headerlink" href="#api-disabled-schema" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Disabled Schema controls the data API’s disabled for schema commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledschema">uAdmin.APIDisabledSchema</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-log-add">
+<h2>API Log Add<a class="headerlink" href="#api-log-add" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Log Add controls the data API’s logging for add commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 1</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogadd">uAdmin.APILogAdd</a></p></li>
+</ul>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#add-multiple">Add Multiple</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#add-one">Add One</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, enable the APILogAdd then click Save button on the bottom right corner.</p>
+<img alt="../_images/apilogaddsettingenabled.png" src="../_images/apilogaddsettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s call this URL in the address bar to add multiple records in the Document model with the following information below:</p>
+<p><strong>First Record</strong></p>
+<ul class="simple">
+<li><p>Name: Golang</p></li>
+<li><p>Author: John</p></li>
+</ul>
+<p><strong>Second Record</strong></p>
+<ul class="simple">
+<li><p>Name: uAdmin</p></li>
+<li><p>Author: Adam</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+<span class="c1"># __0 is the first index</span>
+<span class="c1"># __1 is the second index</span>
+http://api.example.com/api/d/document/add/?_name__0<span class="o">=</span>Golang<span class="p">&amp;</span><span class="nv">_author__0</span><span class="o">=</span>John<span class="p">&amp;</span><span class="nv">_name__1</span><span class="o">=</span>uAdmin<span class="p">&amp;</span><span class="nv">_author__1</span><span class="o">=</span>Adam
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">1</span><span class="p">,</span>
+        <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns an array with a list of IDs for the newly created records.</p>
+<p>Now go back to the uAdmin dashboard.</p>
+<img alt="../_images/dashboardfromsettings.png" src="../_images/dashboardfromsettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click on “LOGS”.</p>
+<img alt="../_images/logshighlighted3.png" src="../_images/logshighlighted3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in adding records through HTTP API was recorded in the Log model.</p>
+<img alt="../_images/apilogaddenabled1.png" src="../_images/apilogaddenabled1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s try disabling the API Log Add in the Settings.</p>
+<img alt="../_images/apilogaddsettingdisabled.png" src="../_images/apilogaddsettingdisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s call this URL to add a new record in the Document model with the following information below:</p>
+<ul class="simple">
+<li><p>Name: Programming</p></li>
+<li><p>Author: Admin</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+http://api.example.com/api/d/document/add/?_name<span class="o">=</span>Programming<span class="p">&amp;</span><span class="nv">_author</span><span class="o">=</span>Admin
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the ID of the newly created record.</p>
+<p>Check the “LOGS” to see the result.</p>
+<img alt="../_images/apilogadddisabled1.png" src="../_images/apilogadddisabled1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in adding a record through HTTP API was not recorded in the Log model.</p>
+</div>
+<div class="section" id="api-log-delete">
+<h2>API Log Delete<a class="headerlink" href="#api-log-delete" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Log Delete controls the data API’s logging for delete commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 1</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogdelete">uAdmin.APILogDelete</a></p></li>
+</ul>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#delete-multiple">Delete Multiple</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#delete-one">Delete One</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, enable the APILogDelete then click Save button on the bottom right corner.</p>
+<img alt="../_images/apilogdeletesettingenabled.png" src="../_images/apilogdeletesettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="../_images/itemfiverecords1.png" src="../_images/itemfiverecords1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this URL in the address bar to delete records where the name of an item contains “iPad”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+http://api.example.com/api/d/item/delete/?name__contains<span class="o">=</span>iPad
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>Now go back to the uAdmin dashboard.</p>
+<img alt="../_images/dashboardfromsettings.png" src="../_images/dashboardfromsettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click on “LOGS”.</p>
+<img alt="../_images/logshighlighted3.png" src="../_images/logshighlighted3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in deleting records through HTTP API that contains “iPad” in the item name was recorded in the Log model.</p>
+<img alt="../_images/apilogdeleteenabled1.png" src="../_images/apilogdeleteenabled1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s try disabling the API Log Delete in the Settings.</p>
+<img alt="../_images/apilogdeletesettingdisabled.png" src="../_images/apilogdeletesettingdisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s call this URL in the address bar to delete the fourth record in the database.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 4 is an ID number</span>
+http://api.example.com/api/d/item/delete/4/
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>Check the “LOGS” to see the result.</p>
+<img alt="../_images/apilogdeletedisabled1.png" src="../_images/apilogdeletedisabled1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in deleting the fourth record through HTTP API was not recorded in the Log model.</p>
+</div>
+<div class="section" id="api-log-edit">
+<h2>API Log Edit<a class="headerlink" href="#api-log-edit" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Log Edit controls the data API’s logging for edit commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 1</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogedit">uAdmin.APILogEdit</a></p></li>
+</ul>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#edit-multiple">Edit Multiple</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#edit-one">Edit One</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, enable the APILogEdit then click Save button on the bottom right corner.</p>
+<img alt="../_images/apilogeditsettingenabled.png" src="../_images/apilogeditsettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose you have five records in the Item model where all iPad items have a rating of 4.</p>
+<img alt="../_images/itemipadoldrating1.png" src="../_images/itemipadoldrating1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this URL to edit the rating of all iPad items to a value of 5.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+<span class="c1"># rating=4&amp;_rating=5 means that where rating is equal to 4, change the</span>
+<span class="c1"># rating value to 5</span>
+http://api.example.com/api/d/item/edit/?rating<span class="o">=</span><span class="m">4</span><span class="p">&amp;</span><span class="nv">_rating</span><span class="o">=</span><span class="m">5</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>Now go back to the uAdmin dashboard.</p>
+<img alt="../_images/dashboardfromsettings.png" src="../_images/dashboardfromsettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click on “LOGS”.</p>
+<img alt="../_images/logshighlighted3.png" src="../_images/logshighlighted3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in editing records through HTTP API was recorded in the Log model.</p>
+<img alt="../_images/apilogeditenabled1.png" src="../_images/apilogeditenabled1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s try disabling the API Log Edit in the Settings.</p>
+<img alt="../_images/apilogeditsettingdisabled.png" src="../_images/apilogeditsettingdisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose the first record in the Item model is named as “Robot”.</p>
+<img alt="../_images/itemfirstrecordrobot1.png" src="../_images/itemfirstrecordrobot1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this URL to edit the name of the first record in the database from “Robot” to “Supercomputer”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 1 is an ID number</span>
+<span class="c1"># name is a field name</span>
+http://api.example.com/api/d/item/edit/1/?_name<span class="o">=</span>Supercomputer
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>Check the “LOGS” to see the result.</p>
+<img alt="../_images/apilogeditdisabled1.png" src="../_images/apilogeditdisabled1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in editing the first record through HTTP API was not recorded in the Log model.</p>
+</div>
+<div class="section" id="api-log-read">
+<h2>API Log Read<a class="headerlink" href="#api-log-read" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Log Read controls the data API’s logging for read commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogread">uAdmin.APILogRead</a></p></li>
+</ul>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#read-multiple">Read Multiple</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#read-one">Read One</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, enable the APILogRead then click Save button on the bottom right corner.</p>
+<img alt="../_images/apilogreadsettingenabled.png" src="../_images/apilogreadsettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="../_images/itemfiverecords1.png" src="../_images/itemfiverecords1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this URL to read record(s) where rating is equal to 3.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># rating is a field name</span>
+http://api.example.com/api/d/item/read/?rating<span class="o">=</span><span class="m">3</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="../_images/readmultipleresult1.png" class="align-center" src="../_images/readmultipleresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where rating is equal to 3.</p>
+<p>Now go back to the uAdmin dashboard.</p>
+<img alt="../_images/dashboardfromsettings.png" src="../_images/dashboardfromsettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click on “LOGS”.</p>
+<img alt="../_images/logshighlighted3.png" src="../_images/logshighlighted3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in reading records through HTTP API was recorded in the Log model.</p>
+<img alt="../_images/apilogreadenabled1.png" src="../_images/apilogreadenabled1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s try disabling the API Log Read in the Settings.</p>
+<img alt="../_images/apilogreadsettingdisabled.png" src="../_images/apilogreadsettingdisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this URL to read the second record in the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 2 is an ID number</span>
+http://api.example.com/api/d/item/read/2/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="../_images/readoneresult1.png" class="align-center" src="../_images/readoneresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing an item where ID=2.</p>
+<p>Check the “LOGS” to see the result.</p>
+<img alt="../_images/apilogreaddisabled1.png" src="../_images/apilogreaddisabled1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in reading the second record through HTTP API was not recorded in the Log model.</p>
+</div>
+<div class="section" id="api-log-schema">
+<h2>API Log Schema<a class="headerlink" href="#api-log-schema" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Log Schema controls the data API’s logging for schema commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 1</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogschema">uAdmin.APILogSchema</a></p></li>
+</ul>
+<p>Prerequisite:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#schema">Schema</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, enable the APILogSchema then click Save button on the bottom right corner.</p>
+<img alt="../_images/apilogschemasettingenabled.png" src="../_images/apilogschemasettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="../_images/itemfiverecords1.png" src="../_images/itemfiverecords1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this URL to read the full schema of the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/api/d/item/schema/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="../_images/schemaresult1.png" class="align-center" src="../_images/schemaresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing uAdmin’s ModelSchema of the Item model.</p>
+<p>Now go back to the uAdmin dashboard.</p>
+<img alt="../_images/dashboardfromsettings.png" src="../_images/dashboardfromsettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click on “LOGS”.</p>
+<img alt="../_images/logshighlighted3.png" src="../_images/logshighlighted3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in getting the schema of the Item model through HTTP API was recorded in the Log model.</p>
+<img alt="../_images/apilogschemaenabled1.png" src="../_images/apilogschemaenabled1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s try disabling the API Log Schema in the Settings.</p>
+<img alt="../_images/apilogschemasettingdisabled.png" src="../_images/apilogschemasettingdisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Recall this URL to read the full schema of the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/api/d/item/schema/
+</pre></div>
+</div>
+<p>Check the “LOGS” to see the result.</p>
+<img alt="../_images/apilogschemadisabled1.png" src="../_images/apilogschemadisabled1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in getting the schema of the Item model through HTTP API was not recorded in the Log model.</p>
+</div>
+<div class="section" id="api-post-query-add">
+<h2>API Post Query Add<a class="headerlink" href="#api-post-query-add" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Post Query Add controls the data API’s post query for add commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryadd">uAdmin.APIPostQueryAdd</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-post-query-delete">
+<h2>API Post Query Delete<a class="headerlink" href="#api-post-query-delete" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Post Query Delete controls the data API’s post query for delete commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostquerydelete">uAdmin.APIPostQueryDelete</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-post-query-edit">
+<h2>API Post Query Edit<a class="headerlink" href="#api-post-query-edit" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Post Query Edit controls the data API’s post query for edit commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryedit">uAdmin.APIPostQueryEdit</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-post-query-read">
+<h2>API Post Query Read<a class="headerlink" href="#api-post-query-read" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Post Query Read controls the data API’s post query for read commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryread">uAdmin.APIPostQueryRead</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-post-query-schema">
+<h2>API Post Query Schema<a class="headerlink" href="#api-post-query-schema" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Post Query Schema controls the data API’s post query for schema commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryschema">uAdmin.APIPostQuerySchema</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-pre-query-add">
+<h2>API Pre Query Add<a class="headerlink" href="#api-pre-query-add" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Pre Query Add controls the data API’s pre query for add commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryadd">uAdmin.APIPreQueryAdd</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-pre-query-delete">
+<h2>API Pre Query Delete<a class="headerlink" href="#api-pre-query-delete" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Pre Query Delete controls the data API’s pre query for delete commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequerydelete">uAdmin.APIPreQueryDelete</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-pre-query-edit">
+<h2>API Pre Query Edit<a class="headerlink" href="#api-pre-query-edit" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Pre Query Edit controls the data API’s pre query for edit commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryedit">uAdmin.APIPreQueryEdit</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-pre-query-read">
+<h2>API Pre Query Read<a class="headerlink" href="#api-pre-query-read" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Pre Query Read controls the data API’s pre query for read commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryread">uAdmin.APIPreQueryRead</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-pre-query-schema">
+<h2>API Pre Query Schema<a class="headerlink" href="#api-pre-query-schema" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Pre Query Schema controls the data API’s pre query for schema commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryschema">uAdmin.APIPreQuerySchema</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-public-add">
+<h2>API Public Add<a class="headerlink" href="#api-public-add" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Public Add controls the data API’s public for add commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicadd">uAdmin.APIPublicAdd</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-public-delete">
+<h2>API Public Delete<a class="headerlink" href="#api-public-delete" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Public Delete controls the data API’s public for delete commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicdelete">uAdmin.APIPublicDelete</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-public-edit">
+<h2>API Public Edit<a class="headerlink" href="#api-public-edit" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Public Edit controls the data API’s public for edit commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicedit">uAdmin.APIPublicEdit</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-public-read">
+<h2>API Public Read<a class="headerlink" href="#api-public-read" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Public Read controls the data API’s public for read commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicread">uAdmin.APIPublicRead</a></p></li>
+</ul>
+</div>
+<div class="section" id="api-public-schema">
+<h2>API Public Schema<a class="headerlink" href="#api-public-schema" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>API Public Schema controls the data API’s public for schema commands.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicschema">uAdmin.APIPublicSchema</a></p></li>
+</ul>
+</div>
+<div class="section" id="blocked-ips">
+<h2>Blocked IPs<a class="headerlink" href="#blocked-ips" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>BlockedIPs is a list of blocked IPs from accessing uAdmin interface in one of the following formats:</p>
+<ul class="simple">
+<li><p>“*” = Block all</p></li>
+<li><p>“” = Block none</p></li>
+<li><p>“192.168.1.1” = Only block this IP</p></li>
+<li><p>“192.168.1.0/24” = Block all IPs from 192.168.1.1 to 192.168.1.254</p></li>
+</ul>
+<p>You can also create a list of the above formats using comma to separate them.</p>
+<p>For example: “192.168.1.1, 192.168.1.2, 192.168.0.0/24”</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: “”</p></li>
+<li><p><strong>Data Type</strong>: String</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-blockedips">uAdmin.BlockedIPs</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, assign your IP address connected on your PC in the BlockedIPs function.</p>
+<img alt="../_images/blockedipssetting.png" src="../_images/blockedipssetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now link the host to your IP and see what happens.</p>
+<img alt="../_images/blockedipsresult1.png" src="../_images/blockedipsresult1.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions-3.html">Miscellaneous Functions (3)</a></p></li>
+</ul>
+</div>
+<div class="section" id="cache-permissions">
+<h2>Cache Permissions<a class="headerlink" href="#cache-permissions" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Cache Permissions allows uAdmin to store permissions data in memory.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 1</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cachepermissions">uAdmin.CachePermissions</a></p></li>
+</ul>
+</div>
+<div class="section" id="cache-sessions">
+<h2>Cache Sessions<a class="headerlink" href="#cache-sessions" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Cache Sessions allows uAdmin to store sessions data in memory.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 1</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cachesessions">uAdmin.CacheSessions</a></p></li>
+</ul>
+</div>
+<div class="section" id="cache-translation">
+<h2>Cache Translation<a class="headerlink" href="#cache-translation" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Cache Translation allows a translation to store data in a cache memory.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-cachetranslation">uAdmin.CacheTranslation</a></p></li>
+</ul>
+<p>Enable</p>
+<img alt="../_images/cachetranslationsettingenabled.png" src="../_images/cachetranslationsettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Disable</p>
+<img alt="../_images/cachetranslationsettingdisabled.png" src="../_images/cachetranslationsettingdisabled.png" />
+</div>
+<div class="section" id="debugdb">
+<h2>DebugDB<a class="headerlink" href="#debugdb" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Debug DB prints all SQL statements going to DB.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-debugdb">uAdmin.DebugDB</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, enable the Debug DB then click Save button on the bottom right corner.</p>
+<img alt="../_images/debugdbsettingenabled.png" src="../_images/debugdbsettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Check your terminal to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>/home/dev1/go/src/github.com/uadmin/uadmin/db.go:246<span class="o">)</span>
+<span class="o">[</span><span class="m">2019</span>-11-05 <span class="m">15</span>:44:45<span class="o">]</span>  <span class="o">[</span><span class="m">0</span>.51ms<span class="o">]</span>  SELECT * FROM <span class="s2">&quot;languages&quot;</span>  WHERE <span class="s2">&quot;languages&quot;</span>.<span class="s2">&quot;deleted_at&quot;</span> IS NULL AND <span class="o">((</span><span class="nv">code</span><span class="o">=</span><span class="s1">&#39;en&#39;</span><span class="o">))</span> ORDER BY <span class="s2">&quot;languages&quot;</span>.<span class="s2">&quot;id&quot;</span> ASC LIMIT <span class="m">1</span>
+<span class="o">[</span><span class="m">1</span> rows affected or returned <span class="o">]</span>
+
+<span class="o">(</span>/home/dev1/go/src/github.com/uadmin/uadmin/db.go:158<span class="o">)</span>
+<span class="o">[</span><span class="m">2019</span>-11-05 <span class="m">15</span>:44:45<span class="o">]</span>  <span class="o">[</span><span class="m">0</span>.20ms<span class="o">]</span>  SELECT * FROM <span class="s2">&quot;setting_categories&quot;</span>  WHERE <span class="s2">&quot;setting_categories&quot;</span>.<span class="s2">&quot;deleted_at&quot;</span> IS NULL
+<span class="o">[</span><span class="m">1</span> rows affected or returned <span class="o">]</span>
+
+<span class="o">(</span>/home/dev1/go/src/github.com/uadmin/uadmin/db.go:436<span class="o">)</span>
+<span class="o">[</span><span class="m">2019</span>-11-05 <span class="m">15</span>:44:45<span class="o">]</span>  <span class="o">[</span><span class="m">1</span>.56ms<span class="o">]</span>  SELECT * FROM <span class="s2">&quot;settings&quot;</span>  WHERE <span class="s2">&quot;settings&quot;</span>.<span class="s2">&quot;deleted_at&quot;</span> IS NULL AND <span class="o">((</span><span class="nv">category_id</span> <span class="o">=</span> <span class="m">1</span><span class="o">))</span>
+<span class="o">[</span><span class="m">38</span> rows affected or returned <span class="o">]</span>
+
+<span class="o">(</span>/home/dev1/go/src/github.com/uadmin/uadmin/db.go:436<span class="o">)</span>
+<span class="o">[</span><span class="m">2019</span>-11-05 <span class="m">15</span>:44:55<span class="o">]</span>  <span class="o">[</span><span class="m">0</span>.35ms<span class="o">]</span>  SELECT * FROM <span class="s2">&quot;ab_tests&quot;</span>  WHERE <span class="s2">&quot;ab_tests&quot;</span>.<span class="s2">&quot;deleted_at&quot;</span> IS NULL AND <span class="o">((</span><span class="nv">active</span> <span class="o">=</span> <span class="nb">true</span><span class="o">))</span>
+<span class="o">[</span><span class="m">0</span> rows affected or returned <span class="o">]</span>
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="email-from">
+<h2>Email From<a class="headerlink" href="#email-from" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Email From identifies where the email is coming from.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: “”</p></li>
+<li><p><strong>Data Type</strong>: String</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailfrom">uAdmin.EmailFrom</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, assign the following email configurations.</p>
+<img alt="../_images/emailconfigurationsetting.png" src="../_images/emailconfigurationsetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s go back to the uAdmin dashboard, go to Users model, create your own user account and set the email address based on your assigned EmailFrom in the code above.</p>
+<img alt="../_images/useremailhighlighted1.png" src="../_images/useremailhighlighted1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Log out your account. At the moment, you suddenly forgot your password. How can we retrieve our account? Click Forgot Password at the bottom of the login form.</p>
+<img alt="../_images/forgotpasswordhighlighted1.png" src="../_images/forgotpasswordhighlighted1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Input your email address based on the user account you wish to retrieve it back.</p>
+<img alt="../_images/forgotpasswordinputemail1.png" src="../_images/forgotpasswordinputemail1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Once you are done, open your email account. You will receive a password reset notification from the Todo List support. To reset your password, click the link highlighted below.</p>
+<img alt="../_images/passwordresetnotification1.png" src="../_images/passwordresetnotification1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will be greeted by the reset password form. Input the following information in order to create a new password for you.</p>
+<img alt="../_images/resetpasswordform1.png" src="../_images/resetpasswordform1.png" />
+<p>Once you are done, you can now access your account using your new password.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/email-functions.html">Email Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="email-password">
+<h2>Email Password<a class="headerlink" href="#email-password" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Email Password sets the password of an email.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: “”</p></li>
+<li><p><strong>Data Type</strong>: String</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailpassword">uAdmin.EmailPassword</a></p></li>
+</ul>
+<p>See <a class="reference internal" href="#email-from">Email From</a> for the example.</p>
+</div>
+<div class="section" id="email-smtp-server">
+<h2>Email SMTP Server<a class="headerlink" href="#email-smtp-server" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Email SMTP Server sets the name of the SMTP Server in an email.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: “”</p></li>
+<li><p><strong>Data Type</strong>: String</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailsmtpserver">uAdmin.EmailSMTPServer</a></p></li>
+</ul>
+<p>See <a class="reference internal" href="#email-from">Email From</a> for the example.</p>
+</div>
+<div class="section" id="email-smtp-server-port">
+<h2>Email SMTP Server Port<a class="headerlink" href="#email-smtp-server-port" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Email SMTP Server Port sets the port number of an SMTP Server in an email.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailsmtpserverport">uAdmin.EmailSMTPServerPort</a></p></li>
+</ul>
+<p>See <a class="reference internal" href="#email-from">Email From</a> for the example.</p>
+</div>
+<div class="section" id="email-username">
+<h2>Email Username<a class="headerlink" href="#email-username" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Email Username sets the username of an email.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: “”</p></li>
+<li><p><strong>Data Type</strong>: String</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailusername">uAdmin.EmailUsername</a></p></li>
+</ul>
+<p>See <a class="reference internal" href="#email-from">Email From</a> for the example.</p>
+</div>
+<div class="section" id="http-log-format">
+<h2>HTTP Log Format<a class="headerlink" href="#http-log-format" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>HTTP Log Format is the format used to log HTTP access.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: %a %&gt;s %B %U %D</p></li>
+<li><p><strong>Data Type</strong>: String</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-httplogformat">uAdmin.HTTPLogFormat</a></p></li>
+</ul>
+<p>Format:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%a: Client IP address
+%<span class="o">{</span>remote<span class="o">}</span>p: Client port
+%A: Server hostname/IP
+%<span class="o">{</span>local<span class="o">}</span>p: Server port
+%U: Path
+%c: All coockies
+%<span class="o">{</span>NAME<span class="o">}</span>c: Cookie named <span class="s1">&#39;NAME&#39;</span>
+%<span class="o">{</span>GET<span class="o">}</span>f: GET request parameters
+%<span class="o">{</span>POST<span class="o">}</span>f: POST request parameters
+%B: Response length
+%&gt;s: Response code
+%D: Time taken in microseconds
+%T: Time taken in seconds
+%I: Request length
+</pre></div>
+</div>
+</div>
+<div class="section" id="log-add">
+<h2>Log Add<a class="headerlink" href="#log-add" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Log Add adds a log when a record is added.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 1</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logadd">uAdmin.LogAdd</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, enable the Log Add then click Save button on the bottom right corner.</p>
+<img alt="../_images/logaddsettingenabled.png" src="../_images/logaddsettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the uAdmin dashboard.</p>
+<img alt="../_images/dashboardfromsettings.png" src="../_images/dashboardfromsettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click on “LOGS”.</p>
+<img alt="../_images/logshighlighted3.png" src="../_images/logshighlighted3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose that you have this record in your logs as shown below:</p>
+<img alt="../_images/loginitialrecord2.png" src="../_images/loginitialrecord2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to uAdmin dashboard then select “TODOS”.</p>
+<img alt="../_images/todoshighlightedlog1.png" src="../_images/todoshighlightedlog1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click “Add New Todo”.</p>
+<img alt="../_images/addnewtodo1.png" src="../_images/addnewtodo1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Input the name value in the text box (e.g. Read a book). Click Save button afterwards.</p>
+<img alt="../_images/readabook1.png" src="../_images/readabook1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/readabookoutput1.png" src="../_images/readabookoutput1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the “LOGS” to see the result.</p>
+<img alt="../_images/logaddtrueresult1.png" src="../_images/logaddtrueresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s try disabling the Log Add in the Settings.</p>
+<img alt="../_images/logaddsettingdisabled.png" src="../_images/logaddsettingdisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to the uAdmin dashboard. Click on “TODOS” model and add another data inside it.</p>
+<img alt="../_images/buildarobot1.png" src="../_images/buildarobot1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/buildarobotoutput1.png" src="../_images/buildarobotoutput1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the “LOGS” to see the result.</p>
+<img alt="../_images/logaddfalseresult1.png" src="../_images/logaddfalseresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As you can see, the log content remains the same. Well done!</p>
+<p>See <a class="reference internal" href="#log-read">Log Read</a> for the continuation.</p>
+</div>
+<div class="section" id="log-delete">
+<h2>Log Delete<a class="headerlink" href="#log-delete" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Log Delete adds a log when a record is deleted.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 1</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logdelete">uAdmin.LogDelete</a></p></li>
+</ul>
+<p>Before you proceed to this example, see <a class="reference internal" href="#log-edit">Log Edit</a>.</p>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, enable the Log Delete then click Save button on the bottom right corner.</p>
+<img alt="../_images/logdeletesettingenabled.png" src="../_images/logdeletesettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the uAdmin dashboard.</p>
+<img alt="../_images/dashboardfromsettings.png" src="../_images/dashboardfromsettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click on “LOGS”.</p>
+<img alt="../_images/logshighlighted3.png" src="../_images/logshighlighted3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose that you have this record in your logs as shown below:</p>
+<img alt="../_images/logeditfalseresult1.png" src="../_images/logeditfalseresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to uAdmin dashboard then select “TODOS”.</p>
+<img alt="../_images/todoshighlightedlog1.png" src="../_images/todoshighlightedlog1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Select any of your existing data that you wish to delete (e.g. Washing the dishes)</p>
+<img alt="../_images/washingthedishesdelete1.png" src="../_images/washingthedishesdelete1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the “LOGS” to see the result.</p>
+<img alt="../_images/logdeletetrueresult1.png" src="../_images/logdeletetrueresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s try disabling the Log Delete in the Settings.</p>
+<img alt="../_images/logdeletesettingdisabled.png" src="../_images/logdeletesettingdisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to the uAdmin dashboard. Click on “TODOS” model and delete the remaining data (e.g. Read a book).</p>
+<img alt="../_images/readabookdelete1.png" src="../_images/readabookdelete1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the “LOGS” to see the result.</p>
+<img alt="../_images/logdeletefalseresult1.png" src="../_images/logdeletefalseresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As you can see, the log content remains the same. Well done!</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/log-permissions.html">Log Permissions</a></p></li>
+</ul>
+</div>
+<div class="section" id="log-edit">
+<h2>Log Edit<a class="headerlink" href="#log-edit" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Log Edit adds a log when a record is edited.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 1</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logedit">uAdmin.LogEdit</a></p></li>
+</ul>
+<p>Before you proceed to this example, see <a class="reference internal" href="#log-read">Log Read</a>.</p>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, enable the Log Edit then click Save button on the bottom right corner.</p>
+<img alt="../_images/logeditsettingenabled.png" src="../_images/logeditsettingenabled.png" />
+<p>Now go back to the uAdmin dashboard.</p>
+<img alt="../_images/dashboardfromsettings.png" src="../_images/dashboardfromsettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click on “LOGS”.</p>
+<img alt="../_images/logshighlighted3.png" src="../_images/logshighlighted3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose that you have this record in your logs as shown below:</p>
+<img alt="../_images/logreadfalseresult1.png" src="../_images/logreadfalseresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to uAdmin dashboard then select “TODOS”.</p>
+<img alt="../_images/todoshighlightedlog1.png" src="../_images/todoshighlightedlog1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Select any of your existing data (e.g. Build a robot)</p>
+<img alt="../_images/todoexistingdata1.png" src="../_images/todoexistingdata1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Change it to “Assembling the CPU” for instance.</p>
+<img alt="../_images/assemblingthecpu1.png" src="../_images/assemblingthecpu1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/assemblingthecpuoutput1.png" src="../_images/assemblingthecpuoutput1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the “LOGS” to see the result.</p>
+<img alt="../_images/logedittrueresult1.png" src="../_images/logedittrueresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s try disabling the Log Edit in the Settings.</p>
+<img alt="../_images/logeditsettingdisabled.png" src="../_images/logeditsettingdisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to the uAdmin dashboard. Click on “TODOS” model and modify any of your existing data (e.g. Assembling the CPU).</p>
+<img alt="../_images/buildarobot1.png" src="../_images/buildarobot1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Change it to “Washing the dishes” for instance.</p>
+<img alt="../_images/washingthedishes1.png" src="../_images/washingthedishes1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/washingthedishesresult1.png" src="../_images/washingthedishesresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the “LOGS” to see the result.</p>
+<img alt="../_images/logeditfalseresult1.png" src="../_images/logeditfalseresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As you can see, the log content remains the same. Well done!</p>
+<p>See <a class="reference internal" href="#log-delete">Log Delete</a> for the continuation.</p>
+</div>
+<div class="section" id="log-http-requests">
+<h2>Log HTTP Requests<a class="headerlink" href="#log-http-requests" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Logs http requests to syslog</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 1</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-loghttprequests">uAdmin.LogHTTPRequests</a></p></li>
+</ul>
+</div>
+<div class="section" id="log-read">
+<h2>Log Read<a class="headerlink" href="#log-read" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Log Read adds a log when a record is read.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logread">uAdmin.LogRead</a></p></li>
+</ul>
+<p>Before you proceed to this example, see <a class="reference internal" href="#log-add">Log Add</a>.</p>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, enable the Log Read then click Save button on the bottom right corner.</p>
+<img alt="../_images/logreadsettingenabled.png" src="../_images/logreadsettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the uAdmin dashboard.</p>
+<img alt="../_images/dashboardfromsettings.png" src="../_images/dashboardfromsettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click on “LOGS”.</p>
+<img alt="../_images/logshighlighted3.png" src="../_images/logshighlighted3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose that you have this record in your logs as shown below:</p>
+<img alt="../_images/logaddfalseresult1.png" src="../_images/logaddfalseresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to uAdmin dashboard then select “TODOS”.</p>
+<img alt="../_images/todoshighlightedlog1.png" src="../_images/todoshighlightedlog1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Select any of your existing data.</p>
+<img alt="../_images/todoexistingdata1.png" src="../_images/todoexistingdata1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/readabook1.png" src="../_images/readabook1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the “LOGS” to see the result.</p>
+<img alt="../_images/logreadtrueresult1.png" src="../_images/logreadtrueresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s try disabling the Log Read in the Settings.</p>
+<img alt="../_images/logreadsettingdisabled.png" src="../_images/logreadsettingdisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to the uAdmin dashboard. Click on “TODOS” model and add select any of your existing data.</p>
+<img alt="../_images/todoexistingdata1.png" src="../_images/todoexistingdata1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/readabook1.png" src="../_images/readabook1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the “LOGS” to see the result.</p>
+<img alt="../_images/logreadfalseresult1.png" src="../_images/logreadfalseresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As you can see, the log content remains the same. Well done!</p>
+<p>See <a class="reference internal" href="#log-edit">Log Edit</a> for the continuation.</p>
+</div>
+<div class="section" id="log-trail">
+<h2>Log Trail<a class="headerlink" href="#log-trail" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Log Trail stores Trail logs to syslog.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logtrail">uAdmin.LogTrail</a></p></li>
+</ul>
+</div>
+<div class="section" id="max-image-width">
+<h2>Max Image Width<a class="headerlink" href="#max-image-width" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Max Image Width sets the maximum width of an image.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 800</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maximagewidth">uAdmin.MaxImageWidth</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, set the Max Image Width to 360 pixels and the Max Image Height to 240 pixels. Click Save on the bottom right corner afterwards.</p>
+<img alt="../_images/maximagewidthheightsetting.png" src="../_images/maximagewidthheightsetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>uAdmin has a feature that allows you to customize your own profile. In order to do that, click the profile icon on the top right corner then select admin as highlighted below.</p>
+<img alt="../_images/adminhighlighted1.png" src="../_images/adminhighlighted1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>By default, there is no profile photo inserted on the top left corner. If you want to add it in your profile, click the Choose File button to browse the image on your computer.</p>
+<img alt="../_images/choosefilephotohighlighted1.png" src="../_images/choosefilephotohighlighted1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s pick a photo that surpasses the MaxImageWidth and MaxImageHeight values.</p>
+<img alt="../_images/widthheightbackground1.png" class="align-center" src="../_images/widthheightbackground1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Once you are done, click Save Changes on the left corner and refresh the webpage to see the output.</p>
+<img alt="../_images/profilepicadded1.png" src="../_images/profilepicadded1.png" />
+<p>As expected, the profile pic will be uploaded to the user profile that automatically resizes to 360x240 pixels.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/max-functions.html">Max Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="max-image-height">
+<h2>Max Image Height<a class="headerlink" href="#max-image-height" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Max Image Height sets the maximum height of an image.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 600</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maximageheight">uAdmin.MaxImageHeight</a></p></li>
+</ul>
+<p>See <a class="reference internal" href="#max-image-width">Max Image Width</a> for the example.</p>
+</div>
+<div class="section" id="max-upload-file-size">
+<h2>Max Upload File Size<a class="headerlink" href="#max-upload-file-size" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Max Upload File Size is the maximum upload file size in bytes.</p>
+<p>1MB = 1024 * 1024</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 26214400</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maxuploadfilesize">uAdmin.MaxUploadFileSize</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, set the Max Upload File Size value to 1 MB. It is 1 multiplied by 1024 (Kilobytes) multiplied by 1024 (Bytes) = 1048576 Bytes.</p>
+<img alt="../_images/maxuploadfilesizesetting.png" src="../_images/maxuploadfilesizesetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go to your profile and upload an image that exceeds the Max Upload File Size limit. If you click Save changes…</p>
+<img alt="../_images/noprofilepic1.png" src="../_images/noprofilepic1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The profile picture has failed to upload in the user profile because the file size is larger than the limit.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/max-functions.html">Max Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="optimize-sql-query">
+<h2>Optimize SQL Query<a class="headerlink" href="#optimize-sql-query" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Optimize SQL Query selects columns during rendering a form a list to visible fields.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 1</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-optimizesqlquery">uAdmin.OptimizeSQLQuery</a></p></li>
+</ul>
+<p>Enable</p>
+<img alt="../_images/optimizesqlquerysettingenabled.png" src="../_images/optimizesqlquerysettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Disable</p>
+<img alt="../_images/optimizesqlquerysettingdisabled.png" src="../_images/optimizesqlquerysettingdisabled.png" />
+</div>
+<div class="section" id="otp-algorithm">
+<h2>OTP Algorithm<a class="headerlink" href="#otp-algorithm" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>OTP Algorithm is the hashing algorithm of OTP. Other options are sha256 and sha512.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: sha1</p></li>
+<li><p><strong>Data Type</strong>: String</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpalgorithm">uAdmin.OTPAlgorithm</a></p></li>
+</ul>
+<p>You can apply any of these in Settings.</p>
+<img alt="../_images/otpalgorithmsetting.png" class="align-center" src="../_images/otpalgorithmsetting.png" />
+</div>
+<div class="section" id="otp-digits">
+<h2>OTP Digits<a class="headerlink" href="#otp-digits" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>OTP Digits is the number of digits for the OTP.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 6</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpdigits">uAdmin.OTPDigits</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, set the OTP Digits value to 8. Click Save button on the bottom right corner afterwards.</p>
+<img alt="../_images/otpdigitssetting.png" src="../_images/otpdigitssetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Make sure that OTP Required on the account you are using is enabled in the User model.</p>
+<img alt="../_images/otprequiredenabled.png" src="../_images/otprequiredenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Logout your account, relogin your account, and check your terminal afterwards to see the OTP verification code assigned by your system.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   User: admin OTP: <span class="m">90401068</span>
+</pre></div>
+</div>
+<p>As shown above, it has 8 OTP digits.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/otp.html">OTP Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="otp-period">
+<h2>OTP Period<a class="headerlink" href="#otp-period" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>OTP Period is the number of seconds for the OTP to change.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 30</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpperiod">uAdmin.OTPPeriod</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, set the OTP Period to 10 seconds. Click Save button on the bottom right corner afterwards.</p>
+<img alt="../_images/otpperiodsetting.png" src="../_images/otpperiodsetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Make sure that OTP Required on the account you are using is enabled in the User model.</p>
+<img alt="../_images/otprequiredenabled.png" src="../_images/otprequiredenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Logout your account, relogin your account, and check your terminal afterwards to see how the OTP code changes every 10 seconds by refreshing your browser.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// Before refreshing your browser
+<span class="o">[</span>  INFO  <span class="o">]</span>   User: admin OTP: <span class="m">433452</span>
+
+// After refreshing your browser in more than <span class="m">10</span> seconds
+<span class="o">[</span>  INFO  <span class="o">]</span>   User: admin OTP: <span class="m">185157</span>
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/otp.html">OTP Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="otp-skew">
+<h2>OTP Skew<a class="headerlink" href="#otp-skew" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>OTP Skew is the number of minutes to search around the OTP.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 5</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpskew">uAdmin.OTPSkew</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, set the OTP Skew value to 2 minutes. Click Save button on the bottom right corner afterwards.</p>
+<img alt="../_images/otpskewsetting.png" src="../_images/otpskewsetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Make sure that OTP Required on the account you are using is enabled in the User model.</p>
+<img alt="../_images/otprequiredenabled.png" src="../_images/otprequiredenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Logout your account, relogin your account, and check your terminal afterwards to see the OTP verification code assigned by your system. Wait for more than two minutes and check if the OTP code is still valid.</p>
+<p>After waiting for more than two minutes,</p>
+<img alt="../_images/loginformwithotp1.png" src="../_images/loginformwithotp1.png" />
+<p>It redirects to the same webpage which means your OTP code is no longer valid.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/otp.html">OTP Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="page-length">
+<h2>Page Length<a class="headerlink" href="#page-length" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Page Length is the list view max number of records.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 100</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-pagelength">uAdmin.PageLength</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, assign the Page Length value to 4.</p>
+<img alt="../_images/pagelengthsettingenabled.png" src="../_images/pagelengthsettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to the Item model. Inside it you have 6 total elements. The elements in the item model will display 4 elements per page.</p>
+<img alt="../_images/pagelength1.png" src="../_images/pagelength1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="port">
+<h2>Port<a class="headerlink" href="#port" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Port is the port used for http or https server.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 8080</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-port">uAdmin.Port</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, apply <strong>8000</strong> as a port number. Click Save button on the bottom right corner afterwards.</p>
+<img alt="../_images/portsetting.png" src="../_images/portsetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Rebuild your application. Check your terminal to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8000
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>In the Server Started, it will redirect you to port number <strong>8000</strong>.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/ip-configuration.html">IP Configuration</a></p></li>
+</ul>
+</div>
+<div class="section" id="public-media">
+<h2>Public Media<a class="headerlink" href="#public-media" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Public Media allows public access to media handler without authentication.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-publicmedia">uAdmin.PublicMedia</a></p></li>
+</ul>
+<p>For instance, my account was not signed in.</p>
+<img alt="../_images/loginform4.png" src="../_images/loginform4.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>And you want to access <strong>travel.png</strong> inside your media folder.</p>
+<img alt="../_images/mediapath1.png" src="../_images/mediapath1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, enable the Public Media then click Save button on the bottom right corner.</p>
+<img alt="../_images/publicmediasettingenabled.png" src="../_images/publicmediasettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Logout your account. Access the image path in the URL to see the result.</p>
+<img alt="../_images/publicmediaimage1.png" src="../_images/publicmediaimage1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="rate-limit">
+<h2>Rate Limit<a class="headerlink" href="#rate-limit" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Rate Limit is the maximum number of requests/second for any unique IP.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 3</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-ratelimit">uAdmin.RateLimit</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, assign the rate limit to 1. Click Save button on the bottom right corner afterwards.</p>
+<img alt="../_images/ratelimitsetting.png" src="../_images/ratelimitsetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the uAdmin dashboard.</p>
+<img alt="../_images/dashboardfromsettings.png" src="../_images/dashboardfromsettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, hold the Ctrl Key on your keyboard then click any dashboard menu in the form really fast to add in a new tab and see what happens.</p>
+<img alt="../_images/ratelimithighlighttab1.png" src="../_images/ratelimithighlighttab1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The title bar name looks different in the last two tabs. Click any of them to see the result.</p>
+<img alt="../_images/ratelimitresult1.png" src="../_images/ratelimitresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The website is crashed as expected. In fact that our rate limit is 1, it might take a long time to bring the website back to normal. To increase the recovery rate, adjust the rate limit to a higher value (e.g. 100) in the Settings.</p>
+<img alt="../_images/ratelimit100setting.png" src="../_images/ratelimit100setting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Do the same process as shown above. Afterwards, click any button in the form and you will see that the website is back to normal much faster.</p>
+<img alt="../_images/websitebacktonormal1.png" src="../_images/websitebacktonormal1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/rate-limit-functions.html">Rate Limit Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="rate-limit-burst">
+<h2>Rate Limit Burst<a class="headerlink" href="#rate-limit-burst" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Rate Limit Burst is the maximum number of requests for an idle user.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 3</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-ratelimitburst">uAdmin.RateLimitBurst</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, assign the rate limit burst to 3. Click Save button on the bottom right corner afterwards.</p>
+<img alt="../_images/ratelimitburstsetting.png" src="../_images/ratelimitburstsetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the uAdmin dashboard.</p>
+<img alt="../_images/dashboardfromsettings.png" src="../_images/dashboardfromsettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, hold the Ctrl Key on your keyboard then click any dashboard menu in the form really fast to add in a new tab and see what happens.</p>
+<img alt="../_images/ratelimithighlighttab1.png" src="../_images/ratelimithighlighttab1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The title bar name looks different in the last two tabs. Click any of them to see the result.</p>
+<img alt="../_images/ratelimitresult1.png" src="../_images/ratelimitresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The website is crashed because our request exceeds the limit that we have assigned.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/rate-limit-functions.html">Rate Limit Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="report-time-stamp">
+<h2>Report Time Stamp<a class="headerlink" href="#report-time-stamp" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Report Time Stamp set this to true to have a time stamp in your logs.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-reporttimestamp">uAdmin.ReportTimeStamp</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, enable the Report Time Stamp then click Save button on the bottom right corner.</p>
+<img alt="../_images/reporttimestampsettingenabled.png" src="../_images/reporttimestampsettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Rebuild your application. Check your terminal to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="m">2018</span>/11/07 <span class="m">08</span>:52:14 <span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="reporting-level">
+<h2>Reporting Level<a class="headerlink" href="#reporting-level" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>ReportingLevel is the standard reporting level.</p>
+<p>There are 6 different levels:</p>
+<ul class="simple">
+<li><p>DEBUG = 0</p></li>
+<li><p>WORKING = 1</p></li>
+<li><p>INFO = 2</p></li>
+<li><p>OK = 3</p></li>
+<li><p>WARNING = 4</p></li>
+<li><p>ERROR = 5</p></li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-reportinglevel">uAdmin.ReportingLevel</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, set the Reporting Level to 1 to show that the debugging process is working. Click Save button on the bottom right corner afterwards.</p>
+<img alt="../_images/reportinglevel1settingenabled.png" src="../_images/reportinglevel1settingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Rebuild your application. Check your terminal to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>What if I set the value to 5?</p>
+<img alt="../_images/reportinglevel5settingenabled.png" src="../_images/reportinglevel5settingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>The database was initialized. The server has started. However the error message did not show up because the reporting level is assigned to 5 which is ERROR.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="restrict-session-ip">
+<h2>Restrict Session IP<a class="headerlink" href="#restrict-session-ip" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Restrict Session IP is to block access of a user if their IP changes from their original IP during login.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-restrictsessionip">uAdmin.RestrictSessionIP</a></p></li>
+</ul>
+<p>Enable</p>
+<img alt="../_images/restrictsessionipsettingenabled.png" src="../_images/restrictsessionipsettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Disable</p>
+<img alt="../_images/restrictsessionipsettingdisabled.png" src="../_images/restrictsessionipsettingdisabled.png" />
+</div>
+<div class="section" id="retain-media-versions">
+<h2>Retain Media Versions<a class="headerlink" href="#retain-media-versions" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Retain Media Versions is to allow the system to keep files uploaded even after they are changed. This allows the system to “Roll Back” to an older version of the file.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 1</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-retainmediaversions">uAdmin.RetainMediaVersions</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, disable the Retain Media Versions then click Save button on the bottom right corner.</p>
+<img alt="../_images/retainmediaversionssettingdisabled.png" src="../_images/retainmediaversionssettingdisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the uAdmin dashboard.</p>
+<img alt="../_images/dashboardfromsettings.png" src="../_images/dashboardfromsettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, go to the Category model then click Add New Category button on the top right corner of the screen. Let’s add a new record that includes the uploaded file from your computer (e.g. Windows Installation.pdf).</p>
+<img alt="../_images/categoryinstallationrecord2.png" class="align-center" src="../_images/categoryinstallationrecord2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result:</p>
+<img alt="../_images/categoryinstallationrecordresult2.png" src="../_images/categoryinstallationrecordresult2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From your project folder, go to /media/files/(generated_folder_name)/. As expected, the “Windows Installation.pdf” file was saved on that path.</p>
+<img alt="../_images/categoryinstallationsaved1.png" class="align-center" src="../_images/categoryinstallationsaved1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to your application and click the existing record that you have (e.g. Installation).</p>
+<img alt="../_images/categoryinstallationrecordresult2.png" src="../_images/categoryinstallationrecordresult2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now update the file on that record (e.g. PDF file to ODT file).</p>
+<img alt="../_images/categoryinstallationupdateodt1.png" class="align-center" src="../_images/categoryinstallationupdateodt1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result:</p>
+<img alt="../_images/categoryinstallationresultodt1.png" src="../_images/categoryinstallationresultodt1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From your project folder, go to /media/files/(generated_folder_name)/. As expected, the “Windows Installation.pdf” file was updated from “Windows Installation.pdf” to “Windows Installation.odt” on the same folder.</p>
+<img alt="../_images/categoryinstallationsavedodt1.png" class="align-center" src="../_images/categoryinstallationsavedodt1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s try enabling the Retain Media Versions in the Settings.</p>
+<img alt="../_images/retainmediaversionssettingenabled.png" src="../_images/retainmediaversionssettingenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to the uAdmin dashboard then go to the Category model. Update the file of the Installation record back to PDF.</p>
+<img alt="../_images/categoryinstallationrecord2.png" class="align-center" src="../_images/categoryinstallationrecord2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result:</p>
+<img alt="../_images/categoryinstallationrecordresult2.png" src="../_images/categoryinstallationrecordresult2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From your project folder, go to /media/files/ path. Inside it, there are two generated folders that means the old version of the file is kept and the new version was saved in the different folder.</p>
+<img alt="../_images/categoryinstallationtwofolders1.png" class="align-center" src="../_images/categoryinstallationtwofolders1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions-3.html">Miscellaneous Functions (3)</a></p></li>
+</ul>
+</div>
+<div class="section" id="root-url">
+<h2>Root URL<a class="headerlink" href="#root-url" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Root URL is where the listener is mapped to.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: /</p></li>
+<li><p><strong>Data Type</strong>: String</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-rooturl">uAdmin.RootURL</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, assign the RootURL value as <strong>/admin/</strong>. Click Save button on the bottom right corner afterwards.</p>
+<img alt="../_images/rooturlsetting.png" src="../_images/rooturlsetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Rebuild your application and go to the home page with the RootURL in the address bar to see the result.</p>
+<img alt="../_images/rooturladmin1.png" src="../_images/rooturladmin1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/root-url-and-site-name.html">Root URL and Site Name</a></p></li>
+</ul>
+</div>
+<div class="section" id="site-name">
+<h2>Site Name<a class="headerlink" href="#site-name" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Site Name is the name of the website that shows on title and dashboard.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: uAdmin</p></li>
+<li><p><strong>Data Type</strong>: String</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-sitename">uAdmin.SiteName</a></p></li>
+</ul>
+<p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, assign the SiteName value as <strong>Todo List</strong>. Click Save button on the bottom right corner afterwards.</p>
+<img alt="../_images/sitenamesetting.png" src="../_images/sitenamesetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go back to the uAdmin dashboard.</p>
+<img alt="../_images/dashboardfromsettings.png" src="../_images/dashboardfromsettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/todolisttitle1.png" src="../_images/todolisttitle1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/root-url-and-site-name.html">Root URL and Site Name</a></p></li>
+</ul>
+</div>
+<div class="section" id="system-metrics">
+<h2>System Metrics<a class="headerlink" href="#system-metrics" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>System Metrics enables uAdmin system metrics to be recorded.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-systemmetrics">uAdmin.SystemMetrics</a></p></li>
+</ul>
+</div>
+<div class="section" id="theme">
+<h2>Theme<a class="headerlink" href="#theme" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Theme is the name of the theme used in uAdmin.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: default</p></li>
+<li><p><strong>Data Type</strong>: String</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-theme">uAdmin.Theme</a></p></li>
+</ul>
+<p>From your project folder, click on “templates”.</p>
+<img alt="../_images/templatesfolderhighlighted2.png" src="../_images/templatesfolderhighlighted2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Inside templates, click on “uadmin”.</p>
+<img alt="../_images/uadminfolder1.png" src="../_images/uadminfolder1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Create a new folder named “custom”.</p>
+<img alt="../_images/customfolderhighlighted1.png" src="../_images/customfolderhighlighted1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Inside custom folder, create a new file named “home.html”.</p>
+<img alt="../_images/homehtml1.png" src="../_images/homehtml1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Inside home.html file, apply the following codes below to display a header that shows “Welcome to Home Page”.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;ie=edge&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Home Page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Welcome to Home Page<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Now run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the Settings, assigns the theme name as “custom”. “custom” is the name of the folder inside the templates/uadmin path that uAdmin will run when the user starts the server. Click Save button on the bottom right corner afterwards.</p>
+<img alt="../_images/themesetting.png" src="../_images/themesetting.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Rebuild your application to see the result.</p>
+<img alt="../_images/welcometohomepage1.png" class="align-center" src="../_images/welcometohomepage1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions-2.html">Miscellaneous Functions (2)</a></p></li>
+</ul>
+</div>
+<div class="section" id="trail-logging-level">
+<h2>Trail Logging Level<a class="headerlink" href="#trail-logging-level" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Trail Logging Level is the minimum level to be logged into syslog.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 2</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-traillogginglevel">uAdmin.TrailLoggingLevel</a></p></li>
+</ul>
+</div>
+<div class="section" id="user-metrics">
+<h2>User Metrics<a class="headerlink" href="#user-metrics" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>User Metrics enables the user metrics to be recorded.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0</p></li>
+<li><p><strong>Data Type</strong>: Boolean</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-usermetrics">uAdmin.UserMetrics</a></p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../system_reference.html"
+                        title="previous chapter">System Reference</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../tags.html"
+                        title="next chapter">Tag Reference</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/system-reference/setting.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../tags.html" title="Tag Reference"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../system_reference.html" title="System Reference"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../system_reference.html" >System Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    </div>
+  </body>
+</html>

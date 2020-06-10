@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>uAdmin Tutorial Part 6 - Applying uAdmin Tags (Current Progress) &#8212; uadmin 0.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="uAdmin Tutorial Part 7 - M2M (Many-to-many)" href="../part7.html" />
+    <link rel="prev" title="uAdmin Tutorial Part 6 - Applying uAdmin Tags" href="../part6.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../part7.html" title="uAdmin Tutorial Part 7 - M2M (Many-to-many)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../part6.html" title="uAdmin Tutorial Part 6 - Applying uAdmin Tags"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../coverage.html" >uAdmin Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../part6.html" accesskey="U">uAdmin Tutorial Part 6 - Applying uAdmin Tags</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="uadmin-tutorial-part-6-applying-uadmin-tags-current-progress">
+<h1>uAdmin Tutorial Part 6 - Applying uAdmin Tags (Current Progress)<a class="headerlink" href="#uadmin-tutorial-part-6-applying-uadmin-tags-current-progress" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part6.html">Back to Previous Page</a></p>
+<p>Structure:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id1">models</a></dt><dd><ul>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id2">category.go</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id3">friend.go</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id4">item.go</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id5">todo.go</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id6">main.go</a></p></li>
+<li><dl class="simple">
+<dt><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id7">uadmin.db</a></dt><dd><ul>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id8">Categories</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id9">Friends</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id10">Items</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id11">Todos</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="id1">
+<h2>models<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3><strong>category.go</strong><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#uadmin-tutorial-part-6-applying-uadmin-tags-current-progress">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// Category Model !</span>
+<span class="kd">type</span> <span class="nx">Category</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">Icon</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;image&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3><strong>friend.go</strong><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#uadmin-tutorial-part-6-applying-uadmin-tags-current-progress">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// Nationality Field !</span>
+<span class="kd">type</span> <span class="nx">Nationality</span> <span class="kt">int</span>
+
+<span class="c1">// Chinese !</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Nationality</span><span class="p">)</span> <span class="nx">Chinese</span><span class="p">()</span> <span class="nx">Nationality</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">1</span>
+<span class="p">}</span>
+
+<span class="c1">// Filipino !</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Nationality</span><span class="p">)</span> <span class="nx">Filipino</span><span class="p">()</span> <span class="nx">Nationality</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">2</span>
+<span class="p">}</span>
+
+<span class="c1">// Others !</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Nationality</span><span class="p">)</span> <span class="nx">Others</span><span class="p">()</span> <span class="nx">Nationality</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">3</span>
+<span class="p">}</span>
+
+<span class="c1">// Friend Model !</span>
+<span class="kd">type</span> <span class="nx">Friend</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>        <span class="kt">string</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">Email</span>       <span class="kt">string</span> <span class="s">`uadmin:&quot;email&quot;`</span>
+    <span class="nx">Password</span>    <span class="kt">string</span> <span class="s">`uadmin:&quot;password;list_exclude&quot;`</span>
+    <span class="nx">Nationality</span> <span class="nx">Nationality</span>
+    <span class="nx">Invite</span>      <span class="kt">string</span> <span class="s">`uadmin:&quot;link&quot;`</span>
+<span class="p">}</span>
+
+<span class="c1">// Save !</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="o">*</span><span class="nx">Friend</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">f</span><span class="p">.</span><span class="nx">Invite</span> <span class="p">=</span> <span class="s">&quot;https://www.google.com/&quot;</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3><strong>item.go</strong><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#uadmin-tutorial-part-6-applying-uadmin-tags-current-progress">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>        <span class="kt">string</span> <span class="s">`uadmin:&quot;required;search;categorical_filter;filter;display_name:Product Name;default_value:Computer&quot;`</span>
+    <span class="nx">Description</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;multilingual&quot;`</span>
+    <span class="nx">Cost</span>        <span class="kt">int</span>    <span class="s">`uadmin:&quot;money;pattern:^[0-9]*$;pattern_msg:Your input must be a number.;help:Input numeric characters only in this field.&quot;`</span>
+    <span class="nx">Rating</span>      <span class="kt">int</span>    <span class="s">`uadmin:&quot;min:1;max:5&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3><strong>todo.go</strong><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#uadmin-tutorial-part-6-applying-uadmin-tags-current-progress">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;time&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// Todo Model !</span>
+<span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>        <span class="kt">string</span>
+    <span class="nx">Description</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;html&quot;`</span>
+    <span class="nx">Category</span>    <span class="nx">Category</span>
+    <span class="nx">CategoryID</span>  <span class="kt">uint</span>
+    <span class="nx">Friend</span>      <span class="nx">Friend</span> <span class="s">`uadmin:&quot;help:Who will be a part of your activity?&quot;`</span>
+    <span class="nx">FriendID</span>    <span class="kt">uint</span>
+    <span class="nx">Item</span>        <span class="nx">Item</span> <span class="s">`uadmin:&quot;help:What are the requirements needed in order to accomplish your activity?&quot;`</span>
+    <span class="nx">ItemID</span>      <span class="kt">uint</span>
+    <span class="nx">TargetDate</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+    <span class="nx">Progress</span>    <span class="kt">int</span> <span class="s">`uadmin:&quot;progress_bar&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>main.go<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#uadmin-tutorial-part-6-applying-uadmin-tags-current-progress">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/todo/models&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span>
+        <span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{},</span>
+        <span class="nx">models</span><span class="p">.</span><span class="nx">Category</span><span class="p">{},</span>
+        <span class="nx">models</span><span class="p">.</span><span class="nx">Friend</span><span class="p">{},</span>
+        <span class="nx">models</span><span class="p">.</span><span class="nx">Item</span><span class="p">{},</span>
+    <span class="p">)</span>
+
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RegisterInlines</span><span class="p">(</span><span class="nx">models</span><span class="p">.</span><span class="nx">Category</span><span class="p">{},</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
+        <span class="s">&quot;Todo&quot;</span><span class="p">:</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">,</span>
+    <span class="p">})</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RegisterInlines</span><span class="p">(</span><span class="nx">models</span><span class="p">.</span><span class="nx">Friend</span><span class="p">{},</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
+        <span class="s">&quot;Todo&quot;</span><span class="p">:</span> <span class="s">&quot;FriendID&quot;</span><span class="p">,</span>
+    <span class="p">})</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RegisterInlines</span><span class="p">(</span><span class="nx">models</span><span class="p">.</span><span class="nx">Item</span><span class="p">{},</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
+        <span class="s">&quot;Todo&quot;</span><span class="p">:</span> <span class="s">&quot;ItemID&quot;</span><span class="p">,</span>
+    <span class="p">})</span>
+
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>uadmin.db<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h3><strong>Categories</strong><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#uadmin-tutorial-part-6-applying-uadmin-tags-current-progress">Back to Top</a></p>
+<img alt="../../_images/categorymodelupdate.png" src="../../_images/categorymodelupdate.png" />
+</div>
+<div class="section" id="id9">
+<h3><strong>Friends</strong><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#uadmin-tutorial-part-6-applying-uadmin-tags-current-progress">Back to Top</a></p>
+<img alt="../../_images/friendmodelupdate.png" src="../../_images/friendmodelupdate.png" />
+</div>
+<div class="section" id="id10">
+<h3><strong>Items</strong><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#uadmin-tutorial-part-6-applying-uadmin-tags-current-progress">Back to Top</a></p>
+<img alt="../../_images/itemmodelupdate.png" src="../../_images/itemmodelupdate.png" />
+</div>
+<div class="section" id="id11">
+<h3><strong>Todos</strong><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#uadmin-tutorial-part-6-applying-uadmin-tags-current-progress">Back to Top</a></p>
+<img alt="../../_images/todomodelupdate2.png" src="../../_images/todomodelupdate2.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../part6.html"
+                        title="previous chapter">uAdmin Tutorial Part 6 - Applying uAdmin Tags</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../part7.html"
+                        title="next chapter">uAdmin Tutorial Part 7 - M2M (Many-to-many)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/tutorial/full_code/part6.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../part7.html" title="uAdmin Tutorial Part 7 - M2M (Many-to-many)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../part6.html" title="uAdmin Tutorial Part 6 - Applying uAdmin Tags"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../coverage.html" >uAdmin Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../part6.html" >uAdmin Tutorial Part 6 - Applying uAdmin Tags</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    </div>
+  </body>
+</html>

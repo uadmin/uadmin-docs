@@ -48,16 +48,18 @@ By group initialization:
         }
     }
 
-In the following examples, we will use “by group” initialization process.
+In the following examples, we will use "by group” initialization process.
 
-Examples:
-
+uadmin.Language Examples
+^^^^^^^^^^^^^^^^^^^^^^^^
 * `Example #1: Active`_
 * `Example #2: Default`_
 * `Example #3: RTL`_
 
 **Example #1:** Active
 ^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Suppose the Tagalog language is not active.
 
 .. image:: assets/tagalognotactive.png
@@ -109,6 +111,8 @@ As expected, the Tagalog language is now set to active. Logout your account to s
 
 **Example #2:** Default
 ^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Suppose the Vietnamese language is not set to default.
 
 .. image:: assets/vietnamesenotdefault.png
@@ -173,6 +177,10 @@ It automatically sets the value of the Language field to **Tiếng Việt (Vietn
 
 **Example #3:** RTL
 ^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/language.html#uadmin-language-examples
+
 Suppose that Arabic language is not set to RTL (Right To Left).
 
 .. image:: assets/arabicnotrtl.png

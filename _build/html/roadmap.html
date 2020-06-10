@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Roadmap &#8212; uadmin 0.3 documentation</title>
+    <title>Roadmap &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="license.html" title="License"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -47,8 +47,17 @@
             
   <div class="section" id="roadmap">
 <h1>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="#version-0-1-0-2018-12-23">Version 0.1.0 (2018-12-23)</a></p></li>
+<li><p><a class="reference internal" href="#version-0-1-1-2019-05-11">Version 0.1.1 (2019-05-11)</a></p></li>
+<li><p><a class="reference internal" href="#version-0-2-0-2019-06-20">Version 0.2.0 (2019-06-20)</a></p></li>
+<li><p><a class="reference internal" href="#version-0-2-2-2019-06-24">Version 0.2.2 (2019-06-24)</a></p></li>
+<li><p><a class="reference internal" href="#version-0-3-0-2019-07-02">Version 0.3.0 (2019-07-02)</a></p></li>
+<li><p><a class="reference internal" href="#version-0-4-0-2019-12-26">Version 0.4.0 (2019-12-26)</a></p></li>
+</ul>
 <div class="section" id="version-0-1-0-2018-12-23">
 <h2>Version 0.1.0 (2018-12-23)<a class="headerlink" href="#version-0-1-0-2018-12-23" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap">Back to Top</a></p>
 <ul class="simple">
 <li><p>FK no tag</p></li>
 <li><p>DB error handling</p></li>
@@ -112,20 +121,185 @@
 <li><p>Unit tests for 0.1.0-RC1</p></li>
 </ul>
 </div>
-<div class="section" id="version-0-2-0-2019-12-23">
-<h2>Version 0.2.0 (2019-12-23)<a class="headerlink" href="#version-0-2-0-2019-12-23" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="version-0-1-1-2019-05-11">
+<h2>Version 0.1.1 (2019-05-11)<a class="headerlink" href="#version-0-1-1-2019-05-11" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap">Back to Top</a></p>
+<div class="section" id="added">
+<h3><strong>Added</strong><a class="headerlink" href="#added" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Web-Based Dev Tool</p></li>
-<li><p>App Traffic Dashboard</p></li>
-<li><p>Use Golang Context for passing extra values</p></li>
-<li><p>Media Permission</p></li>
-<li><p>Field Level Permission</p></li>
-<li><p>Amendments</p></li>
-<li><p>List Icons</p></li>
-<li><p>Get settings</p></li>
-<li><p>Schema Builder</p></li>
-<li><p>BUG FIX: Scan QR code for 2FA</p></li>
+<li><dl class="simple">
+<dt>Global Variable:</dt><dd><ul>
+<li><p>DefaultMediaPermission [0644]: The default permission for files uploaded through uAdmin</p></li>
 </ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="version-0-2-0-2019-06-20">
+<h2>Version 0.2.0 (2019-06-20)<a class="headerlink" href="#version-0-2-0-2019-06-20" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap">Back to Top</a></p>
+<div class="section" id="id1">
+<h3><strong>Added</strong><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Global Variable:</dt><dd><ul>
+<li><p>Settings model which can be used system wide to keep application settings.</p></li>
+<li><p>GetSetting function to read settings from the settings model.</p></li>
+<li><p>User.GetAccess function can evaluate the user’s permission to a model using user level and group level and return a UserPermission instance.</p></li>
+<li><p>ErrorHandleFunc: A function that can be passed for handling errors system wide that gets called when Trail is called.</p></li>
+<li><p>AllowedIPs: is a list of allowed IPs to access uAdmin interface</p></li>
+<li><p>BlockedIPs: is a list of blocked IPs from accessing uAdmin interface</p></li>
+<li><p>RestrictSessionIP: restricts access to the system if the IP of the user changes after login</p></li>
+<li><p>RetainMediaVersions: is to allow the system to keep files uploaded even after they are</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="changed">
+<h3><strong>Changed</strong><a class="headerlink" href="#changed" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Forgot password now sends HTML emails.</p></li>
+<li><p>GetString function can return the name of a static list item.</p></li>
+</ul>
+</div>
+<div class="section" id="fixed">
+<h3><strong>Fixed</strong><a class="headerlink" href="#fixed" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Bug fix for read only fields for new and edit.</dt><dd><ul>
+<li><p>Model names in dashboard are generated using proper plural function instead of just adding “s”</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="version-0-2-2-2019-06-24">
+<h2>Version 0.2.2 (2019-06-24)<a class="headerlink" href="#version-0-2-2-2019-06-24" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap">Back to Top</a></p>
+<div class="section" id="id2">
+<h3><strong>Added</strong><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>GetValue() and ApplyValue() functions in uadmin.Setting</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3><strong>Changed</strong><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Enhanced System Settings that contains uAdmin functions</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3><strong>Fixed</strong><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Git submodule update –init –recursive</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="version-0-3-0-2019-07-02">
+<h2>Version 0.3.0 (2019-07-02)<a class="headerlink" href="#version-0-3-0-2019-07-02" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap">Back to Top</a></p>
+<div class="section" id="id5">
+<h3><strong>Added</strong><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Approval System: By adding <cite>approval</cite> tag to any field, the field will required a special permission to edit. If the user does not have this permission, the edit will generate an Approval record that can be approved by a user with access to the new Approval model.</p></li>
+<li><p>Upload files using drag and drop into the field.</p></li>
+<li><p>Image and File fields now allow a new tag called <cite>webcam</cite> which adds web can access directly from the field.</p></li>
+<li><p>Model specific themes: You can use <cite>ModelSchema.FormTheme</cite> and <cite>ModelSchema.ListTheme</cite> to choose a theme for a model.</p></li>
+<li><p>Settings automatically adds all uAdmin global variables as settings.</p></li>
+<li><p>Added .gitignore which should have been there all along!!</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3><strong>Changed</strong><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>cropImageHandler now returns JSON with a status letting the for success and failure.</p></li>
+<li><p>Improved performance for saving settings page.</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3><strong>Fixed</strong><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fixed filters for list view. Now you can apply multiple filters. Also now you can filter by foreign key.</p></li>
+<li><p>Removed all <cite>fmt.Println</cite> and <cite>log.Println</cite> for printing errors and replaced it with <cite>Trail</cite>.</p></li>
+<li><p>Export to excel date time type now takes time zone into account.</p></li>
+<li><p>Fixed bug with method fields names rendering with missing letters.</p></li>
+<li><p>Settings URL takes into account <cite>RootURL</cite></p></li>
+<li><p>Edit logs will only be saved if the form didn’t have errors.</p></li>
+<li><p>Fixed bug with <cite>required</cite> file and image fields where you had to choose a file everytime you save even if there was a files saved in the record.</p></li>
+<li><p>Fixed bug with <cite>required</cite> foreign key and list type where it was not working before.</p></li>
+</ul>
+</div>
+<div class="section" id="security">
+<h3><strong>Security</strong><a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>revertLogHandler required the requires to be authenticated and the user to have access to edit the model and have read access to logs.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="version-0-4-0-2019-12-26">
+<h2>Version 0.4.0 (2019-12-26)<a class="headerlink" href="#version-0-4-0-2019-12-26" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap">Back to Top</a></p>
+<div class="section" id="id8">
+<h3><strong>Added</strong><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Implemented request rate limits to protect from DDoS</p></li>
+<li><p>Implemented AB/Testing system</p></li>
+<li><p>Implemented dAPI which is an API to access model data</p></li>
+<li><p>Implemented CacheSessions and CachePermissions for direct in memory access to sessions and permissions</p></li>
+<li><p>Implemented a Metrics system using the following function: <cite>SetMetric</cite>, <cite>IncrementMetric</cite>, <cite>TimeMetric</cite> and <cite>NewMetric</cite></p></li>
+<li><p>Trail can log to syslog</p></li>
+<li><p>HTTP requests can be logged to syslog</p></li>
+<li><p>Added <cite>uadmin.Handler(func(http.ResponseWriter, *http.Request)) func(http.ResponseWriter, *http.Request)</cite> to enable syslog for HTTP requests</p></li>
+<li><p>Add OptimizeSQLQuery mode</p></li>
+<li><p>Handle ctrl+F in Home and List view to focus on the search field instead of the native search</p></li>
+<li><p>Added <cite>stringer</cite> meta tag</p></li>
+<li><p>Added two API end points <cite>/api/get_models</cite> and <cite>/api/get_fields?m={MODEL_NAME}</cite></p></li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h3><strong>Changed</strong><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Changed <cite>Login(*http.Request, string, string) (*User, bool)</cite> to <cite>Login(*http.Request, string, string) (*Session, bool)</cite></p></li>
+<li><p>Changed <cite>Login2FA(*http.Request, string, string, string) *User</cite> to <cite>Login2FA(*http.Request, string, string, string) *Session</cite></p></li>
+<li><p>Changed <cite>HTMLContext</cite> to <cite>RenderHTML</cite> that has support for templates functions</p></li>
+<li><p>URL filter place holders are capital letters <cite>{USERNAME}</cite>, <cite>{USERID}</cite> and <cite>{NOW}</cite></p></li>
+<li><p>Search is allowed for <cite>list_exclude</cite> fields.</p></li>
+<li><p>Changed the search API path to <cite>/api/search/</cite></p></li>
+<li><p>Make static handler a public function <cite>uadmin.StaticHandler(http.ResponseWriter, *http.Request)</cite></p></li>
+<li><p>Added three new level to <cite>Trail</cite> for compatibility with syslog which are <cite>Critical</cite>, <cite>Alert</cite> and <cite>Emergency</cite></p></li>
+<li><p>If database doesn’t exist for mysql, uAdmin will try to create a new database.</p></li>
+</ul>
+</div>
+<div class="section" id="deprecated">
+<h3><strong>Deprecated</strong><a class="headerlink" href="#deprecated" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><cite>User.HasPermission</cite> will be private starting <cite>0.6.0</cite></p></li>
+<li><p><cite>UserGroup.HasPermission</cite> will be private starting <cite>0.6.0</cite></p></li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h3><strong>Fixed</strong><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fixed image crop modal conflict in list view with delete modal and add it to form and inlines</p></li>
+<li><p>Fixed FK in approvals</p></li>
+<li><p>Remove required from fields with pending approval</p></li>
+<li><p>Support filtering/searching by NULL value for <cite>time.Time</cite> pointer</p></li>
+<li><p>Fixed filtering by FK</p></li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h3><strong>Security</strong><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Restrict access to inlines based on user model permissions</p></li>
+<li><p>Search API escapes HTML results</p></li>
+</ul>
+</div>
 </div>
 </div>
 
@@ -142,6 +316,7 @@
 <li class="toctree-l1"><a class="reference internal" href="application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quiz.html">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tags.html">Tag Reference</a></li>
@@ -184,12 +359,12 @@
         <li class="right" >
           <a href="license.html" title="License"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

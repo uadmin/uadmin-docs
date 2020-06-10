@@ -2,7 +2,7 @@ Document System Tutorial Part 5 - Linking Models (Documents)
 ============================================================
 In this part, we will talk about linking models using a foreign key for documents.
 
-Let’s create a new file in the models folder named “channel.go” with the following codes below:
+Let’s create a new file in the models folder named **channel.go** with the following codes below:
 
 .. code-block:: go
 
@@ -18,7 +18,7 @@ Let’s create a new file in the models folder named “channel.go” with the f
         Name string `uadmin:"required"`
     }
 
-Create another file in the models folder named “document.go” with the following codes below. Link the Channel model to the Document model.
+Create another file in the models folder named **document.go** with the following codes below. Link the Channel model to the Document model.
 
 .. code-block:: go
 
@@ -123,7 +123,7 @@ And of course, let's create permissions to the group and user who can access the
         return d.User.String()
     }
 
-What if the user updates something in the document then reuploads it? In this situation, let's create a file named "document_version.go". Every updates done by the user, the version number of the document will change.
+What if the user updates something in the document then reuploads it? In this situation, let's create a file named **document_version.go**. Every updates done by the user, the version number of the document will change.
 
 .. code-block:: go
 
@@ -179,6 +179,14 @@ Run your application. As expected, Channels and Document related models are adde
 
 |
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will discuss about document concepts and how to create records in an application.
 
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part5.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part6.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part5

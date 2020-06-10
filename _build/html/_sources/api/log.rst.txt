@@ -82,8 +82,8 @@ Go to `Example #4: SignIn function`_ to see how SignIn works.
 
 **String()** - Returns the Log ID
 
-Examples:
-
+uadmin.Log Examples
+^^^^^^^^^^^^^^^^^^^
 * `Example #1: Assigning values in Log fields`_
 * `Example #2: ParseRecord function`_
 * `Example #3: PasswordReset function`_
@@ -91,6 +91,8 @@ Examples:
 
 **Example #1:** Assigning values in Log fields
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Go to the main.go and apply the following codes below after the RegisterInlines section.
 
 .. code-block:: go
@@ -129,6 +131,8 @@ Now run your application and see what happens.
 
 **Example #2:** ParseRecord function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Suppose you have this log record as shown below:
 
 .. image:: assets/defaultlogrecord.png
@@ -215,6 +219,8 @@ As expected, the new record was saved in the logs.
 
 **Example #3:** PasswordReset function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Suppose you have this log record as shown below:
 
 .. image:: assets/loginitialrecord.png
@@ -293,6 +299,10 @@ As expected, the new record was saved in the logs.
 
 **Example #4:** SignIn function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/log.html#uadmin-log-examples
+
 Suppose you have this log record as shown below:
 
 .. image:: assets/loginitialrecord.png

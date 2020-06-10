@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Approval Functions &#8212; uadmin 0.4 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Basic Functions" href="basic_functions.html" />
+    <link rel="prev" title="uadmin.ABTest" href="ab-test-functions/abtest.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="basic_functions.html" title="Basic Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ab-test-functions/abtest.html" title="uadmin.ABTest"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="approval-functions">
+<h1>Approval Functions<a class="headerlink" href="#approval-functions" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
+<p>In this section, we will cover the following functions in-depth listed below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#uadmin-approval">uadmin.Approval</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-approvalaction">uadmin.ApprovalAction</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-approvalhandlefunc">uadmin.ApprovalHandleFunc</a></p></li>
+</ul>
+<div class="section" id="uadmin-approval">
+<h2>uadmin.Approval<a class="headerlink" href="#uadmin-approval" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#approval-functions">Back To Top</a></p>
+<p>Approval is a feature used to set an approval permission in the field.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Approval</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">ModelName</span>           <span class="kt">string</span>
+    <span class="nx">ModelPK</span>             <span class="kt">uint</span>
+    <span class="nx">ColumnName</span>          <span class="kt">string</span>
+    <span class="nx">OldValue</span>            <span class="kt">string</span>
+    <span class="nx">NewValue</span>            <span class="kt">string</span>
+    <span class="nx">NewValueDescription</span> <span class="kt">string</span>
+    <span class="nx">ChangedBy</span>           <span class="kt">string</span>
+    <span class="nx">ChangeDate</span>          <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+    <span class="nx">ApprovalAction</span>      <span class="nx">ApprovalAction</span>
+    <span class="nx">ApprovalBy</span>          <span class="kt">string</span>
+    <span class="nx">ApprovalDate</span>        <span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+    <span class="nx">ViewRecord</span>          <span class="kt">string</span>
+    <span class="nx">UpdatedBy</span>           <span class="kt">string</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here are the following fields and their definitions:</p>
+<ul class="simple">
+<li><p><strong>ModelName</strong> - The name of the Model in small letters</p></li>
+<li><p><strong>ModelPK</strong> - Used to uniquely identify each row in the table</p></li>
+<li><p><strong>ColumnName</strong> - The name of the column in the model</p></li>
+<li><p><strong>OldValue</strong> - A value that was assigned before</p></li>
+<li><p><strong>NewValue</strong> - A value that you want to replace from the old value</p></li>
+<li><p><strong>NewValueDescription</strong> - A value that was stored from the new value after saving</p></li>
+<li><p><strong>ChangedBy</strong> - Returns the username who changed the value of the field record</p></li>
+<li><p><strong>ChangeDate</strong> - The date when the value of the field record was changed</p></li>
+<li><p><strong>ApprovalAction</strong> - A selection of approval actions. There are two selections: Approved and Declined.</p></li>
+<li><p><strong>ApprovalBy</strong> - Returns the username who approved the value of the field record</p></li>
+<li><p><strong>ApprovalDate</strong> - The date when the value of the field record was approved</p></li>
+<li><p><strong>ViewRecord</strong> - A link to view the information of the actual record</p></li>
+<li><p><strong>UpdatedBy</strong> - Returns the username who updated the record</p></li>
+</ul>
+<p>There are 2 functions that you can use in Approval:</p>
+<ul class="simple">
+<li><p><strong>Save()</strong> - Saves the object in the database</p></li>
+<li><p><strong>String()</strong> - Returns the Model Name, Model PK, and Column Name</p></li>
+</ul>
+<p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
+<p>One-by-one initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">approval</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Approval</span><span class="p">{}</span>
+    <span class="nx">approval</span><span class="p">.</span><span class="nx">ModelName</span> <span class="p">=</span> <span class="s">&quot;Model Name&quot;</span>
+    <span class="nx">approval</span><span class="p">.</span><span class="nx">ModelPK</span> <span class="p">=</span> <span class="mi">1</span>
+    <span class="nx">approval</span><span class="p">.</span><span class="nx">ColumnName</span> <span class="p">=</span> <span class="s">&quot;Column Name&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>By group initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">approval</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Approval</span><span class="p">{</span>
+        <span class="nx">ModelName</span><span class="p">:</span>  <span class="s">&quot;Model Name&quot;</span><span class="p">,</span>
+        <span class="nx">ModelPK</span><span class="p">:</span>    <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">ColumnName</span><span class="p">:</span> <span class="s">&quot;Column Name&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, we will use “by group” initialization process.</p>
+<p>Suppose the user has assigned a name by mistake and the approver has rejected the record by mistake.</p>
+<img alt="../_images/approvalrejectedbymistake.png" src="../_images/approvalrejectedbymistake.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to the main.go and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Get the record in the user model where the approver is an admin</span>
+    <span class="nx">approver</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">approver</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">// Get the record in the user model where johndoe is the user</span>
+    <span class="nx">user</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">user</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1">// Get an old approval record</span>
+    <span class="nx">a</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Approval</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">// Assign the date and time today</span>
+    <span class="nx">now</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span>
+
+    <span class="c1">// Subtract the time by one hour</span>
+    <span class="nx">then</span> <span class="o">:=</span> <span class="nx">now</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="o">-</span><span class="nx">time</span><span class="p">.</span><span class="nx">Hour</span><span class="p">)</span>
+
+    <span class="c1">// Assign a value that you want to update in the old record</span>
+    <span class="nx">b</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Approval</span><span class="p">{</span>
+        <span class="nx">OldValue</span><span class="p">:</span>            <span class="nx">a</span><span class="p">.</span><span class="nx">NewValueDescription</span><span class="p">,</span>
+        <span class="nx">NewValue</span><span class="p">:</span>            <span class="s">&quot;Jane Doe&quot;</span><span class="p">,</span>
+        <span class="nx">NewValueDescription</span><span class="p">:</span> <span class="s">&quot;Jane Doe&quot;</span><span class="p">,</span>
+        <span class="nx">ChangedBy</span><span class="p">:</span>           <span class="nx">user</span><span class="p">.</span><span class="nx">Username</span><span class="p">,</span>
+        <span class="nx">ChangeDate</span><span class="p">:</span>          <span class="nx">then</span><span class="p">,</span>
+        <span class="nx">ApprovalAction</span><span class="p">:</span>      <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ApprovalAction</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Approved</span><span class="p">(),</span>
+        <span class="nx">ApprovalBy</span><span class="p">:</span>          <span class="nx">approver</span><span class="p">.</span><span class="nx">Username</span><span class="p">,</span>
+        <span class="nx">ApprovalDate</span><span class="p">:</span>        <span class="o">&amp;</span><span class="nx">now</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Update the record here</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="s">&quot;old_value&quot;</span><span class="p">,</span> <span class="nx">b</span><span class="p">.</span><span class="nx">OldValue</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="s">&quot;new_value&quot;</span><span class="p">,</span> <span class="nx">b</span><span class="p">.</span><span class="nx">NewValue</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="s">&quot;new_value_description&quot;</span><span class="p">,</span> <span class="nx">b</span><span class="p">.</span><span class="nx">NewValueDescription</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="s">&quot;changed_by&quot;</span><span class="p">,</span> <span class="nx">b</span><span class="p">.</span><span class="nx">ChangedBy</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="s">&quot;change_date&quot;</span><span class="p">,</span> <span class="nx">b</span><span class="p">.</span><span class="nx">ChangeDate</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="s">&quot;approval_action&quot;</span><span class="p">,</span> <span class="nx">b</span><span class="p">.</span><span class="nx">ApprovalAction</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="s">&quot;approval_by&quot;</span><span class="p">,</span> <span class="nx">b</span><span class="p">.</span><span class="nx">ApprovalBy</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="s">&quot;approval_date&quot;</span><span class="p">,</span> <span class="nx">b</span><span class="p">.</span><span class="nx">ApprovalDate</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">// Get the record in the friend model based on the model primary key</span>
+    <span class="nx">friend</span> <span class="o">:=</span> <span class="nx">models</span><span class="p">.</span><span class="nx">Friend</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">friend</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="nx">a</span><span class="p">.</span><span class="nx">ModelPK</span><span class="p">)</span>
+
+    <span class="c1">// Update the name to the Friend model based on the model primary key</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">friend</span><span class="p">,</span> <span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="nx">a</span><span class="p">.</span><span class="nx">NewValue</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="nx">a</span><span class="p">.</span><span class="nx">ModelPK</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/approvalrecordupdatedapi.png" src="../_images/approvalrecordupdatedapi.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the old approval record has been updated. Now click on View Record button to see if the name of the Friend and the approval status were updated.</p>
+<img alt="../_images/friendnameapprovalupdated.png" class="align-center" src="../_images/friendnameapprovalupdated.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/approval-functions.html">Approval Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-approvalaction">
+<h2>uadmin.ApprovalAction<a class="headerlink" href="#uadmin-approvalaction" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#approval-functions">Back To Top</a></p>
+<p>ApprovalAction is a selection of approval actions. There are two functions: Approved and Rejected.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#uadmin-approval">uadmin.Approval</a>  and <a class="reference internal" href="#uadmin-approvalhandlefunc">uadmin.ApprovalHandleFunc</a> for the examples.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/approval-functions.html">Approval Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-approvalhandlefunc">
+<h2>uadmin.ApprovalHandleFunc<a class="headerlink" href="#uadmin-approvalhandlefunc" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#approval-functions">Back To Top</a></p>
+<p>ApprovalHandleFunc is a function that will be called everytime a model is called. It receives a parameter for an approval system model.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Approval</span><span class="p">)</span> <span class="kt">bool</span>
+</pre></div>
+</div>
+<p>Before you proceed to this example, see <a class="reference internal" href="#uadmin-approval">uadmin.Approval</a>, <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tags.html#approval">Approval Tag</a>, or <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#approval">Approval System</a>.</p>
+<p>Suppose you have this email in the Friend model that has an ID of 1.</p>
+<img alt="../_images/johndoeoldemail.png" class="align-center" src="../_images/johndoeoldemail.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to the main.go and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Generic approval validation based on the model that was called</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ApprovalHandleFunc</span> <span class="p">=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Approval</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+
+        <span class="c1">// Check whether a model name is friend and approval action is</span>
+        <span class="c1">// Approved</span>
+        <span class="k">if</span> <span class="nx">a</span><span class="p">.</span><span class="nx">ModelName</span> <span class="o">==</span> <span class="s">&quot;friend&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">ApprovalAction</span> <span class="o">==</span> <span class="nx">a</span><span class="p">.</span><span class="nx">ApprovalAction</span><span class="p">.</span><span class="nx">Approved</span><span class="p">()</span> <span class="p">{</span>
+
+            <span class="c1">// Initialize a Friend model</span>
+            <span class="nx">f</span> <span class="o">:=</span> <span class="nx">models</span><span class="p">.</span><span class="nx">Friend</span><span class="p">{}</span>
+
+            <span class="c1">// Get the record based on the model primary key</span>
+            <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">f</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="nx">a</span><span class="p">.</span><span class="nx">ModelPK</span><span class="p">)</span>
+
+            <span class="c1">// Assign an email</span>
+            <span class="nx">f</span><span class="p">.</span><span class="nx">Email</span> <span class="p">=</span> <span class="s">&quot;uadmin-support@email.com&quot;</span>
+
+            <span class="c1">// Save changes</span>
+            <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">f</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="kc">true</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>From uAdmin dashboard, go to Approvals model, click the existing record in the list, choose Approved in Approval Action then click Save button below.</p>
+<img alt="../_images/friendemailapproved.png" src="../_images/friendemailapproved.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click View Button on the right side of the record to see the result.</p>
+<img alt="../_images/janedoeviewrecord.png" src="../_images/janedoeviewrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the email on that record was changed.</p>
+<img alt="../_images/uadminsupportemail.png" class="align-center" src="../_images/uadminsupportemail.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/approval-functions.html">Approval Functions</a></p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ab-test-functions/abtest.html"
+                        title="previous chapter">uadmin.ABTest</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="basic_functions.html"
+                        title="next chapter">Basic Functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/approval_functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="basic_functions.html" title="Basic Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ab-test-functions/abtest.html" title="uadmin.ABTest"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    </div>
+  </body>
+</html>

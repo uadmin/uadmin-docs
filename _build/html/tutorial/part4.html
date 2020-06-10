@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>uAdmin Tutorial Part 4 - Register Inlines and Drop Down List &#8212; uadmin 0.3 documentation</title>
+    <title>uAdmin Tutorial Part 4 - Linking Models &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -18,8 +18,8 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="uAdmin Tutorial Part 5 - Applying uAdmin Tags and m2m" href="part5.html" />
-    <link rel="prev" title="uAdmin Tutorial Part 3 - Linking Models" href="part3.html" />
+    <link rel="next" title="uAdmin Tutorial Part 4 - Linking Models (Current Progress)" href="full_code/part4.html" />
+    <link rel="prev" title="uAdmin Tutorial Part 3 - Image Cropping (Current Progress)" href="full_code/part3.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -35,12 +35,12 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="part5.html" title="uAdmin Tutorial Part 5 - Applying uAdmin Tags and m2m"
+          <a href="full_code/part4.html" title="uAdmin Tutorial Part 4 - Linking Models (Current Progress)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="part3.html" title="uAdmin Tutorial Part 3 - Linking Models"
+          <a href="full_code/part3.html" title="uAdmin Tutorial Part 3 - Image Cropping (Current Progress)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" accesskey="U">uAdmin Tutorials</a> &#187;</li> 
       </ul>
     </div>  
@@ -50,104 +50,118 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="uadmin-tutorial-part-4-register-inlines-and-drop-down-list">
-<h1>uAdmin Tutorial Part 4 - Register Inlines and Drop Down List<a class="headerlink" href="#uadmin-tutorial-part-4-register-inlines-and-drop-down-list" title="Permalink to this headline">¶</a></h1>
-<p>Inlines is where we keep all registered models’ inlines. It allows you to merge a parent model to a submodel where the foreign key(s) are specified.</p>
-<p><strong>Why do we use Register Inlines?</strong> We use them to show that the field of a model is related to another model as long as there is a foreign key specified.</p>
-<p>Structure:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">RegisterInlines</span><span class="p">(</span><span class="o">/</span><span class="nx">folder_name</span><span class="o">/</span><span class="p">.</span><span class="o">/</span><span class="nx">struct_name</span> <span class="nx">of</span> <span class="nx">a</span> <span class="nx">parent</span> <span class="nx">model</span><span class="o">/</span><span class="p">{},</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
-    <span class="s">&quot;/sub_model name/&quot;</span><span class="p">:</span> <span class="s">&quot;/parent_model name/ID&quot;</span><span class="p">,</span>
-<span class="p">})</span>
-</pre></div>
-</div>
-<p>Now let’s apply it in the main.go. Copy the codes below and paste it after the uadmin.Register function.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">RegisterInlines</span><span class="p">(</span><span class="nx">models</span><span class="p">.</span><span class="nx">Category</span><span class="p">{},</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
-    <span class="s">&quot;Todo&quot;</span><span class="p">:</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">,</span>
-<span class="p">})</span>
-<span class="nx">uadmin</span><span class="p">.</span><span class="nx">RegisterInlines</span><span class="p">(</span><span class="nx">models</span><span class="p">.</span><span class="nx">Friend</span><span class="p">{},</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
-    <span class="s">&quot;Todo&quot;</span><span class="p">:</span> <span class="s">&quot;FriendID&quot;</span><span class="p">,</span>
-<span class="p">})</span>
-</pre></div>
-</div>
-<p>Let’s run the application and see what happens.</p>
-<img alt="../_images/registerinlinetodo.png" src="../_images/registerinlinetodo.png" />
-<p>Tada! The parent model Todo is now included in the Category submodel as shown above. You can go to Friends and Items models and it will display the same result.</p>
-<div class="section" id="drop-down-list-in-a-field">
-<h2>Drop Down List in a Field<a class="headerlink" href="#drop-down-list-in-a-field" title="Permalink to this headline">¶</a></h2>
-<p>Go to the friend.go in the models folder. Let’s manually add a drop down list selection in the Nationality field. In order to do that, initialize a variable with the type int. Create a function that will set an element and return the integer value inside it. One function is equivalent to one element. Put it above the Friend model.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Nationality ...</span>
-<span class="kd">type</span> <span class="nx">Nationality</span> <span class="kt">int</span>
+  <div class="section" id="uadmin-tutorial-part-4-linking-models">
+<h1>uAdmin Tutorial Part 4 - Linking Models<a class="headerlink" href="#uadmin-tutorial-part-4-linking-models" title="Permalink to this headline">¶</a></h1>
+<p>Linking a model to another model is as simple as creating a field using a foreign key. Foreign Key is the key used to link two models together.</p>
+<p><strong>What is the purpose of the foreign key?</strong> The purpose of the foreign key is to ensure referential integrity of the data. In other words, only values that are supposed to appear in the database are permitted.</p>
+<p>In the example below we linked the Category model into Todo model, now the Todo model will return its data as a field in the Category model.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
 
-<span class="c1">// Chinese ...</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Nationality</span><span class="p">)</span> <span class="nx">Chinese</span><span class="p">()</span> <span class="nx">Nationality</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">1</span>
-<span class="p">}</span>
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;time&quot;</span>
 
-<span class="c1">// Filipino ...</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Nationality</span><span class="p">)</span> <span class="nx">Filipino</span><span class="p">()</span> <span class="nx">Nationality</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">2</span>
-<span class="p">}</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
 
-<span class="c1">// Others ...</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Nationality</span><span class="p">)</span> <span class="nx">Others</span><span class="p">()</span> <span class="nx">Nationality</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">3</span>
+<span class="c1">// Todo !</span>
+<span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>        <span class="kt">string</span>
+    <span class="nx">Description</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;html&quot;`</span>
+    <span class="nx">Category</span>    <span class="nx">Category</span> <span class="c1">// &lt;-- Category Model</span>
+    <span class="nx">CategoryID</span>  <span class="kt">uint</span>     <span class="c1">// &lt;-- Category ID</span>
+    <span class="nx">TargetDate</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+    <span class="nx">Progress</span>    <span class="kt">int</span> <span class="s">`uadmin:&quot;progress_bar&quot;`</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Result</p>
+<img alt="../_images/categoryaddedintodo.png" src="../_images/categoryaddedintodo.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Now inside the Friend model, initialize a Nationality field so that it will be created.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Friend model ...</span>
+<p>Create a file named <strong>friend.go</strong> inside your models folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// Friend Model !</span>
 <span class="kd">type</span> <span class="nx">Friend</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
-    <span class="nx">Name</span>        <span class="kt">string</span> <span class="s">`uadmin:&quot;required&quot;`</span>
-    <span class="nx">Email</span>       <span class="kt">string</span> <span class="s">`uadmin:&quot;email&quot;`</span>
-    <span class="nx">Password</span>    <span class="kt">string</span> <span class="s">`uadmin:&quot;password;list_exclude&quot;`</span>
-    <span class="nx">Nationality</span> <span class="nx">Nationality</span> <span class="c1">// &lt;-- place it here</span>
+    <span class="nx">Name</span>     <span class="kt">string</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">Email</span>    <span class="kt">string</span> <span class="s">`uadmin:&quot;email&quot;`</span>
+    <span class="nx">Password</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;password;list_exclude&quot;`</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Output</p>
-<img alt="../_images/nationalityhighlighted.png" src="../_images/nationalityhighlighted.png" />
-<p>We can also add an Invite field that will direct you to his website. In order to do that, set the field name as “Invite” with the tag “link”.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Friend model ...</span>
-<span class="kd">type</span> <span class="nx">Friend</span> <span class="kd">struct</span> <span class="p">{</span>
+<p>Now register the model on main.go where <cite>models</cite> is the package name and <cite>Friend</cite> is the model name:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span>
+        <span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{},</span>
+        <span class="nx">models</span><span class="p">.</span><span class="nx">Category</span><span class="p">{},</span>
+        <span class="nx">models</span><span class="p">.</span><span class="nx">Friend</span><span class="p">{},</span> <span class="c1">// &lt;-- place it here</span>
+    <span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Set the foreign key of a Friend model to the Todo model and apply the tag “help” to show that who will be a part of your todo activity.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;time&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// Todo Model !</span>
+<span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
-    <span class="nx">Name</span>        <span class="kt">string</span> <span class="s">`uadmin:&quot;required&quot;`</span>
-    <span class="nx">Email</span>       <span class="kt">string</span> <span class="s">`uadmin:&quot;email&quot;`</span>
-    <span class="nx">Password</span>    <span class="kt">string</span> <span class="s">`uadmin:&quot;password;list_exclude&quot;`</span>
-    <span class="nx">Nationality</span> <span class="nx">Nationality</span>
-    <span class="nx">Invite</span>      <span class="kt">string</span> <span class="s">`uadmin:&quot;link&quot;`</span> <span class="c1">// &lt;-- place it here</span>
+    <span class="nx">Name</span>        <span class="kt">string</span>
+    <span class="nx">Description</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;html&quot;`</span>
+    <span class="nx">Category</span>    <span class="nx">Category</span>
+    <span class="nx">CategoryID</span>  <span class="kt">uint</span>
+
+    <span class="c1">// Friend Model</span>
+    <span class="nx">Friend</span>      <span class="nx">Friend</span> <span class="s">`uadmin:&quot;help:Who will be a part of your activity?&quot;`</span>
+    <span class="c1">// Friend ID</span>
+    <span class="nx">FriendID</span>    <span class="kt">uint</span>
+
+    <span class="nx">TargetDate</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+    <span class="nx">Progress</span>    <span class="kt">int</span> <span class="s">`uadmin:&quot;progress_bar&quot;`</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>To make it functional, add the overriding save function after the Friend struct.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Save !</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="o">*</span><span class="nx">Friend</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">f</span><span class="p">.</span><span class="nx">Invite</span> <span class="p">=</span> <span class="s">&quot;https://www.google.com/&quot;</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
+<p>As expected, the Friend model is added in the uAdmin Dashboard.</p>
+<img alt="../_images/friendsmodelselected.png" src="../_images/friendsmodelselected.png" />
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
-<p>Run your application, go to the Friends model and update the elements inside. Afterwards, click the Invite button on the output structure and see what happens.</p>
-<img alt="../_images/invitebuttonhighlighted.png" src="../_images/invitebuttonhighlighted.png" />
+<p>Let’s create a new data in the Friend model.</p>
+<img alt="../_images/friendsdata.png" src="../_images/friendsdata.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Result</p>
-<img alt="../_images/googlewebsitescreen.png" class="align-center" src="../_images/googlewebsitescreen.png" />
+<img alt="../_images/friendsdataoutput1.png" src="../_images/friendsdataoutput1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Congrats, now you know how to do the following:</p>
-<ul class="simple">
-<li><p>Register Inlines</p></li>
-<li><p>Adding drop down list manually to a field</p></li>
-<li><p>How to use “link” tag in our project</p></li>
-<li><p>Applying override save function</p></li>
+<p>As you can see, the password field is not shown in the output. Why? If you go back to the Friend model, the password field has the tag name “list_exclude”. It means it will hide the field or column name in the model structure.</p>
+<p>Go back to Todo model and see what happens.</p>
+<img alt="../_images/friendsaddedintodo.png" src="../_images/friendsaddedintodo.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Congrats, now you know how to link a model using a foreign key.</p>
+<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part4.html">here</a> to view our progress so far.</p>
+<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part5.html">next part</a> we will talk about register inlines and how to create a drop down list in the field manually.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="full_code/part4.html">uAdmin Tutorial Part 4 - Linking Models (Current Progress)</a></li>
 </ul>
-<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part5.html">next part</a> we will talk about applying different uadmin tags through our project.</p>
 </div>
 </div>
 
@@ -164,6 +178,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
@@ -174,11 +189,11 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="part3.html"
-                        title="previous chapter">uAdmin Tutorial Part 3 - Linking Models</a></p>
+  <p class="topless"><a href="full_code/part3.html"
+                        title="previous chapter">uAdmin Tutorial Part 3 - Image Cropping (Current Progress)</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="part5.html"
-                        title="next chapter">uAdmin Tutorial Part 5 - Applying uAdmin Tags and m2m</a></p>
+  <p class="topless"><a href="full_code/part4.html"
+                        title="next chapter">uAdmin Tutorial Part 4 - Linking Models (Current Progress)</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -207,18 +222,18 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="part5.html" title="uAdmin Tutorial Part 5 - Applying uAdmin Tags and m2m"
+          <a href="full_code/part4.html" title="uAdmin Tutorial Part 4 - Linking Models (Current Progress)"
              >next</a> |</li>
         <li class="right" >
-          <a href="part3.html" title="uAdmin Tutorial Part 3 - Linking Models"
+          <a href="full_code/part3.html" title="uAdmin Tutorial Part 3 - Image Cropping (Current Progress)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" >uAdmin Tutorials</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

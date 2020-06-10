@@ -1,0 +1,2593 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>dAPI Reference &#8212; uadmin 0.4 documentation</title>
+    <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Disabled Functions" href="dapi/disabled_functions.html" />
+    <link rel="prev" title="User Functions" href="api/user_functions.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dapi/disabled_functions.html" title="Disabled Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="api/user_functions.html" title="User Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dapi-reference">
+<h1>dAPI Reference<a class="headerlink" href="#dapi-reference" title="Permalink to this headline">¶</a></h1>
+<p>In this section, we will discuss on URL mapping, security, data query and authentication along with any other related topics to this API.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#api-help">API Help</a></p></li>
+<li><p><a class="reference internal" href="#add-multiple">Add Multiple</a></p></li>
+<li><p><a class="reference internal" href="#add-one">Add One</a></p></li>
+<li><p><a class="reference internal" href="#delete-multiple">Delete Multiple</a></p></li>
+<li><p><a class="reference internal" href="#delete-one">Delete One</a></p></li>
+<li><p><a class="reference internal" href="#edit-multiple">Edit Multiple</a></p></li>
+<li><p><a class="reference internal" href="#edit-one">Edit One</a></p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#read-multiple">Read Multiple</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#gt">__gt</a></p></li>
+<li><p><a class="reference internal" href="#gte">__gte</a></p></li>
+<li><p><a class="reference internal" href="#lt">__lt</a></p></li>
+<li><p><a class="reference internal" href="#lte">__lte</a></p></li>
+<li><p><a class="reference internal" href="#in">__in</a></p></li>
+<li><p><a class="reference internal" href="#is">__is</a></p></li>
+<li><p><a class="reference internal" href="#contains">__contains</a></p></li>
+<li><p><a class="reference internal" href="#between">__between</a></p></li>
+<li><p><a class="reference internal" href="#startswith">__startswith</a></p></li>
+<li><p><a class="reference internal" href="#endswith">__endswith</a></p></li>
+<li><p><a class="reference internal" href="#re">__re</a></p></li>
+<li><p><a class="reference internal" href="#icontains">__icontains</a></p></li>
+<li><p><a class="reference internal" href="#istartswith">__istartswith</a></p></li>
+<li><p><a class="reference internal" href="#iendswith">__iendswith</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><a class="reference internal" href="#read-one">Read One</a></p></li>
+<li><p><a class="reference internal" href="#return-format">Return Format</a></p></li>
+<li><p><a class="reference internal" href="#schema">Schema</a></p></li>
+<li><p><a class="reference internal" href="#api-permissions">API Permissions</a></p></li>
+<li><p><a class="reference internal" href="#logging">Logging</a></p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#methods">Methods</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#model-methods">Model Methods</a></p></li>
+<li><p><a class="reference internal" href="#custom-methods">Custom Methods</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#special-parameters">Special Parameters</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#or">$or</a></p></li>
+<li><p><a class="reference internal" href="#limit">$limit</a></p></li>
+<li><p><a class="reference internal" href="#order-ascending">$order (Ascending)</a></p></li>
+<li><p><a class="reference internal" href="#order-descending">$order (Descending)</a></p></li>
+<li><p><a class="reference internal" href="#order-list-of-fields">$order (List of Fields)</a></p></li>
+<li><p><a class="reference internal" href="#limit-offset-order">Limit, offset, order</a></p></li>
+<li><p><a class="reference internal" href="#f">$f</a></p></li>
+<li><p><a class="reference internal" href="#groupby">$groupby</a></p></li>
+<li><p><a class="reference internal" href="#join">$join</a></p></li>
+<li><p><a class="reference internal" href="#deleted">$deleted</a></p></li>
+<li><p><a class="reference internal" href="#m2m">$m2m</a></p></li>
+<li><p><a class="reference internal" href="#q">$q</a></p></li>
+<li><p><a class="reference internal" href="#next">$next</a></p></li>
+<li><p><a class="reference internal" href="#preload">$preload</a></p></li>
+<li><p><a class="reference internal" href="#stats">$stats</a></p></li>
+<li><p><a class="reference internal" href="#allmodels">$allmodels</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><a class="reference internal" href="#writing-data-symbol">Writing Data Symbol</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-functions">uAdmin Functions</a></p></li>
+</ul>
+<div class="section" id="api-help">
+<h2>API Help<a class="headerlink" href="#api-help" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>To display information about data access HTTP API, call this URL in the address bar as shown below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/dataaccessapihelp.png" class="align-center" src="_images/dataaccessapihelp.png" />
+<img alt="_images/dataaccessapihelp2.png" class="align-center" src="_images/dataaccessapihelp2.png" />
+</div>
+<div class="section" id="add-multiple">
+<h2>Add Multiple<a class="headerlink" href="#add-multiple" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># For writing data, put _ symbol first before the field name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/add/?_<span class="o">{</span><span class="nv">FIELD_NAME__n</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>Method</strong>: GET, POST</p>
+<p><strong>Authentication</strong>: Cookie, URL parameter “?code=abcd” or POST parameter “code=abcd”</p>
+<p>The model’s fields could be added as parameters depending of the HTTP method. If a field is required and there is no value passed, the API will return a status:” ‘error’ with an err_msg detailing which required field was missing.</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;err_msg&quot;</span><span class="p">:</span> <span class="s2">&quot;This field is required and no value is assigned or missing.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;err_f&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To identify each field in the request, there is a suffix of __n where n is the index of the record being added. This is a 0-based index.</p>
+<p>Suppose you don’t have any records in the Document model.</p>
+<img alt="_images/emptyrecorddocument.png" src="_images/emptyrecorddocument.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to add multiple records in the Document model with the following information below:</p>
+<p><strong>First Record</strong></p>
+<ul class="simple">
+<li><p>Name: Golang</p></li>
+<li><p>Author: John</p></li>
+</ul>
+<p><strong>Second Record</strong></p>
+<ul class="simple">
+<li><p>Name: uAdmin</p></li>
+<li><p>Author: Adam</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+<span class="c1"># __0 is the first index</span>
+<span class="c1"># __1 is the second index</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name__0<span class="o">=</span>Golang<span class="p">&amp;</span><span class="nv">_author__0</span><span class="o">=</span>John<span class="p">&amp;</span><span class="nv">_name__1</span><span class="o">=</span>uAdmin<span class="p">&amp;</span><span class="nv">_author__1</span><span class="o">=</span>Adam
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">1</span><span class="p">,</span>
+        <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns an array with a list of IDs for the newly created records.</p>
+<p>To check the details of the newly created records, there are two methods: by visiting the Document model from uAdmin dashboard or by applying __in operator in the id field then assign the IDs of the newly created records to read multiple data in the API.</p>
+<p><strong>Method 1:</strong> Visiting the Document model from uAdmin dashboard</p>
+<img alt="_images/addmultipleresult.png" src="_images/addmultipleresult.png" />
+<p><strong>Method 2:</strong> Using __in operator to read multiple records in the API</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># id is a field name</span>
+<span class="c1"># __in is an operator used to read record(s) to find a value matching</span>
+<span class="c1"># any of these values</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/read/?id__in<span class="o">=</span><span class="m">1</span>,2
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/addmultipleresultjson.png" class="align-center" src="_images/addmultipleresultjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON array representing newly created items where ID=1,2.</p>
+</div>
+<div class="section" id="add-one">
+<h2>Add One<a class="headerlink" href="#add-one" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># For writing data, put _ symbol first before the field name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/add/?_<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>Method</strong>: GET, POST</p>
+<p><strong>Authentication</strong>: Cookie, URL parameter “?code=abcd” or POST parameter “code=abcd”</p>
+<p>The model’s fields could be added as parameters depending of the HTTP method. If a field is required and there is no value passed, the API will return a status:” ‘error’ with an err_msg detailing which required field was missing.</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;err_msg&quot;</span><span class="p">:</span> <span class="s2">&quot;This field is required and no value is assigned or missing.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;err_f&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Suppose you have two records in the Document model.</p>
+<img alt="_images/addmultipleresult.png" src="_images/addmultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to add a new record in the Document model with the following information below:</p>
+<ul class="simple">
+<li><p>Name: Programming</p></li>
+<li><p>Author: Admin</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name<span class="o">=</span>Programming<span class="p">&amp;</span><span class="nv">_author</span><span class="o">=</span>Admin
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the ID of the newly created record.</p>
+<p>To check the details of a newly created record, there are two methods: by visiting the Document model in the dashboard or by using HTTP API to read one by assigning the ID of the newly created record.</p>
+<p><strong>Method 1:</strong> Visiting the Document model from uAdmin dashboard</p>
+<img alt="_images/addoneresult.png" src="_images/addoneresult.png" />
+<p><strong>Method 2:</strong> Using HTTP API to read one record</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># 3 is an ID number</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/read/3/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/addoneresultjson.png" class="align-center" src="_images/addoneresultjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing an item where ID=3.</p>
+</div>
+<div class="section" id="delete-multiple">
+<h2>Delete Multiple<a class="headerlink" href="#delete-multiple" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/delete/?<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># This API call will delete all records in the database.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/delete/
+</pre></div>
+</div>
+<p><strong>Method</strong>: GET, POST</p>
+<p><strong>Authentication</strong>: Cookie, URL parameter “?code=abcd” or POST parameter “code=abcd”</p>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to delete records where the name of an item contains “iPad”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/?name__contains<span class="o">=</span>iPad
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>To check if the record(s) with the substring “iPad” were removed from the database, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read all data.</p>
+<p><strong>Method 1:</strong> Visiting the Item model from uAdmin dashboard</p>
+<img alt="_images/deletemultipleresult.png" src="_images/deletemultipleresult.png" />
+<p><strong>Method 2:</strong> Using HTTP API to read all data</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/deletemultipleresultjson.png" class="align-center" src="_images/deletemultipleresultjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON array with all remaining items in the database.</p>
+<p>What if you don’t specify which record do you want to delete in the database? Let’s call this URL without assigning any query.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># This API call will delete all records in the Item model.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/deleteallresult.png" class="align-center" src="_images/deleteallresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>By default, delete all is blocked to the user.</p>
+</div>
+<div class="section" id="delete-one">
+<h2>Delete One<a class="headerlink" href="#delete-one" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/delete/<span class="o">{</span>ID<span class="o">}</span>/
+</pre></div>
+</div>
+<p><strong>Method</strong>: GET, POST</p>
+<p><strong>Authentication</strong>: Cookie, URL parameter “?code=abcd” or POST parameter “code=abcd”</p>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to delete the third record in the database.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 3 is an ID number</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/3/
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>To check if the third record was removed from the database, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read all data.</p>
+<p><strong>Method 1:</strong> Visiting the Item model from uAdmin dashboard</p>
+<img alt="_images/deleteoneresult.png" src="_images/deleteoneresult.png" />
+<p><strong>Method 2:</strong> Using HTTP API to read all data</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/deleteoneresultjson.png" class="align-center" src="_images/deleteoneresultjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON array with all remaining items in the database.</p>
+</div>
+<div class="section" id="edit-multiple">
+<h2>Edit Multiple<a class="headerlink" href="#edit-multiple" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># ! stands for query</span>
+<span class="c1"># For writing data, put _ symbol first before the field name</span>
+<span class="c1"># Pass a query that matches a record to be updated then assign a</span>
+<span class="c1"># new value in the specified field</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/edit/?<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span><span class="p">&amp;</span>_<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># If there is no assigned field selector, it will update all records in</span>
+<span class="c1"># the database.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/edit/?_<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>Method</strong>: GET, POST</p>
+<p><strong>Authentication</strong>: Cookie, URL parameter “?code=abcd” or POST parameter “code=abcd”</p>
+<p>Suppose you have five records in the Item model where all iPad items have a rating of 4.</p>
+<img alt="_images/itemipadoldrating.png" src="_images/itemipadoldrating.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to edit the rating of all iPad items to a value of 5.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+<span class="c1"># rating=4&amp;_rating=5 means that where rating is equal to 4, change the</span>
+<span class="c1"># rating value to 5</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/?rating<span class="o">=</span><span class="m">4</span><span class="p">&amp;</span><span class="nv">_rating</span><span class="o">=</span><span class="m">5</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>To check if the rating of iPad items has edited, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read multiple data where name contains “iPad”.</p>
+<p><strong>Method 1:</strong> Visiting the Item model from uAdmin dashboard</p>
+<img alt="_images/editmultipleresult.png" src="_images/editmultipleresult.png" />
+<p><strong>Method 2:</strong> Using HTTP API to read multiple data</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?name__contains<span class="o">=</span>iPad
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/editmultipleresultjson.png" class="align-center" src="_images/editmultipleresultjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON array representing newly modified iPad items where rating has a value of 5.</p>
+<p>What if you don’t specify which record do you want to update in the database? Let’s call this URL to edit the rating to a value of 2.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/?_rating<span class="o">=</span><span class="m">2</span>
+</pre></div>
+</div>
+<p>Now let’s see what happens.</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Based on the result, it seems that all rows are affected by your query.</p>
+<p>To check if the rating of all items has edited, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read all records in the database.</p>
+<p><strong>Method 1:</strong> Visiting the Item model from uAdmin dashboard</p>
+<img alt="_images/editallresult.png" src="_images/editallresult.png" />
+<p><strong>Method 2:</strong> Using HTTP API to read all records</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/editallresultjson.png" class="align-center" src="_images/editallresultjson.png" />
+</div>
+<div class="section" id="edit-one">
+<h2>Edit One<a class="headerlink" href="#edit-one" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># For writing data, put _ symbol first before the field name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/edit/<span class="o">{</span>ID<span class="o">}</span>/?_<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>Method</strong>: GET, POST</p>
+<p><strong>Authentication</strong>: Cookie, URL parameter “?code=abcd” or POST parameter “code=abcd”</p>
+<p>Suppose the first record in the Item model is named as “Robot”.</p>
+<img alt="_images/itemfirstrecordrobot.png" src="_images/itemfirstrecordrobot.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to edit the name of the first record in the database from “Robot” to “Supercomputer”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 1 is an ID number</span>
+<span class="c1"># name is a field name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/1/?_name<span class="o">=</span>Supercomputer
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>To check if the name of the first record has modified, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read the first record.</p>
+<p><strong>Method 1:</strong> Visiting the Item model from uAdmin dashboard</p>
+<img alt="_images/editoneresult.png" src="_images/editoneresult.png" />
+<p><strong>Method 2:</strong> Using HTTP API to read the first record</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 1 is an ID number</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/1/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/editoneresultjson.png" class="align-center" src="_images/editoneresultjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing a modified item where name=Supercomputer.</p>
+</div>
+<div class="section" id="read-multiple">
+<h2>Read Multiple<a class="headerlink" href="#read-multiple" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name != value</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># This API call will read all records in the database.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/
+</pre></div>
+</div>
+<p><strong>Method</strong>: GET, POST</p>
+<p><strong>Authentication</strong>: Cookie, URL parameter “?code=abcd” or POST parameter “code=abcd”</p>
+<p>Any field of the model could be passed as a parameter to filter the results. Multiple filters could be used together where the system will apply AND operator between them. Evaluation operator could be added using __ e.g. ?name__contains=contract.</p>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where rating is equal to 3.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># rating is a field name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?rating<span class="o">=</span><span class="m">3</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/readmultipleresult.png" class="align-center" src="_images/readmultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where rating is equal to 3.</p>
+<p>Now let’s call this URL to read record(s) where rating is not equal to 3.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># rating is a field name</span>
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE rating != 3</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?!rating<span class="o">=</span><span class="m">3</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/readmultiplenotresult.png" class="align-center" src="_images/readmultiplenotresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where rating is not equal to 3.</p>
+<p>What if you don’t specify which record do you want to read in the database? Let’s call this URL without assigning any query.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># This API call will read all records in the Item model.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/readallresult.png" class="align-center" src="_images/readallresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON array with all items in the database.</p>
+<div class="section" id="list-of-operators">
+<h3>List of Operators<a class="headerlink" href="#list-of-operators" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#read-multiple">Back to Top (Read Multiple)</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#gt">__gt</a></p></li>
+<li><p><a class="reference internal" href="#gte">__gte</a></p></li>
+<li><p><a class="reference internal" href="#lt">__lt</a></p></li>
+<li><p><a class="reference internal" href="#lte">__lte</a></p></li>
+<li><p><a class="reference internal" href="#in">__in</a></p></li>
+<li><p><a class="reference internal" href="#is">__is</a></p></li>
+<li><p><a class="reference internal" href="#contains">__contains</a></p></li>
+<li><p><a class="reference internal" href="#between">__between</a></p></li>
+<li><p><a class="reference internal" href="#startswith">__startswith</a></p></li>
+<li><p><a class="reference internal" href="#endswith">__endswith</a></p></li>
+<li><p><a class="reference internal" href="#re">__re</a></p></li>
+<li><p><a class="reference internal" href="#icontains">__icontains</a></p></li>
+<li><p><a class="reference internal" href="#istartswith">__istartswith</a></p></li>
+<li><p><a class="reference internal" href="#iendswith">__iendswith</a></p></li>
+</ul>
+</div>
+<div class="section" id="gt">
+<h3><strong>__gt</strong><a class="headerlink" href="#gt" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>Greater than. Applies to: numbers, dates</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__gt</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name &lt;= value</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__gt</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where price is greater than 15000.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># price is a field name</span>
+<span class="c1"># __gt is an operator used to read record(s) where price is greater</span>
+<span class="c1"># than 15000</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?price__gt<span class="o">=</span><span class="m">15000</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/gtresult.png" class="align-center" src="_images/gtresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where price is greater than 15000.</p>
+</div>
+<div class="section" id="gte">
+<h3><strong>__gte</strong><a class="headerlink" href="#gte" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>Greater than or equal to. Applies to: numbers, dates</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__gte</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name &lt; value</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__gte</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where price is greater than or equal to 15000.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># price is a field name</span>
+<span class="c1"># __gte is an operator used to read record(s) where price is greater</span>
+<span class="c1"># than or equal to 15000</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?price__gte<span class="o">=</span><span class="m">15000</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/gteresult.png" class="align-center" src="_images/gteresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where price is greater than or equal 15000.</p>
+</div>
+<div class="section" id="lt">
+<h3><strong>__lt</strong><a class="headerlink" href="#lt" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>Less than. Applies to: numbers, dates</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__lt</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name &gt;= value</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__lt</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where price is less than 15000.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># price is a field name</span>
+<span class="c1"># __lt is an operator used to read record(s) where price is less</span>
+<span class="c1"># than 15000</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?price__lt<span class="o">=</span><span class="m">15000</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/ltresult.png" class="align-center" src="_images/ltresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where price is less than 15000.</p>
+</div>
+<div class="section" id="lte">
+<h3><strong>__lte</strong><a class="headerlink" href="#lte" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>Less than or equal to. Applies to: numbers, dates</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__lte</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name &gt; value</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__lte</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where price is less than or equal to 15000.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># price is a field name</span>
+<span class="c1"># __lte is an operator used to read record(s) where price is less</span>
+<span class="c1"># than or equal to 15000</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?price__lte<span class="o">=</span><span class="m">15000</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/lteresult.png" class="align-center" src="_images/lteresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where price is less than or equal to 15000.</p>
+</div>
+<div class="section" id="in">
+<h3><strong>__in</strong><a class="headerlink" href="#in" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>Uses SQL IN (a,c,b…) operator to find a value matching any of these values. In the URL the values will be comma separated in this way id__in=1,2,3. Applies to: numbers</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__in</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name NOT IN value</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__in</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where the rating of an item is 3 and 5.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># rating is a field name</span>
+<span class="c1"># __in is an operator used to read record(s) to find a value matching</span>
+<span class="c1"># any of these values</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?rating__in<span class="o">=</span><span class="m">3</span>,5
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/inresult.png" class="align-center" src="_images/inresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where the rating of an item is 3 or 5.</p>
+<p>Now let’s call this URL to read record(s) where the rating of an item is outside of 3 and 5.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># rating is a field name</span>
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE rating NOT IN (3,5)</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?!rating__in<span class="o">=</span><span class="m">3</span>,5
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/notinresult.png" class="align-center" src="_images/notinresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where the rating of an item is outside of 3 or 5.</p>
+</div>
+<div class="section" id="is">
+<h3><strong>__is</strong><a class="headerlink" href="#is" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>Stands for IS NULL. It should be used like date__is=null</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__is</span><span class="o">=</span>null<span class="o">)</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name IS NOT NULL</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__is</span><span class="o">=</span>null<span class="o">)</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application. Inside the Item model, delete the iPad Pro and iPad Mini items.</p>
+<img alt="_images/ipaddeleteselected.png" src="_images/ipaddeleteselected.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/ipadconfirmdelete.png" src="_images/ipadconfirmdelete.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result:</p>
+<img alt="_images/deletemultipleresult.png" src="_images/deletemultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the address bar, call this URL to read record(s) where the Deleted At date value is null.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># deletedat is a field name</span>
+<span class="c1"># __is is an operator that stands for IS NULL</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?deletedat__is<span class="o">=</span>null
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/isnullresult.png" class="align-center" src="_images/isnullresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where the Deleted At date value is null.</p>
+<p>Now let’s call this URL to read record(s) where the Deleted At date value is not null.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># deletedat is a field name</span>
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE deletedat IS NOT NULL</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?!deletedat__is<span class="o">=</span>null
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/isnotnullresult.png" class="align-center" src="_images/isnotnullresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where the Deleted At date value is not null.</p>
+</div>
+<div class="section" id="contains">
+<h3><strong>__contains</strong><a class="headerlink" href="#contains" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>Will search for string values that contract. Applies to: string</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__contains</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name NOT LIKE BINARY %value%</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__contains</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where the name of an item contains the substring “iPad”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?name__contains<span class="o">=</span>iPad
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/containsresult.png" class="align-center" src="_images/containsresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where the name of an item contains the substring “iPad”.</p>
+<p>Now let’s search the substring “ipad” where p is the lowercase letter and see what happens.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?name__contains<span class="o">=</span>ipad
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;result&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns an empty array because __contains operator searches for an exact match string value. It is case sensitive. If you want to search a string value that is not case sensitive, go to <a class="reference internal" href="#icontains">__icontains</a> for an example.</p>
+</div>
+<div class="section" id="between">
+<h3><strong>__between</strong><a class="headerlink" href="#between" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>The __between operator selects values within a given range. The values can be numbers, text, or dates.</p>
+<p>The __between operator is inclusive: begin and end values are included. <a class="footnote-reference brackets" href="#f5" id="id1">5</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__between</span><span class="o">=</span>value1,value2<span class="o">)</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name NOT BETWEEN value1 AND value2</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__between</span><span class="o">=</span>value1,value2<span class="o">)</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where price is between the range of 15000 and 30000.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># price is a field name</span>
+<span class="c1"># __between is an operator that selects values within a given range</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?price__between<span class="o">=</span><span class="m">15000</span>,30000
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/betweenresult.png" class="align-center" src="_images/betweenresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where where price is between the range of 15000 and 30000.</p>
+</div>
+<div class="section" id="startswith">
+<h3><strong>__startswith</strong><a class="headerlink" href="#startswith" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>Will search for string values that starts with a given substring. Applies to: string</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__startswith</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name NOT LIKE BINARY value%</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__startswith</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where the name of an item starts with “iPad”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __startswith is an operator that will search for string values that</span>
+<span class="c1"># starts with a given substring</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?name__startswith<span class="o">=</span>iPad
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/startswithresult.png" class="align-center" src="_images/startswithresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where the name of an item starts with “iPad”.</p>
+<p>Now let’s search the substring “ipad” where p is the lowercase letter and see what happens.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?name__startswith<span class="o">=</span>ipad
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;result&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns an empty array because __startswith operator searches for an exact match string value. It is case sensitive. If you want to search a string value that is not case sensitive, go to <a class="reference internal" href="#istartswith">__istartswith</a> for an example.</p>
+</div>
+<div class="section" id="endswith">
+<h3><strong>__endswith</strong><a class="headerlink" href="#endswith" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>Will search for string values that ends with a given substring. Applies to: string</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__endswith</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name NOT LIKE BINARY %value</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__endswith</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where the description of an item ends with “device”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># description is a field name</span>
+<span class="c1"># __endswith is an operator that will search for string values that</span>
+<span class="c1"># ends with a given substring</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?description__endswith<span class="o">=</span>device
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/endswithresult.png" class="align-center" src="_images/endswithresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where the description of an item ends with “device”.</p>
+<p>Now let’s search the substring “Device” where D is the uppercase letter and see what happens.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?description__endswith<span class="o">=</span>Device
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;result&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns an empty array because __endswith operator searches for an exact match string value. It is case sensitive. If you want to search a string value that is not case sensitive, go to <a class="reference internal" href="#iendswith">__iendswith</a> for an example.</p>
+</div>
+<div class="section" id="re">
+<h3><strong>__re</strong><a class="headerlink" href="#re" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>Regular expression or regex. It is a sequence of characters that define a search pattern.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__re</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name NOT REGEXP value</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__re</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where the name of an item starts with “iPad” followed by letter M or P in the second word.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __re is an operator that defines a search pattern</span>
+<span class="c1"># %20 represents a space in an encoded URL</span>
+<span class="c1"># [M,P] is a list that can be letter M or P</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/?name__re<span class="o">=</span>iPad%20<span class="o">[</span>M,P<span class="o">]</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/reresult.png" class="align-center" src="_images/reresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where the name of an item starts with “iPad” followed by letter M or P in the second word.</p>
+</div>
+<div class="section" id="icontains">
+<h3><strong>__icontains</strong><a class="headerlink" href="#icontains" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>Will search for string values that contract. This is case insensitive. Applies to: string</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__icontains</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE UPPER(field_name) LIKE %value%</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__icontains</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where the name of an item contains the substring “iPad”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __icontains is an operator that will search for string values that contract</span>
+<span class="c1"># __icontains is case insensitive</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?name__icontains<span class="o">=</span>iPad
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/containsresult.png" class="align-center" src="_images/containsresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where the name of an item contains the substring “iPad”.</p>
+<p>Now let’s search the substring “ipad” where p is the lowercase letter and see what happens.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?name__icontains<span class="o">=</span>ipad
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/containsresult.png" class="align-center" src="_images/containsresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns the same thing.</p>
+</div>
+<div class="section" id="istartswith">
+<h3><strong>__istartswith</strong><a class="headerlink" href="#istartswith" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>Will search for string values that starts with a given substring. This is case insensitive. Applies to: string</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__istartswith</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE UPPER(field_name) LIKE value%</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__istartswith</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where the name of an item starts with “iPad”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __istartswith is an operator that will search for string values that</span>
+<span class="c1"># starts with a given substring. This is case insensitive.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?name__istartswith<span class="o">=</span>iPad
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/startswithresult.png" class="align-center" src="_images/startswithresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where the name of an item starts with “iPad”.</p>
+<p>Now let’s search the substring “ipad” where p is the lowercase letter and see what happens.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/?name__istartswith<span class="o">=</span>ipad
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/startswithresult.png" class="align-center" src="_images/startswithresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns the same thing.</p>
+</div>
+<div class="section" id="iendswith">
+<h3><strong>__iendswith</strong><a class="headerlink" href="#iendswith" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#list-of-operators">Back to Top (List of Operators)</a></p>
+<p>Will search for string values that ends with a given substring. This is case insensitive. Applies to: string</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="o">{</span><span class="nv">FIELD_NAME__iendswith</span><span class="o">=</span>VALUE<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE UPPER(field_name) LIKE %value</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?!<span class="o">{</span><span class="nv">FIELD_NAME__iendswith</span><span class="o">=</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where the description of an item ends with “device”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># description is a field name</span>
+<span class="c1"># __iendswith is an operator that will search for string values that</span>
+<span class="c1"># ends with a given substring. This is case insensitive.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/?description__iendswith<span class="o">=</span>device
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/endswithresult.png" class="align-center" src="_images/endswithresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where the description of an item ends with “device”.</p>
+<p>Now let’s search the substring “Device” where D is the uppercase letter and see what happens.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?description__iendswith<span class="o">=</span>Device
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/endswithresult.png" class="align-center" src="_images/endswithresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns the same thing.</p>
+</div>
+</div>
+<div class="section" id="read-one">
+<h2>Read One<a class="headerlink" href="#read-one" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/<span class="o">{</span>ID<span class="o">}</span>/
+</pre></div>
+</div>
+<p><strong>Method</strong>: GET, POST</p>
+<p><strong>Authentication</strong>: Cookie, URL parameter “?code=abcd” or POST parameter “code=abcd”</p>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read the second record in the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 2 is an ID number</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/2/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/readoneresult.png" class="align-center" src="_images/readoneresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing an item where ID=2.</p>
+</div>
+<div class="section" id="return-format">
+<h2>Return Format<a class="headerlink" href="#return-format" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>The return format is always JSON in this format:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;result&quot;</span><span class="p">:</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Where <strong>value</strong> has the return value of the call. Not all calls will have a return value. In case of error you will get a JSON result that looks like this:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;err_msg&quot;</span><span class="p">:</span> <span class="s2">&quot;error message&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;err_f&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If the API should return a single result, then the value of items could be either an object or null.</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;result&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;item 1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;description 1&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;items&quot;</span><span class="p">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If the API should return multiple results, then the value of items is always an array that could be of length 0.</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;result&quot;</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="schema">
+<h2>Schema<a class="headerlink" href="#schema" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/schema/
+</pre></div>
+</div>
+<p><strong>Method</strong>: GET, POST</p>
+<p><strong>Authentication</strong>: Cookie, URL parameter “?code=abcd” or POST parameter “code=abcd”</p>
+<p>By default this is disabled for all users unless it is enabled with method <strong>APIDisabledSchema</strong> and <strong>APIPublicSchema</strong>.</p>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read the full schema of the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/schema/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/schemaresult.png" class="align-center" src="_images/schemaresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing uAdmin’s ModelSchema of the Item model.</p>
+</div>
+<div class="section" id="api-permissions">
+<h2>API Permissions<a class="headerlink" href="#api-permissions" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>The API should check the user’s permissions to ensure proper permissions before executing any queries or returning data. If there is not proper permissions then the API will return an error message detailing lack of access.</p>
+</div>
+<div class="section" id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>The API can log all access to data in the built in Logs system on uAdmin. This behavior could be controlled using 5 system wide settings:</p>
+<ul class="simple">
+<li><p>APILogRead = false</p></li>
+<li><p>APILogEdit = true</p></li>
+<li><p>APILogAdd = true</p></li>
+<li><p>APILogDelete = true</p></li>
+<li><p>APILogSchema = true</p></li>
+</ul>
+<p>This can also be customized for any single model by implementing one of five methods:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-read">API Log Read</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-edit">API Log Edit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-add">API Log Add</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-delete">API Log Delete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-schema">API Log Schema</a></p></li>
+</ul>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#model-methods">Model Methods</a></p></li>
+<li><p><a class="reference internal" href="#custom-methods">Custom Methods</a></p></li>
+</ul>
+<div class="section" id="model-methods">
+<h3><strong>Model Methods</strong><a class="headerlink" href="#model-methods" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#methods">Back to Top (Methods)</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#apidisabledadd">APIDisabledAdd</a></p></li>
+<li><p><a class="reference internal" href="#apidisableddelete">APIDisabledDelete</a></p></li>
+<li><p><a class="reference internal" href="#apidisablededit">APIDisabledEdit</a></p></li>
+<li><p><a class="reference internal" href="#apidisabledread">APIDisabledRead</a></p></li>
+<li><p><a class="reference internal" href="#apidisabledschema">APIDisabledSchema</a></p></li>
+<li><p><a class="reference internal" href="#apilogadd">APILogAdd</a></p></li>
+<li><p><a class="reference internal" href="#apilogdelete">APILogDelete</a></p></li>
+<li><p><a class="reference internal" href="#apilogedit">APILogEdit</a></p></li>
+<li><p><a class="reference internal" href="#apilogread">APILogRead</a></p></li>
+<li><p><a class="reference internal" href="#apilogschema">APILogSchema</a></p></li>
+<li><p><a class="reference internal" href="#apiprequeryadd">APIPreQueryAdd</a></p></li>
+<li><p><a class="reference internal" href="#apiprequerydelete">APIPreQueryDelete</a></p></li>
+<li><p><a class="reference internal" href="#apiprequeryedit">APIPreQueryEdit</a></p></li>
+<li><p><a class="reference internal" href="#apiprequeryread">APIPreQueryRead</a></p></li>
+<li><p><a class="reference internal" href="#apiprequeryschema">APIPreQuerySchema</a></p></li>
+<li><p><a class="reference internal" href="#apipostqueryadd">APIPostQueryAdd</a></p></li>
+<li><p><a class="reference internal" href="#apipostquerydelete">APIPostQueryDelete</a></p></li>
+<li><p><a class="reference internal" href="#apipostqueryedit">APIPostQueryEdit</a></p></li>
+<li><p><a class="reference internal" href="#apipostqueryread">APIPostQueryRead</a></p></li>
+<li><p><a class="reference internal" href="#apipostqueryschema">APIPostQuerySchema</a></p></li>
+<li><p><a class="reference internal" href="#apipublicadd">APIPublicAdd</a></p></li>
+<li><p><a class="reference internal" href="#apipublicdelete">APIPublicDelete</a></p></li>
+<li><p><a class="reference internal" href="#apipublicedit">APIPublicEdit</a></p></li>
+<li><p><a class="reference internal" href="#apipublicread">APIPublicRead</a></p></li>
+<li><p><a class="reference internal" href="#apipublicschema">APIPublicSchema</a></p></li>
+</ul>
+<div class="section" id="apidisabledadd">
+<h4><strong>APIDisabledAdd</strong><a class="headerlink" href="#apidisabledadd" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIDisabledAdd controls the data API’s disabled for add commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to disable access to add method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apidisableddelete">
+<h4><strong>APIDisabledDelete</strong><a class="headerlink" href="#apidisableddelete" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIDisabledDelete controls the data API’s disabled for delete commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to disable access to delete method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apidisablededit">
+<h4><strong>APIDisabledEdit</strong><a class="headerlink" href="#apidisablededit" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIDisabledEdit controls the data API’s disabled for edit commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to disable access to edit method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apidisabledread">
+<h4><strong>APIDisabledRead</strong><a class="headerlink" href="#apidisabledread" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIDisabledRead controls the data API’s disabled for read commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to disable access to read method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apidisabledschema">
+<h4><strong>APIDisabledSchema</strong><a class="headerlink" href="#apidisabledschema" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIDisabledSchema controls the data API’s disabled for schema commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to disable access to schema method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledSchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apilogadd">
+<h4><strong>APILogAdd</strong><a class="headerlink" href="#apilogadd" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APILogAdd controls the data API’s logging for add commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to record add action in logs</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apilogdelete">
+<h4><strong>APILogDelete</strong><a class="headerlink" href="#apilogdelete" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APILogDelete controls the data API’s logging for delete commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to record delete action in logs</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apilogedit">
+<h4><strong>APILogEdit</strong><a class="headerlink" href="#apilogedit" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APILogEdit controls the data API’s logging for edit commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to record edit action in logs</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apilogread">
+<h4><strong>APILogRead</strong><a class="headerlink" href="#apilogread" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APILogRead controls the data API’s logging for read commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to record read action in logs</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apilogschema">
+<h4><strong>APILogSchema</strong><a class="headerlink" href="#apilogschema" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APILogSchema controls the data API’s logging for schema commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to record schema action in logs</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogSchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apiprequeryadd">
+<h4><strong>APIPreQueryAdd</strong><a class="headerlink" href="#apiprequeryadd" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPreQueryAdd controls the data API’s pre query for add commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to add method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apiprequerydelete">
+<h4><strong>APIPreQueryDelete</strong><a class="headerlink" href="#apiprequerydelete" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPreQueryDelete controls the data API’s pre query for delete commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to delete method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apiprequeryedit">
+<h4><strong>APIPreQueryEdit</strong><a class="headerlink" href="#apiprequeryedit" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPreQueryEdit controls the data API’s pre query for edit commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to edit method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apiprequeryread">
+<h4><strong>APIPreQueryRead</strong><a class="headerlink" href="#apiprequeryread" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPreQueryRead controls the data API’s pre query for read commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to read method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apiprequeryschema">
+<h4><strong>APIPreQuerySchema</strong><a class="headerlink" href="#apiprequeryschema" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPreQuerySchema controls the data API’s pre query for schema commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to schema method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQuerySchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apipostqueryadd">
+<h4><strong>APIPostQueryAdd</strong><a class="headerlink" href="#apipostqueryadd" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPostQueryAdd controls the data API’s post query for add commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to add method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apipostquerydelete">
+<h4><strong>APIPostQueryDelete</strong><a class="headerlink" href="#apipostquerydelete" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPostQueryDelete controls the data API’s post query for delete commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to delete method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apipostqueryedit">
+<h4><strong>APIPostQueryEdit</strong><a class="headerlink" href="#apipostqueryedit" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPostQueryEdit controls the data API’s post query for edit commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to edit method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apipostqueryread">
+<h4><strong>APIPostQueryRead</strong><a class="headerlink" href="#apipostqueryread" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPostQueryRead controls the data API’s post query for read commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to read method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apipostqueryschema">
+<h4><strong>APIPostQuerySchema</strong><a class="headerlink" href="#apipostqueryschema" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPostQuerySchema controls the data API’s post query for schema commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to schema method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQuerySchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apipublicadd">
+<h4><strong>APIPublicAdd</strong><a class="headerlink" href="#apipublicadd" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPublicAdd controls the data API’s public for add commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable public access to add method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apipublicdelete">
+<h4><strong>APIPublicDelete</strong><a class="headerlink" href="#apipublicdelete" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPublicDelete controls the data API’s public for delete commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable public access to delete method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apipublicedit">
+<h4><strong>APIPublicEdit</strong><a class="headerlink" href="#apipublicedit" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPublicEdit controls the data API’s public for edit commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable public access to edit method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apipublicread">
+<h4><strong>APIPublicRead</strong><a class="headerlink" href="#apipublicread" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPublicRead controls the data API’s public for read commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable public access to read method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apipublicschema">
+<h4><strong>APIPublicSchema</strong><a class="headerlink" href="#apipublicschema" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPublicSchema controls the data API’s public for schema commands.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable public access to schema method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicSchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It is necessary to have http.Request parameter in these methods for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.</p>
+</div>
+</div>
+<div class="section" id="custom-methods">
+<h3><strong>Custom Methods</strong><a class="headerlink" href="#custom-methods" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#methods">Back to Top (Methods)</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/method/<span class="o">{</span>METHOD_NAME<span class="o">}</span>/<span class="o">{</span>ID<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="special-parameters">
+<h2>Special Parameters<a class="headerlink" href="#special-parameters" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#or">$or</a></p></li>
+<li><p><a class="reference internal" href="#limit">$limit</a></p></li>
+<li><p><a class="reference internal" href="#order-ascending">$order (Ascending)</a></p></li>
+<li><p><a class="reference internal" href="#order-descending">$order (Descending)</a></p></li>
+<li><p><a class="reference internal" href="#order-list-of-fields">$order (List of Fields)</a></p></li>
+<li><p><a class="reference internal" href="#limit-offset-order">Limit, offset, order</a></p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#f">$f</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#sum">__sum</a></p></li>
+<li><p><a class="reference internal" href="#avg">__avg</a></p></li>
+<li><p><a class="reference internal" href="#min">__min</a></p></li>
+<li><p><a class="reference internal" href="#max">__max</a></p></li>
+<li><p><a class="reference internal" href="#count">__count</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><a class="reference internal" href="#groupby">$groupby</a></p></li>
+<li><p><a class="reference internal" href="#join">$join</a></p></li>
+<li><p><a class="reference internal" href="#deleted">$deleted</a></p></li>
+<li><p><a class="reference internal" href="#m2m">$m2m</a></p></li>
+<li><p><a class="reference internal" href="#q">$q</a></p></li>
+<li><p><a class="reference internal" href="#next">$next</a></p></li>
+<li><p><a class="reference internal" href="#preload">$preload</a></p></li>
+<li><p><a class="reference internal" href="#stats">$stats</a></p></li>
+<li><p><a class="reference internal" href="#allmodels">$allmodels</a></p></li>
+</ul>
+<div class="section" id="or">
+<h3><strong>$or</strong><a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>$or compares which of the parameters matches the specified criteria.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+<span class="c1"># | is a symbol for OR operator ($or)</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$or</span><span class="o">=(</span>field_name<span class="o">)=(</span>value<span class="o">)</span><span class="p">|</span><span class="o">(</span>field_name<span class="o">)=(</span>value<span class="o">)</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name1 = value1 NOT OR field_name2 = value2</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$!or</span><span class="o">=(</span>field_name<span class="o">)=(</span>value<span class="o">)</span><span class="p">|</span><span class="o">(</span>field_name<span class="o">)=(</span>value<span class="o">)</span>
+
+<span class="c1"># + is a symbol for AND operator</span>
+<span class="c1"># WHERE (field_name1 = value1 AND field_name2 = value2) OR (field_name1 = value1 AND field_name2 = value2)</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$or</span><span class="o">=(</span>field_name1<span class="o">)=(</span>value1<span class="o">)</span>+<span class="o">(</span>field_name2<span class="o">)=(</span>value2<span class="o">)</span><span class="p">|</span><span class="o">(</span>field_name1<span class="o">)=(</span>value1<span class="o">)</span>+<span class="o">(</span>field_name2<span class="o">)=(</span>value2<span class="o">)</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where the name of an item is equal to “Robot” or the rating of an item is 5.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name and rating are field names</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$or</span><span class="o">=</span><span class="nv">name</span><span class="o">=</span>Robot<span class="p">|</span><span class="nv">rating</span><span class="o">=</span><span class="m">5</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/orresult.png" class="align-center" src="_images/orresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where the name of an item is equal to “Robot” or the rating of an item is 5.</p>
+</div>
+<div class="section" id="limit">
+<h3><strong>$limit</strong><a class="headerlink" href="#limit" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$limit</span><span class="o">=(</span>integer_value<span class="o">)</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read up to 3 records.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># 3 is the limit value</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$limit</span><span class="o">=</span><span class="m">3</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/limitresult.png" class="align-center" src="_images/limitresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns up to 3 records.</p>
+</div>
+<div class="section" id="order-ascending">
+<h3><strong>$order (Ascending)</strong><a class="headerlink" href="#order-ascending" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$order</span><span class="o">=(</span>field_name<span class="o">)</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where ID number is sorted in ascending order.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># id is the field name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$order</span><span class="o">=</span>id
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/orderascendingresult.png" class="align-center" src="_images/orderascendingresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where ID number is sorted in ascending order.</p>
+</div>
+<div class="section" id="order-descending">
+<h3><strong>$order (Descending)</strong><a class="headerlink" href="#order-descending" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+<span class="c1"># - is a symbol for descending order</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$order</span><span class="o">=</span>-<span class="o">(</span>field_name<span class="o">)</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where ID number is sorted in descending order.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># id is the field name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$order</span><span class="o">=</span>-id
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/orderdescendingresult.png" class="align-center" src="_images/orderdescendingresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where ID number is sorted in descending order.</p>
+</div>
+<div class="section" id="order-list-of-fields">
+<h3><strong>$order (List of Fields)</strong><a class="headerlink" href="#order-list-of-fields" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$order</span><span class="o">=(</span>field_name1<span class="o">)</span>,<span class="o">(</span>field_name2<span class="o">)</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where price is sorted in descending order and rating is sorted in ascending order.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># - is a symbol for descending order</span>
+<span class="c1"># price and rating are field names</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$order</span><span class="o">=</span>-price,rating
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/orderlistoffieldsresult.png" class="align-center" src="_images/orderlistoffieldsresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where price is sorted in descending order and rating is sorted in ascending order</p>
+</div>
+<div class="section" id="limit-offset-order">
+<h3><strong>Limit, offset, order</strong><a class="headerlink" href="#limit-offset-order" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>Limit is the number of records that you want to return.</p>
+<p>Offset is the starting point to read in the list of records. It is equivalent to an index number. For instance, if you put the offset value as 2, your application will start reading on the third record.</p>
+<p>Order is used to sort the result-set in ascending or descending order. <a class="footnote-reference brackets" href="#f4" id="id2">4</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$limit</span><span class="o">=(</span>integer_value<span class="o">)</span><span class="p">&amp;</span><span class="nv">$offset</span><span class="o">=(</span>integer_value<span class="o">)</span><span class="p">&amp;</span><span class="nv">$order</span><span class="o">=(</span>field_name<span class="o">)</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to return three records starting from the third record that sorts the ID number in ascending order.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># 3 is the limit value to display up to three records</span>
+<span class="c1"># 2 is the offset value to start reading the third record</span>
+<span class="c1"># id is the field name to sort in ascending order</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$limit</span><span class="o">=</span><span class="m">3</span><span class="p">&amp;</span><span class="nv">$offset</span><span class="o">=</span><span class="m">2</span><span class="p">&amp;</span><span class="nv">$order</span><span class="o">=</span>id
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/limitoffsetorderresult.png" class="align-center" src="_images/limitoffsetorderresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns the list of up to three records starting from the third record that sorts the ID number in ascending order.</p>
+</div>
+<div class="section" id="f">
+<h3><strong>$f</strong><a class="headerlink" href="#f" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>$f is a special parameter for selecting fields.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$f</span><span class="o">=(</span>field_name1<span class="o">)</span>,<span class="o">(</span>field_name2<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="supported-operators">
+<h3>Supported Operators<a class="headerlink" href="#supported-operators" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#f">Back to Top ($f)</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#sum">__sum</a></p></li>
+<li><p><a class="reference internal" href="#avg">__avg</a></p></li>
+<li><p><a class="reference internal" href="#min">__min</a></p></li>
+<li><p><a class="reference internal" href="#max">__max</a></p></li>
+<li><p><a class="reference internal" href="#count">__count</a></p></li>
+</ul>
+<div class="section" id="sum">
+<h4><strong>__sum</strong><a class="headerlink" href="#sum" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#supported-operators">Back to Top (Supported Operators)</a></p>
+<p>Returns the total sum of a numeric field. <a class="footnote-reference brackets" href="#f1" id="id3">1</a> The formula to calculate this is (value1 +  value2 + … + value(n)). Example: (3 + 4 + 5) = 12</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$f</span><span class="o">={</span>FIELD_NAME__sum<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to return the total price of all items.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># price is the field name</span>
+<span class="c1"># __sum is an operator that returns the total sum of a numeric field</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$f</span><span class="o">=</span>price__sum
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/sumresult.png" class="align-center" src="_images/sumresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a record that displays the total price of all items.</p>
+</div>
+<div class="section" id="avg">
+<h4><strong>__avg</strong><a class="headerlink" href="#avg" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#supported-operators">Back to Top (Supported Operators)</a></p>
+<p>Returns the average value of a numeric field. <a class="footnote-reference brackets" href="#f1" id="id4">1</a> The formula to calculate this is (value1 +  value2 + … + value(n)) / (number of values). Example: (3 + 4 + 5) / 3 = 4</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$f</span><span class="o">={</span>FIELD_NAME__avg<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to return the average price of all items.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># price is the field name</span>
+<span class="c1"># __avg is an operator that returns the average value of a numeric field</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/<span class="nv">$f</span><span class="o">=</span>price__avg
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/avgresult.png" class="align-center" src="_images/avgresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a record that displays the average price of all items.</p>
+</div>
+<div class="section" id="min">
+<h4><strong>__min</strong><a class="headerlink" href="#min" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#supported-operators">Back to Top (Supported Operators)</a></p>
+<p>Returns the smallest value of the selected column <a class="footnote-reference brackets" href="#f2" id="id5">2</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$f</span><span class="o">={</span>FIELD_NAME__min<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read which record has the minimum price value.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># price is the field name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$f</span><span class="o">=</span>price__min
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/minresult.png" class="align-center" src="_images/minresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a record with the minimum price value.</p>
+</div>
+<div class="section" id="max">
+<h4><strong>__max</strong><a class="headerlink" href="#max" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#supported-operators">Back to Top (Supported Operators)</a></p>
+<p>Returns the largest value of the selected column <a class="footnote-reference brackets" href="#f2" id="id6">2</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$f</span><span class="o">={</span>FIELD_NAME__max<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read which record has the maximum price value.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># price is the field name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$f</span><span class="o">=</span>price__max
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/maxresult.png" class="align-center" src="_images/maxresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a record with the maximum price value.</p>
+</div>
+<div class="section" id="count">
+<h4><strong>__count</strong><a class="headerlink" href="#count" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#supported-operators">Back to Top (Supported Operators)</a></p>
+<p>Returns the number of rows that matches a specified criteria <a class="footnote-reference brackets" href="#f1" id="id7">1</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$f</span><span class="o">={</span>FIELD_NAME__count<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read a record that displays the number of all records you have in the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># id is the field name</span>
+<span class="c1"># __count is an operator that counts the number of rows that matches</span>
+<span class="c1"># a specified criteria</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$f</span><span class="o">=</span>id__count
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/countresult.png" class="align-center" src="_images/countresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a record that displays the number of all records you have in the Item model.</p>
+</div>
+</div>
+<div class="section" id="groupby">
+<h3><strong>$groupby</strong><a class="headerlink" href="#groupby" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>The GROUP BY statement groups rows that have the same values into summary rows, like “find the number of purchased items in each transaction”.</p>
+<p>The GROUP BY statement is often used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns. <a class="footnote-reference brackets" href="#f3" id="id8">3</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$groupby</span><span class="o">={</span>FIELD_NAME<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read a record that contains how many rows that matches a specified rating.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># id and rating are field names</span>
+<span class="c1"># $f is a parameter for selecting fields</span>
+<span class="c1"># __count is an operator that counts the number of rows that matches</span>
+<span class="c1"># a specified rating</span>
+<span class="c1"># SELECT COUNT(id), rating FROM items GROUP BY rating</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$f</span><span class="o">=</span>id__count,rating<span class="p">&amp;</span><span class="nv">$groupby</span><span class="o">=</span>rating
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/groupbyresult.png" class="align-center" src="_images/groupbyresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>We found out that there are two records that has a rating of 3, two records that has a rating of 4, and one record that has a rating of 5.</p>
+</div>
+<div class="section" id="join">
+<h3><strong>$join</strong><a class="headerlink" href="#join" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>The JOIN statement joins results from another model based on a foreign key.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $join syntax</span>
+<span class="c1"># {} required</span>
+<span class="c1"># [] optional</span>
+<span class="c1"># $join={to_table_name}__[join_method]__{[from_table.]from_column}__[[to</span>
+<span class="c1"># _table.]to_column]</span>
+<span class="c1"># inner stands for INNER JOIN</span>
+<span class="c1"># m stands for model</span>
+<span class="c1"># f stands for field</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$join</span><span class="o">={</span>to_table_name<span class="o">}</span>__
+<span class="o">[</span>join_method<span class="o">]</span>__<span class="o">{[</span>from_table.<span class="o">]</span>from_column<span class="o">}</span>__<span class="o">[[</span>to_table.<span class="o">]</span>to_column<span class="o">]</span>
+</pre></div>
+</div>
+<p>Suppose you have 10 records in the Todo model and our goal is to fetch the records that have the Friend value.</p>
+<img alt="_images/tendataintodomodelwithfriend.png" src="_images/tendataintodomodelwithfriend.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read a record to join the Todo model and Friend model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># friends is the table name</span>
+<span class="c1"># friend__id is the column name from the friends table</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$join</span><span class="o">=</span>friends__friend_id
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/joinresultjson.png" src="_images/joinresultjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>We can clean this up. Let’s fetch only the Friend ID, Todo ID, Todo Name, and Todo Progress.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># friends is the table name</span>
+<span class="c1"># friend__id is the column name from the friends table</span>
+<span class="c1"># {TABLE_NAME}.{COLUMN.NAME}</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$join</span><span class="o">=</span>friends__friend_id<span class="p">&amp;</span><span class="nv">$f</span><span class="o">=</span>friends.id,todos.id,todos.name,todos.progress
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/joinresultjson2.png" src="_images/joinresultjson2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>We can rearrange the order of the Friend ID in ascending order.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># friends is the table name</span>
+<span class="c1"># friend__id is the column name from the friends table</span>
+<span class="c1"># {TABLE_NAME}.{COLUMN.NAME}</span>
+<span class="c1"># $order to order the given column name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$join</span><span class="o">=</span>friends__friend_id<span class="p">&amp;</span><span class="nv">$f</span><span class="o">=</span>friends.id,todos.id,todos.name,todos.progress<span class="p">&amp;</span><span class="nv">$order</span><span class="o">=</span>friends__id
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/joinresultjson3.png" src="_images/joinresultjson3.png" />
+</div>
+<div class="section" id="deleted">
+<h3><strong>$deleted</strong><a class="headerlink" href="#deleted" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>$deleted displays the list of deleted records in the database based on the assigned model.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+<span class="c1"># value can be either 0 (disabled) or 1 (enabled)</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$deleted</span><span class="o">={</span>VALUE<span class="o">}</span>
+</pre></div>
+</div>
+<p>If the value is 0, it will return the list of deleted records. If the value is 1, it will return the list of deleted and existing records.</p>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s delete the iPad Mini and iPad Pro items.</p>
+<img alt="_images/ipaddeleteselected.png" src="_images/ipaddeleteselected.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/ipadconfirmdelete.png" src="_images/ipadconfirmdelete.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result:</p>
+<img alt="_images/deletemultipleresult.png" src="_images/deletemultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read a record that displays the list of existing records in the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># id and rating are field names</span>
+<span class="c1"># 0 is the value to display the list of existing records</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$deleted</span><span class="o">=</span><span class="m">0</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/deleted0result.png" class="align-center" src="_images/deleted0result.png" />
+<p>Now let’s call this URL to read a record that displays the list of both deleted and existing records in the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># id and rating are field names</span>
+<span class="c1"># 1 is the value to display the list of both deleted and existing records</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$deleted</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/deleted1result.png" class="align-center" src="_images/deleted1result.png" />
+</div>
+<div class="section" id="m2m">
+<h3><strong>$m2m</strong><a class="headerlink" href="#m2m" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>$m2m returns results from a specific M2M field.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># Returns results from M2M fields where:</span>
+<span class="c1"># 0       : Don&#39;t return</span>
+<span class="c1"># [1,fill]: Return all fields</span>
+<span class="c1"># id      : Only return IDs</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$m2m</span><span class="o">={</span><span class="m">0</span>,1,fill,id<span class="o">}</span>
+
+<span class="c1"># Returns results from a specific M2M field</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$m2m</span><span class="o">=</span>f__<span class="o">{</span>id,fill<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have m2m values in Speaker and Ballpen categories.</p>
+<img alt="_images/m2mresult.png" src="_images/m2mresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this URL to read a record that will not display the values of Category M2M field.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># 0 is the value that will not display the values of m2m fields</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$m2m</span><span class="o">=</span><span class="m">0</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/m2m0resultjson.png" src="_images/m2m0resultjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now call this URL to read a record that will display the values of Category M2M field.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># 1, fill, or category__fill is the value that will display the values of m2m fields</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$m2m</span><span class="o">={</span><span class="m">1</span>,fill,category__fill<span class="o">}</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/m2m1resultjson.png" src="_images/m2m1resultjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can also display only the ID values of Category M2M field.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># 1, or category__id is the value that will display only the ID values of m2m fields</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$m2m</span><span class="o">={</span>id,category__id<span class="o">}</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/m2midresultjson.png" src="_images/m2midresultjson.png" />
+</div>
+<div class="section" id="q">
+<h3><strong>$q</strong><a class="headerlink" href="#q" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>$q searches all string based fields for read, edit, and delete requests.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># Searches all string based fields for read, edit, and delete requests</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$q</span><span class="o">=</span>abc
+</pre></div>
+</div>
+</div>
+<div class="section" id="next">
+<h3><strong>$next</strong><a class="headerlink" href="#next" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>$next redirects the user to the specified path after processing the request.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># Redirects the user to the specified path after processing the request</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/method/<span class="o">{</span>METHOD_NAME<span class="o">}</span>/?<span class="nv">$next</span><span class="o">=</span>/
+
+<span class="c1"># Send the user back</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/method/<span class="o">{</span>METHOD_NAME<span class="o">}</span>/?<span class="nv">$next</span><span class="o">=</span><span class="nv">$back</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="preload">
+<h3><strong>$preload</strong><a class="headerlink" href="#preload" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>$preload fills the data from foreign keys into structs.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># 0: Don&#39;t return</span>
+<span class="c1"># 1: Return preloaded data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$preload</span><span class="o">={</span><span class="m">0</span>,1<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have 10 records in Todo model.</p>
+<img alt="_images/tendataintodomodel1.png" src="_images/tendataintodomodel1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this URL to read the second record that only fills the base model, not the foreign keys.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># todo is the model name</span>
+<span class="c1"># 2 is the value from id field to read the second record</span>
+<span class="c1"># 0 is the value from $preload not to return preloaded data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/todo/read/?id<span class="o">=</span><span class="m">2</span><span class="p">&amp;</span><span class="nv">$preload</span><span class="o">=</span><span class="m">0</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/preload0resultjson.png" class="align-center" src="_images/preload0resultjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now call this URL to read the second record that fills the data from foreign key models.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># todo is the model name</span>
+<span class="c1"># 2 is the value from id field to read the second record</span>
+<span class="c1"># 1 is the value from $preload to return preloaded data</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/todo/read/?id<span class="o">=</span><span class="m">2</span><span class="p">&amp;</span><span class="nv">$preload</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/preload1resultjson.png" class="align-center" src="_images/preload1resultjson.png" />
+</div>
+<div class="section" id="stats">
+<h3><strong>$stats</strong><a class="headerlink" href="#stats" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>$stats checks the query execution time and its related details.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+<span class="c1"># stats_value can be either 0 (disabled) or 1 (enabled)</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/?<span class="nv">$stats</span><span class="o">=(</span>stats_value<span class="o">)</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to check the query execution time and its related details when you perform an action that reads all records in the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># To enable stats, ?$stat=1</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/?<span class="nv">$stat</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/statsresult.png" class="align-center" src="_images/statsresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a record that reads all item records and stats containing the query execution time and its related details when you perform an action that reads all records in the Item model.</p>
+<p>“qtime” is in milliseconds.</p>
+</div>
+<div class="section" id="allmodels">
+<h3><strong>$allmodels</strong><a class="headerlink" href="#allmodels" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+<span class="c1"># allmodels is a parameter to get all models</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/?<span class="nv">$allmodels</span>
+</pre></div>
+</div>
+<p>Suppose you have the following models in the uAdmin dashboard.</p>
+<img alt="_images/uadmindashboardupdate.png" src="_images/uadmindashboardupdate.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read the full schema of all models.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="nv">$allmodels</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/allmodelsresult.png" class="align-center" src="_images/allmodelsresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON array representing uAdmin’s ModelSchema of all models.</p>
+</div>
+</div>
+<div class="section" id="writing-data-symbol">
+<h2>Writing Data Symbol<a class="headerlink" href="#writing-data-symbol" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>For writing data (Add/Edit), we need to put _ symbol before the field name after the WHERE symbol (?) in the URL.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># _name is a field name to be added with the value of &quot;John&quot;</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/add/?_name<span class="o">=</span>John
+
+<span class="c1"># d stands for data</span>
+<span class="c1"># name is a field name that was selected for updating</span>
+<span class="c1"># _name is a field name to be added with the value of &quot;Adam&quot;</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/edit/?name<span class="o">=</span>John<span class="p">&amp;</span><span class="nv">_name</span><span class="o">=</span>Adam
+</pre></div>
+</div>
+<p>Without the _ symbol, that field is a selector.</p>
+</div>
+<div class="section" id="uadmin-functions">
+<h2>uAdmin Functions<a class="headerlink" href="#uadmin-functions" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
+<p>Here are all public uAdmin functions, their format, and how to use them in the project.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#full-list">Full List</a></p></li>
+<li><p><a class="reference internal" href="#categorized-list">Categorized List</a></p></li>
+</ul>
+<div class="section" id="full-list">
+<h3><strong>Full List</strong><a class="headerlink" href="#full-list" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#uadmin-functions">Back To Top (uAdmin Functions)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledadd">uadmin.APIDisabledAdd</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledadder">uadmin.APIDisabledAdder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisableddelete">uadmin.APIDisabledDelete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisableddeleter">uadmin.APIDisabledDeleter</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisablededit">uadmin.APIDisabledEdit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisablededitor">uadmin.APIDisabledEditor</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledread">uadmin.APIDisabledRead</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledreader">uadmin.APIDisabledReader</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledschema">uadmin.APIDisabledSchema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledschemer">uadmin.APIDisabledSchemer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogadd">uadmin.APILogAdd</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogadder">uadmin.APILogAdder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogdelete">uadmin.APILogDelete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogdeleter">uadmin.APILogDeleter</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogedit">uadmin.APILogEdit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogeditor">uadmin.APILogEditor</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogread">uadmin.APILogRead</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogreader">uadmin.APILogReader</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogschema">uadmin.APILogSchema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogschemer">uadmin.APILogSchemer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryadd">uadmin.APIPostQueryAdd</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryadder">uadmin.APIPostQueryAdder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostquerydelete">uadmin.APIPostQueryDelete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostquerydeleter">uadmin.APIPostQueryDeleter</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryedit">uadmin.APIPostQueryEdit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryeditor">uadmin.APIPostQueryEditor</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryread">uadmin.APIPostQueryRead</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryreader">uadmin.APIPostQueryReader</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryschema">uadmin.APIPostQuerySchema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryschemer">uadmin.APIPostQuerySchemer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryadd">uadmin.APIPreQueryAdd</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryadder">uadmin.APIPreQueryAdder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequerydelete">uadmin.APIPreQueryDelete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequerydeleter">uadmin.APIPreQueryDeleter</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryedit">uadmin.APIPreQueryEdit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryeditor">uadmin.APIPreQueryEditor</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryread">uadmin.APIPreQueryRead</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryreader">uadmin.APIPreQueryReader</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryschema">uadmin.APIPreQuerySchema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryschemer">uadmin.APIPreQuerySchemer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicadd">uadmin.APIPublicAdd</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicadder">uadmin.APIPublicAdder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicdelete">uadmin.APIPublicDelete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicdeleter">uadmin.APIPublicDeleter</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicedit">uadmin.APIPublicEdit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipubliceditor">uadmin.APIPublicEditor</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicread">uadmin.APIPublicRead</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicreader">uadmin.APIPublicReader</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicschema">uadmin.APIPublicSchema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicschemer">uadmin.APIPublicSchemer</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-ckey">uadmin.CKey</a></p></li>
+</ul>
+<div class="section" id="uadmin-ckey">
+<h4><strong>uadmin.CKey</strong><a class="headerlink" href="#uadmin-ckey" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#individual-list">Back To Top (Individual List)</a></p>
+<p>CKey is the standard key used in uAdmin for context keys.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="categorized-list">
+<h3><strong>Categorized List</strong><a class="headerlink" href="#categorized-list" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#uadmin-functions">Back To Top (uAdmin Functions)</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#disabled-functions">Disabled Functions</a></p></li>
+<li><p><a class="reference internal" href="#log-functions">Log Functions</a></p></li>
+<li><p><a class="reference internal" href="#post-query-functions">Post Query Functions</a></p></li>
+<li><p><a class="reference internal" href="#pre-query-functions">Pre Query Functions</a></p></li>
+<li><p><a class="reference internal" href="#public-functions">Public Functions</a></p></li>
+</ul>
+<div class="section" id="disabled-functions">
+<h4><strong>Disabled Functions</strong><a class="headerlink" href="#disabled-functions" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledadd">uadmin.APIDisabledAdd</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledadder">uadmin.APIDisabledAdder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisableddelete">uadmin.APIDisabledDelete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisableddeleter">uadmin.APIDisabledDeleter</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisablededit">uadmin.APIDisabledEdit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisablededitor">uadmin.APIDisabledEditor</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledread">uadmin.APIDisabledRead</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledreader">uadmin.APIDisabledReader</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledschema">uadmin.APIDisabledSchema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#uadmin-apidisabledschemer">uadmin.APIDisabledSchemer</a></p></li>
+</ul>
+</div>
+<div class="section" id="log-functions">
+<h4><strong>Log Functions</strong><a class="headerlink" href="#log-functions" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogadd">uadmin.APILogAdd</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogadder">uadmin.APILogAdder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogdelete">uadmin.APILogDelete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogdeleter">uadmin.APILogDeleter</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogedit">uadmin.APILogEdit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogeditor">uadmin.APILogEditor</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogread">uadmin.APILogRead</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogreader">uadmin.APILogReader</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogschema">uadmin.APILogSchema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#uadmin-apilogschemer">uadmin.APILogSchemer</a></p></li>
+</ul>
+</div>
+<div class="section" id="post-query-functions">
+<h4><strong>Post Query Functions</strong><a class="headerlink" href="#post-query-functions" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryadd">uadmin.APIPostQueryAdd</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryadder">uadmin.APIPostQueryAdder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostquerydelete">uadmin.APIPostQueryDelete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostquerydeleter">uadmin.APIPostQueryDeleter</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryedit">uadmin.APIPostQueryEdit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryeditor">uadmin.APIPostQueryEditor</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryread">uadmin.APIPostQueryRead</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryreader">uadmin.APIPostQueryReader</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryschema">uadmin.APIPostQuerySchema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryschemer">uadmin.APIPostQuerySchemer</a></p></li>
+</ul>
+</div>
+<div class="section" id="pre-query-functions">
+<h4><strong>Pre Query Functions</strong><a class="headerlink" href="#pre-query-functions" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryadd">uadmin.APIPreQueryAdd</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryadder">uadmin.APIPreQueryAdder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequerydelete">uadmin.APIPreQueryDelete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequerydeleter">uadmin.APIPreQueryDeleter</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryedit">uadmin.APIPreQueryEdit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryeditor">uadmin.APIPreQueryEditor</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryread">uadmin.APIPreQueryRead</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryreader">uadmin.APIPreQueryReader</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryschema">uadmin.APIPreQuerySchema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryschemer">uadmin.APIPreQuerySchemer</a></p></li>
+</ul>
+</div>
+<div class="section" id="public-functions">
+<h4><strong>Public Functions</strong><a class="headerlink" href="#public-functions" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicadd">uadmin.APIPublicAdd</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicadder">uadmin.APIPublicAdder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicdelete">uadmin.APIPublicDelete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicdeleter">uadmin.APIPublicDeleter</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicedit">uadmin.APIPublicEdit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipubliceditor">uadmin.APIPublicEditor</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicread">uadmin.APIPublicRead</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicreader">uadmin.APIPublicReader</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicschema">uadmin.APIPublicSchema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicschemer">uadmin.APIPublicSchemer</a></p></li>
+</ul>
+<p>Page:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dapi/disabled_functions.html">Disabled Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dapi/log_functions.html">Log Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dapi/post_query_functions.html">Post Query Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dapi/pre_query_functions.html">Pre Query Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dapi/public_functions.html">Public Functions</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets">1</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>,<a href="#id7">3</a>)</span></dt>
+<dd><p>Refsnes Data (2019). SQL COUNT(), AVG() and SUM() Functions. Retrieved from <a class="reference external" href="https://www.w3schools.com/sql/sql_count_avg_sum.asp">https://www.w3schools.com/sql/sql_count_avg_sum.asp</a></p>
+</dd>
+<dt class="label" id="f2"><span class="brackets">2</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id6">2</a>)</span></dt>
+<dd><p>Refsnes Data (2019). SQL ORDER BY Keyword. Retrieved from <a class="reference external" href="https://www.w3schools.com/sql/sql_orderby.asp">https://www.w3schools.com/sql/sql_orderby.asp</a></p>
+</dd>
+<dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id8">3</a></span></dt>
+<dd><p>Refsnes Data (2019). SQL GROUP BY Statement. Retrieved from <a class="reference external" href="https://www.w3schools.com/sql/sql_groupby.asp">https://www.w3schools.com/sql/sql_groupby.asp</a></p>
+</dd>
+<dt class="label" id="f4"><span class="brackets"><a class="fn-backref" href="#id2">4</a></span></dt>
+<dd><p>Refsnes Data (2019). SQL ORDER BY Keyword. Retrieved from <a class="reference external" href="https://www.w3schools.com/sql/sql_orderby.asp">https://www.w3schools.com/sql/sql_orderby.asp</a></p>
+</dd>
+<dt class="label" id="f5"><span class="brackets"><a class="fn-backref" href="#id1">5</a></span></dt>
+<dd><p>Refsnes Data (2019). SQL BETWEEN Operator. Retrieved from <a class="reference external" href="https://www.w3schools.com/sql/sql_between.asp">https://www.w3schools.com/sql/sql_between.asp</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="api/user_functions.html"
+                        title="previous chapter">User Functions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dapi/disabled_functions.html"
+                        title="next chapter">Disabled Functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/dapi.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dapi/disabled_functions.html" title="Disabled Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="api/user_functions.html" title="User Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    </div>
+  </body>
+</html>

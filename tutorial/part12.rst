@@ -1,96 +1,109 @@
-uAdmin Tutorial Part 12 - Storing the data to HTML
-==================================================
-In this part, we will discuss about fetching the records in the API and migrating the data from API to HTML that will display the records using Go template.
+uAdmin Tutorial Part 12 - Introduction to HTML Template
+=======================================================
+In this part, we will discuss about designing a table in HTML and setting up a template file.
 
-Go to todo_view.go inside the views folder with the following codes below:
+Before you proceed, make sure you have at least the basic knowledge of HTML. If you are not familiar with HTML, we advise you to go over `W3Schools`_.
 
-.. code-block:: go
+.. _W3Schools: https://www.w3schools.com/
 
-    package views
+In this tutorial, we will use `Bootstrap 4`_.
 
-    import (
-        "html/template"
-        "net/http"
-        "strings"
+.. _Bootstrap 4: https://www.w3schools.com/bootstrap4/default.asp
 
-        // Specify the username that you used inside github.com folder and
-        // import this library
-        "github.com/username/todo/models"
-        "github.com/uadmin/uadmin"
-    )
+First of all, go to your project folder and select templates.
 
-    // TodoHandler !
-    func TodoHandler(w http.ResponseWriter, r *http.Request) {
-        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/todo")
-
-        type Context struct {
-            TodoList []map[string]interface{}
-        }
-        c := Context{}
-
-        // ------------------ ADD THIS CODE ------------------
-        // Fetch Data from DB
-        todo := []models.Todo{}
-        uadmin.All(&todo)
-
-        for i := range todo {
-            // Accesses and fetches the record of the linking models in Todo
-            uadmin.Preload(&todo[i])
-
-            // Assigns the string of interface in each Todo fields
-            c.TodoList = append(c.TodoList, map[string]interface{}{
-                "ID":   todo[i].ID,
-                "Name": todo[i].Name,
-                // In fact that description has an html type tag in uAdmin,
-                // we have to convert this field from text to HTML so that
-                // the HTML tags from models will be applied to HTML file.
-                "Description": template.HTML(todo[i].Description),
-                "Category":    todo[i].Category.Name,
-                "Friend":      todo[i].Friend.Name,
-                "Item":        todo[i].Item.Name,
-                "TargetDate":  todo[i].TargetDate,
-                "Progress":    todo[i].Progress,
-            })
-        }
-        // ----------------------------------------------------
-
-        // Some codes
-
-    }
-
-Now go to templates/todo.html. After the <tbody> tag, add the following codes shown below:
-
-.. code-block:: html
-
-    {{range .TodoList}}
-    <tr>
-        <td>{{.Name}}</td>
-        <td>{{.Description}}</td>
-        <td>{{.Category}}</td>
-        <td>{{.Friend}}</td>
-        <td>{{.Item}}</th>
-        <td>{{.TargetDate}}</td>
-        <td>{{.Progress}}</td>
-    </tr>
-    {{end}}
-
-In Go programming language, **range** is equivalent to **for** loop.
-
-The double brackets **{{ }}** are Golang delimiter.
-
-**.TodoList** is the assigned field inside the Context struct.
-
-**.Name**, **Description**, **.Category**, **.Friend**, **.Item**, **.TargetDate**, **.Progress** are the fields assigned in c.TodoList.
-
-Now run your application, go to http_handler/todo path and see what happens.
-
-.. image:: assets/todohtmlresult.png
+.. image:: assets/templatesfolderhighlighted.png
+   :align: center
 
 |
 
-Congrats, now you know how to set up a handler file in an organized manner, access the HTML in localhost and store the data from API to HTML using Go templates.
+Inside the templates folder, create a new file named **todo.html**.
 
-In the `next part`_, we will talk about generating a self-signed SSL certificate using the **openssl** command and implementing two factor authentication (2FA).
+.. image:: assets/todohtmlcreate.png
+   :align: center
 
+|
+
+Inside the todo.html, create an HTML5 structure following the codes below and change the title from Document to Todo List.
+
+.. code-block:: html
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+      <!-- Change the title from Document to Todo List -->
+      <title>Todo List</title> 
+    </head>
+    <body>
+        
+    </body>
+    </html>
+
+Save the file. Run your application in the browser and see what happens.
+
+.. image:: assets/todolisthtmltitle.png
+   :align: center
+
+|
+
+The title bar is named as Todo List. Now inside the **<body>** tag, create a table header following the code structure below. You can choose which class of Bootstrap table that you want to display in your application. In this tutorial, we will use table-striped.
+
+.. code-block:: html
+
+  <div class="container-fluid">
+    <table class="table table-striped">
+      <!-- Todo Fields -->
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Friend</th>
+          <th>Item</th>
+          <th>Target Date</th>
+          <th>Progress</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+
+Save the file. Run your application in the browser and see what happens.
+
+.. image:: assets/todolisthtmlheader.png
+
+|
+
+Nice! Now go back to your project folder then select views.
+
+.. image:: assets/viewsfolderhighlighted.png
+   :align: center
+
+|
+
+Inside the views folder, create a new file named **view.go**.
+
+.. image:: assets/viewgofile.png
+
+|
+
+Click `here`_ to view our progress so far.
+
+In the `next part`_, we will talk about establishing a connection to the HTTP Handler, setting the URL path name, and executing an HTML file.
+
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part12.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part13.html
 
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part12

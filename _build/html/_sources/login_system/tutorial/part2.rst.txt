@@ -18,21 +18,21 @@ Inside login.html, create a login form containing the username, password, OTP Pa
     <!DOCTYPE html>
     <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Login Form</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Login Form</title>
     </head>
     <body>
-        <form method="POST">
-            <!-- The assigned name attribute is equivalent to r.FormValue in
-            Golang while the assigned value attribute is the value of the
-            r.FormValue. (e.g. r.FormValue("request") = "login") -->
-            <input type="text" name="username" placeholder="Username"><br>
-            <input type="password" name="password" placeholder="Password"><br>
-            <input type="text" name="otp_pass" placeholder="OTP Password"><br><br>
-            <button type="submit" name="request" value="login">Login</button><br>
-        </form>
+      <form method="POST">
+        <!-- The assigned name attribute is equivalent to r.FormValue in
+        Golang while the assigned value attribute is the value of the
+        r.FormValue. (e.g. r.FormValue("request") = "login") -->
+        <input type="text" name="username" placeholder="Username"><br>
+        <input type="password" name="password" placeholder="Password"><br>
+        <input type="text" name="otp_pass" placeholder="OTP Password"><br><br>
+        <button type="submit" name="request" value="login">Login</button><br>
+      </form>
     </body>
     </html>
 
@@ -66,15 +66,15 @@ Below the UserContext struct, create a LoginHandler function that creates a new 
 
     // LoginHandler !
     func LoginHandler(w http.ResponseWriter, r *http.Request) {
-        // r.URL.Path creates a new path called /login
+        // r.URL.Path creates a new path called "/login/"
         r.URL.Path = strings.TrimPrefix(r.URL.Path, "/login")
+        r.URL.Path = strings.TrimSuffix(r.URL.Path, "/")
 
         // Initialize the UserContext struct that we have created
         userContext := UserContext{}
 
         // Pass the userContext data object to the HTML file
         uadmin.RenderHTML(w, r, "templates/login.html", userContext)
-        return
     }
 
 Establish a connection in the main.go to the views by using http.HandleFunc. It should be placed before the StartServer.
@@ -94,23 +94,23 @@ Establish a connection in the main.go to the views by using http.HandleFunc. It 
         // Some codes
 
         // Login Handler
-        http.HandleFunc("/login/", views.LoginHandler)
+        http.HandleFunc("/login/", uadmin.Handler(views.LoginHandler))
     }
 
-Now run your application. Go to the login path (e.g. http://0.0.0.0:8080/login/) and see what happens.
+Now run your application. Go to the login path (e.g. http://localhost:8080/login/) and see what happens.
 
 .. image:: assets/customloginform.png
    :align: center
 
 |
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will talk about sending data from login form in HTML to the LoginHandler.
 
-Click `here`_ to view the full source code in this part.
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part2.html
 
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part3.html
-
-.. _here: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part2.html
 
 .. toctree::
    :maxdepth: 1

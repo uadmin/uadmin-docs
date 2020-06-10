@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>uAdmin Tutorial Part 13 - Advanced Security (Part 1) &#8212; uadmin 0.3 documentation</title>
+    <title>uAdmin Tutorial Part 13 - Accessing an HTML file &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -18,8 +18,8 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="uAdmin Tutorial Part 14 - Advanced Security (Part 2)" href="part14.html" />
-    <link rel="prev" title="uAdmin Tutorial Part 12 - Storing the data to HTML" href="part12.html" />
+    <link rel="next" title="uAdmin Tutorial Part 13 - Accessing an HTML file (Current Progress)" href="full_code/part13.html" />
+    <link rel="prev" title="uAdmin Tutorial Part 12 - Introduction to HTML Template (Current Progress)" href="full_code/part12.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -35,12 +35,12 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="part14.html" title="uAdmin Tutorial Part 14 - Advanced Security (Part 2)"
+          <a href="full_code/part13.html" title="uAdmin Tutorial Part 13 - Accessing an HTML file (Current Progress)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="part12.html" title="uAdmin Tutorial Part 12 - Storing the data to HTML"
+          <a href="full_code/part12.html" title="uAdmin Tutorial Part 12 - Introduction to HTML Template (Current Progress)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" accesskey="U">uAdmin Tutorials</a> &#187;</li> 
       </ul>
     </div>  
@@ -50,79 +50,99 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="uadmin-tutorial-part-13-advanced-security-part-1">
-<h1>uAdmin Tutorial Part 13 - Advanced Security (Part 1)<a class="headerlink" href="#uadmin-tutorial-part-13-advanced-security-part-1" title="Permalink to this headline">¶</a></h1>
-<p>In this part, we will talk about generating a self-signed SSL certificate using the <strong>openssl</strong> command and implementing two factor authentication (2FA).</p>
-<div class="section" id="ssl">
-<h2>SSL<a class="headerlink" href="#ssl" title="Permalink to this headline">¶</a></h2>
-<p>To enable SSL for your project, you need an SSL certificate. This is a two parts system with a public key and a private key. The public key is used for encryption and the private key is used for decryption. To get an SSL certificate, you can generate one using openssl which is a tool for generating self-signed SSL certificate.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl req -x509 -nodes -days <span class="m">365</span> -newkey rsa:2048 -keyout priv.pem -out pub.pem
-</pre></div>
-</div>
-<p>It will ask you for several certificate parameters but you can just press “Enter” and skip filling them for development.</p>
-<p>You can change the key size by changing 2048 to a higher value like 4096. For production, you would want to get a certificate that is not self-signed to avoid the SSL error message on the browser. For that, you can buy one from any SSL vendor or you can get a free one from <a class="reference external" href="https://letsencrypt.org/">letsencrypt.org</a> or follow the instructions <a class="reference external" href="https://medium.com/&#64;saurabh6790/generate-wildcard-ssl-certificate-using-lets-encrypt-certbot-273e432794d7">here</a>.</p>
-<p>Once installed, move the <strong>pub.pem</strong> and <strong>priv.pem</strong> to your project folder.</p>
-<img alt="../_images/sslcertificate.png" class="align-center" src="../_images/sslcertificate.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Afterwards, go to the main.go and apply this function on the last section.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
-    <span class="c1">// Some codes</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartSecureServer</span><span class="p">(</span><span class="s">&quot;pub.pem&quot;</span><span class="p">,</span> <span class="s">&quot;priv.pem&quot;</span><span class="p">)</span>
+  <div class="section" id="uadmin-tutorial-part-13-accessing-an-html-file">
+<h1>uAdmin Tutorial Part 13 - Accessing an HTML file<a class="headerlink" href="#uadmin-tutorial-part-13-accessing-an-html-file" title="Permalink to this headline">¶</a></h1>
+<p>In this part, we will talk about establishing a connection to the HTTP Handler, setting the URL path name, and executing an HTML file.</p>
+<p>Go to view.go inside the views folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">views</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// HTTPHandler !</span>
+<span class="kd">func</span> <span class="nx">HTTPHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called &quot;/http_handler&quot;</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/http_handler&quot;</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Once you start your app, you will notice that your terminal logs are showing a message that says https instead of http:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ~/go/src/github.com/username/todo$ go build<span class="p">;</span> ./todo
-<span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">12</span>/12<span class="o">]</span>
-<span class="o">[</span>   OK   <span class="o">]</span>   Server Started: https://0.0.0.0:8000
-         ___       __          _
-  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
- / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
-/ /_/ / ___ / /_/ / / / / / / / / / /
-<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+<p>Establish a connection in the main.go to the views by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/todo/api&quot;</span>
+    <span class="s">&quot;github.com/username/todo/models&quot;</span>
+
+    <span class="c1">// Import this library</span>
+    <span class="s">&quot;github.com/username/todo/views&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// HTTP UI Handler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/http_handler/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">views</span><span class="p">.</span><span class="nx">HTTPHandler</span><span class="p">))</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>When you open your app, make sure that your URL uses <a class="reference external" href="https://">https://</a> instead of <a class="reference external" href="http://">http://</a> and you should get an error message in your browser warning you that your SSL certificate could not be authenticated (because it is self-signed).</p>
-<img alt="../_images/connectionnotprivate.png" class="align-center" src="../_images/connectionnotprivate.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Proceed and you will see that your browser marks your URL in red to remind you that there is something wrong with your SSL certificate:</p>
-<img alt="../_images/sslcertificatenotvalid.png" class="align-center" src="../_images/sslcertificatenotvalid.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</div>
-<div class="section" id="factor-authentication">
-<h2>2-Factor Authentication<a class="headerlink" href="#factor-authentication" title="Permalink to this headline">¶</a></h2>
-<p>It is also referred to as 2FA which is a way of using a OTP (One Time Password) for your login process to add an extra level of security to your account. uAdmin allows you to enable 2FA per user. To enable it for your account, open your profile:</p>
-<img alt="../_images/adminhighlighted2fa.png" src="../_images/adminhighlighted2fa.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>On the left you will see a link that says “Enable 2-Factor Auth” click on that to enable 2FA.</p>
-<img alt="../_images/enable2fa1.png" class="align-center" src="../_images/enable2fa1.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Once you enable it, you will see your 2FA QR Code. You can use <a class="reference external" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Google Authenticator</a> to scan this code.</p>
-<img alt="../_images/2faverification.png" class="align-center" src="../_images/2faverification.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Now log out and try to login again:</p>
-<img alt="../_images/verificationcode.png" class="align-center" src="../_images/verificationcode.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Notice that you have a new field called “Verification Code”. This is the number that you have in your Google Authenticator.</p>
-<p>If you locked your self out and because of OTP, you can get your OTP from the terminal where you are running your application:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   User: admin OTP: <span class="m">494858</span>
+<p>Create a file named todo_view.go inside the views folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">views</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;html/template&quot;</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// TodoHandler !</span>
+<span class="kd">func</span> <span class="nx">TodoHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// TodoList field inside the Context that will be used in Golang</span>
+    <span class="c1">// HTML template</span>
+    <span class="kd">type</span> <span class="nx">Context</span> <span class="kd">struct</span> <span class="p">{</span>
+        <span class="nx">TodoList</span> <span class="p">[]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Assigns Context struct to the c variable</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nx">Context</span><span class="p">{}</span>
+
+    <span class="c1">// Pass TodoList data object to the specified HTML path</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RenderHTML</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="s">&quot;templates/todo.html&quot;</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part14.html">next part</a>, we will discuss about password reset, hash salt, and database encryption.</p>
+<p>Finally, add this piece of code in the view.go shown below. This will establish a communication between the HTTPHandler and the TodoHandler.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// HTTPHandler !</span>
+<span class="kd">func</span> <span class="nx">HTTPHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called &quot;/http_handler/&quot;</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/http_handler&quot;</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">HasPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/todo&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">TodoHandler</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application, go to <a class="reference external" href="http://localhost:8080/http_handler/todo">http://localhost:8080/http_handler/todo</a> path and see what happens.</p>
+<img alt="../_images/todohtmlaccess.png" src="../_images/todohtmlaccess.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part13.html">here</a> to view our progress so far.</p>
+<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part14.html">next part</a>, we will discuss about fetching the records in the API and migrating the data from API to HTML that will display the records using Go template.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="full_code/part13.html">uAdmin Tutorial Part 13 - Accessing an HTML file (Current Progress)</a></li>
+</ul>
 </div>
 </div>
 
@@ -139,6 +159,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
@@ -149,11 +170,11 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="part12.html"
-                        title="previous chapter">uAdmin Tutorial Part 12 - Storing the data to HTML</a></p>
+  <p class="topless"><a href="full_code/part12.html"
+                        title="previous chapter">uAdmin Tutorial Part 12 - Introduction to HTML Template (Current Progress)</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="part14.html"
-                        title="next chapter">uAdmin Tutorial Part 14 - Advanced Security (Part 2)</a></p>
+  <p class="topless"><a href="full_code/part13.html"
+                        title="next chapter">uAdmin Tutorial Part 13 - Accessing an HTML file (Current Progress)</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -182,18 +203,18 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="part14.html" title="uAdmin Tutorial Part 14 - Advanced Security (Part 2)"
+          <a href="full_code/part13.html" title="uAdmin Tutorial Part 13 - Accessing an HTML file (Current Progress)"
              >next</a> |</li>
         <li class="right" >
-          <a href="part12.html" title="uAdmin Tutorial Part 12 - Storing the data to HTML"
+          <a href="full_code/part12.html" title="uAdmin Tutorial Part 12 - Introduction to HTML Template (Current Progress)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" >uAdmin Tutorials</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

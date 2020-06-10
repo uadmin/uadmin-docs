@@ -66,6 +66,14 @@ XXXX has many things: See `uadmin.F`_ for the list. It is an alternative way of 
 * **GetFormTheme()** - Returns the form theme for this model or the global theme if there is no assigned theme for the model.
 * **GetListTheme()** - Returns the list theme for this model or the global theme if there is no assigned theme for the model.
 
+Used in the tutorial:
+
+* `Document System Tutorial Part 15 - Schema Form Modifier`_
+* `Document System Tutorial Part 16 - Schema List Modifier`_
+
+.. _Document System Tutorial Part 15 - Schema Form Modifier: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part15.html
+.. _Document System Tutorial Part 16 - Schema List Modifier: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part16.html
+
 There are 2 ways you can do for initialization process using this function: one-by-one and by group.
 
 One-by-one initialization:
@@ -93,8 +101,8 @@ By group initialization:
 
 In this example, we will use "by group" initialization process.
 
-Examples:
-
+uadmin.ModelSchema Examples
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * `Example #1: IncludeFormJS`_
 * `Example #2: IncludeListJS`_
 * `Example #3: Fields`_
@@ -103,6 +111,8 @@ Examples:
 
 **Example #1:** IncludeFormJS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Type:
 
 .. code-block:: go
@@ -207,6 +217,8 @@ Result:
 
 **Example #2:** IncludeListJS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Type:
 
 .. code-block:: go
@@ -305,6 +317,8 @@ If you leave the cursor, the name of the first record will go back to normal.
 
 **Example #3:** Fields
 ^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Type:
 
 .. code-block:: go
@@ -315,6 +329,8 @@ See `uadmin.F`_ for the examples.
 
 **Example #4:** FormModifier and ListModifier
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Functions:
 
 .. code-block:: go
@@ -449,6 +465,10 @@ Now login any of your non-admin account and see what happens.
 
 **Example #5:** FormTheme and ListTheme
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/modelschema.html#uadmin-modelschema-examples
+
 Type:
 
 .. code-block:: go

@@ -1,0 +1,593 @@
+IP Functions
+============
+`Back To uAdmin Functions List`_
+
+.. _Back To uAdmin Functions List: https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference
+
+In this section, we will cover the following functions in-depth listed below:
+
+* `uadmin.AllowedIPs`_
+* `uadmin.BindIP`_
+* `uadmin.BlockedIPs`_
+* `uadmin.CheckRateLimit`_
+* `uadmin.Port`_
+* `uadmin.RateLimit`_
+* `uadmin.RateLimitBurst`_
+* `uadmin.RestrictSessionIP`_
+* `uadmin.ValidateIP`_
+
+uadmin.AllowedIPs
+-----------------
+`Back To Top`_
+
+AllowedIPs is a list of allowed IPs to access uAdmin interface in one of the following formats:
+
+- "*" = Allow all
+- "" = Allow none
+- "192.168.1.1" = Only allow this IP
+- "192.168.1.0/24" = Allow all IPs from 192.168.1.1 to 192.168.1.254
+
+You can also create a list of the above formats using comma to separate them.
+
+For example: "192.168.1.1, 192.168.1.2, 192.168.0.0/24"
+
+Type:
+
+.. code-block:: go
+
+    string
+
+To assign a value within an application, visit `Allowed IPs`_ page for an example.
+
+.. _Allowed IPs: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#allowed-ips
+
+To assign a value in the code, follow this approach:
+
+Go to the main.go and assign your IP address connected on your PC in the AllowedIPs function.
+
+.. code-block:: go
+
+    func main() {
+        // NOTE: This code works only on first build.
+        uadmin.AllowedIPs = "192.168.1.1"
+
+        // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
+
+        // Assign the Allowed IP value to "192.168.1.1"
+        setting := uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.AllowedIPs")
+        setting.ParseFormValue([]string{"192.168.1.1"})
+        setting.Save()
+    }
+
+Run your application and see what happens.
+
+.. image:: ../assets/allowedipsresult.png
+
+Quiz:
+
+* `Miscellaneous Functions (3)`_
+
+uadmin.BindIP
+-------------
+`Back To Top`_
+
+BindIP is the IP the application listens to.
+
+Type:
+
+.. code-block:: go
+
+    string
+
+Used in the tutorial:
+
+* `Document System Tutorial Part 1 - Build A Project`_
+* `Login System Tutorial Part 1 - Build A Project`_
+
+.. _Document System Tutorial Part 1 - Build A Project: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part1.html
+.. _Login System Tutorial Part 1 - Build A Project: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part1.html
+
+Go to the main.go. Connect to the server using a loopback IP address (127.x.x.x). Let's say **127.0.0.2**.
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+        uadmin.BindIP = "127.0.0.2" // <--  place it here
+    }
+
+If you run your code,
+
+.. code-block:: bash
+
+    [   OK   ]   Initializing DB: [13/13]
+    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Server Started: http://127.0.0.2:8080
+             ___       __          _
+      __  __/   | ____/ /___ ___  (_)___
+     / / / / /| |/ __  / __  __ \/ / __ \
+    / /_/ / ___ / /_/ / / / / / / / / / /
+    \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
+
+In the Server Started, it will redirect you to the IP address of **127.0.0.2**.
+
+But if you connect to other private IP addresses, it will not work as shown below (User connects to 127.0.0.3).
+
+.. image:: ../tutorial/assets/bindiphighlighted.png
+
+Quiz:
+
+* `IP Configuration`_
+
+uadmin.BlockedIPs
+-----------------
+`Back To Top`_
+
+BlockedIPs is a list of blocked IPs from accessing uAdmin interface in one of the following formats:
+
+- "*" = Block all
+- "" = Block none
+- "192.168.1.1" = Only block this IP
+- "192.168.1.0/24" = Block all IPs from 192.168.1.1 to 192.168.1.254
+
+You can also create a list of the above formats using comma to separate them.
+
+For example: "192.168.1.1, 192.168.1.2, 192.168.0.0/24"
+
+Type:
+
+.. code-block:: go
+
+    string
+
+To assign a value within an application, visit `Blocked IPs`_ page for an example.
+
+.. _Blocked IPs: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#blocked-ips
+
+To assign a value in the code, follow this approach:
+
+Go to the main.go and assign your IP address connected on your PC in the BlockedIPs function.
+
+.. code-block:: go
+
+    func main() {
+        // NOTE: This code works only on first build.
+        uadmin.BlockedIPs = "192.168.1.1"
+
+        // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
+
+        // Assign the Blocked IP value to "192.168.1.1"
+        setting := uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.BlockedIPs")
+        setting.ParseFormValue([]string{"192.168.1.1"})
+        setting.Save()
+    }
+
+Run your application and see what happens.
+
+.. image:: ../assets/blockedipsresult.png
+
+Quiz:
+
+* `Miscellaneous Functions (3)`_
+
+uadmin.CheckRateLimit
+---------------------
+`Back To Top`_
+
+CheckRateLimit checks if the request has remaining quota or not. If it returns false, the IP in the request has exceeded their quota.
+
+Function:
+
+.. code-block:: go
+
+    func(r *http.Request) bool
+
+Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
+
+.. _Tutorial Part 9 - Introduction to API: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html
+
+Create a file named check_rate_limit.go inside the api folder with the following codes below:
+
+.. code-block:: go
+
+    package api
+
+    import (
+        "net/http"
+        "strings"
+
+        "github.com/uadmin/uadmin"
+    )
+
+    // CheckRateLimitHandler !
+    func CheckRateLimitHandler(w http.ResponseWriter, r *http.Request) {
+        // r.URL.Path creates a new path called "/check_rate_limit/"
+        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/check_rate_limit")
+        r.URL.Path = strings.TrimSuffix(r.URL.Path, "/")
+
+        // Call the function to check the status of the rate limit
+        checkRateLimit := uadmin.CheckRateLimit(r)
+
+        // Print the result
+        uadmin.Trail(uadmin.DEBUG, "Rate Limit: %t", checkRateLimit)
+    }
+
+Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+
+        // CheckRateLimitHandler
+        http.HandleFunc("/check_rate_limit/", uadmin.Handler(api.CheckRateLimitHandler))
+    }
+
+api is the folder name while CheckRateLimitHandler is the name of the function inside check_rate_limit.go.
+
+Run your application and go to the check_rate_limit URL path in the address bar using your IP address (e.g. 0.0.0.0:8080/check_rate_limit).
+
+.. image:: ../assets/checkratelimiturl.png
+   :align: center
+
+This will not display anything in the webpage but a white screen. Go to your terminal to see the result.
+
+.. code-block:: bash
+
+    [  DEBUG ]   Rate Limit: true
+
+It means the website is working properly. Now go to admin URL path in the address bar (e.g. 0.0.0.0:8080/admin). From uAdmin dashboard, click on "SETTINGS".
+
+.. image:: assets/settingshighlighted.png
+
+|
+
+Change the value of either the Rate Limit or Rate Limit Burst to 0.
+
+.. image:: ../assets/ratelimitvaluehighlighted.png
+
+|
+
+Result
+
+.. code-block:: bash
+
+    Slow down. You are going too fast!
+
+Now go to check_rate_limit URL path in the address bar (e.g. 0.0.0.0:8080/check_rate_limit).
+
+.. image:: ../assets/checkratelimiturl.png
+   :align: center
+
+This will not display anything in the webpage but a white screen. Go to your terminal to see the result.
+
+.. code-block:: bash
+
+    [  DEBUG ]   Rate Limit: false
+
+It means the website is crashing. In order to work, either delete the uadmin.db file on your project folder or apply the method shown in `uadmin.RateLimit`_ or `uadmin.RateLimitBurst`_ where the value is higher than zero.
+
+Quiz:
+
+* `Rate Limit Functions`_
+
+uadmin.Port
+-----------
+`Back To Top`_
+
+Port is the port used for http or https server.
+
+Type:
+
+.. code-block:: go
+
+    int
+
+To assign a value within an application, visit `Port`_ page for an example.
+
+.. _Port: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#port
+
+To assign a value in the code, follow this approach:
+
+Go to the main.go in your Todo list project and apply **8000** as a port number.
+
+.. code-block:: go
+
+    func main() {
+        // NOTE: This code works only on first build.
+        uadmin.Port = 8000
+
+        // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
+
+        // Assign the Port value to 8000
+        setting := uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.Port")
+        setting.ParseFormValue([]string{"8000"})
+        setting.Save()
+    }
+
+If you run your code,
+
+.. code-block:: bash
+
+    [   OK   ]   Initializing DB: [13/13]
+    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Server Started: http://0.0.0.0:8000
+             ___       __          _
+      __  __/   | ____/ /___ ___  (_)___
+     / / / / /| |/ __  / __  __ \/ / __ \
+    / /_/ / ___ / /_/ / / / / / / / / / /
+    \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
+
+In the Server Started, it will redirect you to port number **8000**.
+
+Quiz:
+
+* `IP Configuration`_
+
+.. _IP Configuration: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/ip-configuration.html
+
+uadmin.RateLimit
+----------------
+`Back To Top`_
+
+RateLimit is the maximum number of requests/second for any unique IP.
+
+Type:
+
+.. code-block:: go
+
+    int64
+
+To assign a value within an application, visit `Rate Limit`_ page for an example.
+
+.. _Rate Limit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#rate-limit
+
+To assign a value in the code, follow this approach:
+
+Go to the main.go and apply the following codes below:
+
+.. code-block:: go
+
+    func main() {
+        // NOTE: This code works only on first build.
+        uadmin.RateLimit = 1
+
+        // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
+
+        // Assign the Rate Limit value to 1
+        setting := uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.RateLimit")
+        setting.ParseFormValue([]string{"1"})
+        setting.Save()
+    }
+
+Run your application. From uAdmin dashboard, hold the Ctrl Key on your keyboard then click any dashboard menu in the form really fast to add in a new tab and see what happens.
+
+.. image:: ../assets/ratelimithighlighttab.png
+
+|
+
+The title bar name looks different in the last two tabs. Click any of them to see the result.
+
+.. image:: ../assets/ratelimitresult.png
+
+|
+
+The website is crashed as expected. In fact that our rate limit is 1, it might take a long time to bring the website back to normal. To increase the recovery rate, adjust the rate limit to a higher value (e.g. 100).
+
+.. code-block:: go
+
+    // Assign the Rate Limit value to 100
+    setting := uadmin.Setting{}
+    uadmin.Get(&setting, "code = ?", "uAdmin.RateLimit")
+    setting.ParseFormValue([]string{"100"})
+    setting.Save()
+
+Run your application again and do the same process as shown above. Afterwards, click any button in the form and you will see that the website is back to normal much faster.
+
+.. image:: ../assets/websitebacktonormal.png
+
+|
+
+Quiz:
+
+* `Rate Limit Functions`_
+
+uadmin.RateLimitBurst
+---------------------
+`Back To Top`_
+
+RateLimitBurst is the maximum number of requests for an idle user.
+
+Type:
+
+.. code-block:: go
+
+    int64
+
+To assign a value within an application, visit `Rate Limit Burst`_ page for an example.
+
+.. _Rate Limit Burst: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#rate-limit-burst
+
+To assign a value in the code, follow this approach:
+
+Go to the main.go and apply the following codes below:
+
+.. code-block:: go
+
+    func main() {
+        // NOTE: This code works only on first build.
+        uadmin.RateLimitBurst = 3
+
+        // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
+
+        // Assign the Rate Limit Burst value to 3
+        setting := uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.RateLimitBurst")
+        setting.ParseFormValue([]string{"3"})
+        setting.Save()
+    }
+
+Run your application. From uAdmin dashboard, hold the Ctrl Key on your keyboard then click any dashboard menu in the form really fast to add in a new tab and see what happens.
+
+.. image:: ../assets/ratelimithighlighttab.png
+
+|
+
+The title bar name looks different in the last two tabs. Click any of them to see the result.
+
+.. image:: ../assets/ratelimitresult.png
+
+|
+
+The website is crashed because our request exceeds the limit that we have assigned.
+
+Quiz:
+
+* `Rate Limit Functions`_
+
+.. _Rate Limit Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/rate-limit-functions.html
+
+uadmin.RestrictSessionIP
+------------------------
+`Back To Top`_
+
+RestrictSessionIP is to block access of a user if their IP changes from their original IP during login.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+To assign a value within an application, visit `Restrict Session IP`_ page for an example.
+
+.. _Restrict Session IP: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#restrict-session-ip
+
+To assign a value in the code, follow this approach:
+
+Example:
+
+.. code-block:: go
+
+    package main
+
+    import (
+        "github.com/uadmin/uadmin"
+    )
+
+    func main() {
+        // NOTE: This code works only on first build.
+        // Block access of a user
+        uadmin.RestrictSessionIP = true
+
+        // Allow access of a user
+        uadmin.RestrictSessionIP = false
+
+        // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
+
+        // Block access of a user
+        setting := uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.RestrictSessionIP")
+        setting.ParseFormValue([]string{"true"})
+        setting.Save()
+
+        // Allow access of a user
+        setting := uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.RestrictSessionIP")
+        setting.ParseFormValue([]string{"false"})
+        setting.Save()
+    }
+
+Quiz:
+
+* `Miscellaneous Functions (3)`_
+
+uadmin.ValidateIP
+-----------------
+`Back To Top`_
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#ip-functions
+
+ValidateIP is a function to check if the IP in the request is allowed in the allowed based on allowed and block strings.
+
+Function:
+
+.. code-block:: go
+
+    func(r *http.Request, allow string, block string) bool
+
+Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
+
+.. _Tutorial Part 9 - Introduction to API: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html
+
+Create a file named validation_ip.go inside the api folder with the following codes below:
+
+.. code-block:: go
+
+    package api
+
+    import (
+        "net/http"
+        "strings"
+
+        "github.com/uadmin/uadmin"
+    )
+
+    // ValidateAPIHandler !
+    func ValidateAPIHandler(w http.ResponseWriter, r *http.Request) {
+        // r.URL.Path creates a new path called "/validate_ip"
+        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/validate_ip")
+        r.URL.Path = strings.TrimSuffix(r.URL.Path, "/")
+
+        // Allowed IP - 192.168.1.1 (Your IP address)
+        // Blocked IP - 192.168.1.2 (IP that was binded from other PC)
+        validateIP := uadmin.ValidateIP(r, "192.168.1.1", "192.168.1.2")
+
+        // Print the result
+        uadmin.Trail(uadmin.DEBUG, "Validate IP: %t", validateIP)
+    }
+
+Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+
+        // ValidateAPIHandler
+        http.HandleFunc("/validate_ip/", uadmin.Handler(api.ValidateAPIHandler))
+    }
+
+api is the folder name while ValidateAPIHandler is the name of the function inside validation_ip.go.
+
+Run your application and go to the validate_ip URL path in the address bar using your IP address (e.g. 192.168.1.1:8080/validate_ip).
+
+.. image:: ../assets/validateipallow.png
+   :align: center
+
+This will not display anything in the webpage but a white screen. Go to your terminal to see the result.
+
+.. code-block:: bash
+
+    [  DEBUG ]   Validate IP: true
+
+Now go to the validate_ip URL path in the address bar using the binded IP (e.g. 192.168.1.2:8080/validate_ip). Make sure that the IP from other PC is binded to your computer. Otherwise, it will not work.
+
+.. image:: ../assets/validateipblock.png
+   :align: center
+
+This will not display anything in the webpage but a white screen. Go to your terminal to see the result.
+
+.. code-block:: bash
+
+    [  DEBUG ]   Validate IP: false
+
+Quiz:
+
+* `Miscellaneous Functions (3)`_
+
+.. _Miscellaneous Functions (3): https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions-3.html

@@ -17,14 +17,15 @@ type UserContext struct {
 
 // LoginHandler !
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
-	// r.URL.Path creates a new path called /login
+	// r.URL.Path creates a new path called /login/
 	r.URL.Path = strings.TrimPrefix(r.URL.Path, "/login")
-
-	// Initialize the User model from uAdmin
-	user := uadmin.User{}
+	r.URL.Path = strings.TrimSuffix(r.URL.Path, "/")
 
 	// Initialize the UserContext struct that we have created
 	userContext := UserContext{}
+
+	// Initialize the User model from uAdmin
+	user := uadmin.User{}
 
 	// Check if the user submits request in HTML form
 	if r.Method == "POST" {
@@ -43,27 +44,25 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 				otpPass := r.FormValue("otp_pass")
 
 				// Pass the requested username and password in Login function to
-				// return the full name of the User and the boolean value for
-				// IsOTPRequired
+				// return the session and the boolean value for IsOTPRequired
 				login, otp := uadmin.Login(r, username, password)
 
-				// Initialize Login2FA that returns the User
-				login2fa := &uadmin.User{}
+				// Initialize Login2FA that returns the Session
+				login2fa := &uadmin.Session{}
 
 				// Check whether the OTP value from Login function is true
 				// and the OTP Password is valid
 				if otp == true && user.VerifyOTP(otpPass) {
 					// Pass the requested username, password, and OTP Password in
-					// Login2FA function to return the full name of the User
+					// Login2FA function to return the session
 					login2fa = uadmin.Login2FA(r, username, password, otpPass)
+
+					// Print the result
+					uadmin.Trail(uadmin.DEBUG, "Login with 2FA as: %s", login2fa.User)
 				}
 
-				// Pass the requested password and OTP code to return the
-				// session key
-				session := user.Login(password, otpPass)
-
-				// Check if the session is fetched from the Login function
-				if session != nil {
+				// Check if the session is fetched from either login or login2fa
+				if login != nil {
 					// Create a cookie named "user_session" with the value of
 					// UserID
 					usersession := &http.Cookie{
@@ -71,6 +70,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 						Value: fmt.Sprint(user.ID),
 					}
 
+					// Check whether the OTP value from Login function is true
+					// and the OTP Password is valid
 					if otp == true && user.VerifyOTP(otpPass) {
 						// Set the "user_session" cookie to the IP Address
 						http.SetCookie(w, usersession)
@@ -78,15 +79,13 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 						// Assign the full name of the user and OTP boolean value to the
 						// userContext
 						userContext = UserContext{
-							User: login2fa,
+							User: &login2fa.User,
 							OTP:  otp,
 						}
-
-						// Pass the userContext data object to the HTML file
-						uadmin.RenderHTML(w, userContext, "templates/home.html")
-						return
 					}
 
+					// Check whether the OTP value from Login function is false
+					// and the OTP Password is not assigned
 					if otp == false && otpPass == "" {
 						// Set the "user_session" cookie to the IP Address
 						http.SetCookie(w, usersession)
@@ -94,14 +93,14 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 						// Assign the full name of the user and OTP boolean value to the
 						// userContext
 						userContext = UserContext{
-							User: login,
+							User: &login.User,
 							OTP:  otp,
 						}
-
-						// Pass the userContext data object to the HTML file
-						uadmin.RenderHTML(w, userContext, "templates/home.html")
-						return
 					}
+
+					// Pass the userContext data object to the HTML file
+					uadmin.RenderHTML(w, r, "templates/home.html", userContext)
+					return
 				}
 			}
 		}
@@ -123,7 +122,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 			http.SetCookie(w, usersession)
 
 			// Pass the userContext data object to the HTML file
-			uadmin.RenderHTML(w, userContext, "templates/login.html")
+			uadmin.RenderHTML(w, r, "templates/login.html", userContext)
 			return
 		}
 	}
@@ -144,11 +143,10 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Pass the userContext data object to the HTML file
-		uadmin.RenderHTML(w, userContext, "templates/home.html")
+		uadmin.RenderHTML(w, r, "templates/home.html", userContext)
 		return
 	}
 
 	// Pass the userContext data object to the HTML file
-	uadmin.RenderHTML(w, userContext, "templates/login.html")
-	return
+	uadmin.RenderHTML(w, r, "templates/login.html", userContext)
 }

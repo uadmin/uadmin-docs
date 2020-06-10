@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Database Functions &#8212; uadmin 0.4 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Email Functions" href="email_functions.html" />
+    <link rel="prev" title="uadmin.Schema" href="customizing-records/schema.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="email_functions.html" title="Email Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="customizing-records/schema.html" title="uadmin.Schema"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="database-functions">
+<h1>Database Functions<a class="headerlink" href="#database-functions" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
+<p>In this section, we will cover the following functions in-depth listed below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#uadmin-cleardb">uadmin.ClearDB</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-database">uadmin.Database</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-dbsettings">uadmin.DBSettings</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-debugdb">uadmin.DebugDB</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-getdb">uadmin.GetDB</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-optimizesqlquery">uadmin.OptimizeSQLQuery</a></p></li>
+</ul>
+<div class="section" id="uadmin-cleardb">
+<h2>uadmin.ClearDB<a class="headerlink" href="#uadmin-cleardb" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
+<p>ClearDB clears the database object.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Suppose I have two databases in my project folder.</p>
+<img alt="../_images/twodatabases.png" src="../_images/twodatabases.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>And I set the Name to <strong>uadmin.db</strong> on Database Settings in main.go.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Database</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DBSettings</span><span class="p">{</span>
+        <span class="nx">Type</span><span class="p">:</span> <span class="s">&quot;sqlite&quot;</span><span class="p">,</span>
+        <span class="nx">Name</span><span class="p">:</span> <span class="s">&quot;uadmin.db&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Let’s create a new file in the models folder named “expression.go” with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
+
+<span class="kn">import</span> <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+
+<span class="c1">// ---------------- DROP DOWN LIST ----------------</span>
+<span class="c1">// Status ...</span>
+<span class="kd">type</span> <span class="nx">Status</span> <span class="kt">int</span>
+
+<span class="c1">// Keep ...</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">Status</span><span class="p">)</span> <span class="nx">Keep</span><span class="p">()</span> <span class="nx">Status</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">1</span>
+<span class="p">}</span>
+
+<span class="c1">// ClearDatabase ...</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">Status</span><span class="p">)</span> <span class="nx">ClearDatabase</span><span class="p">()</span> <span class="nx">Status</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">2</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------</span>
+
+<span class="c1">// Expression model ...</span>
+<span class="kd">type</span> <span class="nx">Expression</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>   <span class="kt">string</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">Status</span> <span class="nx">Status</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+<span class="p">}</span>
+
+<span class="c1">// Save ...</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">e</span> <span class="o">*</span><span class="nx">Expression</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// If Status is equal to ClearDatabase(), the database</span>
+    <span class="c1">// will reset and open a new one which is todolist.db.</span>
+    <span class="k">if</span> <span class="nx">e</span><span class="p">.</span><span class="nx">Status</span> <span class="o">==</span> <span class="nx">e</span><span class="p">.</span><span class="nx">Status</span><span class="p">.</span><span class="nx">ClearDatabase</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ClearDB</span><span class="p">()</span>        <span class="c1">// &lt;-- Place it here</span>
+
+        <span class="c1">// Database configurations</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Database</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DBSettings</span><span class="p">{</span>
+            <span class="nx">Type</span><span class="p">:</span> <span class="s">&quot;sqlite&quot;</span><span class="p">,</span>
+            <span class="nx">Name</span><span class="p">:</span> <span class="s">&quot;todolist.db&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Returns a pointer to the DB</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetDB</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Override save</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Register your Expression model in the main function.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="c1">// Some codes</span>
+
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span>
+        <span class="c1">// Some registered models</span>
+        <span class="nx">models</span><span class="p">.</span><span class="nx">Expression</span><span class="p">{},</span> <span class="c1">// &lt;-- place it here</span>
+    <span class="p">)</span>
+
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run the application. Go to the Expressions model and add at least 3 interjections, all Status set to “Keep”.</p>
+<img alt="../_images/expressionkeep1.png" src="../_images/expressionkeep1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now create another data, this time set the Status as “Clear Database” and see what happens.</p>
+<img alt="../_images/cleardatabase.png" src="../_images/cleardatabase.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Your account will automatically logout in the application. Login your account again, go to the Expressions model and see what happens.</p>
+<img alt="../_images/cleardatabasesecondmodel.png" src="../_images/cleardatabasesecondmodel.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, all previous records were gone in the model. It does not mean that they were deleted. It’s just that you have opened a new database called “todolist.db”. Check out the other models that you have. You may notice that something has changed in your database.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/clear-db-and-get-db.html">ClearDB and GetDB</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-database">
+<h2>uadmin.Database<a class="headerlink" href="#uadmin-database" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
+<p>Database is the active Database settings.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DBSettings</span>
+</pre></div>
+</div>
+<p>There are 6 fields that you can use in this function:</p>
+<ul class="simple">
+<li><p><strong>Host</strong> - returns a string. It is an IP address where the database was hosted.</p></li>
+<li><p><strong>Name</strong> - returns a string. This will generate a database file in your project folder.</p></li>
+<li><p><strong>Password</strong> - returns a password string</p></li>
+<li><p><strong>Port</strong> - returns an int. It is the port used for http or https server.</p></li>
+<li><p><strong>Type</strong> - returns a string. There are 2 types: SQLLite and MySQL.</p></li>
+<li><p><strong>User</strong> - returns a user string</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>uadmin.Database function is deprecated on version 0.4.0 and above. Instead, we have to create a new file called .database.</p>
+</div>
+<p>Apply the following codes in <strong>.database</strong> file below to create SQLite database:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span>     <span class="s2">&quot;sqlite&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span>     <span class="s2">&quot;todolist.db&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you run your code,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Initializing Languages: <span class="o">[</span><span class="m">185</span>/185<span class="o">]</span>
+<span class="o">[</span>  INFO  <span class="o">]</span>   Auto generated admin user. Username: admin, Password: admin.
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>The todolist.db file is automatically created in your main project folder.</p>
+<img alt="../_images/todolistdbhighlighted.png" src="../_images/todolistdbhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>See <a class="reference internal" href="#uadmin-dbsettings">uadmin.DBSettings</a> for the process of configuring your database in MySQL.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/database-and-db-settings.html">Database and DBSettings</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-dbsettings">
+<h2>uadmin.DBSettings<a class="headerlink" href="#uadmin-dbsettings" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
+<p>DBSettings is a feature that allows a user to configure the settings of a database.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">DBSettings</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Type</span>     <span class="kt">string</span> <span class="c1">// SQLLite, MySQL</span>
+    <span class="nx">Name</span>     <span class="kt">string</span> <span class="c1">// File/DB name</span>
+    <span class="nx">User</span>     <span class="kt">string</span>
+    <span class="nx">Password</span> <span class="kt">string</span>
+    <span class="nx">Host</span>     <span class="kt">string</span>
+    <span class="nx">Port</span>     <span class="kt">int</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>uadmin.DBSettings function is deprecated on version 0.4.0 and above. Instead, we have to create a new file called .database.</p>
+</div>
+<p>Apply the following codes in <strong>.database</strong> file below to create SQLite database:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span>     <span class="s2">&quot;sqlite&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span>     <span class="s2">&quot;todolist.db&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you run your code,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Initializing Languages: <span class="o">[</span><span class="m">185</span>/185<span class="o">]</span>
+<span class="o">[</span>  INFO  <span class="o">]</span>   Auto generated admin user. Username: admin, Password: admin.
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>The todolist.db file is automatically created in your main project folder.</p>
+<img alt="../_images/todolistdbhighlighted.png" src="../_images/todolistdbhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can also migrate your application into the MySQL database server. In order to do that, you must have the <a class="reference external" href="https://dev.mysql.com/downloads/workbench/">MySQL Workbench</a> application installed on your computer. Open your MySQL Workbench and set up your Connection Name (example below is uadmin). Hostname, Port and Username are automatically provided for you but you can change the values there if you wish to. For this example, let’s apply the following information below.</p>
+<img alt="../_images/mysqlsetup.png" src="../_images/mysqlsetup.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click Test Connection to see if the connection is working properly.</p>
+<img alt="../_images/mysqlprompt.png" class="align-center" src="../_images/mysqlprompt.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/testconnectionresult.png" class="align-center" src="../_images/testconnectionresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Once you are done with the connection testing, click OK on the bottom right corner. You will see the interface of the application. Let’s create a new schema by right clicking the area on the bottom left corner highlighted below then select <strong>Create Schema</strong>.</p>
+<img alt="../_images/rightclickarea.png" src="../_images/rightclickarea.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Input the value of the schema name as “todo”, charset as <strong>utf8</strong> and collation as <strong>Default Collation</strong> then click Apply.</p>
+<img alt="../_images/schemasetuptodo.png" src="../_images/schemasetuptodo.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will see the Apply SQL Script to the Database form. Leave it as it is and click <strong>Apply</strong>.</p>
+<img alt="../_images/applysqlscriptform.png" src="../_images/applysqlscriptform.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Your todo schema has been created in the MySQL. Congrats!</p>
+<img alt="../_images/todocreatedmysql.png" class="align-center" src="../_images/todocreatedmysql.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>uadmin.DBSettings function is deprecated on version 0.4.0 and above. Instead, we have to create a new file called .database.</p>
+</div>
+<p>Apply the following codes in <strong>.database</strong> file below o create MySQL database:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span>     <span class="s2">&quot;mysql&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span>     <span class="s2">&quot;todo&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;user&quot;</span><span class="p">:</span>     <span class="s2">&quot;root&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;(your MySQL password)&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;host&quot;</span><span class="p">:</span>     <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;port&quot;</span><span class="p">:</span>     <span class="mi">3306</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The information above is well-based on the database configuration settings in MySQL Workbench.</p>
+<p>Once you are done, run your application and see what happens.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Initializing Languages: <span class="o">[</span><span class="m">185</span>/185<span class="o">]</span>
+<span class="o">[</span>  INFO  <span class="o">]</span>   Auto generated admin user. Username: admin, Password: admin.
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>Open your browser and type the IP address above. Then login using “admin” as username and password.</p>
+<img alt="../_images/loginform.png" class="align-center" src="../_images/loginform.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will be greeted by the uAdmin dashboard. System models are built in to uAdmin.</p>
+<img alt="../_images/uadmindashboard.png" src="../_images/uadmindashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now open your MySQL Workbench. On todo database in the schema panel, the tables are automatically generated from your uAdmin dashboard.</p>
+<img alt="../_images/mysqluadminmodelslist.png" class="align-center" src="../_images/mysqluadminmodelslist.png" />
+<p>Congrats, now you know how to configure your database settings in both SQLite and MySQL.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/database-and-db-settings.html">Database and DBSettings</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-debugdb">
+<h2>uadmin.DebugDB<a class="headerlink" href="#uadmin-debugdb" title="Permalink to this headline">¶</a></h2>
+<p>DebugDB prints all SQL statements going to DB.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#debugdb">DebugDB</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>Go to the main.go. Set this function as true.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DebugDB</span> <span class="p">=</span> <span class="kc">true</span>
+
+    <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
+
+    <span class="c1">// Assign the Debug DB value as &quot;on&quot; to set the value as true</span>
+    <span class="c1">// in the settings</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.DebugDB&quot;</span><span class="p">)</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;on&quot;</span><span class="p">})</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Check your terminal to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+
+<span class="o">(</span>/home/dev1/go/src/github.com/uadmin/uadmin/db.go:428<span class="o">)</span>
+<span class="o">[</span><span class="m">2018</span>-11-10 <span class="m">12</span>:43:07<span class="o">]</span>  <span class="o">[</span><span class="m">0</span>.09ms<span class="o">]</span>  SELECT count<span class="o">(</span>*<span class="o">)</span> FROM <span class="s2">&quot;languages&quot;</span>  WHERE <span class="s2">&quot;languages&quot;</span>.<span class="s2">&quot;deleted_at&quot;</span> IS NULL
+<span class="o">[</span><span class="m">0</span> rows affected or returned <span class="o">]</span>
+
+<span class="o">(</span>/home/dev1/go/src/github.com/uadmin/uadmin/db.go:298<span class="o">)</span>
+<span class="o">[</span><span class="m">2018</span>-11-10 <span class="m">12</span>:43:07<span class="o">]</span>  <span class="o">[</span><span class="m">0</span>.17ms<span class="o">]</span>  SELECT * FROM <span class="s2">&quot;languages&quot;</span>  WHERE <span class="s2">&quot;languages&quot;</span>.<span class="s2">&quot;deleted_at&quot;</span> IS NULL AND <span class="o">((</span><span class="nv">active</span> <span class="o">=</span> <span class="s1">&#39;true&#39;</span><span class="o">))</span>
+<span class="o">[</span><span class="m">1</span> rows affected or returned <span class="o">]</span>
+
+<span class="o">(</span>/home/dev1/go/src/github.com/uadmin/uadmin/db.go:238<span class="o">)</span>
+<span class="o">[</span><span class="m">2018</span>-11-10 <span class="m">12</span>:43:07<span class="o">]</span>  <span class="o">[</span><span class="m">0</span>.16ms<span class="o">]</span>  SELECT * FROM <span class="s2">&quot;languages&quot;</span>  WHERE <span class="s2">&quot;languages&quot;</span>.<span class="s2">&quot;deleted_at&quot;</span> IS NULL AND <span class="o">((</span><span class="sb">`</span>default<span class="sb">`</span> <span class="o">=</span> <span class="s1">&#39;true&#39;</span><span class="o">))</span> ORDER BY <span class="s2">&quot;languages&quot;</span>.<span class="s2">&quot;id&quot;</span> ASC LIMIT <span class="m">1</span>
+<span class="o">[</span><span class="m">1</span> rows affected or returned <span class="o">]</span>
+
+<span class="o">(</span>/home/dev1/go/src/github.com/uadmin/uadmin/db.go:162<span class="o">)</span>
+<span class="o">[</span><span class="m">2018</span>-11-10 <span class="m">12</span>:43:07<span class="o">]</span>  <span class="o">[</span><span class="m">0</span>.32ms<span class="o">]</span>  SELECT * FROM <span class="s2">&quot;dashboard_menus&quot;</span>  WHERE <span class="s2">&quot;dashboard_menus&quot;</span>.<span class="s2">&quot;deleted_at&quot;</span> IS NULL
+<span class="o">[</span><span class="m">13</span> rows affected or returned <span class="o">]</span>
+
+<span class="o">(</span>/home/dev1/go/src/github.com/uadmin/uadmin/db.go:428<span class="o">)</span>
+<span class="o">[</span><span class="m">2018</span>-11-10 <span class="m">12</span>:43:07<span class="o">]</span>  <span class="o">[</span><span class="m">0</span>.07ms<span class="o">]</span>  SELECT count<span class="o">(</span>*<span class="o">)</span> FROM <span class="s2">&quot;users&quot;</span>  WHERE <span class="s2">&quot;users&quot;</span>.<span class="s2">&quot;deleted_at&quot;</span> IS NULL
+<span class="o">[</span><span class="m">0</span> rows affected or returned <span class="o">]</span>
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-getdb">
+<h2>uadmin.GetDB<a class="headerlink" href="#uadmin-getdb" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
+<p>GetDB returns a pointer to the DB.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">()</span> <span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span>
+</pre></div>
+</div>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html">Tutorial Part 9 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Suppose I have one record in the Todo model.</p>
+<img alt="../_images/todomodeloutput.png" src="../_images/todomodeloutput.png" />
+<p>Create a file named custom_todo.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// CustomTodoHandler !</span>
+<span class="kd">func</span> <span class="nx">CustomTodoHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/custom_todo&quot;</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+
+    <span class="nx">res</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{}</span>
+
+    <span class="c1">// Initialize the Todo model</span>
+    <span class="nx">todolist</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{}</span>
+
+    <span class="c1">// Create a query in the sql variable to select all records in todos</span>
+    <span class="nx">sql</span> <span class="o">:=</span> <span class="s">`SELECT * FROM todos`</span>
+
+    <span class="c1">// Place it here</span>
+    <span class="nx">db</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetDB</span><span class="p">()</span>
+
+    <span class="c1">// Store the query inside the Raw function in order to scan value to</span>
+    <span class="c1">// the Todo model</span>
+    <span class="nx">db</span><span class="p">.</span><span class="nx">Raw</span><span class="p">(</span><span class="nx">sql</span><span class="p">).</span><span class="nx">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">todolist</span><span class="p">)</span>
+
+    <span class="c1">// Print the result in JSON format</span>
+    <span class="nx">res</span><span class="p">[</span><span class="s">&quot;status&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;ok&quot;</span>
+    <span class="nx">res</span><span class="p">[</span><span class="s">&quot;todo&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">todolist</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// CustomTodoHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/custom_todo/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">api</span><span class="p">.</span><span class="nx">CustomTodoHandler</span><span class="p">))</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while CustomTodoHandler is the name of the function inside custom_todo.go.</p>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/getdbjson.png" src="../_images/getdbjson.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/clear-db-and-get-db.html">ClearDB and GetDB</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-optimizesqlquery">
+<h2>uadmin.OptimizeSQLQuery<a class="headerlink" href="#uadmin-optimizesqlquery" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
+<p>OptimizeSQLQuery selects columns during rendering a form a list to visible fields. This means during the filtering of a form the select statement will not include any field with <cite>hidden</cite> tag. For list it will not select any field with <cite>list_exclude</cite>.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#optimize-sql-query">Optimize SQL Query</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>Example:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// Enable</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">OptimizeSQLQuery</span> <span class="p">=</span> <span class="kc">true</span>
+
+    <span class="c1">// Disable</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">OptimizeSQLQuery</span> <span class="p">=</span> <span class="kc">false</span>
+
+    <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
+
+    <span class="c1">// Enable</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.OptimizeSQLQuery&quot;</span><span class="p">)</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;true&quot;</span><span class="p">})</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+
+    <span class="c1">// Disable</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.OptimizeSQLQuery&quot;</span><span class="p">)</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;false&quot;</span><span class="p">})</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="customizing-records/schema.html"
+                        title="previous chapter">uadmin.Schema</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="email_functions.html"
+                        title="next chapter">Email Functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/database_functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="email_functions.html" title="Email Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="customizing-records/schema.html" title="uadmin.Schema"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    </div>
+  </body>
+</html>

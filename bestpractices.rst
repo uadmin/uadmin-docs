@@ -10,6 +10,7 @@ In this section, we will learn what are the coding standards and naming conventi
 
 Rules - Inlines
 ---------------
+`Back to Top`_
 
 1.) Inline must be created in main.go after the uadmin.Register.
 
@@ -37,6 +38,7 @@ Example:
 
 Rules - Models
 --------------
+`Back to Top`_
 
 1.) The first letter of a model name must be in uppercase format.
 
@@ -57,6 +59,7 @@ Rules - Models
 
 Rules - New Project
 -------------------
+`Back to Top`_
 
 1.) Make it sure it follows the model structure as shown in `Tutorial Part 1`_.
 
@@ -100,6 +103,7 @@ Rules - New Project
 
 Rules - Login Process
 ---------------------
+`Back to Top`_
 
 1.) Avoid using common passwords such as "123456" and "password". Use a password that contains an uppercase and lowercase letters, numbers, and special symbols for strong security.
 
@@ -123,8 +127,11 @@ Rules - Login Process
 
 Rules - Logs
 ------------
+`Back to Top`_
 
-1.) Edit and Delete logs will allow you to “Undo” them or “Roll Back” your changes. It is a good feature for the user who accidentally made changes to the record in the database.
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/bestpractices.html#best-practices
+
+1.) Edit and Delete logs will allow you to "Undo” them or "Roll Back” your changes. It is a good feature for the user who accidentally made changes to the record in the database.
 
 2.) When you access to any records you have in your system, there is a "History" button which redirects you to the Log on the top left corner.
 

@@ -48,7 +48,6 @@ The first time you run your project, these folders are automatically generated f
 
 **Templates** is where the themes for uAdmin are located.
 
-In the `next part`_ we will talk about creating and moving a model as well as cropping an image.
+In the `next part`_ we will talk about the difference between internal and external models.
 
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part2.html
-

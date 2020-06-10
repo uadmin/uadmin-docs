@@ -2,7 +2,7 @@ Document System Tutorial Part 17 - Wrapping Up Your Application
 ===============================================================
 So far you have developed this really cool application that you want to show to your your customer or even to the world. Before you publish your application, let's customize your dashboard in a fashionable way. Making it look good and customizing it to meet your customers requirements is important to the success of your app.
 
-First of all, open "DASHBOARD MENUS".
+First of all, open **DASHBOARD MENUS**.
 
 .. image:: assets/dashboardmenuhighlighted.png
 
@@ -171,6 +171,15 @@ Congrats, now you know how to do the following in the entire series:
 * Customize your dashboard
 * Hide models by using HideInDashboard() function
 * Publish your application online
+
+Click `here`_ to view the full progress of this application.
+
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part17.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part17
 
 If you want to learn more and discover about the concepts of uAdmin, you may go to these references with examples:
 

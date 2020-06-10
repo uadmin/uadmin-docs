@@ -1,0 +1,509 @@
+Database Functions
+==================
+`Back To uAdmin Functions List`_
+
+.. _Back To uAdmin Functions List: https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference
+
+In this section, we will cover the following functions in-depth listed below:
+
+* `uadmin.ClearDB`_
+* `uadmin.Database`_
+* `uadmin.DBSettings`_
+* `uadmin.DebugDB`_
+* `uadmin.GetDB`_
+* `uadmin.OptimizeSQLQuery`_
+
+uadmin.ClearDB
+--------------
+`Back To Top`_
+
+ClearDB clears the database object.
+
+Function:
+
+.. code-block:: go
+
+    func()
+
+Suppose I have two databases in my project folder.
+
+.. image:: ../assets/twodatabases.png
+
+|
+
+And I set the Name to **uadmin.db** on Database Settings in main.go.
+
+.. code-block:: go
+
+    func main(){
+        uadmin.Database = &uadmin.DBSettings{
+            Type: "sqlite",
+            Name: "uadmin.db",
+        }
+        // Some codes
+    }
+
+Let's create a new file in the models folder named "expression.go" with the following codes below:
+
+.. code-block:: go
+
+    package models
+
+    import "github.com/uadmin/uadmin"
+
+    // ---------------- DROP DOWN LIST ----------------
+    // Status ...
+    type Status int
+
+    // Keep ...
+    func (s Status) Keep() Status {
+        return 1
+    }
+
+    // ClearDatabase ...
+    func (s Status) ClearDatabase() Status {
+        return 2
+    }
+    // -----------------------------------------------
+
+    // Expression model ...
+    type Expression struct {
+        uadmin.Model
+        Name   string `uadmin:"required"`
+        Status Status `uadmin:"required"`
+    }
+    
+    // Save ...
+    func (e *Expression) Save() {
+        // If Status is equal to ClearDatabase(), the database
+        // will reset and open a new one which is todolist.db.
+        if e.Status == e.Status.ClearDatabase() {
+            uadmin.ClearDB()        // <-- Place it here
+
+            // Database configurations
+            uadmin.Database = &uadmin.DBSettings{
+                Type: "sqlite",
+                Name: "todolist.db",
+            }
+
+            // Returns a pointer to the DB
+            uadmin.GetDB()
+        }
+
+        // Override save
+        uadmin.Save(e)
+    }
+
+Register your Expression model in the main function.
+
+.. code-block:: go
+
+    func main() {
+
+        // Some codes
+
+        uadmin.Register(
+            // Some registered models
+            models.Expression{}, // <-- place it here
+        )
+
+        // Some codes
+    }
+
+Run the application. Go to the Expressions model and add at least 3 interjections, all Status set to "Keep".
+
+.. image:: ../assets/expressionkeep.png
+
+|
+
+Now create another data, this time set the Status as "Clear Database" and see what happens.
+
+.. image:: ../assets/cleardatabase.png
+
+|
+
+Your account will automatically logout in the application. Login your account again, go to the Expressions model and see what happens.
+
+.. image:: ../assets/cleardatabasesecondmodel.png
+
+|
+
+As expected, all previous records were gone in the model. It does not mean that they were deleted. It's just that you have opened a new database called "todolist.db". Check out the other models that you have. You may notice that something has changed in your database.
+
+Quiz:
+
+* `ClearDB and GetDB`_
+
+uadmin.Database
+---------------
+`Back To Top`_
+
+Database is the active Database settings.
+
+Structure:
+
+.. code-block:: go
+
+    *uadmin.DBSettings
+
+There are 6 fields that you can use in this function:
+
+* **Host** - returns a string. It is an IP address where the database was hosted.
+* **Name** - returns a string. This will generate a database file in your project folder.
+* **Password** - returns a password string
+* **Port** - returns an int. It is the port used for http or https server.
+* **Type** - returns a string. There are 2 types: SQLLite and MySQL.
+* **User** - returns a user string
+
+Go to the main.go in your Todo list project. Add the codes below above the uadmin.Register.
+
+.. code-block:: go
+
+    func main(){
+        database := uadmin.Database
+        database.Host = "192.168.149.108"
+        database.Name = "todolist.db"
+        database.Password = "admin"
+        database.Port = 8000
+        database.Type = "sqlite"
+        database.User = "admin"
+    }
+
+If you run your code,
+
+.. code-block:: bash
+
+    [   OK   ]   Initializing DB: [15/15]
+    [   OK   ]   Initializing Languages: [185/185]
+    [  INFO  ]   Auto generated admin user. Username: admin, Password: admin.
+    [   OK   ]   Server Started: http://0.0.0.0:8000
+             ___       __          _
+      __  __/   | ____/ /___ ___  (_)___
+     / / / / /| |/ __  / __  __ \/ / __ \
+    / /_/ / ___ / /_/ / / / / / / / / / /
+    \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
+
+The todolist.db file is automatically created in your main project folder.
+
+.. image:: ../tutorial/assets/todolistdbhighlighted.png
+
+|
+
+See `uadmin.DBSettings`_ for the process of configuring your database in MySQL.
+
+Quiz:
+
+* `Database and DBSettings`_
+
+uadmin.DBSettings
+-----------------
+`Back To Top`_
+
+DBSettings is a feature that allows a user to configure the settings of a database.
+
+Structure:
+
+.. code-block:: go
+
+    type DBSettings struct {
+        Type     string // SQLLite, MySQL
+        Name     string // File/DB name
+        User     string
+        Password string
+        Host     string
+        Port     int
+    }
+
+Go to the main.go in your Todo list project. Add the codes below above the uadmin.Register.
+
+.. code-block:: go
+
+    func main() {
+        uadmin.Database = &uadmin.DBSettings{
+            Type:      "sqlite",
+            Name:      "todolist.db",
+            User:      "admin",
+            Password:  "admin",
+            Host:      "192.168.149.108",
+            Port:      8000,
+        }
+        // Some codes
+    }
+
+If you run your code,
+
+.. code-block:: bash
+
+    [   OK   ]   Initializing DB: [15/15]
+    [   OK   ]   Initializing Languages: [185/185]
+    [  INFO  ]   Auto generated admin user. Username: admin, Password: admin.
+    [   OK   ]   Server Started: http://0.0.0.0:8000
+             ___       __          _
+      __  __/   | ____/ /___ ___  (_)___
+     / / / / /| |/ __  / __  __ \/ / __ \
+    / /_/ / ___ / /_/ / / / / / / / / / /
+    \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
+
+The todolist.db file is automatically created in your main project folder.
+
+.. image:: ../tutorial/assets/todolistdbhighlighted.png
+
+|
+
+You can also migrate your application into the MySQL database server. In order to do that, you must have the `MySQL Workbench`_ application installed on your computer. Open your MySQL Workbench and set up your Connection Name (example below is uadmin). Hostname, Port and Username are automatically provided for you but you can change the values there if you wish to. For this example, let's apply the following information below.
+
+.. _MySQL Workbench: https://dev.mysql.com/downloads/workbench/
+
+.. image:: ../assets/mysqlsetup.png
+
+|
+
+Click Test Connection to see if the connection is working properly.
+
+.. image:: ../assets/mysqlprompt.png
+   :align: center
+
+|
+
+Result
+
+.. image:: ../assets/testconnectionresult.png
+   :align: center
+
+|
+
+Once you are done with the connection testing, click OK on the bottom right corner. You will see the interface of the application. Let's create a new schema by right clicking the area on the bottom left corner highlighted below then select "Create Schema".
+
+.. image:: ../assets/rightclickarea.png
+
+|
+
+Input the value of the schema name as "todo" then click Apply.
+
+.. image:: ../assets/schemasetuptodo.png
+
+|
+
+You will see the Apply SQL Script to the Database form. Leave it as it is and click Apply.
+
+.. image:: ../assets/applysqlscriptform.png
+
+|
+
+Your todo schema has been created in the MySQL. Congrats!
+
+.. image:: ../assets/todocreatedmysql.png
+   :align: center
+
+|
+
+Now go back to your todo list project. Open main.go and apply the following codes below:
+
+.. code-block:: go
+
+    uadmin.Database = &uadmin.DBSettings{
+        Type:     "mysql",
+        Name:     "todo",
+        User:     "root",
+        Password: "todolist",
+        Host:     "127.0.0.1",
+        Port:     3306,
+    }
+
+The information above is well-based on the database configuration settings in MySQL Workbench.
+
+Once you are done, run your application and see what happens.
+
+.. code-block:: bash
+
+    [   OK   ]   Initializing Languages: [185/185]
+    [  INFO  ]   Auto generated admin user. Username:admin, Password:admin.
+    [   OK   ]   Server Started: http://0.0.0.0:8080
+
+Open your browser and type the IP address above. Then login using "admin” as username and password.
+
+.. image:: ../tutorial/assets/loginform.png
+
+|
+
+You will be greeted by the uAdmin dashboard. System models are built in to uAdmin, and the rest are the ones we created, in this case TODOS model.
+
+.. image:: ../tutorial/assets/uadmindashboard.png
+
+|
+
+Now open your MySQL Workbench. On todo database in the schema panel, the tables are automatically generated from your uAdmin dashboard.
+
+.. image:: ../assets/mysqluadminmodelslist.png
+   :align: center
+
+Congrats, now you know how to configure your database settings in both SQLite and MySQL.
+
+Quiz:
+
+* `Database and DBSettings`_
+
+.. _Database and DBSettings: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/database-and-db-settings.html
+
+uadmin.DebugDB
+--------------
+DebugDB prints all SQL statements going to DB.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+To assign a value within an application, visit `DebugDB`_ page for an example.
+
+.. _DebugDB: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#debugdb
+
+To assign a value in the code, follow this approach:
+
+Go to the main.go. Set this function as true.
+
+.. code-block:: go
+
+    func main(){
+        uadmin.DebugDB = true
+        // Some codes
+    }
+
+Check your terminal to see the result.
+
+.. code-block:: bash
+
+    [   OK   ]   Initializing DB: [15/15]
+
+    (/home/dev1/go/src/github.com/uadmin/uadmin/db.go:428) 
+    [2018-11-10 12:43:07]  [0.09ms]  SELECT count(*) FROM "languages"  WHERE "languages"."deleted_at" IS NULL  
+    [0 rows affected or returned ] 
+
+    (/home/dev1/go/src/github.com/uadmin/uadmin/db.go:298) 
+    [2018-11-10 12:43:07]  [0.17ms]  SELECT * FROM "languages"  WHERE "languages"."deleted_at" IS NULL AND ((active = 'true'))  
+    [1 rows affected or returned ] 
+
+    (/home/dev1/go/src/github.com/uadmin/uadmin/db.go:238) 
+    [2018-11-10 12:43:07]  [0.16ms]  SELECT * FROM "languages"  WHERE "languages"."deleted_at" IS NULL AND ((`default` = 'true')) ORDER BY "languages"."id" ASC LIMIT 1  
+    [1 rows affected or returned ] 
+
+    (/home/dev1/go/src/github.com/uadmin/uadmin/db.go:162) 
+    [2018-11-10 12:43:07]  [0.32ms]  SELECT * FROM "dashboard_menus"  WHERE "dashboard_menus"."deleted_at" IS NULL  
+    [13 rows affected or returned ] 
+
+    (/home/dev1/go/src/github.com/uadmin/uadmin/db.go:428) 
+    [2018-11-10 12:43:07]  [0.07ms]  SELECT count(*) FROM "users"  WHERE "users"."deleted_at" IS NULL  
+    [0 rows affected or returned ] 
+
+Quiz:
+
+* `Miscellaneous Functions`_
+
+.. _Miscellaneous Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html
+
+uadmin.GetDB
+------------
+`Back To Top`_
+
+GetDB returns a pointer to the DB.
+
+Function:
+
+.. code-block:: go
+
+    func() *gorm.DB
+
+Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
+
+.. _Tutorial Part 9 - Introduction to API: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html
+
+Suppose I have one record in the Todo model.
+
+.. image:: ../assets/todomodeloutput.png
+
+Create a file named custom_todo.go inside the api folder with the following codes below:
+
+.. code-block:: go
+
+    // CustomTodoHandler !
+    func CustomTodoHandler(w http.ResponseWriter, r *http.Request) {
+        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/custom_todo")
+
+        res := map[string]interface{}{}
+
+        // Initialize the Todo model
+        todolist := []models.Todo{}
+
+        // Create a query in the sql variable to select all records in todos
+        sql := `SELECT * FROM todos`
+
+        // Place it here
+        db := uadmin.GetDB()
+
+        // Store the query inside the Raw function in order to scan value to
+        // the Todo model
+        db.Raw(sql).Scan(&todolist)
+
+        // Print the result in JSON format
+        res["status"] = "ok"
+        res["todo"] = todolist
+        uadmin.ReturnJSON(w, r, res)
+    }
+
+Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+
+        // CustomTodoHandler
+        http.HandleFunc("/custom_todo/", api.CustomTodoHandler) // <-- place it here
+    }
+
+api is the folder name while CustomTodoHandler is the name of the function inside custom_todo.go.
+
+Run your application and see what happens.
+
+.. image:: ../assets/getdbjson.png
+
+Quiz:
+
+* `ClearDB and GetDB`_
+
+.. _ClearDB and GetDB: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/clear-db-and-get-db.html
+
+uadmin.OptimizeSQLQuery
+-----------------------
+`Back To Top`_
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions
+
+OptimizeSQLQuery selects columns during rendering a form a list to visible fields. This means during the filtering of a form the select statement will not include any field with `hidden` tag. For list it will not select any field with `list_exclude`.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+To assign a value within an application, visit `Optimize SQL Query`_ page for an example.
+
+.. _Optimize SQL Query: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#optimize-sql-query
+
+To assign a value in the code, follow this approach:
+
+Example:
+
+.. code-block:: go
+
+    func main(){
+        // Some codes
+
+        // Enable
+        uadmin.OptimizeSQLQuery = true
+
+        // Disable
+        uadmin.OptimizeSQLQuery = false
+    }

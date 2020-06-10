@@ -9,6 +9,7 @@ Structure:
     type F struct {
         Name              string
         DisplayName       string
+        ColumnName        string
         Type              string
         TypeName          string
         Value             interface{}
@@ -51,6 +52,7 @@ Parameters:
 
 * **Name** - The name of the field
 * **DisplayName** - The name that you want to display in the model. It is an alias name.
+* **ColumnName** - The column name of the field
 * **Type** - The field type (e.g. file, list, progress_bar)
 * **TypeName** - The data type of the field (e.g. string, int, float64)
 * **Value** - The value that you want to assign in a field
@@ -126,7 +128,9 @@ In the following examples, we will use "by group" initialization process.
 * `Example #5: Approval`_
 
 **Example #1:** String Data Type
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
+`Back to Top`_
+
 In this example, we will discuss the following:
 
 * Change the actual name that is different from the name initialized in the model struct
@@ -140,8 +144,8 @@ In this example, we will discuss the following:
 * Adding an error message tag
 * Encrypt the value of the name in the database
 
-Links:
-
+String Data Type (Links)
+^^^^^^^^^^^^^^^^^^^^^^^^
 * `Name Field in Category Model - DisplayName`_
 * `Name Field in Category Model - DefaultValue`_
 * `Name Field in Category Model - Help`_
@@ -208,6 +212,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **Name Field in Category Model - DisplayName**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #1)`_
+
 Now let's replace the actual field name. In order to do that, declare a value in the DisplayName field inside uadmin.F function then assign that value to the DisplayName field in the Category model.
 
 .. code-block:: go
@@ -234,6 +240,8 @@ Run your application and go to Category model. As expected, the name has changed
 
 **Name Field in Category Model - DefaultValue**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #1)`_
+
 You can also assign a value in the Name field automatically when creating a new record. In order to do that, declare a value in the DefaultValue field inside uadmin.F function then assign that value to the DefaultValue field in the Category model.
 
 .. code-block:: go
@@ -261,6 +269,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **Name Field in Category Model - Help**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #1)`_
+
 Let's assign a help note in the Name field to instruct the user what to do on that field. In order to do that, declare a value in the Help field inside uadmin.F function then assign that value to the Help field in the Category model.
 
 .. code-block:: go
@@ -287,6 +297,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **Name Field in Category Model - Required**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #1)`_
+
 Let's set a feature where the user needs to fill up the Name field. If the value is empty, the user will prompt the user that the value of the Name field should be assigned. In order to do that, declare a value in the Required field inside uadmin.F function then assign that value to the Required field in the Category model.
 
 .. code-block:: go
@@ -314,6 +326,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **Name Field in Category Model - Pattern and PatternMsg**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #1)`_
+
 Let's set a feature where the user can assign letters only in the Name field. In order to do that, declare a value in the Required field inside uadmin.F function then assign that value to the Required field in the Category model.
 
 .. code-block:: go
@@ -345,6 +359,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **Name Field in Category Model - Searchable**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #1)`_
+
 Let's set a feature where the user can search the name in the Category model. In order to do that, declare a value in the Searchable field inside uadmin.F function then assign that value to the Searchable field in the Category model.
 
 .. code-block:: go
@@ -376,6 +392,8 @@ Let's search "Work" and see what happens.
 
 **Name Field in Category Model - Filter and CategoricalFilter**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #1)`_
+
 Let's set a feature where the user can filter the name in the Category model. In order to do that, declare a value in the Filter and CategoricalFilter fields inside uadmin.F function then assign that value to those fields in the Category model.
 
 .. code-block:: go
@@ -418,6 +436,8 @@ As expected, the Category record has filtered out where the name contains "Work"
 
 **Name Field in Category Model - ReadOnly**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #1)`_
+
 Let's set a feature where the user cannot modify a Name field in the Category model. In order to do that, declare a value in the ReadOnly field inside uadmin.F function then assign that value to the ReadOnly field in the Category model.
 
 .. code-block:: go
@@ -444,6 +464,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **Name Field in Category Model - ErrMsg**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #1)`_
+
 Let's set a feature where an error message will be displayed beneath the input Name field. In order to do that, declare a value in the ErrMsg field inside uadmin.F function then assign that value to the ErrMsg field in the Category model.
 
 .. code-block:: go
@@ -470,6 +492,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **Name Field in Category Model - ListDisplay**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #1)`_
+
 Let's set a feature that will hide the field or column name in the viewing section of the Category model. In order to do that, declare a value in the ListDisplay field inside uadmin.F function then assign that value to the ListDisplay field in the Category model.
 
 .. code-block:: go
@@ -496,6 +520,8 @@ Run your application and go to the Category model. As expected, the Name Field i
 
 **Name Field in Category Model - FormDisplay**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #1)`_
+
 Let's set a feature that will hide the field in the editing section of the Category model. In order to do that, declare a value in the FormDisplay field inside uadmin.F function then assign that value to the FormDisplay field in the Category model.
 
 .. code-block:: go
@@ -523,6 +549,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **Name Field in Category Model - Hidden**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #1)`_
+
 Unlike in FormDisplay, the field will hide if the value is true. In order to hide the Name field in the Category model, declare a value in the Hidden field inside uadmin.F function then assign that value to the Hidden field in the Category model.
 
 .. code-block:: go
@@ -549,6 +577,10 @@ Run your application, go to the Category model and click Add New Category button
 
 **Name Field in Category Model - Encrypt**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #1)`_
+
+.. _Back to Top (Example #1): https://uadmin-docs.readthedocs.io/en/latest/api/f.html#string-data-type-links
+
 Suppose you have two records as shown below:
 
 .. image:: assets/categorynametworecords.png
@@ -602,6 +634,8 @@ As expected, the Name value is encrypted in the database.
 
 **Example #2:** Progress Bar
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 In this example, we will discuss the following:
 
 * Change the actual name that is different from the name initialized in the model struct
@@ -610,8 +644,8 @@ In this example, we will discuss the following:
 * Set the minimum and maximum limit the user can assign in the progress bar
 * Assign a value automatically if you are creating a new record
 
-Links:
-
+Progress Bar (Links)
+^^^^^^^^^^^^^^^^^^^^
 * `Progress Field in Todo Model - DisplayName`_
 * `Progress Field in Todo Model - Type`_
 * `Progress Field in Todo Model - ProgressBar`_
@@ -665,6 +699,8 @@ Run your application and go to the Todo model. As expected, we got the same resu
 
 **Progress Field in Todo Model - DisplayName**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #2)`_
+
 Now let's replace the actual field name. In order to do that, declare a value in the DisplayName field inside uadmin.F function then assign that value to the DisplayName field in the Todo model.
 
 .. code-block:: go
@@ -691,6 +727,8 @@ Run your application and go to the Todo model. As expected, the name has changed
 
 **Progress Field in Todo Model - Type**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #2)`_
+
 Let's convert the input type to the progress bar. In order to do that, declare a value in the Type field inside uadmin.F function then assign that value to the Type field in the Todo model.
 
 .. code-block:: go
@@ -716,6 +754,8 @@ Run your application and go to the Todo model. As expected, the field type has c
 
 **Progress Field in Todo Model - ProgressBar**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #2)`_
+
 Let's assign the value and the color of the progress bar. In order to do that, declare a value in the ProgressBar field inside uadmin.F function then assign that value to the ProgressBar field in the Todo model.
 
 .. code-block:: go
@@ -745,6 +785,8 @@ Run your application and go to the Todo model. As expected, the appearance of th
 
 **Progress Field in Todo Model - Max and Min**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #2)`_
+
 Let's set a limitation where the user can assign a value between the range of 0 and 100. In order to do that, declare a value in the Max and Min fields inside uadmin.F function then assign that value to those fields in the Todo model.
 
 .. code-block:: go
@@ -774,6 +816,10 @@ Run your application and go to the Todo model. Let's put a numeric value outside
 
 **Progress Field in Todo Model - DefaultValue**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #2)`_
+
+.. _Back to Top (Example #2): https://uadmin-docs.readthedocs.io/en/latest/api/f.html#progress-bar-links
+
 You can also assign a value in the Progress field automatically when creating a new record. In order to do that, declare a value in the DefaultValue field inside uadmin.F function then assign that value to the DefaultValue field in the Todo model.
 
 .. code-block:: go
@@ -800,13 +846,15 @@ Run your application, go to the Todo model and click Add New Todo button on the 
 
 **Example #3:** Choices
 ^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 In this example, we will discuss the following:
 
 * Build choices
 * Hide the field in the form and list
 
-Links:
-
+Choices (Links)
+^^^^^^^^^^^^^^^
 * `Nationality Field in Friend Model - Choices`_
 * `Nationality Field in Friend Model - ListDisplay`_
 * `Nationality Field in Friend Model - FormDisplay`_
@@ -885,6 +933,8 @@ Run your application, go to the Friend model and click Add New Friend button on 
 
 **Nationality Field in Friend Model - Choices**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #3)`_
+
 Let's build a choice that includes Chinese and Filipino and excludes Others. In order to do that, declare a value in the Choices field inside uadmin.F function then assign that value to the Choices field in the Friend model.
 
 .. code-block:: go
@@ -918,6 +968,8 @@ Run your application, go to the Friend model and click Add New Friend button on 
 
 **Nationality Field in Friend Model - ListDisplay**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #3)`_
+
 Let's set a feature that will hide the field or column name in the viewing section of the Friend model. In order to do that, declare a value in the ListDisplay field inside uadmin.F function then assign that value to the ListDisplay field in the Friend model.
 
 .. code-block:: go
@@ -944,6 +996,8 @@ Run your application and go to the Friend model. As expected, the Nationality Fi
 
 **Nationality Field in Friend Model - FormDisplay**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #3)`_
+
 Let's set a feature that will hide the field in the editing section of the Friend model. In order to do that, declare a value in the FormDisplay field inside uadmin.F function then assign that value to the FormDisplay field in the Friend model.
 
 .. code-block:: go
@@ -970,6 +1024,10 @@ Run your application, go to the Friend model and click Add New Friend button on 
 
 **Nationality Field in Friend Model - Hidden**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #3)`_
+
+.. _Back to Top (Example #3): https://uadmin-docs.readthedocs.io/en/latest/api/f.html#choices-links
+
 Unlike in FormDisplay, the field will hide if the value is true. In order to hide the Name field in the Category model, declare a value in the Hidden field inside uadmin.F function then assign that value to the Hidden field in the Category model.
 
 .. code-block:: go
@@ -996,6 +1054,8 @@ Run your application, go to the Friend model and click Add New Friend button on 
 
 **Example #4:** Upload To
 ^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 In this example, we will discuss the following:
 
 * Set the type of the input field
@@ -1004,8 +1064,8 @@ In this example, we will discuss the following:
 * Adding an error message tag
 * Hide the field in the form and list
 
-Links:
-
+Upload To (Links)
+^^^^^^^^^^^^^^^^^
 * `File Field in Category Model - Type`_
 * `File Field in Category Model - Required`_
 * `File Field in Category Model - UploadTo`_
@@ -1062,6 +1122,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **File Field in Category Model - Type**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #4)`_
+
 Let’s convert the input type to the file. In order to do that, declare a value in the Type field inside uadmin.F function then assign that value to the Type field in the Category model.
 
 .. code-block:: go
@@ -1088,6 +1150,8 @@ Run your application and go to the Category model. As expected, the field type h
 
 **File Field in Category Model - Required**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #4)`_
+
 Let’s set a feature where the user needs to fill up the File field. If the value is empty, the user will prompt the user that the value of the File field should be assigned. In order to do that, declare a value in the Required field inside uadmin.F function then assign that value to the Required field in the Category model.
 
 .. code-block:: go
@@ -1114,6 +1178,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **File Field in Category Model - UploadTo**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #4)`_
+
 Let's set a feature where the uploaded file will save in the specified path on your project folder. In order to do that, declare a value in the UploadTo field inside uadmin.F function then assign that value to the UploadTo field in the Category model.
 
 .. code-block:: go
@@ -1153,6 +1219,8 @@ From your project folder, go to /media/files/(generated_folder_name)/. As expect
 
 **File Field in Category Model - ErrMsg**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #4)`_
+
 Let’s set a feature where an error message will be displayed beneath the input File field. In order to do that, declare a value in the ErrMsg field inside uadmin.F function then assign that value to the ErrMsg field in the Category model.
 
 .. code-block:: go
@@ -1178,6 +1246,8 @@ Run your application, go to the Category model and click the existing record tha
 
 **File Field in Category Model - ListDisplay**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #4)`_
+
 Let’s set a feature that will hide the field or column name in the viewing section of the Category model. In order to do that, declare a value in the ListDisplay field inside uadmin.F function then assign that value to the ListDisplay field in the Category model.
 
 .. code-block:: go
@@ -1204,6 +1274,8 @@ Run your application and go to the Category model. As expected, the File Field i
 
 **File Field in Category Model - FormDisplay**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #4)`_
+
 Let’s set a feature that will hide the field in the editing section of the Category model. In order to do that, declare a value in the FormDisplay field inside uadmin.F function then assign that value to the FormDisplay field in the Category model.
 
 .. code-block:: go
@@ -1231,6 +1303,10 @@ Run your application, go to the Category model and click Add New Category button
 
 **File Field in Category Model - Hidden**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Example #4)`_
+
+.. _Back to Top (Example #4): https://uadmin-docs.readthedocs.io/en/latest/api/f.html#upload-to-links
+
 Unlike in FormDisplay, the field will hide if the value is true. In order to hide the File field in the Category model, declare a value in the Hidden field inside uadmin.F function then assign that value to the Hidden field in the Category model.
 
 .. code-block:: go
@@ -1257,6 +1333,10 @@ Run your application, go to the Category model and click Add New Category button
 
 **Example #5:** Approval
 ^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/f.html#uadmin-f
+
 In this example, we will discuss on how to set an approval permission in the field.
 
 Suppose you have "johndoe" account in the User model that is not an admin.

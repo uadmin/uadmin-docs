@@ -1,8 +1,10 @@
 package models
 
-import "github.com/uadmin/uadmin"
+import (
+	"github.com/uadmin/uadmin"
+)
 
-// Category model ...
+// Category Model !
 type Category struct {
 	uadmin.Model
 	Name string `uadmin:"required"`

@@ -2,7 +2,7 @@ Document System Tutorial Part 11 - Document and Folder Permissions
 ==================================================================
 In this part, we will talk about setting and getting permissions for Document and Folder records.
 
-Go to document.go inside the models folder and create a function named **GetPermissions** that holds the user parameter with the data type uadmin.User and returns Read, Add, Edit, and Delete parameters with the data type bool. If the user is an admin, all permission levels should be given.
+Go to **document.go** inside the models folder and create a function named **GetPermissions** that holds the user parameter with the data type uadmin.User and returns Read, Add, Edit, and Delete parameters with the data type bool. If the user is an admin, all permission levels should be given.
 
 .. code-block:: go
 
@@ -96,13 +96,12 @@ Now we will check for Document permissions after validating the Folder specified
 	// Return Read, Add, Edit, and Delete values
 	return
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will discuss about creating a custom Count function that checks the query and the UserID.
 
-Click `here`_ to view the full source code in this part.
-
-.. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part12.html
-
 .. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part11.html
+.. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part12.html
 
 .. toctree::
    :maxdepth: 1

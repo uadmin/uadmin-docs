@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>uAdmin Tutorial Part 2 - Internal vs. External Models &#8212; uadmin 0.3 documentation</title>
+    <title>uAdmin Tutorial Part 2 - Internal vs. External Models &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -18,7 +18,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="uAdmin Tutorial Part 3 - Linking Models" href="part3.html" />
+    <link rel="next" title="uAdmin Tutorial Part 2 - Internal vs. External Models (Current Progress)" href="full_code/part2.html" />
     <link rel="prev" title="uAdmin Tutorial Part 1 - Build A Project" href="part1.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
@@ -35,12 +35,12 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="part3.html" title="uAdmin Tutorial Part 3 - Linking Models"
+          <a href="full_code/part2.html" title="uAdmin Tutorial Part 2 - Internal vs. External Models (Current Progress)"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="part1.html" title="uAdmin Tutorial Part 1 - Build A Project"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" accesskey="U">uAdmin Tutorials</a> &#187;</li> 
       </ul>
     </div>  
@@ -52,7 +52,7 @@
             
   <div class="section" id="uadmin-tutorial-part-2-internal-vs-external-models">
 <h1>uAdmin Tutorial Part 2 - Internal vs. External Models<a class="headerlink" href="#uadmin-tutorial-part-2-internal-vs-external-models" title="Permalink to this headline">¶</a></h1>
-<p>In this part, we will discuss about the difference between internal and external models, cropping images in the model and moving a model struct from internal to external file.</p>
+<p>In this part, we will discuss about the difference between internal and external models.</p>
 <div class="section" id="internal-models">
 <h2>Internal Models<a class="headerlink" href="#internal-models" title="Permalink to this headline">¶</a></h2>
 <p>Internal models are models inside your main.go and don’t have their .go file, they are useful if you want to make something quick.</p>
@@ -64,7 +64,7 @@
     <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
 <span class="p">)</span>
 
-<span class="c1">// Todo internal model ...</span>
+<span class="c1">// Internal model with the model name of &quot;Todo&quot;</span>
 <span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
     <span class="nx">Name</span>        <span class="kt">string</span>
@@ -75,7 +75,7 @@
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span>
-        <span class="nx">Todo</span><span class="p">{},</span> <span class="c1">// register the Todo struct</span>
+        <span class="nx">Todo</span><span class="p">{},</span> <span class="c1">// Register the Todo model</span>
     <span class="p">)</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">()</span>
 <span class="p">}</span>
@@ -84,115 +84,79 @@
 </div>
 <div class="section" id="external-models">
 <h2>External Models<a class="headerlink" href="#external-models" title="Permalink to this headline">¶</a></h2>
-<p>External models are models outside of main.go and have their own .go file. Let’s add a category external model, create a file named category.go and add the following code:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
-
-<span class="kn">import</span> <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
-
-<span class="c1">// Category model ...</span>
-<span class="kd">type</span> <span class="nx">Category</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
-    <span class="nx">Name</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;required&quot;`</span>
-    <span class="nx">Icon</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;image&quot;`</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Now register the model on main.go where models is folder name and Category is model/struct name:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span>
-        <span class="nx">Todo</span><span class="p">{},</span>
-        <span class="nx">models</span><span class="p">.</span><span class="nx">Category</span><span class="p">{},</span> <span class="c1">// &lt;-- place it here</span>
-    <span class="p">)</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">()</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Run your application. As expected, the category model is added in the uAdmin Dashboard.</p>
-<img alt="../_images/categorymodelselected.png" src="../_images/categorymodelselected.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Let’s create a new data in the category model.</p>
-<img alt="../_images/categorywithtagapplied.png" src="../_images/categorywithtagapplied.png" />
-<p>As you can see, the Name field is required indicated by the * symbol. Required field cannot be an empty string. In the Icon field, you can browse an image file in .png, .jpg, .jpeg, or .gif in your computer.</p>
-<p>uAdmin also allows you to crop your images.</p>
-<img alt="../_images/cropiconhighlighted.png" class="align-center" src="../_images/cropiconhighlighted.png" />
-<img alt="../_images/croppedicon.png" class="align-center" src="../_images/croppedicon.png" />
-<p>Once you are done, click the Crop button below and refresh the webpage to save your progress.</p>
-</div>
-<div class="section" id="move-a-struct-from-internal-to-external-file">
-<h2>Move a Struct from Internal to External file<a class="headerlink" href="#move-a-struct-from-internal-to-external-file" title="Permalink to this headline">¶</a></h2>
-<p>Placing a model struct in external Go file has some advantages over internal ones:</p>
+<p>External models are models outside of main.go and have their own .go file. Placing a model struct in an external Go file has several advantages over internal ones:</p>
 <ul class="simple">
 <li><p>Easily readable in coding</p></li>
 <li><p>Scalability for large size projects</p></li>
 <li><p>Minimize code conflicts for the development team</p></li>
 <li><p>Relevance for development (e.g. All registers are located in the models folder. Other functionalities are located in the related folders.)</p></li>
 </ul>
-<p>Inside the models folder, create a file named todo.go containing the following codes below:</p>
+<p>Let’s create a new file for an external model named <strong>todo.go</strong> with the following codes below:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;time&quot;</span>
+
     <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
 <span class="p">)</span>
+
+<span class="c1">// Todo Model !</span>
+<span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>        <span class="kt">string</span>
+    <span class="nx">Description</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;html&quot;`</span>
+    <span class="nx">TargetDate</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+    <span class="nx">Progress</span>    <span class="kt">int</span> <span class="s">`uadmin:&quot;progress_bar&quot;`</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>In the main.go, move the Todo struct code:</p>
+<p>Now register the model on <strong>main.go</strong> where <cite>models</cite> is the package name and <cite>Todo</cite> is the model name:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
-    <span class="s">&quot;time&quot;</span>
-
     <span class="c1">// Specify the username that you used inside github.com folder</span>
     <span class="s">&quot;github.com/username/todo/models&quot;</span>
+
     <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
 <span class="p">)</span>
 
-<span class="c1">// -------------------- MOVE THIS CODE --------------------</span>
-<span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
-    <span class="nx">Name</span>        <span class="kt">string</span>
-    <span class="nx">Description</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;html&quot;`</span>
-    <span class="nx">TargetDate</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
-    <span class="nx">Progress</span>    <span class="kt">int</span> <span class="s">`uadmin:&quot;progress_bar&quot;`</span>
-<span class="p">}</span>
-<span class="c1">// --------------------------------------------------------</span>
-
-<span class="c1">// Main function</span>
-</pre></div>
-</div>
-<p>To todo.go</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s">&quot;time&quot;</span>
-    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
-<span class="p">)</span>
-
-<span class="c1">// -------------------- PASTE IT HERE --------------------</span>
-<span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
-    <span class="nx">Name</span>        <span class="kt">string</span>
-    <span class="nx">Description</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;html&quot;`</span>
-    <span class="nx">TargetDate</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
-    <span class="nx">Progress</span>    <span class="kt">int</span> <span class="s">`uadmin:&quot;progress_bar&quot;`</span>
-<span class="p">}</span>
-<span class="c1">// -------------------------------------------------------</span>
-</pre></div>
-</div>
-<p>In main.go, replace the Todo{} to models.Todo{} inside the uadmin.Register.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span>
-        <span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{},</span> <span class="c1">// replaced from Todo{} to models.Todo{}</span>
-        <span class="nx">models</span><span class="p">.</span><span class="nx">Category</span><span class="p">{},</span>
+        <span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{},</span> <span class="c1">// &lt;-- place it here</span>
     <span class="p">)</span>
+
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">()</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Congrats, now you know how to create an external model, adding a new data in the model through the server, cropping an image and moving a model struct from internal to external file.</p>
-<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part3.html">next part</a> we will talk about linking models using a foreign key.</p>
+<p>Run your application. As expected, the Todo model was added in the uAdmin Dashboard.</p>
+<img alt="../_images/todoshighlightedlog2.png" src="../_images/todoshighlightedlog2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click Add New TODO.</p>
+<img alt="../_images/todomodel2.png" src="../_images/todomodel2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Fill up the fields as shown in the example below.</p>
+<img alt="../_images/todomodelcreate1.png" src="../_images/todomodelcreate1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Save it and new data will be added to your model.</p>
+<img alt="../_images/todomodeloutput3.png" src="../_images/todomodeloutput3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Congrats, now you know how to create an external model and adding a new data in the model through the server.</p>
+<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part2.html">here</a> to view our progress so far.</p>
+<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part3.html">next part</a> we will talk about cropping an image on the image type tag field in the model.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="full_code/part2.html">uAdmin Tutorial Part 2 - Internal vs. External Models (Current Progress)</a></li>
+</ul>
+</div>
 </div>
 </div>
 
@@ -209,6 +173,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
@@ -222,8 +187,8 @@
   <p class="topless"><a href="part1.html"
                         title="previous chapter">uAdmin Tutorial Part 1 - Build A Project</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="part3.html"
-                        title="next chapter">uAdmin Tutorial Part 3 - Linking Models</a></p>
+  <p class="topless"><a href="full_code/part2.html"
+                        title="next chapter">uAdmin Tutorial Part 2 - Internal vs. External Models (Current Progress)</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -252,18 +217,18 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="part3.html" title="uAdmin Tutorial Part 3 - Linking Models"
+          <a href="full_code/part2.html" title="uAdmin Tutorial Part 2 - Internal vs. External Models (Current Progress)"
              >next</a> |</li>
         <li class="right" >
           <a href="part1.html" title="uAdmin Tutorial Part 1 - Build A Project"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" >uAdmin Tutorials</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

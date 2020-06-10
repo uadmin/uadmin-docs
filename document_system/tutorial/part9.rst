@@ -2,7 +2,7 @@ Document System Tutorial Part 9 - Updating the Document Version
 ===============================================================
 In this part, we will talk about updating the document version automatically if the file has changed by the user after saving the specific document in the model.
 
-First of all, go to document.go in the models folder. Create a Save function below the model struct. Inside it, create two variables named docChange and newDoc. Set both of them to false.
+First of all, go to **document.go** in the models folder. Create a Save function below the model struct. Inside it, create two variables named docChange and newDoc. Set both of them to false.
 
 .. code-block:: go
 
@@ -76,7 +76,7 @@ Below the uadmin.Save(&ver) inside the docChange validation, create another vali
     // Save the document user
     uadmin.Save(&creator)
 
-Now let's run your application. Go to Document System Dashboard then open "DOCUMENTS".
+Now let's run your application. Go to Document System Dashboard then open **DOCUMENTS**.
 
 .. image:: assets/documentshighlighted.png
 
@@ -100,25 +100,24 @@ Result
 
 |
 
-Go back to Document System Dashboard then open "DOCUMENT VERSIONS".
+Go back to Document System Dashboard then open **DOCUMENT VERSIONS**.
 
 .. image:: assets/documentversionshighlighted.png
 
 |
 
-The document "Computer" is now version 2 because you changed the file.
+The document **Computer** is now version 2 because you changed the file.
 
 .. image:: assets/documentversionupdatedrecord.png
 
 |
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will discuss about creating a group permission for a specific model to the user group with some access levels.
 
-Click `here`_ to view the full source code in this part.
-
-.. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part10.html
-
 .. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part9.html
+.. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part10.html
 
 .. toctree::
    :maxdepth: 1

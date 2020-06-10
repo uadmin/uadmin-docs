@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Login System Tutorial Part 4 - Login Access Debugging &#8212; uadmin 0.3 documentation</title>
+    <title>Login System Tutorial Part 4 - Login Access Debugging &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
@@ -18,8 +18,8 @@
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Login System Tutorial Part 4 - Login Access Debugging (Full Source Code)" href="full_code/part4.html" />
-    <link rel="prev" title="Login System Tutorial Part 3 - Sending Request (Full Source Code)" href="full_code/part3.html" />
+    <link rel="next" title="Login System Tutorial Part 4 - Login Access Debugging (Current Progress)" href="full_code/part4.html" />
+    <link rel="prev" title="Login System Tutorial Part 3 - Sending Request (Current Progress)" href="full_code/part3.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -35,13 +35,13 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="full_code/part4.html" title="Login System Tutorial Part 4 - Login Access Debugging (Full Source Code)"
+          <a href="full_code/part4.html" title="Login System Tutorial Part 4 - Login Access Debugging (Current Progress)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="full_code/part3.html" title="Login System Tutorial Part 3 - Sending Request (Full Source Code)"
+          <a href="full_code/part3.html" title="Login System Tutorial Part 3 - Sending Request (Current Progress)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.3 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../coverage.html" accesskey="U">Login System Tutorials</a> &#187;</li> 
       </ul>
     </div>  
@@ -73,7 +73,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Now run your application and go to the login path in the address bar (e.g. <a class="reference external" href="http://0.0.0.0:8080/login/">http://0.0.0.0:8080/login/</a>). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.</p>
+<p>Now run your application and go to the login path in the address bar (e.g. <a class="reference external" href="http://localhost:8080/login/">http://localhost:8080/login/</a>). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.</p>
 <img alt="../../_images/adminusernamepassword.png" class="align-center" src="../../_images/adminusernamepassword.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -114,8 +114,8 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Run your application and go to the admin path in the address bar (e.g. <a class="reference external" href="http://0.0.0.0:8080/admin/">http://0.0.0.0:8080/admin/</a>). Login using “admin” as username and password.</p>
-<img alt="../../_images/loginform2.png" src="../../_images/loginform2.png" />
+<p>Run your application and go to the admin path in the address bar (e.g. <a class="reference external" href="http://localhost:8080/admin/">http://localhost:8080/admin/</a>). Login using “admin” as username and password.</p>
+<img alt="../../_images/loginform3.png" src="../../_images/loginform3.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -150,7 +150,7 @@
 <div class="line"><br /></div>
 </div>
 <p>If there is a problem, you may go to your terminal and check the OTP verification code for login.</p>
-<p>Now go to the login path in the address bar (e.g. <a class="reference external" href="http://0.0.0.0:8080/login/">http://0.0.0.0:8080/login/</a>). Assign the username, password, and OTP password that you fetched from the 2FA image in the login form (e.g. admin, admin, 123456). Click Login button to submit.</p>
+<p>Now go to the login path in the address bar (e.g. <a class="reference external" href="http://localhost:8080/login/">http://localhost:8080/login/</a>). Assign the username, password, and OTP password that you fetched from the 2FA image in the login form (e.g. admin, admin, 123456). Click Login button to submit.</p>
 <img alt="../../_images/adminloginformdatatest.png" class="align-center" src="../../_images/adminloginformdatatest.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -161,11 +161,11 @@
 <span class="o">[</span>  DEBUG <span class="o">]</span>   OTP: <span class="nb">true</span>
 </pre></div>
 </div>
+<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part4.html">here</a> to view our progress so far.</p>
 <p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part5.html">next part</a>, we will talk about getting the session key if the user login is valid and setting an HTTP cookie for the user session.</p>
-<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part4.html">here</a> to view the full source code in this part.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="full_code/part4.html">Login System Tutorial Part 4 - Login Access Debugging (Full Source Code)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="full_code/part4.html">Login System Tutorial Part 4 - Login Access Debugging (Current Progress)</a></li>
 </ul>
 </div>
 <div class="section" id="reference">
@@ -188,9 +188,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../coverage.html">uAdmin Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quiz.html">uAdmin Quizzes</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tags.html">Tag Reference</a></li>
@@ -202,10 +203,10 @@
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="full_code/part3.html"
-                        title="previous chapter">Login System Tutorial Part 3 - Sending Request (Full Source Code)</a></p>
+                        title="previous chapter">Login System Tutorial Part 3 - Sending Request (Current Progress)</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="full_code/part4.html"
-                        title="next chapter">Login System Tutorial Part 4 - Login Access Debugging (Full Source Code)</a></p>
+                        title="next chapter">Login System Tutorial Part 4 - Login Access Debugging (Current Progress)</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -234,19 +235,19 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="full_code/part4.html" title="Login System Tutorial Part 4 - Login Access Debugging (Full Source Code)"
+          <a href="full_code/part4.html" title="Login System Tutorial Part 4 - Login Access Debugging (Current Progress)"
              >next</a> |</li>
         <li class="right" >
-          <a href="full_code/part3.html" title="Login System Tutorial Part 3 - Sending Request (Full Source Code)"
+          <a href="full_code/part3.html" title="Login System Tutorial Part 3 - Sending Request (Current Progress)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.3 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../coverage.html" >Login System Tutorials</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

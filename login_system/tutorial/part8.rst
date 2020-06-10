@@ -2,7 +2,7 @@ Login System Tutorial Part 8 - Webpage Manipulation
 ===================================================
 In this tutorial, we will discuss about reading a cookie and getting the user from the model based on the value of the cookie to ensure that the user is active.
 
-First of all, run your application. Go to the login path in the address bar (e.g. http://0.0.0.0:8080/login/). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.
+First of all, run your application. Go to the login path in the address bar (e.g. http://localhost:8080/login/). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.
 
 .. image:: assets/adminusernamepassword.png
    :align: center
@@ -38,7 +38,7 @@ In order to do that, first we need to read the cookie of the user_session.
     // Print the result
     uadmin.Trail(uadmin.DEBUG, "Cookie: %v", cookie)
 
-Run your application. Go to the login path in the address bar (e.g. http://0.0.0.0:8080/login/). Check your terminal for the result.
+Run your application. Go to the login path in the address bar (e.g. http://localhost:8080/login/). Check your terminal for the result.
 
 .. code-block:: bash
 
@@ -65,7 +65,7 @@ Exit your application. Now create a handler that fetches the user record based o
         return
     }
 
-Now run your application. Go to the login path in the address bar (e.g. http://0.0.0.0:8080/login/). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.
+Now run your application. Go to the login path in the address bar (e.g. http://localhost:8080/login/). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.
 
 .. image:: assets/adminusernamepassword.png
    :align: center
@@ -112,7 +112,7 @@ Congrats, now you know how to do the following in the entire series:
 * Deleting the cookie
 * Maintaining the webpage based on the user login status
 
-Click `here`_ to view the full source code in this part.
+Click `here`_ to view the full progress of this application.
 
 .. _here: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part8.html
 

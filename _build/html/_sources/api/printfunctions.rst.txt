@@ -1,0 +1,533 @@
+Print Functions
+===============
+`Back To uAdmin Functions List`_
+
+.. _Back To uAdmin Functions List: https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference
+
+In this section, we will cover the following functions in-depth listed below:
+
+* `uadmin.DEBUG`_
+* `uadmin.ERROR`_
+* `uadmin.ErrorHandleFunc`_
+* `uadmin.INFO`_
+* `uadmin.JSONMarshal`_
+* `uadmin.OK`_
+* `uadmin.ReportingLevel`_
+* `uadmin.ReportTimeStamp`_
+* `uadmin.ReturnJSON`_
+* `uadmin.Trail`_
+* `uadmin.Version`_
+* `uadmin.WARNING`_
+* `uadmin.WORKING`_
+
+uadmin.DEBUG
+------------
+`Back To Top`_
+
+DEBUG is the display tag under Trail. It is the process of identifying and removing errors.
+
+Type:
+
+.. code-block:: go
+
+    untyped int
+
+See `uadmin.Trail`_ for the example.
+
+uadmin.ERROR
+------------
+`Back To Top`_
+
+ERROR is a status to notify the user that there is a problem in an application.
+
+Type:
+
+.. code-block:: go
+
+    untyped int
+
+See `uadmin.Trail`_ for the example.
+
+uadmin.ErrorHandleFunc
+----------------------
+`Back To Top`_
+
+ErrorHandleFunc is a function that will be called everytime Trail is called. It receives one parameter for error level, one for error message and one for runtime stack trace.
+
+Function:
+
+.. code-block:: go
+
+    func(int, string, string)
+
+There are 6 different reporting levels:
+
+* DEBUG
+* WORKING
+* INFO
+* OK
+* WARNING
+* ERROR
+
+Go to main.go and create an invalid code (e.g. Get function that does not meet the standard requirements).
+
+.. code-block:: go
+
+    func main(){
+        // Some codes
+
+        // Checks error(s) in your application based on a reporting level
+        uadmin.ErrorHandleFunc = func(level int, msg string, stack string) {
+            if level >= uadmin.WARNING {
+                fmt.Println("ERROR MESSAGE:\n" + msg + "\n")
+                fmt.Println("STACK:\n" + stack + "\n")
+            }
+        }
+
+        // This is an invalid code because the first parameter checks the
+        // database but assigns an empty string that is unsupported.
+        uadmin.Get("", "")
+    }
+
+Now run your application in your terminal. Based on the output, the error is the Get function where the assigned values are unsupported. The memory address (e.g. 0x977520) are the actual values inside the Get function. Below the message, it also checks which line of code does the error occurs in the file.
+
+.. code-block:: bash
+
+    ERROR MESSAGE:
+    DB error in Get(string)-(). unsupported destination, should be slice or struct
+
+    STACK:
+    github.com/uadmin/uadmin.Get(0x977520, 0xaa3330, 0x977520, 0xaa3340, 0x0, 0x0, 0x0, 0x4, 0x8)
+        /home/dev1/go/src/github.com/uadmin/uadmin/db.go:242 +0x268
+    main.main()
+        /home/dev1/go/src/github.com/rn1hd/todo/main.go:49 +0x62f
+
+Quiz:
+
+* `Error Handle Func`_
+
+.. _Error Handle Func: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/error-handle-func.html
+
+uadmin.INFO
+-----------
+`Back To Top`_
+
+INFO is the display tag under Trail. It is a data that is presented within a context that gives it meaning and relevance.
+
+Type:
+
+.. code-block:: go
+
+    untyped int
+
+See `uadmin.Trail`_ for the example.
+
+uadmin.JSONMarshal
+------------------
+`Back To Top`_
+
+JSONMarshal returns the JSON encoding of v.
+
+Function:
+
+.. code-block:: go
+
+    func(v interface{}, safeEncoding bool) ([]byte, error)
+
+Parameters:
+
+    **v interface{}:** Is the variable where the model was initialized
+
+    **safeEncoding bool:** Ensures the security of the data
+
+Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
+
+.. _Tutorial Part 9 - Introduction to API: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html
+
+Create a file named friend_list.go inside the api folder with the following codes below:
+
+.. code-block:: go
+
+    // FriendListHandler !
+    func FriendListHandler(w http.ResponseWriter, r *http.Request) {
+        // r.URL.Path creates a new path called /friend_list
+        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/friend_list")
+
+        // Fetch Data from DB
+        friend := []models.Friend{}
+        uadmin.All(&friend)
+
+        // Place it here
+        output, _ := uadmin.JSONMarshal(&friend, true)
+
+        // Prints the output to the terminal in JSON format
+        os.Stdout.Write(output)
+
+        // Unmarshal parses the JSON-encoded data and stores the result in the
+        // value pointed to by v.
+        json.Unmarshal(output, &friend)
+
+        // Prints the JSON format in the API webpage
+        uadmin.ReturnJSON(w, r, friend)
+    }
+
+Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+
+        // FriendListHandler
+        http.HandleFunc("/friend_list/", api.FriendListHandler) // <-- place it here
+    }
+
+api is the folder name while FriendListHandler is the name of the function inside friend_list.go.
+
+Run your application and see what happens.
+
+**Terminal**
+
+.. code-block:: bash
+
+    [
+        {
+            "ID": 1,
+            "DeletedAt": null,
+            "Name": "John Doe",
+            "Email": "john.doe@gmail.com",
+            "Password": "123456",
+            "Nationality": 3,
+            "Invite": "https://uadmin.io/"
+        }
+    ]
+
+**API**
+
+.. image:: ../assets/friendlistjsonmarshal.png
+   :align: center
+
+Quiz:
+
+* `JSON Marshal`_
+
+.. _JSON Marshal: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/json-marshal.html
+
+uadmin.OK
+---------
+`Back To Top`_
+
+OK is the display tag under Trail. It is a status to show that the application is doing well.
+
+Type:
+
+.. code-block:: go
+
+    untyped int
+
+See `uadmin.Trail`_ for the example.
+
+uadmin.ReportingLevel
+---------------------
+`Back To Top`_
+
+ReportingLevel is the standard reporting level.
+
+Type:
+
+.. code-block:: go
+
+    int
+
+There are 6 different levels:
+
+* DEBUG = 0
+* WORKING = 1
+* INFO = 2
+* OK = 3
+* WARNING = 4
+* ERROR = 5
+
+To assign a value within an application, visit `Reporting Level`_ page for an example.
+
+.. _Reporting Level: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#reporting-level
+
+To assign a value in the code, follow this approach:
+
+Let's set the ReportingLevel to 1 to show that the debugging process is working.
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+        uadmin.ReportingLevel = 1 // <--  place it here
+    }
+
+Result
+
+.. code-block:: bash
+
+    [   OK   ]   Initializing DB: [15/15]
+    [   OK   ]   Server Started: http://0.0.0.0:8080
+             ___       __          _
+      __  __/   | ____/ /___ ___  (_)___
+     / / / / /| |/ __  / __  __ \/ / __ \
+    / /_/ / ___ / /_/ / / / / / / / / / /
+    \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
+
+What if I set the value to 5?
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+        uadmin.ReportingLevel = 5 // <--  place it here
+    }
+
+Result
+
+.. code-block:: bash
+
+    [   OK   ]   Initializing DB: [15/15]
+             ___       __          _
+      __  __/   | ____/ /___ ___  (_)___
+     / / / / /| |/ __  / __  __ \/ / __ \
+    / /_/ / ___ / /_/ / / / / / / / / / /
+    \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
+
+The database was initialized. The server has started. However the error message did not show up because the reporting level is assigned to 5 which is ERROR.
+
+Quiz:
+
+* `Miscellaneous Functions`_
+
+uadmin.ReportTimeStamp
+----------------------
+`Back To Top`_
+
+ReportTimeStamp set this to true to have a time stamp in your logs.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+To assign a value within an application, visit `Report Time Stamp`_ page for an example.
+
+.. _Report Time Stamp: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#report-time-stamp
+
+To assign a value in the code, follow this approach:
+
+Go to the main.go and set the ReportTimeStamp value as true.
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+        uadmin.ReportTimeStamp = true // <--  place it here
+    }
+
+If you run your code,
+
+.. code-block:: bash
+
+    [   OK   ]   Initializing DB: [15/15]
+    2018/11/07 08:52:14 [   OK   ]   Server Started: http://0.0.0.0:8080
+             ___       __          _
+      __  __/   | ____/ /___ ___  (_)___
+     / / / / /| |/ __  / __  __ \/ / __ \
+    / /_/ / ___ / /_/ / / / / / / / / / /
+    \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
+
+Quiz:
+
+* `Miscellaneous Functions`_
+
+uadmin.ReturnJSON
+-----------------
+`Back To Top`_
+
+ReturnJSON returns JSON to the client.
+
+Function:
+
+.. code-block:: go
+
+    func(w http.ResponseWriter, r *http.Request, v interface{})
+
+Parameters:
+
+    **w http.ResponseWriter:** Assembles the HTTP server's response; by writing to it, we send data to the HTTP client
+
+    **r \*http.Request** Is a data structure that represents the client HTTP request
+
+    **v interface{}** Is the arbitrary JSON objects and arrays that you want to return with
+
+Used in the tutorial:
+
+* `uAdmin Tutorial Part 7 - Introduction to API`_
+* `uAdmin Tutorial Part 8 - Customizing your API Handler`_
+* `uAdmin Tutorial Part 9 - Inserting and Saving the Record`_
+
+.. _uAdmin Tutorial Part 7 - Introduction to API: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html
+.. _uAdmin Tutorial Part 8 - Customizing your API Handler: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part8.html
+.. _uAdmin Tutorial Part 9 - Inserting and Saving the Record: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html
+
+Quiz:
+
+* `Return JSON`_
+
+.. _Return JSON: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/return-json.html
+
+uadmin.Trail
+------------
+`Back To Top`_
+
+Trail prints to the log.
+
+Function:
+
+.. code-block:: go
+
+    func(level int, msg interface{}, i ...interface{})
+
+Parameters:
+
+    **level int:** This is where we apply Trail tags.
+
+    **msg interface{}:** Is the string of characters used for output.
+
+    **i ...interface{}:** A variable or container that can be used to store a value in the msg interface{}.
+
+Used in the tutorial:
+
+* `Document System Tutorial Part 9 - Updating the Document Version`_
+* `Document System Tutorial Part 13 - Custom AdminPage function`_
+* `Login System Tutorial Part 3 - Sending Request`_
+* `Login System Tutorial Part 4 - Login Access Debugging`_
+* `Login System Tutorial Part 5 - Session and Cookie`_
+* `Login System Tutorial Part 8 - Webpage Manipulation`_
+
+.. _Document System Tutorial Part 9 - Updating the Document Version: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part9.html
+.. _Document System Tutorial Part 13 - Custom AdminPage function: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part13.html
+.. _Login System Tutorial Part 3 - Sending Request: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part3.html
+.. _Login System Tutorial Part 4 - Login Access Debugging: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part4.html
+.. _Login System Tutorial Part 5 - Session and Cookie: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part5.html
+.. _Login System Tutorial Part 8 - Webpage Manipulation: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part8.html
+
+Trail has 6 different tags:
+
+* DEBUG
+* WORKING
+* INFO
+* OK
+* WARNING
+* ERROR
+
+Let's apply them in the overriding save function under the friend.go.
+
+.. code-block:: go
+
+    // Save !
+    func (f *Friend) Save() {
+        f.Invite = "https://uadmin.io/"
+        temp := "saved"                                                  // declare temp variable
+        uadmin.Trail(uadmin.DEBUG, "Your friend has been %s.", temp)     // used DEBUG tag
+        uadmin.Trail(uadmin.WORKING, "Your friend has been %s.", temp)   // used WORKING tag
+        uadmin.Trail(uadmin.INFO, "Your friend has been %s.", temp)      // used INFO tag
+        uadmin.Trail(uadmin.OK, "Your friend has been %s.", temp)        // used OK tag
+        uadmin.Trail(uadmin.WARNING, "Someone %s your friend.", temp)    // used WARNING tag
+        uadmin.Trail(uadmin.ERROR, "Your friend has not been %s.", temp) // used ERROR tag
+        uadmin.Save(f)
+    }
+
+Run your application, go to the Friend model and save any of the elements inside it. Check your terminal afterwards to see the result.
+
+.. image:: ../tutorial/assets/trailtagsoutput.png
+   :align: center
+
+The output shows the different colors per tag.
+
+Quiz:
+
+* `Trail`_
+
+.. _Trail: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/trail.html
+
+uadmin.Version
+--------------
+`Back To Top`_
+
+Version number as per Semantic Versioning 2.0.0 (semver.org)
+
+Type:
+
+.. code-block:: go
+
+    untyped string
+
+Let's check what version of uAdmin are we using.
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+        uadmin.Trail(uadmin.INFO, uadmin.Version)
+    }
+
+Result
+
+.. code-block:: bash
+
+    [   OK   ]   Initializing DB: [15/15]
+    [  INFO  ]   0.4
+    [   OK   ]   Server Started: http://0.0.0.0:8080
+             ___       __          _
+      __  __/   | ____/ /___ ___  (_)___
+     / / / / /| |/ __  / __  __ \/ / __ \
+    / /_/ / ___ / /_/ / / / / / / / / / /
+    \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
+
+You can also directly check it by typing **uadmin version** in your terminal.
+
+.. code-block:: bash
+
+    $ uadmin version
+    [  INFO  ]   0.4
+
+Quiz:
+
+* `Miscellaneous Functions`_
+
+.. _Miscellaneous Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html
+
+uadmin.WARNING
+--------------
+`Back To Top`_
+
+WARNING is the display tag under Trail. It is the statement or event that indicates a possible problems occurring in an application.
+
+Type:
+
+.. code-block:: go
+
+    untyped int
+
+See `uadmin.Trail`_ for the example.
+
+uadmin.WORKING
+--------------
+`Back To Top`_
+
+OK is the display tag under Trail. It is a status to show that the application is working.
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions
+
+Type:
+
+.. code-block:: go
+
+    untyped int
+
+See `uadmin.Trail`_ for the example.

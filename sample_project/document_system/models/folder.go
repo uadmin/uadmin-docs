@@ -11,8 +11,3 @@ type Folder struct {
 	Parent   *Folder
 	ParentID uint
 }
-
-// Returns the Name field
-func (f Folder) String() string {
-	return f.Name
-}

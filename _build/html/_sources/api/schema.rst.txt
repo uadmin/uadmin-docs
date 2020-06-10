@@ -8,6 +8,12 @@ Structure:
 
     map[string]uadmin.ModelSchema
 
+Used in the tutorial:
+
+* `Document System Tutorial Part 15 - Schema Form Modifier`_
+
+.. _Document System Tutorial Part 15 - Schema Form Modifier: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part15.html
+
 Examples:
 
 * `Approval`_
@@ -36,6 +42,8 @@ Examples:
 
 **Approval**
 ^^^^^^^^^^^^
+`Back to Top`_
+
 A feature used to set an approval permission in the field
 
 Type:
@@ -147,6 +155,8 @@ The input Name field has a checkmark sign that means the record created by "john
 
 **CategoricalFilter**
 ^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 A section of code that is designed to process user input and output request to produce a new data structure containing exactly those elements of the original data structure in the form of combo box
 
 Type:
@@ -165,6 +175,8 @@ See `Filter`_ for the example.
 
 **Choices**
 ^^^^^^^^^^^
+`Back to Top`_
+
 A struct for the list of choices
 
 Type:
@@ -225,6 +237,8 @@ Run your application, go to the Friend model and click Add New Friend button on 
 
 **DefaultValue**
 ^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 A value assigned automatically if you want to add a new record
 
 Type:
@@ -251,13 +265,15 @@ Let's set a feature that assigns a value automatically when creating a new recor
         uadmin.Schema["category"].FieldByName("Name").DefaultValue = "Type here"
     }
 
-Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. As expected, “Type here” value has assigned automatically in the Name field.
+Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. As expected, "Type here” value has assigned automatically in the Name field.
 
 .. image:: assets/categorydefaultvalue.png
    :align: center
 
 **DisplayName**
 ^^^^^^^^^^^^^^^
+`Back to Top`_
+
 The name that you want to display in the model. It is an alias name.
 
 Type:
@@ -284,12 +300,14 @@ Let’s replace the actual field name. In order to do that, create a schema func
         uadmin.Schema["category"].FieldByName("Name").DisplayName = "Display Name"
     }
 
-Run your application and go to Category model. As expected, the name has changed to “CATEGORY NAME”.
+Run your application and go to Category model. As expected, the name has changed to "CATEGORY NAME”.
 
 .. image:: assets/categorydisplayname.png
 
 **Encrypt**
 ^^^^^^^^^^^
+`Back to Top`_
+
 A feature used to encrypt the value in the database
 
 Type:
@@ -351,6 +369,8 @@ As expected, the Name value is encrypted in the database.
 
 **ErrMsg**
 ^^^^^^^^^^
+`Back to Top`_
+
 An error message displayed beneath the input field
 
 Type:
@@ -384,6 +404,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **Filter**
 ^^^^^^^^^^
+`Back to Top`_
+
 A section of code that is designed to process user input and output request to produce a new data structure containing exactly those elements of the original data structure in the form of fill-up text
 
 Type:
@@ -429,6 +451,8 @@ As expected, the Category record has filtered out where the name contains "Work"
 
 **FormDisplay**
 ^^^^^^^^^^^^^^^
+`Back to Top`_
+
 A feature that will hide the field in the editing section of the model if the value returns false
 
 Type:
@@ -462,6 +486,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **Help**
 ^^^^^^^^
+`Back to Top`_
+
 A feature that gives solution(s) to solve advanced tasks
 
 Type:
@@ -495,6 +521,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **Hidden**
 ^^^^^^^^^^
+`Back to Top`_
+
 A feature to hide the component in the editing section of the form
 
 Type:
@@ -527,6 +555,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **ListDisplay**
 ^^^^^^^^^^^^^^^
+`Back to Top`_
+
 A feature that will hide the field in the viewing section of the model if the value returns false
 
 Type:
@@ -560,6 +590,8 @@ Run your application and go to the Category model. As expected, the Name Field i
 
 **Max**
 ^^^^^^^
+`Back to Top`_
+
 The maximum value the user can assign. It is applicable for numeric characters.
 
 Type:
@@ -592,6 +624,8 @@ Run your application and go to the Todo model. Let's put a numeric value beyond 
 
 **Min**
 ^^^^^^^
+`Back to Top`_
+
 The minimum value the user can assign. It is applicable for numeric characters.
 
 Type:
@@ -624,6 +658,8 @@ Run your application and go to the Todo model. Let's put a numeric value beyond 
 
 **Pattern**
 ^^^^^^^^^^^
+`Back to Top`_
+
 A regular expression
 
 Type:
@@ -658,6 +694,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **PatternMsg**
 ^^^^^^^^^^^^^^
+`Back to Top`_
+
 An error message if the user assigns a value that did not match the requested format
 
 Type:
@@ -676,6 +714,8 @@ See `Pattern`_ for an example.
 
 **ProgressBar**
 ^^^^^^^^^^^^^^^
+`Back to Top`_
+
 A feature used to measure the progress of the activity
 
 Type:
@@ -710,6 +750,8 @@ Run your application and go to the Todo model. As expected, the assigned values 
 
 **ReadOnly**
 ^^^^^^^^^^^^
+`Back to Top`_
+
 A field that cannot be modified
 
 Type:
@@ -743,6 +785,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **Required**
 ^^^^^^^^^^^^
+`Back to Top`_
+
 A field that user must perform the given task(s). It cannot be skipped or left empty.
 
 Type:
@@ -776,6 +820,8 @@ Run your application, go to the Category model and click Add New Category button
 
 **Stringer**
 ^^^^^^^^^^^^
+`Back to Top`_
+
 A feature that assigns a field as a unique type
 
 Type:
@@ -809,6 +855,8 @@ Go to `uadmin.Stringer`_ in the API Reference for the continuation.
 
 **Type**
 ^^^^^^^^
+`Back to Top`_
+
 The field type (e.g. file, list, progress_bar)
 
 Type:
@@ -867,6 +915,8 @@ Run your application and go to the Todo model. As expected, the appearance of th
 
 **UploadTo**
 ^^^^^^^^^^^^
+`Back to Top`_
+
 A path where to save the uploaded files
 
 Type:
@@ -913,6 +963,10 @@ From your project folder, go to /media/files/(generated_folder_name)/. As expect
 
 **WebCam**
 ^^^^^^^^^^
+`Back to Top`_
+
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/schema.html#uadmin-schema
+
 A feature which adds web can access directly from the image and file fields
 
 Type:

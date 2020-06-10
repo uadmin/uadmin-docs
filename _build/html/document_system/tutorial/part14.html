@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Document System Tutorial Part 14 - Permissions Form &#8212; uadmin 0.3 documentation</title>
+    <title>Document System Tutorial Part 14 - Permissions Form &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
@@ -18,8 +18,8 @@
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Document System Tutorial Part 15 - Schema Form Modifier" href="part15.html" />
-    <link rel="prev" title="Document System Tutorial Part 13 - Custom AdminPage function" href="part13.html" />
+    <link rel="next" title="Document System Tutorial Part 14 - Permissions Form (Current Progress)" href="full_code/part14.html" />
+    <link rel="prev" title="Document System Tutorial Part 13 - Custom AdminPage function (Current Progress)" href="full_code/part13.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -35,12 +35,12 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="part15.html" title="Document System Tutorial Part 15 - Schema Form Modifier"
+          <a href="full_code/part14.html" title="Document System Tutorial Part 14 - Permissions Form (Current Progress)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="part13.html" title="Document System Tutorial Part 13 - Custom AdminPage function"
+          <a href="full_code/part13.html" title="Document System Tutorial Part 13 - Custom AdminPage function (Current Progress)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../coverage.html" accesskey="U">Document System Tutorials</a> &#187;</li> 
       </ul>
@@ -54,12 +54,12 @@
   <div class="section" id="document-system-tutorial-part-14-permissions-form">
 <h1>Document System Tutorial Part 14 - Permissions Form<a class="headerlink" href="#document-system-tutorial-part-14-permissions-form" title="Permalink to this headline">¶</a></h1>
 <p>In this part, we will discuss about creating the Permissions field and displaying the permission status for each document records.</p>
-<p>First of all, run your application. We need to get the ID of each users. In order to do that, go to the Document System Dashboard then click “USERS”.</p>
+<p>First of all, run your application. We need to get the ID of each users. In order to do that, go to the Document System Dashboard then click <strong>USERS</strong>.</p>
 <img alt="../../_images/usershighlighted.png" src="../../_images/usershighlighted.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Click the “System Admin” user.</p>
+<p>Click the <strong>System Admin</strong> user.</p>
 <img alt="../../_images/systemadminrecord1.png" src="../../_images/systemadminrecord1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -69,7 +69,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Go back then click the “John Doe” user.</p>
+<p>Go back then click the <strong>John Doe</strong> user.</p>
 <img alt="../../_images/johndoerecord1.png" src="../../_images/johndoerecord1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -86,7 +86,7 @@
 <li><p>John Doe - 2</p></li>
 </ul>
 </div></blockquote>
-<p>Now exit your application. Go to the document.go and create a new function named Permissions__Form() that returns a string. This returns the Read, Add, Edit, and Delete permissions based on an assigned user ID.</p>
+<p>Now exit your application. Go to the document.go and create a new function named <strong>Permissions__Form()</strong> that returns a string. This returns the Read, Add, Edit, and Delete permissions based on an assigned user ID.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Permissions__Form creates a new field named Permissions !</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="nx">Document</span><span class="p">)</span> <span class="nx">Permissions__Form</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
     <span class="c1">// Initialize u variable that calls the User model</span>
@@ -105,12 +105,12 @@
 </pre></div>
 </div>
 <p>In fact that our assigned user ID is 1, we are getting the System Admin user record then we are passing the Read, Add, Edit, and Delete permission values to that user.</p>
-<p>Now run your application. Go to the Document System Dashboard then click “DOCUMENT USERS”.</p>
+<p>Now run your application. Go to the Document System Dashboard then click <strong>DOCUMENT USERS</strong>.</p>
 <img alt="../../_images/documentusershighlighted.png" src="../../_images/documentusershighlighted.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Click the first record that has a document of “Computer”.</p>
+<p>Click the first record that has a document of <strong>Computer</strong>.</p>
 <img alt="../../_images/documentuserfirstrecord.png" src="../../_images/documentuserfirstrecord.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -125,22 +125,28 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Now go back to the Document System Dashboard then click “DOCUMENTS”.</p>
+<p>Now go back to the Document System Dashboard then click <strong>DOCUMENTS</strong>.</p>
 <img alt="../../_images/documentshighlighted.png" src="../../_images/documentshighlighted.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Click the “Computer” document.</p>
+<p>Click the <strong>Computer</strong> document.</p>
 <img alt="../../_images/documentcomputer.png" src="../../_images/documentcomputer.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Scroll down the form then you will see the new field named “Permissions” where all permission levels are set to false.</p>
+<p>Scroll down the form then you will see the new field named <strong>Permissions</strong> where all permission levels are set to false.</p>
 <img alt="../../_images/permissionfieldfirstrecord.png" src="../../_images/permissionfieldfirstrecord.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part14.html">here</a> to view our progress so far.</p>
 <p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part15.html">next part</a>, we will talk about schema form modifier based on the CreatedBy form filter that checks the admin status of the user and the CreatedBy is not an empty string. If the user is not an admin and the CreatedBy is an empty string, the CreatedBy field will set as Read Only that means it cannot be modified.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="full_code/part14.html">Document System Tutorial Part 14 - Permissions Form (Current Progress)</a></li>
+</ul>
+</div>
 </div>
 
 
@@ -156,6 +162,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quiz.html">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tags.html">Tag Reference</a></li>
@@ -166,11 +173,11 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="part13.html"
-                        title="previous chapter">Document System Tutorial Part 13 - Custom AdminPage function</a></p>
+  <p class="topless"><a href="full_code/part13.html"
+                        title="previous chapter">Document System Tutorial Part 13 - Custom AdminPage function (Current Progress)</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="part15.html"
-                        title="next chapter">Document System Tutorial Part 15 - Schema Form Modifier</a></p>
+  <p class="topless"><a href="full_code/part14.html"
+                        title="next chapter">Document System Tutorial Part 14 - Permissions Form (Current Progress)</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -199,19 +206,19 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="part15.html" title="Document System Tutorial Part 15 - Schema Form Modifier"
+          <a href="full_code/part14.html" title="Document System Tutorial Part 14 - Permissions Form (Current Progress)"
              >next</a> |</li>
         <li class="right" >
-          <a href="part13.html" title="Document System Tutorial Part 13 - Custom AdminPage function"
+          <a href="full_code/part13.html" title="Document System Tutorial Part 13 - Custom AdminPage function (Current Progress)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../coverage.html" >Document System Tutorials</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

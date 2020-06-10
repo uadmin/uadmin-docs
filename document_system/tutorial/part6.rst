@@ -2,13 +2,13 @@ Document System Tutorial Part 6 - Creating Records in Documents
 ===============================================================
 In this part, we will discuss about document concepts and how to create records in an application.
 
-First of all, click "CHANNELS".
+First of all, click **CHANNELS**.
 
 .. image:: assets/channelshighlighted.png
 
 |
 
-Click "Add New Channel".
+Click **Add New Channel**.
 
 .. image:: assets/addnewchannel.png
 
@@ -27,13 +27,13 @@ Result
 
 |
 
-Now go back to the Document System Dashboard then click "DOCUMENTS".
+Now go back to the Document System Dashboard then click **DOCUMENTS**.
 
 .. image:: assets/documentshighlighted.png
 
 |
 
-Click "Add New Document".
+Click **Add New Document**.
 
 .. image:: assets/addnewdocument.png
 
@@ -42,6 +42,7 @@ Click "Add New Document".
 Input the following information except the CreatedBy field. This field will be automatically generated after you save the record that returns the full name of the logined user.
 
 .. image:: assets/documentrecord.png
+   :align: center
 
 |
 
@@ -51,13 +52,13 @@ Result
 
 |
 
-Go back to the Document System Dashboard then click "DOCUMENT GROUPS".
+Go back to the Document System Dashboard then click **DOCUMENT GROUPS**.
 
 .. image:: assets/documentgroupshighlighted.png
 
 |
 
-Click "Add New Document Group".
+Click **Add New Document Group**.
 
 .. image:: assets/addnewdocumentgroup.png
 
@@ -76,13 +77,13 @@ Result
 
 |
 
-Go back to the Document System Dashboard then click "DOCUMENT USERS".
+Go back to the Document System Dashboard then click **DOCUMENT USERS**.
 
 .. image:: assets/documentusershighlighted.png
 
 |
 
-Click "Add New Document User".
+Click **Add New Document User**.
 
 .. image:: assets/addnewdocumentuser.png
 
@@ -101,13 +102,13 @@ Result
 
 |
 
-Go back to the Document System Dashboard then click "DOCUMENT VERSIONS".
+Go back to the Document System Dashboard then click **DOCUMENT VERSIONS**.
 
 .. image:: assets/documentversionshighlighted.png
 
 |
 
-Click "Add New Document Version".
+Click **Add New Document Version**.
 
 .. image:: assets/addnewdocumentversion.png
 
@@ -126,6 +127,14 @@ Result
 
 |
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will talk about register inlines that connects from a parent model to another model.
 
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part6.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part7.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part6

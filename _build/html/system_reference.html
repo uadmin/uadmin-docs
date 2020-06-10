@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>System Reference &#8212; uadmin 0.3 documentation</title>
+    <title>System Reference &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -18,7 +18,7 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tag Reference" href="tags.html" />
+    <link rel="next" title="uAdmin Settings" href="system-reference/setting.html" />
     <link rel="prev" title="Quick Reference" href="quick_reference.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
@@ -35,12 +35,12 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="tags.html" title="Tag Reference"
+          <a href="system-reference/setting.html" title="uAdmin Settings"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="quick_reference.html" title="Quick Reference"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -62,7 +62,13 @@
 <li><p><a class="reference internal" href="#log">Log</a></p></li>
 <li><p><a class="reference internal" href="#profile">Profile</a></p></li>
 <li><p><a class="reference internal" href="#session">Session</a></p></li>
-<li><p><a class="reference internal" href="#setting">Setting</a></p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#setting">Setting</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#uadmin">uAdmin</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
 <li><p><a class="reference internal" href="#setting-category">Setting Category</a></p></li>
 <li><p><a class="reference internal" href="#user">User</a></p></li>
 <li><p><a class="reference internal" href="#user-group">User Group</a></p></li>
@@ -70,7 +76,8 @@
 </ul>
 <div class="section" id="ab-test">
 <h2>AB Test<a class="headerlink" href="#ab-test" title="Permalink to this headline">¶</a></h2>
-<p>AB Test is a system in uAdmin that is used to compare two or more values and checks which one has the best impressions, clicks and click through rate. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>AB Test is a system in uAdmin that is used to compare two or more values and checks which one has the best impressions, clicks and click through rate.</p>
 <p>Here are the following fields and their definitions:</p>
 <ul class="simple">
 <li><p><strong>Name</strong> - The name of the A/B Test</p></li>
@@ -83,10 +90,14 @@
 <li><p><strong>Group</strong> - The name of the group</p></li>
 </ul>
 <p>Prerequisites:</p>
+<p><strong>For Example #1: Static</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-1-html-template">HTML Template</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-2-static-handler">Static Images</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-5-image-testing">Image Source Reference</a></p></li>
+</ul>
+<p><strong>For Example #2: Model</strong></p>
+<ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-1-campaign-info-model">Campaign Info Model</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-4-api-click-handler">API Click Handler</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-5-get-a-b-test">Get A/B Test</a></p></li>
@@ -100,12 +111,12 @@
 <div class="section" id="example-1-static">
 <h3><strong>Example #1: Static</strong><a class="headerlink" href="#example-1-static" title="Permalink to this headline">¶</a></h3>
 <p>First of all, login your admin account.</p>
-<img alt="_images/loginformadmin.png" class="align-center" src="_images/loginformadmin.png" />
+<img alt="_images/loginformadmin1.png" class="align-center" src="_images/loginformadmin1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>From uAdmin dashboard, click “AB Tests”.</p>
-<img alt="_images/abtestshighlighted.png" src="_images/abtestshighlighted.png" />
+<img alt="_images/abtestshighlighted1.png" src="_images/abtestshighlighted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -120,12 +131,12 @@
 <div class="line"><br /></div>
 </div>
 <p>Result. Now click the Photo Test record that you have created.</p>
-<img alt="_images/phototestrecord.png" src="_images/phototestrecord.png" />
+<img alt="_images/phototestrecord1.png" src="_images/phototestrecord1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>From here, click “ABTEST VALUE” inline.</p>
-<img alt="_images/abtestvalueinlinephototest.png" class="align-center" src="_images/abtestvalueinlinephototest.png" />
+<img alt="_images/abtestvalueinlinephototest1.png" class="align-center" src="_images/abtestvalueinlinephototest1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -145,48 +156,48 @@
 <div class="line"><br /></div>
 </div>
 <p>Result</p>
-<img alt="_images/phototestvalues.png" src="_images/phototestvalues.png" />
+<img alt="_images/phototestvalues1.png" src="_images/phototestvalues1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Now go to /campaign/ path in the address bar (e.g. <a class="reference external" href="http://0.0.0.0:8080/campaign/">http://0.0.0.0:8080/campaign/</a>).</p>
-<img alt="_images/campaigndonate.png" class="align-center" src="_images/campaigndonate.png" />
+<img alt="_images/campaigndonate1.png" class="align-center" src="_images/campaigndonate1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Right click your mouse then select Inspect or just press Ctrl + Shift + I on your keyboard to open the inspect element tab.</p>
-<img alt="_images/inspecthighlighted.png" class="align-center" src="_images/inspecthighlighted.png" />
+<img alt="_images/inspecthighlighted1.png" class="align-center" src="_images/inspecthighlighted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>From here, click Application tab.</p>
-<img alt="_images/applicationinspectelement.png" class="align-center" src="_images/applicationinspectelement.png" />
+<img alt="_images/applicationinspectelement1.png" class="align-center" src="_images/applicationinspectelement1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>In Storage, click on Cookies on the left side then select <a class="reference external" href="http://localhost:8080">http://localhost:8080</a>. You will see that there is an abt cookie in the table list. In A/B test, we will focus on the value. It is randomly generated. If the value is an even number, we are getting the original image that is the path of the A/B test value is equal to the A/B test static path. Otherwise, we are getting the different image. In addition to this, abt cookie will expire every midnight.</p>
-<img alt="_images/abtcookieinfo.png" src="_images/abtcookieinfo.png" />
+<img alt="_images/abtcookieinfo1.png" src="_images/abtcookieinfo1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Now let’s delete the abt cookie.</p>
-<img alt="_images/abtcookiedeleted.png" src="_images/abtcookiedeleted.png" />
+<img alt="_images/abtcookiedeleted1.png" src="_images/abtcookiedeleted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Refresh the webpage and see what happens.</p>
-<img alt="_images/abtcookieoddvalue.png" src="_images/abtcookieoddvalue.png" />
+<img alt="_images/abtcookieoddvalue1.png" src="_images/abtcookieoddvalue1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>The image displays differently because the abt cookie value is an odd number. Repeat the same process until you get an even number.</p>
-<img alt="_images/abtcookieevennumber.png" src="_images/abtcookieevennumber.png" />
+<img alt="_images/abtcookieevennumber1.png" src="_images/abtcookieevennumber1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>It displays an original image once again because the abt cookie value is an even number.</p>
 <p>Now go back to A/B Test Value in the Photo Test record. You will see the impression count in each record. This is the number of your visits.</p>
-<img alt="_images/phototestvalueresult.png" src="_images/phototestvalueresult.png" />
+<img alt="_images/phototestvalueresult1.png" src="_images/phototestvalueresult1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -195,32 +206,32 @@
 <div class="section" id="example-2-model">
 <h3><strong>Example #2: Model</strong><a class="headerlink" href="#example-2-model" title="Permalink to this headline">¶</a></h3>
 <p>First of all, login your admin account.</p>
-<img alt="_images/loginformadmin.png" class="align-center" src="_images/loginformadmin.png" />
+<img alt="_images/loginformadmin1.png" class="align-center" src="_images/loginformadmin1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>From uAdmin dashboard, click on “CAMPAIGN INFOS”.</p>
-<img alt="_images/campaigninfohighlighted.png" src="_images/campaigninfohighlighted.png" />
+<img alt="_images/campaigninfohighlighted1.png" src="_images/campaigninfohighlighted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Click “Add New Campaign Info”.</p>
-<img alt="_images/addnewcampaigninfo.png" src="_images/addnewcampaigninfo.png" />
+<img alt="_images/addnewcampaigninfo1.png" src="_images/addnewcampaigninfo1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Create a Donate record for Name and Button.</p>
-<img alt="_images/campaigninfodonate.png" class="align-center" src="_images/campaigninfodonate.png" />
+<img alt="_images/campaigninfodonate1.png" class="align-center" src="_images/campaigninfodonate1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Result</p>
-<img alt="_images/campaigninfodonateresult.png" src="_images/campaigninfodonateresult.png" />
+<img alt="_images/campaigninfodonateresult1.png" src="_images/campaigninfodonateresult1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Now go back to the uAdmin dashboard then click on “AB Tests”.</p>
-<img alt="_images/abtestshighlighted.png" src="_images/abtestshighlighted.png" />
+<img alt="_images/abtestshighlighted1.png" src="_images/abtestshighlighted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -250,7 +261,7 @@
 <div class="line"><br /></div>
 </div>
 <p>Click “ABTEST VALUE” inline.</p>
-<img alt="_images/abtestvalueinlinenametest.png" class="align-center" src="_images/abtestvalueinlinenametest.png" />
+<img alt="_images/abtestvalueinlinenametest1.png" class="align-center" src="_images/abtestvalueinlinenametest1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -270,69 +281,69 @@
 <div class="line"><br /></div>
 </div>
 <p>Result</p>
-<img alt="_images/nametestvalues.png" src="_images/nametestvalues.png" />
+<img alt="_images/nametestvalues1.png" src="_images/nametestvalues1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Similarly, they also go with the Button Test record.</p>
-<img alt="_images/buttontestvalues.png" src="_images/buttontestvalues.png" />
+<img alt="_images/buttontestvalues1.png" src="_images/buttontestvalues1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Now go to /campaign/ path in the address bar (e.g. <a class="reference external" href="http://0.0.0.0:8080/campaign/">http://0.0.0.0:8080/campaign/</a>).</p>
-<img alt="_images/campaigndonatemodel.png" class="align-center" src="_images/campaigndonatemodel.png" />
+<img alt="_images/campaigndonatemodel1.png" class="align-center" src="_images/campaigndonatemodel1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Let’s click the Donate button and see what happens.</p>
-<img alt="_images/alertboxmessageuserclick.png" class="align-center" src="_images/alertboxmessageuserclick.png" />
+<img alt="_images/alertboxmessageuserclick1.png" class="align-center" src="_images/alertboxmessageuserclick1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>The alert box message appears on your screen. If you go to A/B Test Value inline in the Button Test record, you will see that the number of clicks in Donate record is 1 and the Click Through Rate is 100% because the number of impressions and clicks are equal.</p>
-<img alt="_images/donate1click.png" src="_images/donate1click.png" />
+<img alt="_images/donate1click1.png" src="_images/donate1click1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Right click your mouse then select Inspect or just press Ctrl + Shift + I on your keyboard to open the inspect element tab.</p>
-<img alt="_images/inspecthighlighted.png" class="align-center" src="_images/inspecthighlighted.png" />
+<img alt="_images/inspecthighlighted1.png" class="align-center" src="_images/inspecthighlighted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>From here, click Application tab.</p>
-<img alt="_images/applicationinspectelement2.png" class="align-center" src="_images/applicationinspectelement2.png" />
+<img alt="_images/applicationinspectelement21.png" class="align-center" src="_images/applicationinspectelement21.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>In Storage, click on Cookies on the left side then select <a class="reference external" href="http://localhost:8080">http://localhost:8080</a>. You will see that there is an abt cookie in the table list. In A/B test, we will focus on the value. It is randomly generated. If the value is an even number, we are getting the original value from Campaign Info model in the Name and Button. Otherwise, we are getting the different results. In addition to this, abt cookie will expire every midnight.</p>
-<img alt="_images/abtcookieinfo.png" src="_images/abtcookieinfo.png" />
+<img alt="_images/abtcookieinfo1.png" src="_images/abtcookieinfo1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Now let’s delete the abt cookie.</p>
-<img alt="_images/abtcookiedeleted.png" src="_images/abtcookiedeleted.png" />
+<img alt="_images/abtcookiedeleted1.png" src="_images/abtcookiedeleted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Refresh the webpage and see what happens.</p>
-<img alt="_images/abtcookieoddvaluemodel.png" src="_images/abtcookieoddvaluemodel.png" />
+<img alt="_images/abtcookieoddvaluemodel1.png" src="_images/abtcookieoddvaluemodel1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>We get a different result because the abt cookie value is an odd number. Repeat the same process until you get an even number.</p>
-<img alt="_images/abtcookieevennumbermodel.png" src="_images/abtcookieevennumbermodel.png" />
+<img alt="_images/abtcookieevennumbermodel1.png" src="_images/abtcookieevennumbermodel1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>They display original values once again because the abt cookie value is an even number.</p>
 <p>Now go back to A/B Test Value in the Name and Button Test records. You will see the impression count, click count, and Click Through Rate in each record.</p>
 <p><strong>Name Test Result</strong></p>
-<img alt="_images/nametestvalueresult.png" src="_images/nametestvalueresult.png" />
+<img alt="_images/nametestvalueresult1.png" src="_images/nametestvalueresult1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p><strong>Button Test Result</strong></p>
-<img alt="_images/buttontestvalueresult.png" src="_images/buttontestvalueresult.png" />
+<img alt="_images/buttontestvalueresult1.png" src="_images/buttontestvalueresult1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -341,7 +352,8 @@
 </div>
 <div class="section" id="approval">
 <h2>Approval<a class="headerlink" href="#approval" title="Permalink to this headline">¶</a></h2>
-<p>Approval is a system in uAdmin that is used to set an approval permission in the field. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>Approval is a system in uAdmin that is used to set an approval permission in the field.</p>
 <p>Here are the following fields and their definitions:</p>
 <ul class="simple">
 <li><p><strong>ModelName</strong> - The name of the Model in small letters</p></li>
@@ -359,36 +371,37 @@
 <li><p><strong>UpdatedBy</strong> - Returns the username who updated the record</p></li>
 </ul>
 <p>Suppose there is a record created by “johndoe” that needs an approval for the Name.</p>
-<img alt="_images/johndoenameempty.png" src="_images/johndoenameempty.png" />
+<img alt="_images/johndoenameempty1.png" src="_images/johndoenameempty1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Login your admin account.</p>
-<img alt="_images/loginformadmin.png" class="align-center" src="_images/loginformadmin.png" />
+<img alt="_images/loginformadmin1.png" class="align-center" src="_images/loginformadmin1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>From uAdmin dashboard, go to the Friends model, click the record that you have created, and in the input box of the Name field, there is a yellow warning sign on the left side that means it needs an approval to someone who has approval access. Now click the highlighted area below.</p>
-<img alt="_images/johndoeapprovalbutton.png" class="align-center" src="_images/johndoeapprovalbutton.png" />
+<img alt="_images/johndoeapprovalbutton1.png" class="align-center" src="_images/johndoeapprovalbutton1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>The admin will review the record that was created by a “johndoe” user. If you think his record is satisfactory, choose Approved in Approval Action then click Save and Continue on the bottom right corner of the screen.</p>
-<img alt="_images/johndoeapprovalreview.png" src="_images/johndoeapprovalreview.png" />
+<img alt="_images/johndoeapprovalreview1.png" src="_images/johndoeapprovalreview1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>It is shown that the one who approved the record is an admin with an approved date. Now click View Record button to see the result.</p>
-<img alt="_images/johndoeviewrecord.png" class="align-center" src="_images/johndoeviewrecord.png" />
+<img alt="_images/johndoeviewrecord1.png" class="align-center" src="_images/johndoeviewrecord1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>The input Name field has a checkmark sign that means the record created by “johndoe” was approved.</p>
-<img alt="_images/johndoeapprovedrecord.png" class="align-center" src="_images/johndoeapprovedrecord.png" />
+<img alt="_images/johndoeapprovedrecord1.png" class="align-center" src="_images/johndoeapprovedrecord1.png" />
 </div>
 <div class="section" id="dashboard-menu">
 <h2>Dashboard Menu<a class="headerlink" href="#dashboard-menu" title="Permalink to this headline">¶</a></h2>
-<p>Dashboard Menu is a system in uAdmin that is used to add, modify, and delete the elements of a model. Making it look good and customizing it to meet your customers requirements is important to the success of your app. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>Dashboard Menu is a system in uAdmin that is used to add, modify, and delete the elements of a model. Making it look good and customizing it to meet your customers requirements is important to the success of your app.</p>
 <img alt="_images/dashboardmenu.png" src="_images/dashboardmenu.png" />
 <p>Here are the following fields in this system:</p>
 <ul class="simple">
@@ -445,7 +458,7 @@
 <div class="line"><br /></div>
 </div>
 <p>Once you are done, go back to your dashboard to see if the Expression model is hidden.</p>
-<img alt="_images/uadmindashboard.png" src="_images/uadmindashboard.png" />
+<img alt="_images/uadmindashboard2.png" src="_images/uadmindashboard2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -455,7 +468,8 @@
 </div>
 <div class="section" id="export-to-excel">
 <h2>Export to Excel<a class="headerlink" href="#export-to-excel" title="Permalink to this headline">¶</a></h2>
-<p>Export is one of the features of uAdmin that can replicate the data inside the model to the Excel file. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>Export is one of the features of uAdmin that can replicate the data inside the model to the Excel file.</p>
 <p>First of all, open any models in the dashboard (e.g. TODOS).</p>
 <img alt="_images/todoshighlightedlog.png" src="_images/todoshighlightedlog.png" />
 <div class="line-block">
@@ -477,8 +491,9 @@
 </div>
 <div class="section" id="group-permission">
 <h2>Group Permission<a class="headerlink" href="#group-permission" title="Permalink to this headline">¶</a></h2>
-<p>Group Permission sets the permission of a user group handled by an administrator. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
-<img alt="_images/grouppermissioncreated.png" src="_images/grouppermissioncreated.png" />
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>Group Permission sets the permission of a user group handled by an administrator.</p>
+<img alt="_images/grouppermissioncreated1.png" src="_images/grouppermissioncreated1.png" />
 <p>Here are the following fields in this system:</p>
 <ul class="simple">
 <li><p><strong>Group Permission</strong> - Returns the ID number of itself</p></li>
@@ -493,32 +508,32 @@
 <p>First of all, make it sure that your existing account is not an Admin (example below is Even Demata) and it is part of the User Group (example below is Front Desk).</p>
 <img alt="_images/adminusergrouphighlighted.png" src="_images/adminusergrouphighlighted.png" />
 <p>Click the Front Desk highlighted below.</p>
-<img alt="_images/frontdeskhighlighted.png" src="_images/frontdeskhighlighted.png" />
+<img alt="_images/frontdeskhighlighted1.png" src="_images/frontdeskhighlighted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Go to the Group Permission tab. Afterwards, click Add New Group Permission button at the right side.</p>
-<img alt="_images/addnewgrouppermission.png" src="_images/addnewgrouppermission.png" />
+<img alt="_images/addnewgrouppermission2.png" src="_images/addnewgrouppermission2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Set the Dashboard Menu to “Todos” model, User linked to “Even Demata”, and activate the “Read” only. It means Front Desk User Group has restricted access to adding, editing, deleting and approving a record in the Todos model.</p>
-<img alt="_images/grouppermissionadd.png" class="align-center" src="_images/grouppermissionadd.png" />
+<img alt="_images/grouppermissionadd1.png" class="align-center" src="_images/grouppermissionadd1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Result</p>
-<img alt="_images/grouppermissionaddoutput.png" src="_images/grouppermissionaddoutput.png" />
+<img alt="_images/grouppermissionaddoutput1.png" src="_images/grouppermissionaddoutput1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Log out your System Admin account. This time login your username and password using the user account that has group permission. Now click on TODOS model.</p>
-<img alt="_images/userpermissiondashboard.png" src="_images/userpermissiondashboard.png" />
+<img alt="_images/userpermissiondashboard1.png" src="_images/userpermissiondashboard1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>As you will see, your user account is restricted to add, edit, or delete a record in the Todo model. You can only read what is inside this model.</p>
-<img alt="_images/useraddeditdeleterestricted.png" src="_images/useraddeditdeleterestricted.png" />
+<img alt="_images/useraddeditdeleterestricted1.png" src="_images/useraddeditdeleterestricted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -543,7 +558,7 @@
 <div class="line"><br /></div>
 </div>
 <p>Login your Even Demata account and see what happens.</p>
-<img alt="_images/dashboardmenuempty.png" src="_images/dashboardmenuempty.png" />
+<img alt="_images/dashboardmenuempty1.png" src="_images/dashboardmenuempty1.png" />
 <p>TODOS model does not show up in the dashboard. Even if you remove access to “Add”, “Edit” and “Delete” to Front Desk group, it will display the same output.</p>
 <p>Login your System Admin account. Finally, delete the Group Permission in the Front Desk User Group.</p>
 <img alt="_images/grouppermissiondelete.png" src="_images/grouppermissiondelete.png" />
@@ -551,9 +566,10 @@
 </div>
 <div class="section" id="language">
 <h2>Language<a class="headerlink" href="#language" title="Permalink to this headline">¶</a></h2>
-<p>Language is a system in uAdmin that is used to add, modify, and delete the elements of a language. There are a total of 184 languages. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
-<table class="colwidths-given docutils align-center" id="id17">
-<caption><span class="caption-text"><strong>LIST OF AVAILABLE LANGUAGES</strong></span><a class="headerlink" href="#id17" title="Permalink to this table">¶</a></caption>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>Language is a system in uAdmin that is used to add, modify, and delete the elements of a language. There are a total of 184 languages.</p>
+<table class="colwidths-given docutils align-center" id="id3">
+<caption><span class="caption-text"><strong>LIST OF AVAILABLE LANGUAGES</strong></span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 9%" />
@@ -1748,22 +1764,22 @@
 <div class="line"><br /></div>
 </div>
 <p>Inside the Language model, search for English then click that record.</p>
-<img alt="_images/searchenglish.png" src="_images/searchenglish.png" />
+<img alt="_images/searchenglish1.png" src="_images/searchenglish1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Disable the active status then click Save.</p>
-<img alt="_images/englishnotactive.png" class="align-center" src="_images/englishnotactive.png" />
+<img alt="_images/englishnotactive1.png" class="align-center" src="_images/englishnotactive1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>On the top right corner, click the blue button then select Logout.</p>
-<img alt="_images/logouthighlighted.png" class="align-center" src="_images/logouthighlighted.png" />
+<img alt="_images/logouthighlighted1.png" class="align-center" src="_images/logouthighlighted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Log out your account and see what happens.</p>
-<img alt="_images/vietnameseassigned.png" class="align-center" src="_images/vietnameseassigned.png" />
+<img alt="_images/vietnameseassigned1.png" class="align-center" src="_images/vietnameseassigned1.png" />
 <p>It automatically sets the value of the Language field to <strong>Tiếng Việt (Vietnamese)</strong>.</p>
 <p>Login your account again, go to the Languages, search for Arabic, and activate RTL (Right-to-left) and Active.</p>
 <img alt="_images/arabicrtl1.png" src="_images/arabicrtl1.png" />
@@ -1771,18 +1787,19 @@
 <div class="line"><br /></div>
 </div>
 <p>Log out your account then login again. Set your language to <strong>(Arabic)  العربية</strong> and let’s see what happens.</p>
-<img alt="_images/loginformarabic.png" class="align-center" src="_images/loginformarabic.png" />
+<img alt="_images/loginformarabic1.png" class="align-center" src="_images/loginformarabic1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>The login page has aligned from right to left.</p>
 <p>If you go to any models in the dashboard (example below is Dashboard Menus), it aligns the form automatically from right to left.</p>
-<img alt="_images/dashboardmenurighttoleft.png" src="_images/dashboardmenurighttoleft.png" />
+<img alt="_images/dashboardmenurighttoleft1.png" src="_images/dashboardmenurighttoleft1.png" />
 <p>Well done! Now you know how to activate your languages, set it to default, and using RTL (Right-to-left).</p>
 </div>
 <div class="section" id="log">
 <h2>Log<a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h2>
-<p>Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities. It keeps track of many things by default. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities. It keeps track of many things by default.</p>
 <img alt="_images/log.png" src="_images/log.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1799,12 +1816,12 @@
 <li><p><strong>Created At</strong> - Displays the date where the log was created</p></li>
 </ul>
 <p>Let’s open our app to see how these things work. Login your account using “admin” as username and password.</p>
-<img alt="_images/loginformadmin.png" class="align-center" src="_images/loginformadmin.png" />
+<img alt="_images/loginformadmin1.png" class="align-center" src="_images/loginformadmin1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Go to “LOGS” model in your dashboard.</p>
-<img alt="_images/logshighlighted.png" src="_images/logshighlighted.png" />
+<img alt="_images/logshighlighted4.png" src="_images/logshighlighted4.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -1836,7 +1853,7 @@
 <div class="line"><br /></div>
 </div>
 <p>Click Add New TODO.</p>
-<img alt="_images/todomodel.png" src="_images/todomodel.png" />
+<img alt="_images/todomodel1.png" src="_images/todomodel1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -1846,7 +1863,7 @@
 <div class="line"><br /></div>
 </div>
 <p>Save it and new data will be added to your model.</p>
-<img alt="_images/todomodeloutput.png" src="_images/todomodeloutput.png" />
+<img alt="_images/todomodeloutput1.png" src="_images/todomodeloutput1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -1882,7 +1899,7 @@
 <div class="line"><br /></div>
 </div>
 <p>You will notice that the name field has reverted from “Read a magazine” to “Read a book”.</p>
-<img alt="_images/todomodeloutput.png" src="_images/todomodeloutput.png" />
+<img alt="_images/todomodeloutput1.png" src="_images/todomodeloutput1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -1907,7 +1924,7 @@
 <div class="line"><br /></div>
 </div>
 <p>As expected, we recovered a record in the Todo model.</p>
-<img alt="_images/todomodeloutput.png" src="_images/todomodeloutput.png" />
+<img alt="_images/todomodeloutput1.png" src="_images/todomodeloutput1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -1953,17 +1970,17 @@
 </pre></div>
 </div>
 <p>Once you are done, rebuild your application first (if you haven’t set the email configurations yet) before you log out your account. At the moment, you suddenly forgot your password. How can we retrieve our account? Click Forgot Password at the bottom of the login form.</p>
-<img alt="_images/forgotpasswordhighlighted.png" src="_images/forgotpasswordhighlighted.png" />
+<img alt="_images/forgotpasswordhighlighted2.png" src="_images/forgotpasswordhighlighted2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Input your email address based on the user account you wish to retrieve it back.</p>
-<img alt="_images/forgotpasswordinputemail.png" src="_images/forgotpasswordinputemail.png" />
+<img alt="_images/forgotpasswordinputemail2.png" src="_images/forgotpasswordinputemail2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Once you are done, open your email account. You will receive a password reset notification from the Todo List support. To reset your password, click the link highlighted below.</p>
-<img alt="_images/passwordresetnotification.png" src="_images/passwordresetnotification.png" />
+<img alt="_images/passwordresetnotification2.png" src="_images/passwordresetnotification2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -1990,26 +2007,28 @@
 </div>
 <div class="section" id="profile">
 <h2>Profile<a class="headerlink" href="#profile" title="Permalink to this headline">¶</a></h2>
-<p>uAdmin has a feature that allows you to customize your own profile. In order to do that, click the profile icon on the top right corner then select admin highlighted below. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
-<img alt="_images/adminhighlighted.png" src="_images/adminhighlighted.png" />
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>uAdmin has a feature that allows you to customize your own profile. In order to do that, click the profile icon on the top right corner then select admin highlighted below.</p>
+<img alt="_images/adminhighlighted2.png" src="_images/adminhighlighted2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>By default, there is no profile photo inserted on the top left corner. If you want to add it in your profile, click the Choose File button to browse the image on your computer.</p>
-<img alt="_images/choosefilephotohighlighted.png" src="_images/choosefilephotohighlighted.png" />
+<img alt="_images/choosefilephotohighlighted2.png" src="_images/choosefilephotohighlighted2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Once you are done, click Save Changes on the left corner and refresh the webpage to see the output.</p>
-<img alt="_images/profilepicadded1.png" src="_images/profilepicadded1.png" />
+<img alt="_images/profilepicadded2.png" src="_images/profilepicadded2.png" />
 <p>No matter what small or large the pixels you upload in your profile, it will automatically resize the photo to static format.</p>
-<p>You can also enable two factor authentication in your profile. In uAdmin, it uses QR code which is typically used for storing URLs or other information for reading by the camera on a smartphone. In order to do that, you can use Google Authenticator (<a class="reference external" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en">Android</a>, <a class="reference external" href="https://itunes.apple.com/ph/app/google-authenticator/id388497605?mt=8">iOS</a>). It is a software-based authenticator that implements two-step verification services using the Time-based One-time Password Algorithm and HMAC-based One-time Password algorithm, for authenticating users of mobile applications by Google. <a class="footnote-reference brackets" href="#f2" id="id8">2</a></p>
+<p>You can also enable two factor authentication in your profile. In uAdmin, it uses QR code which is typically used for storing URLs or other information for reading by the camera on a smartphone. In order to do that, you can use Google Authenticator (<a class="reference external" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en">Android</a>, <a class="reference external" href="https://itunes.apple.com/ph/app/google-authenticator/id388497605?mt=8">iOS</a>). It is a software-based authenticator that implements two-step verification services using the Time-based One-time Password Algorithm and HMAC-based One-time Password algorithm, for authenticating users of mobile applications by Google. <a class="footnote-reference brackets" href="#f2" id="id1">2</a></p>
 <img alt="_images/enable2fa.png" src="_images/enable2fa.png" />
 <p>If there is a problem, you may go to your terminal and check the OTP verification code for login.</p>
 </div>
 <div class="section" id="session">
 <h2>Session<a class="headerlink" href="#session" title="Permalink to this headline">¶</a></h2>
-<p>Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. <a class="footnote-reference brackets" href="#f1" id="id9">1</a> (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. <a class="footnote-reference brackets" href="#f1" id="id2">1</a></p>
 <img alt="_images/sessioninterface.png" src="_images/sessioninterface.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2026,7 +2045,7 @@
 <li><p><strong>Expires On</strong> -  This is when the cookie will expire.</p></li>
 </ul>
 <p>Let’s open our app to see how these things work. Login your account using “admin” as username and password.</p>
-<img alt="_images/loginformadmin.png" class="align-center" src="_images/loginformadmin.png" />
+<img alt="_images/loginformadmin1.png" class="align-center" src="_images/loginformadmin1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -2046,7 +2065,7 @@
 <div class="line"><br /></div>
 </div>
 <p>Go back to the uAdmin Dashboard and open “SESSIONS”.</p>
-<img alt="_images/sessionshighlighteddashboard.png" src="_images/sessionshighlighteddashboard.png" />
+<img alt="_images/sessionshighlighteddashboard1.png" src="_images/sessionshighlighteddashboard1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -2076,7 +2095,7 @@
 <div class="line"><br /></div>
 </div>
 <p>Choose System Admin and activate the OTP required.</p>
-<img alt="_images/otprequired.png" src="_images/otprequired.png" />
+<img alt="_images/otprequired1.png" src="_images/otprequired1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -2123,8 +2142,9 @@
 </div>
 <div class="section" id="setting">
 <h2>Setting<a class="headerlink" href="#setting" title="Permalink to this headline">¶</a></h2>
-<p>Setting is a system in uAdmin that is used to display information for an application as a whole. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
-<img alt="_images/defaultsettingrecords.png" src="_images/defaultsettingrecords.png" />
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>Setting is a system in uAdmin that is used to display information for an application as a whole.</p>
+<img alt="_images/defaultsettingrecords1.png" src="_images/defaultsettingrecords1.png" />
 <p>Here are the following fields in this system:</p>
 <ul class="simple">
 <li><p><strong>Name</strong> - The name of the setting that you want to assign</p></li>
@@ -2199,17 +2219,97 @@
 <p>Now go to the dashboard. As expected, the name of the website that shows on title and dashboard is “System Tutorial Dashboard”.</p>
 <img alt="_images/systemtutorialdashboard.png" src="_images/systemtutorialdashboard.png" />
 <p>Congrats! Now you know how to create a setting by assigning the name, default value, data type, value, help, category, displaying the results in the Settings page, and modifying the built-in uAdmin functions.</p>
+<p><strong>More examples:</strong></p>
+<div class="section" id="uadmin">
+<h3>uAdmin<a class="headerlink" href="#uadmin" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#allowed-ips">Allowed IPs</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-disabled-add">API Disabled Add</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-disabled-delete">API Disabled Delete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-disabled-edit">API Disabled Edit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-disabled-read">API Disabled Read</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-disabled-schema">API Disabled Schema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-add">API Log Add</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-delete">API Log Delete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-edit">API Log Edit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-read">API Log Read</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-schema">API Log Schema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-add">API Post Query Add</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-delete">API Post Query Delete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-edit">API Post Query Edit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-read">API Post Query Read</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-schema">API Post Query Schema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-add">API Pre Query Add</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-delete">API Pre Query Delete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-edit">API Pre Query Edit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-read">API Pre Query Read</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-schema">API Pre Query Schema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-add">API Public Add</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-delete">API Public Delete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-edit">API Public Edit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-read">API Public Read</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-schema">API Public Schema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#blocked-ips">Blocked IPs</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#cache-permissions">Cache Permissions</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#cache-sessions">Cache Sessions</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#cache-translation">Cache Translation</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#debugdb">DebugDB</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-from">Email From</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-password">Email Password</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-smtp-server">Email SMTP Server</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-smtp-server-port">Email SMTP Server Port</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-username">Email Username</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#http-log-format">HTTP Log Format</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-add">Log Add</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-delete">Log Delete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-edit">Log Edit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-http-requests">Log HTTP Requests</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-read">Log Read</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-trail">Log Trail</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#max-image-width">Max Image Width</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#max-image-height">Max Image Height</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#max-upload-file-size">Max Upload File Size</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#optimize-sql-query">Optimize SQL Query</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-algorithm">OTP Algorithm</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-digits">OTP Digits</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-period">OTP Period</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-skew">OTP Skew</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#page-length">Page Length</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#port">Port</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#public-media">Public Media</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#rate-limit">Rate Limit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#rate-limit-burst">Rate Limit Burst</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#report-time-stamp">Report Time Stamp</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#reporting-level">Reporting Level</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#restrict-session-ip">Restrict Session IP</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#retain-media-versions">Retain Media Versions</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#root-url">Root URL</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#site-name">Site Name</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#system-metrics">System Metrics</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#theme">Theme</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#trail-logging-level">Trail Logging Level</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#user-metrics">User Metrics</a></p></li>
+</ul>
+<p>Page:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="system-reference/setting.html">uAdmin Settings</a></li>
+</ul>
+</div>
+</div>
 </div>
 <div class="section" id="setting-category">
 <h2>Setting Category<a class="headerlink" href="#setting-category" title="Permalink to this headline">¶</a></h2>
-<p>Setting Category is a system in uAdmin that is used for classifying settings and its records. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>Setting Category is a system in uAdmin that is used for classifying settings and its records.</p>
 <p>Here are the following fields in this system:</p>
 <ul class="simple">
 <li><p><strong>Name</strong> - The name of the setting category that you want to assign</p></li>
 <li><p><strong>Icon</strong> - A small picture or symbol for setting category</p></li>
 </ul>
 <p>First of all, go to uAdmin dashboard and click on “SETTING CATEGORIES”.</p>
-<img alt="_images/settingcategoryshighlighted.png" src="_images/settingcategoryshighlighted.png" />
+<img alt="_images/settingcategoryshighlighted1.png" src="_images/settingcategoryshighlighted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -2224,17 +2324,17 @@
 <div class="line"><br /></div>
 </div>
 <p>Result</p>
-<img alt="_images/settingcategoryhealthresult.png" src="_images/settingcategoryhealthresult.png" />
+<img alt="_images/settingcategoryhealthresult1.png" src="_images/settingcategoryhealthresult1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Now go to Settings page by clicking on the wrench icon on the top right part to see the result.</p>
-<img alt="_images/wrenchiconfromsettingcategory.png" src="_images/wrenchiconfromsettingcategory.png" />
+<img alt="_images/wrenchiconfromsettingcategory1.png" src="_images/wrenchiconfromsettingcategory1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Result</p>
-<img alt="_images/settingcategoryresult.png" src="_images/settingcategoryresult.png" />
+<img alt="_images/settingcategoryresult1.png" src="_images/settingcategoryresult1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -2242,7 +2342,8 @@
 </div>
 <div class="section" id="user">
 <h2>User<a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h2>
-<p>User is a system in uAdmin that is used to add, modify and delete the elements of the user. By default, the system creates one user which is the admin user who has full permission to read, add edit and delete data from every model. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>User is a system in uAdmin that is used to add, modify and delete the elements of the user. By default, the system creates one user which is the admin user who has full permission to read, add edit and delete data from every model.</p>
 <img alt="_images/user.png" src="_images/user.png" />
 <p>Here are the following fields in this system:</p>
 <ul class="simple">
@@ -2276,7 +2377,7 @@
 <div class="line"><br /></div>
 </div>
 <p>As expected, you will see the same dashboard like using your System Admin account. It’s because you are an admin and has full permissions to everything. For now, let’s set an email address to “<a class="reference external" href="mailto:myemail&#37;&#52;&#48;integritynet&#46;biz">myemail<span>&#64;</span>integritynet<span>&#46;</span>biz</a>”.</p>
-<img alt="_images/useremailhighlighted.png" src="_images/useremailhighlighted.png" />
+<img alt="_images/useremailhighlighted2.png" src="_images/useremailhighlighted2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -2292,22 +2393,22 @@
 </pre></div>
 </div>
 <p>Log out your account. At the moment, you suddenly forgot your password. How can we retrieve our account? Click Forgot Password at the bottom of the login form.</p>
-<img alt="_images/forgotpasswordhighlighted.png" src="_images/forgotpasswordhighlighted.png" />
+<img alt="_images/forgotpasswordhighlighted2.png" src="_images/forgotpasswordhighlighted2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Input your email address based on the user account you wish to retrieve it back.</p>
-<img alt="_images/forgotpasswordinputemail.png" src="_images/forgotpasswordinputemail.png" />
+<img alt="_images/forgotpasswordinputemail2.png" src="_images/forgotpasswordinputemail2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Once you are done, open your email account. You will receive a password reset notification from the Todo List support. To reset your password, click the link highlighted below.</p>
-<img alt="_images/passwordresetnotification.png" src="_images/passwordresetnotification.png" />
+<img alt="_images/passwordresetnotification2.png" src="_images/passwordresetnotification2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>You will be greeted by the reset password form. Input the following information in order to create a new password for you.</p>
-<img alt="_images/resetpasswordform.png" src="_images/resetpasswordform.png" />
+<img alt="_images/resetpasswordform2.png" src="_images/resetpasswordform2.png" />
 <p>Once you are done, you can now access your account using your new password.</p>
 <p>Login your System Admin account. Turn off the Admin and Remote Access fields in Even Demata account.</p>
 <img alt="_images/adminremoteturnedoff.png" src="_images/adminremoteturnedoff.png" />
@@ -2315,52 +2416,52 @@
 <div class="line"><br /></div>
 </div>
 <p>Logout your System Admin account and login the Even Demata account. Let’s see what happens.</p>
-<img alt="_images/dashboardmenuempty.png" src="_images/dashboardmenuempty.png" />
+<img alt="_images/dashboardmenuempty1.png" src="_images/dashboardmenuempty1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>The dashboard menu is empty. How can we get access to it at least some of them? We need to set the user permission to Even Demata account so login your System account, go to Users model, select Even Demata account then go to the User Permission tab. Afterwards, click Add New User Permission button at the right side.</p>
-<img alt="_images/addnewuserpermission.png" src="_images/addnewuserpermission.png" />
+<img alt="_images/addnewuserpermission1.png" src="_images/addnewuserpermission1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Set the Dashboard Menu to “Todos” model, User linked to “Even Demata”, and activate the “Read” only. It means Even Demata user account has restricted access to adding, editing, deleting, and approving a record in the Todos model.</p>
-<img alt="_images/userpermissionevendemata.png" class="align-center" src="_images/userpermissionevendemata.png" />
+<img alt="_images/userpermissionevendemata1.png" class="align-center" src="_images/userpermissionevendemata1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Result</p>
-<img alt="_images/userpermissionevendemataoutput.png" src="_images/userpermissionevendemataoutput.png" />
+<img alt="_images/userpermissionevendemataoutput1.png" src="_images/userpermissionevendemataoutput1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Log out your System Admin account. This time login your username and password using the user account that has user permission. Afterwards, you will see that only the Todos model is shown in the dashboard because your user account is not an admin and has no remote access to it. Now click on TODOS model.</p>
-<img alt="_images/userpermissiondashboard.png" src="_images/userpermissiondashboard.png" />
+<img alt="_images/userpermissiondashboard1.png" src="_images/userpermissiondashboard1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>As you will see, your user account is restricted to add, edit, or delete a record in the Todo model. You can only read what is inside this model.</p>
-<img alt="_images/useraddeditdeleterestricted.png" src="_images/useraddeditdeleterestricted.png" />
+<img alt="_images/useraddeditdeleterestricted1.png" src="_images/useraddeditdeleterestricted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Login your System Admin account again, go to the User Group and create a group named “Front Desk”.</p>
-<img alt="_images/usergroupcreated.png" src="_images/usergroupcreated.png" />
+<img alt="_images/usergroupcreated1.png" src="_images/usergroupcreated1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Link your created user group to Even Demata account.</p>
-<img alt="_images/useraccountfrontdesklinked.png" src="_images/useraccountfrontdesklinked.png" />
+<img alt="_images/useraccountfrontdesklinked1.png" src="_images/useraccountfrontdesklinked1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Afterwards, click the Front Desk highlighted below.</p>
-<img alt="_images/frontdeskhighlighted.png" src="_images/frontdeskhighlighted.png" />
+<img alt="_images/frontdeskhighlighted1.png" src="_images/frontdeskhighlighted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Go to the Group Permission tab. Afterwards, click Add New Group Permission button at the right side.</p>
-<img alt="_images/addnewgrouppermission.png" src="_images/addnewgrouppermission.png" />
+<img alt="_images/addnewgrouppermission2.png" src="_images/addnewgrouppermission2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -2375,12 +2476,12 @@
 <div class="line"><br /></div>
 </div>
 <p>Log out your System Admin account. This time login your username and password using the user account that has group permission. Now click on TODOS model.</p>
-<img alt="_images/userpermissiondashboard.png" src="_images/userpermissiondashboard.png" />
+<img alt="_images/userpermissiondashboard1.png" src="_images/userpermissiondashboard1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>As you will see, your user account is still restricted to add, edit, or delete a record in the Todo model even if your group permission has access to “Read” only. It’s because the user permission has no access to “Read” even if Even Demata is part of the Front Desk group. In other words, user permission prioritizes more than group permission.</p>
-<img alt="_images/useraddeditdeleterestricted.png" src="_images/useraddeditdeleterestricted.png" />
+<img alt="_images/useraddeditdeleterestricted1.png" src="_images/useraddeditdeleterestricted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -2409,7 +2510,7 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   User: even OTP: <span class="m">812567</span>
 </pre></div>
 </div>
-<img alt="_images/loginformwithotp.png" src="_images/loginformwithotp.png" />
+<img alt="_images/loginformwithotp2.png" src="_images/loginformwithotp2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -2430,19 +2531,20 @@
 </div>
 <div class="section" id="user-group">
 <h2>User Group<a class="headerlink" href="#user-group" title="Permalink to this headline">¶</a></h2>
-<p>User Group is a system in uAdmin used to add, modify, and delete the group name, the only field in this system. It has only one field: <strong>Group Name</strong>. It is useful if you want to belong a specific user to the group. If the user group has permissions, the user can access to something with some restrictions. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>User Group is a system in uAdmin used to add, modify, and delete the group name, the only field in this system. It has only one field: <strong>Group Name</strong>. It is useful if you want to belong a specific user to the group. If the user group has permissions, the user can access to something with some restrictions.</p>
 <p>Let’s create a new user group named “Front Desk”.</p>
-<img alt="_images/usergroupcreated.png" src="_images/usergroupcreated.png" />
+<img alt="_images/usergroupcreated1.png" src="_images/usergroupcreated1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Afterwards, link it to any of your existing user accounts.</p>
-<img alt="_images/useraccountfrontdesklinked.png" src="_images/useraccountfrontdesklinked.png" />
+<img alt="_images/useraccountfrontdesklinked1.png" src="_images/useraccountfrontdesklinked1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Result</p>
-<img alt="_images/frontdeskhighlighted.png" src="_images/frontdeskhighlighted.png" />
+<img alt="_images/frontdeskhighlighted1.png" src="_images/frontdeskhighlighted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -2452,8 +2554,9 @@
 </div>
 <div class="section" id="user-permission">
 <h2>User Permission<a class="headerlink" href="#user-permission" title="Permalink to this headline">¶</a></h2>
-<p>User Permission sets the permission of a user handled by an administrator. (<a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a>)</p>
-<img alt="_images/userpermissioncreated.png" src="_images/userpermissioncreated.png" />
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#">Back To Top</a></p>
+<p>User Permission sets the permission of a user handled by an administrator.</p>
+<img alt="_images/userpermissioncreated1.png" src="_images/userpermissioncreated1.png" />
 <p>Here are the following fields in this system:</p>
 <ul class="simple">
 <li><p><strong>User Permission</strong> - Returns the ID number of itself</p></li>
@@ -2466,24 +2569,24 @@
 <li><p><strong>Approval</strong> - Sets the Approval access to the user</p></li>
 </ul>
 <p>First of all, make it sure that your existing account is not an Admin (example below is Even Demata).</p>
-<img alt="_images/adminhighlighted1.png" src="_images/adminhighlighted1.png" />
+<img alt="_images/adminhighlighted3.png" src="_images/adminhighlighted3.png" />
 <p>Set the Dashboard Menu to any of your existing models (example below is Todos), link it to any of your existing accounts, and activate the “Read” only. It means Even Demata account has restricted access to adding, editing, deleting, and approving a record in the Todos model.</p>
-<img alt="_images/userpermissionevendemata.png" class="align-center" src="_images/userpermissionevendemata.png" />
+<img alt="_images/userpermissionevendemata1.png" class="align-center" src="_images/userpermissionevendemata1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Result</p>
-<img alt="_images/userpermissionevendemataoutput.png" src="_images/userpermissionevendemataoutput.png" />
+<img alt="_images/userpermissionevendemataoutput1.png" src="_images/userpermissionevendemataoutput1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Log out your System Admin account. This time login your username and password using the user account that has user permission. Afterwards, you will see that only the Todos model is shown in the dashboard because your user account is not an admin and has no remote access to it. Now click on TODOS model.</p>
-<img alt="_images/userpermissiondashboard.png" src="_images/userpermissiondashboard.png" />
+<img alt="_images/userpermissiondashboard1.png" src="_images/userpermissiondashboard1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>As you will see, your user account is restricted to add, edit, or delete a record in the Todo model. You can only read what is inside this model.</p>
-<img alt="_images/useraddeditdeleterestricted.png" src="_images/useraddeditdeleterestricted.png" />
+<img alt="_images/useraddeditdeleterestricted1.png" src="_images/useraddeditdeleterestricted1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -2508,7 +2611,7 @@
 <div class="line"><br /></div>
 </div>
 <p>Login your Even Demata account and see what happens.</p>
-<img alt="_images/dashboardmenuempty.png" src="_images/dashboardmenuempty.png" />
+<img alt="_images/dashboardmenuempty1.png" src="_images/dashboardmenuempty1.png" />
 <p>TODOS model does not show up in the dashboard. Even if you remove access to “Add”, “Edit” and “Delete” to Even Demata account, it will display the same output.</p>
 <p>Login your System Admin account. Finally, delete the User Permission in Even Demata account.</p>
 <img alt="_images/userpermissiondelete.png" src="_images/userpermissiondelete.png" />
@@ -2517,10 +2620,10 @@
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id9">1</a></span></dt>
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
 <dd><p>QuinStreet Inc. (2018). User Session. Retrieved from <a class="reference external" href="https://www.webopedia.com/TERM/U/user_session.html">https://www.webopedia.com/TERM/U/user_session.html</a></p>
 </dd>
-<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id8">2</a></span></dt>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
 <dd><p>No author (28 May 2019). Google Authenticator. Retrieved from <a class="reference external" href="https://en.wikipedia.org/wiki/Google_Authenticator">https://en.wikipedia.org/wiki/Google_Authenticator</a></p>
 </dd>
 </dl>
@@ -2540,6 +2643,7 @@
 <li class="toctree-l1"><a class="reference internal" href="application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quiz.html">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tags.html">Tag Reference</a></li>
@@ -2553,8 +2657,8 @@
   <p class="topless"><a href="quick_reference.html"
                         title="previous chapter">Quick Reference</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="tags.html"
-                        title="next chapter">Tag Reference</a></p>
+  <p class="topless"><a href="system-reference/setting.html"
+                        title="next chapter">uAdmin Settings</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -2583,17 +2687,17 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="tags.html" title="Tag Reference"
+          <a href="system-reference/setting.html" title="uAdmin Settings"
              >next</a> |</li>
         <li class="right" >
           <a href="quick_reference.html" title="Quick Reference"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

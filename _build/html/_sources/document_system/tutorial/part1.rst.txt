@@ -16,7 +16,7 @@ First of all, let's create a folder for your project and prepare it.
     [   OK   ]   Created: /home/pc_name/go/src/github.com/your_name/document_system/static
     [   OK   ]   Created: /home/pc_name/go/src/github.com/your_name/document_system/templates
 
-Use your favorite editor to create “main.go” inside that path. Put the following code in “main.go”.
+Use your favorite editor to create "main.go” inside that path. Put the following code in "main.go”.
 
 .. code-block:: go
 
@@ -27,7 +27,8 @@ Use your favorite editor to create “main.go” inside that path. Put the follo
     )
 
     func main() {
-        // Sets the name of the website that shows on title and dashboard
+        // Assign Site Name value as "Document System"
+        // NOTE: This code works only on first build.
         uadmin.SiteName = "Document System"
 
         // Activates a uAdmin server
@@ -42,7 +43,8 @@ Sample:
 .. code-block:: go
 
     func main(){
-        // Put this code before uadmin.StartServer
+        // Assign BindIP value to "127.0.0.1" in the Settings
+        // NOTE: This code works only on first build.
         uadmin.BindIP = "127.0.0.1"
     }
 
@@ -50,27 +52,22 @@ Now to run your code (Linux and Apple macOS):
 
 .. code-block:: bash
 
-    $ go build; ./document_system
-    [   OK   ]   Initializing DB: [8/8]
-    [   OK   ]   Initializing Languages: [185/185]
-    [  INFO  ]   Auto generated admin user. Username: admin, Password: admin.
-    [   OK   ]   Synching System Settings: [30/30]
-    [   OK   ]   Server Started: http://0.0.0.0:8080
-             ___       __          _
-      __  __/   | ____/ /___ ___  (_)___
-     / / / / /| |/ __  / __  __ \/ / __ \
-    / /_/ / ___ / /_/ / / / / / / / / / /
-    \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
+    go build; ./document_system
 
 In Windows:
 
 .. code-block:: bash
 
-    > go build && document_system.exe
-    [   OK   ]   Initializing DB: [8/8]
+    go build & document_system
+
+Result:
+
+.. code-block:: bash
+
+    [   OK   ]   Initializing DB: [13/13]
     [   OK   ]   Initializing Languages: [185/185]
     [  INFO  ]   Auto generated admin user. Username: admin, Password: admin.
-    [   OK   ]   Synching System Settings: [30/30]
+    [   OK   ]   Synching System Settings: [46/46]
     [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -78,9 +75,10 @@ In Windows:
     / /_/ / ___ / /_/ / / / / / / / / / /
     \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
 
-Open your browser and type the IP address above. Then login using “admin” as username and password.
+Open your browser and type the IP address above. Then login using "admin” as username and password.
 
 .. image:: assets/loginform.png
+   :align: center
 
 |
 
@@ -90,6 +88,14 @@ You will be greeted by the Document System dashboard that contains the system mo
 
 |
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will discuss about creating and registering an external models in our application.
 
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part1.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part2.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part1

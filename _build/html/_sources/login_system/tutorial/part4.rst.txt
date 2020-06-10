@@ -23,7 +23,7 @@ Go to login.go in views folder and call the login function that passes the HTTP 
         uadmin.Trail(uadmin.DEBUG, "OTP: %t", otp)
     }
 
-Now run your application and go to the login path in the address bar (e.g. http://0.0.0.0:8080/login/). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.
+Now run your application and go to the login path in the address bar (e.g. http://localhost:8080/login/). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.
 
 .. image:: assets/adminusernamepassword.png
    :align: center
@@ -71,7 +71,7 @@ Exit your application. Go to login.go in views folder and call the login2fa func
         }
     }
 
-Run your application and go to the admin path in the address bar (e.g. http://0.0.0.0:8080/admin/). Login using “admin” as username and password.
+Run your application and go to the admin path in the address bar (e.g. http://localhost:8080/admin/). Login using "admin” as username and password.
 
 .. image:: assets/loginform.png
 
@@ -120,7 +120,7 @@ Scroll down the form. There is a 2FA image to fetch the QR code which is typical
 
 If there is a problem, you may go to your terminal and check the OTP verification code for login.
 
-Now go to the login path in the address bar (e.g. http://0.0.0.0:8080/login/). Assign the username, password, and OTP password that you fetched from the 2FA image in the login form (e.g. admin, admin, 123456). Click Login button to submit.
+Now go to the login path in the address bar (e.g. http://localhost:8080/login/). Assign the username, password, and OTP password that you fetched from the 2FA image in the login form (e.g. admin, admin, 123456). Click Login button to submit.
 
 .. image:: assets/adminloginformdatatest.png
    :align: center
@@ -135,9 +135,9 @@ Check your terminal for the result.
     [  DEBUG ]   Login as: System Admin
     [  DEBUG ]   OTP: true
 
-In the `next part`_, we will talk about getting the session key if the user login is valid and setting an HTTP cookie for the user session.
+Click `here`_ to view our progress so far.
 
-Click `here`_ to view the full source code in this part.
+In the `next part`_, we will talk about getting the session key if the user login is valid and setting an HTTP cookie for the user session.
 
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part5.html
 

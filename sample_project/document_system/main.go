@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/uadmin/uadmin"
-	"github.com/uadmin/uadmin/docs/sample_project/document_system/models"
+	"github.com/uadmin/uadmin-docs/sample_project/document_system/models"
 )
 
 func main() {
@@ -27,45 +27,54 @@ func main() {
 		},
 	)
 
-	// Register DocumentVersion, DocumentGroup, and DocumentUser to Document model
+	// Register DocumentVersion, DocumentGroup, and DocumentUser to Document
+	// model
 	uadmin.RegisterInlines(
 		models.Document{},
 		map[string]string{
-			"documentversion": "DocumentID",
 			"documentgroup":   "DocumentID",
 			"documentuser":    "DocumentID",
+			"documentversion": "DocumentID",
 		},
 	)
 
 	// Initialize docS variable that calls the document model in the schema
 	docS := uadmin.Schema["document"]
 
-	// Assigns CreatedByFormFilter to the FormModifier
-	docS.FormModifier = models.CreatedByFormFilter
+	// FormModifier makes CreatedBy read only if the user is not an admin
+	// and the CreatedBy is not an empty string.
+	docS.FormModifier = func(s *uadmin.ModelSchema, m interface{}, u *uadmin.User) {
+		// Casts an interface to the Document model
+		d, _ := m.(*models.Document)
 
-	// Assigns DocumentListFilter to the ListModifier
-	docS.ListModifier = DocumentListFilter
+		// Check whether the user is not an admin and the CreatedBy Field of
+		// Document model is not an empty string
+		if !u.Admin && d.CreatedBy != "" {
+			// Set the CreatedBy Field to read only
+			s.FieldByName("CreatedBy").ReadOnly = "true"
+		}
+	}
 
-	// Pass the docS back to the schema of document model
+	// ListModifier is based on the user ID where the admin status is active
+	// or not. If the user is not an admin, he has limited access to the
+	// models and its records.
+	docS.ListModifier = func(s *uadmin.ModelSchema, u *uadmin.User) (string, []interface{}) {
+		// Checks whether the user is not an admin
+		if !u.Admin {
+			// Returns the user ID
+			return "user_id = ?", []interface{}{u.ID}
+		}
+		// Returns nothing
+		return "", []interface{}{}
+	}
+
+	// Pass back to the schema of document model
 	uadmin.Schema["document"] = docS
 
-	// Sets the name of the website that shows on title and dashboard
+	// Assign Site Name value as "Document System"
+	// NOTE: This code works only on first build.
 	uadmin.SiteName = "Document System"
-
-	// Sets a loopback IP address
-	uadmin.BindIP = "127.0.0.1"
 
 	// Activates a uAdmin server
 	uadmin.StartServer()
-}
-
-// DocumentListFilter !
-func DocumentListFilter(s *uadmin.ModelSchema, u *uadmin.User) (string, []interface{}) {
-	// Checks whether the user is not an admin
-	if !u.Admin {
-		// Returns the user ID
-		return "user_id = ?", []interface{}{u.ID}
-	}
-	// Returns nothing
-	return "", []interface{}{}
 }

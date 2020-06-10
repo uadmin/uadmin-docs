@@ -1,0 +1,1181 @@
+Log Functions
+=============
+`Back To uAdmin Functions List`_
+
+.. _Back To uAdmin Functions List: https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference
+
+In this section, we will cover the following functions in-depth listed below:
+
+* `uadmin.Action`_
+* `uadmin.APILogAdd`_
+* `uadmin.APILogDelete`_
+* `uadmin.APILogEdit`_
+* `uadmin.APILogRead`_
+* `uadmin.APILogSchema`_
+* `uadmin.Log`_
+* `uadmin.LogAdd`_
+* `uadmin.LogDelete`_
+* `uadmin.LogEdit`_
+* `uadmin.LogRead`_
+
+uadmin.Action
+-------------
+`Back To Top`_
+
+Action is the process of doing something where you can check the status of your activities in the uAdmin project.
+
+Type:
+
+.. code-block:: go
+
+    int
+
+There are 12 types of actions:
+
+* **Added** - Saved a new record
+* **Custom** - For any other action that you would like to log
+* **Deleted** - Deleted a record
+* **GetSchema** - Opened the full schema of the model
+* **LoginDenied** - User invalid login
+* **LoginSuccessful** - User login
+* **Logout** - User logout
+* **Modified** - Save an existing record
+* **PasswordResetDenied** - A password reset attempt was rejected
+* **PasswordResetRequest** - A password reset was received
+* **PasswordResetSuccessful** - A password was reset
+* **Read** - Opened a record
+
+Open "LOGS" in the uAdmin dashboard. You can see the Action field inside it as shown below.
+
+.. image:: /assets/actionhighlighted.png
+
+|
+
+Now go to the main.go. Let's add each methods of actions in the log.
+
+.. code-block:: go
+
+    func main(){
+        // Some codes
+        for i := 0; i < 12; i++ {
+            // Initialize the log model
+            log := uadmin.Log{}
+
+            // Call each methods of action based on the specific loop count
+            switch i {
+            case 0:
+                log.Action = uadmin.Action(0).Added()
+            case 1:
+                log.Action = uadmin.Action(0).Custom()
+            case 2:
+                log.Action = uadmin.Action(0).Deleted()
+            case 3:
+                log.Action = uadmin.Action(0).GetSchema()
+            case 4:
+                log.Action = uadmin.Action(0).LoginDenied()
+            case 5:
+                log.Action = uadmin.Action(0).LoginSuccessful()
+            case 6:
+                log.Action = uadmin.Action(0).Logout()
+            case 7:
+                log.Action = uadmin.Action(0).Modified()
+            case 8:
+                log.Action = uadmin.Action(0).PasswordResetDenied()
+            case 9:
+                log.Action = uadmin.Action(0).PasswordResetRequest()
+            case 10:
+                log.Action = uadmin.Action(0).PasswordResetSuccessful()
+            default:
+                log.Action = uadmin.Action(0).Read()
+            }
+
+            // Add the method to the logs
+            log.Save()
+        }
+    }
+
+Once you are done, rebuild your application. Check your "LOGS" again to see the result.
+
+.. image:: /assets/actionlist.png
+
+|
+
+As expected, all types of actions were added in the logs. Good job man!
+
+More examples of this function can be found in `uadmin.Log`_.
+
+Quiz:
+
+* `Action and Log`_
+
+uadmin.APILogAdd
+----------------
+`Back To Top`_
+
+APILogAdd controls the data API's logging for add commands.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+To assign a value within an application, visit `API Log Add`_ page for an example.
+
+.. _API Log Add: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-add
+
+To assign a value in the code, follow this approach:
+
+Prerequisites:
+
+* `Add Multiple`_
+* `Add One`_
+
+.. _Add Multiple: https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#add-multiple
+.. _Add One: https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#add-one
+
+Go to the main.go and assign the value of the API Log Add to true.
+
+.. code-block:: go
+
+    func main(){
+        uadmin.APILogAdd = true
+        // Some codes
+    }
+
+Run your application. Let's call this URL in the address bar to add multiple records in the Document model with the following information below:
+
+**First Record**
+
+* Name: Golang
+* Author: John
+
+**Second Record**
+
+* Name: uAdmin
+* Author: Adam
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    # __0 is the first index
+    # __1 is the second index
+    http://api.example.com/api/d/document/add/?_name__0=Golang&_author__0=John&_name__1=uAdmin&_author__1=Adam
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "id": [
+            1,
+            2
+        ],
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+It returns an array with a list of IDs for the newly created records.
+
+Now go back to the uAdmin dashboard. Click on "LOGS".
+
+.. image:: ../assets/logshighlighted.png
+
+|
+
+As expected, the user's action in adding records through HTTP API was recorded in the Log model.
+
+.. image:: ../system-reference/assets/apilogaddenabled.png
+
+|
+
+Exit your application. Go to the main.go and assign the value of the API Log Add to false.
+
+.. code-block:: go
+
+    func main(){
+        uadmin.APILogAdd = false
+        // Some codes
+    }
+
+Run your application. Let's call this URL to add a new record in the Document model with the following information below:
+
+* Name: Programming
+* Author: Admin
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    http://api.example.com/api/d/document/add/?_name=Programming&_author=Admin
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "id": 3,
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+It returns the ID of the newly created record.
+
+Check the "LOGS" to see the result.
+
+.. image:: ../system-reference/assets/apilogadddisabled.png
+
+|
+
+As expected, the user's action in adding a record through HTTP API was not recorded in the Log model.
+
+uadmin.APILogDelete
+-------------------
+`Back To Top`_
+
+APILogDelete controls the data API's logging for delete commands.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+To assign a value within an application, visit `API Log Delete`_ page for an example.
+
+.. _API Log Delete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-delete
+
+To assign a value in the code, follow this approach:
+
+Prerequisites:
+
+* `Delete Multiple`_
+* `Delete One`_
+
+.. _Delete Multiple: https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#delete-multiple
+.. _Delete One: https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#delete-one
+
+Go to the main.go and assign the value of the API Log Delete to true.
+
+.. code-block:: go
+
+    func main(){
+        uadmin.APILogDelete = true
+        // Some codes
+    }
+
+Run your application. Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Call this URL in the address bar to delete records where the name of an item contains "iPad".
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    http://api.example.com/api/d/item/delete/?name__contains=iPad
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 2,
+        "status": "ok",
+    }
+
+It returns the status and the rows affected by your query.
+
+Now go back to the uAdmin dashboard. Click on "LOGS".
+
+.. image:: ../assets/logshighlighted.png
+
+|
+
+As expected, the user's action in deleting records through HTTP API that contains "iPad" in the item name was recorded in the Log model.
+
+.. image:: ../system-reference/assets/apilogdeleteenabled.png
+
+|
+
+Exit your application. Go to the main.go and assign the value of the API Log Delete to false.
+
+.. code-block:: go
+
+    func main(){
+        uadmin.APILogDelete = false
+        // Some codes
+    }
+
+Run your application. Let's call this URL in the address bar to delete the fourth record in the database.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 4 is an ID number
+    http://api.example.com/api/d/item/delete/4/
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query.
+
+Check the "LOGS" to see the result.
+
+.. image:: ../system-reference/assets/apilogdeletedisabled.png
+
+|
+
+As expected, the user's action in deleting the fourth record through HTTP API was not recorded in the Log model.
+
+uadmin.APILogEdit
+-----------------
+`Back To Top`_
+
+APILogEdit controls the data API's logging for edit commands.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+To assign a value within an application, visit `API Log Edit`_ page for an example.
+
+.. _API Log Edit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-edit
+
+To assign a value in the code, follow this approach:
+
+Prerequisites:
+
+* `Edit Multiple`_
+* `Edit One`_
+
+.. _Edit Multiple: https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#edit-multiple
+.. _Edit One: https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#edit-one
+
+Go to the main.go and assign the value of the API Log Edit to true.
+
+.. code-block:: go
+
+    func main(){
+        uadmin.APILogEdit = true
+        // Some codes
+    }
+
+Run your application. Suppose you have five records in the Item model where all iPad items have a rating of 4.
+
+.. image:: assets/itemipadoldrating.png
+
+|
+
+Call this URL to edit the rating of all iPad items to a value of 5.
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    # rating=4&_rating=5 means that where rating is equal to 4, change the
+    # rating value to 5
+    http://api.example.com/api/d/item/edit/?rating=4&_rating=5
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query.
+
+Now go back to the uAdmin dashboard. Click on "LOGS".
+
+.. image:: ../assets/logshighlighted.png
+
+|
+
+As expected, the user's action in editing records through HTTP API was recorded in the Log model.
+
+.. image:: ../system-reference/assets/apilogeditenabled.png
+
+|
+
+Exit your application. Go to the main.go and assign the value of the API Log Edit to false.
+
+.. code-block:: go
+
+    func main(){
+        uadmin.APILogEdit = false
+        // Some codes
+    }
+
+Run your application. Suppose the first record in the Item model is named as "Robot".
+
+.. image:: assets/itemfirstrecordrobot.png
+
+|
+
+Call this URL to edit the name of the first record in the database from "Robot" to "Supercomputer".
+
+.. code-block:: bash
+
+    # item is a model name
+    # 1 is an ID number
+    # name is a field name
+    http://api.example.com/api/d/item/edit/1/?_name=Supercomputer
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query.
+
+Check the "LOGS" to see the result.
+
+.. image:: ../system-reference/assets/apilogeditdisabled.png
+
+|
+
+As expected, the user's action in editing the first record through HTTP API was not recorded in the Log model.
+
+uadmin.APILogRead
+-----------------
+`Back To Top`_
+
+APILogRead controls the data API's logging for read commands.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+To assign a value within an application, visit `API Log Read`_ page for an example.
+
+.. _API Log Read: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-read
+
+To assign a value in the code, follow this approach:
+
+Prerequisites:
+
+* `Read Multiple`_
+* `Read One`_
+
+.. _Read Multiple: https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#read-multiple
+.. _Read One: https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#read-one
+
+Go to the main.go and assign the value of the API Log Read to true.
+
+.. code-block:: go
+
+    func main(){
+        uadmin.APILogRead = true
+        // Some codes
+    }
+
+Run your application. Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Call this URL to read record(s) where rating is equal to 3.
+
+.. code-block:: bash
+
+    # item is a model name
+    # rating is a field name
+    http://api.example.com/api/d/item/read/?rating=3
+
+Result:
+
+.. image:: ../dapi/assets/readmultipleresult.png
+   :align: center
+
+|
+
+It returns a list of records where rating is equal to 3.
+
+Now go back to the uAdmin dashboard. Click on "LOGS".
+
+.. image:: ../assets/logshighlighted.png
+
+|
+
+As expected, the user's action in reading records through HTTP API was recorded in the Log model.
+
+.. image:: ../system-reference/assets/apilogreadenabled.png
+
+|
+
+Exit your application. Go to the main.go and assign the value of the API Log Read to false.
+
+.. code-block:: go
+
+    func main(){
+        uadmin.APILogRead = false
+        // Some codes
+    }
+
+Run your application. Call this URL to read the second record in the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 2 is an ID number
+    http://api.example.com/api/d/item/read/2/
+
+Result:
+
+.. image:: ../dapi/assets/readoneresult.png
+   :align: center
+
+|
+
+It returns a JSON object representing an item where ID=2.
+
+Check the "LOGS" to see the result.
+
+.. image:: ../system-reference/assets/apilogreaddisabled.png
+
+|
+
+As expected, the user's action in reading the second record through HTTP API was not recorded in the Log model.
+
+uadmin.APILogSchema
+-------------------
+`Back To Top`_
+
+APILogSchema controls the data API's logging for schema commands.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+To assign a value within an application, visit `API Log Schema`_ page for an example.
+
+.. _API Log Schema: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-schema
+
+To assign a value in the code, follow this approach:
+
+Prerequisite:
+
+* `Schema`_
+
+.. _Schema: https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#schema
+
+Go to the main.go and assign the value of the API Log Schema to true.
+
+.. code-block:: go
+
+    func main(){
+        uadmin.APILogSchema = true
+        // Some codes
+    }
+
+Run your application. Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Call this URL to read the full schema of the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/api/d/item/schema/
+
+Result:
+
+.. image:: ../dapi/assets/schemaresult.png
+   :align: center
+
+|
+
+It returns a JSON object representing uAdmin's ModelSchema of the Item model.
+
+Now go back to the uAdmin dashboard. Click on "LOGS".
+
+.. image:: ../assets/logshighlighted.png
+
+|
+
+As expected, the user's action in getting the schema of the Item model through HTTP API was recorded in the Log model.
+
+.. image:: ../system-reference/assets/apilogschemaenabled.png
+
+|
+
+Exit your application. Go to the main.go and assign the value of the API Log Schema to false.
+
+.. code-block:: go
+
+    func main(){
+        uadmin.APILogSchema = false
+        // Some codes
+    }
+
+Run your application. Recall this URL to read the full schema of the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/api/d/item/schema/
+
+Check the "LOGS" to see the result.
+
+.. image:: ../system-reference/assets/apilogschemadisabled.png
+
+|
+
+As expected, the user's action in getting the schema of the Item model through HTTP API was not recorded in the Log model.
+
+uadmin.Log
+----------
+`Back To Top`_
+
+Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities.
+
+Structure:
+
+.. code-block:: go
+
+    type Log struct {
+        Model
+        Username  string    `uadmin:"filter;read_only"`
+        Action    Action    `uadmin:"filter;read_only"`
+        TableName string    `uadmin:"filter;read_only"`
+        TableID   int       `uadmin:"filter;read_only"`
+        Activity  string    `uadmin:"code;read_only" gorm:"type:longtext"`
+        RollBack  string    `uadmin:"link;"`
+        CreatedAt time.Time `uadmin:"filter;read_only"`
+    }
+
+There are 12 types of actions:
+
+* **Added** - Saved a new record
+* **Custom** - For any other action that you would like to log
+* **Deleted** - Deleted a record
+* **GetSchema** - Opened the full schema of the model
+* **LoginDenied** - User invalid login
+* **LoginSuccessful** - User login
+* **Logout** - User logout
+* **Modified** - Save an existing record
+* **PasswordResetDenied** - A password reset attempt was rejected
+* **PasswordResetRequest** - A password reset was received
+* **PasswordResetSuccessful** - A password was reset
+* **Read** - Opened a record
+
+There are 5 functions that you can use in Log:
+
+**ParseRecord** - It means to analyze a record specifically. It uses this format as shown below:
+
+.. code-block:: go
+
+    func(a reflect.Value, modelName string, ID uint, user *User, action Action, r *http.Request) (err error)
+
+Parameters:
+
+* **a reflect.Value**: An interface initialized in NewModel function
+* **modelName string**: The name of the model in lowercase letters
+* **ID uint**: The ID of the model
+* **user \*User**: What account is using in the session
+* **action Action**: An activity status
+* **r \*http.Request**: A data structure that represents the client HTTP request
+
+Go to `Example #2: ParseRecord function`_ to see how ParseRecord works.
+
+**PasswordReset** - It keeps track when the user resets his password. It uses this format as shown below:
+
+.. code-block:: go
+
+    func(user string, action Action, r *http.Request) (err error)
+
+Parameters:
+
+* **user string**: An account username
+* **action Action**: An activity status
+* **r \*http.Request**: A data structure that represents the client HTTP request
+
+Go to `Example #3: PasswordReset function`_ to see how PasswordReset works.
+
+**Save()** - Saves the object in the database
+
+**SignIn** - It keeps track when the user signs in his account. It uses this format as shown below:
+
+.. code-block:: go
+
+    func(user string, action Action, r *http.Request) (err error)
+
+Parameters:
+
+* **user string**: An account username
+* **action Action**: An activity status
+* **r \*http.Request**: A data structure that represents the client HTTP request
+
+Go to `Example #4: SignIn function`_ to see how SignIn works.
+
+**String()** - Returns the Log ID
+
+Examples:
+
+* `Example #1: Assigning values in Log fields`_
+* `Example #2: ParseRecord function`_
+* `Example #3: PasswordReset function`_
+* `Example #4: SignIn function`_
+
+.. _Example #1\: Assigning values in Log fields: https://uadmin-docs.readthedocs.io/en/latest/api/log-functions/log.html#example-1-assigning-values-in-log-fields
+.. _Example #2\: ParseRecord function: https://uadmin-docs.readthedocs.io/en/latest/api/log-functions/log.html#example-2-parserecord-function
+.. _Example #3\: PasswordReset function: https://uadmin-docs.readthedocs.io/en/latest/api/log-functions/log.html#example-3-passwordreset-function
+.. _Example #4\: SignIn function: https://uadmin-docs.readthedocs.io/en/latest/api/log-functions/log.html#example-4-signin-function
+
+Page:
+
+.. toctree::
+   :maxdepth: 1
+
+   log-functions/log
+
+Quiz:
+
+* `Action and Log`_
+
+.. _Action and Log: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/action-and-log.html
+
+uadmin.LogAdd
+-------------
+`Back To Top`_
+
+LogAdd adds a log when a record is added.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+To assign a value within an application, visit `Log Add`_ page for an example.
+
+.. _Log Add: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-add
+
+To assign a value in the code, follow this approach:
+
+Go to the main.go and apply this function to "true”. Put it above the uadmin.Register.
+
+.. code-block:: go
+
+    func main() {
+        uadmin.LogAdd = true
+        uadmin.Register(
+            // Some codes
+        )
+
+Run your application and go to "LOGS" model.
+
+.. image:: assets/logshighlighted.png
+
+|
+
+Suppose that you have this record in your logs as shown below:
+
+.. image:: assets/loginitialrecord.png
+
+|
+
+Go back to uAdmin dashboard then select "TODOS".
+
+.. image:: /assets/todoshighlightedlog.png
+
+|
+
+Click "Add New Todo".
+
+.. image:: /assets/addnewtodo.png
+
+|
+
+Input the name value in the text box (e.g. Read a book). Click Save button afterwards.
+
+.. image:: /assets/readabook.png
+
+|
+
+Result
+
+.. image:: /assets/readabookoutput.png
+
+|
+
+Now go back to the "LOGS" to see the result.
+
+.. image:: /assets/logaddtrueresult.png
+
+|
+
+Exit your application for a while. Go to the main.go once again. This time, apply this function to "false".
+
+.. code-block:: go
+
+    func main() {
+        uadmin.LogAdd = false // <----
+        uadmin.Register(
+            // Some codes
+        )
+
+|
+
+Rebuild and run your application. Go to "TODOS" model and add another data inside it.
+
+.. image:: /assets/buildarobot.png
+
+|
+
+Result
+
+.. image:: /assets/buildarobotoutput.png
+
+|
+
+Now go back to the "LOGS" to see the result.
+
+.. image:: /assets/logaddfalseresult.png
+
+|
+
+As you can see, the log content remains the same. Well done!
+
+See `uadmin.LogRead`_ for the continuation.
+
+uadmin.LogDelete
+----------------
+`Back To Top`_
+
+LogAdd adds a log when a record is deleted.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+To assign a value within an application, visit `Log Delete`_ page for an example.
+
+.. _Log Delete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-delete
+
+To assign a value in the code, follow this approach:
+
+Before you proceed to this example, see `uadmin.LogEdit`_.
+
+Go to the main.go and apply the LogDelete function to "true”. Put it above the uadmin.Register.
+
+.. code-block:: go
+
+    func main() {
+        uadmin.LogAdd = false
+        uadmin.LogRead = false
+        uadmin.LogEdit = false
+        uadmin.LogDelete = true // <----
+        uadmin.Register(
+            // Some codes
+        )
+
+Run your application and go to "LOGS" model.
+
+.. image:: assets/logshighlighted.png
+
+|
+
+Suppose that you have this record in your logs as shown below:
+
+.. image:: /assets/logeditfalseresult.png
+
+|
+
+Go back to uAdmin dashboard then select "TODOS".
+
+.. image:: /assets/todoshighlightedlog.png
+
+|
+
+Select any of your existing data that you wish to delete (e.g. Washing the dishes)
+
+.. image:: /assets/washingthedishesdelete.png
+
+|
+
+Now go back to the "LOGS" to see the result.
+
+.. image:: /assets/logdeletetrueresult.png
+
+|
+
+Exit your application for a while. Go to the main.go once again. This time, apply the LogDelete function to "false".
+
+.. code-block:: go
+
+    func main() {
+        uadmin.LogAdd = false
+        uadmin.LogRead = false
+        uadmin.LogEdit = false
+        uadmin.LogDelete = false // <---
+        uadmin.Register(
+            // Some codes
+        )
+
+Rebuild and run your application. Go to "TODOS" model and delete the remaining data (e.g. Read a book).
+
+.. image:: /assets/readabookdelete.png
+
+|
+
+Now go back to the "LOGS" to see the result.
+
+.. image:: /assets/logdeletefalseresult.png
+
+|
+
+As you can see, the log content remains the same. Well done!
+
+Quiz:
+
+* `Log Permissions`_
+
+.. _Log Permissions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/log-permissions.html
+
+uadmin.LogEdit
+--------------
+`Back To Top`_
+
+LogAdd adds a log when a record is edited.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+To assign a value within an application, visit `Log Edit`_ page for an example.
+
+.. _Log Edit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-edit
+
+To assign a value in the code, follow this approach:
+
+Before you proceed to this example, see `uadmin.LogRead`_.
+
+Go to the main.go and apply the LogEdit function to "true”. Put it above the uadmin.Register.
+
+.. code-block:: go
+
+    func main() {
+        uadmin.LogAdd = false
+        uadmin.LogRead = false
+        uadmin.LogEdit = true // <----
+        uadmin.Register(
+            // Some codes
+        )
+
+Run your application and go to "LOGS" model.
+
+.. image:: assets/logshighlighted.png
+
+|
+
+Suppose that you have this record in your logs as shown below:
+
+.. image:: /assets/logreadfalseresult.png
+
+|
+
+Go back to uAdmin dashboard then select "TODOS".
+
+.. image:: /assets/todoshighlightedlog.png
+
+|
+
+Select any of your existing data (e.g. Build a robot)
+
+.. image:: /assets/todoexistingdata.png
+
+|
+
+Change it to "Assembling the CPU" for instance.
+
+.. image:: /assets/assemblingthecpu.png
+
+|
+
+Result
+
+.. image:: /assets/assemblingthecpuoutput.png
+
+|
+
+Now go back to the "LOGS" to see the result.
+
+.. image:: /assets/logedittrueresult.png
+
+|
+
+Exit your application for a while. Go to the main.go once again. This time, apply the LogEdit function to "false".
+
+.. code-block:: go
+
+    func main() {
+        uadmin.LogAdd = false
+        uadmin.LogRead = false
+        uadmin.LogEdit = false // <----
+        uadmin.Register(
+            // Some codes
+        )
+
+Rebuild and run your application. Go to "TODOS" model and modify any of your existing data (e.g. Assembling the CPU).
+
+.. image:: /assets/buildarobot.png
+
+|
+
+Change it to "Washing the dishes" for instance.
+
+.. image:: /assets/washingthedishes.png
+
+|
+
+Result
+
+.. image:: /assets/washingthedishesresult.png
+
+|
+
+Now go back to the "LOGS" to see the result.
+
+.. image:: /assets/logeditfalseresult.png
+
+|
+
+As you can see, the log content remains the same. Well done!
+
+See `uadmin.LogDelete`_ for the continuation.
+
+uadmin.LogRead
+--------------
+`Back To Top`_
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions
+
+LogRead adds a log when a record is read.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+To assign a value within an application, visit `Log Read`_ page for an example.
+
+.. _Log Read: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-read
+
+To assign a value in the code, follow this approach:
+
+Before you proceed to this example, see `uadmin.LogAdd`_.
+
+Go to the main.go and apply the LogRead function to "true”. Put it above the uadmin.Register.
+
+.. code-block:: go
+
+    func main() {
+        uadmin.LogAdd = false
+        uadmin.LogRead = true // <----
+        uadmin.Register(
+            // Some codes
+        )
+
+Run your application and go to "LOGS" model.
+
+.. image:: assets/logshighlighted.png
+
+|
+
+Suppose that you have this record in your logs as shown below:
+
+.. image:: /assets/logaddfalseresult.png
+
+|
+
+Go back to uAdmin dashboard then select "TODOS".
+
+.. image:: /assets/todoshighlightedlog.png
+
+|
+
+Select any of your existing data.
+
+.. image:: /assets/todoexistingdata.png
+
+|
+
+Result
+
+.. image:: /assets/readabook.png
+
+|
+
+Now go back to the "LOGS" to see the result.
+
+.. image:: /assets/logreadtrueresult.png
+
+|
+
+Exit your application for a while. Go to the main.go once again. This time, apply the LogRead function to "false".
+
+.. code-block:: go
+
+    func main() {
+        uadmin.LogAdd = false
+        uadmin.LogRead = false // <----
+        uadmin.Register(
+            // Some codes
+        )
+
+Rebuild and run your application. Go to "TODOS" model and add select any of your existing data.
+
+.. image:: /assets/todoexistingdata.png
+
+|
+
+Result
+
+.. image:: /assets/readabook.png
+
+|
+
+Now go back to the "LOGS" to see the result.
+
+.. image:: /assets/logreadfalseresult.png
+
+|
+
+As you can see, the log content remains the same. Well done!
+
+See `uadmin.LogEdit`_ for the continuation.

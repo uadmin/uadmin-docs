@@ -2,7 +2,7 @@ Document System Tutorial Part 15 - Schema Form Modifier
 =======================================================
 In this part, we will talk about schema form modifier based on the CreatedBy form filter that checks the admin status of the user and the CreatedBy is not an empty string. If the user is not an admin and the CreatedBy is an empty string, the CreatedBy field will set as Read Only that means it cannot be modified.
 
-Run your application then login using "johndoe" account.
+Run your application then login using **johndoe** account.
 
 .. image:: assets/johndoelogin.png
    :align: center
@@ -21,7 +21,7 @@ From here, go to your terminal. You will notice that the debug output is 2. This
 
 |
 
-In fact that "johndoe" is not an admin account, we want to set some limitations to the records that "johndoe" can do such as the CreatedBy field cannot be modified by the user.
+In fact that **johndoe** is not an admin account, we want to set some limitations to the records that **johndoe** can do such as the CreatedBy field cannot be modified by the user.
 
 .. image:: assets/createdbyadmineditable.png
 
@@ -93,14 +93,14 @@ Exit your application. Inside the main function, create a Schema Form Modifier t
     // Pass back to the schema of document model
     uadmin.Schema["document"] = docS
 
-Now run your application using "johndoe" account.
+Now run your application using **johndoe** account.
 
 .. image:: assets/johndoelogin.png
    :align: center
 
 |
 
-Click "DOCUMENTS".
+Click **DOCUMENTS**.
 
 .. image:: assets/documentsaccessdashboard.png
 
@@ -112,12 +112,20 @@ Click any existing record that you have in the Document model (e.g. Computer).
 
 |
 
-In fact that we are using "johndoe" non-admin account, the CreatedBy field is now set as Read Only that means it cannot be modified.
+In fact that we are using **johndoe** non-admin account, the CreatedBy field is now set as Read Only that means it cannot be modified.
 
 .. image:: assets/createdbyadminreadonly.png
 
 |
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will discuss about schema list modifier based on the document list filter that checks the admin status of the user. If it is not an admin, what are the models that user can access to.
 
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part15.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part16.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part15

@@ -3,15 +3,14 @@ package main
 import (
 	"net/http"
 
+	"github.com/uadmin/uadmin-docs/sample_project/todo/api"
+	"github.com/uadmin/uadmin-docs/sample_project/todo/models"
+	"github.com/uadmin/uadmin-docs/sample_project/todo/views"
+
 	"github.com/uadmin/uadmin"
-	"github.com/uadmin/uadmin/docs/sample_project/todo/api"
-	"github.com/uadmin/uadmin/docs/sample_project/todo/models"
-	"github.com/uadmin/uadmin/docs/sample_project/todo/views"
 )
 
 func main() {
-	uadmin.RootURL = "/admin/"
-	uadmin.SiteName = "Todo List"
 	uadmin.Register(
 		models.Todo{},
 		models.Category{},
@@ -29,13 +28,29 @@ func main() {
 		"Todo": "ItemID",
 	})
 
+	// Initialize Setting model
+	setting := uadmin.Setting{}
+
+	// Get the code
+	uadmin.Get(&setting, "code = ?", "uAdmin.RootURL")
+
+	// Assign the value as "/admin/"
+	setting.ParseFormValue([]string{"/admin/"})
+
+	// Save changes
+	setting.Save()
+
+	// Assign Site Name in the Settings
+	setting = uadmin.Setting{}
+	uadmin.Get(&setting, "code = ?", "uAdmin.SiteName")
+	setting.ParseFormValue([]string{"Todo List"})
+	setting.Save()
+
 	// API Handler
-	http.HandleFunc("/api/", api.APIHandler)
+	http.HandleFunc("/api/", uadmin.Handler(api.Handler))
 
-	// Views Handler
-	http.HandleFunc("/http_handler/", views.HTTPHandler)
+	// HTTP UI Handler
+	http.HandleFunc("/http_handler/", uadmin.Handler(views.HTTPHandler))
 
-	uadmin.Port = 8000
 	uadmin.StartServer()
-	// uadmin.StartSecureServer("pub.pem", "priv.pem")
 }

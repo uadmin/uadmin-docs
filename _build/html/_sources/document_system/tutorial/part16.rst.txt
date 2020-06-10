@@ -2,7 +2,7 @@ Document System Tutorial Part 16 - Schema List Modifier
 =======================================================
 In this part, we will discuss about schema list modifier based on the document list filter that checks the admin status of the user. If it is not an admin, what are the models that user can access to.
 
-First of all, run your application using "admin" account. In the Document System Dashboard, click "DOCUMENT GROUPS".
+First of all, run your application using **admin** account. In the Document System Dashboard, click **DOCUMENT GROUPS**.
 
 .. image:: assets/documentgroupshighlighted.png
 
@@ -27,7 +27,7 @@ Result
 
 |
 
-Logout your account then login "johndoe" account.
+Logout your account then login **johndoe** account.
 
 .. image:: assets/johndoelogin.png
    :align: center
@@ -103,31 +103,39 @@ Exit your application. Go to the main.go. Inside the main function, create a Sch
         return "", []interface{}{}
     }
 
-Now run your application using "johndoe" account.
+Now run your application using **johndoe** account.
 
 .. image:: assets/johndoelogin.png
    :align: center
 
 |
 
-Click "DOCUMENTS".
+Click **DOCUMENTS**.
 
 .. image:: assets/documentsaccessdashboard.png
 
 |
 
-If you notice, the Computer record created by "admin" is no longer visible because "johndoe" is not an admin and has no permission to read that record.
+If you notice, the Computer record created by **admin** is no longer visible because **johndoe** is not an admin and has no permission to read that record.
 
 .. image:: assets/documentrecordjohndoe.png
 
 |
 
-Click on "To Do List". If you notice, there is no save button on the bottom right corner of the screen because "johndoe" is part of a Developer group and has no Edit access into it.
+Click on **To Do List**. If you notice, there is no save button on the bottom right corner of the screen because **johndoe** is part of a Developer group and has no Edit access into it.
 
 .. image:: assets/todolistnoedit.png
 
 |
 
+Click `here`_ to view our progress so far.
+
 In the `last part`_ of this tutorial, we will talk about customizing your dashboard and publishing your application for the world to see.
 
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html
 .. _last part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part17.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part16

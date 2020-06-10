@@ -30,17 +30,15 @@ In this section, you can test your uAdmin skills and knowledge with various quiz
 
 **F**
 
-* `F, ModelSchema, and Schema`_
 * `Filter`_
 * `Filter Builder`_
+* `Filter List, Get Form, and Get Stringer`_
 * `Foreign Key and Register Inlines`_
 
 **G**
 
 * `Get ID and Get String`_
 * `Get Fields API and Get Models API`_
-* `Get Form, Get Stringer, and Filter List`_
-* `Get Setting, Setting and Setting Category`_
 * `Get User From Request`_
 * `Group Permission and User Group`_
 
@@ -91,7 +89,9 @@ In this section, you can test your uAdmin skills and knowledge with various quiz
 
 * `Salt`_
 * `Schema Basics`_
+* `Schema Functions`_
 * `Session`_
+* `Setting Functions`_
 
 **T**
 
@@ -118,18 +118,13 @@ In this section, you can test your uAdmin skills and knowledge with various quiz
 .. _Delete and Delete List: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/delete-and-delete-list.html
 .. _Email Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/email-functions.html
 .. _Error Handle Func: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/error-handle-func.html
-
-.. _F, ModelSchema, and Schema: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/f-modelschema-schema.html
-
 .. _Filter: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter.html
 .. _Filter Builder: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz//filter-builder.html
+.. _Filter List, Get Form, and Get Stringer: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter-list-get-form-and-stringer.html
+
 .. _Foreign Key and Register Inlines: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/foreign-key-and-register-inline.html
 .. _Get ID and Get String: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-id-and-get-string.html
-
 .. _Get Fields API and Get Models API: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-fields-api-and-get-models-api.html
-.. _Get Form, Get Stringer, and Filter List: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-form-stringer-and-filter-list.html
-.. _Get Setting, Setting and Setting Category: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-setting-category.html
-
 .. _Get User From Request: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-user-from-request.html
 .. _Group Permission and User Group: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/group-permission-and-user-group.html
 .. _IP Configuration: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/ip-configuration.html
@@ -155,7 +150,9 @@ In this section, you can test your uAdmin skills and knowledge with various quiz
 .. _Root URL and Site Name: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/root-url-and-site-name.html
 .. _Salt: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/salt.html
 .. _Schema Basics: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/schema-basics.html
+.. _Schema Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/schema-functions.html
 .. _Session: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/session.html
+.. _Setting Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/setting-functions.html
 .. _Tf and Translate: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/tf-and-translate.html
 .. _Trail: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/trail.html
 .. _Update: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/update.html

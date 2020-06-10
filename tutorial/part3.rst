@@ -1,111 +1,84 @@
-uAdmin Tutorial Part 3 - Linking Models
+uAdmin Tutorial Part 3 - Image Cropping
 =======================================
-Linking a model to another model is as simple as creating a field using a foreign key. Foreign Key is the key used to link two models together.
+In this tutorial, we will talk about cropping an image on the image type tag field in the model.
 
-**What is the purpose of the foreign key?** The purpose of the foreign key is to ensure referential integrity of the data. In other words, only values that are supposed to appear in the database are permitted.
-
-In the example below we linked the Category model into Todo model, now the Todo model will return its data as a field in the Category model.
+Create a file named **category.go**  inside the models folder with the following codes below:
 
 .. code-block:: go
 
     package models
 
     import (
-	    "time"
-	    "github.com/uadmin/uadmin"
+        "github.com/uadmin/uadmin"
     )
 
-    // Todo model ...
-    type Todo struct {
+    // Category Model !
+    type Category struct {
         uadmin.Model
-        Name        string
-        Description string   `uadmin:"html"`
-        Category    Category // <-- Category Model
-        CategoryID  uint     // <-- CategoryID
-        TargetDate  time.Time
-        Progress    int `uadmin:"progress_bar"`
+        Name string `uadmin:"required"`
+        Icon string `uadmin:"image"`
     }
 
-|
-
-Result
-
-.. image:: assets/categoryaddedintodo.png
-
-|
-
-Create a file named friend.go inside your models folder, containing the following codes below.
+Now register the model on main.go where `models` is the package name and `Category` is the model name:
 
 .. code-block:: go
 
-    package models
+	func main() {
+	    uadmin.Register(
+	        models.Todo{},
+	        models.Category{}, // <-- place it here
+	    )
+	    uadmin.StartServer()
+	}
 
-    import "github.com/uadmin/uadmin"
+Run your application. As expected, the category model is added in the uAdmin Dashboard.
 
-    // Friend model ...
-    type Friend struct {
-        uadmin.Model
-        Name     string `uadmin:"required"`
-        Email    string `uadmin:"email"`
-        Password string `uadmin:"password;list_exclude"`
-    }
-
-Now register the model on main.go where models is folder name and Friend is model/struct name:
-
-.. code-block:: go
-
-    func main() {
-        uadmin.Register(
-            models.Todo{},
-            models.Category{},
-            models.Friend{}, // <-- place it here
-        )
-        uadmin.StartServer()
-    }
-
-Set the foreign key of a Friend model to the Todo model and apply the tag "help" to show that who will be a part of your todo activity.
-
-.. code-block:: go
-
-    // Todo model ...
-    type Todo struct {
-        uadmin.Model
-        Name        string
-        Description string   `uadmin:"html"`
-        Category    Category
-        CategoryID  uint
-        Friend      Friend `uadmin:"help:Who will be a part of your activity?"` // <-- Friend Model
-        FriendID    uint    // <-- FriendID
-        TargetDate  time.Time
-        Progress    int `uadmin:"progress_bar"`
-    }
-
-As expected, the Friend model is added in the uAdmin Dashboard.
-
-.. image:: assets/friendsmodelselected.png
+.. image:: assets/categorymodelselected.png
 
 |
 
-Let's create a new data in the Friend model.
+Let's create a new record in the category model (e.g. Travel).
 
-.. image:: assets/friendsdata.png
-
-|
-
-Result
-
-.. image:: assets/friendsdataoutput.png
-
-As you can see, the password field is not shown in the output. Why? If you go back to the Friend model, the password field has the tag name "list_exclude". It means it will hide the field or column name in the model structure.
-
-Go back to your todo model and see what happens.
-
-.. image:: assets/friendsaddedintodo.png
+.. image:: assets/categorywithtagapplied.png
+   :align: center
 
 |
 
-Congrats, now you know how to link a model using a foreign key.
+As you can see, the Name field is required indicated by the * symbol. Required field cannot be an empty string. In the Icon field, you can browse an image file in .png, .jpg, .jpeg, or .gif in your computer. Save your record to see the result.
 
-In the `next part`_ we will discuss about register inlines and how to create a drop down list in the field manually.
+uAdmin allows you to crop your images. In order to do that, click the icon in the list highlighted below.
+
+.. image:: assets/traveliconhighlighted.png
+
+|
+
+Click the crop icon on the top left corner.
+
+.. image:: assets/cropiconhighlighted.png
+   :align: center
+
+.. image:: assets/croppedicon.png
+   :align: center
+
+|
+
+Once you are done, click the Crop button below and refresh the webpage to save your progress.
+
+.. image:: assets/traveliconcropped.png
+
+|
+
+Congrats, now you know how to create an image type field and crop an uploaded image inside the model.
+
+Click `here`_ to view our progress so far.
+
+In the `next part`_ we will discuss about linking models using a foreign key.
+
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part3.html
 
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part4.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part3

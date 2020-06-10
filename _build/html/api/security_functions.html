@@ -1,0 +1,899 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Security Functions &#8212; uadmin 0.4 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setting Functions" href="setting_functions.html" />
+    <link rel="prev" title="Register Functions" href="register_functions.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="setting_functions.html" title="Setting Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="register_functions.html" title="Register Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="security-functions">
+<h1>Security Functions<a class="headerlink" href="#security-functions" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
+<p>In this section, we will cover the following functions in-depth listed below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#uadmin-defaultmediapermission">uadmin.DefaultMediaPermission</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-encryptkey">uadmin.EncryptKey</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-generatebase32">uadmin.GenerateBase32</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-generatebase64">uadmin.GenerateBase64</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-grouppermission">uadmin.GroupPermission</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-otpalgorithm">uadmin.OTPAlgorithm</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-otpdigits">uadmin.OTPDigits</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-otpperiod">uadmin.OTPPeriod</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-otpskew">uadmin.OTPSkew</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-publicmedia">uadmin.PublicMedia</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-salt">uadmin.Salt</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-startsecureserver">uadmin.StartSecureServer</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-userpermission">uadmin.UserPermission</a></p></li>
+</ul>
+<div class="section" id="uadmin-defaultmediapermission">
+<h2>uadmin.DefaultMediaPermission<a class="headerlink" href="#uadmin-defaultmediapermission" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions">Back To Top</a></p>
+<p>DefaultMediaPermission is the default permission applied to files uploaded to the system.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">FileMode</span>
+</pre></div>
+</div>
+<p>A <strong>FileMode</strong> represents a file’s mode and permission bits. The bits have the same definition on all systems, so that information about files can be moved from one system to another portably. Not all bits apply to all systems. The only required bit is ModeDir for directories.</p>
+<p>In uAdmin, the default media permission is <strong>0644</strong> that means the owner has read and write access to the uploaded files while the group and others have read-only access to them.</p>
+<p>For more information on how permissions work, read <a class="reference external" href="https://en.wikipedia.org/wiki/File_system_permissions">File System Permissions</a> or <a class="reference external" href="https://help.unc.edu/help/how-to-use-unix-and-linux-file-permissions/">How to Use UNIX and Linux File Permissions</a>.</p>
+<p>Example:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;os&quot;</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// No permissions</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DefaultMediaPermission</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileMode</span><span class="p">(</span><span class="mo">0000</span><span class="p">)</span>
+
+    <span class="c1">// Read, write, &amp; execute only for owner</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DefaultMediaPermission</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileMode</span><span class="p">(</span><span class="mo">0700</span><span class="p">)</span>
+
+    <span class="c1">// Read, write, &amp; execute for owner and group</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DefaultMediaPermission</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileMode</span><span class="p">(</span><span class="mo">0700</span><span class="p">)</span>
+
+    <span class="c1">// Read, write, &amp; execute for owner, group and others</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DefaultMediaPermission</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileMode</span><span class="p">(</span><span class="mo">0777</span><span class="p">)</span>
+
+    <span class="c1">// Execute</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DefaultMediaPermission</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileMode</span><span class="p">(</span><span class="mo">0111</span><span class="p">)</span>
+
+    <span class="c1">// Write</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DefaultMediaPermission</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileMode</span><span class="p">(</span><span class="mo">0222</span><span class="p">)</span>
+
+    <span class="c1">// Write &amp; execute</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DefaultMediaPermission</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileMode</span><span class="p">(</span><span class="mo">0333</span><span class="p">)</span>
+
+    <span class="c1">// Read</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DefaultMediaPermission</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileMode</span><span class="p">(</span><span class="mo">0444</span><span class="p">)</span>
+
+    <span class="c1">// Read &amp; execute</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DefaultMediaPermission</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileMode</span><span class="p">(</span><span class="mo">0555</span><span class="p">)</span>
+
+    <span class="c1">// Read &amp; write</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DefaultMediaPermission</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileMode</span><span class="p">(</span><span class="mo">0666</span><span class="p">)</span>
+
+    <span class="c1">// Owner can read, write, &amp; execute; group can only read; others have no permissions</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DefaultMediaPermission</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileMode</span><span class="p">(</span><span class="mo">0740</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/default-media-permission.html">Default Media Permission</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-encryptkey">
+<h2>uadmin.EncryptKey<a class="headerlink" href="#uadmin-encryptkey" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions">Back To Top</a></p>
+<p>EncryptKey is a key for encryption and decryption of data in the DB.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span><span class="kt">byte</span>
+</pre></div>
+</div>
+<p>Go to the main.go and set the byte values from 0 to 255. Put it above the uadmin.Register.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">EncryptKey</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">{</span><span class="mi">34</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">23</span><span class="p">}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span>
+        <span class="c1">// Some codes</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application to create your key file then exit it.</p>
+<p>In your terminal, type <strong>cat .key</strong> to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat .key
+�!��Q�nt��Z�-���<span class="p">|</span> �9쁌<span class="o">=</span>Y�
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions-2.html">Miscellaneous Functions (2)</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-generatebase32">
+<h2>uadmin.GenerateBase32<a class="headerlink" href="#uadmin-generatebase32" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions">Back To Top</a></p>
+<p>GenerateBase32 generates a base32 string of length.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">length</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>Parameter:</p>
+<blockquote>
+<div><p><strong>length int:</strong> Is how many digits that you want to store with</p>
+</div></blockquote>
+<p>Go to the friend.go and initialize the Base32 field inside the struct. Set the tag as “read_only”.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Friend model ...</span>
+<span class="kd">type</span> <span class="nx">Friend</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>     <span class="kt">string</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">Email</span>    <span class="kt">string</span> <span class="s">`uadmin:&quot;email&quot;`</span>
+    <span class="nx">Password</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;password;list_exclude&quot;`</span>
+    <span class="nx">Base32</span>   <span class="kt">string</span> <span class="s">`uadmin:&quot;read_only&quot;`</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Apply overriding save function. Use this function to the Base32 field and set the integer value as 40.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Save !</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="o">*</span><span class="nx">Friend</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">f</span><span class="p">.</span><span class="nx">Base32</span> <span class="p">=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GenerateBase32</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application. Go to the Friend model and save any element to see the changes.</p>
+<img alt="../_images/friendbase32.png" src="../_images/friendbase32.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/friendbase32output.png" src="../_images/friendbase32output.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The Base32 value changed automatically.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-generatebase64">
+<h2>uadmin.GenerateBase64<a class="headerlink" href="#uadmin-generatebase64" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions">Back To Top</a></p>
+<p>GenerateBase64 generates a base64 string of length.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">length</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>Parameter:</p>
+<blockquote>
+<div><p><strong>length int:</strong> Is how many digits that you want to store with</p>
+</div></blockquote>
+<p>Go to the friend.go and initialize the Base64 field inside the struct. Set the tag as “read_only”.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Friend model ...</span>
+<span class="kd">type</span> <span class="nx">Friend</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>     <span class="kt">string</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">Email</span>    <span class="kt">string</span> <span class="s">`uadmin:&quot;email&quot;`</span>
+    <span class="nx">Password</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;password;list_exclude&quot;`</span>
+    <span class="nx">Base64</span>   <span class="kt">string</span> <span class="s">`uadmin:&quot;read_only&quot;`</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Apply overriding save function. Use this function to the Base64 field and set the integer value as 75.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Save !</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="o">*</span><span class="nx">Friend</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">f</span><span class="p">.</span><span class="nx">Base64</span> <span class="p">=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GenerateBase64</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application. Go to the Friend model and save any element to see the changes.</p>
+<img alt="../_images/friendbase64.png" src="../_images/friendbase64.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/friendbase64output.png" src="../_images/friendbase64output.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The Base64 value changed automatically.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-grouppermission">
+<h2>uadmin.GroupPermission<a class="headerlink" href="#uadmin-grouppermission" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions">Back To Top</a></p>
+<p>GroupPermission sets the permission of a user group handled by an administrator.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">GroupPermission</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Model</span>
+    <span class="nx">DashboardMenu</span>   <span class="nx">DashboardMenu</span> <span class="s">`uadmin:&quot;required;filter&quot;`</span>
+    <span class="nx">DashboardMenuID</span> <span class="kt">uint</span>
+    <span class="nx">UserGroup</span>       <span class="nx">UserGroup</span> <span class="s">`uadmin:&quot;required;filter&quot;`</span>
+    <span class="nx">UserGroupID</span>     <span class="kt">uint</span>
+    <span class="nx">Read</span>            <span class="kt">bool</span> <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">Add</span>             <span class="kt">bool</span> <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">Edit</span>            <span class="kt">bool</span> <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">Delete</span>          <span class="kt">bool</span> <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">Approval</span>        <span class="kt">bool</span> <span class="s">`uadmin:&quot;filter&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>There are 2 functions that you can use in GroupPermission:</p>
+<ul class="simple">
+<li><p><strong>HideInDashboard()</strong> - Return true and auto hide this from dashboard</p></li>
+<li><p><strong>String()</strong> - Returns the GroupPermission ID</p></li>
+</ul>
+<p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
+<p>One-by-one initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">grouppermission</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GroupPermission</span><span class="p">{}</span>
+    <span class="nx">grouppermission</span><span class="p">.</span><span class="nx">DashboardMenu</span> <span class="p">=</span> <span class="nx">dashboardmenu</span>
+    <span class="nx">grouppermission</span><span class="p">.</span><span class="nx">DashboardMenuID</span> <span class="p">=</span> <span class="mi">1</span>
+    <span class="nx">grouppermission</span><span class="p">.</span><span class="nx">UserGroup</span> <span class="p">=</span> <span class="nx">usergroup</span>
+    <span class="nx">grouppermission</span><span class="p">.</span><span class="nx">UserGroupID</span> <span class="p">=</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>By group initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">grouppermission</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GroupPermission</span><span class="p">{</span>
+        <span class="nx">DashboardMenu</span><span class="p">:</span> <span class="nx">dashboardmenu</span><span class="p">,</span>
+        <span class="nx">DashboardMenuID</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">UserGroup</span><span class="p">:</span> <span class="nx">usergroup</span><span class="p">,</span>
+        <span class="nx">UserGroupID</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, we will use “by group” initialization process.</p>
+<p>Suppose that Even Demata is a part of the Front Desk group.</p>
+<img alt="../_images/useraccountfrontdesk.png" src="../_images/useraccountfrontdesk.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to the main.go and apply the following codes below after the RegisterInlines section.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+
+    <span class="c1">// Some codes</span>
+
+    <span class="nx">grouppermission</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GroupPermission</span><span class="p">{</span>
+        <span class="nx">DashboardMenuID</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="c1">// Todos</span>
+        <span class="nx">UserGroupID</span><span class="p">:</span>     <span class="mi">1</span><span class="p">,</span> <span class="c1">// Front Desk</span>
+        <span class="nx">Read</span><span class="p">:</span>            <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">Add</span><span class="p">:</span>             <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">Edit</span><span class="p">:</span>            <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">Delete</span><span class="p">:</span>          <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">Approval</span><span class="p">:</span>        <span class="kc">false</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">// This will create a new group permission based on the information</span>
+    <span class="c1">// assigned in the grouppermission variable.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">grouppermission</span><span class="p">)</span>
+
+    <span class="c1">// Returns the GroupPermissionID</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;String() returns %s.&quot;</span><span class="p">,</span> <span class="nx">grouppermission</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application and see what happens.</p>
+<p><strong>Terminal</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   String<span class="o">()</span> returns <span class="m">1</span>.
+</pre></div>
+</div>
+<img alt="../_images/grouppermissioncreated.png" src="../_images/grouppermissioncreated.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Log out your System Admin account. This time login your username and password using the user account that has group permission. Afterwards, you will see that only the Todos model is shown in the dashboard because your user account is not an admin and has no remote access to it. Now click on TODOS model.</p>
+<img alt="../_images/userpermissiondashboard.png" src="../_images/userpermissiondashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As you will see, your user account is restricted to add, edit, or delete a record in the Todo model. You can only read what is inside this model.</p>
+<img alt="../_images/useraddeditdeleterestricted.png" src="../_images/useraddeditdeleterestricted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If you want to hide the Todo model in your dashboard, first of all, create a HideInDashboard() function in your todo.go inside the models folder and set the return value to “true”.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// HideInDashboard !</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">Todo</span><span class="p">)</span> <span class="nx">HideInDashboard</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now you can do something like this in main.go:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Initializes the DashboardMenu</span>
+    <span class="nx">dashboardmenu</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DashboardMenu</span><span class="p">{}</span>
+
+    <span class="c1">// Assign the grouppermission, call the HideInDashboard() function</span>
+    <span class="c1">// from todo.go, store it to the Hidden field of the dashboardmenu</span>
+    <span class="nx">dashboardmenu</span><span class="p">.</span><span class="nx">Hidden</span> <span class="p">=</span> <span class="nx">grouppermission</span><span class="p">.</span><span class="nx">HideInDashboard</span><span class="p">()</span>
+
+    <span class="c1">// Checks the Dashboard Menu ID number from the grouppermission. If it</span>
+    <span class="c1">// matches, it will update the value of the Hidden field.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">dashboardmenu</span><span class="p">,</span> <span class="s">&quot;Hidden&quot;</span><span class="p">,</span> <span class="nx">dashboardmenu</span><span class="p">.</span><span class="nx">Hidden</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="nx">grouppermission</span><span class="p">.</span><span class="nx">DashboardMenuID</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now rerun your application using the Even Demata account and see what happens.</p>
+<img alt="../_images/dashboardmenuempty.png" src="../_images/dashboardmenuempty.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The Todo model is now hidden from the dashboard. If you login your System Admin account, you will see in the Dashboard menu that the hidden field of the Todo model is set to true.</p>
+<img alt="../_images/todomodelhidden.png" src="../_images/todomodelhidden.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/group-permission-and-user-group.html">Group Permission and User Group</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-otpalgorithm">
+<h2>uadmin.OTPAlgorithm<a class="headerlink" href="#uadmin-otpalgorithm" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions">Back To Top</a></p>
+<p>OTPAlgorithm is the hashing algorithm of OTP.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+</pre></div>
+</div>
+<p>There are 3 different algorithms:</p>
+<ul class="simple">
+<li><p>sha1 (default)</p></li>
+<li><p>sha256</p></li>
+<li><p>sha512</p></li>
+</ul>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-algorithm">OTP Algorithm</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>You can apply any of these in main.go.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">OTPAlgorithm</span> <span class="p">=</span> <span class="s">&quot;sha256&quot;</span>
+
+    <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
+
+    <span class="c1">// Assign the OTP Algorithm value to 256</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.OTPAlgorithm&quot;</span><span class="p">)</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;sha256&quot;</span><span class="p">})</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+
+    <span class="c1">// OR</span>
+
+    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">OTPAlgorithm</span> <span class="p">=</span> <span class="s">&quot;sha512&quot;</span>
+
+    <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
+
+    <span class="c1">// Assign the OTP Algorithm value to 512</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.OTPAlgorithm&quot;</span><span class="p">)</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;sha512&quot;</span><span class="p">})</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/otp.html">OTP Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-otpdigits">
+<h2>uadmin.OTPDigits<a class="headerlink" href="#uadmin-otpdigits" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions">Back To Top</a></p>
+<p>OTPDigits is the number of digits for the OTP.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+</pre></div>
+</div>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-digits">OTP Digits</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>Go to the main.go and set the OTPDigits to 8.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">OTPDigits</span> <span class="p">=</span> <span class="mi">8</span>
+
+    <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
+
+    <span class="c1">// Assign the OTP Digits value to 8</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.OTPDigits&quot;</span><span class="p">)</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;8&quot;</span><span class="p">})</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application, login your account, and check your terminal afterwards to see the OTP verification code assigned by your system.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   User: admin OTP: <span class="m">90401068</span>
+</pre></div>
+</div>
+<p>As shown above, it has 8 OTP digits.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/otp.html">OTP Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-otpperiod">
+<h2>uadmin.OTPPeriod<a class="headerlink" href="#uadmin-otpperiod" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions">Back To Top</a></p>
+<p>OTPPeriod is the number of seconds for the OTP to change.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">uint</span>
+</pre></div>
+</div>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-period">OTP Period</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>Go to the main.go and set the OTPPeriod to 10 seconds.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">OTPPeriod</span> <span class="p">=</span> <span class="nb">uint</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
+
+    <span class="c1">// Assign the OTP Period value to 10</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.OTPPeriod&quot;</span><span class="p">)</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;10&quot;</span><span class="p">})</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application, login your account, and check your terminal afterwards to see how the OTP code changes every 10 seconds by refreshing your browser.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// Before refreshing your browser
+<span class="o">[</span>  INFO  <span class="o">]</span>   User: admin OTP: <span class="m">433452</span>
+
+// After refreshing your browser in more than <span class="m">10</span> seconds
+<span class="o">[</span>  INFO  <span class="o">]</span>   User: admin OTP: <span class="m">185157</span>
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/otp.html">OTP Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-otpskew">
+<h2>uadmin.OTPSkew<a class="headerlink" href="#uadmin-otpskew" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions">Back To Top</a></p>
+<p>OTPSkew is the number of minutes to search around the OTP.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">uint</span>
+</pre></div>
+</div>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-skew">OTP Skew</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>Go to the main.go and set the OTPSkew to 2 minutes.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">OTPSkew</span> <span class="p">=</span> <span class="nb">uint</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
+
+    <span class="c1">// Assign the OTP Skew value to 2</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.OTPSkew&quot;</span><span class="p">)</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;2&quot;</span><span class="p">})</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application, login your account, and check your terminal afterwards to see the OTP verification code assigned by your system. Wait for more than two minutes and check if the OTP code is still valid.</p>
+<p>After waiting for more than two minutes,</p>
+<img alt="../_images/loginformwithotp.png" src="../_images/loginformwithotp.png" />
+<p>It redirects to the same webpage which means your OTP code is no longer valid.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/otp.html">OTP Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-publicmedia">
+<h2>uadmin.PublicMedia<a class="headerlink" href="#uadmin-publicmedia" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions">Back To Top</a></p>
+<p>PublicMedia allows public access to media handler without authentication.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#public-media">Public Media</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>For instance, my account was not signed in.</p>
+<img alt="../_images/loginform.png" class="align-center" src="../_images/loginform.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>And you want to access <strong>travel.png</strong> inside your media folder.</p>
+<img alt="../_images/mediapath.png" src="../_images/mediapath.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to the main.go and apply this function as “true”.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">PublicMedia</span> <span class="p">=</span> <span class="kc">true</span>
+
+    <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
+
+    <span class="c1">// Assign the Public Media value as &quot;on&quot; to set the value as true</span>
+    <span class="c1">// in the settings</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.PublicMedia&quot;</span><span class="p">)</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;on&quot;</span><span class="p">})</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Result</p>
+<img alt="../_images/publicmediaimage.png" src="../_images/publicmediaimage.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-salt">
+<h2>uadmin.Salt<a class="headerlink" href="#uadmin-salt" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions">Back To Top</a></p>
+<p>Salt is extra salt added to password hashing.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+</pre></div>
+</div>
+<p>Go to the friend.go and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// This function hashes a password with a salt.</span>
+<span class="kd">func</span> <span class="nx">hashPass</span><span class="p">(</span><span class="nx">pass</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="c1">// Generates a random string</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Salt</span> <span class="p">=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GenerateBase64</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+
+    <span class="c1">// Combine salt and password</span>
+    <span class="nx">password</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">pass</span> <span class="o">+</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Salt</span><span class="p">)</span>
+
+    <span class="c1">// Returns the bcrypt hash of the password at the given cost</span>
+    <span class="nx">hash</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">bcrypt</span><span class="p">.</span><span class="nx">GenerateFromPassword</span><span class="p">(</span><span class="nx">password</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Returns the string of hash value</span>
+    <span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">hash</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// Save !</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="o">*</span><span class="nx">Friend</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="c1">// Calls the function of hashPass to store the value in the password</span>
+    <span class="c1">// field.</span>
+    <span class="nx">f</span><span class="p">.</span><span class="nx">Password</span> <span class="p">=</span> <span class="nx">hashPass</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Password</span><span class="p">)</span>
+
+    <span class="c1">// Override save</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now go to the Friend model and put the password as 123456. Save it and check the result.</p>
+<img alt="../_images/passwordwithsalt.png" src="../_images/passwordwithsalt.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/salt.html">Salt</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-startsecureserver">
+<h2>uadmin.StartSecureServer<a class="headerlink" href="#uadmin-startsecureserver" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions">Back To Top</a></p>
+<p>StartSecureServer is the process of activating a uAdmin server using a localhost IP or an apache with SSL security.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">certFile</span><span class="p">,</span> <span class="nx">keyFile</span> <span class="kt">string</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>certFile string:</strong> Is your public key</p>
+<p><strong>keyFile string:</strong> Is your private key</p>
+</div></blockquote>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part15.html">uAdmin Tutorial Part 15 - Advanced Security (Part 1)</a></p></li>
+</ul>
+<p>To enable SSL for your project, you need an SSL certificate. This is a two parts system with a public key and a private key. The public key is used for encryption and the private key is used for decryption. To get an SSL certificate, you can generate one using openssl which is a tool for generating self-signed SSL certificate.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl req -x509 -nodes -days <span class="m">365</span> -newkey rsa:2048 -keyout priv.pem -out pub.pem
+</pre></div>
+</div>
+<p>It will ask you for several certificate parameters but you can just press “Enter” and skip filling them for development.</p>
+<p>You can change the key size by changing 2048 to a higher value like 4096. For production, you would want to get a certificate that is not self-signed to avoid the SSL error message on the browser. For that, you can buy one from any SSL vendor or you can get a free one from <a class="reference external" href="https://letsencrypt.org/">letsencrypt.org</a> or follow the instructions in <a class="reference external" href="https://medium.com/&#64;saurabh6790/generate-wildcard-ssl-certificate-using-lets-encrypt-certbot-273e432794d7">Medium</a>.</p>
+<p>Once installed, move the <strong>pub.pem</strong> and <strong>priv.pem</strong> to your project folder.</p>
+<img alt="../_images/sslcertificate.png" src="../_images/sslcertificate.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Afterwards, go to the main.go and apply this function on the last section.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartSecureServer</span><span class="p">(</span><span class="s">&quot;pub.pem&quot;</span><span class="p">,</span> <span class="s">&quot;priv.pem&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Once you start your app, you will notice that your terminal logs are showing a message that says https instead of http:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ~/go/src/github.com/username/todo$ go build<span class="p">;</span> ./todo
+<span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Server Started: https://0.0.0.0:8000
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>Let’s use this website as an example of a secure server. Click the padlock icon at the top left section then click Certificate (Valid).</p>
+<img alt="../_images/uadminiosecure.png" src="../_images/uadminiosecure.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You will see the following information in the certificate viewer.</p>
+<img alt="../_images/certificateinfo.png" class="align-center" src="../_images/certificateinfo.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/ip-configuration.html">IP Configuration</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-userpermission">
+<h2>uadmin.UserPermission<a class="headerlink" href="#uadmin-userpermission" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions">Back To Top</a></p>
+<p>UserPermission sets the permission of a user handled by an administrator.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">UserPermission</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Model</span>
+    <span class="nx">DashboardMenu</span>   <span class="nx">DashboardMenu</span> <span class="s">`gorm:&quot;ForeignKey:DashboardMenuID&quot; required:&quot;true&quot; filter:&quot;true&quot; uadmin:&quot;filter&quot;`</span>
+    <span class="nx">DashboardMenuID</span> <span class="kt">uint</span>          <span class="s">`fk:&quot;true&quot; displayName:&quot;DashboardMenu&quot;`</span>
+    <span class="nx">User</span>            <span class="nx">User</span>          <span class="s">`gorm:&quot;ForeignKey:UserID&quot; required:&quot;true&quot; filter:&quot;true&quot; uadmin:&quot;filter&quot;`</span>
+    <span class="nx">UserID</span>          <span class="kt">uint</span>          <span class="s">`fk:&quot;true&quot; displayName:&quot;User&quot;`</span>
+    <span class="nx">Read</span>            <span class="kt">bool</span>          <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">Add</span>             <span class="kt">bool</span>          <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">Edit</span>            <span class="kt">bool</span>          <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">Delete</span>          <span class="kt">bool</span>          <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">Approval</span>        <span class="kt">bool</span>          <span class="s">`uadmin:&quot;filter&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>There are 2 functions that you can use in GroupPermission:</p>
+<ul class="simple">
+<li><p><strong>HideInDashboard()</strong> - Return true and auto hide this from dashboard</p></li>
+<li><p><strong>String()</strong> - Returns the User Permission ID</p></li>
+</ul>
+<p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
+<p>One-by-one initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">userpermission</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">UserPermission</span><span class="p">{}</span>
+    <span class="nx">userpermission</span><span class="p">.</span><span class="nx">DashboardMenu</span> <span class="p">=</span> <span class="nx">dashboardmenu</span>
+    <span class="nx">userpermission</span><span class="p">.</span><span class="nx">DashboardMenuID</span> <span class="p">=</span> <span class="mi">1</span>
+    <span class="nx">userpermission</span><span class="p">.</span><span class="nx">User</span> <span class="p">=</span> <span class="nx">user</span>
+    <span class="nx">userpermission</span><span class="p">.</span><span class="nx">UserID</span> <span class="p">=</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>By group initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">userpermission</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">UserPermission</span><span class="p">{</span>
+        <span class="nx">DashboardMenu</span><span class="p">:</span> <span class="nx">dashboardmenu</span><span class="p">,</span>
+        <span class="nx">DashboardMenuID</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">User</span><span class="p">:</span> <span class="nx">user</span><span class="p">,</span>
+        <span class="nx">UserID</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, we will use “by group” initialization process.</p>
+<p>Go to the main.go and apply the following codes below after the RegisterInlines section.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+
+    <span class="c1">// Some codes</span>
+
+    <span class="nx">userpermission</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">UserPermission</span><span class="p">{</span>
+        <span class="nx">DashboardMenuID</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>     <span class="c1">// Todos</span>
+        <span class="nx">UserID</span><span class="p">:</span>          <span class="mi">2</span><span class="p">,</span>     <span class="c1">// Even Demata</span>
+        <span class="nx">Read</span><span class="p">:</span>            <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">Add</span><span class="p">:</span>             <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">Edit</span><span class="p">:</span>            <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">Delete</span><span class="p">:</span>          <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">Approval</span><span class="p">:</span>        <span class="kc">false</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">// This will create a new user permission based on the information</span>
+    <span class="c1">// assigned in the userpermission variable.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">userpermission</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application and see what happens.</p>
+<img alt="../_images/userpermissioncreated.png" src="../_images/userpermissioncreated.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Log out your System Admin account. This time login your username and password using the user account that has user permission. Afterwards, you will see that only the Todos model is shown in the dashboard because your user account is not an admin and has no remote access to it. Now click on TODOS model.</p>
+<img alt="../_images/userpermissiondashboard.png" src="../_images/userpermissiondashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As you will see, your user account is restricted to add, edit, or delete a record in the Todo model. You can only read what is inside this model.</p>
+<img alt="../_images/useraddeditdeleterestricted.png" src="../_images/useraddeditdeleterestricted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If you want to hide the Todo model in your dashboard, first of all, create a HideInDashboard() function in your todo.go inside the models folder and set the return value to “true”.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// HideInDashboard !</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">Todo</span><span class="p">)</span> <span class="nx">HideInDashboard</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now you can do something like this in main.go:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Initializes the DashboardMenu</span>
+    <span class="nx">dashboardmenu</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DashboardMenu</span><span class="p">{}</span>
+
+    <span class="c1">// Assign the userpermission, call the HideInDashboard() function</span>
+    <span class="c1">// from todo.go, store it to the Hidden field of the dashboardmenu</span>
+    <span class="nx">dashboardmenu</span><span class="p">.</span><span class="nx">Hidden</span> <span class="p">=</span> <span class="nx">userpermission</span><span class="p">.</span><span class="nx">HideInDashboard</span><span class="p">()</span>
+
+    <span class="c1">// Checks the Dashboard Menu ID number from the userpermission. If it</span>
+    <span class="c1">// matches, it will update the value of the Hidden field.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">dashboardmenu</span><span class="p">,</span> <span class="s">&quot;Hidden&quot;</span><span class="p">,</span> <span class="nx">dashboardmenu</span><span class="p">.</span><span class="nx">Hidden</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="nx">userpermission</span><span class="p">.</span><span class="nx">DashboardMenuID</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now rerun your application using the Even Demata account and see what happens.</p>
+<img alt="../_images/dashboardmenuempty.png" src="../_images/dashboardmenuempty.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The Todo model is now hidden from the dashboard. If you login your System Admin account, you will see in the Dashboard menu that the hidden field of the Todo model is set to true.</p>
+<img alt="../_images/todomodelhidden.png" src="../_images/todomodelhidden.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/user-and-user-permission.html">User and User Permission</a></p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="register_functions.html"
+                        title="previous chapter">Register Functions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="setting_functions.html"
+                        title="next chapter">Setting Functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/security_functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="setting_functions.html" title="Setting Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="register_functions.html" title="Register Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    </div>
+  </body>
+</html>

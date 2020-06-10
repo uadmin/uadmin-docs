@@ -17,6 +17,11 @@ type DocumentGroup struct {
 	Delete     bool
 }
 
+// HideInDashboard !
+func (DocumentGroup) HideInDashboard() bool {
+	return true
+}
+
 // DocumentGroup function that returns string value
 func (d *DocumentGroup) String() string {
 
@@ -25,9 +30,4 @@ func (d *DocumentGroup) String() string {
 
 	// Returns the GroupName from the Group model
 	return d.Group.GroupName
-}
-
-// HideInDashboard !
-func (DocumentGroup) HideInDashboard() bool {
-	return true
 }

@@ -4,7 +4,7 @@ Linking a model to another model is as simple as creating a field using a foreig
 
 **What is the purpose of the foreign key?** The purpose of the foreign key is to ensure referential integrity of the data. In other words, only values that are supposed to appear in the database are permitted.
 
-Let’s create a new file in the models folder named “folder_user.go” with the following codes below:
+Let’s create a new file in the models folder named **folder_user.go** with the following codes below:
 
 .. code-block:: go
 
@@ -39,11 +39,11 @@ Let’s create a new file in the models folder named “folder_user.go” with t
 
 In the example above, we declared the User field that calls the uadmin.User. This is a built-in system model where we can access the returning data inside which is the full name. UserID field was initialized because this is where we can fetch the returning data to be stored in the User field.
 
-We also declared a Folder field that calls the model name "Folder" together with FolderID as a uint data type. This is our created model that was discussed in the previous chapter.
+We also declared a Folder field that calls the model name **Folder** together with FolderID as a uint data type. This is our created model that was discussed in the previous chapter.
 
 Let's add Read, Add, Edit, and Delete permissions to the user with the data type as bool (True or False). This is important especially if the folder contains confidential information. In this way, we cannot give access to all users who can read, add, edit, and delete the contents of the specific folder. We can give all access to the administrators. We can give access to some users but limited to what administrators can do. For instance, the administrators can read, add, edit and delete that specific folder. For some users, they can only read the folder but cannot add, edit and delete it because they have no access into it. That is how user permissions work.
 
-Let’s create another file in the models folder named “folder_group.go” with the following codes below:
+Let’s create another file in the models folder named **folder_group.go** with the following codes below:
 
 .. code-block:: go
 
@@ -103,6 +103,14 @@ Run your application. As expected, FolderGroup and FolderUser models are added i
 
 |
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will discuss about folder concepts and how to create records in an application.
 
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part3.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part4.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part3

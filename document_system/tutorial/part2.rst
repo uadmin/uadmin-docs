@@ -15,7 +15,7 @@ In this tutorial, we will create the following models listed below:
 * FolderUser
 * Folder
 
-Let’s create a new file in the models folder named “folder.go” with the following codes below:
+Let’s create a new file in the models folder named **folder.go** with the following codes below:
 
 .. code-block:: go
 
@@ -31,11 +31,6 @@ Let’s create a new file in the models folder named “folder.go” with the fo
         Name     string
         Parent   *Folder
         ParentID uint
-    }
-
-    // Returns the Name field
-    func (f Folder) String() string {
-        return f.Name
     }
 
 As you notice, the Parent field has a data type of a pointer of Folder and ParentID field of uint. This is a foreign key. It links the Parent field to the Folder model that returns the name.
@@ -55,7 +50,7 @@ Go to the main.go and register the Folder model inside by using **uadmin.Registe
 
 It is written as **models.Folder{}** because models is the folder/package name while Folder{} is the name of the model struct.
 
-Now run your application. As expected, the folder model is added in the Document System Dashboard. Click on "FOLDERS".
+Now run your application. As expected, the folder model is added in the Document System Dashboard. Click on **FOLDERS**.
 
 .. image:: assets/foldermodeladded.png
 
@@ -93,6 +88,14 @@ Result
 
 |
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will talk about linking models using a foreign key for folders.
 
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part2.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part3.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part2

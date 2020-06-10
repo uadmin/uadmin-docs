@@ -1,155 +1,104 @@
-uAdmin Tutorial Part 14 - Advanced Security (Part 2)
-====================================================
-In this part, we will discuss about password reset, hash salt, and database encryption.
+uAdmin Tutorial Part 14 - Storing the data to HTML
+==================================================
+In this part, we will discuss about fetching the records in the API and migrating the data from API to HTML that will display the records using Go template.
 
-Password Reset
-^^^^^^^^^^^^^^
-For password reset to work you need to setup an email account that will send the password reset link. Also make sure that your user has an email in the system, otherwise they will not be able to reset their password. To setup an email account, you can use your gmail account or any SMTP account. Open your main.go and add these lines of code:
+Go to **todo_view.go** inside the views folder with the following codes below:
 
 .. code-block:: go
 
-    func main(){
-        uadmin.EmailFrom = "myemail@integritynet.biz"
-        uadmin.EmailUsername = "myemail@integritynet.biz"
-        uadmin.EmailPassword = "abc123"
-        uadmin.EmailSMTPServer = "smtp.integritynet.biz"
-        uadmin.EmailSMTPServerPort = 587
+    package views
+
+    import (
+        "html/template"
+        "net/http"
+        "strings"
+
+        // Specify the username that you used inside github.com folder and
+        // import this library
+        "github.com/username/todo/models"
+        "github.com/uadmin/uadmin"
+    )
+
+    // TodoHandler !
+    func TodoHandler(w http.ResponseWriter, r *http.Request) {
+        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/todo")
+        r.URL.Path = strings.TrimSuffix(r.URL.Path, "/")
+
+        type Context struct {
+            TodoList []map[string]interface{}
+        }
+        c := Context{}
+
+        // ------------------ ADD THIS CODE ------------------
+        // Fetch Data from DB
+        todo := []models.Todo{}
+        uadmin.All(&todo)
+
+        for i := range todo {
+            // Accesses and fetches the record of the linking models in Todo
+            uadmin.Preload(&todo[i])
+
+            // Assigns the string of interface in each Todo fields
+            c.TodoList = append(c.TodoList, map[string]interface{}{
+                "ID":   todo[i].ID,
+                "Name": todo[i].Name,
+                // In fact that description has an html type tag in uAdmin,
+                // we have to convert this field from text to HTML so that
+                // the HTML tags from models will be applied to HTML file.
+                "Description": template.HTML(todo[i].Description),
+                "Category":    todo[i].Category.Name,
+                "Friend":      todo[i].Friend.Name,
+                "Item":        todo[i].Item.Name,
+                "TargetDate":  todo[i].TargetDate,
+                "Progress":    todo[i].Progress,
+            })
+        }
+        // ----------------------------------------------------
+
         // Some codes
+
     }
 
-Let’s go back to the uAdmin dashboard, go to Users model, create your own user account and set the email address based on your assigned EmailFrom in the code above.
+Now go to **templates/todo.html**. After the **<tbody>** tag, add the following codes shown below:
 
-.. image:: assets/useremailhighlighted.png
+.. code-block:: html
 
-|
+    {{range .TodoList}}
+    <tr>
+        <td>{{.Name}}</td>
+        <td>{{.Description}}</td>
+        <td>{{.Category}}</td>
+        <td>{{.Friend}}</td>
+        <td>{{.Item}}</th>
+        <td>{{.TargetDate}}</td>
+        <td>{{.Progress}}</td>
+    </tr>
+    {{end}}
 
-Log out your account. At the moment, you suddenly forgot your password. How can we retrieve our account? Click Forgot Password at the bottom of the login form.
+In Go programming language, **range** is equivalent to **for** loop.
 
-.. image:: assets/forgotpasswordhighlighted.png
+The double brackets **{{ }}** are Golang delimiter.
 
-|
+**.TodoList** is the assigned field inside the Context struct.
 
-Input your email address based on the user account you wish to retrieve it back.
+**.Name**, **Description**, **.Category**, **.Friend**, **.Item**, **.TargetDate**, **.Progress** are the fields assigned in c.TodoList.
 
-.. image:: assets/forgotpasswordinputemail.png
+Now run your application, go to http_handler/todo path and see what happens.
 
-|
-
-Once you are done, open your email account. You will receive a password reset notification from the Todo List support. To reset your password, click the link highlighted below.
-
-.. image:: assets/passwordresetnotification.png
-
-|
-
-You will be greeted by the reset password form. Input the following information in order to create a new password for you.
-
-.. image:: assets/resetpasswordform.png
-
-Once you are done, you can now access your account using your new password.
-
-Hash Salt
-^^^^^^^^^
-All user passwords are hashed in the database. That means they are encrypted using a one way encryption meaning, your system does not know any user’s password. It actually encrypts the password again using the same algorithm and compares the two “hashes”. Bcrypt adds standard salt to your password to make it even more secure.
-
-What happens when you get attacked and your database leaks into the Internet? We added one more level on security for you for this scenario. We create a file called .salt to your app’s folder which includes a 128 bytes of extra salt. This means doing any attack on your hashed passwords without knowing that long salt value is useless!
-
-What about when the worst case scenario happens and both your database and your .salt file get hacked and leaked into the Internet. What can you do now to protect your system and yours? The answer is simple: just delete or rename your .salt file and run your system again and uAdmin will generate a new .salt file and create an emergency recovery user for you. This user does not have remote access so make sure you have access to your app from the same network before deleting your .salt file.
-
-.. code-block:: bash
-
-    $ rm .salt
-    $ go build; ./todo
-    [   OK   ]   Initializing DB: [12/12]
-    [ WARNING]   Your salt file was missing, and a new one was generated NO USERS CAN LOGIN UNTIL PASSWORDS ARE RESET.
-    [  INFO  ]   uAdmin generated a recovery user for you. Username: f1d3xk3 Password: _edoOmxwqlwBWuyDrHZElpiI
-    [   OK   ]   Server Started: https://0.0.0.0:8000
-             ___       __          _
-      __  __/   | ____/ /___ ___  (_)___
-     / / / / /| |/ __  / __  __ \/ / __ \
-    / /_/ / ___ / /_/ / / / / / / / / / /
-    \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
-
-Login your account using the generated username and password.
-
-.. image:: assets/loginformgeneratedsalt.png
-   :align: center
+.. image:: assets/todohtmlresult.png
 
 |
 
-Select "USERS".
+Congrats, now you know how to set up a handler file in an organized manner, access the HTML in localhost and store the data from API to HTML using Go templates.
 
-.. image:: assets/usershighlighted.png
+Click `here`_ to view our progress so far.
 
-|
+In the `next part`_, we will talk about generating a self-signed SSL certificate using the **openssl** command and implementing two factor authentication (2FA).
 
-Click on System Recovery Admin.
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part14.html
+.. _next part: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part15.html
 
-.. image:: assets/systemrecoveryadmin.png
+.. toctree::
+   :maxdepth: 1
 
-|
-
-Let's change the Username, First Name, Last Name, and password to something like John Doe as an example. Enable the Remote Access on that user.
-
-.. image:: assets/johndoeuser.png
-
-|
-
-Logout your account then re-login to see the result.
-
-.. image:: assets/johndoelogout.png
-
-|
-
-After you log in, you should see the uAdmin Dashboard as shown below.
-
-.. image:: assets/uadmindashboard.png
-
-|
-
-Database Encryption
-^^^^^^^^^^^^^^^^^^^
-You can keep your data in the database encrypted for any field. You might do that to protect some data or to comply with standards or fulfill client’s request. Let’s encrypt the name of our Friend model. To do that, open /models/friend.go and add this tag to the Password field:
-
-.. code-block:: go
-
-    // Friend model ...
-    type Friend struct {
-        uadmin.Model
-        Name        string `uadmin:"required"`
-        Email       string `uadmin:"email"`
-        Password    string `uadmin:"password;list_exclude;encrypt"` // place it here
-        Nationality Nationality
-        Invite      string `uadmin:"link"`
-    }
-
-Rebuild your application. Notice that you have to add encrypt tag to make this field encrypted in your database. Open your application and edit that field in any friend you have and save:
-
-.. image:: assets/allendalefriend.png
-
-|
-
-Go to your project folder and open **uadmin.db**.
-
-.. image:: assets/uadmindbopen.png
-   :align: center
-
-|
-
-In Execute SQL navigation bar, type SELECT * FROM Friends command then click the right arrow symbol to execute the database. Another way is you can press F5 or Ctrl + Return.
-
-.. image:: assets/dbexecutesqlrun.png
-
-|
-
-When you check your database, you will notice that your data is encrypted there.
-
-.. image:: assets/dbexecutesqlencrypt.png
-
-|
-
-Congrats, now you know how to generate a self-signed SSL certificate, implement two factor authentication, reset your password by email, hash salt, and encrypt your database.
-
-In the `last part`_ of this tutorial, we will talk about customizing your dashboard and publishing your application for the world to see.
-
-.. _last part: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part15.html
-
+   full_code/part14

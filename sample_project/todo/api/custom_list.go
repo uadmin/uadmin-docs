@@ -2,16 +2,14 @@ package api
 
 import (
 	"net/http"
-	"strings"
 
+	// Specify the username that you used inside github.com folder
 	"github.com/uadmin/uadmin"
-	"github.com/uadmin/uadmin/docs/sample_project/todo/models"
+	"github.com/uadmin/uadmin-docs/sample_project/todo/models"
 )
 
-// CustomListHandler !
-func CustomListHandler(w http.ResponseWriter, r *http.Request) {
-	r.URL.Path = strings.TrimPrefix(r.URL.Path, "/custom_list")
-
+// CustomListAPIHandler !
+func CustomListAPIHandler(w http.ResponseWriter, r *http.Request) {
 	// Fetch Data from DB
 	todo := []models.Todo{}
 

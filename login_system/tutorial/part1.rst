@@ -16,7 +16,7 @@ First of all, let's create a folder for your project and prepare it.
     [   OK   ]   Created: /home/pc_name/go/src/github.com/your_name/login_system/static
     [   OK   ]   Created: /home/pc_name/go/src/github.com/your_name/login_system/templates
 
-Use your favorite editor to create “main.go” inside that path. Put the following code in “main.go”.
+Use your favorite editor to create "main.go" inside that path. Put the following code in "main.go".
 
 .. code-block:: go
 
@@ -27,10 +27,9 @@ Use your favorite editor to create “main.go” inside that path. Put the follo
     )
 
     func main() {
-        // The listener is mapped to /admin/ path in the URL.
+        // Assign RootURL value as "/admin/" and Site Name as "Login System"
+        // NOTE: This code works only on first build.
         uadmin.RootURL = "/admin/"
-
-        // Sets the name of the website that shows on title and dashboard
         uadmin.SiteName = "Login System"
 
         // Run the server
@@ -45,7 +44,8 @@ Sample:
 .. code-block:: go
 
     func main(){
-        // Put this code before uadmin.StartServer
+        // Assign BindIP value to "127.0.0.1" in the Settings
+        // NOTE: This code works only on first build.
         uadmin.BindIP = "127.0.0.1"
     }
 
@@ -53,27 +53,22 @@ Now to run your code (Linux and Apple macOS):
 
 .. code-block:: bash
 
-    $ go build; ./login_system
-    [   OK   ]   Initializing DB: [8/8]
-    [   OK   ]   Initializing Languages: [185/185]
-    [  INFO  ]   Auto generated admin user. Username: admin, Password: admin.
-    [   OK   ]   Synching System Settings: [30/30]
-    [   OK   ]   Server Started: http://0.0.0.0:8080
-             ___       __          _
-      __  __/   | ____/ /___ ___  (_)___
-     / / / / /| |/ __  / __  __ \/ / __ \
-    / /_/ / ___ / /_/ / / / / / / / / / /
-    \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
+    go build; ./login_system
 
 In Windows:
 
 .. code-block:: bash
 
-    > go build && login_system.exe
-    [   OK   ]   Initializing DB: [8/8]
+    go build & login_system
+
+Result:
+
+.. code-block:: bash
+
+    [   OK   ]   Initializing DB: [13/13]
     [   OK   ]   Initializing Languages: [185/185]
     [  INFO  ]   Auto generated admin user. Username: admin, Password: admin.
-    [   OK   ]   Synching System Settings: [30/30]
+    [   OK   ]   Synching System Settings: [46/46]
     [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -81,9 +76,10 @@ In Windows:
     / /_/ / ___ / /_/ / / / / / / / / / /
     \__,_/_/  |_\__,_/_/ /_/ /_/_/_/ /_/
 
-Open your browser and type the IP address above including the path that you have assigned in RootURL (e.g. http://0.0.0.0:8080/admin/). Then login using “admin” as username and password.
+Open your browser and type the IP address above including the path that you have assigned in RootURL (e.g. http://localhost:8080/admin/). Then login using "admin” as username and password.
 
 .. image:: assets/loginform.png
+   :align: center
 
 |
 
@@ -93,6 +89,14 @@ You will be greeted by the Login System dashboard that contains the system model
 
 |
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will discuss about creating a login form in HTML.
 
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part1.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part2.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part1

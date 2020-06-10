@@ -82,8 +82,10 @@ By group initialization:
         }
     }
 
-In the following examples, we will use “by group” initialization process.
+In the following examples, we will use "by group” initialization process.
 
+uadmin.Setting Examples
+^^^^^^^^^^^^^^^^^^^^^^^
 * `Example #1: Assigning values in Setting fields`_
 * `Example #2: ApplyValue function`_
 * `Example #3: GetValue function`_
@@ -91,6 +93,8 @@ In the following examples, we will use “by group” initialization process.
 
 **Example #1:** Assigning values in Setting fields
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Suppose you have a Health record in Setting Category system model that has an ID of 2.
 
 .. image:: assets/settingcategoryhealthresult.png
@@ -137,6 +141,8 @@ Result
 
 **Example #2:** ApplyValue function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Example:
 
 .. code-block:: go
@@ -155,6 +161,8 @@ Example:
 
 **Example #3:** GetValue function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Suppose you have built-in records containing uAdmin functions in the Setting model.
 
 .. image:: assets/defaultsettingrecords.png
@@ -219,6 +227,10 @@ Run your application and check the result in your terminal.
 
 **Example #4:** ParseFormValue function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/setting.html#uadmin-setting-examples
+
 **Date Time**
 
 Suppose you have this record as shown below that has an ID of 1:

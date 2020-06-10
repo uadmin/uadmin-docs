@@ -1,0 +1,19 @@
+{
+  "display_name": "Translate me ---> User Group",
+  "fields": {
+    "GroupName": {
+      "display_name": "Translate me ---> Group Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

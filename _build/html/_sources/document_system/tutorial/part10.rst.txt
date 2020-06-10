@@ -2,7 +2,7 @@ Document System Tutorial Part 10 - Group Permission
 ===================================================
 In this part, we will discuss about creating a group permission for a specific model to the user group with some access levels.
 
-First of all, run your application using an "admin" account. Let's create an access for Document model to the Developer group. In the Document System Dashboard, go to "USER GROUPS".
+First of all, run your application using an **admin** account. Let's create an access for Document model to the Developer group. In the Document System Dashboard, go to **USER GROUPS**.
 
 .. image:: assets/usergroupshighlighted.png
 
@@ -14,7 +14,7 @@ Click the existing record that you have.
 
 |
 
-Click "GROUP PERMISSION" inline.
+Click **GROUP PERMISSION** inline.
 
 .. image:: assets/grouppermissioninline.png
    :align: center
@@ -40,32 +40,32 @@ Result
 
 |
 
-Go back to the Document System Dashboard then click "USERS".
+Go back to the Document System Dashboard then click **USERS**.
 
 .. image:: assets/usershighlighted.png
 
 |
 
-As you notice, the username "johndoe" is a member of the user group "Developer". Click the profile icon on the top right corner then select "Logout".
+As you notice, the username **johndoe** is a member of the user group **Developer**. Click the profile icon on the top right corner then select **Logout**.
 
 .. image:: assets/adminlogout.png
 
 |
 
-Login your "johndoe" account.
+Login your **johndoe** account.
 
 .. image:: assets/johndoelogin.png
    :align: center
 
 |
 
-In the Document System Dashboard, only the Documents model is visible because "johndoe" user who is a part of Developer group is not an admin. The admin gives access only to the Documents model for this user. Now click on "DOCUMENTS".
+In the Document System Dashboard, only the Documents model is visible because **johndoe** user who is a part of Developer group is not an admin. The admin gives access only to the Documents model for this user. Now click on **DOCUMENTS**.
 
 .. image:: assets/documentsaccessdashboard.png
 
 |
 
-Let's add 2 records: one with the folder specified and the one without the folder specified. Click "Add New Document".
+Let's add 2 records: one with the folder specified and the one without the folder specified. Click **Add New Document**.
 
 .. image:: assets/addnewdocumentjohndoe.png
 
@@ -91,6 +91,14 @@ Result
 
 |
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will talk about setting and getting permissions for Document and Folder records.
 
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part10.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part11.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part10

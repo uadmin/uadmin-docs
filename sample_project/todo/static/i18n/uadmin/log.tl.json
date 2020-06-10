@@ -1,0 +1,61 @@
+{
+  "display_name": "Translate me ---> Log",
+  "fields": {
+    "Action": {
+      "display_name": "Translate me ---> Action",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Activity": {
+      "display_name": "Translate me ---> Activity",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "CreatedAt": {
+      "display_name": "Translate me ---> Created At",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "RollBack": {
+      "display_name": "Translate me ---> Roll Back",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "TableID": {
+      "display_name": "Translate me ---> Table ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "TableName": {
+      "display_name": "Translate me ---> Table Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Username": {
+      "display_name": "Translate me ---> Username",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

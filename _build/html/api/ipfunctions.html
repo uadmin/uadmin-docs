@@ -1,0 +1,519 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>IP Functions &#8212; uadmin 0.4 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Model Functions" href="model_functions.html" />
+    <link rel="prev" title="For Fetching Records" href="fetching_records.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="model_functions.html" title="Model Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fetching_records.html" title="For Fetching Records"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ip-functions">
+<h1>IP Functions<a class="headerlink" href="#ip-functions" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
+<p>In this section, we will cover the following functions in-depth listed below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#uadmin-allowedips">uadmin.AllowedIPs</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-bindip">uadmin.BindIP</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-blockedips">uadmin.BlockedIPs</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-checkratelimit">uadmin.CheckRateLimit</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-port">uadmin.Port</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-ratelimit">uadmin.RateLimit</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-ratelimitburst">uadmin.RateLimitBurst</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-restrictsessionip">uadmin.RestrictSessionIP</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-validateip">uadmin.ValidateIP</a></p></li>
+</ul>
+<div class="section" id="uadmin-allowedips">
+<h2>uadmin.AllowedIPs<a class="headerlink" href="#uadmin-allowedips" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#ip-functions">Back To Top</a></p>
+<p>AllowedIPs is a list of allowed IPs to access uAdmin interface in one of the following formats:</p>
+<ul class="simple">
+<li><p>"*” = Allow all</p></li>
+<li><p>"” = Allow none</p></li>
+<li><p>"192.168.1.1” = Only allow this IP</p></li>
+<li><p>"192.168.1.0/24” = Allow all IPs from 192.168.1.1 to 192.168.1.254</p></li>
+</ul>
+<p>You can also create a list of the above formats using comma to separate them.</p>
+<p>For example: "192.168.1.1, 192.168.1.2, 192.168.0.0/24”</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+</pre></div>
+</div>
+<p>For versions <strong>0.2.0 and above</strong> and <strong>Settings model is available</strong>, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#allowed-ips">Allowed IPs</a> page for an example.</p>
+<p>If <strong>Settings model is not available</strong>, follow this approach:</p>
+<p>Go to the main.go and assign your IP address connected on your PC in the AllowedIPs function.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Your IP address</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">AllowedIPs</span> <span class="p">=</span> <span class="s">&quot;192.168.1.1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/allowedipsresult.png" src="../_images/allowedipsresult.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions-3.html">Miscellaneous Functions (3)</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-bindip">
+<h2>uadmin.BindIP<a class="headerlink" href="#uadmin-bindip" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#ip-functions">Back To Top</a></p>
+<p>BindIP is the IP the application listens to.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+</pre></div>
+</div>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part1.html">Document System Tutorial Part 1 - Build A Project</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part1.html">Login System Tutorial Part 1 - Build A Project</a></p></li>
+</ul>
+<p>Go to the main.go. Connect to the server using a loopback IP address (127.x.x.x). Let’s say <strong>127.0.0.2</strong>.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">BindIP</span> <span class="p">=</span> <span class="s">&quot;127.0.0.2&quot;</span> <span class="c1">// &lt;--  place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you run your code,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">15</span>/15<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://127.0.0.2:8080
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>In the Server Started, it will redirect you to the IP address of <strong>127.0.0.2</strong>.</p>
+<p>But if you connect to other private IP addresses, it will not work as shown below (User connects to 127.0.0.3).</p>
+<img alt="../_images/bindiphighlighted.png" src="../_images/bindiphighlighted.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/ip-configuration.html">IP Configuration</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-blockedips">
+<h2>uadmin.BlockedIPs<a class="headerlink" href="#uadmin-blockedips" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#ip-functions">Back To Top</a></p>
+<p>BlockedIPs is a list of blocked IPs from accessing uAdmin interface in one of the following formats:</p>
+<ul class="simple">
+<li><p>"*” = Block all</p></li>
+<li><p>"” = Block none</p></li>
+<li><p>"192.168.1.1” = Only block this IP</p></li>
+<li><p>"192.168.1.0/24” = Block all IPs from 192.168.1.1 to 192.168.1.254</p></li>
+</ul>
+<p>You can also create a list of the above formats using comma to separate them.</p>
+<p>For example: "192.168.1.1, 192.168.1.2, 192.168.0.0/24”</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+</pre></div>
+</div>
+<p>For versions <strong>0.2.0 and above</strong> and <strong>Settings model is available</strong>, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#blocked-ips">Blocked IPs</a> page for an example.</p>
+<p>If <strong>Settings model is not available</strong>, follow this approach:</p>
+<p>Go to the main.go and assign your IP address connected on your PC in the BlockedIPs function.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Your IP address</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">BlockedIPs</span> <span class="p">=</span> <span class="s">&quot;192.168.1.1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/blockedipsresult.png" src="../_images/blockedipsresult.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions-3.html">Miscellaneous Functions (3)</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-checkratelimit">
+<h2>uadmin.CheckRateLimit<a class="headerlink" href="#uadmin-checkratelimit" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#ip-functions">Back To Top</a></p>
+<p>CheckRateLimit checks if the request has remaining quota or not. If it returns false, the IP in the request has exceeded their quota.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span>
+</pre></div>
+</div>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">Tutorial Part 7 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Create a file named check_rate_limit.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// CheckRateLimitHandler !</span>
+<span class="kd">func</span> <span class="nx">CheckRateLimitHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called /check_rate_limit</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/check_rate_limit&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Call the function to check the status of the rate limit</span>
+    <span class="nx">checkRateLimit</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">CheckRateLimit</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+
+    <span class="c1">// Print the result</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="s">&quot;Rate Limit: %t&quot;</span><span class="p">,</span> <span class="nx">checkRateLimit</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// CheckRateLimitHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/check_rate_limit/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">CheckRateLimitHandler</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while CheckRateLimitHandler is the name of the function inside check_rate_limit.go.</p>
+<p>Run your application and go to the check_rate_limit URL path in the address bar using your IP address (e.g. 0.0.0.0:8080/check_rate_limit).</p>
+<img alt="../_images/checkratelimiturl.png" class="align-center" src="../_images/checkratelimiturl.png" />
+<p>This will not display anything in the webpage but a white screen. Go to your terminal to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  DEBUG <span class="o">]</span>   Rate Limit: <span class="nb">true</span>
+</pre></div>
+</div>
+<p>It means the website is working properly. Now go to admin URL path in the address bar (e.g. 0.0.0.0:8080/admin). From uAdmin dashboard, click on "SETTINGS”.</p>
+<img alt="../_images/settingshighlighted.png" src="../_images/settingshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Change the value of either the Rate Limit or Rate Limit Burst to 0.</p>
+<img alt="../_images/ratelimitvaluehighlighted.png" src="../_images/ratelimitvaluehighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Slow down. You are going too fast!
+</pre></div>
+</div>
+<p>Now go to check_rate_limit URL path in the address bar (e.g. 0.0.0.0:8080/check_rate_limit).</p>
+<img alt="../_images/checkratelimiturl.png" class="align-center" src="../_images/checkratelimiturl.png" />
+<p>This will not display anything in the webpage but a white screen. Go to your terminal to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  DEBUG <span class="o">]</span>   Rate Limit: <span class="nb">false</span>
+</pre></div>
+</div>
+<p>It means the website is crashing. In order to work, either delete the uadmin.db file on your project folder or apply the method shown in <a class="reference internal" href="#uadmin-ratelimit">uadmin.RateLimit</a> or <a class="reference internal" href="#uadmin-ratelimitburst">uadmin.RateLimitBurst</a> where the value is higher than zero.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/rate-limit-functions.html">Rate Limit Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-port">
+<h2>uadmin.Port<a class="headerlink" href="#uadmin-port" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#ip-functions">Back To Top</a></p>
+<p>Port is the port used for http or https server.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+</pre></div>
+</div>
+<p>For versions <strong>0.2.0 and above</strong> and <strong>Settings model is available</strong>, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#port">Port</a> page for an example.</p>
+<p>For versions <strong>below than 0.2.0</strong> or <strong>Settings model is not available</strong>, follow this approach:</p>
+<p>Go to the main.go in your Todo list project and apply <strong>8000</strong> as a port number.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Port</span> <span class="p">=</span> <span class="mi">8000</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you run your code,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">15</span>/15<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8000
+         ___       __          _
+  __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
+ / / / / /<span class="p">|</span> <span class="p">|</span>/ __  / __  __ <span class="se">\/</span> / __ <span class="se">\</span>
+/ /_/ / ___ / /_/ / / / / / / / / / /
+<span class="se">\_</span>_,_/_/  <span class="p">|</span>_<span class="se">\_</span>_,_/_/ /_/ /_/_/_/ /_/
+</pre></div>
+</div>
+<p>In the Server Started, it will redirect you to port number <strong>8000</strong>.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/ip-configuration.html">IP Configuration</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-ratelimit">
+<h2>uadmin.RateLimit<a class="headerlink" href="#uadmin-ratelimit" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#ip-functions">Back To Top</a></p>
+<p>RateLimit is the maximum number of requests/second for any unique IP.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int64</span>
+</pre></div>
+</div>
+<p>For versions <strong>0.2.0 and above</strong> and <strong>Settings model is available</strong>, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#rate-limit">Rate Limit</a> page for an example.</p>
+<p>If <strong>Settings model is not available</strong>, follow this approach:</p>
+<p>Go to the main.go and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Assign the rate limit to 1</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RateLimit</span> <span class="p">=</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. From uAdmin dashboard, hold the Ctrl Key on your keyboard then click any dashboard menu in the form really fast to add in a new tab and see what happens.</p>
+<img alt="../_images/ratelimithighlighttab.png" src="../_images/ratelimithighlighttab.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The title bar name looks different in the last two tabs. Click any of them to see the result.</p>
+<img alt="../_images/ratelimitresult.png" src="../_images/ratelimitresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The website is crashed as expected. In fact that our rate limit is 1, it might take a long time to bring the website back to normal. To increase the recovery rate, adjust the rate limit to a higher value (e.g. 100).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">RateLimit</span> <span class="p">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>Run your application again and do the same process as shown above. Afterwards, click any button in the form and you will see that the website is back to normal much faster.</p>
+<img alt="../_images/websitebacktonormal.png" src="../_images/websitebacktonormal.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/rate-limit-functions.html">Rate Limit Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-ratelimitburst">
+<h2>uadmin.RateLimitBurst<a class="headerlink" href="#uadmin-ratelimitburst" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#ip-functions">Back To Top</a></p>
+<p>RateLimitBurst is the maximum number of requests for an idle user.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int64</span>
+</pre></div>
+</div>
+<p>For versions <strong>0.2.0 and above</strong> and <strong>Settings model is available</strong>, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#rate-limit-burst">Rate Limit Burst</a> page for an example.</p>
+<p>If <strong>Settings model is not available</strong>, follow this approach:</p>
+<p>Go to the main.go and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Assign the rate limit burst to 3</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RateLimitBurst</span> <span class="p">=</span> <span class="mi">3</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. From uAdmin dashboard, hold the Ctrl Key on your keyboard then click any dashboard menu in the form really fast to add in a new tab and see what happens.</p>
+<img alt="../_images/ratelimithighlighttab.png" src="../_images/ratelimithighlighttab.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The title bar name looks different in the last two tabs. Click any of them to see the result.</p>
+<img alt="../_images/ratelimitresult.png" src="../_images/ratelimitresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The website is crashed because our request exceeds the limit that we have assigned.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/rate-limit-functions.html">Rate Limit Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-restrictsessionip">
+<h2>uadmin.RestrictSessionIP<a class="headerlink" href="#uadmin-restrictsessionip" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#ip-functions">Back To Top</a></p>
+<p>RestrictSessionIP is to block access of a user if their IP changes from their original IP during login.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+<p>For versions <strong>0.2.0 and above</strong> and <strong>Settings model is available</strong>, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#restrict-session-ip">Restrict Session IP</a> page for an example.</p>
+<p>If <strong>Settings model is not available</strong>, follow this approach:</p>
+<p>Example:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Block access of a user</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RestrictSessionIP</span> <span class="p">=</span> <span class="kc">true</span>
+
+    <span class="c1">// Allow access of a user</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RestrictSessionIP</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions-3.html">Miscellaneous Functions (3)</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-validateip">
+<h2>uadmin.ValidateIP<a class="headerlink" href="#uadmin-validateip" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#ip-functions">Back To Top</a></p>
+<p>ValidateIP is a function to check if the IP in the request is allowed in the allowed based on allowed and block strings.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">allow</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">block</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span>
+</pre></div>
+</div>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">Tutorial Part 7 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Create a file named validation_ip.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// ValidateAPIHandler !</span>
+<span class="kd">func</span> <span class="nx">ValidateAPIHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called /validate_ip</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/validate_ip&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Allowed IP - 192.168.1.1 (Your IP address)</span>
+    <span class="c1">// Blocked IP - 192.168.1.2 (IP that was binded from other PC)</span>
+    <span class="nx">validateIP</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ValidateIP</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="s">&quot;192.168.1.1&quot;</span><span class="p">,</span> <span class="s">&quot;192.168.1.2&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Print the result</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="s">&quot;Validate IP: %t&quot;</span><span class="p">,</span> <span class="nx">validateIP</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// ValidateAPIHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/validate_ip/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">ValidateAPIHandler</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while ValidateAPIHandler is the name of the function inside validation_ip.go.</p>
+<p>Run your application and go to the validate_ip URL path in the address bar using your IP address (e.g. 192.168.1.1:8080/validate_ip).</p>
+<img alt="../_images/validateipallow.png" class="align-center" src="../_images/validateipallow.png" />
+<p>This will not display anything in the webpage but a white screen. Go to your terminal to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  DEBUG <span class="o">]</span>   Validate IP: <span class="nb">true</span>
+</pre></div>
+</div>
+<p>Now go to the validate_ip URL path in the address bar using the binded IP (e.g. 192.168.1.2:8080/validate_ip). Make sure that the IP from other PC is binded to your computer. Otherwise, it will not work.</p>
+<img alt="../_images/validateipblock.png" class="align-center" src="../_images/validateipblock.png" />
+<p>This will not display anything in the webpage but a white screen. Go to your terminal to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  DEBUG <span class="o">]</span>   Validate IP: <span class="nb">false</span>
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions-3.html">Miscellaneous Functions (3)</a></p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="fetching_records.html"
+                        title="previous chapter">For Fetching Records</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="model_functions.html"
+                        title="next chapter">Model Functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/ip_functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="model_functions.html" title="Model Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fetching_records.html" title="For Fetching Records"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "display_name": "Translate me ---> Friend",
+  "fields": {
+    "Email": {
+      "display_name": "Translate me ---> Email",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Invite": {
+      "display_name": "Translate me ---> Invite",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Name": {
+      "display_name": "Translate me ---> Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Nationality": {
+      "display_name": "Translate me ---> Nationality",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Password": {
+      "display_name": "Translate me ---> Password",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

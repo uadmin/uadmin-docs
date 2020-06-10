@@ -2,7 +2,7 @@ Document System Tutorial Part 12 - Custom Count function
 ========================================================
 In this part, we will discuss about creating a custom Count function that checks the query and the UserID.
 
-Go to document.go inside the models folder and create a function named **Count** that holds a, query, and args as an array of interface. args... means you can assign multiple values inside the function parameters.
+Go to **document.go** inside the models folder and create a function named **Count** that holds a, query, and args as an array of interface. args... means you can assign multiple values inside the function parameters.
 
 .. code-block:: go
 
@@ -79,13 +79,12 @@ Outside the strings.Contains(Q, "user_id = ?") if statement, return the a, query
     // Return the a, query, and args... inside the Count function parameters
     return uadmin.Count(a, query, args...)
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will talk about creating a custom AdminPage function that checks the query and the UserID.
 
-Click `here`_ to view the full source code in this part.
-
-.. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part13.html
-
 .. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part12.html
+.. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part13.html
 
 .. toctree::
    :maxdepth: 1

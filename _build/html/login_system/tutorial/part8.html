@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Login System Tutorial Part 8 - Webpage Manipulation &#8212; uadmin 0.3 documentation</title>
+    <title>Login System Tutorial Part 8 - Webpage Manipulation &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="../../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
@@ -18,8 +18,8 @@
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Login System Tutorial Part 8 - Webpage Manipulation (Full Source Code)" href="full_code/part8.html" />
-    <link rel="prev" title="Login System Tutorial Part 7 - Logout (Full Source Code)" href="full_code/part7.html" />
+    <link rel="next" title="Login System Tutorial Part 8 - Webpage Manipulation (Current Progress)" href="full_code/part8.html" />
+    <link rel="prev" title="Login System Tutorial Part 7 - Logout (Current Progress)" href="full_code/part7.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -35,13 +35,13 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="full_code/part8.html" title="Login System Tutorial Part 8 - Webpage Manipulation (Full Source Code)"
+          <a href="full_code/part8.html" title="Login System Tutorial Part 8 - Webpage Manipulation (Current Progress)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="full_code/part7.html" title="Login System Tutorial Part 7 - Logout (Full Source Code)"
+          <a href="full_code/part7.html" title="Login System Tutorial Part 7 - Logout (Current Progress)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.3 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../coverage.html" accesskey="U">Login System Tutorials</a> &#187;</li> 
       </ul>
     </div>  
@@ -54,7 +54,7 @@
   <div class="section" id="login-system-tutorial-part-8-webpage-manipulation">
 <h1>Login System Tutorial Part 8 - Webpage Manipulation<a class="headerlink" href="#login-system-tutorial-part-8-webpage-manipulation" title="Permalink to this headline">¶</a></h1>
 <p>In this tutorial, we will discuss about reading a cookie and getting the user from the model based on the value of the cookie to ensure that the user is active.</p>
-<p>First of all, run your application. Go to the login path in the address bar (e.g. <a class="reference external" href="http://0.0.0.0:8080/login/">http://0.0.0.0:8080/login/</a>). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.</p>
+<p>First of all, run your application. Go to the login path in the address bar (e.g. <a class="reference external" href="http://localhost:8080/login/">http://localhost:8080/login/</a>). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.</p>
 <img alt="../../_images/adminusernamepassword.png" class="align-center" src="../../_images/adminusernamepassword.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -82,7 +82,7 @@
 <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="s">&quot;Cookie: %v&quot;</span><span class="p">,</span> <span class="nx">cookie</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Run your application. Go to the login path in the address bar (e.g. <a class="reference external" href="http://0.0.0.0:8080/login/">http://0.0.0.0:8080/login/</a>). Check your terminal for the result.</p>
+<p>Run your application. Go to the login path in the address bar (e.g. <a class="reference external" href="http://localhost:8080/login/">http://localhost:8080/login/</a>). Check your terminal for the result.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  DEBUG <span class="o">]</span>   Cookie: <span class="nv">user_session</span><span class="o">=</span><span class="m">1</span>
 </pre></div>
 </div>
@@ -105,7 +105,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Now run your application. Go to the login path in the address bar (e.g. <a class="reference external" href="http://0.0.0.0:8080/login/">http://0.0.0.0:8080/login/</a>). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.</p>
+<p>Now run your application. Go to the login path in the address bar (e.g. <a class="reference external" href="http://localhost:8080/login/">http://localhost:8080/login/</a>). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.</p>
 <img alt="../../_images/adminusernamepassword.png" class="align-center" src="../../_images/adminusernamepassword.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -144,10 +144,10 @@
 <li><p>Deleting the cookie</p></li>
 <li><p>Maintaining the webpage based on the user login status</p></li>
 </ul>
-<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part8.html">here</a> to view the full source code in this part.</p>
+<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part8.html">here</a> to view the full progress of this application.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="full_code/part8.html">Login System Tutorial Part 8 - Webpage Manipulation (Full Source Code)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="full_code/part8.html">Login System Tutorial Part 8 - Webpage Manipulation (Current Progress)</a></li>
 </ul>
 </div>
 <p>If you want to learn more and discover about the concepts of uAdmin, you may go to these references with examples:</p>
@@ -169,9 +169,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../coverage.html">uAdmin Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quiz.html">uAdmin Quizzes</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tags.html">Tag Reference</a></li>
@@ -183,10 +184,10 @@
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="full_code/part7.html"
-                        title="previous chapter">Login System Tutorial Part 7 - Logout (Full Source Code)</a></p>
+                        title="previous chapter">Login System Tutorial Part 7 - Logout (Current Progress)</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="full_code/part8.html"
-                        title="next chapter">Login System Tutorial Part 8 - Webpage Manipulation (Full Source Code)</a></p>
+                        title="next chapter">Login System Tutorial Part 8 - Webpage Manipulation (Current Progress)</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -215,19 +216,19 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="full_code/part8.html" title="Login System Tutorial Part 8 - Webpage Manipulation (Full Source Code)"
+          <a href="full_code/part8.html" title="Login System Tutorial Part 8 - Webpage Manipulation (Current Progress)"
              >next</a> |</li>
         <li class="right" >
-          <a href="full_code/part7.html" title="Login System Tutorial Part 7 - Logout (Full Source Code)"
+          <a href="full_code/part7.html" title="Login System Tutorial Part 7 - Logout (Current Progress)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.3 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../coverage.html" >Login System Tutorials</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

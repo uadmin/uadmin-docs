@@ -1,0 +1,899 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>uadmin.ABTest &#8212; uadmin 0.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Approval Functions" href="../approval_functions.html" />
+    <link rel="prev" title="A/B Test Functions" href="../ab_test_functions.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../approval_functions.html" title="Approval Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../ab_test_functions.html" title="A/B Test Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../ab_test_functions.html" accesskey="U">A/B Test Functions</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="uadmin-abtest">
+<h1>uadmin.ABTest<a class="headerlink" href="#uadmin-abtest" title="Permalink to this headline">¶</a></h1>
+<p>ABTest is a model that stores an A/B test.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">ABTest</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Model</span>
+    <span class="nx">Name</span>       <span class="kt">string</span>   <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">Type</span>       <span class="nx">ABTestType</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">StaticPath</span> <span class="kt">string</span>
+    <span class="nx">ModelName</span>  <span class="nx">ModelList</span>
+    <span class="nx">Field</span>      <span class="nx">FieldList</span>
+    <span class="nx">PrimaryKey</span> <span class="kt">int</span>
+    <span class="nx">Active</span>     <span class="kt">bool</span>
+    <span class="nx">Group</span>      <span class="kt">string</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here are the following fields and their definitions:</p>
+<ul class="simple">
+<li><p><strong>Name</strong> - The name of the A/B Test</p></li>
+<li><p><strong>Type</strong> - A list of test types from a dropdown menu</p></li>
+<li><p><strong>StaticPath</strong> - The path assigned in the static</p></li>
+<li><p><strong>ModelName</strong> - A list of registered models</p></li>
+<li><p><strong>Field</strong> - A list of fields from schema for a registered model</p></li>
+<li><p><strong>PrimaryKey</strong> - Used to uniquely identify each row in the table</p></li>
+<li><p><strong>Active</strong> - Checks whether the A/B Test is Active</p></li>
+<li><p><strong>Group</strong> - The name of the group</p></li>
+</ul>
+<p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
+<p>One-by-one initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">abtest</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTest</span><span class="p">{}</span>
+    <span class="nx">abtest</span><span class="p">.</span><span class="nx">Name</span> <span class="p">=</span> <span class="s">&quot;Name&quot;</span>
+    <span class="nx">abtest</span><span class="p">.</span><span class="nx">Type</span> <span class="p">=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Static</span><span class="p">()</span>
+    <span class="nx">abtest</span><span class="p">.</span><span class="nx">StaticPath</span> <span class="p">=</span> <span class="s">&quot;Static Path&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>By group initialization:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+    <span class="nx">abtest</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTest</span><span class="p">{</span>
+        <span class="nx">Name</span><span class="p">:</span>       <span class="s">&quot;Name&quot;</span><span class="p">,</span>
+        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Static</span><span class="p">(),</span>
+        <span class="nx">StaticPath</span><span class="p">:</span> <span class="s">&quot;Static Path&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the following examples, we will use “by group” initialization process.</p>
+<div class="section" id="uadmin-abtest-examples">
+<h2>uadmin.ABTest Examples<a class="headerlink" href="#uadmin-abtest-examples" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference internal" href="#example-1-static">Example #1: Static</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#part-1-html-template">Part 1: HTML Template</a></p></li>
+<li><p><a class="reference internal" href="#part-2-static-handler">Part 2: Static Handler</a></p></li>
+<li><p><a class="reference internal" href="#part-3-a-b-test-function-for-static">Part 3: A/B Test Function for Static</a></p></li>
+<li><p><a class="reference internal" href="#part-4-a-b-test-value-function-for-static">Part 4: A/B Test Value Function for Static</a></p></li>
+<li><p><a class="reference internal" href="#part-5-image-testing">Part 5: Image Testing</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#example-2-model">Example #2: Model</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#part-1-campaign-info-model">Part 1: Campaign Info Model</a></p></li>
+<li><p><a class="reference internal" href="#part-2-a-b-test-function-for-model">Part 2: A/B Test Function for Model</a></p></li>
+<li><p><a class="reference internal" href="#part-3-a-b-test-value-function-for-model">Part 3: A/B Test Value Function for Model</a></p></li>
+<li><p><a class="reference internal" href="#part-4-api-click-handler">Part 4: API Click Handler</a></p></li>
+<li><p><a class="reference internal" href="#part-5-get-a-b-test">Part 5: Get A/B Test</a></p></li>
+<li><p><a class="reference internal" href="#part-6-button-testing">Part 6: Button Testing</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="example-1-static">
+<h2>Example #1: Static<a class="headerlink" href="#example-1-static" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="part-1-html-template">
+<h3><strong>Part 1:</strong> HTML Template<a class="headerlink" href="#part-1-html-template" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p>Before you proceed, make sure you have at least the basic knowledge of HTML. If you are not familiar with HTML, we advise you to go over <a class="reference external" href="https://www.w3schools.com/">W3Schools</a>.</p>
+<p>In this tutorial, we will use Bootstrap 4. For the tutorials, click <a class="reference external" href="https://www.w3schools.com/bootstrap4/default.asp">here</a>.</p>
+<p>First of all, go to your project folder and select templates.</p>
+<img alt="../../_images/templatesfolderhighlighted.png" class="align-center" src="../../_images/templatesfolderhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Inside the templates folder, create a new file named <strong>index.html</strong>.</p>
+<img alt="../../_images/indexhtmlcreate.png" class="align-center" src="../../_images/indexhtmlcreate.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Inside the index.html, create an HTML5 structure following the codes below and change the title from Document to Campaign.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;ie=edge&quot;</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Latest compiled and minified CSS --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Campaign<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container-fluid&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Campaign<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- jQuery library --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Popper JS --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Latest compiled JavaScript --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Save the file. Afterwards, go back to your project folder then select views.</p>
+<img alt="../../_images/viewsfolderhighlighted.png" class="align-center" src="../../_images/viewsfolderhighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Inside the views folder, create a new file named <strong>campaign.go</strong>.</p>
+<img alt="../../_images/campaigngofile.png" class="align-center" src="../../_images/campaigngofile.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Inside the campaign.go, apply the following codes below to access the HTML file in the server.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">views</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// CampaignHandler !</span>
+<span class="kd">func</span> <span class="nx">CampaignHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Access HTML file</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RenderHTML</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="s">&quot;templates/index.html&quot;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the views by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/campaign/views&quot;</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Campaign Handler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/campaign/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">views</span><span class="p">.</span><span class="nx">CampaignHandler</span><span class="p">))</span>
+
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application and go to /campaign/ path in the address bar (e.g. <a class="reference external" href="http://0.0.0.0:8080/campaign/">http://0.0.0.0:8080/campaign/</a>). You should see this result.</p>
+<img alt="../../_images/campaignfirstopen.png" class="align-center" src="../../_images/campaignfirstopen.png" />
+</div>
+<div class="section" id="part-2-static-handler">
+<h3><strong>Part 2:</strong> Static Handler<a class="headerlink" href="#part-2-static-handler" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p>Create a new folder named “campaign-ui” in the project directory.</p>
+<img alt="../../_images/campaignuifolder.png" class="align-center" src="../../_images/campaignuifolder.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Search for any images on the Internet. In this example, we will use Donate and Contribute images.</p>
+<img alt="../../_images/contributedonateimages.png" src="../../_images/contributedonateimages.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Establish a StaticHandler connection in the main.go by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/campaign/views&quot;</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// StaticHandler is a function that serves static files.</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/campaign-ui/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">StaticHandler</span><span class="p">))</span>
+
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="part-3-a-b-test-function-for-static">
+<h3><strong>Part 3:</strong> A/B Test Function for Static<a class="headerlink" href="#part-3-a-b-test-function-for-static" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p>Let’s create an A/B test for images in main.go.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/campaign/views&quot;</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">()</span>
+    <span class="nx">abtest</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTest</span><span class="p">{</span>
+        <span class="nx">Name</span><span class="p">:</span>       <span class="s">&quot;Photo Test&quot;</span><span class="p">,</span>
+        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Static</span><span class="p">(),</span>
+        <span class="nx">StaticPath</span><span class="p">:</span> <span class="s">&quot;/campaign-ui/donate.jpg&quot;</span><span class="p">,</span>
+        <span class="nx">ModelName</span><span class="p">:</span>  <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ModelList</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+        <span class="nx">Field</span><span class="p">:</span>      <span class="nx">uadmin</span><span class="p">.</span><span class="nx">FieldList</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+        <span class="nx">PrimaryKey</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">Active</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">Group</span><span class="p">:</span>      <span class="s">&quot;campaign&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">abtest</span><span class="p">)</span>
+
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. From uAdmin dashboard, click “AB Tests”.</p>
+<img alt="../../_images/abtestshighlighted.png" src="../../_images/abtestshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, Photo Test record has been created.</p>
+<img alt="../../_images/phototestrecord.png" src="../../_images/phototestrecord.png" />
+</div>
+<div class="section" id="part-4-a-b-test-value-function-for-static">
+<h3><strong>Part 4:</strong> A/B Test Value Function for Static<a class="headerlink" href="#part-4-a-b-test-value-function-for-static" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p>First of all, delete/comment out the AB Test code that you have created.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// abtest := uadmin.ABTest{</span>
+<span class="c1">//  Name:       &quot;Photo Test&quot;,</span>
+<span class="c1">//  Type:       uadmin.ABTestType(0).Static(),</span>
+<span class="c1">//  StaticPath: &quot;/campaign-ui/donate.jpg&quot;,</span>
+<span class="c1">//  ModelName:  uadmin.ModelList(0),</span>
+<span class="c1">//  Field:      uadmin.FieldList(0),</span>
+<span class="c1">//  PrimaryKey: 0,</span>
+<span class="c1">//  Active:     true,</span>
+<span class="c1">//  Group:      &quot;campaign&quot;,</span>
+<span class="c1">// }</span>
+<span class="c1">// uadmin.Save(&amp;abtest)</span>
+</pre></div>
+</div>
+<p>Let’s create two A/B test values in main.go. One is for Donate and the other one is for Contribute.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="nx">donate</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestValue</span><span class="p">{</span>
+        <span class="nx">ABTestID</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">Value</span><span class="p">:</span>    <span class="s">&quot;/campaign-ui/donate.jpg&quot;</span><span class="p">,</span>
+        <span class="nx">Active</span><span class="p">:</span>   <span class="kc">true</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nx">contribute</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestValue</span><span class="p">{</span>
+        <span class="nx">ABTestID</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">Value</span><span class="p">:</span>    <span class="s">&quot;/campaign-ui/contribute.jpg&quot;</span><span class="p">,</span>
+        <span class="nx">Active</span><span class="p">:</span>   <span class="kc">true</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">donate</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">contribute</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application, go to AB Tests from uAdmin dashboard, and click the Photo Test record. From here, click “ABTEST VALUE” inline.</p>
+<img alt="../../_images/abtestvalueinlinephototest.png" class="align-center" src="../../_images/abtestvalueinlinephototest.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, donate and contribute values were created to Photo Test record.</p>
+<img alt="../../_images/phototestvalues.png" src="../../_images/phototestvalues.png" />
+</div>
+<div class="section" id="part-5-image-testing">
+<h3><strong>Part 5:</strong> Image Testing<a class="headerlink" href="#part-5-image-testing" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p>Go to index.html in templates folder. Inside the container-fluid class, add an image that referenced to the A/B Test Static Path.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container-fluid&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Campaign<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- ADD THIS PIECE OF CODE HERE --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/campaign-ui/donate.jpg&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Now go to /campaign/ path in the address bar (e.g. <a class="reference external" href="http://0.0.0.0:8080/campaign/">http://0.0.0.0:8080/campaign/</a>). You should see this result.</p>
+<img alt="../../_images/campaigndonate.png" class="align-center" src="../../_images/campaigndonate.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Right click your mouse then select Inspect or just press Ctrl + Shift + I on your keyboard to open the inspect element tab.</p>
+<img alt="../../_images/inspecthighlighted.png" class="align-center" src="../../_images/inspecthighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click Application tab.</p>
+<img alt="../../_images/applicationinspectelement.png" class="align-center" src="../../_images/applicationinspectelement.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In Storage, click on Cookies on the left side then select <a class="reference external" href="http://localhost:8080">http://localhost:8080</a>. You will see that there is an abt cookie in the table list. In A/B test, we will focus on the value. It is randomly generated. If the value is an even number, we are getting the original image that is the path of the A/B test value is equal to the A/B test static path. Otherwise, we are getting the different image. In addition to this, abt cookie will expire every midnight.</p>
+<img alt="../../_images/abtcookieinfo.png" src="../../_images/abtcookieinfo.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s delete the abt cookie.</p>
+<img alt="../../_images/abtcookiedeleted.png" src="../../_images/abtcookiedeleted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Refresh the webpage and see what happens.</p>
+<img alt="../../_images/abtcookieoddvalue.png" src="../../_images/abtcookieoddvalue.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The image displays differently because the abt cookie value is an odd number. Repeat the same process until you get an even number.</p>
+<img alt="../../_images/abtcookieevennumber.png" src="../../_images/abtcookieevennumber.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It displays an original image once again because the abt cookie value is an even number.</p>
+<p>Now go back to A/B Test Value in the Photo Test record. You will see the impression count in each record. This is the number of your visits.</p>
+<img alt="../../_images/phototestvalueresult.png" src="../../_images/phototestvalueresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Based on the result, the contribute image has higher impressions than donate ones.</p>
+</div>
+</div>
+<div class="section" id="example-2-model">
+<h2>Example #2: Model<a class="headerlink" href="#example-2-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="part-1-campaign-info-model">
+<h3><strong>Part 1:</strong> Campaign Info Model<a class="headerlink" href="#part-1-campaign-info-model" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p>Create a file named campaign_info.go inside the models folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// CampaignInfo model ...</span>
+<span class="kd">type</span> <span class="nx">CampaignInfo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>   <span class="kt">string</span>
+    <span class="nx">Button</span> <span class="kt">string</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Register the Campaign Info Model in the main.go.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/campaign/models&quot;</span>
+    <span class="s">&quot;github.com/username/campaign/views&quot;</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span>
+        <span class="nx">models</span><span class="p">.</span><span class="nx">CampaignInfo</span><span class="p">{},</span>
+    <span class="p">)</span>
+
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. From uAdmin dashboard, click on “CAMPAIGN INFOS”.</p>
+<img alt="../../_images/campaigninfohighlighted.png" src="../../_images/campaigninfohighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click “Add New Campaign Info”.</p>
+<img alt="../../_images/addnewcampaigninfo.png" src="../../_images/addnewcampaigninfo.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Create a Donate record for Name and Button.</p>
+<img alt="../../_images/campaigninfodonate.png" class="align-center" src="../../_images/campaigninfodonate.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../../_images/campaigninfodonateresult.png" src="../../_images/campaigninfodonateresult.png" />
+</div>
+<div class="section" id="part-2-a-b-test-function-for-model">
+<h3><strong>Part 2:</strong> A/B Test Function for Model<a class="headerlink" href="#part-2-a-b-test-function-for-model" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p>Let’s create an A/B test for name and button in main.go.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/campaign/models&quot;</span>
+    <span class="s">&quot;github.com/username/campaign/views&quot;</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="nx">button</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTest</span><span class="p">{</span>
+        <span class="nx">Name</span><span class="p">:</span>       <span class="s">&quot;Button Test&quot;</span><span class="p">,</span>
+        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Model</span><span class="p">(),</span>
+        <span class="nx">PrimaryKey</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">Active</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">Group</span><span class="p">:</span>      <span class="s">&quot;campaign&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">button</span><span class="p">)</span>
+
+    <span class="nx">name</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTest</span><span class="p">{</span>
+        <span class="nx">Name</span><span class="p">:</span>       <span class="s">&quot;Name Test&quot;</span><span class="p">,</span>
+        <span class="nx">Type</span><span class="p">:</span>       <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestType</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">Model</span><span class="p">(),</span>
+        <span class="nx">PrimaryKey</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">Active</span><span class="p">:</span>     <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">Group</span><span class="p">:</span>      <span class="s">&quot;campaign&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">name</span><span class="p">)</span>
+
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. From uAdmin dashboard, click “AB Tests”.</p>
+<img alt="../../_images/abtestshighlighted.png" src="../../_images/abtestshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, Name and Button Test records were created. In this scenario, we need to assign the model name and field.</p>
+<img alt="../../_images/buttonnametestrecord.png" src="../../_images/buttonnametestrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>First, click on “Name Test”.</p>
+<img alt="../../_images/nametestrecord.png" src="../../_images/nametestrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Assign the model name to “campaigninfo” and field to “Name”.</p>
+<img alt="../../_images/nametestmodelnamefield.png" class="align-center" src="../../_images/nametestmodelnamefield.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Lastly, click on “Button Test”.</p>
+<img alt="../../_images/buttontestrecord.png" src="../../_images/buttontestrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Assign the model name to “campaigninfo” and field to “Button”.</p>
+<img alt="../../_images/buttontestmodelnamefield.png" class="align-center" src="../../_images/buttontestmodelnamefield.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../../_images/buttonnametestchanged.png" src="../../_images/buttonnametestchanged.png" />
+</div>
+<div class="section" id="part-3-a-b-test-value-function-for-model">
+<h3><strong>Part 3:</strong> A/B Test Value Function for Model<a class="headerlink" href="#part-3-a-b-test-value-function-for-model" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p>First of all, delete/comment out the AB Test code that you have created.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// button := uadmin.ABTest{</span>
+<span class="c1">//  Name:       &quot;Button Test&quot;,</span>
+<span class="c1">//  Type:       uadmin.ABTestType(0).Model(),</span>
+<span class="c1">//  PrimaryKey: 1,</span>
+<span class="c1">//  Active:     true,</span>
+<span class="c1">//  Group:      &quot;campaign&quot;,</span>
+<span class="c1">// }</span>
+<span class="c1">// uadmin.Save(&amp;button)</span>
+
+<span class="c1">// name := uadmin.ABTest{</span>
+<span class="c1">//  Name:       &quot;Name Test&quot;,</span>
+<span class="c1">//  Type:       uadmin.ABTestType(0).Model(),</span>
+<span class="c1">//  PrimaryKey: 1,</span>
+<span class="c1">//  Active:     true,</span>
+<span class="c1">//  Group:      &quot;campaign&quot;,</span>
+<span class="c1">// }</span>
+<span class="c1">// uadmin.Save(&amp;name)</span>
+</pre></div>
+</div>
+<p>Let’s create four A/B test values in main.go. Two values are for Name and the other two are for Button.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="nx">donatebutton</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestValue</span><span class="p">{</span>
+        <span class="nx">ABTestID</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="c1">// ID of Button Test</span>
+        <span class="nx">Value</span><span class="p">:</span>    <span class="s">&quot;Donate&quot;</span><span class="p">,</span>
+        <span class="nx">Active</span><span class="p">:</span>   <span class="kc">true</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nx">contributebutton</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestValue</span><span class="p">{</span>
+        <span class="nx">ABTestID</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="c1">// ID of Button Test</span>
+        <span class="nx">Value</span><span class="p">:</span>    <span class="s">&quot;Contribute&quot;</span><span class="p">,</span>
+        <span class="nx">Active</span><span class="p">:</span>   <span class="kc">true</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">donatebutton</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">contributebutton</span><span class="p">)</span>
+
+    <span class="nx">donatename</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestValue</span><span class="p">{</span>
+        <span class="nx">ABTestID</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="c1">// ID of Name Test</span>
+        <span class="nx">Value</span><span class="p">:</span>    <span class="s">&quot;Donate&quot;</span><span class="p">,</span>
+        <span class="nx">Active</span><span class="p">:</span>   <span class="kc">true</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nx">contributename</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestValue</span><span class="p">{</span>
+        <span class="nx">ABTestID</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="c1">// ID of Name Test</span>
+        <span class="nx">Value</span><span class="p">:</span>    <span class="s">&quot;Contribute&quot;</span><span class="p">,</span>
+        <span class="nx">Active</span><span class="p">:</span>   <span class="kc">true</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">donatename</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">contributename</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application, go to AB Tests from uAdmin dashboard, and click the Name Test record. From here, click “ABTEST VALUE” inline.</p>
+<img alt="../../_images/abtestvalueinlinenametest.png" class="align-center" src="../../_images/abtestvalueinlinenametest.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, Donate and Contribute values were created to Name Test record.</p>
+<img alt="../../_images/nametestvalues.png" src="../../_images/nametestvalues.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Similarly, they also go with the Button Test record.</p>
+<img alt="../../_images/buttontestvalues.png" src="../../_images/buttontestvalues.png" />
+</div>
+<div class="section" id="part-4-api-click-handler">
+<h3><strong>Part 4:</strong> API Click Handler<a class="headerlink" href="#part-4-api-click-handler" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p>Create a file named ab_test_click.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// ABTestClickHandler !</span>
+<span class="kd">func</span> <span class="nx">ABTestClickHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called &quot;/ab_test_click/&quot;</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/ab_test_click&quot;</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Register a click for a campaign group</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ABTestClick</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="s">&quot;campaign&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/campaign/models&quot;</span>
+    <span class="s">&quot;github.com/username/campaign/views&quot;</span>
+
+    <span class="c1">// Import this library</span>
+    <span class="s">&quot;github.com/username/campaign/api&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// AB Test Click Handler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/ab_test_click/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">api</span><span class="p">.</span><span class="nx">ABTestClickHandler</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while ABTestClickHandler is the name of the function inside ab_test_click.go.</p>
+</div>
+<div class="section" id="part-5-get-a-b-test">
+<h3><strong>Part 5:</strong> Get A/B Test<a class="headerlink" href="#part-5-get-a-b-test" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p>Go to campaign.go in the views folder and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">views</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/campaign/models&quot;</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// CampaignHandler !</span>
+<span class="kd">func</span> <span class="nx">CampaignHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Initialize the Campaign Info model</span>
+    <span class="nx">campaigninfo</span> <span class="o">:=</span> <span class="nx">models</span><span class="p">.</span><span class="nx">CampaignInfo</span><span class="p">{}</span>
+
+    <span class="c1">// Fetch the first active AB Test record in the Campaign Info</span>
+    <span class="c1">// model</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetABTest</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">campaigninfo</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">// Pass campaigninfo data object to the specified HTML path</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RenderHTML</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="s">&quot;templates/index.html&quot;</span><span class="p">,</span> <span class="nx">campaigninfo</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="part-6-button-testing">
+<h3><strong>Part 6:</strong> Button Testing<a class="headerlink" href="#part-6-button-testing" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p>Go to index.html in templates folder. Inside the container-fluid class, make the header name dynamic by applying Go Template. Create a button below the image and make the button name dynamic as well. Below the Latest compiled JavaScript library, initialize an internal script. Inside it, call an AJAX that sends user click response to API. This will increment a user click count in the A/B Test value which will be discussed later.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;ie=edge&quot;</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Latest compiled and minified CSS --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Campaign<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- Make the header name and created button values dynamic --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container-fluid&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{.Name}}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/campaign-ui/donate.jpg&quot;</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;click-button&quot;</span><span class="p">&gt;</span>{{.Button}}<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- jQuery library --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Popper JS --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Latest compiled JavaScript --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Send user click response to API --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.click-button&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+                <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/ab_test_click/&quot;</span><span class="p">,</span>
+                <span class="nx">method</span><span class="o">:</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+                <span class="nx">crossDomain</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">cache</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;You clicked the button.&quot;</span><span class="p">);</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;error&quot;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">,</span><span class="nx">z</span><span class="p">){</span>
+                <span class="c1">// TODO: handle ERROR</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">z</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+        <span class="p">});</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Before you run your application, make sure that your A/B Test value codes were deleted/commented out in main.go.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// donatebutton := uadmin.ABTestValue{</span>
+<span class="c1">//  ABTestID: 4, // ID of Button Test</span>
+<span class="c1">//  Value:    &quot;Donate&quot;,</span>
+<span class="c1">//  Active:   true,</span>
+<span class="c1">// }</span>
+<span class="c1">// contributebutton := uadmin.ABTestValue{</span>
+<span class="c1">//  ABTestID: 4, // ID of Button Test</span>
+<span class="c1">//  Value:    &quot;Donate&quot;,</span>
+<span class="c1">//  Active:   true,</span>
+<span class="c1">// }</span>
+<span class="c1">// uadmin.Save(&amp;donatebutton)</span>
+<span class="c1">// uadmin.Save(&amp;contributebutton)</span>
+
+<span class="c1">// donatename := uadmin.ABTestValue{</span>
+<span class="c1">//  ABTestID: 5, // ID of Name Test</span>
+<span class="c1">//  Value:    &quot;Donate&quot;,</span>
+<span class="c1">//  Active:   true,</span>
+<span class="c1">// }</span>
+<span class="c1">// contributename := uadmin.ABTestValue{</span>
+<span class="c1">//  ABTestID: 5, // ID of Name Test</span>
+<span class="c1">//  Value:    &quot;Donate&quot;,</span>
+<span class="c1">//  Active:   true,</span>
+<span class="c1">// }</span>
+<span class="c1">// uadmin.Save(&amp;donatename)</span>
+<span class="c1">// uadmin.Save(&amp;contributename)</span>
+</pre></div>
+</div>
+<p>Now run your application and go to /campaign/ path in the address bar (e.g. <a class="reference external" href="http://0.0.0.0:8080/campaign/">http://0.0.0.0:8080/campaign/</a>). You should see this result.</p>
+<img alt="../../_images/campaigndonatemodel.png" class="align-center" src="../../_images/campaigndonatemodel.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Let’s click the Donate button and see what happens.</p>
+<img alt="../../_images/alertboxmessageuserclick.png" class="align-center" src="../../_images/alertboxmessageuserclick.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The alert box message appears on your screen. If you go to A/B Test Value inline in the Button Test record, you will see that the number of clicks in Donate record is 1 and the Click Through Rate is 100% because the number of impressions and clicks are equal.</p>
+<img alt="../../_images/donate1click.png" src="../../_images/donate1click.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Right click your mouse then select Inspect or just press Ctrl + Shift + I on your keyboard to open the inspect element tab.</p>
+<img alt="../../_images/inspecthighlighted.png" class="align-center" src="../../_images/inspecthighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>From here, click Application tab.</p>
+<img alt="../../_images/applicationinspectelement2.png" class="align-center" src="../../_images/applicationinspectelement2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In Storage, click on Cookies on the left side then select <a class="reference external" href="http://localhost:8080">http://localhost:8080</a>. You will see that there is an abt cookie in the table list. In A/B test, we will focus on the value. It is randomly generated. If the value is an even number, we are getting the original value from Campaign Info model in the Name and Button. Otherwise, we are getting the different results. In addition to this, abt cookie will expire every midnight.</p>
+<img alt="../../_images/abtcookieinfo.png" src="../../_images/abtcookieinfo.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s delete the abt cookie.</p>
+<img alt="../../_images/abtcookiedeleted.png" src="../../_images/abtcookiedeleted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Refresh the webpage and see what happens.</p>
+<img alt="../../_images/abtcookieoddvaluemodel.png" src="../../_images/abtcookieoddvaluemodel.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>We get a different result because the abt cookie value is an odd number. Repeat the same process until you get an even number.</p>
+<img alt="../../_images/abtcookieevennumbermodel.png" src="../../_images/abtcookieevennumbermodel.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>They display original values once again because the abt cookie value is an even number.</p>
+<p>Now go back to A/B Test Value in the Name and Button Test records. You will see the impression count, click count, and Click Through Rate in each record.</p>
+<p><strong>Name Test Result</strong></p>
+<img alt="../../_images/nametestvalueresult.png" src="../../_images/nametestvalueresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Button Test Result</strong></p>
+<img alt="../../_images/buttontestvalueresult.png" src="../../_images/buttontestvalueresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Based on the results, the contribute record has higher impressions than donate ones while the donate ones has higher clicks and click through rate than contribute ones for both Name Test and Button Test records.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../ab_test_functions.html"
+                        title="previous chapter">A/B Test Functions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../approval_functions.html"
+                        title="next chapter">Approval Functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/api/ab-test-functions/abtest.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../approval_functions.html" title="Approval Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../ab_test_functions.html" title="A/B Test Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../ab_test_functions.html" >A/B Test Functions</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    </div>
+  </body>
+</html>

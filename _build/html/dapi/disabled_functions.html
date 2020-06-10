@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Disabled Functions &#8212; uadmin 0.4 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Log Functions" href="log_functions.html" />
+    <link rel="prev" title="dAPI Reference" href="../dapi.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="log_functions.html" title="Log Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../dapi.html" title="dAPI Reference"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dapi.html" accesskey="U">dAPI Reference</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="disabled-functions">
+<h1>Disabled Functions<a class="headerlink" href="#disabled-functions" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#uadmin-functions">Back To uAdmin Functions List</a></p>
+<p>In this section, we will cover the following functions in-depth listed below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#uadmin-apidisabledadd">uadmin.APIDisabledAdd</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apidisabledadder">uadmin.APIDisabledAdder</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apidisableddelete">uadmin.APIDisabledDelete</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apidisableddeleter">uadmin.APIDisabledDeleter</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apidisablededit">uadmin.APIDisabledEdit</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apidisablededitor">uadmin.APIDisabledEditor</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apidisabledread">uadmin.APIDisabledRead</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apidisabledreader">uadmin.APIDisabledReader</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apidisabledschema">uadmin.APIDisabledSchema</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apidisabledschemer">uadmin.APIDisabledSchemer</a></p></li>
+</ul>
+<div class="section" id="uadmin-apidisabledadd">
+<h2>uadmin.APIDisabledAdd<a class="headerlink" href="#uadmin-apidisabledadd" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#disabled-functions">Back To Top</a></p>
+<p>APIDisabledAdd controls the data API’s disabled for add commands.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-apidisabledadder">
+<h2>uadmin.APIDisabledAdder<a class="headerlink" href="#uadmin-apidisabledadder" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#disabled-functions">Back To Top</a></p>
+<p>APIDisabledAdder is an interface that contains the method APIDisabledAdd with the type of func(*http.Request) bool. If the value is true, the user will not have permission access to add the record in the model using the dAPI add method.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-apidisableddelete">
+<h2>uadmin.APIDisabledDelete<a class="headerlink" href="#uadmin-apidisableddelete" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#disabled-functions">Back To Top</a></p>
+<p>APIDisabledDelete controls the data API’s disabled for delete commands.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-apidisableddeleter">
+<h2>uadmin.APIDisabledDeleter<a class="headerlink" href="#uadmin-apidisableddeleter" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#disabled-functions">Back To Top</a></p>
+<p>APIDisabledDeleter is an interface that contains the method APIDisabledDelete with the type of func(*http.Request) bool. If the value is true, the user will not have permission access to delete the record in the model using the dAPI delete method.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-apidisablededit">
+<h2>uadmin.APIDisabledEdit<a class="headerlink" href="#uadmin-apidisablededit" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#disabled-functions">Back To Top</a></p>
+<p>APIDisabledEdit controls the data API’s disabled for edit commands.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-apidisablededitor">
+<h2>uadmin.APIDisabledEditor<a class="headerlink" href="#uadmin-apidisablededitor" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#disabled-functions">Back To Top</a></p>
+<p>APIDisabledEditor is an interface that contains the method APIDisabledEdit with the type of func(*http.Request) bool. If the value is true, the user will not have permission access to edit the record in the model using the dAPI edit method.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-apidisabledread">
+<h2>uadmin.APIDisabledRead<a class="headerlink" href="#uadmin-apidisabledread" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#disabled-functions">Back To Top</a></p>
+<p>APIDisabledRead controls the data API’s disabled for read commands.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-apidisabledreader">
+<h2>uadmin.APIDisabledReader<a class="headerlink" href="#uadmin-apidisabledreader" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#disabled-functions">Back To Top</a></p>
+<p>APIDisabledReader is an interface that contains the method APIDisabledRead with the type of func(*http.Request) bool. If the value is true, the user will not have permission access to read the record in the model using the dAPI read method.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-apidisabledschema">
+<h2>uadmin.APIDisabledSchema<a class="headerlink" href="#uadmin-apidisabledschema" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#disabled-functions">Back To Top</a></p>
+<p>APIDisabledSchema controls the data API’s disabled for schema commands.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-apidisabledschemer">
+<h2>uadmin.APIDisabledSchemer<a class="headerlink" href="#uadmin-apidisabledschemer" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#disabled-functions">Back To Top</a></p>
+<p>APIDisabledSchemer is an interface that contains the method APIDisabledSchema with the type of func(*http.Request) bool. If the value is true, the user will not have permission access to read the full schema of the model using the dAPI schema method.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../dapi.html"
+                        title="previous chapter">dAPI Reference</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="log_functions.html"
+                        title="next chapter">Log Functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/dapi/disabled_functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="log_functions.html" title="Log Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../dapi.html" title="dAPI Reference"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dapi.html" >dAPI Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    </div>
+  </body>
+</html>

@@ -12,6 +12,7 @@ In this section, we will cover the features of each following systems in-depth l
 * `Profile`_
 * `Session`_
 * `Setting`_
+    * `uAdmin`_
 * `Setting Category`_
 * `User`_
 * `User Group`_
@@ -19,9 +20,9 @@ In this section, we will cover the features of each following systems in-depth l
 
 AB Test
 -------
-AB Test is a system in uAdmin that is used to compare two or more values and checks which one has the best impressions, clicks and click through rate. (`Back To Top`_)
+`Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
+AB Test is a system in uAdmin that is used to compare two or more values and checks which one has the best impressions, clicks and click through rate.
 
 Here are the following fields and their definitions:
 
@@ -36,9 +37,14 @@ Here are the following fields and their definitions:
 
 Prerequisites:
 
+**For Example #1: Static**
+
 * `HTML Template`_
 * `Static Images`_
 * `Image Source Reference`_
+
+**For Example #2: Model**
+
 * `Campaign Info Model`_
 * `API Click Handler`_
 * `Get A/B Test`_
@@ -368,9 +374,9 @@ Based on the results, the contribute record has higher impressions than donate o
 
 Approval
 --------
-Approval is a system in uAdmin that is used to set an approval permission in the field. (`Back To Top`_)
+`Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
+Approval is a system in uAdmin that is used to set an approval permission in the field.
 
 Here are the following fields and their definitions:
 
@@ -428,9 +434,9 @@ The input Name field has a checkmark sign that means the record created by "john
 
 Dashboard Menu
 --------------
-Dashboard Menu is a system in uAdmin that is used to add, modify, and delete the elements of a model. Making it look good and customizing it to meet your customers requirements is important to the success of your app. (`Back To Top`_)
+`Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
+Dashboard Menu is a system in uAdmin that is used to add, modify, and delete the elements of a model. Making it look good and customizing it to meet your customers requirements is important to the success of your app.
 
 .. image:: assets/dashboardmenu.png
 
@@ -456,8 +462,6 @@ Once you are done, go back to your dashboard to see if the Expression model was 
 |
 
 Nice! Now let's go back to the dashboard menu. Upload the image file in the Icon field. If you don't have any pictures or icons in your computer, I would recommend you to go over `flaticon.com`_, but you can browse anywhere online. Once you search for an icon, download the PNG version and choose the size 128 pixels.
-
-.. _flaticon.com: https://www.flaticon.com/
 
 .. image:: assets/expressionicon.png
 
@@ -513,9 +517,9 @@ Well done! Now you know how to configure your dashboard menu by adding, updating
 
 Export to Excel
 ---------------
-Export is one of the features of uAdmin that can replicate the data inside the model to the Excel file. (`Back To Top`_)
+`Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
+Export is one of the features of uAdmin that can replicate the data inside the model to the Excel file.
 
 First of all, open any models in the dashboard (e.g. TODOS).
 
@@ -544,9 +548,9 @@ Well done! Now you know how to export a model to Excel file in uAdmin.
 
 Group Permission
 ----------------
-Group Permission sets the permission of a user group handled by an administrator. (`Back To Top`_)
+`Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
+Group Permission sets the permission of a user group handled by an administrator.
 
 .. image:: assets/grouppermissioncreated.png
 
@@ -642,9 +646,9 @@ Well done! Now you know how to set the group permission to the user group, chang
 
 Language
 --------
-Language is a system in uAdmin that is used to add, modify, and delete the elements of a language. There are a total of 184 languages. (`Back To Top`_)
+`Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
+Language is a system in uAdmin that is used to add, modify, and delete the elements of a language. There are a total of 184 languages.
 
 .. list-table:: **LIST OF AVAILABLE LANGUAGES**
    :widths: 20 7 36 7 10
@@ -1709,9 +1713,9 @@ Well done! Now you know how to activate your languages, set it to default, and u
 
 Log
 ---
-Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities. It keeps track of many things by default. (`Back To Top`_)
+`Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
+Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities. It keeps track of many things by default.
 
 .. image:: assets/log.png
 
@@ -1730,14 +1734,14 @@ Here are the following fields in this system:
 
 .. _uadmin.Action: https://uadmin-docs.readthedocs.io/en/latest/api.html#uadmin-action
 
-Let’s open our app to see how these things work. Login your account using “admin” as username and password.
+Let’s open our app to see how these things work. Login your account using "admin” as username and password.
 
 .. image:: api/assets/loginformadmin.png
    :align: center
 
 |
 
-Go to “LOGS” model in your dashboard.
+Go to "LOGS” model in your dashboard.
 
 .. image:: assets/logshighlighted.png
 
@@ -1795,13 +1799,13 @@ Save it and new data will be added to your model.
 
 |
 
-Open your created record in Todo model. Notice that you have a “History” button when you open any record:
+Open your created record in Todo model. Notice that you have a "History” button when you open any record:
 
 .. image:: assets/history.png
 
 |
 
-This “History” button will give you logs related to this record:
+This "History” button will give you logs related to this record:
 
 .. image:: assets/readadded.png
 
@@ -1958,7 +1962,7 @@ Go to "LOGS" again, scroll it down and you will see that our password reset is d
 
 |
 
-Logs can accumulate so fast and it will get harder to find specific actions when you need to like when conducting an audit and investigating something in your system. Use “Filter” to narrow down what you are looking for:
+Logs can accumulate so fast and it will get harder to find specific actions when you need to like when conducting an audit and investigating something in your system. Use "Filter” to narrow down what you are looking for:
 
 .. image:: assets/filterlog.png
 
@@ -1966,9 +1970,9 @@ Congrats, now you know how to understand records you have in your app and how to
 
 Profile
 -------
-uAdmin has a feature that allows you to customize your own profile. In order to do that, click the profile icon on the top right corner then select admin highlighted below. (`Back To Top`_)
+`Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
+uAdmin has a feature that allows you to customize your own profile. In order to do that, click the profile icon on the top right corner then select admin highlighted below.
 
 .. image:: tutorial/assets/adminhighlighted.png
 
@@ -1997,9 +2001,9 @@ If there is a problem, you may go to your terminal and check the OTP verificatio
 
 Session
 -------
-Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. [#f1]_ (`Back To Top`_)
+`Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
+Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. [#f1]_
 
 .. image:: assets/sessioninterface.png
 
@@ -2016,7 +2020,7 @@ Here are the following fields in this system:
 * **Pending OTP** - If the user has not verifying the OTP in the login
 * **Expires On** -  This is when the cookie will expire.
 
-Let’s open our app to see how these things work. Login your account using “admin” as username and password.
+Let’s open our app to see how these things work. Login your account using "admin” as username and password.
 
 .. image:: api/assets/loginformadmin.png
    :align: center
@@ -2059,7 +2063,7 @@ If you open the record, you will see all the details of that session. Let's turn
 
 |
 
-It will automatically redirect you to the login page which means your session has been deactivated. Login your account again using “admin” as username and password.
+It will automatically redirect you to the login page which means your session has been deactivated. Login your account again using "admin” as username and password.
 
 .. image:: assets/logoutfromsession.png
 
@@ -2134,9 +2138,9 @@ Well done! Now you know how to configure your sessions by using Active, Pending 
 
 Setting
 -------
-Setting is a system in uAdmin that is used to display information for an application as a whole. (`Back To Top`_)
+`Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
+Setting is a system in uAdmin that is used to display information for an application as a whole.
 
 .. image:: api/assets/defaultsettingrecords.png
 
@@ -2232,11 +2236,158 @@ Now go to the dashboard. As expected, the name of the website that shows on titl
 
 Congrats! Now you know how to create a setting by assigning the name, default value, data type, value, help, category, displaying the results in the Settings page, and modifying the built-in uAdmin functions.
 
+**More examples:**
+
+uAdmin
+^^^^^^
+`Back To Top`_
+
+* `Allowed IPs`_
+* `API Disabled Add`_
+* `API Disabled Delete`_
+* `API Disabled Edit`_
+* `API Disabled Read`_
+* `API Disabled Schema`_
+* `API Log Add`_
+* `API Log Delete`_
+* `API Log Edit`_
+* `API Log Read`_
+* `API Log Schema`_
+* `API Post Query Add`_
+* `API Post Query Delete`_
+* `API Post Query Edit`_
+* `API Post Query Read`_
+* `API Post Query Schema`_
+* `API Pre Query Add`_
+* `API Pre Query Delete`_
+* `API Pre Query Edit`_
+* `API Pre Query Read`_
+* `API Pre Query Schema`_
+* `API Public Add`_
+* `API Public Delete`_
+* `API Public Edit`_
+* `API Public Read`_
+* `API Public Schema`_
+* `Blocked IPs`_
+* `Cache Permissions`_
+* `Cache Sessions`_
+* `Cache Translation`_
+* `DebugDB`_
+* `Email From`_
+* `Email Password`_
+* `Email SMTP Server`_
+* `Email SMTP Server Port`_
+* `Email Username`_
+* `HTTP Log Format`_
+* `Log Add`_
+* `Log Delete`_
+* `Log Edit`_
+* `Log HTTP Requests`_
+* `Log Read`_
+* `Log Trail`_
+* `Max Image Width`_
+* `Max Image Height`_
+* `Max Upload File Size`_
+* `Optimize SQL Query`_
+* `OTP Algorithm`_
+* `OTP Digits`_
+* `OTP Period`_
+* `OTP Skew`_
+* `Page Length`_
+* `Port`_
+* `Public Media`_
+* `Rate Limit`_
+* `Rate Limit Burst`_
+* `Report Time Stamp`_
+* `Reporting Level`_
+* `Restrict Session IP`_
+* `Retain Media Versions`_
+* `Root URL`_
+* `Site Name`_
+* `System Metrics`_
+* `Theme`_
+* `Trail Logging Level`_
+* `User Metrics`_
+
+Page:
+
+.. toctree::
+   :maxdepth: 1
+
+   system-reference/setting
+
+.. _Allowed IPs: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#allowed-ips
+.. _API Disabled Add: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-disabled-add
+.. _API Disabled Delete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-disabled-delete
+.. _API Disabled Edit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-disabled-edit
+.. _API Disabled Read: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-disabled-read
+.. _API Disabled Schema: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-disabled-schema
+.. _API Log Add: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-add
+.. _API Log Delete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-delete
+.. _API Log Edit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-edit
+.. _API Log Read: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-read
+.. _API Log Schema: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-schema
+.. _API Post Query Add: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-add
+.. _API Post Query Delete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-delete
+.. _API Post Query Edit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-edit
+.. _API Post Query Read: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-read
+.. _API Post Query Schema: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-schema
+.. _API Pre Query Add: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-add
+.. _API Pre Query Delete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-delete
+.. _API Pre Query Edit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-edit
+.. _API Pre Query Read: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-read
+.. _API Pre Query Schema: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-schema
+.. _API Public Add: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-add
+.. _API Public Delete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-delete
+.. _API Public Edit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-edit
+.. _API Public Read: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-read
+.. _API Public Schema: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-schema
+.. _Blocked IPs: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#blocked-ips
+.. _Cache Permissions: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#cache-permissions
+.. _Cache Sessions: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#cache-sessions
+.. _Cache Translation: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#cache-translation
+.. _DebugDB: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#debugdb
+.. _Email From: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-from
+.. _Email Password: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-password
+.. _Email SMTP Server: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-smtp-server
+.. _Email SMTP Server Port: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-smtp-server-port
+.. _Email Username: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-username
+.. _HTTP Log Format: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#http-log-format
+.. _Log Add: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-add
+.. _Log Delete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-delete
+.. _Log Edit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-edit
+.. _Log HTTP Requests: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-http-requests
+.. _Log Read: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-read
+.. _Log Trail: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-trail
+.. _Max Image Width: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#max-image-width
+.. _Max Image Height: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#max-image-height
+.. _Max Upload File Size: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#max-upload-file-size
+.. _Optimize SQL Query: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#optimize-sql-query
+.. _OTP Algorithm: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-algorithm
+.. _OTP Digits: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-digits
+.. _OTP Period: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-period
+.. _OTP Skew: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-skew
+.. _Page Length: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#page-length
+.. _Port: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#port
+.. _Public Media: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#public-media
+.. _Rate Limit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#rate-limit
+.. _Rate Limit Burst: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#rate-limit-burst
+.. _Report Time Stamp: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#report-time-stamp
+.. _Reporting Level: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#reporting-level
+.. _Restrict Session IP: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#restrict-session-ip
+.. _Retain Media Versions: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#retain-media-versions
+.. _Root URL: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#root-url
+.. _Site Name: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#site-name
+.. _System Metrics: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#system-metrics
+.. _Theme: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#theme
+.. _Trail Logging Level: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#trail-logging-level
+.. _User Metrics: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#user-metrics
+
 Setting Category
 ----------------
-Setting Category is a system in uAdmin that is used for classifying settings and its records. (`Back To Top`_)
+`Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
+Setting Category is a system in uAdmin that is used for classifying settings and its records.
 
 Here are the following fields in this system:
 
@@ -2283,9 +2434,9 @@ Congrats! Now you know how to create a setting category by assigning the name an
 
 User
 ----
-User is a system in uAdmin that is used to add, modify and delete the elements of the user. By default, the system creates one user which is the admin user who has full permission to read, add edit and delete data from every model. (`Back To Top`_)
+`Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
+User is a system in uAdmin that is used to add, modify and delete the elements of the user. By default, the system creates one user which is the admin user who has full permission to read, add edit and delete data from every model.
 
 .. image:: assets/user.png
 
@@ -2517,9 +2668,9 @@ Well done! Now you know how to configure your user by adding, updating, customiz
 
 User Group
 ----------
-User Group is a system in uAdmin used to add, modify, and delete the group name, the only field in this system. It has only one field: **Group Name**. It is useful if you want to belong a specific user to the group. If the user group has permissions, the user can access to something with some restrictions. (`Back To Top`_)
+`Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
+User Group is a system in uAdmin used to add, modify, and delete the group name, the only field in this system. It has only one field: **Group Name**. It is useful if you want to belong a specific user to the group. If the user group has permissions, the user can access to something with some restrictions.
 
 Let's create a new user group named "Front Desk".
 
@@ -2547,7 +2698,9 @@ Well done! Now you know how to add a user group, link it to your existing user a
 
 User Permission
 ---------------
-User Permission sets the permission of a user handled by an administrator. (`Back To Top`_)
+`Back To Top`_
+
+User Permission sets the permission of a user handled by an administrator.
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#
 

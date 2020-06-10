@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>uAdmin Tutorial Part 7 - Introduction to API &#8212; uadmin 0.3 documentation</title>
+    <title>uAdmin Tutorial Part 7 - M2M (Many-to-many) &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -18,8 +18,8 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="uAdmin Tutorial Part 8 - Customizing your API Handler" href="part8.html" />
-    <link rel="prev" title="uAdmin Tutorial Part 6 - Back-end Validation" href="part6.html" />
+    <link rel="next" title="uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)" href="full_code/part7.html" />
+    <link rel="prev" title="uAdmin Tutorial Part 6 - Applying uAdmin Tags (Current Progress)" href="full_code/part6.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -35,12 +35,12 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="part8.html" title="uAdmin Tutorial Part 8 - Customizing your API Handler"
+          <a href="full_code/part7.html" title="uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="part6.html" title="uAdmin Tutorial Part 6 - Back-end Validation"
+          <a href="full_code/part6.html" title="uAdmin Tutorial Part 6 - Applying uAdmin Tags (Current Progress)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" accesskey="U">uAdmin Tutorials</a> &#187;</li> 
       </ul>
     </div>  
@@ -50,120 +50,91 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="uadmin-tutorial-part-7-introduction-to-api">
-<h1>uAdmin Tutorial Part 7 - Introduction to API<a class="headerlink" href="#uadmin-tutorial-part-7-introduction-to-api" title="Permalink to this headline">¶</a></h1>
-<p>In this part, we will discuss about establishing a connection to the API, setting the URL path name, and getting the todo list data in the API Handler using JSON.</p>
-<p>Create a file named api.go inside the api folder with the following codes below:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s">&quot;fmt&quot;</span>
-    <span class="s">&quot;net/http&quot;</span>
-    <span class="s">&quot;strings&quot;</span>
-<span class="p">)</span>
-
-<span class="c1">// APIHandler !</span>
-<span class="kd">func</span> <span class="nx">APIHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// r.URL.Path creates a new path called /api</span>
-    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/api&quot;</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>As shown above, we have to call the variable named “APIHelp” to inform the user what are the methods to visit in the api path. To make the API function, we create a handler named “APIHandler” that handles two parameters which are <strong>http.ResponseWriter</strong> that assembles the HTTP server’s response; by writing to it, we send data to the HTTP client; and <strong>http.Request</strong> which is a data structure that represents the client HTTP request. <strong>r.URL.Path</strong> is the path component of the request URL.</p>
-<p>Go back to the main.go and apply <strong>uadmin.RootURL</strong> as “/admin/” to make the /api functional. Put it above the uadmin.Register.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RootURL</span> <span class="p">=</span> <span class="s">&quot;/admin/&quot;</span> <span class="c1">// &lt;-- place it here</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span>
-        <span class="c1">// Some codes</span>
-    <span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">(</span>
-    <span class="s">&quot;net/http&quot;</span>
-
-    <span class="c1">// Specify the username that you used inside github.com folder</span>
-    <span class="s">&quot;github.com/username/todo/models&quot;</span>
-
-    <span class="c1">// Import this library</span>
-    <span class="s">&quot;github.com/username/todo/api&quot;</span>
-
-    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Some codes</span>
-
-    <span class="c1">// API Handler</span>
-    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/api/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">APIHandler</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>api is the folder name while APIHandler is the name of the function inside api.go.</p>
-<p>Now let’s create another file inside the api folder named todo_list.go. This will return the list of your todo activities in JSON format.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s">&quot;net/http&quot;</span>
-    <span class="s">&quot;strings&quot;</span>
-
-    <span class="c1">// Specify the username that you used inside github.com folder</span>
-    <span class="s">&quot;github.com/username/todo/models&quot;</span>
-    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
-<span class="p">)</span>
-
-<span class="c1">// TodoListHandler !</span>
-<span class="kd">func</span> <span class="nx">TodoListHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// r.URL.Path creates a new path called /todo_list</span>
-    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/todo_list&quot;</span><span class="p">)</span>
-
-    <span class="c1">// Fetches all object in the database</span>
-    <span class="nx">todo</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{}</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">All</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">todo</span><span class="p">)</span>
-
-    <span class="c1">// Accesses and fetches data from another model</span>
-    <span class="k">for</span> <span class="nx">t</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">todo</span> <span class="p">{</span>
-        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Preload</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">todo</span><span class="p">[</span><span class="nx">t</span><span class="p">])</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Prints the todo in JSON format</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">todo</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Finally, add this piece of code in the api.go shown below. This will establish a communication between the TodoListHandler and the APIHandler.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// APIHandler !</span>
-<span class="kd">func</span> <span class="nx">APIHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/api&quot;</span><span class="p">)</span>
-
-    <span class="c1">// ------------------ ADD THIS CODE ------------------</span>
-    <span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">HasPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/todo_list&quot;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">TodoListHandler</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
-        <span class="k">return</span>
-    <span class="p">}</span>
-    <span class="c1">// ---------------------------------------------------</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Now run your application. Suppose you have two records in your Todo model.</p>
-<img alt="../_images/todomodeltwodata.png" src="../_images/todomodeltwodata.png" />
+  <div class="section" id="uadmin-tutorial-part-7-m2m-many-to-many">
+<h1>uAdmin Tutorial Part 7 - M2M (Many-to-many)<a class="headerlink" href="#uadmin-tutorial-part-7-m2m-many-to-many" title="Permalink to this headline">¶</a></h1>
+<p>uAdmin has a multiselection feature that allows you to select multiple values inside an input box field.</p>
+<p>Before we proceed, run your application first. Let’s add more records in the Category model.</p>
+<p><strong>First Record</strong></p>
+<img alt="../_images/addnewworkrecord.png" class="align-center" src="../_images/addnewworkrecord.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>If you go to /api/todo_list, you will see the list of each data in a more powerful way using JSON format.</p>
-<img alt="../_images/todoapijson.png" class="align-center" src="../_images/todoapijson.png" />
+<p><strong>Second Record</strong></p>
+<img alt="../_images/addnewfamilyrecord.png" class="align-center" src="../_images/addnewfamilyrecord.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Congrats, now you know how to do the following:</p>
-<ul class="simple">
-<li><p>Establishing a connection to the API</p></li>
-<li><p>Setting the path name using r.URL.Path</p></li>
-<li><p>How to use API Handlers</p></li>
-<li><p>Fetches data in another model</p></li>
+<p><strong>Third Record</strong></p>
+<img alt="../_images/addneweducationrecord.png" class="align-center" src="../_images/addneweducationrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/addnewcategoryresult.png" class="align-center" src="../_images/addnewcategoryresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Exit your application. Let’s add <strong>Category</strong> field with the array data type of the Category model, set the type tag as “list_exclude”, and add <strong>CategoryList</strong> field as well with the type tag “read_only” in <strong>models/category.go</strong> so we can see the result in the list page after you save the record.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">Category</span>     <span class="p">[]</span><span class="nx">Category</span> <span class="s">`uadmin:&quot;list_exclude&quot;`</span>
+<span class="nx">CategoryList</span> <span class="kt">string</span>     <span class="s">`uadmin:&quot;read_only&quot;`</span>
+</pre></div>
+</div>
+<p>Expected result</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>         <span class="kt">string</span>     <span class="s">`uadmin:&quot;search;categorical_filter;filter;display_name:Product Name&quot;`</span>
+    <span class="nx">Description</span>  <span class="kt">string</span>     <span class="s">`uadmin:&quot;multilingual&quot;`</span>
+
+    <span class="c1">// FIELDS ADDED</span>
+    <span class="nx">Category</span>     <span class="p">[]</span><span class="nx">Category</span> <span class="s">`uadmin:&quot;list_exclude&quot;`</span>
+    <span class="nx">CategoryList</span> <span class="kt">string</span>     <span class="s">`uadmin:&quot;read_only&quot;`</span>
+
+    <span class="nx">Cost</span>         <span class="kt">int</span>        <span class="s">`uadmin:&quot;money;pattern:^[0-9]*$;pattern_msg:Your input must be a number.&quot;`</span>
+    <span class="nx">Rating</span>       <span class="kt">int</span>        <span class="s">`uadmin:&quot;min:1;max:5&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Copy this one as well and paste it below the Item struct.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Save !</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">i</span> <span class="o">*</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Add a new string array type variable called categoryList</span>
+    <span class="nx">categoryList</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{}</span>
+
+    <span class="c1">// Append every element to the categoryList array</span>
+    <span class="k">for</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">i</span><span class="p">.</span><span class="nx">Category</span> <span class="p">{</span>
+        <span class="nx">categoryList</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">categoryList</span><span class="p">,</span> <span class="nx">i</span><span class="p">.</span><span class="nx">Category</span><span class="p">[</span><span class="nx">c</span><span class="p">].</span><span class="nx">Name</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Concatenate the categoryList to a single string separated by comma</span>
+    <span class="nx">joinList</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Join</span><span class="p">(</span><span class="nx">categoryList</span><span class="p">,</span> <span class="s">&quot;, &quot;</span><span class="p">)</span>
+
+    <span class="c1">// Store the joined string to the CategoryList field</span>
+    <span class="nx">i</span><span class="p">.</span><span class="nx">CategoryList</span> <span class="p">=</span> <span class="nx">joinList</span>
+
+    <span class="c1">// Save it to the database</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application, go to <strong>ITEMS</strong> model from uAdmin dashboard, and inside it, click <strong>Add New Item</strong> button on the top right corner. In the Category field, add new tag there.</p>
+<img alt="../_images/m2mtagapplied.png" src="../_images/m2mtagapplied.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/m2mtagappliedoutput.png" src="../_images/m2mtagappliedoutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Well done! Now you know how to create multiple elements in M2M tag field and concatenate into a single string stored in another field to display in the list page.</p>
+<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html">here</a> to view our progress so far.</p>
+<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part8.html">next part</a>, we will discuss on how to apply validation in the back-end.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="full_code/part7.html">uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)</a></li>
 </ul>
-<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part8.html">next part</a>, we will discuss about customizing your own API handler such as sorting the record in ascending or descending order, the starting point of execution process start until the assigned limit, and the action you want to perform in your database.</p>
+</div>
 </div>
 
 
@@ -179,6 +150,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
@@ -189,11 +161,11 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="part6.html"
-                        title="previous chapter">uAdmin Tutorial Part 6 - Back-end Validation</a></p>
+  <p class="topless"><a href="full_code/part6.html"
+                        title="previous chapter">uAdmin Tutorial Part 6 - Applying uAdmin Tags (Current Progress)</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="part8.html"
-                        title="next chapter">uAdmin Tutorial Part 8 - Customizing your API Handler</a></p>
+  <p class="topless"><a href="full_code/part7.html"
+                        title="next chapter">uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -222,18 +194,18 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="part8.html" title="uAdmin Tutorial Part 8 - Customizing your API Handler"
+          <a href="full_code/part7.html" title="uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)"
              >next</a> |</li>
         <li class="right" >
-          <a href="part6.html" title="uAdmin Tutorial Part 6 - Back-end Validation"
+          <a href="full_code/part6.html" title="uAdmin Tutorial Part 6 - Applying uAdmin Tags (Current Progress)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" >uAdmin Tutorials</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

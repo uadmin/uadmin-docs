@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Best Practices &#8212; uadmin 0.3 documentation</title>
+    <title>Best Practices &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -40,7 +40,7 @@
         <li class="right" >
           <a href="tags.html" title="Tag Reference"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -61,6 +61,7 @@
 </ul>
 <div class="section" id="rules-inlines">
 <h2>Rules - Inlines<a class="headerlink" href="#rules-inlines" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/bestpractices.html#best-practices">Back to Top</a></p>
 <p>1.) Inline must be created in main.go after the uadmin.Register.</p>
 <p>2.) If you have more than one inline in your project, always match the declared element in a single line inside the uadmin.RegisterInlines for easier debugging process as shown below.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">RegisterInlines</span><span class="p">(</span><span class="o">/</span><span class="nx">folder_name</span><span class="o">/</span><span class="p">.</span><span class="o">/</span><span class="nx">struct_name</span> <span class="nx">of</span> <span class="nx">a</span> <span class="nx">parent</span> <span class="nx">model</span><span class="o">/</span><span class="p">{},</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
@@ -84,6 +85,7 @@
 </div>
 <div class="section" id="rules-models">
 <h2>Rules - Models<a class="headerlink" href="#rules-models" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/bestpractices.html#best-practices">Back to Top</a></p>
 <p>1.) The first letter of a model name must be in uppercase format.</p>
 <p>2.) Make sure the model name in your project is in singular form because if you run the application, the uAdmin Dashboard will automatically generate a model name in plural form.</p>
 <p>3.) It is advisable to always put the model struct externally instead of joining it in the main.go. It can be called by using uadmin.Register.</p>
@@ -100,6 +102,7 @@
 </div>
 <div class="section" id="rules-new-project">
 <h2>Rules - New Project<a class="headerlink" href="#rules-new-project" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/bestpractices.html#best-practices">Back to Top</a></p>
 <p>1.) Make it sure it follows the model structure as shown in <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part1.html">Tutorial Part 1</a>.</p>
 <p>2.) In every Go file, always remember the pattern:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Package name (main if you are in the parent folder, folder_name if you are in the subfolders).</span>
@@ -133,6 +136,7 @@
 </div>
 <div class="section" id="rules-login-process">
 <h2>Rules - Login Process<a class="headerlink" href="#rules-login-process" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/bestpractices.html#best-practices">Back to Top</a></p>
 <p>1.) Avoid using common passwords such as “123456” and “password”. Use a password that contains an uppercase and lowercase letters, numbers, and special symbols for strong security.</p>
 <p>2.) Enable two factor authentication in your user account. 2FA adds an extra layer of security that makes it harder for an attacker to access your data.</p>
 <p>3.) Always set an email address in the user account just in case if he forgots his password.</p>
@@ -145,6 +149,7 @@
 </div>
 <div class="section" id="rules-logs">
 <h2>Rules - Logs<a class="headerlink" href="#rules-logs" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/bestpractices.html#best-practices">Back to Top</a></p>
 <p>1.) Edit and Delete logs will allow you to “Undo” them or “Roll Back” your changes. It is a good feature for the user who accidentally made changes to the record in the database.</p>
 <p>2.) When you access to any records you have in your system, there is a “History” button which redirects you to the Log on the top left corner.</p>
 <p>3.) You can use “Filter” to narrow down what you are looking for. This is useful if your log has too many records in your system.</p>
@@ -164,6 +169,7 @@
 <li class="toctree-l1"><a class="reference internal" href="application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quiz.html">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tags.html">Tag Reference</a></li>
@@ -212,12 +218,12 @@
         <li class="right" >
           <a href="tags.html" title="Tag Reference"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

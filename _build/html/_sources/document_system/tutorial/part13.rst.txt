@@ -42,7 +42,7 @@ Here is an example:
 
 The answer is uadmin.AdminPage("name", true, 0, 10, &Ocean, "id = ?", 5).
 
-Go to document.go inside the models folder and create a function named **AdminPage** that holds order with the data type string, asc with the data type bool, offset and limit with the type int, and a, query, and args... with the data type interface{}. args... means you can assign multiple values inside the function parameters.
+Go to **document.go** inside the models folder and create a function named **AdminPage** that holds order with the data type string, asc with the data type bool, offset and limit with the type int, and a, query, and args... with the data type interface{}. args... means you can assign multiple values inside the function parameters.
 
 .. code-block:: go
 
@@ -198,6 +198,14 @@ Go to document.go inside the models folder and create a function named **AdminPa
         return nil
     }
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will discuss about displaying the permission status for each document records.
 
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part13.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part14.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part13

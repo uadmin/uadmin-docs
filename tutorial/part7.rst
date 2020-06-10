@@ -1,132 +1,108 @@
-uAdmin Tutorial Part 7 - Introduction to API
-============================================
-In this part, we will discuss about establishing a connection to the API, setting the URL path name, and getting the todo list data in the API Handler using JSON.
+uAdmin Tutorial Part 7 - M2M (Many-to-many)
+===========================================
+uAdmin has a multiselection feature that allows you to select multiple values inside an input box field.
 
-Create a file named api.go inside the api folder with the following codes below:
+Before we proceed, run your application first. Let's add more records in the Category model.
 
-.. code-block:: go
+**First Record**
 
-    package api
-
-    import (
-        "fmt"
-        "net/http"
-        "strings"
-    )
-
-    // APIHandler !
-    func APIHandler(w http.ResponseWriter, r *http.Request) {
-        // r.URL.Path creates a new path called /api
-        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/api")
-    }
-
-As shown above, we have to call the variable named "APIHelp" to inform the user what are the methods to visit in the api path. To make the API function, we create a handler named "APIHandler" that handles two parameters which are **http.ResponseWriter** that assembles the HTTP server's response; by writing to it, we send data to the HTTP client; and **http.Request** which is a data structure that represents the client HTTP request. **r.URL.Path** is the path component of the request URL.
-
-Go back to the main.go and apply **uadmin.RootURL** as "/admin/" to make the /api functional. Put it above the uadmin.Register.
-
-.. code-block:: go
-
-    func main() {
-        uadmin.RootURL = "/admin/" // <-- place it here
-        uadmin.Register(
-            // Some codes
-        )
-    }
-
-Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.
-
-.. code-block:: go
-
-    import (
-        "net/http"
-
-        // Specify the username that you used inside github.com folder
-        "github.com/username/todo/models"
-
-        // Import this library
-        "github.com/username/todo/api"
-
-        "github.com/uadmin/uadmin"
-    )
-
-    func main() {
-        // Some codes
-
-        // API Handler
-        http.HandleFunc("/api/", api.APIHandler) // <-- place it here
-    }
-
-api is the folder name while APIHandler is the name of the function inside api.go.
-
-Now let's create another file inside the api folder named todo_list.go. This will return the list of your todo activities in JSON format.
-
-.. code-block:: go
-
-    package api
-
-    import (
-        "net/http"
-        "strings"
-
-        // Specify the username that you used inside github.com folder
-        "github.com/username/todo/models"
-        "github.com/uadmin/uadmin"
-    )
-
-    // TodoListHandler !
-    func TodoListHandler(w http.ResponseWriter, r *http.Request) {
-        // r.URL.Path creates a new path called /todo_list
-        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/todo_list")
-
-        // Fetches all object in the database
-        todo := []models.Todo{}
-        uadmin.All(&todo)
-
-        // Accesses and fetches data from another model
-        for t := range todo {
-            uadmin.Preload(&todo[t])
-        }
-
-        // Prints the todo in JSON format
-        uadmin.ReturnJSON(w, r, todo)
-    }
-
-Finally, add this piece of code in the api.go shown below. This will establish a communication between the TodoListHandler and the APIHandler.
-
-.. code-block:: go
-
-    // APIHandler !
-    func APIHandler(w http.ResponseWriter, r *http.Request) {
-        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/api")
-
-        // ------------------ ADD THIS CODE ------------------
-        if strings.HasPrefix(r.URL.Path, "/todo_list") {
-            TodoListHandler(w, r)
-            return
-        }
-        // ---------------------------------------------------
-    }
-
-Now run your application. Suppose you have two records in your Todo model.
-
-.. image:: assets/todomodeltwodata.png
-
-|
-
-If you go to /api/todo_list, you will see the list of each data in a more powerful way using JSON format.
-
-.. image:: assets/todoapijson.png
+.. image:: assets/addnewworkrecord.png
    :align: center
 
 |
 
-Congrats, now you know how to do the following:
+**Second Record**
 
-* Establishing a connection to the API
-* Setting the path name using r.URL.Path
-* How to use API Handlers
-* Fetches data in another model
+.. image:: assets/addnewfamilyrecord.png
+   :align: center
 
-In the `next part`_, we will discuss about customizing your own API handler such as sorting the record in ascending or descending order, the starting point of execution process start until the assigned limit, and the action you want to perform in your database.
+|
 
+**Third Record**
+
+.. image:: assets/addneweducationrecord.png
+   :align: center
+
+|
+
+Result
+
+.. image:: assets/addnewcategoryresult.png
+   :align: center
+
+|
+
+Exit your application. Let's add **Category** field with the array data type of the Category model, set the type tag as "list_exclude", and add **CategoryList** field as well with the type tag "read_only" in **models/category.go** so we can see the result in the list page after you save the record.
+
+.. code-block:: go
+
+    Category     []Category `uadmin:"list_exclude"`
+    CategoryList string     `uadmin:"read_only"`
+
+Expected result
+ 
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        Name         string     `uadmin:"search;categorical_filter;filter;display_name:Product Name"`
+        Description  string     `uadmin:"multilingual"`
+
+        // FIELDS ADDED
+        Category     []Category `uadmin:"list_exclude"`
+        CategoryList string     `uadmin:"read_only"`
+
+        Cost         int        `uadmin:"money;pattern:^[0-9]*$;pattern_msg:Your input must be a number."`
+        Rating       int        `uadmin:"min:1;max:5"`
+    }
+
+Copy this one as well and paste it below the Item struct.
+
+.. code-block:: go
+
+    // Save !
+    func (i *Item) Save() {
+        // Add a new string array type variable called categoryList
+        categoryList := []string{}
+
+        // Append every element to the categoryList array
+        for c := range i.Category {
+            categoryList = append(categoryList, i.Category[c].Name)
+        }
+
+        // Concatenate the categoryList to a single string separated by comma
+        joinList := strings.Join(categoryList, ", ")
+
+        // Store the joined string to the CategoryList field
+        i.CategoryList = joinList
+
+        // Save it to the database
+        uadmin.Save(i)
+    }
+
+Now run your application, go to **ITEMS** model from uAdmin dashboard, and inside it, click **Add New Item** button on the top right corner. In the Category field, add new tag there.
+
+.. image:: assets/m2mtagapplied.png
+
+|
+
+Result
+
+.. image:: assets/m2mtagappliedoutput.png
+
+|
+
+Well done! Now you know how to create multiple elements in M2M tag field and concatenate into a single string stored in another field to display in the list page.
+
+Click `here`_ to view our progress so far.
+
+In the `next part`_, we will discuss on how to apply validation in the back-end.
+
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part8.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part7

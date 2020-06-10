@@ -2,19 +2,19 @@ Document System Tutorial Part 4 - Creating Records in Folders
 =============================================================
 In this part, we will discuss about folder concepts and how to create records in an application.
 
-First of all, click "USERS".
+First of all, click **USERS**.
 
 .. image:: assets/usershighlighted.png
 
 |
 
-Click "Add New User".
+Click **Add New User**.
 
 .. image:: assets/addnewuser.png
 
 |
 
-Click "Add New" to create User Group.
+Click **Add New** to create User Group.
 
 .. image:: assets/usergroupaddnew.png
 
@@ -32,13 +32,13 @@ Fill up the following information to create your own user (e.g. John Doe).
 
 |
 
-Now go back to the Document System Dashboard then click "FOLDER GROUPS".
+Now go back to the Document System Dashboard then click **FOLDER GROUPS**.
 
 .. image:: assets/foldergrouphighlighted.png
 
 |
 
-Click "Add New Folder Group".
+Click **Add New Folder Group**.
 
 .. image:: assets/addnewfoldergroup.png
 
@@ -57,13 +57,13 @@ Result
 
 |
 
-Go back to the Document System Dashboard then click "FOLDER USERS".
+Go back to the Document System Dashboard then click **FOLDER USERS**.
 
 .. image:: assets/folderuserhighlighted.png
 
 |
 
-Click "Add New Folder User".
+Click **Add New Folder User**.
 
 .. image:: assets/addnewfolderuser.png
 
@@ -82,6 +82,14 @@ Result
 
 |
 
+Click `here`_ to view our progress so far.
+
 In the `next part`_, we will talk about linking models using a foreign key for documents.
 
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part4.html
 .. _next part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part5.html
+
+.. toctree::
+   :maxdepth: 1
+
+   full_code/part4

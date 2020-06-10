@@ -3,17 +3,13 @@ package views
 import (
 	"html/template"
 	"net/http"
-	"strings"
 
 	"github.com/uadmin/uadmin"
-	"github.com/uadmin/uadmin/docs/sample_project/todo/models"
+	"github.com/uadmin/uadmin-docs/sample_project/todo/models"
 )
 
 // TodoHandler !
 func TodoHandler(w http.ResponseWriter, r *http.Request) {
-	// r.URL.Path creates a new path called /todo_html
-	r.URL.Path = strings.TrimPrefix(r.URL.Path, "/todo")
-
 	// TodoList field inside the Context that will be used in Golang
 	// HTML template
 	type Context struct {
@@ -23,7 +19,6 @@ func TodoHandler(w http.ResponseWriter, r *http.Request) {
 	// Assigns Context struct to the c variable
 	c := Context{}
 
-	// Fetch Data from DB
 	todo := []models.Todo{}
 	uadmin.All(&todo)
 
@@ -48,5 +43,5 @@ func TodoHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Pass TodoList data object to the specified HTML path
-	uadmin.RenderHTML(w, c, "templates/todo.html")
+	uadmin.RenderHTML(w, r, "templates/todo.html", c)
 }

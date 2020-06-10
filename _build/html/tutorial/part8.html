@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>uAdmin Tutorial Part 8 - Customizing your API Handler &#8212; uadmin 0.3 documentation</title>
+    <title>uAdmin Tutorial Part 8 - Back-end Validation &#8212; uadmin 0.4 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -18,8 +18,8 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="uAdmin Tutorial Part 9 - Inserting and Saving the Record" href="part9.html" />
-    <link rel="prev" title="uAdmin Tutorial Part 7 - Introduction to API" href="part7.html" />
+    <link rel="next" title="uAdmin Tutorial Part 9 - Introduction to API" href="part9.html" />
+    <link rel="prev" title="uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)" href="full_code/part7.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -35,12 +35,12 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="part9.html" title="uAdmin Tutorial Part 9 - Inserting and Saving the Record"
+          <a href="part9.html" title="uAdmin Tutorial Part 9 - Introduction to API"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="part7.html" title="uAdmin Tutorial Part 7 - Introduction to API"
+          <a href="full_code/part7.html" title="uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" accesskey="U">uAdmin Tutorials</a> &#187;</li> 
       </ul>
     </div>  
@@ -50,97 +50,55 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="uadmin-tutorial-part-8-customizing-your-api-handler">
-<h1>uAdmin Tutorial Part 8 - Customizing your API Handler<a class="headerlink" href="#uadmin-tutorial-part-8-customizing-your-api-handler" title="Permalink to this headline">¶</a></h1>
-<p>Before we proceed to this tutorial, let’s create at least 10 records in the Todo model.</p>
-<img alt="../_images/tendataintodomodel.png" src="../_images/tendataintodomodel.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>For the case scenario, our client requests a data that returns only the last 5 activities sorted in descending order. In order to do that, use the public function called <strong>uadmin.AdminPage</strong>. AdminPage fetches records from the database with some standard rules such as sorting data, multiples of, and setting a limit that can be used in pagination. He also requests that the linking models should return only the name, not the other details within that model. Let’s create another API file named “custom_list.go” containing the following codes below:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
+  <div class="section" id="uadmin-tutorial-part-8-back-end-validation">
+<h1>uAdmin Tutorial Part 8 - Back-end Validation<a class="headerlink" href="#uadmin-tutorial-part-8-back-end-validation" title="Permalink to this headline">¶</a></h1>
+<p>For more advanced validation, sometimes you need to implement some validation from the back-end. This is the case for validation that required access to the database to check for duplicate entries or check some permissions like “You are not allowed to assign this task to people outside your department”. Regardless of the case this is how to implement back-end validation.</p>
+<p>Let’s say we don’t want people to add duplicate entries for todo. The way we will do that is check the database and see if there is another todo record with the same name. If we find another record, we can return a message that tells the user that the todo item has been added to the system already.</p>
+<p>Open <strong>/models/todo.go</strong> and add a new method called <strong>Validate</strong> to your Todo struct.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Todo model ...</span>
+<span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>        <span class="kt">string</span>
+    <span class="nx">Description</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;html&quot;`</span>
+    <span class="nx">Category</span>    <span class="nx">Category</span>
+    <span class="nx">CategoryID</span>  <span class="kt">uint</span>
+    <span class="nx">Friend</span>      <span class="nx">Friend</span> <span class="s">`uadmin:&quot;help:Who will be a part of your activity?&quot;`</span>
+    <span class="nx">FriendID</span>    <span class="kt">uint</span>
+    <span class="nx">Item</span>        <span class="nx">Item</span> <span class="s">`uadmin:&quot;help:What are the requirements needed in order to accomplish your activity?&quot;`</span>
+    <span class="nx">ItemID</span>      <span class="kt">uint</span>
+    <span class="nx">TargetDate</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+    <span class="nx">Progress</span>    <span class="kt">int</span> <span class="s">`uadmin:&quot;progress_bar&quot;`</span>
+<span class="p">}</span>
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s">&quot;net/http&quot;</span>
-    <span class="s">&quot;strings&quot;</span>
+<span class="c1">// Save model ...</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">Todo</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Save the model to DB</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
+    <span class="c1">// Some other business Logic ...</span>
+<span class="p">}</span>
 
-    <span class="c1">// Specify the username that you used inside github.com folder</span>
-    <span class="s">&quot;github.com/username/todo/models&quot;</span>
-    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
-<span class="p">)</span>
-
-<span class="c1">// CustomListHandler !</span>
-<span class="kd">func</span> <span class="nx">CustomListHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/custom_list&quot;</span><span class="p">)</span>
-
-    <span class="c1">// Fetch Data from DB</span>
-    <span class="nx">todo</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{}</span>
-
-    <span class="c1">// Assigns a map as a string of interface to store any types of values</span>
-    <span class="nx">results</span> <span class="o">:=</span> <span class="p">[]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{}</span>
-
-    <span class="c1">// &quot;id&quot; - order the todo model by id</span>
-    <span class="c1">// false - to sort in descending order</span>
-    <span class="c1">// 0 - start at index 0</span>
-    <span class="c1">// 5 - get five records</span>
-    <span class="c1">// &amp;todo - todo model to execute</span>
-    <span class="c1">// &quot;&quot; - fetch the id of the model itself</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">AdminPage</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">todo</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
-
-    <span class="c1">// Loop to fetch the record of todo</span>
-    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">todo</span> <span class="p">{</span>
-        <span class="c1">// Accesses and fetches the record of the linking models in Todo</span>
-        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Preload</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">todo</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-
-        <span class="c1">// Assigns the string of interface in each Todo fields</span>
-        <span class="nx">results</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">results</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
-            <span class="s">&quot;ID&quot;</span><span class="p">:</span>          <span class="nx">todo</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">ID</span><span class="p">,</span>
-            <span class="s">&quot;Name&quot;</span><span class="p">:</span>        <span class="nx">todo</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Name</span><span class="p">,</span>
-            <span class="s">&quot;Description&quot;</span><span class="p">:</span> <span class="nx">todo</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Description</span><span class="p">,</span>
-            <span class="c1">// This returns only the name of the Category model, not the</span>
-            <span class="c1">// other fields</span>
-            <span class="s">&quot;Category&quot;</span><span class="p">:</span> <span class="nx">todo</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Category</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>
-            <span class="c1">// This returns only the name of the Friend model, not the</span>
-            <span class="c1">// other fields</span>
-            <span class="s">&quot;Friend&quot;</span><span class="p">:</span> <span class="nx">todo</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Friend</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>
-            <span class="c1">// This returns only the name of the Item model, not the other</span>
-            <span class="c1">// fields</span>
-            <span class="s">&quot;Item&quot;</span><span class="p">:</span>       <span class="nx">todo</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Item</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>
-            <span class="s">&quot;TargetDate&quot;</span><span class="p">:</span> <span class="nx">todo</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">TargetDate</span><span class="p">,</span>
-            <span class="s">&quot;Progress&quot;</span><span class="p">:</span>   <span class="nx">todo</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Progress</span><span class="p">,</span>
-        <span class="p">})</span>
+<span class="c1">// Validate function ...</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">Todo</span><span class="p">)</span> <span class="nx">Validate</span><span class="p">()</span> <span class="p">(</span><span class="nx">errMsg</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Initialize the error messages</span>
+    <span class="nx">errMsg</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{}</span>
+    <span class="c1">// Get any records from the database that maches the name of</span>
+    <span class="c1">// this record and make sure the record is not the record we are</span>
+    <span class="c1">// editing right now</span>
+    <span class="nx">todo</span> <span class="o">:=</span> <span class="nx">Todo</span><span class="p">{}</span>
+    <span class="k">if</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Count</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">todo</span><span class="p">,</span> <span class="s">&quot;name = ? AND id &lt;&gt; ?&quot;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">ID</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="nx">errMsg</span><span class="p">[</span><span class="s">&quot;Name&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;This todo name is already in the system&quot;</span>
     <span class="p">}</span>
-
-    <span class="c1">// Prints the results in JSON format</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span>
+    <span class="k">return</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Finally, add the following pieces of code in the api.go shown below. This will establish a communication between the CustomListHandler and the APIHandler.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// APIHandler !</span>
-<span class="kd">func</span> <span class="nx">APIHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/api&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">HasPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/todo_list&quot;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">TodoListHandler</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
-        <span class="k">return</span>
-    <span class="p">}</span>
-    <span class="c1">// ------------------ ADD THIS CODE ------------------</span>
-    <span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">HasPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/custom_list&quot;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">CustomListHandler</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
-        <span class="k">return</span>
-    <span class="p">}</span>
-    <span class="c1">// ---------------------------------------------------</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Now run your application. If you go to /api/custom_list, you will see the list of your last 5 activities sorted in descending order in a more powerful way using JSON format.</p>
-<img alt="../_images/todoapicustomjson.png" src="../_images/todoapicustomjson.png" />
+<p>Notice that the receiver for Validate() is not a pointer but the struct type. Also notice that the return is a map where the key is the field name and the value is the error message.</p>
+<p>If you try now to add a new record with an existing todo record’s name, it will show me this error:</p>
+<img alt="../_images/todobackendvalidate.png" class="align-center" src="../_images/todobackendvalidate.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Congrats, now you know how to customize your own API by returning the data based on the limit, sorting the data in descending order, and assigning a value to the submodel that returns only one field.</p>
-<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html">next part</a>, we will talk about inserting the data to the models through the API by using multiple parameters.</p>
+<p>You may also do the same process of applying validate function in the other models that you have, this time with using different variables related to the model and different error messages as part of your challenge. Once you master them, congrats! You are now ready to proceed with <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html">configuring APIs</a>.</p>
 </div>
 
 
@@ -156,6 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
@@ -166,11 +125,11 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="part7.html"
-                        title="previous chapter">uAdmin Tutorial Part 7 - Introduction to API</a></p>
+  <p class="topless"><a href="full_code/part7.html"
+                        title="previous chapter">uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="part9.html"
-                        title="next chapter">uAdmin Tutorial Part 9 - Inserting and Saving the Record</a></p>
+                        title="next chapter">uAdmin Tutorial Part 9 - Introduction to API</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -199,18 +158,18 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="part9.html" title="uAdmin Tutorial Part 9 - Inserting and Saving the Record"
+          <a href="part9.html" title="uAdmin Tutorial Part 9 - Introduction to API"
              >next</a> |</li>
         <li class="right" >
-          <a href="part7.html" title="uAdmin Tutorial Part 7 - Introduction to API"
+          <a href="full_code/part7.html" title="uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" >uAdmin Tutorials</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
     </div>
   </body>
 </html>

@@ -1,0 +1,54 @@
+{
+  "display_name": "Translate me ---> Item",
+  "fields": {
+    "Category": {
+      "display_name": "Translate me ---> Category",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "CategoryList": {
+      "display_name": "Translate me ---> Category List",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Cost": {
+      "display_name": "Translate me ---> Cost",
+      "help": "Translate me ---> Input numeric characters only in this field.",
+      "pattern_msg": "Translate me ---> Your input must be a number.",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Description": {
+      "display_name": "Translate me ---> Description",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Name": {
+      "display_name": "Translate me ---> Product Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Rating": {
+      "display_name": "Translate me ---> Rating",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

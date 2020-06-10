@@ -184,18 +184,22 @@ func (d Document) Count(a interface{}, query interface{}, args ...interface{}) i
 		// Split the query part by part
 		qParts := strings.Split(Q, " AND ")
 
-		// Initialize tempArgs as an interface and tempQuery as a string
+		// Initialize tempArgs as an interface and tempQuery as a
+		// string
 		tempArgs := []interface{}{}
 		tempQuery := []string{}
 
 		// Loop the query every part
 		for i := range qParts {
-			// Checks whether the specific query part is not equal to the UserID value
+			// Checks whether the specific query part is not
+			// equal to the UserID value
 			if qParts[i] != "user_id = ?" {
-				// Append the arguments into the tempArgs variable
+				// Append the arguments into the tempArgs
+				// variable
 				tempArgs = append(tempArgs, args[i])
 
-				// Append the specific query part into the tempQuery variable
+				// Append the specific query part into the
+				// tempQuery variable
 				tempQuery = append(tempQuery, qParts[i])
 			}
 		}
@@ -206,7 +210,8 @@ func (d Document) Count(a interface{}, query interface{}, args ...interface{}) i
 		args = tempArgs
 	}
 
-	// Return the a, query, and args... inside the Count function parameters
+	// Return the a, query, and args... inside the Count function
+	// parameters
 	return uadmin.Count(a, query, args...)
 }
 
@@ -217,7 +222,8 @@ func (d Document) AdminPage(order string, asc bool, offset int, limit int, a int
 		offset = 0
 	}
 
-	// Converts the userID into uint because SQL Database reads the model ID as uint
+	// Converts the userID into uint because SQL Database reads the model ID
+	// as uint
 	userID := uint(0)
 
 	// Converts the query into a string
@@ -237,7 +243,8 @@ func (d Document) AdminPage(order string, asc bool, offset int, limit int, a int
 
 		// Loop the query every part
 		for i := range qParts {
-			// Checks whether the specific query part is not equal to the UserID value
+			// Checks whether the specific query part is not equal to the
+			// UserID value
 			if qParts[i] != "user_id = ?" {
 				// Append the arguments into the tempArgs variable
 				tempArgs = append(tempArgs, args[i])
@@ -248,7 +255,8 @@ func (d Document) AdminPage(order string, asc bool, offset int, limit int, a int
 				// Prints the result for debugging
 				uadmin.Trail(uadmin.DEBUG, "UserID: %d", args[i])
 
-				// A type assertion that provides access to an interface value's (args[i]) underlying concrete value (uint).
+				// A type assertion that provides access to an interface
+				// value's (args[i]) underlying concrete value (uint).
 				userID, _ = (args[i]).(uint)
 			}
 		}
@@ -292,7 +300,8 @@ func (d Document) AdminPage(order string, asc bool, offset int, limit int, a int
 			// Prints the result for debugging
 			uadmin.Trail(uadmin.DEBUG, "3")
 
-			// Cast a model of interface as an array of Document then assigns the docList object
+			// Cast a model of interface as an array of Document then assigns
+			// the docList object
 			*a.(*[]Document) = docList
 
 			// Return an error
@@ -304,7 +313,8 @@ func (d Document) AdminPage(order string, asc bool, offset int, limit int, a int
 			// Prints the result for debugging
 			uadmin.Trail(uadmin.DEBUG, "4")
 
-			// Cast a model of interface as an array of Document then assigns the docList object
+			// Cast a model of interface as an array of Document then assigns
+			// the docList object
 			*a.(*[]Document) = docList
 
 			// Prints the result for debugging
@@ -324,7 +334,8 @@ func (d Document) AdminPage(order string, asc bool, offset int, limit int, a int
 				// Prints the result for debugging
 				uadmin.Trail(uadmin.DEBUG, "5")
 
-				// Append the tempList (Document) object to the docList variable
+				// Append the tempList (Document) object to the docList
+				// variable
 				docList = append(docList, tempList[i])
 			}
 
@@ -333,7 +344,8 @@ func (d Document) AdminPage(order string, asc bool, offset int, limit int, a int
 				// Prints the result for debugging
 				uadmin.Trail(uadmin.DEBUG, "6")
 
-				// Cast a model of interface as an array of Document then assigns the docList object
+				// Cast a model of interface as an array of Document then
+				// assigns the docList object
 				*a.(*[]Document) = docList
 
 				// Returns nothing
@@ -344,7 +356,8 @@ func (d Document) AdminPage(order string, asc bool, offset int, limit int, a int
 		// Add limit values to the offset variable
 		offset += limit
 	}
-	// Cast a model of interface as an array of Document then assigns the docList object
+	// Cast a model of interface as an array of Document then assigns the
+	// docList object
 	*a.(*[]Document) = docList
 
 	// Prints the result for debugging
@@ -360,23 +373,12 @@ func (d Document) Permissions__Form() string {
 	u := uadmin.User{}
 
 	// Get the user record based on an assigned ID
-	uadmin.Get(&u, "id = ?", 2)
+	uadmin.Get(&u, "id = ?", 1)
 
-	// Initialize read, add, edit and delete that gets the permission for a specific user based on an assigned ID
+	// Initialize read, add, edit and delete that gets the permission for a
+	// specific user based on an assigned ID
 	r, a, e, del := d.GetPermissions(u)
 
 	// Returns the permission status
-	return fmt.Sprintf("Read: %v, Add: %v, Edit: %v, Delete: %v", r, a, e, del)
-}
-
-// CreatedByFormFilter makes CreatedBy read only if the user is not an admin and the CreatedBy is not an empty string.
-func CreatedByFormFilter(s *uadmin.ModelSchema, m interface{}, u *uadmin.User) {
-	// Casts an interface to the Document model
-	d, _ := m.(*Document)
-	
-	// Check whether the user is not an admin and the CreatedBy Field of Document model is not an empty string
-	if !u.Admin && d.CreatedBy != "" {
-		// Set the CreatedBy Field to read only
-		s.FieldByName("CreatedBy").ReadOnly = "true"
-	}
+	return fmt.Sprintf("Read: %v Add: %v, Edit: %v, Delete: %v", r, a, e, del)
 }

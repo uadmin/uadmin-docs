@@ -56,8 +56,10 @@ By group initialization:
         }
     }
 
-In the following examples, we will use “by group” initialization process.
+In the following examples, we will use "by group” initialization process.
 
+uadmin.ABTest Examples
+----------------------
 * `Example #1: Static`_
     * `Part 1: HTML Template`_
     * `Part 2: Static Handler`_
@@ -75,9 +77,10 @@ In the following examples, we will use “by group” initialization process.
 
 Example #1: Static
 ------------------
-
 **Part 1:** HTML Template
 ^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Before you proceed, make sure you have at least the basic knowledge of HTML. If you are not familiar with HTML, we advise you to go over `W3Schools`_.
 
 .. _W3Schools: https://www.w3schools.com/
@@ -192,6 +195,8 @@ Now run your application and go to /campaign/ path in the address bar (e.g. http
 
 **Part 2:** Static Handler
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Create a new folder named "campaign-ui" in the project directory.
 
 .. image:: assets/campaignuifolder.png
@@ -228,6 +233,8 @@ Establish a StaticHandler connection in the main.go by using http.HandleFunc. It
 
 **Part 3:** A/B Test Function for Static
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Let's create an A/B test for images in main.go.
 
 .. code-block:: go
@@ -271,6 +278,8 @@ As expected, Photo Test record has been created.
 
 **Part 4:** A/B Test Value Function for Static
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 First of all, delete/comment out the AB Test code that you have created.
 
 .. code-block:: go
@@ -321,6 +330,8 @@ As expected, donate and contribute values were created to Photo Test record.
 
 **Part 5:** Image Testing
 ^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Go to index.html in templates folder. Inside the container-fluid class, add an image that referenced to the A/B Test Static Path.
 
 .. code-block:: html
@@ -389,9 +400,10 @@ Based on the result, the contribute image has higher impressions than donate one
 
 Example #2: Model
 -----------------
-
 **Part 1:** Campaign Info Model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Create a file named campaign_info.go inside the models folder with the following codes below:
 
 .. code-block:: go
@@ -457,6 +469,8 @@ Result
 
 **Part 2:** A/B Test Function for Model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Let's create an A/B test for name and button in main.go.
 
 .. code-block:: go
@@ -540,6 +554,8 @@ Result
 
 **Part 3:** A/B Test Value Function for Model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 First of all, delete/comment out the AB Test code that you have created.
 
 .. code-block:: go
@@ -615,6 +631,8 @@ Similarly, they also go with the Button Test record.
 
 **Part 4:** API Click Handler
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Create a file named ab_test_click.go inside the api folder with the following codes below:
 
 .. code-block:: go
@@ -630,8 +648,9 @@ Create a file named ab_test_click.go inside the api folder with the following co
 
     // ABTestClickHandler !
     func ABTestClickHandler(w http.ResponseWriter, r *http.Request) {
-        // r.URL.Path creates a new path called /ab_test_click
+        // r.URL.Path creates a new path called "/ab_test_click/"
         r.URL.Path = strings.TrimPrefix(r.URL.Path, "/ab_test_click")
+        r.URL.Path = strings.TrimSuffix(r.URL.Path, "/")
 
         // Register a click for a campaign group
         uadmin.ABTestClick(r, "campaign")
@@ -665,6 +684,8 @@ api is the folder name while ABTestClickHandler is the name of the function insi
 
 **Part 5:** Get A/B Test
 ^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
 Go to campaign.go in the views folder and apply the following codes below:
 
 .. code-block:: go
@@ -694,6 +715,10 @@ Go to campaign.go in the views folder and apply the following codes below:
 
 **Part 6:** Button Testing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples
+
 Go to index.html in templates folder. Inside the container-fluid class, make the header name dynamic by applying Go Template. Create a button below the image and make the button name dynamic as well. Below the Latest compiled JavaScript library, initialize an internal script. Inside it, call an AJAX that sends user click response to API. This will increment a user click count in the A/B Test value which will be discussed later.
 
 .. code-block:: html

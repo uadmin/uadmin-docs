@@ -1,0 +1,256 @@
+Email Functions
+===============
+`Back To uAdmin Functions List`_
+
+.. _Back To uAdmin Functions List: https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference
+
+In this section, we will cover the following functions in-depth listed below:
+
+* `uadmin.EmailFrom`_
+* `uadmin.EmailPassword`_
+* `uadmin.EmailSMTPServer`_
+* `uadmin.EmailSMTPServerPort`_
+* `uadmin.EmailUsername`_
+* `uadmin.SendEmail`_
+
+uadmin.EmailFrom
+----------------
+`Back To Top`_
+
+EmailFrom identifies where the email is coming from.
+
+Type:
+
+.. code-block:: go
+
+    string
+
+Used in the tutorial:
+
+* `uAdmin Tutorial Part 16 - Advanced Security (Part 2)`_
+
+.. _uAdmin Tutorial Part 16 - Advanced Security (Part 2): https://uadmin-docs.readthedocs.io/en/latest/tutorial/part16.html
+
+To assign a value within an application, visit `Email From`_ page for an example.
+
+.. _Email From: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-from
+
+To assign a value in the code, follow this approach:
+
+Go to the main.go and apply the following codes below:
+
+.. code-block:: go
+
+    func main(){
+        // NOTE: This code works only on first build.
+        uadmin.EmailFrom = "myemail@integritynet.biz"
+        uadmin.EmailUsername = "myemail@integritynet.biz"
+        uadmin.EmailPassword = "abc123"
+        uadmin.EmailSMTPServer = "smtp.integritynet.biz"
+        uadmin.EmailSMTPServerPort = 587
+
+        // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
+
+        // Assign Email From in the Settings
+        setting := uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.EmailFrom")
+        setting.ParseFormValue([]string{"myemail@integritynet.biz"})
+        setting.Save()
+
+        // Assign Email Username in the Settings
+        setting = uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.EmailUsername")
+        setting.ParseFormValue([]string{"myemail@integritynet.biz"})
+        setting.Save()
+
+        // Assign Email Password in the Settings
+        setting = uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.EmailPassword")
+        setting.ParseFormValue([]string{"abc123"})
+        setting.Save()
+
+        // Assign Email SMTP Server in the Settings
+        setting = uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.EmailSMTPServer")
+        setting.ParseFormValue([]string{"smtp.integritynet.biz"})
+        setting.Save()
+
+        // Assign Email SMTP Server Port in the Settings
+        setting = uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.EmailSMTPServerPort")
+        setting.ParseFormValue([]string{"587"})
+        setting.Save()
+
+        // Some codes
+    }
+
+Let's go back to the uAdmin dashboard, go to Users model, create your own user account and set the email address based on your assigned EmailFrom in the code above.
+
+.. image:: ../tutorial/assets/useremailhighlighted.png
+
+|
+
+Log out your account. At the moment, you suddenly forgot your password. How can we retrieve our account? Click Forgot Password at the bottom of the login form.
+
+.. image:: ../tutorial/assets/forgotpasswordhighlighted.png
+
+|
+
+Input your email address based on the user account you wish to retrieve it back.
+
+.. image:: ../tutorial/assets/forgotpasswordinputemail.png
+
+|
+
+Once you are done, open your email account. You will receive a password reset notification from the Todo List support. To reset your password, click the link highlighted below.
+
+.. image:: ../tutorial/assets/passwordresetnotification.png
+
+|
+
+You will be greeted by the reset password form. Input the following information in order to create a new password for you.
+
+.. image:: ../tutorial/assets/resetpasswordform.png
+
+Once you are done, you can now access your account using your new password.
+
+Quiz:
+
+* `Email Functions`_
+
+.. _Email Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/email-functions.html
+
+uadmin.EmailPassword
+--------------------
+`Back To Top`_
+
+EmailPassword assigns the password of an email.
+
+Type:
+
+.. code-block:: go
+
+    string
+
+To assign a value within an application, visit `Email Password`_ page for an example.
+
+.. _Email Password: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-password
+
+To assign a value in the code, visit `uadmin.EmailFrom`_ for an example.
+
+uadmin.EmailSMTPServer
+----------------------
+`Back To Top`_
+
+EmailSMTPServer assigns the name of the SMTP Server in an email.
+
+Type:
+
+.. code-block:: go
+
+    string
+
+To assign a value within an application, visit `Email SMTP Server`_ page for an example.
+
+.. _Email SMTP Server: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-smtp-server
+
+To assign a value in the code, visit `uadmin.EmailFrom`_ for an example.
+
+uadmin.EmailSMTPServerPort
+--------------------------
+`Back To Top`_
+
+EmailSMTPServerPort assigns the port number of an SMTP Server in an email.
+
+Type:
+
+.. code-block:: go
+
+    int
+
+To assign a value within an application, visit `Email SMTP Server Port`_ page for an example.
+
+.. _Email SMTP Server Port: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-smtp-server-port
+
+To assign a value in the code, visit `uadmin.EmailFrom`_ for an example.
+
+uadmin.EmailUsername
+--------------------
+`Back To Top`_
+
+EmailUsername assigns the username of an email.
+
+Type:
+
+.. code-block:: go
+
+    string
+
+See `uadmin.EmailFrom`_ for the example.
+
+To assign a value within an application, visit `Email Username`_ page for an example.
+
+.. _Email Username: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-username
+
+To assign a value in the code, visit `uadmin.EmailFrom`_ for an example.
+
+uadmin.SendEmail
+----------------
+`Back To Top`_
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#email-functions
+
+SendEmail sends email using system configured variables.
+
+Function:
+
+.. code-block:: go
+
+    func(to, cc, bcc []string, subject, body string) (err error)
+
+Parameters:
+
+    **to []string:** This is who you are primarily writing the email to, it’s clear to both the writer and the recipient who is writing the email and to whom it intended.
+
+    **cc []string:** This means carbon copy and it includes people who might be interested in knowing that there was an email between the sender and the primary TO, typically CC’s are not meant to respond, only the primary sender. Everyone can see who was included in the To and CC.
+
+    **bcc []string:** This means blind carbon copy. The sender has added people that the receiving TO and CC are not able to see as a part of the email, someone on BCC is not to respond and they will not be included in the response from the TO or CC. BCC is often used to include a stakeholder like a boss to make sure they are aware of a situation but they can’t respond. [#f1]_
+
+    **subject string:** This means what your email content is all about.
+
+    **body string:** This means the content of your email. It would be either a job application, the letter of your friend, notifications from your subscribed website, etc.
+
+Go to the main.go and apply the following codes below:
+
+.. code-block:: go
+
+    func main(){
+
+        // Some codes
+
+        // Email configurations
+        uadmin.EmailFrom = "myemail@integritynet.biz"
+        uadmin.EmailUsername = "myemail@integritynet.biz"
+        uadmin.EmailPassword = "abc123"
+        uadmin.EmailSMTPServer = "smtp.integritynet.biz"
+        uadmin.EmailSMTPServerPort = 587
+
+        // Place it here
+        uadmin.SendEmail([]string{"myemail@integritynet.biz"}, []string{}, []string{}, "Todo List", "Here are the tasks that I should have done today.")
+    }
+
+Once you are done, open your email account. You will receive an email from a sender.
+
+.. image:: ../assets/sendemailnotification.png
+
+|
+
+Quiz:
+
+* `Email Functions`_
+
+.. _Email Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/email-functions.html
+
+Reference
+---------
+.. [#f1] Corbin, Anke (2017, Feb 27). What is the meaning of TO, CC and BCC in e-mail? Retrieved from https://www.quora.com/What-is-the-meaning-of-TO-CC-and-BCC-in-e-mail
