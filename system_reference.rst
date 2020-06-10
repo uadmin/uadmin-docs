@@ -55,13 +55,13 @@ Examples:
 * `Example #1: Static`_
 * `Example #2: Model`_
 
-.. _HTML Template: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-1-html-template
-.. _Static Images: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-2-static-handler
-.. _Image Source Reference: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-5-image-testing
-.. _Campaign Info Model: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-1-campaign-info-model
-.. _API Click Handler: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-4-api-click-handler
-.. _Get A/B Test: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-5-get-a-b-test
-.. _Dynamic Values in Name and Button: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-6-button-testing
+.. _HTML Template: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#part-1-html-template
+.. _Static Images: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#part-2-static-handler
+.. _Image Source Reference: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#part-5-image-testing
+.. _Campaign Info Model: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#part-1-campaign-info-model
+.. _API Click Handler: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#part-4-api-click-handler
+.. _Get A/B Test: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#part-5-get-a-b-test
+.. _Dynamic Values in Name and Button: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#part-6-button-testing
 
 **Example #1: Static**
 ^^^^^^^^^^^^^^^^^^^^^^

@@ -2802,11 +2802,11 @@ Result:
 .. image:: dapi/assets/preload1resultjson.png
    :align: center
 
-**$stats**
-^^^^^^^^^^
+**$stat**
+^^^^^^^^^
 `Back to Top (Special Parameters)`_
 
-$stats checks the query execution time and its related details.
+$stat checks the query execution time and its related details.
 
 Structure:
 
@@ -2815,7 +2815,7 @@ Structure:
     # d stands for data
     # $ represents a symbol for special parameters
     # stats_value can be either 0 (disabled) or 1 (enabled)
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/?$stats=(stats_value)
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/?$stat=(stats_value)
 
 Suppose you have five records in the Item model.
 
