@@ -814,6 +814,6 @@ uadmin.db
 ^^^^^^^^^
 `Back to Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part15.htmll#document-system-tutorial-part-15-schema-form-modifier-current-progress
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part15.html#document-system-tutorial-part-15-schema-form-modifier-current-progress
 
 .. image:: assets/usermodelupdate.png

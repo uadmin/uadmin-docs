@@ -150,6 +150,6 @@ uadmin.db
 ^^^^^^^^^^^
 `Back to Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part3.htmll#document-system-tutorial-part-3-linking-models-current-progress
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part3.html#document-system-tutorial-part-3-linking-models-current-progress
 
 .. image:: assets/foldermodelupdate.png

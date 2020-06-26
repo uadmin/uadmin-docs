@@ -317,6 +317,6 @@ uadmin.db
 ^^^^^^^^^
 `Back to Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part9.htmll#uadmin-tutorial-part-9-introduction-to-api-current-progress
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part9.html#uadmin-tutorial-part-9-introduction-to-api-current-progress
 
 .. image:: assets/todomodelupdate3.png
