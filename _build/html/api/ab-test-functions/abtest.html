@@ -53,6 +53,7 @@
             
   <div class="section" id="uadmin-abtest">
 <h1>uadmin.ABTest<a class="headerlink" href="#uadmin-abtest" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html">Back to A/B Test Functions Page</a></p>
 <p>ABTest is a model that stores an A/B test.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">ABTest</span> <span class="kd">struct</span> <span class="p">{</span>
@@ -134,7 +135,7 @@
 <h2>Example #1: Static<a class="headerlink" href="#example-1-static" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="part-1-html-template">
 <h3><strong>Part 1:</strong> HTML Template<a class="headerlink" href="#part-1-html-template" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab-test-functions/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
 <p>Before you proceed, make sure you have at least the basic knowledge of HTML. If you are not familiar with HTML, we advise you to go over <a class="reference external" href="https://www.w3schools.com/">W3Schools</a>.</p>
 <p>In this tutorial, we will use Bootstrap 4. For the tutorials, click <a class="reference external" href="https://www.w3schools.com/bootstrap4/default.asp">here</a>.</p>
 <p>First of all, go to your project folder and select templates.</p>
@@ -227,7 +228,7 @@
 </div>
 <div class="section" id="part-2-static-handler">
 <h3><strong>Part 2:</strong> Static Handler<a class="headerlink" href="#part-2-static-handler" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab-test-functions/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
 <p>Create a new folder named “campaign-ui” in the project directory.</p>
 <img alt="../../_images/campaignuifolder.png" class="align-center" src="../../_images/campaignuifolder.png" />
 <div class="line-block">
@@ -260,7 +261,7 @@
 </div>
 <div class="section" id="part-3-a-b-test-function-for-static">
 <h3><strong>Part 3:</strong> A/B Test Function for Static<a class="headerlink" href="#part-3-a-b-test-function-for-static" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab-test-functions/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
 <p>Let’s create an A/B test for images in main.go.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
@@ -300,7 +301,7 @@
 </div>
 <div class="section" id="part-4-a-b-test-value-function-for-static">
 <h3><strong>Part 4:</strong> A/B Test Value Function for Static<a class="headerlink" href="#part-4-a-b-test-value-function-for-static" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab-test-functions/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
 <p>First of all, delete/comment out the AB Test code that you have created.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// abtest := uadmin.ABTest{</span>
 <span class="c1">//  Name:       &quot;Photo Test&quot;,</span>
@@ -344,7 +345,7 @@
 </div>
 <div class="section" id="part-5-image-testing">
 <h3><strong>Part 5:</strong> Image Testing<a class="headerlink" href="#part-5-image-testing" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab-test-functions/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
 <p>Go to index.html in templates folder. Inside the container-fluid class, add an image that referenced to the A/B Test Static Path.</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container-fluid&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Campaign<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
@@ -402,7 +403,7 @@
 <h2>Example #2: Model<a class="headerlink" href="#example-2-model" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="part-1-campaign-info-model">
 <h3><strong>Part 1:</strong> Campaign Info Model<a class="headerlink" href="#part-1-campaign-info-model" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab-test-functions/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
 <p>Create a file named campaign_info.go inside the models folder with the following codes below:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
 
@@ -459,7 +460,7 @@
 </div>
 <div class="section" id="part-2-a-b-test-function-for-model">
 <h3><strong>Part 2:</strong> A/B Test Function for Model<a class="headerlink" href="#part-2-a-b-test-function-for-model" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab-test-functions/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
 <p>Let’s create an A/B test for name and button in main.go.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
@@ -532,7 +533,7 @@
 </div>
 <div class="section" id="part-3-a-b-test-value-function-for-model">
 <h3><strong>Part 3:</strong> A/B Test Value Function for Model<a class="headerlink" href="#part-3-a-b-test-value-function-for-model" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab-test-functions/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
 <p>First of all, delete/comment out the AB Test code that you have created.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// button := uadmin.ABTest{</span>
 <span class="c1">//  Name:       &quot;Button Test&quot;,</span>
@@ -600,7 +601,7 @@
 </div>
 <div class="section" id="part-4-api-click-handler">
 <h3><strong>Part 4:</strong> API Click Handler<a class="headerlink" href="#part-4-api-click-handler" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab-test-functions/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
 <p>Create a file named ab_test_click.go inside the api folder with the following codes below:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
 
@@ -648,7 +649,7 @@
 </div>
 <div class="section" id="part-5-get-a-b-test">
 <h3><strong>Part 5:</strong> Get A/B Test<a class="headerlink" href="#part-5-get-a-b-test" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab-test-functions/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
 <p>Go to campaign.go in the views folder and apply the following codes below:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">views</span>
 
@@ -677,7 +678,7 @@
 </div>
 <div class="section" id="part-6-button-testing">
 <h3><strong>Part 6:</strong> Button Testing<a class="headerlink" href="#part-6-button-testing" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab-test-functions/abtest.html#uadmin-abtest-examples">Back to Top</a></p>
 <p>Go to index.html in templates folder. Inside the container-fluid class, make the header name dynamic by applying Go Template. Create a button below the image and make the button name dynamic as well. Below the Latest compiled JavaScript library, initialize an internal script. Inside it, call an AJAX that sends user click response to API. This will increment a user click count in the A/B Test value which will be discussed later.</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>

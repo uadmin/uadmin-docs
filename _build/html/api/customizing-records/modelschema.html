@@ -53,6 +53,7 @@
             
   <div class="section" id="uadmin-modelschema">
 <h1>uadmin.ModelSchema<a class="headerlink" href="#uadmin-modelschema" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html">Back to Customizing Records Page</a></p>
 <p>ModelSchema is a representation of a plan or theory in the form of an outline or model.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">ModelSchema</span> <span class="kd">struct</span> <span class="p">{</span>
@@ -99,7 +100,7 @@
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">modelschema</span><span class="p">.</span><span class="nx">FieldByName</span><span class="p">(</span><span class="s">&quot;Name&quot;</span><span class="p">).</span><span class="nx">XXXX</span> <span class="p">=</span> <span class="nx">Value</span>
 </pre></div>
 </div>
-<p>XXXX has many things: See <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/f.html">uadmin.F</a> for the list. It is an alternative way of changing the feature of the field rather than using Tags. For more information, see <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tags.html">Tag Reference</a>.</p>
+<p>XXXX has many things: See <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html">uadmin.F</a> for the list. It is an alternative way of changing the feature of the field rather than using Tags. For more information, see <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tags.html">Tag Reference</a>.</p>
 <ul class="simple">
 <li><p><strong>GetFormTheme()</strong> - Returns the form theme for this model or the global theme if there is no assigned theme for the model.</p></li>
 <li><p><strong>GetListTheme()</strong> - Returns the list theme for this model or the global theme if there is no assigned theme for the model.</p></li>
@@ -142,7 +143,7 @@
 </div>
 <div class="section" id="example-1-includeformjs">
 <h2><strong>Example #1:</strong> IncludeFormJS<a class="headerlink" href="#example-1-includeformjs" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span><span class="kt">string</span>
 </pre></div>
@@ -227,7 +228,7 @@
 </div>
 <div class="section" id="example-2-includelistjs">
 <h2><strong>Example #2:</strong> IncludeListJS<a class="headerlink" href="#example-2-includelistjs" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span><span class="kt">string</span>
 </pre></div>
@@ -310,16 +311,16 @@
 </div>
 <div class="section" id="example-3-fields">
 <h2><strong>Example #3:</strong> Fields<a class="headerlink" href="#example-3-fields" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">F</span>
 </pre></div>
 </div>
-<p>See <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/f.html">uadmin.F</a> for the examples.</p>
+<p>See <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html">uadmin.F</a> for the examples.</p>
 </div>
 <div class="section" id="example-4-formmodifier-and-listmodifier">
 <h2><strong>Example #4:</strong> FormModifier and ListModifier<a class="headerlink" href="#example-4-formmodifier-and-listmodifier" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
 <p>Functions:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// FormModifier</span>
 <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="kd">interface</span><span class="p">{},</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">)</span>
@@ -438,7 +439,7 @@
 </div>
 <div class="section" id="example-5-formtheme-and-listtheme">
 <h2><strong>Example #5:</strong> FormTheme and ListTheme<a class="headerlink" href="#example-5-formtheme-and-listtheme" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
 </pre></div>

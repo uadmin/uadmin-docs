@@ -552,6 +552,6 @@ uadmin.db
 ^^^^^^^^^
 `Back to Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part13.html#uadmin-tutorial-part-13-accessing-an-html-file
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part13.html#uadmin-tutorial-part-13-accessing-an-html-file-current-progress
 
 .. image:: assets/todomodelupdate4.png

@@ -1,5 +1,9 @@
 uadmin.Schema
 =============
+`Back to Customizing Records Page`_
+
+.. _Back to Customizing Records Page: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html
+
 Schema is the global schema of the system.
 
 Structure:
@@ -965,7 +969,7 @@ From your project folder, go to /media/files/(generated_folder_name)/. As expect
 ^^^^^^^^^^
 `Back to Top`_
 
-.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/schema.html#uadmin-schema
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/schema.html#uadmin-schema
 
 A feature which adds web can access directly from the image and file fields
 

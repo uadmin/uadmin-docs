@@ -1,5 +1,9 @@
 uadmin.Setting
 ==============
+`Back to Setting Functions Page`_
+
+.. _Back to Setting Functions Page: https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html
+
 Setting is a system in uAdmin that is used to display information for an application as a whole.
 
 Structure:

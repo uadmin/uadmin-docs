@@ -117,11 +117,11 @@ Rules - Login Process
 
 6.) You can also apply `uadmin.GenerateBase32`_, `uadmin.GenerateBase64`_, or `uadmin.Salt`_ as an alternative way to secure the user's password.
 
-.. _IsAuthenticated: https://uadmin-docs.readthedocs.io/en/latest/api.html#uadmin-isauthenticated
+.. _IsAuthenticated: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-isauthenticated
 .. _encrypt: https://uadmin-docs.readthedocs.io/en/latest/tags.html#encrypt
-.. _uadmin.GenerateBase32: https://uadmin-docs.readthedocs.io/en/latest/api.html#uadmin-generatebase32
-.. _uadmin.GenerateBase64: https://uadmin-docs.readthedocs.io/en/latest/api.html#uadmin-generatebase64
-.. _uadmin.Salt: https://uadmin-docs.readthedocs.io/en/latest/api.html#uadmin-salt
+.. _uadmin.GenerateBase32: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-generatebase32
+.. _uadmin.GenerateBase64: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-generatebase64
+.. _uadmin.Salt: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-salt
 
 |
 

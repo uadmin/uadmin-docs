@@ -1,5 +1,9 @@
 uAdmin Settings
 ===============
+`Back to Settings in System Reference`_
+
+.. _Back to Settings in System Reference: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#setting
+
 Here are all build-in uAdmin Settings, their format, and how to use them in the project.
 
 * `Allowed IPs`_

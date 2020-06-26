@@ -1,5 +1,9 @@
 uadmin.Language
 ===============
+`Back to Language Functions Page`_
+
+.. _Back to Language Functions Page: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-language
+
 Language is a system in uAdmin that is used to add, modify and delete the elements of a language.
 
 Structure:
@@ -179,7 +183,7 @@ It automatically sets the value of the Language field to **Tiếng Việt (Vietn
 ^^^^^^^^^^^^^^^^^^^
 `Back to Top`_
 
-.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/language.html#uadmin-language-examples
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/language-functions/language.html#uadmin-language-examples
 
 Suppose that Arabic language is not set to RTL (Right To Left).
 

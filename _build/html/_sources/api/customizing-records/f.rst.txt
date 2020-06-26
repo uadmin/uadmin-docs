@@ -1,5 +1,9 @@
 uadmin.F
 ========
+`Back to Customizing Records Page`_
+
+.. _Back to Customizing Records Page: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html
+
 F is a field.
 
 Structure:
@@ -581,7 +585,7 @@ Run your application, go to the Category model and click Add New Category button
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 `Back to Top (Example #1)`_
 
-.. _Back to Top (Example #1): https://uadmin-docs.readthedocs.io/en/latest/api/f.html#string-data-type-links
+.. _Back to Top (Example #1): https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type
 
 Suppose you have two records as shown below:
 
@@ -820,7 +824,7 @@ Run your application and go to the Todo model. Let's put a numeric value outside
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 `Back to Top (Example #2)`_
 
-.. _Back to Top (Example #2): https://uadmin-docs.readthedocs.io/en/latest/api/f.html#progress-bar-links
+.. _Back to Top (Example #2): https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-2-progress-bar
 
 You can also assign a value in the Progress field automatically when creating a new record. In order to do that, declare a value in the DefaultValue field inside uadmin.F function then assign that value to the DefaultValue field in the Todo model.
 
@@ -1028,7 +1032,7 @@ Run your application, go to the Friend model and click Add New Friend button on 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 `Back to Top (Example #3)`_
 
-.. _Back to Top (Example #3): https://uadmin-docs.readthedocs.io/en/latest/api/f.html#choices-links
+.. _Back to Top (Example #3): https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-3-choices
 
 Unlike in FormDisplay, the field will hide if the value is true. In order to hide the Name field in the Category model, declare a value in the Hidden field inside uadmin.F function then assign that value to the Hidden field in the Category model.
 
@@ -1307,7 +1311,7 @@ Run your application, go to the Category model and click Add New Category button
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 `Back to Top (Example #4)`_
 
-.. _Back to Top (Example #4): https://uadmin-docs.readthedocs.io/en/latest/api/f.html#upload-to-links
+.. _Back to Top (Example #4): https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-4-upload-to
 
 Unlike in FormDisplay, the field will hide if the value is true. In order to hide the File field in the Category model, declare a value in the Hidden field inside uadmin.F function then assign that value to the Hidden field in the Category model.
 
@@ -1337,7 +1341,7 @@ Run your application, go to the Category model and click Add New Category button
 ^^^^^^^^^^^^^^^^^^^^^^^^
 `Back to Top`_
 
-.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/f.html#uadmin-f
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#uadmin-f
 
 In this example, we will discuss on how to set an approval permission in the field.
 

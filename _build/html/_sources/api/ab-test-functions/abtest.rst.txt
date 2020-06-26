@@ -1,5 +1,9 @@
 uadmin.ABTest
 =============
+`Back to A/B Test Functions Page`_
+
+.. _Back to A/B Test Functions Page: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html
+
 ABTest is a model that stores an A/B test.
 
 Structure:
@@ -717,7 +721,7 @@ Go to campaign.go in the views folder and apply the following codes below:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 `Back to Top`_
 
-.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#uadmin-abtest-examples
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/ab-test-functions/abtest.html#uadmin-abtest-examples
 
 Go to index.html in templates folder. Inside the container-fluid class, make the header name dynamic by applying Go Template. Create a button below the image and make the button name dynamic as well. Below the Latest compiled JavaScript library, initialize an internal script. Inside it, call an AJAX that sends user click response to API. This will increment a user click count in the A/B Test value which will be discussed later.
 

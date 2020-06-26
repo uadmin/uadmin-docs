@@ -1,5 +1,9 @@
 uadmin.ModelSchema
 ==================
+`Back to Customizing Records Page`_
+
+.. _Back to Customizing Records Page: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html
+
 ModelSchema is a representation of a plan or theory in the form of an outline or model.
 
 Structure:
@@ -60,7 +64,7 @@ Structure:
 
 XXXX has many things: See `uadmin.F`_ for the list. It is an alternative way of changing the feature of the field rather than using Tags. For more information, see `Tag Reference`_.
 
-.. _uadmin.F: https://uadmin-docs.readthedocs.io/en/latest/api/f.html
+.. _uadmin.F: https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html
 .. _Tag Reference: https://uadmin-docs.readthedocs.io/en/latest/tags.html
 
 * **GetFormTheme()** - Returns the form theme for this model or the global theme if there is no assigned theme for the model.
@@ -467,7 +471,7 @@ Now login any of your non-admin account and see what happens.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 `Back to Top`_
 
-.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/modelschema.html#uadmin-modelschema-examples
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/modelschema.html#uadmin-modelschema-examples
 
 Type:
 

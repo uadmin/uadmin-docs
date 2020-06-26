@@ -1,5 +1,9 @@
 uadmin.Log
 ==========
+`Back to Log Functions Page`_
+
+.. _Back to Log Functions Page: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html
+
 Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities.
 
 Structure:

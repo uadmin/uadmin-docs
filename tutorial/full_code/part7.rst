@@ -234,6 +234,6 @@ uadmin.db
 ^^^^^^^^^
 `Back to Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html#uadmin-tutorial-part-7-m2m-many-to-many
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html#uadmin-tutorial-part-7-m2m-many-to-many-current-progress
 
 .. image:: assets/todomodelupdate2.png

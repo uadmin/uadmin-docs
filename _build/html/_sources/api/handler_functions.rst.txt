@@ -50,7 +50,7 @@ Parameters:
 
 See `Part 2: Static Handler`_ for the example.
 
-.. _Part 2\: Static Handler: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-2-static-handler
+.. _Part 2\: Static Handler: https://uadmin-docs.readthedocs.io/en/latest/api/ab-test-functions/abtest.html#part-2-static-handler
 
 uadmin.UploadImageHandler
 -------------------------

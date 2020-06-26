@@ -383,6 +383,6 @@ uadmin.db
 ^^^^^^^^^
 `Back to Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#uadmin-tutorial-part-10-customizing-your-api-handler
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#uadmin-tutorial-part-10-customizing-your-api-handler-current-progress
 
 .. image:: assets/todomodelupdate4.png

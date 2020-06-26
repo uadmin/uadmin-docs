@@ -595,6 +595,6 @@ uadmin.db
 ^^^^^^^^^
 `Back to Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part17.htmll#uadmin-tutorial-part-14-storing-the-data-to-html
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part17.html#uadmin-tutorial-part-17-wrapping-up-your-application-current-progress
 
 .. image:: assets/todomodelupdate4.png
