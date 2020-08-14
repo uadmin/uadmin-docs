@@ -6,6 +6,8 @@ User Functions
 
 In this section, we will cover the following functions in-depth listed below:
 
+* `uadmin.CachePermissions`_
+* `uadmin.CacheSessions`_
 * `uadmin.CookieTimeout`_
 * `uadmin.GetUserFromRequest`_
 * `uadmin.IsAuthenticated`_
@@ -13,44 +15,59 @@ In this section, we will cover the following functions in-depth listed below:
 * `uadmin.Login2FA`_
 * `uadmin.Logout`_
 * `uadmin.Session`_
+    * `func (*Session) GenerateKey`_
+    * `func (Session) HideInDashboard`_
+    * `func (*Session) Logout`_
+    * `func (*Session) Save`_
+    * `func (Session) String`_
+* `uadmin.SetSessionCookie`_
 * `uadmin.User`_
+    * `func (*User) GetAccess`_
+    * `func (*User) GetActiveSession`_
+    * `func (*User) GetDashboardMenu`_
+    * `func (*User) GetOTP`_
+    * `func (*User) HasAccess`_
+    * `func (*User) Login`_
+    * `func (*User) Save`_
+    * `func (User) String`_
+    * `func (User) Validate`_
+    * `func (*User) VerifyOTP`_
 * `uadmin.UserGroup`_
+    * `func (*UserGroup) HasAccess`_
+    * `func (UserGroup) String`_
 
 uadmin.CachePermissions
 -----------------------
 `Back To Top`_
 
-CachePermissions allows uAdmin to store permissions data in memory.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var CachePermissions = true
+
+CachePermissions allows uAdmin to store permissions data in memory.
 
 uadmin.CacheSessions
 --------------------
 `Back To Top`_
 
-CacheSessions allows uAdmin to store sessions data in memory.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var CacheSessions = true
+
+CacheSessions allows uAdmin to store sessions data in memory.
 
 uadmin.CookieTimeout
 --------------------
 `Back To Top`_
 
-CookieTimeout is the timeout of a login cookie in seconds.
-
-Type:
-
 .. code-block:: go
 
-    int
+    // Type: int
+    var CookieTimeout = -1
+
+CookieTimeout is the timeout of a login cookie in seconds. If the value is -1, then the session cookie will not have an expiry date.
 
 Let's apply this function in the main.go.
 
@@ -81,13 +98,11 @@ uadmin.GetUserFromRequest
 -------------------------
 `Back To Top`_
 
-GetUserFromRequest returns a user from a request.
-
-Function:
-
 .. code-block:: go
 
-    func(r *http.Request) *uadmin.User
+    func GetUserFromRequest(r *http.Request) *User
+
+GetUserFromRequest returns a user from a request.
 
 Parameter:
 
@@ -202,13 +217,11 @@ uadmin.IsAuthenticated
 ----------------------
 `Back To Top`_
 
-IsAuthenticated returns the session of the user.
-
-Function:
-
 .. code-block:: go
 
-    func(r *http.Request) *uadmin.Session
+    func IsAuthenticated(r *http.Request) *Session
+
+IsAuthenticated returns if the http.Request is authenticated or not.
 
 Parameter:
 
@@ -316,13 +329,11 @@ uadmin.Login
 ------------
 `Back To Top`_
 
-Login returns the pointer of User and a bool for Is OTP Required.
-
-Function:
-
 .. code-block:: go
 
-    func(r *http.Request, username string, password string) (*uadmin.Session, bool)
+    func Login(r *http.Request, username string, password string) (*Session, bool)
+
+Login return \*User and a bool for Is OTP Required.
 
 Parameters:
 
@@ -402,13 +413,11 @@ uadmin.Login2FA
 ---------------
 `Back To Top`_
 
-Login2FA returns the pointer of User with a two-factor authentication.
-
-Function:
-
 .. code-block:: go
 
-   func(r *http.Request, username string, password string, otpPass string) *uadmin.Session
+    func Login2FA(r *http.Request, username string, password string, otpPass string) *Session
+
+Login2FA returns the pointer of User with a two-factor authentication.
 
 Parameters:
 
@@ -513,13 +522,11 @@ uadmin.Logout
 -------------
 `Back To Top`_
 
-Logout deactivates the session.
-
-Function:
-
 .. code-block:: go
 
-    func(r *http.Request)
+    func Logout(r *http.Request)
+
+Logout logs out a user.
 
 Parameter:
 
@@ -596,17 +603,13 @@ uadmin.Session
 --------------
 `Back To Top`_
 
-Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. [#f1]_
-
-Structure:
-
 .. code-block:: go
 
     type Session struct {
         Model
         Key        string
-        User       User `gorm:"ForeignKey:UserID" uadmin:"filter"`
-        UserID     uint `fk:"true" displayName:"User"`
+        User       User `uadmin:"filter"`
+        UserID     uint
         LoginTime  time.Time
         LastLogin  time.Time
         Active     bool   `uadmin:"filter"`
@@ -615,13 +618,57 @@ Structure:
         ExpiresOn  *time.Time
     }
 
-There are 5 functions that you can use in Session:
+Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. [#f1]_
 
-* **GenerateKey()** - Automatically generates a random string of characters for you
-* **HideInDashboard()** - Return true and auto hide this from dashboard
-* **Logout()** - Deactivates a session
-* **Save()** - Saves the object in the database
-* **String()** - Returns the value of the Key
+**func (\*Session) GenerateKey**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (s *Session) GenerateKey()
+
+GenerateKey automatically generates a random string of characters for you.
+
+**func (Session) HideInDashboard**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (Session) HideInDashboard() bool
+
+HideInDashboard to return false and auto hide this from dashboard
+
+**func (\*Session) Logout**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (s *Session) Logout()
+
+Logout deactivates a session.
+
+**func (\*Session) Save**
+^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (s *Session) Save()
+
+Save saves the object in the database.
+
+**func (Session) String**
+^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (s Session) String() string
+
+String returns the value of the Key.
 
 There are 2 ways you can do for initialization process using this function: one-by-one and by group.
 
@@ -772,23 +819,29 @@ Quiz:
 
 .. _Session: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/session.html
 
+uadmin.SetSessionCookie
+-----------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func SetSessionCookie(w http.ResponseWriter, r *http.Request, s *Session)
+
+SetSessionCookie sets the session cookie value, The value passed in session is nil, then the session assiged will be a no user session.
+
 uadmin.User
 -----------
 `Back To Top`_
-
-User is a system in uAdmin that is used to add, modify and delete the elements of the user.
-
-Structure:
 
 .. code-block:: go
 
     type User struct {
         Model
-        Username     string    `uadmin:"required;filter"`
-        FirstName    string    `uadmin:"filter"`
-        LastName     string    `uadmin:"filter"`
+        Username     string    `uadmin:"required;filter;search"`
+        FirstName    string    `uadmin:"filter;search"`
+        LastName     string    `uadmin:"filter;search"`
         Password     string    `uadmin:"required;password;help:To reset password, clear the field and type a new password.;list_exclude"`
-        Email        string    `uadmin:"email"`
+        Email        string    `uadmin:"email;search"`
         Active       bool      `uadmin:"filter"`
         Admin        bool      `uadmin:"filter"`
         RemoteAccess bool      `uadmin:"filter"`
@@ -800,6 +853,8 @@ Structure:
         OTPRequired bool
         OTPSeed     string `uadmin:"list_exclude;hidden;read_only"`
     }
+
+User is a system in uAdmin that is used to add, modify and delete the elements of the user.
 
 Here are the following fields and their definitions:
 
@@ -819,32 +874,105 @@ Here are the following fields and their definitions:
 * **OTPRequired** - Checks whether the OTP is Active
 * **OTPSeed** - Private field for OTP
 
-There are 10 functions that you can use in User:
-
-* **GetAccess** - Returns the user's permission to a dashboard menu based on their admin status, group and user permissions
-* **GetActiveSession()** - Returns an active session key
-* **GetDashboardMenu()** - Returns the list of models in the dashboard menu
-* **GetOTP()** - Returns a string of OTP code
-* **HasAccess** - Searches for the url in the modelName. Uses this format as shown below:
+**func (\*User) GetAccess**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
 
 .. code-block:: go
 
-    func(modelName string) UserPermission
+    func (u *User) GetAccess(modelName string) UserPermission
 
-**Login** - Returns the pointer of User and a bool for Is OTP Required. It uses this format as shown below:
+GetAccess returns the user's permission to a dashboard menu based on their admin status, group and user permissions.
 
-.. code-block:: go
-
-    func(pass string, otp string) *uadmin.Session
-
-* **Save()** - Saves the object in the database
-* **String()** - Returns the first name and the last name
-* **Validate()** - Validate user when saving from uadmin. It returns (ret map[string]string).
-* **VerifyOTP** - Verifies the OTP of the user. It uses this format as shown below:
+**func (\*User) GetActiveSession**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
 
 .. code-block:: go
 
-    func(pass string) bool
+    func (u *User) GetActiveSession() *Session
+
+GetActiveSession returns an active session key.
+
+**func (\*User) GetDashboardMenu**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (u *User) GetDashboardMenu() (menus []DashboardMenu)
+
+GetDashboardMenu returns the list of models in the dashboard menu.
+
+**func (\*User) GetOTP**
+^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (u *User) GetOTP() string
+
+GetOTP returns a string of OTP code.
+
+**func (\*User) HasAccess**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (u *User) HasAccess(modelName string) UserPermission
+
+HasAccess returns the user level permission to a model. The modelName the the URL of the model.
+
+**func (\*User) Login**
+^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (u *User) Login(pass string, otp string) *Session
+
+Login logs in user using password and otp. If there is no OTP, just pass an empty string.
+
+**func (\*User) Save**
+^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (u *User) Save()
+
+Save saves the object in the database.
+
+**func (User) String**
+^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (u User) String() string
+
+String returns the first name and the last name.
+
+**func (User) Validate**
+^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (u User) Validate() (ret map[string]string)
+
+Validate user when saving from uadmin
+
+**func (\*User) VerifyOTP**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (u *User) VerifyOTP(pass string) bool
+
+VerifyOTP verifies the OTP of the user.
 
 Used in the tutorial:
 
@@ -1074,10 +1202,6 @@ uadmin.UserGroup
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions
 
-UserGroup is a system in uAdmin used to add, modify, and delete the group name.
-
-Structure:
-
 .. code-block:: go
 
     type UserGroup struct {
@@ -1085,15 +1209,27 @@ Structure:
         GroupName string `uadmin:"filter"`
     }
 
-There are 2 functions that you can use in UserGroup:
+UserGroup is a system in uAdmin used to add, modify, and delete the group name.
 
-**HasAccess()** - Returns the Group Permission ID. It uses this format as shown below:
+**func (\*UserGroup) HasAccess**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
 
 .. code-block:: go
 
-    func(modelName string) uadmin.GroupPermission
+    func (u *UserGroup) HasAccess(modelName string) GroupPermission
 
-**String()** - Returns the GroupName
+HasAccess returns the Group Permission ID.
+
+**func (UserGroup) String**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (u UserGroup) String() string
+
+String returns the GroupName.
 
 There are 2 ways you can do for initialization process using this function: one-by-one and by group.
 

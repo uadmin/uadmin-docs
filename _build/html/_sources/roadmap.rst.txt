@@ -6,6 +6,8 @@ Roadmap
 * `Version 0.2.2 (2019-06-24)`_
 * `Version 0.3.0 (2019-07-02)`_
 * `Version 0.4.0 (2019-12-26)`_
+* `Version 0.5.0 Atlas Moth (2020-08-02)`_
+* `Version 0.5.1 Atlas Moth (2020-08-07)`_
 
 Version 0.1.0 (2018-12-23)
 --------------------------
@@ -150,8 +152,6 @@ Version 0.4.0 (2019-12-26)
 --------------------------
 `Back to Top`_
 
-.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap
-
 **Added**
 ^^^^^^^^^
 * Implemented request rate limits to protect from DDoS
@@ -196,3 +196,74 @@ Version 0.4.0 (2019-12-26)
 ^^^^^^^^^^^^
 * Restrict access to inlines based on user model permissions
 * Search API escapes HTML results
+
+Version 0.5.0 Atlas Moth (2020-08-02)
+-------------------------------------
+`Back to Top`_
+
+**Added**
+^^^^^^^^^
+* PreQuery and PostQuery handler for dAPI
+* `method` command in dAPI to run model's methods
+* Windows support for syslog
+* `$preload` in dAPI
+* RenderMultiHTML to render nested templates
+* `$choices` in schema command in dAPI to preload FK and M2M choices
+* Support for golang Modules
+* Added search in dAPI using `$q`
+* Reset button for ABTest
+* Added delete functionality for file and image from UI and dAPI
+* dAPI schema now translates the model based on your language cookie
+* dAPI now supports M2M in add and delete functions
+* `$distinct` in dAPI read function
+
+**Changed**
+^^^^^^^^^^^
+* Dropping support for Golang 1.10
+* Changed Excel export library to excelize
+* GetDefaultLanguage and GetActiveLanguages are public now
+* TranslateSchema is public now
+* Model method `GetImageSize() (int, int)` to customize image size
+
+**Fixed**
+^^^^^^^^^
+* Fixed bug with dAPI __ filters
+* Fixed last insert ID in MySQL
+* Fixed dAPI clearing file and image fields
+* Fixed a bug with Aggregate column
+* HideInDashboard works for existing models
+* DashboardMenu changes icon size to 128X128 pixels
+
+**Security**
+^^^^^^^^^^^^
+* PasswordAttempts and PasswordTimeout settings to protect limit invalid password attempts
+* CheckRateLimit limits whole IP instead of IP and port combination
+* CSRF protection in UI and dAPI and public function `CheckCSRF`
+* SQL injection checking in dAPI, export and public function `SQLInjection`
+* Added AllowedHosts setting to limit the domains/IPs for password reset
+* Link fields get `x-scrf-token` added automatically in UI
+* `session` cookie uses SameSite=SameSiteStrictMode
+* Prevent navigation attacks in Theme setting and file upload
+
+Version 0.5.1 Atlas Moth (2020-08-07)
+-------------------------------------
+`Back to Top`_
+
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap
+
+**Changed**
+^^^^^^^^^^^
+* dAPI function `method` can return a value if the method called has a return. Note: if you have a return, you cannot use `$next` to redirect.
+
+**Fixed**
+^^^^^^^^^
+* Fixed false positive SQL Injection in dAPI join.
+* Fixed false detection in `customGet` for private fields of type `[]struct` as an M2M field.
+* Typo in uadmin command line tool.
+
+**Security**
+^^^^^^^^^^^^
+* CSRF protection in dAPI in functions: `add`, `edit`, `delete` and `method`.
+* Template function `CSRF` implemented in `uadmin.RenderHTML` and `uadmin.RenderMultiHTML`. It returns anti CSRF token.
+* `uadmin.IsAuthenticated` recognizes `nouser` sessions. These sessions are for users who are not authenticated in the system. To set a session cookie, user `SetSessionCookie`.
+* `uadmin.SetSessionCookie` receives a pointer to a session and sets the session cookie in a secure way. If you pass a `nil` to the session, the session will be created as a `nouser` session which is still a session but gives the user to access as an authenticated user. These sessions can be used to protect against CSRF attacks in case you have a public API.

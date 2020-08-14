@@ -1,20 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Roadmap &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roadmap &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script type="text/javascript" src="_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -36,7 +37,8 @@
         <li class="right" >
           <a href="license.html" title="License"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Roadmap</a></li> 
       </ul>
     </div>  
 
@@ -54,6 +56,8 @@
 <li><p><a class="reference internal" href="#version-0-2-2-2019-06-24">Version 0.2.2 (2019-06-24)</a></p></li>
 <li><p><a class="reference internal" href="#version-0-3-0-2019-07-02">Version 0.3.0 (2019-07-02)</a></p></li>
 <li><p><a class="reference internal" href="#version-0-4-0-2019-12-26">Version 0.4.0 (2019-12-26)</a></p></li>
+<li><p><a class="reference internal" href="#version-0-5-0-atlas-moth-2020-08-02">Version 0.5.0 Atlas Moth (2020-08-02)</a></p></li>
+<li><p><a class="reference internal" href="#version-0-5-1-atlas-moth-2020-08-07">Version 0.5.1 Atlas Moth (2020-08-07)</a></p></li>
 </ul>
 <div class="section" id="version-0-1-0-2018-12-23">
 <h2>Version 0.1.0 (2018-12-23)<a class="headerlink" href="#version-0-1-0-2018-12-23" title="Permalink to this headline">¶</a></h2>
@@ -301,9 +305,93 @@
 </ul>
 </div>
 </div>
+<div class="section" id="version-0-5-0-atlas-moth-2020-08-02">
+<h2>Version 0.5.0 Atlas Moth (2020-08-02)<a class="headerlink" href="#version-0-5-0-atlas-moth-2020-08-02" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap">Back to Top</a></p>
+<div class="section" id="id12">
+<h3><strong>Added</strong><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>PreQuery and PostQuery handler for dAPI</p></li>
+<li><p><cite>method</cite> command in dAPI to run model’s methods</p></li>
+<li><p>Windows support for syslog</p></li>
+<li><p><cite>$preload</cite> in dAPI</p></li>
+<li><p>RenderMultiHTML to render nested templates</p></li>
+<li><p><cite>$choices</cite> in schema command in dAPI to preload FK and M2M choices</p></li>
+<li><p>Support for golang Modules</p></li>
+<li><p>Added search in dAPI using <cite>$q</cite></p></li>
+<li><p>Reset button for ABTest</p></li>
+<li><p>Added delete functionality for file and image from UI and dAPI</p></li>
+<li><p>dAPI schema now translates the model based on your language cookie</p></li>
+<li><p>dAPI now supports M2M in add and delete functions</p></li>
+<li><p><cite>$distinct</cite> in dAPI read function</p></li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h3><strong>Changed</strong><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Dropping support for Golang 1.10</p></li>
+<li><p>Changed Excel export library to excelize</p></li>
+<li><p>GetDefaultLanguage and GetActiveLanguages are public now</p></li>
+<li><p>TranslateSchema is public now</p></li>
+<li><p>Model method <cite>GetImageSize() (int, int)</cite> to customize image size</p></li>
+</ul>
+</div>
+<div class="section" id="id14">
+<h3><strong>Fixed</strong><a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fixed bug with dAPI __ filters</p></li>
+<li><p>Fixed last insert ID in MySQL</p></li>
+<li><p>Fixed dAPI clearing file and image fields</p></li>
+<li><p>Fixed a bug with Aggregate column</p></li>
+<li><p>HideInDashboard works for existing models</p></li>
+<li><p>DashboardMenu changes icon size to 128X128 pixels</p></li>
+</ul>
+</div>
+<div class="section" id="id15">
+<h3><strong>Security</strong><a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>PasswordAttempts and PasswordTimeout settings to protect limit invalid password attempts</p></li>
+<li><p>CheckRateLimit limits whole IP instead of IP and port combination</p></li>
+<li><p>CSRF protection in UI and dAPI and public function <cite>CheckCSRF</cite></p></li>
+<li><p>SQL injection checking in dAPI, export and public function <cite>SQLInjection</cite></p></li>
+<li><p>Added AllowedHosts setting to limit the domains/IPs for password reset</p></li>
+<li><p>Link fields get <cite>x-scrf-token</cite> added automatically in UI</p></li>
+<li><p><cite>session</cite> cookie uses SameSite=SameSiteStrictMode</p></li>
+<li><p>Prevent navigation attacks in Theme setting and file upload</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="version-0-5-1-atlas-moth-2020-08-07">
+<h2>Version 0.5.1 Atlas Moth (2020-08-07)<a class="headerlink" href="#version-0-5-1-atlas-moth-2020-08-07" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap">Back to Top</a></p>
+<div class="section" id="id16">
+<h3><strong>Changed</strong><a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>dAPI function <cite>method</cite> can return a value if the method called has a return. Note: if you have a return, you cannot use <cite>$next</cite> to redirect.</p></li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h3><strong>Fixed</strong><a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fixed false positive SQL Injection in dAPI join.</p></li>
+<li><p>Fixed false detection in <cite>customGet</cite> for private fields of type <cite>[]struct</cite> as an M2M field.</p></li>
+<li><p>Typo in uadmin command line tool.</p></li>
+</ul>
+</div>
+<div class="section" id="id18">
+<h3><strong>Security</strong><a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>CSRF protection in dAPI in functions: <cite>add</cite>, <cite>edit</cite>, <cite>delete</cite> and <cite>method</cite>.</p></li>
+<li><p>Template function <cite>CSRF</cite> implemented in <cite>uadmin.RenderHTML</cite> and <cite>uadmin.RenderMultiHTML</cite>. It returns anti CSRF token.</p></li>
+<li><p><cite>uadmin.IsAuthenticated</cite> recognizes <cite>nouser</cite> sessions. These sessions are for users who are not authenticated in the system. To set a session cookie, user <cite>SetSessionCookie</cite>.</p></li>
+<li><p><cite>uadmin.SetSessionCookie</cite> receives a pointer to a session and sets the session cookie in a secure way. If you pass a <cite>nil</cite> to the session, the session will be created as a <cite>nouser</cite> session which is still a session but gives the user to access as an authenticated user. These sessions can be used to protect against CSRF attacks in case you have a public API.</p></li>
+</ul>
+</div>
+</div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -345,7 +433,7 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -359,12 +447,13 @@
         <li class="right" >
           <a href="license.html" title="License"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Roadmap</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

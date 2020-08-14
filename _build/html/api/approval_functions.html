@@ -1,20 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Approval Functions &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Approval Functions &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,8 +41,9 @@
         <li class="right" >
           <a href="ab-test-functions/abtest.html" title="uadmin.ABTest"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Approval Functions</a></li> 
       </ul>
     </div>  
 
@@ -55,32 +57,46 @@
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
 <p>In this section, we will cover the following functions in-depth listed below:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#uadmin-approval">uadmin.Approval</a></p></li>
-<li><p><a class="reference internal" href="#uadmin-approvalaction">uadmin.ApprovalAction</a></p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#uadmin-approval">uadmin.Approval</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#func-approval-save">func (*Approval) Save</a></p></li>
+<li><p><a class="reference internal" href="#func-approval-string">func (*Approval) String</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#uadmin-approvalaction">uadmin.ApprovalAction</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#func-approvalaction-approved">func (ApprovalAction) Approved</a></p></li>
+<li><p><a class="reference internal" href="#func-approvalaction-rejected">func (ApprovalAction) Rejected</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
 <li><p><a class="reference internal" href="#uadmin-approvalhandlefunc">uadmin.ApprovalHandleFunc</a></p></li>
 </ul>
 <div class="section" id="uadmin-approval">
 <h2>uadmin.Approval<a class="headerlink" href="#uadmin-approval" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#approval-functions">Back To Top</a></p>
-<p>Approval is a feature used to set an approval permission in the field.</p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Approval</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">ModelName</span>           <span class="kt">string</span>
-    <span class="nx">ModelPK</span>             <span class="kt">uint</span>
-    <span class="nx">ColumnName</span>          <span class="kt">string</span>
-    <span class="nx">OldValue</span>            <span class="kt">string</span>
+    <span class="nx">Model</span>
+    <span class="nx">ModelName</span>           <span class="kt">string</span> <span class="s">`uadmin:&quot;read_only&quot;`</span>
+    <span class="nx">ModelPK</span>             <span class="kt">uint</span>   <span class="s">`uadmin:&quot;read_only&quot;`</span>
+    <span class="nx">ColumnName</span>          <span class="kt">string</span> <span class="s">`uadmin:&quot;read_only&quot;`</span>
+    <span class="nx">OldValue</span>            <span class="kt">string</span> <span class="s">`uadmin:&quot;read_only&quot;`</span>
     <span class="nx">NewValue</span>            <span class="kt">string</span>
-    <span class="nx">NewValueDescription</span> <span class="kt">string</span>
-    <span class="nx">ChangedBy</span>           <span class="kt">string</span>
-    <span class="nx">ChangeDate</span>          <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+    <span class="nx">NewValueDescription</span> <span class="kt">string</span>    <span class="s">`uadmin:&quot;read_only&quot;`</span>
+    <span class="nx">ChangedBy</span>           <span class="kt">string</span>    <span class="s">`uadmin:&quot;read_only&quot;`</span>
+    <span class="nx">ChangeDate</span>          <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span> <span class="s">`uadmin:&quot;read_only&quot;`</span>
     <span class="nx">ApprovalAction</span>      <span class="nx">ApprovalAction</span>
-    <span class="nx">ApprovalBy</span>          <span class="kt">string</span>
-    <span class="nx">ApprovalDate</span>        <span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
-    <span class="nx">ViewRecord</span>          <span class="kt">string</span>
-    <span class="nx">UpdatedBy</span>           <span class="kt">string</span>
+    <span class="nx">ApprovalBy</span>          <span class="kt">string</span>     <span class="s">`uadmin:&quot;read_only&quot;`</span>
+    <span class="nx">ApprovalDate</span>        <span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span> <span class="s">`uadmin:&quot;read_only&quot;`</span>
+    <span class="nx">ViewRecord</span>          <span class="kt">string</span>     <span class="s">`uadmin:&quot;link&quot;`</span>
+    <span class="nx">UpdatedBy</span>           <span class="kt">string</span>     <span class="s">`uadmin:&quot;read_only;hidden;list_exclude&quot;`</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Approval is a model that stores approval data.</p>
 <p>Here are the following fields and their definitions:</p>
 <ul class="simple">
 <li><p><strong>ModelName</strong> - The name of the Model in small letters</p></li>
@@ -97,11 +113,21 @@
 <li><p><strong>ViewRecord</strong> - A link to view the information of the actual record</p></li>
 <li><p><strong>UpdatedBy</strong> - Returns the username who updated the record</p></li>
 </ul>
-<p>There are 2 functions that you can use in Approval:</p>
-<ul class="simple">
-<li><p><strong>Save()</strong> - Saves the object in the database</p></li>
-<li><p><strong>String()</strong> - Returns the Model Name, Model PK, and Column Name</p></li>
-</ul>
+<div class="section" id="func-approval-save">
+<h3><strong>func (*Approval) Save</strong><a class="headerlink" href="#func-approval-save" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#approval-functions">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">a</span> <span class="o">*</span><span class="nx">Approval</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Save overrides save.</p>
+</div>
+<div class="section" id="func-approval-string">
+<h3><strong>func (*Approval) String</strong><a class="headerlink" href="#func-approval-string" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#approval-functions">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">a</span> <span class="o">*</span><span class="nx">Approval</span><span class="p">)</span> <span class="nx">String</span><span class="p">()</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>String returns the Model Name, Model PK, and Column Name.</p>
 <p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
 <p>One-by-one initialization:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
@@ -195,28 +221,43 @@
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/approval-functions.html">Approval Functions</a></p></li>
 </ul>
 </div>
+</div>
 <div class="section" id="uadmin-approvalaction">
 <h2>uadmin.ApprovalAction<a class="headerlink" href="#uadmin-approvalaction" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#approval-functions">Back To Top</a></p>
-<p>ApprovalAction is a selection of approval actions. There are two functions: Approved and Rejected.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">ApprovalAction</span> <span class="kt">int</span>
 </pre></div>
 </div>
+<p>ApprovalAction is a selection of approval actions.</p>
+<div class="section" id="func-approvalaction-approved">
+<h3><strong>func (ApprovalAction) Approved</strong><a class="headerlink" href="#func-approvalaction-approved" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#approval-functions">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">ApprovalAction</span><span class="p">)</span> <span class="nx">Approved</span><span class="p">()</span> <span class="nx">ApprovalAction</span>
+</pre></div>
+</div>
+<p>Approved is an accepted change.</p>
+</div>
+<div class="section" id="func-approvalaction-rejected">
+<h3><strong>func (ApprovalAction) Rejected</strong><a class="headerlink" href="#func-approvalaction-rejected" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#approval-functions">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">ApprovalAction</span><span class="p">)</span> <span class="nx">Rejected</span><span class="p">()</span> <span class="nx">ApprovalAction</span>
+</pre></div>
+</div>
+<p>Rejected is a rejected change.</p>
 <p>See <a class="reference internal" href="#uadmin-approval">uadmin.Approval</a>  and <a class="reference internal" href="#uadmin-approvalhandlefunc">uadmin.ApprovalHandleFunc</a> for the examples.</p>
 <p>Quiz:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/approval-functions.html">Approval Functions</a></p></li>
 </ul>
 </div>
+</div>
 <div class="section" id="uadmin-approvalhandlefunc">
 <h2>uadmin.ApprovalHandleFunc<a class="headerlink" href="#uadmin-approvalhandlefunc" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#approval-functions">Back To Top</a></p>
-<p>ApprovalHandleFunc is a function that will be called everytime a model is called. It receives a parameter for an approval system model.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Approval</span><span class="p">)</span> <span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">ApprovalHandleFunc</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Approval</span><span class="p">)</span> <span class="kt">bool</span>
 </pre></div>
 </div>
+<p>ApprovalHandleFunc is a function that could be called during the save process of each approval.</p>
 <p>Before you proceed to this example, see <a class="reference internal" href="#uadmin-approval">uadmin.Approval</a>, <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tags.html#approval">Approval Tag</a>, or <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#approval">Approval System</a>.</p>
 <p>Suppose you have this email in the Friend model that has an ID of 1.</p>
 <img alt="../_images/johndoeoldemail.png" class="align-center" src="../_images/johndoeoldemail.png" />
@@ -273,6 +314,7 @@
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -317,7 +359,7 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -334,13 +376,14 @@
         <li class="right" >
           <a href="ab-test-functions/abtest.html" title="uadmin.ABTest"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Approval Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

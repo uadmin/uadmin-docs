@@ -9,17 +9,21 @@ In this section, we will cover the following functions in-depth listed below:
 * `uadmin.DataType`_
 * `uadmin.GetSetting`_
 * `uadmin.Setting`_
+    * `func (*Setting) ApplyValue`_
+    * `func (*Setting) GetValue`_
+    * `func (*Setting) ParseFormValue`_
+    * `func (*Setting) Save`_
 * `uadmin.SettingCategory`_
 
 uadmin.DataType
 ---------------
 `Back To Top`_
 
-Type:
-
 .. code-block:: go
 
-    int
+    type DataType int
+
+DataType is a list of data types used for settings.
 
 DataType has 7 functions:
 
@@ -41,13 +45,11 @@ uadmin.GetSetting
 -----------------
 `Back To Top`_
 
-GetSetting returns the value of the setting based on the data type selected.
-
-Function:
-
 .. code-block:: go
 
-    func(code string) interface{}
+    func GetSetting(code string) interface{}
+
+GetSetting return the value of a setting based on its code.
 
 Suppose I have the record "Water Daily Intake for Men" that has the value of 13 and the Data Type is Integer.
 
@@ -80,23 +82,21 @@ Quiz:
 ^^^^^^^^^^^^^^^^^^
 `Back To Top`_
 
-Setting is a system in uAdmin that is used to display information for an application as a whole.
-
-Structure:
-
 .. code-block:: go
 
     type Setting struct {
         Model
-        Name         string
+        Name         string `uadmin:"required;filter;search"`
         DefaultValue string
-        DataType     DataType
+        DataType     DataType `uadmin:"required;filter"`
         Value        string
-        Help         string
-        Category     SettingCategory `uadmin:"required"`
+        Help         string          `uadmin:"search" sql:"type:text;"`
+        Category     SettingCategory `uadmin:"required;filter"`
         CategoryID   uint
-        Code         string `uadmin:"read_only"`
+        Code         string `uadmin:"read_only;search"`
     }
+
+Setting model stored system settings.
 
 Data Type has 7 choices:
 
@@ -108,16 +108,45 @@ Data Type has 7 choices:
 * **Integer** - Used to represent a whole number that ranges from -2147483647 to 2147483647 for 9 or 10 digits of precision
 * **String** - Used to represent text rather than numbers
 
-There are 5 functions that you can use in Setting:
-
-* **ApplyValue()** - Applies the assigned value based on filter
-* **GetValue()** - Fetch the first value from the record
-* **HideInDashboarder()** - Return true and auto hide this from setting
-* **ParseFormValue** - Parses a boolean and date time string values to its standard format
+**func (\*Setting) ApplyValue**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
 
 .. code-block:: go
 
-    func(v []string)
+    func (s *Setting) ApplyValue()
+
+ApplyValue changes uAdmin global variables' value based in the setting value.
+
+**func (\*Setting) GetValue**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (s *Setting) GetValue() interface{}
+
+GetValue returns an interface representing the value of the setting.
+
+**func (\*Setting) ParseFormValue**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (s *Setting) ParseFormValue(v []string)
+
+ParseFormValue takes the value of a setting from an HTTP request and saves in the instance of setting.
+
+**func (\*Setting) Save**
+^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (s *Setting) Save()
+
+Save overrides save.
 
 Go to `Example #4: ParseFormValue function`_ to see how ParseFormValue works.
 
@@ -191,10 +220,6 @@ Quiz:
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#setting-functions
 
-Setting Category is a system in uAdmin that is used for classifying settings and its records.
-
-Structure:
-
 .. code-block:: go
 
     type SettingCategory struct {
@@ -202,6 +227,8 @@ Structure:
         Name string
         Icon string `uadmin:"image"`
     }
+
+SettingCategory is a category for system settings.
 
 There are 2 ways you can do for initialization process using this function: one-by-one and by group.
 

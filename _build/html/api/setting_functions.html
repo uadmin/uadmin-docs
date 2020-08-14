@@ -1,20 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Setting Functions &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Setting Functions &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,8 +41,9 @@
         <li class="right" >
           <a href="security_functions.html" title="Security Functions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Setting Functions</a></li> 
       </ul>
     </div>  
 
@@ -57,16 +59,25 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#uadmin-datatype">uadmin.DataType</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getsetting">uadmin.GetSetting</a></p></li>
-<li><p><a class="reference internal" href="#uadmin-setting">uadmin.Setting</a></p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#uadmin-setting">uadmin.Setting</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#func-setting-applyvalue">func (*Setting) ApplyValue</a></p></li>
+<li><p><a class="reference internal" href="#func-setting-getvalue">func (*Setting) GetValue</a></p></li>
+<li><p><a class="reference internal" href="#func-setting-parseformvalue">func (*Setting) ParseFormValue</a></p></li>
+<li><p><a class="reference internal" href="#func-setting-save">func (*Setting) Save</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
 <li><p><a class="reference internal" href="#uadmin-settingcategory">uadmin.SettingCategory</a></p></li>
 </ul>
 <div class="section" id="uadmin-datatype">
 <h2>uadmin.DataType<a class="headerlink" href="#uadmin-datatype" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#setting-functions">Back To Top</a></p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">DataType</span> <span class="kt">int</span>
 </pre></div>
 </div>
+<p>DataType is a list of data types used for settings.</p>
 <p>DataType has 7 functions:</p>
 <ul class="simple">
 <li><p><strong>Boolean()</strong> - A data type that has one of two possible values (usually denoted true and false), intended to represent the two truth values of logic and Boolean algebra</p></li>
@@ -86,11 +97,10 @@
 <div class="section" id="uadmin-getsetting">
 <h2>uadmin.GetSetting<a class="headerlink" href="#uadmin-getsetting" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#setting-functions">Back To Top</a></p>
-<p>GetSetting returns the value of the setting based on the data type selected.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">code</span> <span class="kt">string</span><span class="p">)</span> <span class="kd">interface</span><span class="p">{}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetSetting</span><span class="p">(</span><span class="nx">code</span> <span class="kt">string</span><span class="p">)</span> <span class="kd">interface</span><span class="p">{}</span>
 </pre></div>
 </div>
+<p>GetSetting return the value of a setting based on its code.</p>
 <p>Suppose I have the record “Water Daily Intake for Men” that has the value of 13 and the Data Type is Integer.</p>
 <img alt="../_images/waterdailyintakeformenrecord.png" class="align-center" src="../_images/waterdailyintakeformenrecord.png" />
 <div class="line-block">
@@ -115,21 +125,20 @@
 <div class="section" id="uadmin-setting">
 <h3><strong>uadmin.Setting</strong><a class="headerlink" href="#uadmin-setting" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#setting-functions">Back To Top</a></p>
-<p>Setting is a system in uAdmin that is used to display information for an application as a whole.</p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Setting</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
-    <span class="nx">Name</span>         <span class="kt">string</span>
+    <span class="nx">Name</span>         <span class="kt">string</span> <span class="s">`uadmin:&quot;required;filter;search&quot;`</span>
     <span class="nx">DefaultValue</span> <span class="kt">string</span>
-    <span class="nx">DataType</span>     <span class="nx">DataType</span>
+    <span class="nx">DataType</span>     <span class="nx">DataType</span> <span class="s">`uadmin:&quot;required;filter&quot;`</span>
     <span class="nx">Value</span>        <span class="kt">string</span>
-    <span class="nx">Help</span>         <span class="kt">string</span>
-    <span class="nx">Category</span>     <span class="nx">SettingCategory</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">Help</span>         <span class="kt">string</span>          <span class="s">`uadmin:&quot;search&quot; sql:&quot;type:text;&quot;`</span>
+    <span class="nx">Category</span>     <span class="nx">SettingCategory</span> <span class="s">`uadmin:&quot;required;filter&quot;`</span>
     <span class="nx">CategoryID</span>   <span class="kt">uint</span>
-    <span class="nx">Code</span>         <span class="kt">string</span> <span class="s">`uadmin:&quot;read_only&quot;`</span>
+    <span class="nx">Code</span>         <span class="kt">string</span> <span class="s">`uadmin:&quot;read_only;search&quot;`</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Setting model stored system settings.</p>
 <p>Data Type has 7 choices:</p>
 <ul class="simple">
 <li><p><strong>Boolean</strong> - A data type that has one of two possible values (usually denoted true and false), intended to represent the two truth values of logic and Boolean algebra</p></li>
@@ -140,16 +149,38 @@
 <li><p><strong>Integer</strong> - Used to represent a whole number that ranges from -2147483647 to 2147483647 for 9 or 10 digits of precision</p></li>
 <li><p><strong>String</strong> - Used to represent text rather than numbers</p></li>
 </ul>
-<p>There are 5 functions that you can use in Setting:</p>
-<ul class="simple">
-<li><p><strong>ApplyValue()</strong> - Applies the assigned value based on filter</p></li>
-<li><p><strong>GetValue()</strong> - Fetch the first value from the record</p></li>
-<li><p><strong>HideInDashboarder()</strong> - Return true and auto hide this from setting</p></li>
-<li><p><strong>ParseFormValue</strong> - Parses a boolean and date time string values to its standard format</p></li>
-</ul>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">v</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span>
+</div>
+<div class="section" id="func-setting-applyvalue">
+<h3><strong>func (*Setting) ApplyValue</strong><a class="headerlink" href="#func-setting-applyvalue" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#setting-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Setting</span><span class="p">)</span> <span class="nx">ApplyValue</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>ApplyValue changes uAdmin global variables’ value based in the setting value.</p>
+</div>
+<div class="section" id="func-setting-getvalue">
+<h3><strong>func (*Setting) GetValue</strong><a class="headerlink" href="#func-setting-getvalue" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#setting-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Setting</span><span class="p">)</span> <span class="nx">GetValue</span><span class="p">()</span> <span class="kd">interface</span><span class="p">{}</span>
+</pre></div>
+</div>
+<p>GetValue returns an interface representing the value of the setting.</p>
+</div>
+<div class="section" id="func-setting-parseformvalue">
+<h3><strong>func (*Setting) ParseFormValue</strong><a class="headerlink" href="#func-setting-parseformvalue" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#setting-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Setting</span><span class="p">)</span> <span class="nx">ParseFormValue</span><span class="p">(</span><span class="nx">v</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>ParseFormValue takes the value of a setting from an HTTP request and saves in the instance of setting.</p>
+</div>
+<div class="section" id="func-setting-save">
+<h3><strong>func (*Setting) Save</strong><a class="headerlink" href="#func-setting-save" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#setting-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Setting</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Save overrides save.</p>
 <p>Go to <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting-functions/setting.html#example-4-parseformvalue-function">Example #4: ParseFormValue function</a> to see how ParseFormValue works.</p>
 <ul class="simple">
 <li><p><strong>Save()</strong> - Saves the object in the database</p></li>
@@ -209,8 +240,6 @@
 <div class="section" id="uadmin-settingcategory">
 <h3><strong>uadmin.SettingCategory</strong><a class="headerlink" href="#uadmin-settingcategory" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#setting-functions">Back To Top</a></p>
-<p>Setting Category is a system in uAdmin that is used for classifying settings and its records.</p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">SettingCategory</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
     <span class="nx">Name</span> <span class="kt">string</span>
@@ -218,6 +247,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>SettingCategory is a category for system settings.</p>
 <p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
 <p>One-by-one initialization:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
@@ -284,6 +314,7 @@
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -328,7 +359,7 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -345,13 +376,14 @@
         <li class="right" >
           <a href="security_functions.html" title="Security Functions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Setting Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

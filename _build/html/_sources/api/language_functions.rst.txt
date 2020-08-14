@@ -11,20 +11,21 @@ In this section, we will cover the following functions in-depth listed below:
 * `uadmin.GetActiveLanguages`_
 * `uadmin.GetDefaultLanguage`_
 * `uadmin.Language`_
+    * `func (*Language) Save`_
+    * `func (Language) String`_
 * `uadmin.Tf`_
 * `uadmin.Translate`_
+* `uadmin.TranslateSchema`_
 
 uadmin.CacheTranslation
 -----------------------
 `Back To Top`_
 
-CacheTranslation allows a translation to store data in a cache memory.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    var CacheTranslation = false
+
+CacheTranslation allows a translation to store data in a cache memory.
 
 To assign a value within an application, visit `Cache Translation`_ page for an example.
 
@@ -73,15 +74,21 @@ uadmin.CustomTranslation
 ------------------------
 `Back To Top`_
 
-CustomTranslation is a list of string where you could add URLs to JSON files that uAdmin will save for translation.
+.. code-block:: go
 
-Type:
+    var CustomTranslation = []string{
+        "uadmin/system",
+    }
+
+CustomTranslation is where you can register custom translation files. To register a custom translation file, always assign it with it's key in the this format "category/name". For example:
 
 .. code-block:: go
 
-    []string
+    uadmin.CustomTranslation = append(uadmin.CustomTranslation, "ui/billing")
 
-Suppose that English is the only active language in your application. Go to the main.go and apply the following codes below. It should be placed before uadmin.Register.
+This will register the file and you will be able to use it if `uadmin.Tf`. By default there is only one registed custom translation wich is "uadmin/system".
+
+Another example: Suppose that English is the only active language in your application. Go to the main.go and apply the following codes below. It should be placed before uadmin.Register.
 
 .. code-block:: go
 
@@ -110,13 +117,11 @@ uadmin.GetActiveLanguages
 -------------------------
 `Back To Top`_
 
-GetActiveLanguages returns the list of active languages from the Language model.
-
-Function:
-
 .. code-block:: go
 
-    func() []uadmin.Language
+    func GetActiveLanguages() []Language
+
+GetActiveLanguages returns a list of active languages from the Language model.
 
 Suppose Chinese with the code "zh" and English with the code "en" are active languages in the Language model.
 
@@ -149,13 +154,11 @@ uadmin.GetDefaultLanguage
 -------------------------
 `Back To Top`_
 
-GetDefaultLanguage returns the default language by code from the Language model.
-
-Function:
-
 .. code-block:: go
 
-    func() uadmin.Language
+    func GetDefaultLanguage() Language
+
+GetDefaultLanguage returns the default language by code from the Language model.
 
 Suppose Vietnamese is the default language with the code "vi" in the Language model.
 
@@ -188,10 +191,6 @@ uadmin.Language
 ---------------
 `Back To Top`_
 
-Language is a system in uAdmin that is used to add, modify and delete the elements of a language.
-
-Structure:
-
 .. code-block:: go
 
     type Language struct {
@@ -206,10 +205,27 @@ Structure:
         AvailableInGui bool   `uadmin:"help:The App is available in this language;read_only"`
     }
 
-There are 2 functions that you can use in Language:
+Language is a system in uAdmin that is used to add, modify and delete the elements of a language.
 
-* **Save()** - Saves the object in the database
-* **String()** - Returns the Code of the language
+**func (\*Language) Save**
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (l *Language) Save()
+
+Save saves the object in the database.
+
+**func (Language) String**
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (l Language) String() string
+
+String returns the code of the language.
 
 There are 2 ways you can do for initialization process using this function: one-by-one and by group.
 
@@ -263,18 +279,16 @@ uadmin.Tf
 ---------
 `Back To Top`_
 
-Tf is a function for translating strings into any given language.
-
-Function:
-
 .. code-block:: go
 
-    func(path string, lang string, term string, args ...interface{}) string
+    func Tf(path string, lang string, term string, args ...interface{}) string
+
+Tf is a function for translating strings into any given language.
 
 Parameters:
 
     **path (string):** This is where to get the translation from. It is in the
-    format of "GROUPNAME/FILENAME" for example: "models/Todo"
+    format of "GROUPNAME/FILENAME" for example: "uadmin/system"
 
     **lang (string):** Is the language code. If empty string is passed we will use
     the default language.
@@ -282,8 +296,6 @@ Parameters:
     **term (string):** The term to translate
 
     **args (...interface{}):** Is a list of arguments to fill the term with place holders
-
-|
 
 First of all, create a back-end validation function inside the todo.go.
 
@@ -385,15 +397,11 @@ uadmin.Translate
 ----------------
 `Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#language-functions
-
-Translate is used to get a translation from a multilingual fields.
-
-Function:
-
 .. code-block:: go
 
-    func(raw string, lang string, args ...bool) string
+    func Translate(raw string, lang string, args ...bool) string
+
+Translate is used to get a translation from a multilingual fields.
 
 Parameters:
 
@@ -462,3 +470,15 @@ Quiz:
 * `Tf and Translate`_
 
 .. _Tf and Translate: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/tf-and-translate.html
+
+uadmin.TranslateSchema
+----------------------
+`Back To Top`_
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#language-functions
+
+.. code-block:: go
+
+    func Translate(raw string, lang string, args ...bool) string
+
+TranslateSchema translate a model schema.

@@ -1,20 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Basic Functions &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Functions &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,8 +41,9 @@
         <li class="right" >
           <a href="approval_functions.html" title="Approval Functions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Basic Functions</a></li> 
       </ul>
     </div>  
 
@@ -69,22 +71,22 @@
 <div class="section" id="uadmin-maximageheight">
 <h2>uadmin.MaxImageHeight<a class="headerlink" href="#uadmin-maximageheight" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#basic-functions">Back To Top</a></p>
-<p>MaxImageHeight sets the maximum height of an image.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">var</span> <span class="nx">MaxImageHeight</span> <span class="p">=</span> <span class="mi">600</span>
 </pre></div>
 </div>
+<p>MaxImageHeight sets the maximum height of an image.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#max-image-height">Max Image Height</a> page for an example.</p>
 <p>To assign a value in the code, visit <a class="reference internal" href="#uadmin-maximagewidth">uadmin.MaxImageWidth</a> page for the example.</p>
 </div>
 <div class="section" id="uadmin-maximagewidth">
 <h2>uadmin.MaxImageWidth<a class="headerlink" href="#uadmin-maximagewidth" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#basic-functions">Back To Top</a></p>
-<p>MaxImageWidth sets the maximum width of an image.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">var</span> <span class="nx">MaxImageWidth</span> <span class="p">=</span> <span class="mi">800</span>
 </pre></div>
 </div>
+<p>MaxImageWidth sets the maximum width of an image.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#max-image-width">Max Image Width</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
 <p>Let’s set the MaxImageWidth to 360 pixels and the MaxImageHeight to 240 pixels.</p>
@@ -135,11 +137,11 @@
 <div class="section" id="uadmin-maxuploadfilesize">
 <h2>uadmin.MaxUploadFileSize<a class="headerlink" href="#uadmin-maxuploadfilesize" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#basic-functions">Back To Top</a></p>
-<p>MaxUploadFileSize is the maximum upload file size in kilobytes.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int64</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int64</span>
+<span class="kd">var</span> <span class="nx">MaxUploadFileSize</span> <span class="p">=</span> <span class="nb">int64</span><span class="p">(</span><span class="mi">25</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>MaxUploadFileSize is the maximum upload file size in kilobytes.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#max-upload-file-size">Max Upload File Size</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
 <p>Go to the main.go. Let’s set the MaxUploadFileSize value to 1 MB. It is 1 multiplied by 1024 (Kilobytes) multiplied by 1024 (Bytes).</p>
@@ -175,11 +177,11 @@
 <div class="section" id="uadmin-pagelength">
 <h2>uadmin.PageLength<a class="headerlink" href="#uadmin-pagelength" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#basic-functions">Back To Top</a></p>
-<p>PageLength is the list view max number of records.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">var</span> <span class="nx">PageLength</span> <span class="p">=</span> <span class="mi">100</span>
 </pre></div>
 </div>
+<p>PageLength is the list view max number of records.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#page-length">Page Length</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
 <p>Go to the main.go and apply the PageLength function.</p>
@@ -196,8 +198,6 @@
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.PageLength&quot;</span><span class="p">)</span>
     <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;4&quot;</span><span class="p">})</span>
     <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
-
-
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -214,11 +214,11 @@
 <div class="section" id="uadmin-retainmediaversions">
 <h2>uadmin.RetainMediaVersions<a class="headerlink" href="#uadmin-retainmediaversions" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#basic-functions">Back To Top</a></p>
-<p>RetainMediaVersions is to allow the system to keep files uploaded even after they are changed. This allows the system to “Roll Back” to an older version of the file.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">RetainMediaVersions</span> <span class="p">=</span> <span class="kc">true</span>
 </pre></div>
 </div>
+<p>RetainMediaVersions is to allow the system to keep files uploaded even after they are changed. This allows the system to “Roll Back” to an older version of the file.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#retain-media-versions">Retain Media Versions</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
 <p>Go to the main.go and set the status of the RetainMediaVersions to false.</p>
@@ -301,11 +301,11 @@
 <div class="section" id="uadmin-rooturl">
 <h2>uadmin.RootURL<a class="headerlink" href="#uadmin-rooturl" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#basic-functions">Back To Top</a></p>
-<p>RootURL is where the listener is mapped to.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: string</span>
+<span class="kd">var</span> <span class="nx">RootURL</span> <span class="p">=</span> <span class="s">&quot;/&quot;</span>
 </pre></div>
 </div>
+<p>RootURL is where the listener is mapped to.</p>
 <p>Used in the tutorial:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part1.html">Login System Tutorial Part 1 - Build A Project</a></p></li>
@@ -345,11 +345,11 @@
 <div class="section" id="uadmin-sitename">
 <h2>uadmin.SiteName<a class="headerlink" href="#uadmin-sitename" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#basic-functions">Back To Top</a></p>
-<p>SiteName is the name of the website that shows on title and dashboard.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: string</span>
+<span class="kd">var</span> <span class="nx">SiteName</span> <span class="p">=</span> <span class="s">&quot;uAdmin&quot;</span>
 </pre></div>
 </div>
+<p>SiteName is the name of the website that shows on title and dashboard.</p>
 <p>Used in the tutorial:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part1.html">Document System Tutorial Part 1 - Build A Project</a></p></li>
@@ -388,19 +388,19 @@
 <div class="section" id="uadmin-serverready">
 <h2>uadmin.ServerReady<a class="headerlink" href="#uadmin-serverready" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#basic-functions">Back To Top</a></p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">ServerReady</span> <span class="p">=</span> <span class="kc">false</span>
 </pre></div>
 </div>
+<p>ServerReady is a variable that is set to true once the server is ready to use.</p>
 </div>
 <div class="section" id="uadmin-startserver">
 <h2>uadmin.StartServer<a class="headerlink" href="#uadmin-startserver" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#basic-functions">Back To Top</a></p>
-<p>StartServer is the process of activating a uAdmin server using a localhost IP or an apache.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">()</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">StartServer</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>StartServer is the process of activating a uAdmin server using a localhost IP or an apache.</p>
 <p>Used in the tutorial:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part1.html">Document System Tutorial Part 1 - Build A Project</a></p></li>
@@ -438,11 +438,11 @@
 <div class="section" id="uadmin-theme">
 <h2>uadmin.Theme<a class="headerlink" href="#uadmin-theme" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#basic-functions">Back To Top</a></p>
-<p>Theme is the name of the theme used in uAdmin.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: string</span>
+<span class="kd">var</span> <span class="nx">Theme</span> <span class="p">=</span> <span class="s">&quot;default&quot;</span>
 </pre></div>
 </div>
+<p>Theme is the name of the theme used in uAdmin.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#theme">Theme</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
 <p>From your project folder, click on “templates”.</p>
@@ -511,6 +511,7 @@
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -555,7 +556,7 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -572,13 +573,14 @@
         <li class="right" >
           <a href="approval_functions.html" title="Approval Functions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Basic Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

@@ -17,13 +17,11 @@ uadmin.ClearDB
 --------------
 `Back To Top`_
 
-ClearDB clears the database object.
-
-Function:
-
 .. code-block:: go
 
-    func()
+    func ClearDB()
+
+ClearDB clears the database object.
 
 Suppose I have two databases in my project folder.
 
@@ -138,13 +136,11 @@ uadmin.Database
 ---------------
 `Back To Top`_
 
-Database is the active Database settings.
-
-Structure:
-
 .. code-block:: go
 
-    *uadmin.DBSettings
+    var Database *DBSettings
+
+Database is the active Database settings.
 
 There are 6 fields that you can use in this function:
 
@@ -157,7 +153,6 @@ There are 6 fields that you can use in this function:
 
 .. WARNING::
    uadmin.Database function is deprecated on version 0.4.0 and above. Instead, we have to create a new file called .database.
-
 
 Apply the following codes in **.database** file below to create SQLite database:
 
@@ -199,20 +194,18 @@ uadmin.DBSettings
 -----------------
 `Back To Top`_
 
-DBSettings is a feature that allows a user to configure the settings of a database.
-
-Structure:
-
 .. code-block:: go
 
     type DBSettings struct {
-        Type     string // SQLLite, MySQL
-        Name     string // File/DB name
-        User     string
-        Password string
-        Host     string
-        Port     int
+        Type     string `json:"type"` // sqlite, mysql
+        Name     string `json:"name"` // File/DB name
+        User     string `json:"user"`
+        Password string `json:"password"`
+        Host     string `json:"host"`
+        Port     int    `json:"port"`
     }
+
+DBSettings is a feature that allows a user to configure the settings of a database.
 
 .. WARNING::
    uadmin.DBSettings function is deprecated on version 0.4.0 and above. Instead, we have to create a new file called .database.
@@ -358,13 +351,14 @@ Quiz:
 
 uadmin.DebugDB
 --------------
-DebugDB prints all SQL statements going to DB.
-
-Type:
+`Back to Top`_
 
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var DebugDB = false
+
+DebugDB prints all SQL statements going to DB.
 
 To assign a value within an application, visit `DebugDB`_ page for an example.
 
@@ -427,13 +421,11 @@ uadmin.GetDB
 ------------
 `Back To Top`_
 
-GetDB returns a pointer to the DB.
-
-Function:
-
 .. code-block:: go
 
-    func() *gorm.DB
+    func GetDB() *gorm.DB
+
+GetDB returns a pointer to the DB.
 
 Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
 
@@ -502,13 +494,12 @@ uadmin.OptimizeSQLQuery
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions
 
-OptimizeSQLQuery selects columns during rendering a form a list to visible fields. This means during the filtering of a form the select statement will not include any field with `hidden` tag. For list it will not select any field with `list_exclude`.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var OptimizeSQLQuery = false
+
+OptimizeSQLQuery selects columns during rendering a form a list to visible fields. This means during the filtering of a form the select statement will not include any field with `hidden` tag. For list it will not select any field with `list_exclude`.
 
 To assign a value within an application, visit `Optimize SQL Query`_ page for an example.
 

@@ -1,25 +1,26 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Print Functions &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Print Functions &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Register Functions" href="register_functions.html" />
-    <link rel="prev" title="Metric Functions" href="metric_functions.html" />
+    <link rel="prev" title="Network Functions" href="network_functions.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -38,10 +39,11 @@
           <a href="register_functions.html" title="Register Functions"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="metric_functions.html" title="Metric Functions"
+          <a href="network_functions.html" title="Network Functions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Print Functions</a></li> 
       </ul>
     </div>  
 
@@ -69,68 +71,68 @@
 <li><p><a class="reference internal" href="#uadmin-returnjson">uadmin.ReturnJSON</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-trail">uadmin.Trail</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-version">uadmin.Version</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-versioncodename">uadmin.VersionCodeName</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-warning">uadmin.WARNING</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-working">uadmin.WORKING</a></p></li>
 </ul>
 <div class="section" id="uadmin-alert">
 <h2>uadmin.ALERT<a class="headerlink" href="#uadmin-alert" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>ALERT is the display tag under Trail. It is rated as Level 7 (0 being the least priority and 8 being the highest priority).</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">const</span> <span class="nx">ALERT</span> <span class="p">=</span> <span class="mi">7</span>
 </pre></div>
 </div>
+<p>ALERT is the display tag under Trail. It is rated as Level 7 (0 being the least priority and 8 being the highest priority).</p>
 <p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
 </div>
 <div class="section" id="uadmin-critical">
 <h2>uadmin.CRITICAL<a class="headerlink" href="#uadmin-critical" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>CRITICAL is the display tag under Trail. It is rated as Level 6 (0 being the least priority and 8 being the highest priority).</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">const</span> <span class="nx">CRITICAL</span> <span class="p">=</span> <span class="mi">6</span>
 </pre></div>
 </div>
+<p>CRITICAL is the display tag under Trail. It is rated as Level 6 (0 being the least priority and 8 being the highest priority).</p>
 <p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
 </div>
 <div class="section" id="uadmin-debug">
 <h2>uadmin.DEBUG<a class="headerlink" href="#uadmin-debug" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>DEBUG is the display tag under Trail. It is the process of identifying and removing errors.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">const</span> <span class="nx">DEBUG</span> <span class="p">=</span> <span class="mi">0</span>
 </pre></div>
 </div>
+<p>DEBUG is the display tag under Trail. It is the process of identifying and removing errors.</p>
 <p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
 </div>
 <div class="section" id="uadmin-emergency">
 <h2>uadmin.EMERGENCY<a class="headerlink" href="#uadmin-emergency" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>EMERGENCY is the display tag under Trail. It is rated as Level 8 (0 being the least priority and 8 being the highest priority).</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">const</span> <span class="nx">EMERGENCY</span> <span class="p">=</span> <span class="mi">8</span>
 </pre></div>
 </div>
+<p>EMERGENCY is the display tag under Trail. It is rated as Level 8 (0 being the least priority and 8 being the highest priority).</p>
 <p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
 </div>
 <div class="section" id="uadmin-error">
 <h2>uadmin.ERROR<a class="headerlink" href="#uadmin-error" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>ERROR is a status to notify the user that there is a problem in an application.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">const</span> <span class="nx">ERROR</span> <span class="p">=</span> <span class="mi">5</span>
 </pre></div>
 </div>
+<p>ERROR is a status to notify the user that there is a problem in an application.</p>
 <p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
 </div>
 <div class="section" id="uadmin-errorhandlefunc">
 <h2>uadmin.ErrorHandleFunc<a class="headerlink" href="#uadmin-errorhandlefunc" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>ErrorHandleFunc is a function that will be called everytime Trail is called. It receives one parameter for error level, one for error message and one for runtime stack trace.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">ErrorHandleFunc</span> <span class="kd">func</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>There are 6 different reporting levels:</p>
+<p>ErrorHandleFunc is a function that will be called everytime Trail is called. It receives one parameter for error level, one for error message and one for runtime stack trace.</p>
+<p>There are 9 different reporting levels:</p>
 <ul class="simple">
 <li><p>DEBUG</p></li>
 <li><p>WORKING</p></li>
@@ -138,6 +140,9 @@
 <li><p>OK</p></li>
 <li><p>WARNING</p></li>
 <li><p>ERROR</p></li>
+<li><p>CRITICAL</p></li>
+<li><p>ALERT</p></li>
+<li><p>EMERGENCY</p></li>
 </ul>
 <p>Go to main.go and create an invalid code (e.g. Get function that does not meet the standard requirements).</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
@@ -176,21 +181,20 @@ main.main<span class="o">()</span>
 <div class="section" id="uadmin-info">
 <h2>uadmin.INFO<a class="headerlink" href="#uadmin-info" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>INFO is the display tag under Trail. It is a data that is presented within a context that gives it meaning and relevance.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">const</span> <span class="nx">INFO</span> <span class="p">=</span> <span class="mi">2</span>
 </pre></div>
 </div>
+<p>INFO is the display tag under Trail. It is a data that is presented within a context that gives it meaning and relevance.</p>
 <p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
 </div>
 <div class="section" id="uadmin-jsonmarshal">
 <h2>uadmin.JSONMarshal<a class="headerlink" href="#uadmin-jsonmarshal" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>JSONMarshal returns the JSON encoding of v.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">v</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">safeEncoding</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">JSONMarshal</span><span class="p">(</span><span class="nx">v</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">safeEncoding</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>JSONMarshal Generates JSON format from an object.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>v interface{}:</strong> Is the variable where the model was initialized</p>
@@ -258,22 +262,22 @@ main.main<span class="o">()</span>
 <div class="section" id="uadmin-ok">
 <h2>uadmin.OK<a class="headerlink" href="#uadmin-ok" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>OK is the display tag under Trail. It is a status to show that the application is doing well.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">const</span> <span class="nx">OK</span> <span class="p">=</span> <span class="mi">3</span>
 </pre></div>
 </div>
+<p>OK is the display tag under Trail. It is a status to show that the application is doing well.</p>
 <p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
 </div>
 <div class="section" id="uadmin-reportinglevel">
 <h2>uadmin.ReportingLevel<a class="headerlink" href="#uadmin-reportinglevel" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>ReportingLevel is the standard reporting level.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">var</span> <span class="nx">ReportingLevel</span> <span class="p">=</span> <span class="nx">DEBUG</span>
 </pre></div>
 </div>
-<p>There are 6 different levels:</p>
+<p>ReportingLevel is the standard reporting level.</p>
+<p>There are 9 different levels:</p>
 <ul class="simple">
 <li><p>DEBUG = 0</p></li>
 <li><p>WORKING = 1</p></li>
@@ -281,6 +285,9 @@ main.main<span class="o">()</span>
 <li><p>OK = 3</p></li>
 <li><p>WARNING = 4</p></li>
 <li><p>ERROR = 5</p></li>
+<li><p>CRITICAL = 6</p></li>
+<li><p>ALERT = 7</p></li>
+<li><p>EMERGENCY = 8</p></li>
 </ul>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#reporting-level">Reporting Level</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
@@ -339,11 +346,11 @@ main.main<span class="o">()</span>
 <div class="section" id="uadmin-reporttimestamp">
 <h2>uadmin.ReportTimeStamp<a class="headerlink" href="#uadmin-reporttimestamp" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>ReportTimeStamp set this to true to have a time stamp in your logs.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">ReportTimeStamp</span> <span class="p">=</span> <span class="kc">false</span>
 </pre></div>
 </div>
+<p>ReportTimeStamp set this to true to have a time stamp in your logs.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#report-time-stamp">Report Time Stamp</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
 <p>Go to the main.go and set the ReportTimeStamp value as true.</p>
@@ -381,11 +388,10 @@ main.main<span class="o">()</span>
 <div class="section" id="uadmin-returnjson">
 <h2>uadmin.ReturnJSON<a class="headerlink" href="#uadmin-returnjson" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>ReturnJSON returns JSON to the client.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">v</span> <span class="kd">interface</span><span class="p">{})</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">v</span> <span class="kd">interface</span><span class="p">{})</span>
 </pre></div>
 </div>
+<p>ReturnJSON returns JSON to the client.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>w http.ResponseWriter:</strong> Assembles the HTTP server’s response; by writing to it, we send data to the HTTP client</p>
@@ -406,11 +412,10 @@ main.main<span class="o">()</span>
 <div class="section" id="uadmin-trail">
 <h2>uadmin.Trail<a class="headerlink" href="#uadmin-trail" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>Trail prints to the log.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">level</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">msg</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">i</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Trail</span><span class="p">(</span><span class="nx">level</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">msg</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">i</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
 </pre></div>
 </div>
+<p>Trail prints to the log.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>level int:</strong> This is where we apply Trail tags.</p>
@@ -487,11 +492,11 @@ main.main<span class="o">()</span>
 <div class="section" id="uadmin-version">
 <h2>uadmin.Version<a class="headerlink" href="#uadmin-version" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>Version number as per Semantic Versioning 2.0.0 (semver.org)</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: string</span>
+<span class="kd">const</span> <span class="nx">Version</span> <span class="p">=</span> <span class="s">&quot;0.5.1&quot;</span>
 </pre></div>
 </div>
+<p>Version number as per Semantic Versioning 2.0.0 (semver.org)</p>
 <p>Let’s check what version of uAdmin are we using.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Some codes</span>
@@ -502,7 +507,7 @@ main.main<span class="o">()</span>
 <p>Result</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
 <span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
-<span class="o">[</span>  INFO  <span class="o">]</span>   <span class="m">0</span>.4
+<span class="o">[</span>  INFO  <span class="o">]</span>   <span class="m">0</span>.5.1
 <span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
          ___       __          _
   __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
@@ -513,7 +518,7 @@ main.main<span class="o">()</span>
 </div>
 <p>You can also directly check it by typing <strong>uadmin version</strong> in your terminal.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ uadmin version
-<span class="o">[</span>  INFO  <span class="o">]</span>   <span class="m">0</span>.4
+<span class="o">[</span>  INFO  <span class="o">]</span>   <span class="m">0</span>.5.1
 </pre></div>
 </div>
 <p>Quiz:</p>
@@ -521,29 +526,39 @@ main.main<span class="o">()</span>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
 </ul>
 </div>
+<div class="section" id="uadmin-versioncodename">
+<h2>uadmin.VersionCodeName<a class="headerlink" href="#uadmin-versioncodename" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: string</span>
+<span class="kd">const</span> <span class="nx">VersionCodeName</span> <span class="p">=</span> <span class="s">&quot;Atlas Moth&quot;</span>
+</pre></div>
+</div>
+<p>VersionCodeName is the cool name we give to versions with significant changes. This name should always be a bug’s name starting from A-Z then revolving back. This started at version 0.5.0 (Atlas Moth).</p>
+</div>
 <div class="section" id="uadmin-warning">
 <h2>uadmin.WARNING<a class="headerlink" href="#uadmin-warning" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>WARNING is the display tag under Trail. It is the statement or event that indicates a possible problems occurring in an application.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">const</span> <span class="nx">WARNING</span> <span class="p">=</span> <span class="mi">4</span>
 </pre></div>
 </div>
+<p>WARNING is the display tag under Trail. It is the statement or event that indicates a possible problems occurring in an application.</p>
 <p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
 </div>
 <div class="section" id="uadmin-working">
 <h2>uadmin.WORKING<a class="headerlink" href="#uadmin-working" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
-<p>OK is the display tag under Trail. It is a status to show that the application is working.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">untyped</span> <span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">const</span> <span class="nx">WORKING</span> <span class="p">=</span> <span class="mi">1</span>
 </pre></div>
 </div>
+<p>WORKING is the display tag under Trail. It is a status to show that the application is working.</p>
 <p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
 </div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -567,8 +582,8 @@ main.main<span class="o">()</span>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="metric_functions.html"
-                        title="previous chapter">Metric Functions</a></p>
+  <p class="topless"><a href="network_functions.html"
+                        title="previous chapter">Network Functions</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="register_functions.html"
                         title="next chapter">Register Functions</a></p>
@@ -588,7 +603,7 @@ main.main<span class="o">()</span>
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -603,15 +618,16 @@ main.main<span class="o">()</span>
           <a href="register_functions.html" title="Register Functions"
              >next</a> |</li>
         <li class="right" >
-          <a href="metric_functions.html" title="Metric Functions"
+          <a href="network_functions.html" title="Network Functions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Print Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

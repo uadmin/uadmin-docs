@@ -1,20 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Log Functions &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log Functions &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,8 +41,9 @@
         <li class="right" >
           <a href="language-functions/language.html" title="uadmin.Language"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Log Functions</a></li> 
       </ul>
     </div>  
 
@@ -70,11 +72,10 @@
 <div class="section" id="uadmin-action">
 <h2>uadmin.Action<a class="headerlink" href="#uadmin-action" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
-<p>Action is the process of doing something where you can check the status of your activities in the uAdmin project.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Action</span> <span class="kt">int</span>
 </pre></div>
 </div>
+<p>Action is the process of doing something where you can check the status of your activities in the uAdmin project.</p>
 <p>There are 12 types of actions:</p>
 <ul class="simple">
 <li><p><strong>Added</strong> - Saved a new record</p></li>
@@ -151,11 +152,11 @@
 <div class="section" id="uadmin-httplogformat">
 <h2>uadmin.HTTPLogFormat<a class="headerlink" href="#uadmin-httplogformat" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
-<p>HTTPLogFormat is the format used to log HTTP access.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: string</span>
+<span class="kd">var</span> <span class="nx">HTTPLogFormat</span> <span class="p">=</span> <span class="s">&quot;%a %&gt;s %B %U %D&quot;</span>
 </pre></div>
 </div>
+<p>HTTPLogFormat is the format used to log HTTP access.</p>
 <p>Format:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%a: Client IP address
 %<span class="o">{</span>remote<span class="o">}</span>p: Client port
@@ -177,8 +178,6 @@
 <div class="section" id="uadmin-log">
 <h2>uadmin.Log<a class="headerlink" href="#uadmin-log" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
-<p>Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities.</p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Log</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
     <span class="nx">Username</span>  <span class="kt">string</span>    <span class="s">`uadmin:&quot;filter;read_only&quot;`</span>
@@ -191,6 +190,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities.</p>
 <p>There are 12 types of actions:</p>
 <ul class="simple">
 <li><p><strong>Added</strong> - Saved a new record</p></li>
@@ -266,11 +266,11 @@
 <div class="section" id="uadmin-logadd">
 <h2>uadmin.LogAdd<a class="headerlink" href="#uadmin-logadd" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
-<p>LogAdd adds a log when a record is added.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">LogAdd</span> <span class="p">=</span> <span class="kc">true</span>
 </pre></div>
 </div>
+<p>LogAdd adds a log when a record is added.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-add">Log Add</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
 <p>Go to the main.go and apply this function to “true”. Put it above the uadmin.Register.</p>
@@ -363,11 +363,11 @@
 <div class="section" id="uadmin-logdelete">
 <h2>uadmin.LogDelete<a class="headerlink" href="#uadmin-logdelete" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
-<p>LogAdd adds a log when a record is deleted.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">LogDelete</span> <span class="p">=</span> <span class="kc">true</span>
 </pre></div>
 </div>
+<p>LogDelete adds a log when a record is deleted.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-delete">Log Delete</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
 <p>Before you proceed to this example, see <a class="reference internal" href="#uadmin-logedit">uadmin.LogEdit</a>.</p>
@@ -454,11 +454,11 @@
 <div class="section" id="uadmin-logedit">
 <h2>uadmin.LogEdit<a class="headerlink" href="#uadmin-logedit" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
-<p>LogAdd adds a log when a record is edited.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">LogEdit</span> <span class="p">=</span> <span class="kc">true</span>
 </pre></div>
 </div>
+<p>LogEdit adds a log when a record is edited.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-edit">Log Edit</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
 <p>Before you proceed to this example, see <a class="reference internal" href="#uadmin-logread">uadmin.LogRead</a>.</p>
@@ -560,20 +560,20 @@
 <div class="section" id="uadmin-loghttprequests">
 <h2>uadmin.LogHTTPRequests<a class="headerlink" href="#uadmin-loghttprequests" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
-<p>LogHTTPRequests logs http requests to syslog.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">LogHTTPRequests</span> <span class="p">=</span> <span class="kc">true</span>
 </pre></div>
 </div>
+<p>LogHTTPRequests logs http requests to syslog.</p>
 </div>
 <div class="section" id="uadmin-logread">
 <h2>uadmin.LogRead<a class="headerlink" href="#uadmin-logread" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
-<p>LogRead adds a log when a record is read.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">LogRead</span> <span class="p">=</span> <span class="kc">false</span>
 </pre></div>
 </div>
+<p>LogRead adds a log when a record is read.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-read">Log Read</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
 <p>Before you proceed to this example, see <a class="reference internal" href="#uadmin-logadd">uadmin.LogAdd</a>.</p>
@@ -663,16 +663,15 @@
 <div class="section" id="uadmin-logtrail">
 <h2>uadmin.LogTrail<a class="headerlink" href="#uadmin-logtrail" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
-<p>LogTrail stores Trail logs to syslog.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">LogTrail</span> <span class="p">=</span> <span class="kc">false</span>
 </pre></div>
 </div>
+<p>LogTrail stores Trail logs to syslog.</p>
 </div>
 <div class="section" id="uadmin-syslogf">
 <h2>uadmin.Syslogf<a class="headerlink" href="#uadmin-syslogf" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
-<p>Function:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// For Mac / Linux</span>
 <span class="kd">func</span><span class="p">(</span><span class="nx">level</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">a</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
 
@@ -680,19 +679,21 @@
 <span class="kd">func</span><span class="p">(</span><span class="nx">level</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">a</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span>
 </pre></div>
 </div>
+<p>Syslogf records a log in the system in syslog. For Windows it created a file and records the logs there.</p>
 </div>
 <div class="section" id="uadmin-traillogginglevel">
 <h2>uadmin.TrailLoggingLevel<a class="headerlink" href="#uadmin-traillogginglevel" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
-<p>TrailLoggingLevel is the minimum level to be logged into syslog.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">var</span> <span class="nx">TrailLoggingLevel</span> <span class="p">=</span> <span class="nx">INFO</span>
 </pre></div>
 </div>
+<p>TrailLoggingLevel is the minimum level to be logged into syslog.</p>
 </div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -737,7 +738,7 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -754,13 +755,14 @@
         <li class="right" >
           <a href="language-functions/language.html" title="uadmin.Language"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Log Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

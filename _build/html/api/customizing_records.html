@@ -1,20 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>For Customizing Records &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For Customizing Records &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,8 +41,9 @@
         <li class="right" >
           <a href="basic_functions.html" title="Basic Functions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">For Customizing Records</a></li> 
       </ul>
     </div>  
 
@@ -57,8 +59,23 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#uadmin-delete">uadmin.Delete</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-deletelist">uadmin.DeleteList</a></p></li>
-<li><p><a class="reference internal" href="#uadmin-f">uadmin.F</a></p></li>
-<li><p><a class="reference internal" href="#uadmin-modelschema">uadmin.ModelSchema</a></p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#uadmin-f">uadmin.F</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#func-f-marshaljson">func (F) MarshalJSON</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#uadmin-modelschema">uadmin.ModelSchema</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#func-modelschema-fieldbyname">func (ModelSchema) FieldByName</a></p></li>
+<li><p><a class="reference internal" href="#func-modelschema-getformtheme">func (*ModelSchema) GetFormTheme</a></p></li>
+<li><p><a class="reference internal" href="#func-modelschema-getlisttheme">func (*ModelSchema) GetListTheme</a></p></li>
+<li><p><a class="reference internal" href="#func-modelschema-marshaljson">func (ModelSchema) MarshalJSON</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
 <li><p><a class="reference internal" href="#uadmin-save">uadmin.Save</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-schema">uadmin.Schema</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-update">uadmin.Update</a></p></li>
@@ -66,11 +83,10 @@
 <div class="section" id="uadmin-delete">
 <h2>uadmin.Delete<a class="headerlink" href="#uadmin-delete" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
-<p>Delete records from database.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Delete</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Delete records from database.</p>
 <p>Parameter:</p>
 <blockquote>
 <div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
@@ -197,11 +213,10 @@
 <div class="section" id="uadmin-deletelist">
 <h2>uadmin.DeleteList<a class="headerlink" href="#uadmin-deletelist" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
-<p>DeleteList deletes multiple records from database.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">DeleteList</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>DeleteList deletes multiple records from database.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
@@ -338,8 +353,6 @@
 <div class="section" id="uadmin-f">
 <h2>uadmin.F<a class="headerlink" href="#uadmin-f" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
-<p>F is a field.</p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">F</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Name</span>              <span class="kt">string</span>
     <span class="nx">DisplayName</span>       <span class="kt">string</span>
@@ -366,8 +379,8 @@
     <span class="nx">Choices</span>           <span class="p">[]</span><span class="nx">Choice</span>
     <span class="nx">IsMethod</span>          <span class="kt">bool</span>
     <span class="nx">ErrMsg</span>            <span class="kt">string</span>
-    <span class="nx">ProgressBar</span>       <span class="kd">map</span><span class="p">[</span><span class="kt">float64</span><span class="p">]</span><span class="kt">string</span>
-    <span class="nx">LimitChoicesTo</span>    <span class="kd">func</span><span class="p">(</span><span class="kd">interface</span><span class="p">{},</span> <span class="o">*</span><span class="nx">User</span><span class="p">)</span> <span class="p">[]</span><span class="nx">Choice</span>
+    <span class="nx">ProgressBar</span>       <span class="kd">map</span><span class="p">[</span><span class="kt">float64</span><span class="p">]</span><span class="kt">string</span>                <span class="s">`json:&quot;-&quot;`</span>
+    <span class="nx">LimitChoicesTo</span>    <span class="kd">func</span><span class="p">(</span><span class="kd">interface</span><span class="p">{},</span> <span class="o">*</span><span class="nx">User</span><span class="p">)</span> <span class="p">[]</span><span class="nx">Choice</span> <span class="s">`json:&quot;-&quot;`</span>
     <span class="nx">UploadTo</span>          <span class="kt">string</span>
     <span class="nx">Encrypt</span>           <span class="kt">bool</span>
     <span class="nx">Approval</span>          <span class="kt">bool</span>
@@ -384,6 +397,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>F is a field.</p>
 <p>Parameters:</p>
 <ul class="simple">
 <li><p><strong>Name</strong> - The name of the field</p></li>
@@ -427,6 +441,13 @@
 <li><p><strong>WebCam</strong> - A feature which adds web can access directly from the image and file fields</p></li>
 <li><p><strong>Stringer</strong> - A feature that assigns a field as a unique type</p></li>
 </ul>
+<div class="section" id="func-f-marshaljson">
+<h3><strong>func (F) MarshalJSON</strong><a class="headerlink" href="#func-f-marshaljson" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="nx">F</span><span class="p">)</span> <span class="nx">MarshalJSON</span><span class="p">()</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>MarshalJSON customizes F json export.</p>
 <p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
 <p>One-by-one initialization:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
@@ -472,11 +493,10 @@
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/schema-functions.html">Schema Functions</a></p></li>
 </ul>
 </div>
+</div>
 <div class="section" id="uadmin-modelschema">
 <h2>uadmin.ModelSchema<a class="headerlink" href="#uadmin-modelschema" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
-<p>ModelSchema is a representation of a plan or theory in the form of an outline or model.</p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">ModelSchema</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Name</span>          <span class="kt">string</span> <span class="c1">// Name of the Model e.g. OrderItem</span>
     <span class="nx">DisplayName</span>   <span class="kt">string</span> <span class="c1">// Display Name of the model e.g. Order Items</span>
@@ -488,18 +508,20 @@
     <span class="nx">Fields</span>        <span class="p">[]</span><span class="nx">F</span>
     <span class="nx">IncludeFormJS</span> <span class="p">[]</span><span class="kt">string</span>
     <span class="nx">IncludeListJS</span> <span class="p">[]</span><span class="kt">string</span>
-    <span class="nx">FormModifier</span>  <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="kd">interface</span><span class="p">{},</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">)</span>
-    <span class="nx">ListModifier</span>  <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{})</span>
+    <span class="nx">FormModifier</span>  <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="kd">interface</span><span class="p">{},</span> <span class="o">*</span><span class="nx">User</span><span class="p">)</span>            <span class="s">`json:&quot;-&quot;`</span>
+    <span class="nx">ListModifier</span>  <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="o">*</span><span class="nx">User</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{})</span> <span class="s">`json:&quot;-&quot;`</span>
     <span class="nx">FormTheme</span>     <span class="kt">string</span>
     <span class="nx">ListTheme</span>     <span class="kt">string</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>ModelSchema is a representation of a plan or theory in the form of an outline or model.</p>
 <p>Here are the following fields and their definitions:</p>
 <ul class="simple">
-<li><p><strong>Name</strong> - The name of the Model</p></li>
-<li><p><strong>DisplayName</strong> - A human readable version of the name of the Model</p></li>
-<li><p><strong>ModelName</strong> - The same as the Name but in small letters.</p></li>
+<li><p><strong>Name</strong> - The name of the Model (e.g. OrderItem)</p></li>
+<li><p><strong>DisplayName</strong> - A human readable version of the name of the Model (e.g. Order Items)</p></li>
+<li><p><strong>ModelName</strong> - The same as the Name but in small letters for a URL (e.g. orderitem)</p></li>
+<li><p><strong>TableName</strong> - The name for the database (e.g. order_items)</p></li>
 <li><p><strong>ModelID</strong> - <strong>(Data)</strong> A place holder to store the primary key of a single row for form processing</p></li>
 <li><p><strong>Inlines</strong> - A list of associated inlines to this model</p></li>
 <li><p><strong>InlinesData</strong> - <strong>(Data)</strong> A place holder to store the data of the inlines</p></li>
@@ -511,22 +533,42 @@
 <li><p><strong>FormTheme</strong> - Name of the theme for the form</p></li>
 <li><p><strong>ListTheme</strong> - Name of the theme for the list</p></li>
 </ul>
-<p>There are 3 functions that you can use in ModelSchema:</p>
-<ul class="simple">
-<li><p><strong>FieldByName</strong> - Returns a field from a ModelSchema by name or nil if it doesn’t exist. It uses this format as shown below:</p></li>
-</ul>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">F</span>
+<div class="section" id="func-modelschema-fieldbyname">
+<h3><strong>func (ModelSchema) FieldByName</strong><a class="headerlink" href="#func-modelschema-fieldbyname" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">ModelSchema</span><span class="p">)</span> <span class="nx">FieldByName</span><span class="p">(</span><span class="nx">a</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">F</span>
 </pre></div>
 </div>
+<p>FieldByName returns a field from a ModelSchema by name or nil if it doen’t exist.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">modelschema</span><span class="p">.</span><span class="nx">FieldByName</span><span class="p">(</span><span class="s">&quot;Name&quot;</span><span class="p">).</span><span class="nx">XXXX</span> <span class="p">=</span> <span class="nx">Value</span>
 </pre></div>
 </div>
 <p>XXXX has many things: See <a class="reference internal" href="#uadmin-f">uadmin.F</a> for the list. It is an alternative way of changing the feature of the field rather than using Tags. For more information, see <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tags.html">Tag Reference</a>.</p>
-<ul class="simple">
-<li><p><strong>GetFormTheme()</strong> - Returns the form theme for this model or the global theme if there is no assigned theme for the model.</p></li>
-<li><p><strong>GetListTheme()</strong> - Returns the list theme for this model or the global theme if there is no assigned theme for the model.</p></li>
-</ul>
+</div>
+<div class="section" id="func-modelschema-getformtheme">
+<h3><strong>func (*ModelSchema) GetFormTheme</strong><a class="headerlink" href="#func-modelschema-getformtheme" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">)</span> <span class="nx">GetFormTheme</span><span class="p">()</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>GetFormTheme returns the theme for this model or the global theme if there is no assigned theme for the model.</p>
+</div>
+<div class="section" id="func-modelschema-getlisttheme">
+<h3><strong>func (*ModelSchema) GetListTheme</strong><a class="headerlink" href="#func-modelschema-getlisttheme" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">)</span> <span class="nx">GetListTheme</span><span class="p">()</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>GetListTheme returns the theme for this model or the global theme if there is no assigned theme for the model.</p>
+</div>
+<div class="section" id="func-modelschema-marshaljson">
+<h3><strong>func (ModelSchema) MarshalJSON</strong><a class="headerlink" href="#func-modelschema-marshaljson" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">ModelSchema</span><span class="p">)</span> <span class="nx">MarshalJSON</span><span class="p">()</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>MarshalJSON customizes JSON export for models schema.</p>
 <p>Used in the tutorial:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part15.html">Document System Tutorial Part 15 - Schema Form Modifier</a></p></li>
@@ -571,14 +613,14 @@
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/schema-functions.html">Schema Functions</a></p></li>
 </ul>
 </div>
+</div>
 <div class="section" id="uadmin-save">
 <h2>uadmin.Save<a class="headerlink" href="#uadmin-save" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
-<p>Save saves the object in the database.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Save</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Save saves the object in the database.</p>
 <p>Parameter:</p>
 <blockquote>
 <div><p><strong>a interface{}:</strong> Is the model that you want to save with</p>
@@ -625,11 +667,10 @@
 <div class="section" id="uadmin-schema">
 <h2>uadmin.Schema<a class="headerlink" href="#uadmin-schema" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
-<p>Schema is the global schema of the system.</p>
-<p>Structure:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ModelSchema</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Schema</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">ModelSchema</span>
 </pre></div>
 </div>
+<p>Schema is the global schema of the system.</p>
 <p>Used in the tutorial:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part15.html">Document System Tutorial Part 15 - Schema Form Modifier</a></p></li>
@@ -674,11 +715,10 @@
 <div class="section" id="uadmin-update">
 <h2>uadmin.Update<a class="headerlink" href="#uadmin-update" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
-<p>Update updates the field name and value of an interface.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">fieldName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">value</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Update</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">fieldName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">value</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Update updates the field name and value of an interface.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
@@ -719,6 +759,7 @@
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -763,7 +804,7 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -780,13 +821,14 @@
         <li class="right" >
           <a href="basic_functions.html" title="Basic Functions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">For Customizing Records</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

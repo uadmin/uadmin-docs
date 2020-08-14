@@ -1,25 +1,26 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Language Functions &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Language Functions &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="uadmin.Language" href="language-functions/language.html" />
-    <link rel="prev" title="Model Functions" href="model_functions.html" />
+    <link rel="prev" title="Handler Functions" href="handler_functions.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -38,10 +39,11 @@
           <a href="language-functions/language.html" title="uadmin.Language"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="model_functions.html" title="Model Functions"
+          <a href="handler_functions.html" title="Handler Functions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Language Functions</a></li> 
       </ul>
     </div>  
 
@@ -59,18 +61,25 @@
 <li><p><a class="reference internal" href="#uadmin-customtranslation">uadmin.CustomTranslation</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getactivelanguages">uadmin.GetActiveLanguages</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getdefaultlanguage">uadmin.GetDefaultLanguage</a></p></li>
-<li><p><a class="reference internal" href="#uadmin-language">uadmin.Language</a></p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#uadmin-language">uadmin.Language</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#func-language-save">func (*Language) Save</a></p></li>
+<li><p><a class="reference internal" href="#func-language-string">func (Language) String</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
 <li><p><a class="reference internal" href="#uadmin-tf">uadmin.Tf</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-translate">uadmin.Translate</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-translateschema">uadmin.TranslateSchema</a></p></li>
 </ul>
 <div class="section" id="uadmin-cachetranslation">
 <h2>uadmin.CacheTranslation<a class="headerlink" href="#uadmin-cachetranslation" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#language-functions">Back To Top</a></p>
-<p>CacheTranslation allows a translation to store data in a cache memory.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">CacheTranslation</span> <span class="p">=</span> <span class="kc">false</span>
 </pre></div>
 </div>
+<p>CacheTranslation allows a translation to store data in a cache memory.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#cache-translation">Cache Translation</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
 <p>Example:</p>
@@ -112,12 +121,17 @@
 <div class="section" id="uadmin-customtranslation">
 <h2>uadmin.CustomTranslation<a class="headerlink" href="#uadmin-customtranslation" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#language-functions">Back To Top</a></p>
-<p>CustomTranslation is a list of string where you could add URLs to JSON files that uAdmin will save for translation.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span><span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">CustomTranslation</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span>
+    <span class="s">&quot;uadmin/system&quot;</span><span class="p">,</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>Suppose that English is the only active language in your application. Go to the main.go and apply the following codes below. It should be placed before uadmin.Register.</p>
+<p>CustomTranslation is where you can register custom translation files. To register a custom translation file, always assign it with it’s key in the this format “category/name”. For example:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">CustomTranslation</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">CustomTranslation</span><span class="p">,</span> <span class="s">&quot;ui/billing&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will register the file and you will be able to use it if <cite>uadmin.Tf</cite>. By default there is only one registed custom translation wich is “uadmin/system”.</p>
+<p>Another example: Suppose that English is the only active language in your application. Go to the main.go and apply the following codes below. It should be placed before uadmin.Register.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
     <span class="c1">// Place it here</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">CustomTranslation</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;models/custom&quot;</span><span class="p">,</span> <span class="s">&quot;models/todo_custom&quot;</span><span class="p">}</span>
@@ -139,11 +153,10 @@
 <div class="section" id="uadmin-getactivelanguages">
 <h2>uadmin.GetActiveLanguages<a class="headerlink" href="#uadmin-getactivelanguages" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#language-functions">Back To Top</a></p>
-<p>GetActiveLanguages returns the list of active languages from the Language model.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">()</span> <span class="p">[]</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Language</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetActiveLanguages</span><span class="p">()</span> <span class="p">[]</span><span class="nx">Language</span>
 </pre></div>
 </div>
+<p>GetActiveLanguages returns a list of active languages from the Language model.</p>
 <p>Suppose Chinese with the code “zh” and English with the code “en” are active languages in the Language model.</p>
 <img alt="../_images/chineseenglishactive.png" class="align-center" src="../_images/chineseenglishactive.png" />
 <div class="line-block">
@@ -169,11 +182,10 @@
 <div class="section" id="uadmin-getdefaultlanguage">
 <h2>uadmin.GetDefaultLanguage<a class="headerlink" href="#uadmin-getdefaultlanguage" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#language-functions">Back To Top</a></p>
-<p>GetDefaultLanguage returns the default language by code from the Language model.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">()</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Language</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetDefaultLanguage</span><span class="p">()</span> <span class="nx">Language</span>
 </pre></div>
 </div>
+<p>GetDefaultLanguage returns the default language by code from the Language model.</p>
 <p>Suppose Vietnamese is the default language with the code “vi” in the Language model.</p>
 <img alt="../_images/vietnamesedefault1.png" class="align-center" src="../_images/vietnamesedefault1.png" />
 <div class="line-block">
@@ -199,8 +211,6 @@
 <div class="section" id="uadmin-language">
 <h2>uadmin.Language<a class="headerlink" href="#uadmin-language" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#language-functions">Back To Top</a></p>
-<p>Language is a system in uAdmin that is used to add, modify and delete the elements of a language.</p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Language</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
     <span class="nx">EnglishName</span>    <span class="kt">string</span> <span class="s">`uadmin:&quot;required;read_only;filter;search&quot;`</span>
@@ -214,11 +224,22 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>There are 2 functions that you can use in Language:</p>
-<ul class="simple">
-<li><p><strong>Save()</strong> - Saves the object in the database</p></li>
-<li><p><strong>String()</strong> - Returns the Code of the language</p></li>
-</ul>
+<p>Language is a system in uAdmin that is used to add, modify and delete the elements of a language.</p>
+<div class="section" id="func-language-save">
+<h3><strong>func (*Language) Save</strong><a class="headerlink" href="#func-language-save" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#language-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="o">*</span><span class="nx">Language</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Save saves the object in the database.</p>
+</div>
+<div class="section" id="func-language-string">
+<h3><strong>func (Language) String</strong><a class="headerlink" href="#func-language-string" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#language-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="nx">Language</span><span class="p">)</span> <span class="nx">String</span><span class="p">()</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>String returns the code of the language.</p>
 <p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
 <p>One-by-one initialization:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
@@ -256,26 +277,23 @@
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/language.html">Language</a></p></li>
 </ul>
 </div>
+</div>
 <div class="section" id="uadmin-tf">
 <h2>uadmin.Tf<a class="headerlink" href="#uadmin-tf" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#language-functions">Back To Top</a></p>
-<p>Tf is a function for translating strings into any given language.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">path</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">lang</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">term</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Tf</span><span class="p">(</span><span class="nx">path</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">lang</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">term</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">string</span>
 </pre></div>
 </div>
+<p>Tf is a function for translating strings into any given language.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>path (string):</strong> This is where to get the translation from. It is in the
-format of “GROUPNAME/FILENAME” for example: “models/Todo”</p>
+format of “GROUPNAME/FILENAME” for example: “uadmin/system”</p>
 <p><strong>lang (string):</strong> Is the language code. If empty string is passed we will use
 the default language.</p>
 <p><strong>term (string):</strong> The term to translate</p>
 <p><strong>args (…interface{}):</strong> Is a list of arguments to fill the term with place holders</p>
 </div></blockquote>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 <p>First of all, create a back-end validation function inside the todo.go.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Validate !</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">Todo</span><span class="p">)</span> <span class="nx">Validate</span><span class="p">()</span> <span class="p">(</span><span class="nx">errMsg</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
@@ -356,11 +374,10 @@ the default language.</p>
 <div class="section" id="uadmin-translate">
 <h2>uadmin.Translate<a class="headerlink" href="#uadmin-translate" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#language-functions">Back To Top</a></p>
-<p>Translate is used to get a translation from a multilingual fields.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">raw</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">lang</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kt">bool</span><span class="p">)</span> <span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Translate</span><span class="p">(</span><span class="nx">raw</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">lang</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kt">bool</span><span class="p">)</span> <span class="kt">string</span>
 </pre></div>
 </div>
+<p>Translate is used to get a translation from a multilingual fields.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>raw string:</strong> Is the field of the model that you want to access to</p>
@@ -415,9 +432,18 @@ the default language.</p>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/tf-and-translate.html">Tf and Translate</a></p></li>
 </ul>
 </div>
+<div class="section" id="uadmin-translateschema">
+<h2>uadmin.TranslateSchema<a class="headerlink" href="#uadmin-translateschema" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#language-functions">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Translate</span><span class="p">(</span><span class="nx">raw</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">lang</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kt">bool</span><span class="p">)</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>TranslateSchema translate a model schema.</p>
+</div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -441,8 +467,8 @@ the default language.</p>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="model_functions.html"
-                        title="previous chapter">Model Functions</a></p>
+  <p class="topless"><a href="handler_functions.html"
+                        title="previous chapter">Handler Functions</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="language-functions/language.html"
                         title="next chapter">uadmin.Language</a></p>
@@ -462,7 +488,7 @@ the default language.</p>
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -477,15 +503,16 @@ the default language.</p>
           <a href="language-functions/language.html" title="uadmin.Language"
              >next</a> |</li>
         <li class="right" >
-          <a href="model_functions.html" title="Model Functions"
+          <a href="handler_functions.html" title="Handler Functions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Language Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

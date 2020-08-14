@@ -14,13 +14,11 @@ uadmin.Handler
 --------------
 `Back To Top`_
 
-Handler is a function that allows access to another handler.
-
-Function:
-
 .. code-block:: go
 
-    func(f func(http.ResponseWriter, *http.Request)) func(http.ResponseWriter, *http.Request)
+    func Handler(f func(http.ResponseWriter, *http.Request)) func(http.ResponseWriter, *http.Request)
+
+Handler is a function that takes an http handler function and returns an http handler function that has extra functionality including logging.
 
 Used in the tutorial:
 
@@ -34,13 +32,11 @@ uadmin.StaticHandler
 --------------------
 `Back To Top`_
 
-StaticHandler is a function that serves static files.
-
-Function:
-
 .. code-block:: go
 
-    func(w http.ResponseWriter, r *http.Request)
+    func StaticHandler(w http.ResponseWriter, r *http.Request)
+
+StaticHandler is a function that serves static files.
 
 Parameters:
 
@@ -58,13 +54,11 @@ uadmin.UploadImageHandler
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/handler_functions.html#handler-functions
 
-UploadImageHandler handles files sent from Tiny MCE's photo uploader.
-
-Function:
-
 .. code-block:: go
 
-    func(w http.ResponseWriter, r *http.Request, session *Session)
+    func UploadImageHandler(w http.ResponseWriter, r *http.Request, session *Session)
+
+UploadImageHandler handles files sent from Tiny MCE's photo uploader.
 
 Parameters:
 

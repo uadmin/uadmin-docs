@@ -13,13 +13,11 @@ uadmin.Register
 ---------------
 `Back To Top`_
 
-Register is used to register models to uAdmin.
-
-Function:
-
 .. code-block:: go
 
-    func(m ...interface{})
+    func Register(m ...interface{})
+
+Register is used to register models to uAdmin.
 
 Parameter:
 
@@ -80,13 +78,11 @@ uadmin.RegisterInlines
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/register_functions.html#register-functions
 
-RegisterInlines is a function to register a model as an inline for another model.
-
-Function:
-
 .. code-block:: go
 
     func RegisterInlines(model interface{}, fk map[string]string)
+
+RegisterInlines is a function to register a model as an inline for another model.
 
 Parameters:
 

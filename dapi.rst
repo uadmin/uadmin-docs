@@ -33,22 +33,24 @@ In this section, we will discuss on URL mapping, security, data query and authen
     * `Model Methods`_
     * `Custom Methods`_
 * `Special Parameters`_
-    * `$or`_
-    * `$limit`_
-    * `$order (Ascending)`_
-    * `$order (Descending)`_
-    * `$order (List of Fields)`_
-    * `Limit, offset, order`_
+    * `$allmodels`_
+    * `$choices`_
+    * `$distinct`_
+    * `$deleted`_
     * `$f`_
     * `$groupby`_
     * `$join`_
-    * `$deleted`_
+    * `$limit`_
+    * `Limit, offset, order`_
     * `$m2m`_
-    * `$q`_
     * `$next`_
+    * `$or`_
+    * `$order (Ascending)`_
+    * `$order (Descending)`_
+    * `$order (List of Fields)`_
     * `$preload`_
+    * `$q`_
     * `$stat`_
-    * `$allmodels`_
 * `Writing Data Symbol`_
 * `uAdmin Functions`_
 
@@ -1615,7 +1617,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to disable access to add method
-    func (m *Model) APIDisabledAdd(r *http.Request) bool {
+    func (Model) APIDisabledAdd(r *http.Request) bool {
         return true
     }
 
@@ -1630,7 +1632,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to disable access to delete method
-    func (m *Model) APIDisabledDelete(r *http.Request) bool {
+    func (Model) APIDisabledDelete(r *http.Request) bool {
         return true
     }
 
@@ -1645,7 +1647,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to disable access to edit method
-    func (m *Model) APIDisabledEdit(r *http.Request) bool {
+    func (Model) APIDisabledEdit(r *http.Request) bool {
         return true
     }
 
@@ -1660,7 +1662,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to disable access to read method
-    func (m *Model) APIDisabledRead(r *http.Request) bool {
+    func (Model) APIDisabledRead(r *http.Request) bool {
         return true
     }
 
@@ -1675,7 +1677,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to disable access to schema method
-    func (m *Model) APIDisabledSchema(r *http.Request) bool {
+    func (Model) APIDisabledSchema(r *http.Request) bool {
         return true
     }
 
@@ -1690,7 +1692,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to record add action in logs
-    func (m *Model) APILogAdd(r *http.Request) bool {
+    func (Model) APILogAdd(r *http.Request) bool {
         return true
     }
 
@@ -1705,7 +1707,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to record delete action in logs
-    func (m *Model) APILogDelete(r *http.Request)  {
+    func (Model) APILogDelete(r *http.Request)  {
         return true
     }
 
@@ -1720,7 +1722,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to record edit action in logs
-    func (m *Model) APILogEdit(r *http.Request) bool {
+    func (Model) APILogEdit(r *http.Request) bool {
         return true
     }
 
@@ -1735,7 +1737,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to record read action in logs
-    func (m *Model) APILogRead(r *http.Request) bool {
+    func (Model) APILogRead(r *http.Request) bool {
         return true
     }
 
@@ -1750,7 +1752,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to record schema action in logs
-    func (m *Model) APILogSchema(r *http.Request) bool {
+    func (Model) APILogSchema(r *http.Request) bool {
         return true
     }
 
@@ -1765,7 +1767,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable pre query access to add method
-    func (m *Model) APIPreQueryAdd(r *http.Request) bool {
+    func (Model) APIPreQueryAdd(w http.ResponseWriter, r *http.Request) bool {
         return true
     }
 
@@ -1780,7 +1782,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable pre query access to delete method
-    func (m *Model) APIPreQueryDelete(r *http.Request)  {
+    func (Model) APIPreQueryDelete(w http.ResponseWriter, r *http.Request)  {
         return true
     }
 
@@ -1795,7 +1797,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable pre query access to edit method
-    func (m *Model) APIPreQueryEdit(r *http.Request) bool {
+    func (Model) APIPreQueryEdit(w http.ResponseWriter, r *http.Request) bool {
         return true
     }
 
@@ -1810,7 +1812,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable pre query access to read method
-    func (m *Model) APIPreQueryRead(r *http.Request) bool {
+    func (Model) APIPreQueryRead(w http.ResponseWriter, r *http.Request) bool {
         return true
     }
 
@@ -1825,7 +1827,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable pre query access to schema method
-    func (m *Model) APIPreQuerySchema(r *http.Request) bool {
+    func (Model) APIPreQuerySchema(w http.ResponseWriter, r *http.Request) bool {
         return true
     }
 
@@ -1840,7 +1842,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable post query access to add method
-    func (m *Model) APIPostQueryAdd(r *http.Request) bool {
+    func (Model) APIPostQueryAdd(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
         return true
     }
 
@@ -1855,7 +1857,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable post query access to delete method
-    func (m *Model) APIPostQueryDelete(r *http.Request)  {
+    func (Model) APIPostQueryDelete(w http.ResponseWriter, r *http.Request, res map[string]interface{})  {
         return true
     }
 
@@ -1870,7 +1872,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable post query access to edit method
-    func (m *Model) APIPostQueryEdit(r *http.Request) bool {
+    func (Model) APIPostQueryEdit(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
         return true
     }
 
@@ -1885,7 +1887,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable post query access to read method
-    func (m *Model) APIPostQueryRead(r *http.Request) bool {
+    func (Model) APIPostQueryRead(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
         return true
     }
 
@@ -1900,7 +1902,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable post query access to schema method
-    func (m *Model) APIPostQuerySchema(r *http.Request) bool {
+    func (Model) APIPostQuerySchema(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
         return true
     }
 
@@ -1915,7 +1917,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable public access to add method
-    func (m *Model) APIPublicAdd(r *http.Request) bool {
+    func (Model) APIPublicAdd(r *http.Request) bool {
         return true
     }
 
@@ -1930,7 +1932,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable public access to delete method
-    func (m *Model) APIPublicDelete(r *http.Request) bool {
+    func (Model) APIPublicDelete(r *http.Request) bool {
         return true
     }
 
@@ -1945,7 +1947,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable public access to edit method
-    func (m *Model) APIPublicEdit(r *http.Request) bool {
+    func (Model) APIPublicEdit(r *http.Request) bool {
         return true
     }
 
@@ -1960,7 +1962,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable public access to read method
-    func (m *Model) APIPublicRead(r *http.Request) bool {
+    func (Model) APIPublicRead(r *http.Request) bool {
         return true
     }
 
@@ -1977,7 +1979,7 @@ Structure:
 .. code-block:: go
 
     // Return the value to true to enable public access to schema method
-    func (m *Model) APIPublicSchema(r *http.Request) bool {
+    func (Model) APIPublicSchema(r *http.Request) bool {
         return true
     }
 
@@ -2000,12 +2002,10 @@ Special Parameters
 ------------------
 `Back to Top`_
 
-* `$or`_
-* `$limit`_
-* `$order (Ascending)`_
-* `$order (Descending)`_
-* `$order (List of Fields)`_
-* `Limit, offset, order`_
+* `$allmodels`_
+* `$choices`_
+* `$distinct`_
+* `$deleted`_
 * `$f`_
     * `__sum`_
     * `__avg`_
@@ -2014,19 +2014,21 @@ Special Parameters
     * `__count`_
 * `$groupby`_
 * `$join`_
-* `$deleted`_
+* `$limit`_
+* `Limit, offset, order`_
 * `$m2m`_
-* `$q`_
 * `$next`_
+* `$or`_
+* `$order (Ascending)`_
+* `$order (Descending)`_
+* `$order (List of Fields)`_
 * `$preload`_
+* `$q`_
 * `$stat`_
-* `$allmodels`_
 
-**$or**
-^^^^^^^
+**$allmodels**
+^^^^^^^^^^^^^^
 `Back to Top (Special Parameters)`_
-
-$or compares which of the parameters matches the specified criteria.
 
 Structure:
 
@@ -2034,43 +2036,35 @@ Structure:
 
     # d stands for data
     # $ represents a symbol for special parameters
-    # | is a symbol for OR operator ($or)
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$or=(field_name)=(value)|(field_name)=(value)
+    # allmodels is a parameter to get all models
+    http://api.example.com/{ROOT_URL}/api/d/?$allmodels
 
-    # ! is a negate symbol equivalent to SQL NOT
-    # WHERE field_name1 = value1 NOT OR field_name2 = value2
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$!or=(field_name)=(value)|(field_name)=(value)
+Suppose you have the following models in the uAdmin dashboard.
 
-    # + is a symbol for AND operator
-    # WHERE (field_name1 = value1 AND field_name2 = value2) OR (field_name1 = value1 AND field_name2 = value2)
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$or=(field_name1)=(value1)+(field_name2)=(value2)|(field_name1)=(value1)+(field_name2)=(value2)
-
-Suppose you have five records in the Item model.
-
-.. image:: dapi/assets/itemfiverecords.png
+.. image:: dapi/assets/uadmindashboardupdate.png
 
 |
 
-Run your application and call this URL to read record(s) where the name of an item is equal to "Robot" or the rating of an item is 5.
+Run your application and call this URL to read the full schema of all models.
 
 .. code-block:: bash
 
-    # item is a model name
-    # name and rating are field names
-    http://api.example.com/{ROOT_URL}/api/d/item/read/?$or=name=Robot|rating=5
+    http://api.example.com/{ROOT_URL}/api/d/$allmodels
 
 Result:
 
-.. image:: dapi/assets/orresult.png
+.. image:: dapi/assets/allmodelsresult.png
    :align: center
 
 |
 
-It returns a list of records where the name of an item is equal to "Robot" or the rating of an item is 5.
+It returns a JSON array representing uAdmin's ModelSchema of all models.
 
-**$limit**
-^^^^^^^^^^
+**$choices**
+^^^^^^^^^^^^
 `Back to Top (Special Parameters)`_
+
+$choices is used in schema command to preload foreign key and M2M choices.
 
 Structure:
 
@@ -2078,7 +2072,40 @@ Structure:
 
     # d stands for data
     # $ represents a symbol for special parameters
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$limit=(integer_value)
+    # value can be either 0 (disabled) or 1 (enabled)
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/schema/?$choices={0,1}
+
+**$distinct**
+^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+$distinct returns only distinct (different) values. It is applied to all columns.
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    # value can be either 0 (disabled) or 1 (enabled)
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$distinct={0,1}
+
+**$deleted**
+^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+$deleted returns the list of deleted records in the database based on the assigned model.
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    # value can be either 0 (disabled) or 1 (enabled)
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$deleted={0,1}
+
+If the value is 0, it will return the list of deleted records. If the value is 1, it will return the list of deleted and existing records.
 
 Suppose you have five records in the Item model.
 
@@ -2086,172 +2113,49 @@ Suppose you have five records in the Item model.
 
 |
 
-Run your application and call this URL to read up to 3 records.
+Now let's delete the iPad Mini and iPad Pro items.
+
+.. image:: dapi/assets/ipaddeleteselected.png
+
+|
+
+.. image:: dapi/assets/ipadconfirmdelete.png
+
+|
+
+Result:
+
+.. image:: dapi/assets/deletemultipleresult.png
+
+|
+
+Run your application and call this URL to read a record that displays the list of existing records in the Item model.
 
 .. code-block:: bash
 
     # item is the model name
-    # 3 is the limit value
-    http://api.example.com/{ROOT_URL}/api/d/item/read/?$limit=3
+    # id and rating are field names
+    # 0 is the value to display the list of existing records
+    http://api.example.com/{ROOT_URL}/api/d/item/read/?$deleted=0
 
 Result:
 
-.. image:: dapi/assets/limitresult.png
+.. image:: dapi/assets/deleted0result.png
    :align: center
 
-|
-
-It returns up to 3 records.
-
-**$order (Ascending)**
-^^^^^^^^^^^^^^^^^^^^^^
-`Back to Top (Special Parameters)`_
-
-Structure:
-
-.. code-block:: bash
-
-    # d stands for data
-    # $ represents a symbol for special parameters
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$order=(field_name)
-
-Suppose you have five records in the Item model.
-
-.. image:: dapi/assets/itemfiverecords.png
-
-|
-
-Run your application and call this URL to read record(s) where ID number is sorted in ascending order.
+Now let's call this URL to read a record that displays the list of both deleted and existing records in the Item model.
 
 .. code-block:: bash
 
     # item is the model name
-    # id is the field name
-    http://api.example.com/{ROOT_URL}/api/d/item/read/?$order=id
+    # id and rating are field names
+    # 1 is the value to display the list of both deleted and existing records
+    http://api.example.com/{ROOT_URL}/api/d/item/read/?$deleted=1
 
 Result:
 
-.. image:: dapi/assets/orderascendingresult.png
+.. image:: dapi/assets/deleted1result.png
    :align: center
-
-|
-
-It returns a list of records where ID number is sorted in ascending order.
-
-**$order (Descending)**
-^^^^^^^^^^^^^^^^^^^^^^^
-`Back to Top (Special Parameters)`_
-
-Structure:
-
-.. code-block:: bash
-
-    # d stands for data
-    # $ represents a symbol for special parameters
-    # - is a symbol for descending order
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$order=-(field_name)
-
-Suppose you have five records in the Item model.
-
-.. image:: dapi/assets/itemfiverecords.png
-
-|
-
-Run your application and call this URL to read record(s) where ID number is sorted in descending order.
-
-.. code-block:: bash
-
-    # item is the model name
-    # id is the field name
-    http://api.example.com/{ROOT_URL}/api/d/item/read/?$order=-id
-
-Result:
-
-.. image:: dapi/assets/orderdescendingresult.png
-   :align: center
-
-|
-
-It returns a list of records where ID number is sorted in descending order.
-
-**$order (List of Fields)**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-`Back to Top (Special Parameters)`_
-
-Structure:
-
-.. code-block:: bash
-
-    # d stands for data
-    # $ represents a symbol for special parameters
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$order=(field_name1),(field_name2)
-
-Suppose you have five records in the Item model.
-
-.. image:: dapi/assets/itemfiverecords.png
-
-|
-
-Run your application and call this URL to read record(s) where price is sorted in descending order and rating is sorted in ascending order.
-
-.. code-block:: bash
-
-    # item is the model name
-    # - is a symbol for descending order
-    # price and rating are field names
-    http://api.example.com/{ROOT_URL}/api/d/item/read/?$order=-price,rating
-
-Result:
-
-.. image:: dapi/assets/orderlistoffieldsresult.png
-   :align: center
-
-|
-
-It returns a list of records where price is sorted in descending order and rating is sorted in ascending order
-
-**Limit, offset, order**
-^^^^^^^^^^^^^^^^^^^^^^^^
-`Back to Top (Special Parameters)`_
-
-Limit is the number of records that you want to return.
-
-Offset is the starting point to read in the list of records. It is equivalent to an index number. For instance, if you put the offset value as 2, your application will start reading on the third record.
-
-Order is used to sort the result-set in ascending or descending order. [#f4]_
-
-Structure:
-
-.. code-block:: bash
-
-    # d stands for data
-    # $ represents a symbol for special parameters
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$limit=(integer_value)&$offset=(integer_value)&$order=(field_name)
-
-Suppose you have five records in the Item model.
-
-.. image:: dapi/assets/itemfiverecords.png
-
-|
-
-Run your application and call this URL to return three records starting from the third record that sorts the ID number in ascending order.
-
-.. code-block:: bash
-
-    # item is the model name
-    # 3 is the limit value to display up to three records
-    # 2 is the offset value to start reading the third record
-    # id is the field name to sort in ascending order
-    http://api.example.com/{ROOT_URL}/api/d/item/read/?$limit=3&$offset=2&$order=id
-
-Result:
-
-.. image:: dapi/assets/limitoffsetorderresult.png
-   :align: center
-
-|
-
-It returns the list of up to three records starting from the third record that sorts the ID number in ascending order.
 
 **$f**
 ^^^^^^
@@ -2265,7 +2169,7 @@ Structure:
 
     # d stands for data
     # $ represents a symbol for special parameters
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$f=(field_name1),(field_name2)
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$f={FIELD_NAME1},{FIELD_NAME2}
 
 Supported Operators
 ^^^^^^^^^^^^^^^^^^^
@@ -2474,9 +2378,9 @@ It returns a record that displays the number of all records you have in the Item
 ^^^^^^^^^^^^
 `Back to Top (Special Parameters)`_
 
-The GROUP BY statement groups rows that have the same values into summary rows, like "find the number of purchased items in each transaction".
+$groupby groups rows that have the same values into summary rows, like "find the number of purchased items in each transaction".
 
-The GROUP BY statement is often used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns. [#f3]_
+$groupby is often used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns. [#f3]_
 
 Structure:
 
@@ -2587,11 +2491,9 @@ Result:
 
 .. image:: dapi/assets/joinresultjson3.png
 
-**$deleted**
-^^^^^^^^^^^^
+**$limit**
+^^^^^^^^^^
 `Back to Top (Special Parameters)`_
-
-$deleted displays the list of deleted records in the database based on the assigned model.
 
 Structure:
 
@@ -2599,10 +2501,7 @@ Structure:
 
     # d stands for data
     # $ represents a symbol for special parameters
-    # value can be either 0 (disabled) or 1 (enabled)
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$deleted={VALUE}
-
-If the value is 0, it will return the list of deleted records. If the value is 1, it will return the list of deleted and existing records.
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$limit={INTEGER_VALUE}
 
 Suppose you have five records in the Item model.
 
@@ -2610,49 +2509,65 @@ Suppose you have five records in the Item model.
 
 |
 
-Now let's delete the iPad Mini and iPad Pro items.
-
-.. image:: dapi/assets/ipaddeleteselected.png
-
-|
-
-.. image:: dapi/assets/ipadconfirmdelete.png
-
-|
-
-Result:
-
-.. image:: dapi/assets/deletemultipleresult.png
-
-|
-
-Run your application and call this URL to read a record that displays the list of existing records in the Item model.
+Run your application and call this URL to read up to 3 records.
 
 .. code-block:: bash
 
     # item is the model name
-    # id and rating are field names
-    # 0 is the value to display the list of existing records
-    http://api.example.com/{ROOT_URL}/api/d/item/read/?$deleted=0
+    # 3 is the limit value
+    http://api.example.com/{ROOT_URL}/api/d/item/read/?$limit=3
 
 Result:
 
-.. image:: dapi/assets/deleted0result.png
+.. image:: dapi/assets/limitresult.png
    :align: center
 
-Now let's call this URL to read a record that displays the list of both deleted and existing records in the Item model.
+|
+
+It returns up to 3 records.
+
+**Limit, offset, order**
+^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Limit is the number of records that you want to return.
+
+Offset is the starting point to read in the list of records. It is equivalent to an index number. For instance, if you put the offset value as 2, your application will start reading on the third record.
+
+Order is used to sort the result-set in ascending or descending order. [#f4]_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$limit={INTEGER_VALUE}&$offset={INTEGER_VALUE}&$order={FIELD_NAME}
+
+Suppose you have five records in the Item model.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to return three records starting from the third record that sorts the ID number in ascending order.
 
 .. code-block:: bash
 
     # item is the model name
-    # id and rating are field names
-    # 1 is the value to display the list of both deleted and existing records
-    http://api.example.com/{ROOT_URL}/api/d/item/read/?$deleted=1
+    # 3 is the limit value to display up to three records
+    # 2 is the offset value to start reading the third record
+    # id is the field name to sort in ascending order
+    http://api.example.com/{ROOT_URL}/api/d/item/read/?$limit=3&$offset=2&$order=id
 
 Result:
 
-.. image:: dapi/assets/deleted1result.png
+.. image:: dapi/assets/limitoffsetorderresult.png
    :align: center
+
+|
+
+It returns the list of up to three records starting from the third record that sorts the ID number in ascending order.
 
 **$m2m**
 ^^^^^^^^
@@ -2720,20 +2635,6 @@ Result:
 
 .. image:: dapi/assets/m2midresultjson.png
 
-**$q**
-^^^^^^
-`Back to Top (Special Parameters)`_
-
-$q searches all string based fields for read, edit, and delete requests.
-
-Structure:
-
-.. code-block:: bash
-
-    # d stands for data
-    # Searches all string based fields for read, edit, and delete requests
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$q=abc
-
 **$next**
 ^^^^^^^^^
 `Back to Top (Special Parameters)`_
@@ -2750,6 +2651,159 @@ Structure:
 
     # Send the user back
     http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/method/{METHOD_NAME}/?$next=$back
+
+**$or**
+^^^^^^^
+`Back to Top (Special Parameters)`_
+
+$or compares which of the parameters matches the specified criteria.
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    # | is a symbol for OR operator ($or)
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$or={FIELD_NAME1}={VALUE1}|{FIELD_NAME2}={VALUE2}
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name1 = value1 NOT OR field_name2 = value2
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$!or={FIELD_NAME1}={VALUE1}|{FIELD_NAME2}={VALUE2}
+
+    # + is a symbol for AND operator
+    # WHERE (field_name1 = value1 AND field_name2 = value2) OR (field_name1 = value1 AND field_name2 = value2)
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$or={FIELD_NAME1}={VALUE1}+{FIELD_NAME2}={VALUE2}|{FIELD_NAME1}={VALUE1}+{FIELD_NAME2}={VALUE2}
+
+Suppose you have five records in the Item model.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where the name of an item is equal to "Robot" or the rating of an item is 5.
+
+.. code-block:: bash
+
+    # item is a model name
+    # name and rating are field names
+    http://api.example.com/{ROOT_URL}/api/d/item/read/?$or=name=Robot|rating=5
+
+Result:
+
+.. image:: dapi/assets/orresult.png
+   :align: center
+
+|
+
+It returns a list of records where the name of an item is equal to "Robot" or the rating of an item is 5.
+
+**$order (Ascending)**
+^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$order={FIELD_NAME}
+
+Suppose you have five records in the Item model.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where ID number is sorted in ascending order.
+
+.. code-block:: bash
+
+    # item is the model name
+    # id is the field name
+    http://api.example.com/{ROOT_URL}/api/d/item/read/?$order=id
+
+Result:
+
+.. image:: dapi/assets/orderascendingresult.png
+   :align: center
+
+|
+
+It returns a list of records where ID number is sorted in ascending order.
+
+**$order (Descending)**
+^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    # - is a symbol for descending order
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$order=-{FIELD_NAME}
+
+Suppose you have five records in the Item model.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where ID number is sorted in descending order.
+
+.. code-block:: bash
+
+    # item is the model name
+    # id is the field name
+    http://api.example.com/{ROOT_URL}/api/d/item/read/?$order=-id
+
+Result:
+
+.. image:: dapi/assets/orderdescendingresult.png
+   :align: center
+
+|
+
+It returns a list of records where ID number is sorted in descending order.
+
+**$order (List of Fields)**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$order={FIELD_NAME1},{FIELD_NAME2}
+
+Suppose you have five records in the Item model.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where price is sorted in descending order and rating is sorted in ascending order.
+
+.. code-block:: bash
+
+    # item is the model name
+    # - is a symbol for descending order
+    # price and rating are field names
+    http://api.example.com/{ROOT_URL}/api/d/item/read/?$order=-price,rating
+
+Result:
+
+.. image:: dapi/assets/orderlistoffieldsresult.png
+   :align: center
+
+|
+
+It returns a list of records where price is sorted in descending order and rating is sorted in ascending order
 
 **$preload**
 ^^^^^^^^^^^^
@@ -2802,9 +2856,25 @@ Result:
 .. image:: dapi/assets/preload1resultjson.png
    :align: center
 
+**$q**
+^^^^^^
+`Back to Top (Special Parameters)`_
+
+$q searches all string based fields for read, edit, and delete requests.
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # Searches all string based fields for read, edit, and delete requests
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/read/?$q=abc
+
 **$stat**
 ^^^^^^^^^
 `Back to Top (Special Parameters)`_
+
+.. _Back to Top (Special Parameters): https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters
 
 $stat checks the query execution time and its related details.
 
@@ -2815,7 +2885,7 @@ Structure:
     # d stands for data
     # $ represents a symbol for special parameters
     # stat_value can be either 0 (disabled) or 1 (enabled)
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/?$stat=(stat_value)
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/?$stat={STAT_VALUE}
 
 Suppose you have five records in the Item model.
 
@@ -2841,42 +2911,6 @@ Result:
 It returns a record that reads all item records and stat containing the query execution time and its related details when you perform an action that reads all records in the Item model.
 
 "qtime" is in milliseconds.
-
-**$allmodels**
-^^^^^^^^^^^^^^
-`Back to Top (Special Parameters)`_
-
-.. _Back to Top (Special Parameters): https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters
-
-Structure:
-
-.. code-block:: bash
-
-    # d stands for data
-    # $ represents a symbol for special parameters
-    # allmodels is a parameter to get all models
-    http://api.example.com/{ROOT_URL}/api/d/?$allmodels
-
-Suppose you have the following models in the uAdmin dashboard.
-
-.. image:: dapi/assets/uadmindashboardupdate.png
-
-|
-
-Run your application and call this URL to read the full schema of all models.
-
-.. code-block:: bash
-
-    http://api.example.com/{ROOT_URL}/api/d/$allmodels
-
-Result:
-
-.. image:: dapi/assets/allmodelsresult.png
-   :align: center
-
-|
-
-It returns a JSON array representing uAdmin's ModelSchema of all models.
 
 Writing Data Symbol
 -------------------

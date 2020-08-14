@@ -17,13 +17,11 @@ uadmin.EmailFrom
 ----------------
 `Back To Top`_
 
-EmailFrom identifies where the email is coming from.
-
-Type:
-
 .. code-block:: go
 
-    string
+    var EmailFrom string
+
+EmailFrom identifies where the email is coming from.
 
 Used in the tutorial:
 
@@ -118,19 +116,15 @@ Quiz:
 
 * `Email Functions`_
 
-.. _Email Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/email-functions.html
-
 uadmin.EmailPassword
 --------------------
 `Back To Top`_
 
-EmailPassword assigns the password of an email.
-
-Type:
-
 .. code-block:: go
 
-    string
+    var EmailPassword string
+
+EmailPassword sets the password of an email.
 
 To assign a value within an application, visit `Email Password`_ page for an example.
 
@@ -142,13 +136,11 @@ uadmin.EmailSMTPServer
 ----------------------
 `Back To Top`_
 
-EmailSMTPServer assigns the name of the SMTP Server in an email.
-
-Type:
-
 .. code-block:: go
 
-    string
+    var EmailSMTPServer string
+
+EmailSMTPServer sets the name of the SMTP Server in an email.
 
 To assign a value within an application, visit `Email SMTP Server`_ page for an example.
 
@@ -160,7 +152,11 @@ uadmin.EmailSMTPServerPort
 --------------------------
 `Back To Top`_
 
-EmailSMTPServerPort assigns the port number of an SMTP Server in an email.
+.. code-block:: go
+
+    var EmailSMTPServerPort int
+
+EmailSMTPServerPort sets the port number of an SMTP Server in an email.
 
 Type:
 
@@ -178,13 +174,11 @@ uadmin.EmailUsername
 --------------------
 `Back To Top`_
 
-EmailUsername assigns the username of an email.
-
-Type:
-
 .. code-block:: go
 
-    string
+    var EmailUsername string
+
+EmailUsername sets the username of an email.
 
 See `uadmin.EmailFrom`_ for the example.
 
@@ -200,13 +194,11 @@ uadmin.SendEmail
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#email-functions
 
-SendEmail sends email using system configured variables.
-
-Function:
-
 .. code-block:: go
 
-    func(to, cc, bcc []string, subject, body string) (err error)
+    func SendEmail(to, cc, bcc []string, subject, body string) (err error)
+
+SendEmail sends email using system configured variables.
 
 Parameters:
 

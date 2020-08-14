@@ -20,6 +20,7 @@ In this section, we will cover the following functions in-depth listed below:
 * `uadmin.ReturnJSON`_
 * `uadmin.Trail`_
 * `uadmin.Version`_
+* `uadmin.VersionCodeName`_
 * `uadmin.WARNING`_
 * `uadmin.WORKING`_
 
@@ -27,13 +28,12 @@ uadmin.ALERT
 ------------
 `Back To Top`_
 
-ALERT is the display tag under Trail. It is rated as Level 7 (0 being the least priority and 8 being the highest priority).
-
-Type:
-
 .. code-block:: go
 
-    untyped int
+    // Type: int
+    const ALERT = 7
+
+ALERT is the display tag under Trail. It is rated as Level 7 (0 being the least priority and 8 being the highest priority).
 
 See `uadmin.Trail`_ for the example.
 
@@ -41,13 +41,12 @@ uadmin.CRITICAL
 ---------------
 `Back To Top`_
 
-CRITICAL is the display tag under Trail. It is rated as Level 6 (0 being the least priority and 8 being the highest priority).
-
-Type:
-
 .. code-block:: go
 
-    untyped int
+    // Type: int
+    const CRITICAL = 6
+
+CRITICAL is the display tag under Trail. It is rated as Level 6 (0 being the least priority and 8 being the highest priority).
 
 See `uadmin.Trail`_ for the example.
 
@@ -55,13 +54,12 @@ uadmin.DEBUG
 ------------
 `Back To Top`_
 
-DEBUG is the display tag under Trail. It is the process of identifying and removing errors.
-
-Type:
-
 .. code-block:: go
 
-    untyped int
+    // Type: int
+    const DEBUG = 0
+
+DEBUG is the display tag under Trail. It is the process of identifying and removing errors.
 
 See `uadmin.Trail`_ for the example.
 
@@ -69,13 +67,12 @@ uadmin.EMERGENCY
 ----------------
 `Back To Top`_
 
-EMERGENCY is the display tag under Trail. It is rated as Level 8 (0 being the least priority and 8 being the highest priority).
-
-Type:
-
 .. code-block:: go
 
-    untyped int
+    // Type: int
+    const EMERGENCY = 8
+
+EMERGENCY is the display tag under Trail. It is rated as Level 8 (0 being the least priority and 8 being the highest priority).
 
 See `uadmin.Trail`_ for the example.
 
@@ -83,13 +80,12 @@ uadmin.ERROR
 ------------
 `Back To Top`_
 
-ERROR is a status to notify the user that there is a problem in an application.
-
-Type:
-
 .. code-block:: go
 
-    untyped int
+    // Type: int
+    const ERROR = 5
+
+ERROR is a status to notify the user that there is a problem in an application.
 
 See `uadmin.Trail`_ for the example.
 
@@ -97,15 +93,13 @@ uadmin.ErrorHandleFunc
 ----------------------
 `Back To Top`_
 
-ErrorHandleFunc is a function that will be called everytime Trail is called. It receives one parameter for error level, one for error message and one for runtime stack trace.
-
-Function:
-
 .. code-block:: go
 
-    func(int, string, string)
+    var ErrorHandleFunc func(int, string, string)
 
-There are 6 different reporting levels:
+ErrorHandleFunc is a function that will be called everytime Trail is called. It receives one parameter for error level, one for error message and one for runtime stack trace.
+
+There are 9 different reporting levels:
 
 * DEBUG
 * WORKING
@@ -113,6 +107,9 @@ There are 6 different reporting levels:
 * OK
 * WARNING
 * ERROR
+* CRITICAL
+* ALERT
+* EMERGENCY
 
 Go to main.go and create an invalid code (e.g. Get function that does not meet the standard requirements).
 
@@ -157,13 +154,12 @@ uadmin.INFO
 -----------
 `Back To Top`_
 
-INFO is the display tag under Trail. It is a data that is presented within a context that gives it meaning and relevance.
-
-Type:
-
 .. code-block:: go
 
-    untyped int
+    // Type: int
+    const INFO = 2
+
+INFO is the display tag under Trail. It is a data that is presented within a context that gives it meaning and relevance.
 
 See `uadmin.Trail`_ for the example.
 
@@ -171,13 +167,11 @@ uadmin.JSONMarshal
 ------------------
 `Back To Top`_
 
-JSONMarshal returns the JSON encoding of v.
-
-Function:
-
 .. code-block:: go
 
-    func(v interface{}, safeEncoding bool) ([]byte, error)
+    func JSONMarshal(v interface{}, safeEncoding bool) ([]byte, error)
+
+JSONMarshal Generates JSON format from an object.
 
 Parameters:
 
@@ -263,13 +257,12 @@ uadmin.OK
 ---------
 `Back To Top`_
 
-OK is the display tag under Trail. It is a status to show that the application is doing well.
-
-Type:
-
 .. code-block:: go
 
-    untyped int
+    // Type: int
+    const OK = 3
+
+OK is the display tag under Trail. It is a status to show that the application is doing well.
 
 See `uadmin.Trail`_ for the example.
 
@@ -277,15 +270,14 @@ uadmin.ReportingLevel
 ---------------------
 `Back To Top`_
 
-ReportingLevel is the standard reporting level.
-
-Type:
-
 .. code-block:: go
 
-    int
+    // Type: int
+    var ReportingLevel = DEBUG
 
-There are 6 different levels:
+ReportingLevel is the standard reporting level.
+
+There are 9 different levels:
 
 * DEBUG = 0
 * WORKING = 1
@@ -293,6 +285,9 @@ There are 6 different levels:
 * OK = 3
 * WARNING = 4
 * ERROR = 5
+* CRITICAL = 6
+* ALERT = 7
+* EMERGENCY = 8
 
 To assign a value within an application, visit `Reporting Level`_ page for an example.
 
@@ -364,13 +359,12 @@ uadmin.ReportTimeStamp
 ----------------------
 `Back To Top`_
 
-ReportTimeStamp set this to true to have a time stamp in your logs.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var ReportTimeStamp = false
+
+ReportTimeStamp set this to true to have a time stamp in your logs.
 
 To assign a value within an application, visit `Report Time Stamp`_ page for an example.
 
@@ -417,13 +411,11 @@ uadmin.ReturnJSON
 -----------------
 `Back To Top`_
 
-ReturnJSON returns JSON to the client.
-
-Function:
-
 .. code-block:: go
 
-    func(w http.ResponseWriter, r *http.Request, v interface{})
+    func ReturnJSON(w http.ResponseWriter, r *http.Request, v interface{})
+
+ReturnJSON returns JSON to the client.
 
 Parameters:
 
@@ -453,13 +445,11 @@ uadmin.Trail
 ------------
 `Back To Top`_
 
-Trail prints to the log.
-
-Function:
-
 .. code-block:: go
 
-    func(level int, msg interface{}, i ...interface{})
+    func Trail(level int, msg interface{}, i ...interface{})
+
+Trail prints to the log.
 
 Parameters:
 
@@ -552,13 +542,12 @@ uadmin.Version
 --------------
 `Back To Top`_
 
-Version number as per Semantic Versioning 2.0.0 (semver.org)
-
-Type:
-
 .. code-block:: go
 
-    untyped string
+    // Type: string
+    const Version = "0.5.1"
+
+Version number as per Semantic Versioning 2.0.0 (semver.org)
 
 Let's check what version of uAdmin are we using.
 
@@ -575,7 +564,7 @@ Result
 
     [   OK   ]   Initializing DB: [13/13]
     [   OK   ]   Synching System Settings: [46/46]
-    [  INFO  ]   0.4
+    [  INFO  ]   0.5.1
     [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -588,7 +577,7 @@ You can also directly check it by typing **uadmin version** in your terminal.
 .. code-block:: bash
 
     $ uadmin version
-    [  INFO  ]   0.4
+    [  INFO  ]   0.5.1
 
 Quiz:
 
@@ -596,17 +585,27 @@ Quiz:
 
 .. _Miscellaneous Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html
 
+uadmin.VersionCodeName
+----------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    // Type: string
+    const VersionCodeName = "Atlas Moth"
+
+VersionCodeName is the cool name we give to versions with significant changes. This name should always be a bug's name starting from A-Z then revolving back. This started at version 0.5.0 (Atlas Moth).
+
 uadmin.WARNING
 --------------
 `Back To Top`_
 
-WARNING is the display tag under Trail. It is the statement or event that indicates a possible problems occurring in an application.
-
-Type:
-
 .. code-block:: go
 
-    untyped int
+    // Type: int
+    const WARNING = 4
+
+WARNING is the display tag under Trail. It is the statement or event that indicates a possible problems occurring in an application.
 
 See `uadmin.Trail`_ for the example.
 
@@ -614,14 +613,13 @@ uadmin.WORKING
 --------------
 `Back To Top`_
 
-OK is the display tag under Trail. It is a status to show that the application is working.
-
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions
-
-Type:
-
 .. code-block:: go
 
-    untyped int
+    // Type: int
+    const WORKING = 1
+
+WORKING is the display tag under Trail. It is a status to show that the application is working.
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions
 
 See `uadmin.Trail`_ for the example.

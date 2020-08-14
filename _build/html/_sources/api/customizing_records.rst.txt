@@ -9,7 +9,12 @@ In this section, we will cover the following functions in-depth listed below:
 * `uadmin.Delete`_
 * `uadmin.DeleteList`_
 * `uadmin.F`_
+    * `func (F) MarshalJSON`_
 * `uadmin.ModelSchema`_
+    * `func (ModelSchema) FieldByName`_
+    * `func (*ModelSchema) GetFormTheme`_
+    * `func (*ModelSchema) GetListTheme`_
+    * `func (ModelSchema) MarshalJSON`_
 * `uadmin.Save`_
 * `uadmin.Schema`_
 * `uadmin.Update`_
@@ -18,13 +23,11 @@ uadmin.Delete
 -------------
 `Back To Top`_
 
-Delete records from database.
-
-Function:
-
 .. code-block:: go
 
-    func(a interface{}) (err error)
+    func Delete(a interface{}) (err error)
+
+Delete records from database.
 
 Parameter:
 
@@ -172,13 +175,11 @@ uadmin.DeleteList
 -----------------
 `Back To Top`_
 
-DeleteList deletes multiple records from database.
-
-Function:
-
 .. code-block:: go
 
-    func(a interface{}, query interface{}, args ...interface{}) (err error)
+    func DeleteList(a interface{}, query interface{}, args ...interface{}) (err error)
+
+DeleteList deletes multiple records from database.
 
 Parameters:
 
@@ -339,10 +340,6 @@ uadmin.F
 --------
 `Back To Top`_
 
-F is a field.
-
-Structure:
-
 .. code-block:: go
 
     type F struct {
@@ -371,8 +368,8 @@ Structure:
         Choices           []Choice
         IsMethod          bool
         ErrMsg            string
-        ProgressBar       map[float64]string
-        LimitChoicesTo    func(interface{}, *User) []Choice
+        ProgressBar       map[float64]string                `json:"-"`
+        LimitChoicesTo    func(interface{}, *User) []Choice `json:"-"`
         UploadTo          string
         Encrypt           bool
         Approval          bool
@@ -387,6 +384,8 @@ Structure:
         WebCam            bool
         Stringer          bool
     }
+
+F is a field.
 
 Parameters:
 
@@ -430,6 +429,16 @@ Parameters:
 * **ApprovalID** - Returns the user ID who approved the value of the field record
 * **WebCam** - A feature which adds web can access directly from the image and file fields
 * **Stringer** - A feature that assigns a field as a unique type
+
+**func (F) MarshalJSON**
+^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (f F) MarshalJSON() ([]byte, error)
+
+MarshalJSON customizes F json export.
 
 There are 2 ways you can do for initialization process using this function: one-by-one and by group.
 
@@ -491,10 +500,6 @@ uadmin.ModelSchema
 ------------------
 `Back To Top`_
 
-ModelSchema is a representation of a plan or theory in the form of an outline or model.
-
-Structure:
-
 .. code-block:: go
 
     type ModelSchema struct {
@@ -508,17 +513,20 @@ Structure:
         Fields        []F
         IncludeFormJS []string
         IncludeListJS []string
-        FormModifier  func(*uadmin.ModelSchema, interface{}, *uadmin.User)
-        ListModifier  func(*uadmin.ModelSchema, *uadmin.User) (string, []interface{})
+        FormModifier  func(*ModelSchema, interface{}, *User)            `json:"-"`
+        ListModifier  func(*ModelSchema, *User) (string, []interface{}) `json:"-"`
         FormTheme     string
         ListTheme     string
     }
 
+ModelSchema is a representation of a plan or theory in the form of an outline or model.
+
 Here are the following fields and their definitions:
 
-* **Name** - The name of the Model
-* **DisplayName** - A human readable version of the name of the Model
-* **ModelName** - The same as the Name but in small letters.
+* **Name** - The name of the Model (e.g. OrderItem)
+* **DisplayName** - A human readable version of the name of the Model (e.g. Order Items)
+* **ModelName** - The same as the Name but in small letters for a URL (e.g. orderitem)
+* **TableName** - The name for the database (e.g. order_items)
 * **ModelID** - **(Data)** A place holder to store the primary key of a single row for form processing
 * **Inlines** - A list of associated inlines to this model
 * **InlinesData** - **(Data)** A place holder to store the data of the inlines
@@ -536,13 +544,15 @@ Here are the following fields and their definitions:
 .. _LM1: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part16.html
 .. _LM2: https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/modelschema.html#example-4-formmodifier-and-listmodifier
 
-There are 3 functions that you can use in ModelSchema:
-
-* **FieldByName** - Returns a field from a ModelSchema by name or nil if it doesn't exist. It uses this format as shown below:
+**func (ModelSchema) FieldByName**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
 
 .. code-block:: go
 
-    func(a string) *uadmin.F
+    func (s ModelSchema) FieldByName(a string) *F
+
+FieldByName returns a field from a ModelSchema by name or nil if it doen't exist.
 
 Structure:
 
@@ -554,8 +564,35 @@ XXXX has many things: See `uadmin.F`_ for the list. It is an alternative way of 
 
 .. _Tag Reference: https://uadmin-docs.readthedocs.io/en/latest/tags.html
 
-* **GetFormTheme()** - Returns the form theme for this model or the global theme if there is no assigned theme for the model.
-* **GetListTheme()** - Returns the list theme for this model or the global theme if there is no assigned theme for the model.
+**func (\*ModelSchema) GetFormTheme**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (s *ModelSchema) GetFormTheme() string
+
+GetFormTheme returns the theme for this model or the global theme if there is no assigned theme for the model.
+
+**func (\*ModelSchema) GetListTheme**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (s *ModelSchema) GetListTheme() string
+
+GetListTheme returns the theme for this model or the global theme if there is no assigned theme for the model.
+
+**func (ModelSchema) MarshalJSON**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (s ModelSchema) MarshalJSON() ([]byte, error)
+
+MarshalJSON customizes JSON export for models schema.
 
 Used in the tutorial:
 
@@ -619,13 +656,11 @@ uadmin.Save
 -----------
 `Back To Top`_
 
-Save saves the object in the database.
-
-Function:
-
 .. code-block:: go
 
-    func(a interface{}) (err error)
+    func Save(a interface{}) (err error)
+
+Save saves the object in the database.
 
 Parameter:
 
@@ -688,13 +723,11 @@ uadmin.Schema
 -------------
 `Back To Top`_
 
-Schema is the global schema of the system.
-
-Structure:
-
 .. code-block:: go
 
-    map[string]uadmin.ModelSchema
+    var Schema map[string]ModelSchema
+
+Schema is the global schema of the system.
 
 Used in the tutorial:
 
@@ -771,13 +804,11 @@ uadmin.Update
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records
 
-Update updates the field name and value of an interface.
-
-Function:
-
 .. code-block:: go
 
-    func(a interface{}, fieldName string, value interface{}, query string, args ...interface{}) (err error)
+    func Update(a interface{}, fieldName string, value interface{}, query string, args ...interface{}) (err error)
+
+Update updates the field name and value of an interface.
 
 Parameters:
 

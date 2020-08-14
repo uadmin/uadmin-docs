@@ -7,34 +7,37 @@ Approval Functions
 In this section, we will cover the following functions in-depth listed below:
 
 * `uadmin.Approval`_
+    * `func (*Approval) Save`_
+    * `func (*Approval) String`_
 * `uadmin.ApprovalAction`_
+    * `func (ApprovalAction) Approved`_
+    * `func (ApprovalAction) Rejected`_
 * `uadmin.ApprovalHandleFunc`_
 
 uadmin.Approval
 ---------------
 `Back To Top`_
 
-Approval is a feature used to set an approval permission in the field.
-
-Structure:
-
 .. code-block:: go
 
     type Approval struct {
-        ModelName           string
-        ModelPK             uint
-        ColumnName          string
-        OldValue            string
+        Model
+        ModelName           string `uadmin:"read_only"`
+        ModelPK             uint   `uadmin:"read_only"`
+        ColumnName          string `uadmin:"read_only"`
+        OldValue            string `uadmin:"read_only"`
         NewValue            string
-        NewValueDescription string
-        ChangedBy           string
-        ChangeDate          time.Time
+        NewValueDescription string    `uadmin:"read_only"`
+        ChangedBy           string    `uadmin:"read_only"`
+        ChangeDate          time.Time `uadmin:"read_only"`
         ApprovalAction      ApprovalAction
-        ApprovalBy          string
-        ApprovalDate        *time.Time
-        ViewRecord          string
-        UpdatedBy           string
+        ApprovalBy          string     `uadmin:"read_only"`
+        ApprovalDate        *time.Time `uadmin:"read_only"`
+        ViewRecord          string     `uadmin:"link"`
+        UpdatedBy           string     `uadmin:"read_only;hidden;list_exclude"`
     }
+
+Approval is a model that stores approval data.
 
 Here are the following fields and their definitions:
 
@@ -52,10 +55,25 @@ Here are the following fields and their definitions:
 * **ViewRecord** - A link to view the information of the actual record
 * **UpdatedBy** - Returns the username who updated the record
 
-There are 2 functions that you can use in Approval:
+**func (\*Approval) Save**
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top`_
 
-* **Save()** - Saves the object in the database
-* **String()** - Returns the Model Name, Model PK, and Column Name
+.. code-block:: go
+
+    func (a *Approval) Save()
+
+Save overrides save.
+
+**func (\*Approval) String**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top`_
+
+.. code-block:: go
+
+    func (a *Approval) String() string
+
+String returns the Model Name, Model PK, and Column Name.
 
 There are 2 ways you can do for initialization process using this function: one-by-one and by group.
 
@@ -166,13 +184,31 @@ uadmin.ApprovalAction
 ---------------------
 `Back To Top`_
 
-ApprovalAction is a selection of approval actions. There are two functions: Approved and Rejected.
+.. code-block:: go
 
-Type:
+    type ApprovalAction int
+
+ApprovalAction is a selection of approval actions.
+
+**func (ApprovalAction) Approved**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top`_
 
 .. code-block:: go
 
-    int
+    func (ApprovalAction) Approved() ApprovalAction
+
+Approved is an accepted change.
+
+**func (ApprovalAction) Rejected**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top`_
+
+.. code-block:: go
+
+    func (ApprovalAction) Rejected() ApprovalAction
+
+Rejected is a rejected change.
 
 See `uadmin.Approval`_  and `uadmin.ApprovalHandleFunc`_ for the examples.
 
@@ -186,13 +222,11 @@ uadmin.ApprovalHandleFunc
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#approval-functions
 
-ApprovalHandleFunc is a function that will be called everytime a model is called. It receives a parameter for an approval system model.
-
-Function:
-
 .. code-block:: go
 
-    func(a *uadmin.Approval) bool
+    var ApprovalHandleFunc func(*Approval) bool
+
+ApprovalHandleFunc is a function that could be called during the save process of each approval.
 
 Before you proceed to this example, see `uadmin.Approval`_, `Approval Tag`_, or `Approval System`_.
 

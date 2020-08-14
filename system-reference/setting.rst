@@ -6,6 +6,7 @@ uAdmin Settings
 
 Here are all build-in uAdmin Settings, their format, and how to use them in the project.
 
+* `Allowed Hosts`_
 * `Allowed IPs`_
 * `API Disabled Add`_
 * `API Disabled Delete`_
@@ -17,21 +18,6 @@ Here are all build-in uAdmin Settings, their format, and how to use them in the 
 * `API Log Edit`_
 * `API Log Read`_
 * `API Log Schema`_
-* `API Post Query Add`_
-* `API Post Query Delete`_
-* `API Post Query Edit`_
-* `API Post Query Read`_
-* `API Post Query Schema`_
-* `API Pre Query Add`_
-* `API Pre Query Delete`_
-* `API Pre Query Edit`_
-* `API Pre Query Read`_
-* `API Pre Query Schema`_
-* `API Public Add`_
-* `API Public Delete`_
-* `API Public Edit`_
-* `API Public Read`_
-* `API Public Schema`_
 * `Blocked IPs`_
 * `Cache Permissions`_
 * `Cache Sessions`_
@@ -58,6 +44,8 @@ Here are all build-in uAdmin Settings, their format, and how to use them in the 
 * `OTP Period`_
 * `OTP Skew`_
 * `Page Length`_
+* `Password Attempts`_
+* `Password Timeout`_
 * `Port`_
 * `Public Media`_
 * `Rate Limit`_
@@ -72,6 +60,18 @@ Here are all build-in uAdmin Settings, their format, and how to use them in the 
 * `Theme`_
 * `Trail Logging Level`_
 * `User Metrics`_
+
+Allowed Hosts
+-------------
+`Back To Top`_
+
+Allowed Hosts is a comma separated list of allowed hosts for the server to work. The default value if only for development and production domain should be added before deployment.
+
+* **Default Value**: 0.0.0.0,127.0.0.1,localhost,::1
+* **Data Type**: String
+* **Code**: `uAdmin.AllowedHosts`_
+
+.. _uAdmin.AllowedHosts: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-allowedhosts
 
 Allowed IPs
 -----------
@@ -92,7 +92,7 @@ For example: "192.168.1.1, 192.168.1.2, 192.168.0.0/24"
 * **Data Type**: String
 * **Code**: `uAdmin.AllowedIPs`_
 
-.. _uAdmin.AllowedIPs: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-allowedips
+.. _uAdmin.AllowedIPs: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-allowedips
 
 Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.
 
@@ -714,186 +714,6 @@ Check the "LOGS" to see the result.
 
 As expected, the user's action in getting the schema of the Item model through HTTP API was not recorded in the Log model.
 
-API Post Query Add
-------------------
-`Back To Top`_
-
-API Post Query Add controls the data API’s post query for add commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPostQueryAdd`_
-
-.. _uAdmin.APIPostQueryAdd: https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryadd
-
-API Post Query Delete
----------------------
-`Back To Top`_
-
-API Post Query Delete controls the data API’s post query for delete commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPostQueryDelete`_
-
-.. _uAdmin.APIPostQueryDelete: https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostquerydelete
-
-API Post Query Edit
--------------------
-`Back To Top`_
-
-API Post Query Edit controls the data API’s post query for edit commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPostQueryEdit`_
-
-.. _uAdmin.APIPostQueryEdit: https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryedit
-
-API Post Query Read
--------------------
-`Back To Top`_
-
-API Post Query Read controls the data API’s post query for read commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPostQueryRead`_
-
-.. _uAdmin.APIPostQueryRead: https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryread
-
-API Post Query Schema
----------------------
-`Back To Top`_
-
-API Post Query Schema controls the data API’s post query for schema commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPostQuerySchema`_
-
-.. _uAdmin.APIPostQuerySchema: https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryschema
-
-API Pre Query Add
------------------
-`Back To Top`_
-
-API Pre Query Add controls the data API’s pre query for add commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPreQueryAdd`_
-
-.. _uAdmin.APIPreQueryAdd: https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryadd
-
-API Pre Query Delete
---------------------
-`Back To Top`_
-
-API Pre Query Delete controls the data API’s pre query for delete commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPreQueryDelete`_
-
-.. _uAdmin.APIPreQueryDelete: https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequerydelete
-
-API Pre Query Edit
-------------------
-`Back To Top`_
-
-API Pre Query Edit controls the data API’s pre query for edit commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPreQueryEdit`_
-
-.. _uAdmin.APIPreQueryEdit: https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryedit
-
-API Pre Query Read
-------------------
-`Back To Top`_
-
-API Pre Query Read controls the data API’s pre query for read commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPreQueryRead`_
-
-.. _uAdmin.APIPreQueryRead: https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryread
-
-API Pre Query Schema
---------------------
-`Back To Top`_
-
-API Pre Query Schema controls the data API’s pre query for schema commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPreQuerySchema`_
-
-.. _uAdmin.APIPreQuerySchema: https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryschema
-
-API Public Add
---------------
-`Back To Top`_
-
-API Public Add controls the data API’s public for add commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPublicAdd`_
-
-.. _uAdmin.APIPublicAdd: https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicadd
-
-API Public Delete
------------------
-`Back To Top`_
-
-API Public Delete controls the data API’s public for delete commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPublicDelete`_
-
-.. _uAdmin.APIPublicDelete: https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicdelete
-
-API Public Edit
----------------
-`Back To Top`_
-
-API Public Edit controls the data API’s public for edit commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPublicEdit`_
-
-.. _uAdmin.APIPublicEdit: https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicedit
-
-API Public Read
----------------
-`Back To Top`_
-
-API Public Read controls the data API’s public for read commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPublicRead`_
-
-.. _uAdmin.APIPublicRead: https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicread
-
-API Public Schema
--------------------
-`Back To Top`_
-
-API Public Schema controls the data API’s public for schema commands.
-
-* **Default Value**: 0
-* **Data Type**: Boolean
-* **Code**: `uAdmin.APIPublicSchema`_
-
-.. _uAdmin.APIPublicSchema: https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicschema
-
 Blocked IPs
 -----------
 `Back To Top`_
@@ -913,7 +733,7 @@ For example: "192.168.1.1, 192.168.1.2, 192.168.0.0/24"
 * **Data Type**: String
 * **Code**: `uAdmin.BlockedIPs`_
 
-.. _uAdmin.BlockedIPs: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-blockedips
+.. _uAdmin.BlockedIPs: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-blockedips
 
 Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.
 
@@ -1905,6 +1725,30 @@ Quiz:
 
 .. _Miscellaneous Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html
 
+Password Attempts
+-----------------
+`Back To Top`_
+
+Password Attempts is the maximum number of invalid password attempts before the IP address is blocked for some time from using the system.
+
+* **Default Value**: 5
+* **Data Type**: Integer
+* **Code**: `uAdmin.PasswordAttempts`_
+
+.. _uadmin.PasswordAttempts: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-passwordattempts
+
+Password Timeout
+----------------
+`Back To Top`_
+
+Password Attempts is the maximum number of invalid password attempts before the IP address is blocked for some time from using the system.
+
+* **Default Value**: 5
+* **Data Type**: Integer
+* **Code**: `uAdmin.PasswordTimeout`_
+
+.. _uadmin.PasswordTimeout: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-passwordtimeout
+
 Port
 ----
 `Back To Top`_
@@ -1915,7 +1759,7 @@ Port is the port used for http or https server.
 * **Data Type**: Integer
 * **Code**: `uAdmin.Port`_
 
-.. _uadmin.Port: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-port
+.. _uadmin.Port: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-port
 
 Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.
 
@@ -2008,7 +1852,7 @@ Rate Limit is the maximum number of requests/second for any unique IP.
 * **Data Type**: Integer
 * **Code**: `uAdmin.RateLimit`_
 
-.. _uadmin.RateLimit: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-ratelimit
+.. _uadmin.RateLimit: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-ratelimit
 
 Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.
 
@@ -2066,7 +1910,7 @@ Rate Limit Burst is the maximum number of requests for an idle user.
 * **Data Type**: Integer
 * **Code**: `uAdmin.RateLimitBurst`_
 
-.. _uadmin.RateLimitBurst: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-ratelimitburst
+.. _uadmin.RateLimitBurst: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-ratelimitburst
 
 Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.
 
@@ -2229,7 +2073,7 @@ Restrict Session IP is to block access of a user if their IP changes from their 
 * **Data Type**: Boolean
 * **Code**: `uAdmin.RestrictSessionIP`_
 
-.. _uadmin.RestrictSessionIP: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-restrictsessionip
+.. _uadmin.RestrictSessionIP: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-restrictsessionip
 
 Enable
 

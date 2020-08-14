@@ -1,4 +1,3 @@
 {
-    "python.linting.pylintEnabled": true,
-    "restructuredtext.confPath": "${workspaceFolder}"
+    "python.linting.pylintEnabled": true
 }

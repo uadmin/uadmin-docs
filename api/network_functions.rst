@@ -1,24 +1,42 @@
-IP Functions
-============
+Network Functions
+=================
 `Back To uAdmin Functions List`_
 
 .. _Back To uAdmin Functions List: https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference
 
 In this section, we will cover the following functions in-depth listed below:
 
+* `uadmin.AllowedHosts`_
 * `uadmin.AllowedIPs`_
 * `uadmin.BindIP`_
 * `uadmin.BlockedIPs`_
 * `uadmin.CheckRateLimit`_
+* `uadmin.GetRemoteIP`_
 * `uadmin.Port`_
 * `uadmin.RateLimit`_
 * `uadmin.RateLimitBurst`_
 * `uadmin.RestrictSessionIP`_
 * `uadmin.ValidateIP`_
 
+uadmin.AllowedHosts
+-------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    // Type: string
+    var AllowedHosts = "0.0.0.0,127.0.0.1,localhost,::1"
+
+AllowedHosts is a comma seprated list of allowed hosts for the server to work. The default value if only for development and production domain should be added before deployment.
+
 uadmin.AllowedIPs
 -----------------
 `Back To Top`_
+
+.. code-block:: go
+
+    // Type: string
+    var AllowedIPs = "*"
 
 AllowedIPs is a list of allowed IPs to access uAdmin interface in one of the following formats:
 
@@ -30,12 +48,6 @@ AllowedIPs is a list of allowed IPs to access uAdmin interface in one of the fol
 You can also create a list of the above formats using comma to separate them.
 
 For example: "192.168.1.1, 192.168.1.2, 192.168.0.0/24"
-
-Type:
-
-.. code-block:: go
-
-    string
 
 To assign a value within an application, visit `Allowed IPs`_ page for an example.
 
@@ -72,13 +84,12 @@ uadmin.BindIP
 -------------
 `Back To Top`_
 
-BindIP is the IP the application listens to.
-
-Type:
-
 .. code-block:: go
 
-    string
+    // Type: string
+    var BindIP = ""
+
+BindIP is the IP the application listens to.
 
 Used in the tutorial:
 
@@ -124,6 +135,11 @@ uadmin.BlockedIPs
 -----------------
 `Back To Top`_
 
+.. code-block:: go
+
+    // Type: string
+    var BlockedIPs = ""
+
 BlockedIPs is a list of blocked IPs from accessing uAdmin interface in one of the following formats:
 
 - "*" = Block all
@@ -134,12 +150,6 @@ BlockedIPs is a list of blocked IPs from accessing uAdmin interface in one of th
 You can also create a list of the above formats using comma to separate them.
 
 For example: "192.168.1.1, 192.168.1.2, 192.168.0.0/24"
-
-Type:
-
-.. code-block:: go
-
-    string
 
 To assign a value within an application, visit `Blocked IPs`_ page for an example.
 
@@ -176,13 +186,11 @@ uadmin.CheckRateLimit
 ---------------------
 `Back To Top`_
 
-CheckRateLimit checks if the request has remaining quota or not. If it returns false, the IP in the request has exceeded their quota.
-
-Function:
-
 .. code-block:: go
 
-    func(r *http.Request) bool
+    func CheckRateLimit(r *http.Request) bool
+
+CheckRateLimit checks if the request has remaining quota or not. If it returns false, the IP in the request has exceeded their quota.
 
 Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
 
@@ -273,17 +281,26 @@ Quiz:
 
 * `Rate Limit Functions`_
 
+uadmin.GetRemoteIP
+------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func GetRemoteIP(r *http.Request) string
+
+GetRemoteIP is a function that returns the IP for a remote user from a request.
+
 uadmin.Port
 -----------
 `Back To Top`_
 
-Port is the port used for http or https server.
-
-Type:
-
 .. code-block:: go
 
-    int
+    // Type: int
+    var Port = 8080
+
+Port is the port used for http or https server.
 
 To assign a value within an application, visit `Port`_ page for an example.
 
@@ -333,13 +350,11 @@ uadmin.RateLimit
 ----------------
 `Back To Top`_
 
-RateLimit is the maximum number of requests/second for any unique IP.
-
-Type:
-
 .. code-block:: go
 
-    int64
+    var RateLimit int64 = 3
+
+RateLimit is the maximum number of requests/second for any unique IP.
 
 To assign a value within an application, visit `Rate Limit`_ page for an example.
 
@@ -400,13 +415,11 @@ uadmin.RateLimitBurst
 ---------------------
 `Back To Top`_
 
-RateLimitBurst is the maximum number of requests for an idle user.
-
-Type:
-
 .. code-block:: go
 
-    int64
+    var RateLimitBurst int64 = 3
+
+RateLimitBurst is the maximum number of requests for an idle user.
 
 To assign a value within an application, visit `Rate Limit Burst`_ page for an example.
 
@@ -455,13 +468,12 @@ uadmin.RestrictSessionIP
 ------------------------
 `Back To Top`_
 
-RestrictSessionIP is to block access of a user if their IP changes from their original IP during login.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var RestrictSessionIP = false
+
+RestrictSessionIP is to block access of a user if their IP changes from their original IP during login.
 
 To assign a value within an application, visit `Restrict Session IP`_ page for an example.
 
@@ -510,15 +522,14 @@ uadmin.ValidateIP
 -----------------
 `Back To Top`_
 
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#ip-functions
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#network-functions
 
-ValidateIP is a function to check if the IP in the request is allowed in the allowed based on allowed and block strings.
-
-Function:
 
 .. code-block:: go
 
-    func(r *http.Request, allow string, block string) bool
+    func ValidateIP(r *http.Request, allow string, block string) bool
+
+ValidateIP is a function to check if the IP in the request is allowed in the allowed based on allowed and block strings.
 
 Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
 

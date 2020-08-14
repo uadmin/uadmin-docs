@@ -17,6 +17,7 @@ Full List
 * `uadmin.AdminPage`_
 * `uadmin.ALERT`_
 * `uadmin.All`_
+* `uadmin.AllowedHosts`_
 * `uadmin.AllowedIPs`_
 * `uadmin.Approval`_
 * `uadmin.ApprovalAction`_
@@ -32,6 +33,7 @@ Full List
 * `uadmin.CRITICAL`_
 * `uadmin.CachePermissions`_
 * `uadmin.CacheSessions`_
+* `uadmin.CheckCSRF`_
 * `uadmin.CustomTranslation`_
 * `uadmin.DashboardMenu`_
 * `uadmin.Database`_
@@ -67,7 +69,9 @@ Full List
 * `uadmin.GetFieldsAPI`_
 * `uadmin.GetForm`_
 * `uadmin.GetID`_
+* `uadmin.GetImageSizer`_
 * `uadmin.GetModelsAPI`_
+* `uadmin.GetRemoteIP`_
 * `uadmin.GetSetting`_
 * `uadmin.GetString`_
 * `uadmin.GetStringer`_
@@ -107,6 +111,8 @@ Full List
 * `uadmin.OTPPeriod`_
 * `uadmin.OTPSkew`_
 * `uadmin.PageLength`_
+* `uadmin.PasswordAttempts`_
+* `uadmin.PasswordTimeout`_
 * `uadmin.Port`_
 * `uadmin.Preload`_
 * `uadmin.PublicMedia`_
@@ -129,9 +135,11 @@ Full List
 * `uadmin.ServerReady`_
 * `uadmin.Session`_
 * `uadmin.SetMetric`_
+* `uadmin.SetSessionCookie`_
 * `uadmin.Setting`_
 * `uadmin.SettingCategory`_
 * `uadmin.SiteName`_
+* `uadmin.SQLInjection`_
 * `uadmin.StartSecureServer`_
 * `uadmin.StartServer`_
 * `uadmin.StaticHandler`_
@@ -143,6 +151,7 @@ Full List
 * `uadmin.Trail`_
 * `uadmin.TrailLoggingLevel`_
 * `uadmin.Translate`_
+* `uadmin.TranslateSchema`_
 * `uadmin.Update`_
 * `uadmin.User`_
 * `uadmin.UserGroup`_
@@ -150,6 +159,7 @@ Full List
 * `uadmin.UserPermission`_
 * `uadmin.ValidateIP`_
 * `uadmin.Version`_
+* `uadmin.VersionCodeName`_
 * `uadmin.WARNING`_
 * `uadmin.WORKING`_
 
@@ -167,11 +177,11 @@ Categorized List
 * `For Customizing Records`_
 * `For Fetching Records`_
 * `Handler Functions`_
-* `IP Functions`_
 * `Language Functions`_
 * `Log Functions`_
 * `Metric Functions`_
 * `Model Functions`_
+* `Network Functions`_
 * `Print Functions`_
 * `Register Functions`_
 * `Security Functions`_
@@ -261,6 +271,7 @@ Categorized List
 * `uadmin.GetFieldsAPI`_
 * `uadmin.GetForm`_
 * `uadmin.GetID`_
+* `uadmin.GetImageSizer`_
 * `uadmin.GetModelsAPI`_
 * `uadmin.GetSetting`_
 * `uadmin.GetString`_
@@ -277,20 +288,6 @@ Categorized List
 * `uadmin.StaticHandler`_
 * `uadmin.UploadImageHandler`_
 
-**IP Functions**
-^^^^^^^^^^^^^^^^
-`Back To Top (Categorized List)`_
-
-* `uadmin.AllowedIPs`_
-* `uadmin.BindIP`_
-* `uadmin.BlockedIPs`_
-* `uadmin.CheckRateLimit`_
-* `uadmin.Port`_
-* `uadmin.RateLimit`_
-* `uadmin.RateLimitBurst`_
-* `uadmin.RestrictSessionIP`_
-* `uadmin.ValidateIP`_
-
 **Language Functions**
 ^^^^^^^^^^^^^^^^^^^^^^
 `Back To Top (Categorized List)`_
@@ -302,6 +299,7 @@ Categorized List
 * `uadmin.Language`_
 * `uadmin.Tf`_
 * `uadmin.Translate`_
+* `uadmin.TranslateSchema`_
 
 **Log Functions**
 ^^^^^^^^^^^^^^^^^
@@ -340,6 +338,22 @@ Categorized List
 * `uadmin.NewModel`_
 * `uadmin.NewModelArray`_
 
+**Network Functions**
+^^^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.AllowedHosts`_
+* `uadmin.AllowedIPs`_
+* `uadmin.BindIP`_
+* `uadmin.BlockedIPs`_
+* `uadmin.CheckRateLimit`_
+* `uadmin.GetRemoteIP`_
+* `uadmin.Port`_
+* `uadmin.RateLimit`_
+* `uadmin.RateLimitBurst`_
+* `uadmin.RestrictSessionIP`_
+* `uadmin.ValidateIP`_
+
 **Print Functions**
 ^^^^^^^^^^^^^^^^^^^
 `Back To Top (Categorized List)`_
@@ -358,6 +372,7 @@ Categorized List
 * `uadmin.ReturnJSON`_
 * `uadmin.Trail`_
 * `uadmin.Version`_
+* `uadmin.VersionCodeName`_
 * `uadmin.WARNING`_
 * `uadmin.WORKING`_
 
@@ -372,6 +387,7 @@ Categorized List
 ^^^^^^^^^^^^^^^^^^^^^^
 `Back To Top (Categorized List)`_
 
+* `uadmin.CheckCSRF`_
 * `uadmin.DefaultMediaPermission`_
 * `uadmin.EncryptKey`_
 * `uadmin.GenerateBase32`_
@@ -381,8 +397,11 @@ Categorized List
 * `uadmin.OTPDigits`_
 * `uadmin.OTPPeriod`_
 * `uadmin.OTPSkew`_
+* `uadmin.PasswordAttempts`_
+* `uadmin.PasswordTimeout`_
 * `uadmin.PublicMedia`_
 * `uadmin.Salt`_
+* `uadmin.SQLInjection`_
 * `uadmin.StartSecureServer`_
 * `uadmin.UserPermission`_
 
@@ -410,6 +429,7 @@ Categorized List
 * `uadmin.Login2FA`_
 * `uadmin.Logout`_
 * `uadmin.Session`_
+* `uadmin.SetSessionCookie`_
 * `uadmin.User`_
 * `uadmin.UserGroup`_
 
@@ -426,11 +446,11 @@ Page:
    api/email_functions
    api/fetching_records
    api/handler_functions
-   api/ip_functions
-   api/model_functions
    api/language_functions
    api/log_functions
    api/metric_functions
+   api/model_functions
+   api/network_functions
    api/print_functions
    api/register_functions
    api/security_functions
@@ -446,16 +466,18 @@ Page:
 .. _uadmin.AdminPage: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-adminpage
 .. _uadmin.ALERT: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-alert
 .. _uadmin.All: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-all
-.. _uadmin.AllowedIPs: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-allowedips
+.. _uadmin.AllowedHosts: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-allowedhosts
+.. _uadmin.AllowedIPs: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-allowedips
 .. _uadmin.Approval: https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approval
 .. _uadmin.ApprovalAction: https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approvalaction
 .. _uadmin.ApprovalHandleFunc: https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approvalhandlefunc
-.. _uadmin.BindIP: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-bindip
-.. _uadmin.BlockedIPs: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-blockedips
+.. _uadmin.BindIP: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-bindip
+.. _uadmin.BlockedIPs: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-blockedips
 .. _uadmin.CachePermissions: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cachepermissions
 .. _uadmin.CacheSessions: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cachesessions
 .. _uadmin.CacheTranslation: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-cachetranslation
-.. _uadmin.CheckRateLimit: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-checkratelimit
+.. _uadmin.CheckCSRF: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-checkcsrf
+.. _uadmin.CheckRateLimit: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-checkratelimit
 .. _uadmin.Choice: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-choice
 .. _uadmin.ClearDB: https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-cleardb
 .. _uadmin.CookieTimeout: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cookietimeout
@@ -496,7 +518,9 @@ Page:
 .. _uadmin.GetFieldsAPI: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getfieldsapi
 .. _uadmin.GetForm: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getform
 .. _uadmin.GetID: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getid
+.. _uadmin.GetImageSizer: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getimagesizer
 .. _uadmin.GetModelsAPI: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getmodelsapi
+.. _uadmin.GetRemoteIP: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-getremoteip
 .. _uadmin.GetSetting: https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-getsetting
 .. _uadmin.GetString: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getstring
 .. _uadmin.GetStringer: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getstringer
@@ -536,18 +560,20 @@ Page:
 .. _uadmin.OTPPeriod: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpperiod
 .. _uadmin.OTPSkew: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpskew
 .. _uadmin.PageLength: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-pagelength
-.. _uadmin.Port: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-port
+.. _uadmin.PasswordAttempts: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-passwordattempts
+.. _uadmin.PasswordTimeout: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-passwordtimeout
+.. _uadmin.Port: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-port
 .. _uadmin.Preload: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-preload
 .. _uadmin.PublicMedia: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-publicmedia
-.. _uadmin.RateLimit: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-ratelimit
-.. _uadmin.RateLimitBurst: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-ratelimitburst
+.. _uadmin.RateLimit: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-ratelimit
+.. _uadmin.RateLimitBurst: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-ratelimitburst
 .. _uadmin.Register: https://uadmin-docs.readthedocs.io/en/latest/api/register_functions.html#uadmin-register
 .. _uadmin.RegisterInlines: https://uadmin-docs.readthedocs.io/en/latest/api/register_functions.html#uadmin-registerinlines
 .. _uadmin.RenderHTML: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-renderhtml
 .. _uadmin.RenderMultiHTML: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-rendermultihtml
 .. _uadmin.ReportingLevel: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-reportinglevel
 .. _uadmin.ReportTimeStamp: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-reporttimestamp
-.. _uadmin.RestrictSessionIP: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-restrictsessionip
+.. _uadmin.RestrictSessionIP: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-restrictsessionip
 .. _uadmin.RetainMediaVersions: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-retainmediaversions
 .. _uadmin.ReturnJSON: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-returnjson
 .. _uadmin.RootURL: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-rooturl
@@ -558,9 +584,11 @@ Page:
 .. _uadmin.SendEmail: https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-sendemail
 .. _uadmin.ServerReady: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-serverready
 .. _uadmin.Session: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-session
+.. _uadmin.SetSessionCookie: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-setsessioncookie
 .. _uadmin.Setting: https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-setting
 .. _uadmin.SettingCategory: https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-settingcategory
 .. _uadmin.SiteName: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-sitename
+.. _uadmin.SQLInjection: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-sqlinjection
 .. _uadmin.StartSecureServer: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-startsecureserver
 .. _uadmin.StartServer: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-startserver
 .. _uadmin.StaticHandler: https://uadmin-docs.readthedocs.io/en/latest/api/handler_functions.html#uadmin-statichandler
@@ -572,13 +600,15 @@ Page:
 .. _uadmin.Trail: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-trail
 .. _uadmin.TrailLoggingLevel: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-traillogginglevel
 .. _uadmin.Translate: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-translate
+.. _uadmin.TranslateSchema: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-translateschema
 .. _uadmin.Update: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-update
 .. _uadmin.UploadImageHandler: https://uadmin-docs.readthedocs.io/en/latest/api/handler_functions.html#uadmin-uploadimagehandler
 .. _uadmin.User: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-user
 .. _uadmin.UserGroup: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-usergroup
 .. _uadmin.UserMetrics: https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-usermetrics
 .. _uadmin.UserPermission: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-userpermission
-.. _uadmin.ValidateIP: https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-validateip
+.. _uadmin.ValidateIP: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-validateip
 .. _uadmin.Version: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-version
+.. _uadmin.VersionCodeName: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-versioncodename
 .. _uadmin.WARNING: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-warning
 .. _uadmin.WORKING: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-working

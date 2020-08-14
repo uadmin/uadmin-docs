@@ -6,31 +6,81 @@ Security Functions
 
 In this section, we will cover the following functions in-depth listed below:
 
+* `uadmin.CheckCSRF`_
 * `uadmin.DefaultMediaPermission`_
 * `uadmin.EncryptKey`_
 * `uadmin.GenerateBase32`_
 * `uadmin.GenerateBase64`_
 * `uadmin.GroupPermission`_
+    * `func (GroupPermission) HideInDashboard`_
+    * `func (GroupPermission) String`_
 * `uadmin.OTPAlgorithm`_
 * `uadmin.OTPDigits`_
 * `uadmin.OTPPeriod`_
 * `uadmin.OTPSkew`_
+* `uadmin.PasswordAttempts`_
+* `uadmin.PasswordTimeout`_
 * `uadmin.PublicMedia`_
 * `uadmin.Salt`_
+* `uadmin.SQLInjection`_
 * `uadmin.StartSecureServer`_
 * `uadmin.UserPermission`_
+    * `func (UserPermission) HideInDashboard`_
+    * `func (UserPermission) String`_
+
+uadmin.CheckCSRF
+----------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func CheckCSRF(r *http.Request) bool
+
+CheckCSRF checks if the request is a possible CSRF. CSRF or Cross-Site Request Forgery is a type of attack here a logged in user clicks on a link that is sent to a website where the user is already authenticated and has instructions for the website to change some state. A possible attack could delete user or system data, change it or add new data to the system. Anti-CSRF measures are implemented in all state changing APIs and UI handler.
+
+The way uAdmin implements CSRF is by checking for a request parameter GET or POST called `x-csrf-token`. The value of this parameter could be equal to the session key. You can get the session key from the session cookie or if you are using `uadmin.RenderHTML` or `uadmin.RenderMultiHTML`, then you will find it in the context as `{{CSRF}}`. If you submitting a form you can add this value to a hidden input.
+
+To implement anti CSRF protection in your own API:
+
+.. code-block:: go
+
+    func MyAPI(w http.ResponseWriter, r *http.Request) {
+        if CheckCSRF(r) {
+            uadmin.ReturnJSON(w, r, map[string]interface{}{
+                "status": "error",
+                "err_msg": "The request does not have x-csrf-token",
+            })
+        }
+
+        // API code ...
+    }
+
+    http.HandleFunc("/myapi/", MyAPI)
+
+If you you call this API:
+
+.. code-block:: bash
+
+    http://0.0.0.0:8080/myapi/
+
+It will return an error message and the system will create a CRITICAL level log with details about the possible attack. To make the request work, `x-csrf-token` parameter should be added.
+
+.. code-block:: bash
+
+    http://0.0.0.0:8080/myapi/?x-csrf-token=MY_SESSION_KEY
+
+Where you replace `MY_SESSION_KEY` with the session key.
 
 uadmin.DefaultMediaPermission
 -----------------------------
 `Back To Top`_
 
-DefaultMediaPermission is the default permission applied to files uploaded to the system.
-
-Type:
-
 .. code-block:: go
 
-    FileMode
+    // Type: FileMode
+    var DefaultMediaPermission = os.FileMode(0644)
+
+DefaultMediaPermission is the default permission applied to files uploaded to the system.
 
 A **FileMode** represents a file's mode and permission bits. The bits have the same definition on all systems, so that information about files can be moved from one system to another portably. Not all bits apply to all systems. The only required bit is ModeDir for directories.
 
@@ -97,13 +147,11 @@ uadmin.EncryptKey
 -----------------
 `Back To Top`_
 
-EncryptKey is a key for encryption and decryption of data in the DB.
-
-Type:
-
 .. code-block:: go
 
-    []byte
+    var EncryptKey = []byte{}
+
+EncryptKey is a key for encryption and decryption of data in the DB.
 
 Go to the main.go and set the byte values from 0 to 255. Put it above the uadmin.Register.
 
@@ -135,13 +183,11 @@ uadmin.GenerateBase32
 ---------------------
 `Back To Top`_
 
-GenerateBase32 generates a base32 string of length.
-
-Function:
-
 .. code-block:: go
 
-    func(length int) string
+    func GenerateBase32(length int) string
+
+GenerateBase32 generates a base32 string of length.
 
 Parameter:
 
@@ -192,13 +238,11 @@ uadmin.GenerateBase64
 ---------------------
 `Back To Top`_
 
-GenerateBase64 generates a base64 string of length.
-
-Function:
-
 .. code-block:: go
 
-    func(length int) string
+    func GenerateBase64(length int) string
+
+GenerateBase64 generates a base64 string of length.
 
 Parameter:
 
@@ -249,10 +293,6 @@ uadmin.GroupPermission
 ----------------------
 `Back To Top`_
 
-GroupPermission sets the permission of a user group handled by an administrator.
-
-Structure:
-
 .. code-block:: go
 
     type GroupPermission struct {
@@ -268,10 +308,27 @@ Structure:
         Approval        bool `uadmin:"filter"`
     }
 
-There are 2 functions that you can use in GroupPermission:
+GroupPermission sets the permission of a user group handled by an administrator.
 
-* **HideInDashboard()** - Return true and auto hide this from dashboard
-* **String()** - Returns the GroupPermission ID
+**func (GroupPermission) HideInDashboard**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (GroupPermission) HideInDashboard() bool
+
+HideInDashboard to return false and auto hide this from dashboard
+
+**func (GroupPermission) String**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (GroupPermission) HideInDashboard() bool
+
+String returns the GroupPermission ID.
 
 There are 2 ways you can do for initialization process using this function: one-by-one and by group.
 
@@ -411,13 +468,12 @@ uadmin.OTPAlgorithm
 -------------------
 `Back To Top`_
 
-OTPAlgorithm is the hashing algorithm of OTP.
-
-Type:
-
 .. code-block:: go
 
-    string
+    // Type: string
+    var OTPAlgorithm = "sha1"
+
+OTPAlgorithm is the hashing algorithm of OTP.
 
 There are 3 different algorithms:
 
@@ -469,13 +525,12 @@ uadmin.OTPDigits
 ----------------
 `Back To Top`_
 
-OTPDigits is the number of digits for the OTP.
-
-Type:
-
 .. code-block:: go
 
-    int
+    // Type: int
+    var OTPDigits = 6
+
+OTPDigits is the number of digits for the OTP.
 
 To assign a value within an application, visit `OTP Digits`_ page for an example.
 
@@ -516,13 +571,12 @@ uadmin.OTPPeriod
 ----------------
 `Back To Top`_
 
-OTPPeriod is the number of seconds for the OTP to change.
-
-Type:
-
 .. code-block:: go
 
-    uint
+    // Type: uint
+    var OTPPeriod = uint(30)
+
+OTPPeriod is the number of seconds for the OTP to change.
 
 To assign a value within an application, visit `OTP Period`_ page for an example.
 
@@ -565,13 +619,12 @@ uadmin.OTPSkew
 --------------
 `Back To Top`_
 
-OTPSkew is the number of minutes to search around the OTP.
-
-Type:
-
 .. code-block:: go
 
-    uint
+    // Type: uint
+    var OTPSkew = uint(5)
+
+OTPSkew is the number of minutes to search around the OTP.
 
 To assign a value within an application, visit `OTP Skew`_ page for an example.
 
@@ -610,17 +663,38 @@ Quiz:
 
 .. _OTP Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/otp.html
 
+uadmin.PasswordAttempts
+-----------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    // Type: int
+    var PasswordAttempts = 5
+
+PasswordAttempts is the maximum number of invalid password attempts before the IP address is blocked for some time from using the system.
+
+uadmin.PasswordTimeout
+----------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    // Type: int
+    var PasswordTimeout = 15
+
+PasswordTimeout is the amount of time in minutes the IP will be blocked for after reaching the the maximum invalid password attempts
+
 uadmin.PublicMedia
 ------------------
 `Back To Top`_
 
-PublicMedia allows public access to media handler without authentication.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var PublicMedia = false
+
+PublicMedia allows public access to media handler without authentication.
 
 To assign a value within an application, visit `Public Media`_ page for an example.
 
@@ -675,13 +749,12 @@ uadmin.Salt
 -----------
 `Back To Top`_
 
-Salt is extra salt added to password hashing.
-
-Type:
-
 .. code-block:: go
 
-    string
+    // Type: string
+    var Salt = ""
+
+Salt is extra salt added to password hashing.
 
 Go to the friend.go and apply the following codes below:
 
@@ -728,17 +801,32 @@ Quiz:
 
 .. _Salt: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/salt.html
 
+uadmin.SQLInjection
+-------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func SQLInjection(r *http.Request, key, value string) bool
+
+SQLInjection is the function to check for SQL injection attacks. Parameters:
+
+.. code-block:: bash
+
+    -key: column_name, table name
+    -value: WHERE key(OP)value, SET key=value, VALUES (key,key...)
+
+Return true for SQL injection attempt and false for safe requests
+
 uadmin.StartSecureServer
 ------------------------
 `Back To Top`_
 
-StartSecureServer is the process of activating a uAdmin server using a localhost IP or an apache with SSL security.
-
-Function:
-
 .. code-block:: go
 
-    func(certFile, keyFile string)
+    func StartSecureServer(certFile, keyFile string)
+
+StartSecureServer is the process of activating a uAdmin server using a localhost IP or an apache with SSL security.
 
 Parameters:
 
@@ -820,18 +908,14 @@ uadmin.UserPermission
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#security-functions
 
-UserPermission sets the permission of a user handled by an administrator.
-
-Structure:
-
 .. code-block:: go
 
     type UserPermission struct {
         Model
-        DashboardMenu   DashboardMenu `gorm:"ForeignKey:DashboardMenuID" required:"true" filter:"true" uadmin:"filter"`
-        DashboardMenuID uint          `fk:"true" displayName:"DashboardMenu"`
-        User            User          `gorm:"ForeignKey:UserID" required:"true" filter:"true" uadmin:"filter"`
-        UserID          uint          `fk:"true" displayName:"User"`
+        DashboardMenu   DashboardMenu `uadmin:"filter"`
+        DashboardMenuID uint          ``
+        User            User          `uadmin:"filter"`
+        UserID          uint          ``
         Read            bool          `uadmin:"filter"`
         Add             bool          `uadmin:"filter"`
         Edit            bool          `uadmin:"filter"`
@@ -839,10 +923,27 @@ Structure:
         Approval        bool          `uadmin:"filter"`
     }
 
-There are 2 functions that you can use in GroupPermission:
+UserPermission sets the permission of a user handled by an administrator.
 
-* **HideInDashboard()** - Return true and auto hide this from dashboard
-* **String()** - Returns the User Permission ID
+**func (UserPermission) HideInDashboard**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (UserPermission) HideInDashboard() bool
+
+HideInDashboard to return false and auto hide this from dashboard
+
+**func (UserPermission) String**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (u UserPermission) String() string
+
+String returns the User Permission ID.
 
 There are 2 ways you can do for initialization process using this function: one-by-one and by group.
 

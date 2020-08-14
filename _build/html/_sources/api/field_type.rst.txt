@@ -4,13 +4,11 @@ uadmin.FieldType
 
 .. _Back To uAdmin Functions List: https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference
 
-FieldType is a list of field types from dropdown menu.
-
-Type:
-
 .. code-block:: go
 
-    int
+    type FieldType int
+
+FieldType for field type in builder field
 
 FieldType has 19 functions:
 

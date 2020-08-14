@@ -17,53 +17,52 @@ uadmin.IncrementMetric
 ----------------------
 `Back To Top`_
 
-Function:
-
 .. code-block:: go
 
-    func(name string)
+    func IncrementMetric(name string)
+
+IncrementMetric increments the value of a.
 
 uadmin.NewMetric
 ----------------
 `Back To Top`_
 
-Function:
-
 .. code-block:: go
 
-    func(name string, template string) error
+    func NewMetric(name string, template string) error
+
+NewMetric creates a new metric.
 
 uadmin.SetMetric
 ----------------
 `Back To Top`_
 
-Function:
-
 .. code-block:: go
 
-    func(name string, value float64)
+    func SetMetric(name string, value float64)
+
+SetMetric sets the value of a gauge metric.
 
 uadmin.SystemMetrics
 --------------------
 `Back To Top`_
 
-SystemMetrics enables uAdmin system metrics to be recorded.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var SystemMetrics = false
+
+SystemMetrics enables uAdmin system metrics to be recorded.
 
 uadmin.TimeMetric
 -----------------
 `Back To Top`_
 
-Function:
-
 .. code-block:: go
 
-    func(name string, div float64, f func())
+    func TimeMetric(name string, div float64, f func())
+
+TimeMetric runs a function and times it as a metric.
 
 uadmin.UserMetrics
 ------------------
@@ -71,11 +70,9 @@ uadmin.UserMetrics
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#metric-functions
 
-UserMetrics enables the user metrics to be recorded.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var UserMetrics = false
 
+UserMetrics enables the user metrics to be recorded.

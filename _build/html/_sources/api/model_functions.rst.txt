@@ -7,6 +7,8 @@ Model Functions
 In this section, we will cover the following functions in-depth listed below:
 
 * `uadmin.DashboardMenu`_
+    * `func (DashboardMenu) GetImageSize`_
+    * `func (DashboardMenu) String`_
 * `uadmin.HideInDashboarder`_
 * `uadmin.Model`_
 * `uadmin.NewModel`_
@@ -15,10 +17,6 @@ In this section, we will cover the following functions in-depth listed below:
 uadmin.DashboardMenu
 --------------------
 `Back To Top`_
-
-DashboardMenu is a system in uAdmin that is used to add, modify and delete the elements of a model.
-
-Structure:
 
 .. code-block:: go
 
@@ -32,9 +30,27 @@ Structure:
         Hidden   bool   `uadmin:"filter"`
     }
 
-There is a function that you can use in DashboardMenu:
+DashboardMenu is a system in uAdmin that is used to add, modify and delete the elements of a model.
 
-* **String()** - Returns the MenuName
+**func (DashboardMenu) GetImageSize**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (m DashboardMenu) GetImageSize() (int, int)
+
+GetImageSize customizes the icons as 128x128.
+
+**func (DashboardMenu) String**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (m DashboardMenu) String() string
+
+String returns the MenuName.
 
 Go to the main.go and apply the following codes below after the RegisterInlines section.
 
@@ -83,15 +99,13 @@ uadmin.HideInDashboarder
 ------------------------
 `Back To Top`_
 
-HideInDashboarder is used to check if a model should be hidden in the dashboard.
-
-Structure:
-
 .. code-block:: go
 
-    type HideInDashboarder interface{
+    type HideInDashboarder interface {
         HideInDashboard() bool
     }
+
+HideInDashboarder is used to check if a model should be hidden in the dashboard.
 
 Suppose I have five models in my dashboard: Todos, Categorys, Items, Friends, and Expressions. I want Friends and Expressions models to be hidden in the dashboard. In order to do that, go to the friend.go and expression.go inside the models folder and apply the HideInDashboard() function. Set the return value to **true** inside it.
 
@@ -180,16 +194,14 @@ uadmin.Model
 ------------
 `Back To Top`_
 
-Model is the standard struct to be embedded in any other struct to make it a model for uAdmin.
-
-Structure:
-
 .. code-block:: go
 
     type Model struct {
         ID        uint       `gorm:"primary_key"`
         DeletedAt *time.Time `sql:"index"`
     }
+
+Model is the standard struct to be embedded in any other struct to make it a model for uadmin.
 
 In every struct, uadmin.Model must always come first before creating a field.
 
@@ -210,13 +222,11 @@ uadmin.NewModel
 ---------------
 `Back To Top`_
 
-NewModel creates a new model from a model name.
-
-Function:
-
 .. code-block:: go
 
-    func(modelName string, pointer bool) (reflect.Value, bool)
+    func NewModel(modelName string, pointer bool) (reflect.Value, bool)
+
+NewModel creates a new model from a model name.
 
 Parameters:
 
@@ -292,14 +302,12 @@ uadmin.NewModelArray
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions
 
-NewModelArray creates a new model array from a model name.
-
-Function:
-
 .. code-block:: go
 
-    func(modelName string, pointer bool) (reflect.Value, bool)
-    
+    func NewModelArray(modelName string, pointer bool) (reflect.Value, bool)
+
+NewModelArray creates a new model array from a model name.
+
 Parameters:
 
     **modelName string:** Is the model you want to call in the function

@@ -2244,6 +2244,7 @@ uAdmin
 
 .. _Back To Top (Setting): https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#setting
 
+* `Allowed Hosts`_
 * `Allowed IPs`_
 * `API Disabled Add`_
 * `API Disabled Delete`_
@@ -2255,21 +2256,6 @@ uAdmin
 * `API Log Edit`_
 * `API Log Read`_
 * `API Log Schema`_
-* `API Post Query Add`_
-* `API Post Query Delete`_
-* `API Post Query Edit`_
-* `API Post Query Read`_
-* `API Post Query Schema`_
-* `API Pre Query Add`_
-* `API Pre Query Delete`_
-* `API Pre Query Edit`_
-* `API Pre Query Read`_
-* `API Pre Query Schema`_
-* `API Public Add`_
-* `API Public Delete`_
-* `API Public Edit`_
-* `API Public Read`_
-* `API Public Schema`_
 * `Blocked IPs`_
 * `Cache Permissions`_
 * `Cache Sessions`_
@@ -2295,6 +2281,8 @@ uAdmin
 * `OTP Digits`_
 * `OTP Period`_
 * `OTP Skew`_
+* `Password Attempts`_
+* `Password Timeout`_
 * `Page Length`_
 * `Port`_
 * `Public Media`_
@@ -2318,6 +2306,7 @@ Page:
 
    system-reference/setting
 
+.. _Allowed Hosts: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#allowed-hosts
 .. _Allowed IPs: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#allowed-ips
 .. _API Disabled Add: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-disabled-add
 .. _API Disabled Delete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-disabled-delete
@@ -2329,21 +2318,6 @@ Page:
 .. _API Log Edit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-edit
 .. _API Log Read: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-read
 .. _API Log Schema: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-schema
-.. _API Post Query Add: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-add
-.. _API Post Query Delete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-delete
-.. _API Post Query Edit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-edit
-.. _API Post Query Read: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-read
-.. _API Post Query Schema: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-post-query-schema
-.. _API Pre Query Add: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-add
-.. _API Pre Query Delete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-delete
-.. _API Pre Query Edit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-edit
-.. _API Pre Query Read: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-read
-.. _API Pre Query Schema: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-pre-query-schema
-.. _API Public Add: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-add
-.. _API Public Delete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-delete
-.. _API Public Edit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-edit
-.. _API Public Read: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-read
-.. _API Public Schema: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-public-schema
 .. _Blocked IPs: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#blocked-ips
 .. _Cache Permissions: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#cache-permissions
 .. _Cache Sessions: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#cache-sessions
@@ -2370,6 +2344,8 @@ Page:
 .. _OTP Period: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-period
 .. _OTP Skew: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#otp-skew
 .. _Page Length: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#page-length
+.. _Password Attempts: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#password-attempts
+.. _Password Timeout: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#password-timeout
 .. _Port: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#port
 .. _Public Media: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#public-media
 .. _Rate Limit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#rate-limit

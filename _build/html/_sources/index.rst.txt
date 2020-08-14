@@ -11,7 +11,7 @@ Installation
 
 .. code-block:: bash
 
-    $ go get -u github.com/uadmin/uadmin/...
+    $ go get -u -v github.com/uadmin/uadmin/...
 
 To test if your installation is fine, run the **uadmin** command line:
 
@@ -153,7 +153,7 @@ Open your terminal and apply the following commands:
     $ cd ~/go/src/github.com/uadmin/uadmin
     $ go install
     $ uadmin version
-    [  INFO  ]   0.4
+    [  INFO  ]   0.5.1
 
 .. toctree::
    :maxdepth: 1

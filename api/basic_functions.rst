@@ -21,13 +21,12 @@ uadmin.MaxImageHeight
 ---------------------
 `Back To Top`_
 
-MaxImageHeight sets the maximum height of an image.
-
-Type:
-
 .. code-block:: go
 
-    int
+    // Type: int
+    var MaxImageHeight = 600
+
+MaxImageHeight sets the maximum height of an image.
 
 To assign a value within an application, visit `Max Image Height`_ page for an example.
 
@@ -39,13 +38,12 @@ uadmin.MaxImageWidth
 --------------------
 `Back To Top`_
 
-MaxImageWidth sets the maximum width of an image.
-
-Type:
-
 .. code-block:: go
 
-    int
+    // Type: int
+    var MaxImageWidth = 800
+
+MaxImageWidth sets the maximum width of an image.
 
 To assign a value within an application, visit `Max Image Width`_ page for an example.
 
@@ -110,13 +108,12 @@ uadmin.MaxUploadFileSize
 ------------------------
 `Back To Top`_
 
-MaxUploadFileSize is the maximum upload file size in kilobytes.
-
-Type:
-
 .. code-block:: go
 
-    int64
+    // Type: int64
+    var MaxUploadFileSize = int64(25 * 1024 * 1024)
+
+MaxUploadFileSize is the maximum upload file size in kilobytes.
 
 To assign a value within an application, visit `Max Upload File Size`_ page for an example.
 
@@ -164,13 +161,12 @@ uadmin.PageLength
 -----------------
 `Back To Top`_
 
-PageLength is the list view max number of records.
-
-Type:
-
 .. code-block:: go
 
-    int
+    // Type: int
+    var PageLength = 100
+
+PageLength is the list view max number of records.
 
 To assign a value within an application, visit `Page Length`_ page for an example.
 
@@ -195,8 +191,6 @@ Go to the main.go and apply the PageLength function.
         uadmin.Get(&setting, "code = ?", "uAdmin.PageLength")
         setting.ParseFormValue([]string{"4"})
         setting.Save()
-        
-        
     }
 
 Run your application, go to the Item model, inside it you have 6 total elements. The elements in the item model will display 4 elements per page.
@@ -215,13 +209,12 @@ uadmin.RetainMediaVersions
 --------------------------
 `Back To Top`_
 
-RetainMediaVersions is to allow the system to keep files uploaded even after they are changed. This allows the system to "Roll Back" to an older version of the file.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var RetainMediaVersions = true
+
+RetainMediaVersions is to allow the system to keep files uploaded even after they are changed. This allows the system to "Roll Back" to an older version of the file.
 
 To assign a value within an application, visit `Retain Media Versions`_ page for an example.
 
@@ -331,13 +324,12 @@ uadmin.RootURL
 --------------
 `Back To Top`_
 
-RootURL is where the listener is mapped to.
-
-Type:
-
 .. code-block:: go
 
-    string
+    // Type: string
+    var RootURL = "/"
+
+RootURL is where the listener is mapped to.
 
 Used in the tutorial:
 
@@ -388,13 +380,12 @@ uadmin.SiteName
 ---------------
 `Back To Top`_
 
-SiteName is the name of the website that shows on title and dashboard.
-
-Type:
-
 .. code-block:: go
 
-    string
+    // Type: string
+    var SiteName = "uAdmin"
+
+SiteName is the name of the website that shows on title and dashboard.
 
 Used in the tutorial:
 
@@ -447,23 +438,22 @@ uadmin.ServerReady
 ------------------
 `Back To Top`_
 
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var ServerReady = false
+
+ServerReady is a variable that is set to true once the server is ready to use.
 
 uadmin.StartServer
 ------------------
 `Back To Top`_
 
-StartServer is the process of activating a uAdmin server using a localhost IP or an apache.
-
-Function:
-
 .. code-block:: go
 
-    func()
+    func StartServer()
+
+StartServer is the process of activating a uAdmin server using a localhost IP or an apache.
 
 Used in the tutorial:
 
@@ -516,13 +506,12 @@ uadmin.Theme
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#basic-functions
 
-Theme is the name of the theme used in uAdmin.
-
-Type:
-
 .. code-block:: go
 
-    string
+    // Type: string
+    var Theme = "default"
+
+Theme is the name of the theme used in uAdmin.
 
 To assign a value within an application, visit `Theme`_ page for an example.
 

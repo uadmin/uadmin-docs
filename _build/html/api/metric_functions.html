@@ -1,24 +1,25 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Metric Functions &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metric Functions &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Print Functions" href="print_functions.html" />
+    <link rel="next" title="Model Functions" href="model_functions.html" />
     <link rel="prev" title="uadmin.Log" href="log-functions/log.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
@@ -35,13 +36,14 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="print_functions.html" title="Print Functions"
+          <a href="model_functions.html" title="Model Functions"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="log-functions/log.html" title="uadmin.Log"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Metric Functions</a></li> 
       </ul>
     </div>  
 
@@ -65,56 +67,57 @@
 <div class="section" id="uadmin-incrementmetric">
 <h2>uadmin.IncrementMetric<a class="headerlink" href="#uadmin-incrementmetric" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#metric-functions">Back To Top</a></p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">IncrementMetric</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>IncrementMetric increments the value of a.</p>
 </div>
 <div class="section" id="uadmin-newmetric">
 <h2>uadmin.NewMetric<a class="headerlink" href="#uadmin-newmetric" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#metric-functions">Back To Top</a></p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">template</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">NewMetric</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">template</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span>
 </pre></div>
 </div>
+<p>NewMetric creates a new metric.</p>
 </div>
 <div class="section" id="uadmin-setmetric">
 <h2>uadmin.SetMetric<a class="headerlink" href="#uadmin-setmetric" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#metric-functions">Back To Top</a></p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">value</span> <span class="kt">float64</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">SetMetric</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">value</span> <span class="kt">float64</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>SetMetric sets the value of a gauge metric.</p>
 </div>
 <div class="section" id="uadmin-systemmetrics">
 <h2>uadmin.SystemMetrics<a class="headerlink" href="#uadmin-systemmetrics" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#metric-functions">Back To Top</a></p>
-<p>SystemMetrics enables uAdmin system metrics to be recorded.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">SystemMetrics</span> <span class="p">=</span> <span class="kc">false</span>
 </pre></div>
 </div>
+<p>SystemMetrics enables uAdmin system metrics to be recorded.</p>
 </div>
 <div class="section" id="uadmin-timemetric">
 <h2>uadmin.TimeMetric<a class="headerlink" href="#uadmin-timemetric" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#metric-functions">Back To Top</a></p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">div</span> <span class="kt">float64</span><span class="p">,</span> <span class="nx">f</span> <span class="kd">func</span><span class="p">())</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">TimeMetric</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">div</span> <span class="kt">float64</span><span class="p">,</span> <span class="nx">f</span> <span class="kd">func</span><span class="p">())</span>
 </pre></div>
 </div>
+<p>TimeMetric runs a function and times it as a metric.</p>
 </div>
 <div class="section" id="uadmin-usermetrics">
 <h2>uadmin.UserMetrics<a class="headerlink" href="#uadmin-usermetrics" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#metric-functions">Back To Top</a></p>
-<p>UserMetrics enables the user metrics to be recorded.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">UserMetrics</span> <span class="p">=</span> <span class="kc">false</span>
 </pre></div>
 </div>
+<p>UserMetrics enables the user metrics to be recorded.</p>
 </div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -141,8 +144,8 @@
   <p class="topless"><a href="log-functions/log.html"
                         title="previous chapter">uadmin.Log</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="print_functions.html"
-                        title="next chapter">Print Functions</a></p>
+  <p class="topless"><a href="model_functions.html"
+                        title="next chapter">Model Functions</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -159,7 +162,7 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -171,18 +174,19 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="print_functions.html" title="Print Functions"
+          <a href="model_functions.html" title="Model Functions"
              >next</a> |</li>
         <li class="right" >
           <a href="log-functions/log.html" title="uadmin.Log"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Metric Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

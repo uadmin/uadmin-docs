@@ -1,20 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Database Functions &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database Functions &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,8 +41,9 @@
         <li class="right" >
           <a href="customizing-records/schema.html" title="uadmin.Schema"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Database Functions</a></li> 
       </ul>
     </div>  
 
@@ -65,11 +67,10 @@
 <div class="section" id="uadmin-cleardb">
 <h2>uadmin.ClearDB<a class="headerlink" href="#uadmin-cleardb" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
-<p>ClearDB clears the database object.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">()</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">ClearDB</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>ClearDB clears the database object.</p>
 <p>Suppose I have two databases in my project folder.</p>
 <img alt="../_images/twodatabases.png" src="../_images/twodatabases.png" />
 <div class="line-block">
@@ -172,11 +173,10 @@
 <div class="section" id="uadmin-database">
 <h2>uadmin.Database<a class="headerlink" href="#uadmin-database" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
-<p>Database is the active Database settings.</p>
-<p>Structure:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DBSettings</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Database</span> <span class="o">*</span><span class="nx">DBSettings</span>
 </pre></div>
 </div>
+<p>Database is the active Database settings.</p>
 <p>There are 6 fields that you can use in this function:</p>
 <ul class="simple">
 <li><p><strong>Host</strong> - returns a string. It is an IP address where the database was hosted.</p></li>
@@ -224,18 +224,17 @@
 <div class="section" id="uadmin-dbsettings">
 <h2>uadmin.DBSettings<a class="headerlink" href="#uadmin-dbsettings" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
-<p>DBSettings is a feature that allows a user to configure the settings of a database.</p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">DBSettings</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">Type</span>     <span class="kt">string</span> <span class="c1">// SQLLite, MySQL</span>
-    <span class="nx">Name</span>     <span class="kt">string</span> <span class="c1">// File/DB name</span>
-    <span class="nx">User</span>     <span class="kt">string</span>
-    <span class="nx">Password</span> <span class="kt">string</span>
-    <span class="nx">Host</span>     <span class="kt">string</span>
-    <span class="nx">Port</span>     <span class="kt">int</span>
+    <span class="nx">Type</span>     <span class="kt">string</span> <span class="s">`json:&quot;type&quot;`</span> <span class="c1">// sqlite, mysql</span>
+    <span class="nx">Name</span>     <span class="kt">string</span> <span class="s">`json:&quot;name&quot;`</span> <span class="c1">// File/DB name</span>
+    <span class="nx">User</span>     <span class="kt">string</span> <span class="s">`json:&quot;user&quot;`</span>
+    <span class="nx">Password</span> <span class="kt">string</span> <span class="s">`json:&quot;password&quot;`</span>
+    <span class="nx">Host</span>     <span class="kt">string</span> <span class="s">`json:&quot;host&quot;`</span>
+    <span class="nx">Port</span>     <span class="kt">int</span>    <span class="s">`json:&quot;port&quot;`</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>DBSettings is a feature that allows a user to configure the settings of a database.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>uadmin.DBSettings function is deprecated on version 0.4.0 and above. Instead, we have to create a new file called .database.</p>
@@ -349,11 +348,12 @@
 </div>
 <div class="section" id="uadmin-debugdb">
 <h2>uadmin.DebugDB<a class="headerlink" href="#uadmin-debugdb" title="Permalink to this headline">¶</a></h2>
-<p>DebugDB prints all SQL statements going to DB.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">DebugDB</span> <span class="p">=</span> <span class="kc">false</span>
 </pre></div>
 </div>
+<p>DebugDB prints all SQL statements going to DB.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#debugdb">DebugDB</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
 <p>Go to the main.go. Set this function as true.</p>
@@ -405,11 +405,10 @@
 <div class="section" id="uadmin-getdb">
 <h2>uadmin.GetDB<a class="headerlink" href="#uadmin-getdb" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
-<p>GetDB returns a pointer to the DB.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">()</span> <span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetDB</span><span class="p">()</span> <span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span>
 </pre></div>
 </div>
+<p>GetDB returns a pointer to the DB.</p>
 <p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html">Tutorial Part 9 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
 <p>Suppose I have one record in the Todo model.</p>
 <img alt="../_images/todomodeloutput.png" src="../_images/todomodeloutput.png" />
@@ -461,11 +460,11 @@
 <div class="section" id="uadmin-optimizesqlquery">
 <h2>uadmin.OptimizeSQLQuery<a class="headerlink" href="#uadmin-optimizesqlquery" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
-<p>OptimizeSQLQuery selects columns during rendering a form a list to visible fields. This means during the filtering of a form the select statement will not include any field with <cite>hidden</cite> tag. For list it will not select any field with <cite>list_exclude</cite>.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">OptimizeSQLQuery</span> <span class="p">=</span> <span class="kc">false</span>
 </pre></div>
 </div>
+<p>OptimizeSQLQuery selects columns during rendering a form a list to visible fields. This means during the filtering of a form the select statement will not include any field with <cite>hidden</cite> tag. For list it will not select any field with <cite>list_exclude</cite>.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#optimize-sql-query">Optimize SQL Query</a> page for an example.</p>
 <p>To assign a value in the code, follow this approach:</p>
 <p>Example:</p>
@@ -497,6 +496,7 @@
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -541,7 +541,7 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -558,13 +558,14 @@
         <li class="right" >
           <a href="customizing-records/schema.html" title="uadmin.Schema"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Database Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

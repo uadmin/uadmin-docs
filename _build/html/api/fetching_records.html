@@ -1,20 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>For Fetching Records &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For Fetching Records &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,8 +41,9 @@
         <li class="right" >
           <a href="email_functions.html" title="Email Functions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">For Fetching Records</a></li> 
       </ul>
     </div>  
 
@@ -66,6 +68,7 @@
 <li><p><a class="reference internal" href="#uadmin-getfieldsapi">uadmin.GetFieldsAPI</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getform">uadmin.GetForm</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getid">uadmin.GetID</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-getimagesizer">uadmin.GetImageSizer</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getmodelsapi">uadmin.GetModelsAPI</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getstring">uadmin.GetString</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getstringer">uadmin.GetStringer</a></p></li>
@@ -76,11 +79,10 @@
 <div class="section" id="uadmin-adminpage">
 <h2>uadmin.AdminPage<a class="headerlink" href="#uadmin-adminpage" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>AdminPage fetches records from the database with some standard rules such as sorting data, multiples of, and setting a limit that can be used in pagination.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">offset</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">limit</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">AdminPage</span><span class="p">(</span><span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">offset</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">limit</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>AdminPage fetches records from the database with some standard rules such as sorting data, multiples of, and setting a limit that can be used in pagination.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>order string:</strong> Is the field you want to specify in the database.</p>
@@ -137,11 +139,10 @@
 <div class="section" id="uadmin-all">
 <h2>uadmin.All<a class="headerlink" href="#uadmin-all" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>All fetches all object in the database.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">All</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>All fetches all object in the database.</p>
 <p>Parameter:</p>
 <blockquote>
 <div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
@@ -185,8 +186,6 @@
 <div class="section" id="uadmin-choice">
 <h2>uadmin.Choice<a class="headerlink" href="#uadmin-choice" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>Choice is a struct for the list of choices.</p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Choice</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">V</span>        <span class="kt">string</span>
     <span class="nx">K</span>        <span class="kt">uint</span>
@@ -194,6 +193,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Choice is a struct for the list of choices.</p>
 <p>Suppose I have four records in my Category model.</p>
 <ul class="simple">
 <li><p>Education ID = 4</p></li>
@@ -267,11 +267,10 @@
 <div class="section" id="uadmin-count">
 <h2>uadmin.Count<a class="headerlink" href="#uadmin-count" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>Count return the count of records in a table based on a filter.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Count</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">int</span>
 </pre></div>
 </div>
+<p>Count return the count of records in a table based on a filter.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
@@ -319,11 +318,10 @@
 <div class="section" id="uadmin-filter">
 <h2>uadmin.Filter<a class="headerlink" href="#uadmin-filter" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>Filter fetches records from the database.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Filter</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Filter fetches records from the database.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
@@ -443,11 +441,10 @@
 <div class="section" id="uadmin-filterbuilder">
 <h2>uadmin.FilterBuilder<a class="headerlink" href="#uadmin-filterbuilder" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>FilterBuilder changes a map filter into a query.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">params</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{})</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">FilterBuilder</span><span class="p">(</span><span class="nx">params</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{})</span>
 </pre></div>
 </div>
+<p>FilterBuilder changes a map filter into a query.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>params map[string]interface{}:</strong> Stores arbitrary JSON objects and arrays</p>
@@ -518,11 +515,10 @@
 <div class="section" id="uadmin-filterlist">
 <h2>uadmin.FilterList<a class="headerlink" href="#uadmin-filterlist" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>FilterList fetches the all record from the database matching query and args where it selects only visible fields in the form based on given schema.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">offset</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">limit</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">FilterList</span><span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">offset</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">limit</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>FilterList fetches the all record from the database matching query and args where it selects only visible fields in the form based on given schema.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>s *ModelSchema:</strong> Is the variable where the model was called in the Schema</p>
@@ -651,11 +647,10 @@
 <div class="section" id="uadmin-get">
 <h2>uadmin.Get<a class="headerlink" href="#uadmin-get" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>Get fetches the first record from the database matching query and args.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Get</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Get fetches the first record from the database matching query and args.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
@@ -712,11 +707,10 @@
 <div class="section" id="uadmin-getfieldsapi">
 <h2>uadmin.GetFieldsAPI<a class="headerlink" href="#uadmin-getfieldsapi" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>GetFieldsAPI is a function that gets all fields based on an assigned model name.
-Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">session</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetFieldsAPI</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">session</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>GetFieldsAPI returns a list of fields in a model.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>w http.ResponseWriter:</strong> Assembles the HTTP server’s response; by writing to it, we send data to the HTTP client</p>
@@ -776,11 +770,10 @@ Function:</p>
 <div class="section" id="uadmin-getform">
 <h2>uadmin.GetForm<a class="headerlink" href="#uadmin-getform" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>GetForm fetches the first record from the database matching query and args where it selects only visible fields in the form based on given schema.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetForm</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>GetForm fetches the first record from the database matching query and args where it selects only visible fields in the form based on given schema.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
@@ -897,11 +890,10 @@ Function:</p>
 <div class="section" id="uadmin-getid">
 <h2>uadmin.GetID<a class="headerlink" href="#uadmin-getid" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>GetID returns an ID number of a field.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">reflectValue</span><span class="p">)</span> <span class="kt">uint</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetID</span><span class="p">(</span><span class="nx">m</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span> <span class="kt">uint</span>
 </pre></div>
 </div>
+<p>GetID returns an ID number of a field.</p>
 <p>Parameter:</p>
 <blockquote>
 <div><p><strong>m.reflectValue:</strong> Creates a new instance to read, set, or add values</p>
@@ -942,14 +934,23 @@ Function:</p>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-id-and-get-string.html">Get ID and Get String</a></p></li>
 </ul>
 </div>
+<div class="section" id="uadmin-getimagesizer">
+<h2>uadmin.GetImageSizer<a class="headerlink" href="#uadmin-getimagesizer" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">GetImageSizer</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">GetImageSize</span><span class="p">()</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>GetImageSizer can be inplemented for any model to customize the image size uploaded to that model.</p>
+</div>
 <div class="section" id="uadmin-getmodelsapi">
 <h2>uadmin.GetModelsAPI<a class="headerlink" href="#uadmin-getmodelsapi" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>GetModelsAPI is a function that gets all models in the dashboard.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">session</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetModelsAPI</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">session</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>GetModelsAPI returns a list of models.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>w http.ResponseWriter:</strong> Assembles the HTTP server’s response; by writing to it, we send data to the HTTP client</p>
@@ -1009,11 +1010,10 @@ Function:</p>
 <div class="section" id="uadmin-getstring">
 <h2>uadmin.GetString<a class="headerlink" href="#uadmin-getstring" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>GetString returns string representation on an instance of a model.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetString</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">string</span>
 </pre></div>
 </div>
+<p>GetString returns string representation on an instance of a model.</p>
 <p>Parameter:</p>
 <blockquote>
 <div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
@@ -1057,11 +1057,10 @@ Function:</p>
 <div class="section" id="uadmin-getstringer">
 <h2>uadmin.GetStringer<a class="headerlink" href="#uadmin-getstringer" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>GetStringer fetches the first record from the database matching query and args and get only fields tagged with <cite>stringer</cite> tag. If no field has <cite>stringer</cite> tag, then it gets all the fields.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetStringer</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>GetStringer fetches the first record from the database matching query and args and get only fields tagged with <cite>stringer</cite> tag. If no field has <cite>stringer</cite> tag, then it gets all the fields.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
@@ -1110,11 +1109,10 @@ Function:</p>
 <div class="section" id="uadmin-preload">
 <h2>uadmin.Preload<a class="headerlink" href="#uadmin-preload" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>Preload fills the data from foreign keys into structs. You can pass in preload a list of fields to be preloaded. If nothing is passed, every foreign key is preloaded.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">preload</span> <span class="o">...</span><span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Preload</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">preload</span> <span class="o">...</span><span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Preload fills the data from foreign keys into structs. You can pass in preload a list of fields to be preloaded. If nothing is passed, every foreign key is preloaded.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
@@ -1187,11 +1185,10 @@ Function:</p>
 <div class="section" id="uadmin-renderhtml">
 <h2>uadmin.RenderHTML<a class="headerlink" href="#uadmin-renderhtml" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>RenderHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 …etc.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">path</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">data</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">funcs</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">RenderHTML</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">path</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">data</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">funcs</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
 </pre></div>
 </div>
+<p>RenderHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 …etc.</p>
 <p>Used in the tutorial:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part2.html">Login System Tutorial Part 2 - Login Form</a></p></li>
@@ -1322,15 +1319,15 @@ Function:</p>
 <div class="section" id="uadmin-rendermultihtml">
 <h2>uadmin.RenderMultiHTML<a class="headerlink" href="#uadmin-rendermultihtml" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
-<p>RenderMultiHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 …etc.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">path</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">data</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">funcs</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">RenderMultiHTML</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">path</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">data</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">funcs</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
 </pre></div>
 </div>
+<p>RenderMultiHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 …etc.</p>
 </div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -1375,7 +1372,7 @@ Function:</p>
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -1392,13 +1389,14 @@ Function:</p>
         <li class="right" >
           <a href="email_functions.html" title="Email Functions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">For Fetching Records</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

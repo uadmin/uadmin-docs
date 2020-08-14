@@ -17,6 +17,7 @@ In this section, we will cover the following functions in-depth listed below:
 * `uadmin.GetFieldsAPI`_
 * `uadmin.GetForm`_
 * `uadmin.GetID`_
+* `uadmin.GetImageSizer`_
 * `uadmin.GetModelsAPI`_
 * `uadmin.GetString`_
 * `uadmin.GetStringer`_
@@ -28,13 +29,11 @@ uadmin.AdminPage
 ----------------
 `Back To Top`_
 
-AdminPage fetches records from the database with some standard rules such as sorting data, multiples of, and setting a limit that can be used in pagination.
-
-Function:
-
 .. code-block:: go
 
-    func(order string, asc bool, offset int, limit int, a interface{}, query interface{}, args ...interface{}) (err error)
+    func AdminPage(order string, asc bool, offset int, limit int, a interface{}, query interface{}, args ...interface{}) (err error)
+
+AdminPage fetches records from the database with some standard rules such as sorting data, multiples of, and setting a limit that can be used in pagination.
 
 Parameters:
 
@@ -111,13 +110,11 @@ uadmin.All
 ----------
 `Back To Top`_
 
-All fetches all object in the database.
-
-Function:
-
 .. code-block:: go
 
-    func(a interface{}) (err error)
+    func All(a interface{}) (err error)
+
+All fetches all object in the database.
 
 Parameter:
 
@@ -176,10 +173,6 @@ uadmin.Choice
 -------------
 `Back To Top`_
 
-Choice is a struct for the list of choices.
-
-Structure:
-
 .. code-block:: go
 
     type Choice struct {
@@ -187,6 +180,8 @@ Structure:
         K        uint
         Selected bool
     }
+
+Choice is a struct for the list of choices.
 
 Suppose I have four records in my Category model.
 
@@ -275,13 +270,11 @@ uadmin.Count
 ------------
 `Back To Top`_
 
-Count return the count of records in a table based on a filter.
-
-Function:
-
 .. code-block:: go
 
-    func(a interface{}, query interface{}, args ...interface{}) int
+    func Count(a interface{}, query interface{}, args ...interface{}) int
+
+Count return the count of records in a table based on a filter.
 
 Parameters:
 
@@ -343,13 +336,11 @@ uadmin.Filter
 -------------
 `Back To Top`_
 
-Filter fetches records from the database.
-
-Function:
-
 .. code-block:: go
 
-    func(a interface{}, query interface{}, args ...interface{}) (err error)
+    func Filter(a interface{}, query interface{}, args ...interface{}) (err error)
+
+Filter fetches records from the database.
 
 Parameters:
 
@@ -493,13 +484,11 @@ uadmin.FilterBuilder
 --------------------
 `Back To Top`_
 
-FilterBuilder changes a map filter into a query.
-
-Function:
-
 .. code-block:: go
 
-    func(params map[string]interface{}) (query string, args []interface{})
+    func FilterBuilder(params map[string]interface{}) (query string, args []interface{})
+
+FilterBuilder changes a map filter into a query.
 
 Parameters:
 
@@ -587,13 +576,11 @@ uadmin.FilterList
 -----------------
 `Back To Top`_
 
-FilterList fetches the all record from the database matching query and args where it selects only visible fields in the form based on given schema.
-
-Function:
-
 .. code-block:: go
 
-    func(s *ModelSchema, order string, asc bool, offset int, limit int, a interface{}, query interface{}, args ...interface{}) (err error)
+    func FilterList(s *ModelSchema, order string, asc bool, offset int, limit int, a interface{}, query interface{}, args ...interface{}) (err error)
+
+FilterList fetches the all record from the database matching query and args where it selects only visible fields in the form based on given schema.
 
 Parameters:
 
@@ -751,13 +738,11 @@ uadmin.Get
 ----------
 `Back To Top`_
 
-Get fetches the first record from the database matching query and args.
-
-Function:
-
 .. code-block:: go
 
-    func(a interface{}, query interface{}, args ...interface{}) (err error)
+    func Get(a interface{}, query interface{}, args ...interface{}) (err error)
+
+Get fetches the first record from the database matching query and args.
 
 Parameters:
 
@@ -839,12 +824,11 @@ uadmin.GetFieldsAPI
 -------------------
 `Back To Top`_
 
-GetFieldsAPI is a function that gets all fields based on an assigned model name.
-Function:
-
 .. code-block:: go
 
-    func(w http.ResponseWriter, r *http.Request, session *Session)
+    func GetFieldsAPI(w http.ResponseWriter, r *http.Request, session *Session)
+
+GetFieldsAPI returns a list of fields in a model.
 
 Parameters:
 
@@ -917,13 +901,11 @@ uadmin.GetForm
 --------------
 `Back To Top`_
 
-GetForm fetches the first record from the database matching query and args where it selects only visible fields in the form based on given schema.
-
-Function:
-
 .. code-block:: go
 
-    func(a interface{}, s *ModelSchema, query interface{}, args ...interface{}) (err error)
+    func GetForm(a interface{}, s *ModelSchema, query interface{}, args ...interface{}) (err error)
+
+GetForm fetches the first record from the database matching query and args where it selects only visible fields in the form based on given schema.
 
 Parameters:
 
@@ -1065,13 +1047,11 @@ uadmin.GetID
 ------------
 `Back To Top`_
 
-GetID returns an ID number of a field.
-
-Function:
-
 .. code-block:: go
 
-    func(m.reflectValue) uint
+    func GetID(m reflect.Value) uint
+
+GetID returns an ID number of a field.
 
 Parameter:
 
@@ -1117,17 +1097,27 @@ Quiz:
 
 * `Get ID and Get String`_
 
+uadmin.GetImageSizer
+--------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    type GetImageSizer interface {
+        GetImageSize() (int, int)
+    }
+
+GetImageSizer can be inplemented for any model to customize the image size uploaded to that model.
+
 uadmin.GetModelsAPI
 -------------------
 `Back To Top`_
 
-GetModelsAPI is a function that gets all models in the dashboard.
-
-Function:
-
 .. code-block:: go
 
-    func(w http.ResponseWriter, r *http.Request, session *Session)
+    func GetModelsAPI(w http.ResponseWriter, r *http.Request, session *Session)
+
+GetModelsAPI returns a list of models.
 
 Parameters:
 
@@ -1202,13 +1192,11 @@ uadmin.GetString
 ----------------
 `Back To Top`_
 
-GetString returns string representation on an instance of a model.
-
-Function:
-
 .. code-block:: go
 
-    func(a interface{}) string
+    func GetString(a interface{}) string
+
+GetString returns string representation on an instance of a model.
 
 Parameter:
 
@@ -1260,13 +1248,11 @@ uadmin.GetStringer
 ------------------
 `Back To Top`_
 
-GetStringer fetches the first record from the database matching query and args and get only fields tagged with `stringer` tag. If no field has `stringer` tag, then it gets all the fields.
-
-Function:
-
 .. code-block:: go
 
-    func(a interface{}, query interface{}, args ...interface{}) (err error)
+    func GetStringer(a interface{}, query interface{}, args ...interface{}) (err error)
+
+GetStringer fetches the first record from the database matching query and args and get only fields tagged with `stringer` tag. If no field has `stringer` tag, then it gets all the fields.
 
 Parameters:
 
@@ -1333,13 +1319,11 @@ uadmin.Preload
 --------------
 `Back To Top`_
 
-Preload fills the data from foreign keys into structs. You can pass in preload a list of fields to be preloaded. If nothing is passed, every foreign key is preloaded.
-
-Function:
-
 .. code-block:: go
 
-    func(a interface{}, preload ...string) (err error)
+    func Preload(a interface{}, preload ...string) (err error)
+
+Preload fills the data from foreign keys into structs. You can pass in preload a list of fields to be preloaded. If nothing is passed, every foreign key is preloaded.
 
 Parameters:
 
@@ -1429,13 +1413,11 @@ uadmin.RenderHTML
 -----------------
 `Back To Top`_
 
-RenderHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 ...etc.
-
-Function:
-
 .. code-block:: go
 
-    func(w http.ResponseWriter, r *http.Request, path string, data interface{}, funcs ...interface{})
+    func RenderHTML(w http.ResponseWriter, r *http.Request, path string, data interface{}, funcs ...interface{})
+
+RenderHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 ...etc.
 
 Used in the tutorial:
 
@@ -1592,10 +1574,8 @@ uadmin.RenderMultiHTML
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records
 
-RenderMultiHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 ...etc.
-
-Function:
-
 .. code-block:: go
 
-    func(w http.ResponseWriter, r *http.Request, path []string, data interface{}, funcs ...interface{})
+    func RenderMultiHTML(w http.ResponseWriter, r *http.Request, path []string, data interface{}, funcs ...interface{})
+
+RenderMultiHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 ...etc.

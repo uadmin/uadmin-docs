@@ -1,20 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>User Functions &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Functions &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,8 +41,9 @@
         <li class="right" >
           <a href="field_type.html" title="uadmin.FieldType"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">User Functions</a></li> 
       </ul>
     </div>  
 
@@ -55,42 +57,77 @@
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
 <p>In this section, we will cover the following functions in-depth listed below:</p>
 <ul class="simple">
+<li><p><a class="reference internal" href="#uadmin-cachepermissions">uadmin.CachePermissions</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-cachesessions">uadmin.CacheSessions</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-cookietimeout">uadmin.CookieTimeout</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getuserfromrequest">uadmin.GetUserFromRequest</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-isauthenticated">uadmin.IsAuthenticated</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-login">uadmin.Login</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-login2fa">uadmin.Login2FA</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-logout">uadmin.Logout</a></p></li>
-<li><p><a class="reference internal" href="#uadmin-session">uadmin.Session</a></p></li>
-<li><p><a class="reference internal" href="#uadmin-user">uadmin.User</a></p></li>
-<li><p><a class="reference internal" href="#uadmin-usergroup">uadmin.UserGroup</a></p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#uadmin-session">uadmin.Session</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#func-session-generatekey">func (*Session) GenerateKey</a></p></li>
+<li><p><a class="reference internal" href="#func-session-hideindashboard">func (Session) HideInDashboard</a></p></li>
+<li><p><a class="reference internal" href="#func-session-logout">func (*Session) Logout</a></p></li>
+<li><p><a class="reference internal" href="#func-session-save">func (*Session) Save</a></p></li>
+<li><p><a class="reference internal" href="#func-session-string">func (Session) String</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><a class="reference internal" href="#uadmin-setsessioncookie">uadmin.SetSessionCookie</a></p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#uadmin-user">uadmin.User</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#func-user-getaccess">func (*User) GetAccess</a></p></li>
+<li><p><a class="reference internal" href="#func-user-getactivesession">func (*User) GetActiveSession</a></p></li>
+<li><p><a class="reference internal" href="#func-user-getdashboardmenu">func (*User) GetDashboardMenu</a></p></li>
+<li><p><a class="reference internal" href="#func-user-getotp">func (*User) GetOTP</a></p></li>
+<li><p><a class="reference internal" href="#func-user-hasaccess">func (*User) HasAccess</a></p></li>
+<li><p><a class="reference internal" href="#func-user-login">func (*User) Login</a></p></li>
+<li><p><a class="reference internal" href="#func-user-save">func (*User) Save</a></p></li>
+<li><p><a class="reference internal" href="#func-user-string">func (User) String</a></p></li>
+<li><p><a class="reference internal" href="#func-user-validate">func (User) Validate</a></p></li>
+<li><p><a class="reference internal" href="#func-user-verifyotp">func (*User) VerifyOTP</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#uadmin-usergroup">uadmin.UserGroup</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#func-usergroup-hasaccess">func (*UserGroup) HasAccess</a></p></li>
+<li><p><a class="reference internal" href="#func-usergroup-string">func (UserGroup) String</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 <div class="section" id="uadmin-cachepermissions">
 <h2>uadmin.CachePermissions<a class="headerlink" href="#uadmin-cachepermissions" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
-<p>CachePermissions allows uAdmin to store permissions data in memory.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">CachePermissions</span> <span class="p">=</span> <span class="kc">true</span>
 </pre></div>
 </div>
+<p>CachePermissions allows uAdmin to store permissions data in memory.</p>
 </div>
 <div class="section" id="uadmin-cachesessions">
 <h2>uadmin.CacheSessions<a class="headerlink" href="#uadmin-cachesessions" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
-<p>CacheSessions allows uAdmin to store sessions data in memory.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
+<span class="kd">var</span> <span class="nx">CacheSessions</span> <span class="p">=</span> <span class="kc">true</span>
 </pre></div>
 </div>
+<p>CacheSessions allows uAdmin to store sessions data in memory.</p>
 </div>
 <div class="section" id="uadmin-cookietimeout">
 <h2>uadmin.CookieTimeout<a class="headerlink" href="#uadmin-cookietimeout" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
-<p>CookieTimeout is the timeout of a login cookie in seconds.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
+<span class="kd">var</span> <span class="nx">CookieTimeout</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span>
 </pre></div>
 </div>
+<p>CookieTimeout is the timeout of a login cookie in seconds. If the value is -1, then the session cookie will not have an expiry date.</p>
 <p>Let’s apply this function in the main.go.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Some codes</span>
@@ -113,11 +150,10 @@
 <div class="section" id="uadmin-getuserfromrequest">
 <h2>uadmin.GetUserFromRequest<a class="headerlink" href="#uadmin-getuserfromrequest" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
-<p>GetUserFromRequest returns a user from a request.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetUserFromRequest</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="o">*</span><span class="nx">User</span>
 </pre></div>
 </div>
+<p>GetUserFromRequest returns a user from a request.</p>
 <p>Parameter:</p>
 <blockquote>
 <div><p><strong>r *http.Request:</strong> Is a data structure that represents the client HTTP request</p>
@@ -208,11 +244,10 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 <div class="section" id="uadmin-isauthenticated">
 <h2>uadmin.IsAuthenticated<a class="headerlink" href="#uadmin-isauthenticated" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
-<p>IsAuthenticated returns the session of the user.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">IsAuthenticated</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="o">*</span><span class="nx">Session</span>
 </pre></div>
 </div>
+<p>IsAuthenticated returns if the http.Request is authenticated or not.</p>
 <p>Parameter:</p>
 <blockquote>
 <div><p><strong>r *http.Request:</strong> Is a data structure that represents the client HTTP request</p>
@@ -301,11 +336,10 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 <div class="section" id="uadmin-login">
 <h2>uadmin.Login<a class="headerlink" href="#uadmin-login" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
-<p>Login returns the pointer of User and a bool for Is OTP Required.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">username</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">password</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Login</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">username</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">password</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">Session</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Login return *User and a bool for Is OTP Required.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>r *http.Request:</strong> Is a data structure that represents the client HTTP request</p>
@@ -362,11 +396,10 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 <div class="section" id="uadmin-login2fa">
 <h2>uadmin.Login2FA<a class="headerlink" href="#uadmin-login2fa" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
-<p>Login2FA returns the pointer of User with a two-factor authentication.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">username</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">password</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">otpPass</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Login2FA</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">username</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">password</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">otpPass</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">Session</span>
 </pre></div>
 </div>
+<p>Login2FA returns the pointer of User with a two-factor authentication.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>r *http.Request:</strong> Is a data structure that represents the client HTTP request</p>
@@ -443,11 +476,10 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 <div class="section" id="uadmin-logout">
 <h2>uadmin.Logout<a class="headerlink" href="#uadmin-logout" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
-<p>Logout deactivates the session.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Logout</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Logout logs out a user.</p>
 <p>Parameter:</p>
 <blockquote>
 <div><p><strong>r *http.Request:</strong> Is a data structure that represents the client HTTP request</p>
@@ -504,13 +536,11 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 <div class="section" id="uadmin-session">
 <h2>uadmin.Session<a class="headerlink" href="#uadmin-session" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
-<p>Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. <a class="footnote-reference brackets" href="#f1" id="id4">1</a></p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Session</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
     <span class="nx">Key</span>        <span class="kt">string</span>
-    <span class="nx">User</span>       <span class="nx">User</span> <span class="s">`gorm:&quot;ForeignKey:UserID&quot; uadmin:&quot;filter&quot;`</span>
-    <span class="nx">UserID</span>     <span class="kt">uint</span> <span class="s">`fk:&quot;true&quot; displayName:&quot;User&quot;`</span>
+    <span class="nx">User</span>       <span class="nx">User</span> <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">UserID</span>     <span class="kt">uint</span>
     <span class="nx">LoginTime</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
     <span class="nx">LastLogin</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
     <span class="nx">Active</span>     <span class="kt">bool</span>   <span class="s">`uadmin:&quot;filter&quot;`</span>
@@ -520,14 +550,46 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>There are 5 functions that you can use in Session:</p>
-<ul class="simple">
-<li><p><strong>GenerateKey()</strong> - Automatically generates a random string of characters for you</p></li>
-<li><p><strong>HideInDashboard()</strong> - Return true and auto hide this from dashboard</p></li>
-<li><p><strong>Logout()</strong> - Deactivates a session</p></li>
-<li><p><strong>Save()</strong> - Saves the object in the database</p></li>
-<li><p><strong>String()</strong> - Returns the value of the Key</p></li>
-</ul>
+<p>Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. <a class="footnote-reference brackets" href="#f1" id="id4">1</a></p>
+<div class="section" id="func-session-generatekey">
+<h3><strong>func (*Session) GenerateKey</strong><a class="headerlink" href="#func-session-generatekey" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span> <span class="nx">GenerateKey</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>GenerateKey automatically generates a random string of characters for you.</p>
+</div>
+<div class="section" id="func-session-hideindashboard">
+<h3><strong>func (Session) HideInDashboard</strong><a class="headerlink" href="#func-session-hideindashboard" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">Session</span><span class="p">)</span> <span class="nx">HideInDashboard</span><span class="p">()</span> <span class="kt">bool</span>
+</pre></div>
+</div>
+<p>HideInDashboard to return false and auto hide this from dashboard</p>
+</div>
+<div class="section" id="func-session-logout">
+<h3><strong>func (*Session) Logout</strong><a class="headerlink" href="#func-session-logout" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span> <span class="nx">Logout</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Logout deactivates a session.</p>
+</div>
+<div class="section" id="func-session-save">
+<h3><strong>func (*Session) Save</strong><a class="headerlink" href="#func-session-save" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Save saves the object in the database.</p>
+</div>
+<div class="section" id="func-session-string">
+<h3><strong>func (Session) String</strong><a class="headerlink" href="#func-session-string" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">Session</span><span class="p">)</span> <span class="nx">String</span><span class="p">()</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>String returns the value of the Key.</p>
 <p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
 <p>One-by-one initialization:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
@@ -655,18 +717,25 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/session.html">Session</a></p></li>
 </ul>
 </div>
+</div>
+<div class="section" id="uadmin-setsessioncookie">
+<h2>uadmin.SetSessionCookie<a class="headerlink" href="#uadmin-setsessioncookie" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">SetSessionCookie</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">s</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>SetSessionCookie sets the session cookie value, The value passed in session is nil, then the session assiged will be a no user session.</p>
+</div>
 <div class="section" id="uadmin-user">
 <h2>uadmin.User<a class="headerlink" href="#uadmin-user" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
-<p>User is a system in uAdmin that is used to add, modify and delete the elements of the user.</p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
-    <span class="nx">Username</span>     <span class="kt">string</span>    <span class="s">`uadmin:&quot;required;filter&quot;`</span>
-    <span class="nx">FirstName</span>    <span class="kt">string</span>    <span class="s">`uadmin:&quot;filter&quot;`</span>
-    <span class="nx">LastName</span>     <span class="kt">string</span>    <span class="s">`uadmin:&quot;filter&quot;`</span>
+    <span class="nx">Username</span>     <span class="kt">string</span>    <span class="s">`uadmin:&quot;required;filter;search&quot;`</span>
+    <span class="nx">FirstName</span>    <span class="kt">string</span>    <span class="s">`uadmin:&quot;filter;search&quot;`</span>
+    <span class="nx">LastName</span>     <span class="kt">string</span>    <span class="s">`uadmin:&quot;filter;search&quot;`</span>
     <span class="nx">Password</span>     <span class="kt">string</span>    <span class="s">`uadmin:&quot;required;password;help:To reset password, clear the field and type a new password.;list_exclude&quot;`</span>
-    <span class="nx">Email</span>        <span class="kt">string</span>    <span class="s">`uadmin:&quot;email&quot;`</span>
+    <span class="nx">Email</span>        <span class="kt">string</span>    <span class="s">`uadmin:&quot;email;search&quot;`</span>
     <span class="nx">Active</span>       <span class="kt">bool</span>      <span class="s">`uadmin:&quot;filter&quot;`</span>
     <span class="nx">Admin</span>        <span class="kt">bool</span>      <span class="s">`uadmin:&quot;filter&quot;`</span>
     <span class="nx">RemoteAccess</span> <span class="kt">bool</span>      <span class="s">`uadmin:&quot;filter&quot;`</span>
@@ -680,6 +749,7 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>User is a system in uAdmin that is used to add, modify and delete the elements of the user.</p>
 <p>Here are the following fields and their definitions:</p>
 <ul class="simple">
 <li><p><strong>Username</strong> - The username that you can use in login process and CreatedBy which is a reserved word in uAdmin</p></li>
@@ -698,30 +768,85 @@ GetDashboardMenu<span class="o">()</span> is <span class="o">[</span>Dashboard M
 <li><p><strong>OTPRequired</strong> - Checks whether the OTP is Active</p></li>
 <li><p><strong>OTPSeed</strong> - Private field for OTP</p></li>
 </ul>
-<p>There are 10 functions that you can use in User:</p>
-<ul class="simple">
-<li><p><strong>GetAccess</strong> - Returns the user’s permission to a dashboard menu based on their admin status, group and user permissions</p></li>
-<li><p><strong>GetActiveSession()</strong> - Returns an active session key</p></li>
-<li><p><strong>GetDashboardMenu()</strong> - Returns the list of models in the dashboard menu</p></li>
-<li><p><strong>GetOTP()</strong> - Returns a string of OTP code</p></li>
-<li><p><strong>HasAccess</strong> - Searches for the url in the modelName. Uses this format as shown below:</p></li>
-</ul>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">UserPermission</span>
+<div class="section" id="func-user-getaccess">
+<h3><strong>func (*User) GetAccess</strong><a class="headerlink" href="#func-user-getaccess" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="o">*</span><span class="nx">User</span><span class="p">)</span> <span class="nx">GetAccess</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">UserPermission</span>
 </pre></div>
 </div>
-<p><strong>Login</strong> - Returns the pointer of User and a bool for Is OTP Required. It uses this format as shown below:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">pass</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">otp</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span>
+<p>GetAccess returns the user’s permission to a dashboard menu based on their admin status, group and user permissions.</p>
+</div>
+<div class="section" id="func-user-getactivesession">
+<h3><strong>func (*User) GetActiveSession</strong><a class="headerlink" href="#func-user-getactivesession" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="o">*</span><span class="nx">User</span><span class="p">)</span> <span class="nx">GetActiveSession</span><span class="p">()</span> <span class="o">*</span><span class="nx">Session</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><strong>Save()</strong> - Saves the object in the database</p></li>
-<li><p><strong>String()</strong> - Returns the first name and the last name</p></li>
-<li><p><strong>Validate()</strong> - Validate user when saving from uadmin. It returns (ret map[string]string).</p></li>
-<li><p><strong>VerifyOTP</strong> - Verifies the OTP of the user. It uses this format as shown below:</p></li>
-</ul>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">pass</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span>
+<p>GetActiveSession returns an active session key.</p>
+</div>
+<div class="section" id="func-user-getdashboardmenu">
+<h3><strong>func (*User) GetDashboardMenu</strong><a class="headerlink" href="#func-user-getdashboardmenu" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="o">*</span><span class="nx">User</span><span class="p">)</span> <span class="nx">GetDashboardMenu</span><span class="p">()</span> <span class="p">(</span><span class="nx">menus</span> <span class="p">[]</span><span class="nx">DashboardMenu</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>GetDashboardMenu returns the list of models in the dashboard menu.</p>
+</div>
+<div class="section" id="func-user-getotp">
+<h3><strong>func (*User) GetOTP</strong><a class="headerlink" href="#func-user-getotp" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="o">*</span><span class="nx">User</span><span class="p">)</span> <span class="nx">GetOTP</span><span class="p">()</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>GetOTP returns a string of OTP code.</p>
+</div>
+<div class="section" id="func-user-hasaccess">
+<h3><strong>func (*User) HasAccess</strong><a class="headerlink" href="#func-user-hasaccess" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="o">*</span><span class="nx">User</span><span class="p">)</span> <span class="nx">HasAccess</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">UserPermission</span>
+</pre></div>
+</div>
+<p>HasAccess returns the user level permission to a model. The modelName the the URL of the model.</p>
+</div>
+<div class="section" id="func-user-login">
+<h3><strong>func (*User) Login</strong><a class="headerlink" href="#func-user-login" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="o">*</span><span class="nx">User</span><span class="p">)</span> <span class="nx">Login</span><span class="p">(</span><span class="nx">pass</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">otp</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">Session</span>
+</pre></div>
+</div>
+<p>Login logs in user using password and otp. If there is no OTP, just pass an empty string.</p>
+</div>
+<div class="section" id="func-user-save">
+<h3><strong>func (*User) Save</strong><a class="headerlink" href="#func-user-save" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="o">*</span><span class="nx">User</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Save saves the object in the database.</p>
+</div>
+<div class="section" id="func-user-string">
+<h3><strong>func (User) String</strong><a class="headerlink" href="#func-user-string" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="nx">User</span><span class="p">)</span> <span class="nx">String</span><span class="p">()</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>String returns the first name and the last name.</p>
+</div>
+<div class="section" id="func-user-validate">
+<h3><strong>func (User) Validate</strong><a class="headerlink" href="#func-user-validate" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="nx">User</span><span class="p">)</span> <span class="nx">Validate</span><span class="p">()</span> <span class="p">(</span><span class="nx">ret</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Validate user when saving from uadmin</p>
+</div>
+<div class="section" id="func-user-verifyotp">
+<h3><strong>func (*User) VerifyOTP</strong><a class="headerlink" href="#func-user-verifyotp" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="o">*</span><span class="nx">User</span><span class="p">)</span> <span class="nx">VerifyOTP</span><span class="p">(</span><span class="nx">pass</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span>
+</pre></div>
+</div>
+<p>VerifyOTP verifies the OTP of the user.</p>
 <p>Used in the tutorial:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part14.html">Document System Tutorial Part 14 - Permissions Form</a></p></li>
@@ -902,23 +1027,32 @@ VerifyOTP is <span class="nb">true</span>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/user-and-user-permission.html">User and User Permission</a></p></li>
 </ul>
 </div>
+</div>
 <div class="section" id="uadmin-usergroup">
 <h2>uadmin.UserGroup<a class="headerlink" href="#uadmin-usergroup" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back To Top</a></p>
-<p>UserGroup is a system in uAdmin used to add, modify, and delete the group name.</p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">UserGroup</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
     <span class="nx">GroupName</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;filter&quot;`</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>There are 2 functions that you can use in UserGroup:</p>
-<p><strong>HasAccess()</strong> - Returns the Group Permission ID. It uses this format as shown below:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GroupPermission</span>
+<p>UserGroup is a system in uAdmin used to add, modify, and delete the group name.</p>
+<div class="section" id="func-usergroup-hasaccess">
+<h3><strong>func (*UserGroup) HasAccess</strong><a class="headerlink" href="#func-usergroup-hasaccess" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="o">*</span><span class="nx">UserGroup</span><span class="p">)</span> <span class="nx">HasAccess</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">GroupPermission</span>
 </pre></div>
 </div>
-<p><strong>String()</strong> - Returns the GroupName</p>
+<p>HasAccess returns the Group Permission ID.</p>
+</div>
+<div class="section" id="func-usergroup-string">
+<h3><strong>func (UserGroup) String</strong><a class="headerlink" href="#func-usergroup-string" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#user-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">u</span> <span class="nx">UserGroup</span><span class="p">)</span> <span class="nx">String</span><span class="p">()</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>String returns the GroupName.</p>
 <p>There are 2 ways you can do for initialization process using this function: one-by-one and by group.</p>
 <p>One-by-one initialization:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
@@ -1018,6 +1152,7 @@ VerifyOTP is <span class="nb">true</span>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/group-permission-and-user-group.html">Group Permission and User Group</a></p></li>
 </ul>
 </div>
+</div>
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="footnote brackets">
@@ -1029,6 +1164,7 @@ VerifyOTP is <span class="nb">true</span>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -1073,7 +1209,7 @@ VerifyOTP is <span class="nb">true</span>
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -1090,13 +1226,14 @@ VerifyOTP is <span class="nb">true</span>
         <li class="right" >
           <a href="field_type.html" title="uadmin.FieldType"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">User Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

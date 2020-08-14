@@ -22,13 +22,11 @@ uadmin.Action
 -------------
 `Back To Top`_
 
-Action is the process of doing something where you can check the status of your activities in the uAdmin project.
-
-Type:
-
 .. code-block:: go
 
-    int
+    type Action int
+
+Action is the process of doing something where you can check the status of your activities in the uAdmin project.
 
 There are 12 types of actions:
 
@@ -112,13 +110,12 @@ uadmin.HTTPLogFormat
 --------------------
 `Back To Top`_
 
-HTTPLogFormat is the format used to log HTTP access.
-
-Type:
-
 .. code-block:: go
 
-    string
+    // Type: string
+    var HTTPLogFormat = "%a %>s %B %U %D"
+
+HTTPLogFormat is the format used to log HTTP access.
 
 Format:
 
@@ -143,10 +140,6 @@ uadmin.Log
 ----------
 `Back To Top`_
 
-Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities.
-
-Structure:
-
 .. code-block:: go
 
     type Log struct {
@@ -159,6 +152,8 @@ Structure:
         RollBack  string    `uadmin:"link;"`
         CreatedAt time.Time `uadmin:"filter;read_only"`
     }
+
+Log is a system in uAdmin that is used to add, modify, and delete the status of the user activities.
 
 There are 12 types of actions:
 
@@ -255,13 +250,12 @@ uadmin.LogAdd
 -------------
 `Back To Top`_
 
-LogAdd adds a log when a record is added.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var LogAdd = true
+
+LogAdd adds a log when a record is added.
 
 To assign a value within an application, visit `Log Add`_ page for an example.
 
@@ -374,13 +368,12 @@ uadmin.LogDelete
 ----------------
 `Back To Top`_
 
-LogAdd adds a log when a record is deleted.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var LogDelete = true
+
+LogDelete adds a log when a record is deleted.
 
 To assign a value within an application, visit `Log Delete`_ page for an example.
 
@@ -487,13 +480,12 @@ uadmin.LogEdit
 --------------
 `Back To Top`_
 
-LogAdd adds a log when a record is edited.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var LogEdit = true
+
+LogEdit adds a log when a record is edited.
 
 To assign a value within an application, visit `Log Edit`_ page for an example.
 
@@ -618,25 +610,23 @@ uadmin.LogHTTPRequests
 ----------------------
 `Back To Top`_
 
-LogHTTPRequests logs http requests to syslog.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var LogHTTPRequests = true
+
+LogHTTPRequests logs http requests to syslog.
 
 uadmin.LogRead
 --------------
 `Back To Top`_
 
-LogRead adds a log when a record is read.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var LogRead = false
+
+LogRead adds a log when a record is read.
 
 To assign a value within an application, visit `Log Read`_ page for an example.
 
@@ -747,19 +737,16 @@ uadmin.LogTrail
 ---------------
 `Back To Top`_
 
-LogTrail stores Trail logs to syslog.
-
-Type:
-
 .. code-block:: go
 
-    bool
+    // Type: bool
+    var LogTrail = false
+
+LogTrail stores Trail logs to syslog.
 
 uadmin.Syslogf
 --------------
 `Back To Top`_
-
-Function:
 
 .. code-block:: go
 
@@ -769,16 +756,17 @@ Function:
     // For Windows
     func(level int, msg string, a ...interface{}) error
 
+Syslogf records a log in the system in syslog. For Windows it created a file and records the logs there.
+
 uadmin.TrailLoggingLevel
 ------------------------
 `Back To Top`_
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions
 
-TrailLoggingLevel is the minimum level to be logged into syslog.
-
-Type:
-
 .. code-block:: go
 
-    int
+    // Type: int
+    var TrailLoggingLevel = INFO
+
+TrailLoggingLevel is the minimum level to be logged into syslog.

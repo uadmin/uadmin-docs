@@ -1,20 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>uAdmin Settings &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>uAdmin Settings &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,8 +41,9 @@
         <li class="right" >
           <a href="../system_reference.html" title="System Reference"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../system_reference.html" accesskey="U">System Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../system_reference.html" accesskey="U">System Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">uAdmin Settings</a></li> 
       </ul>
     </div>  
 
@@ -55,6 +57,7 @@
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html#setting">Back to Settings in System Reference</a></p>
 <p>Here are all build-in uAdmin Settings, their format, and how to use them in the project.</p>
 <ul class="simple">
+<li><p><a class="reference internal" href="#allowed-hosts">Allowed Hosts</a></p></li>
 <li><p><a class="reference internal" href="#allowed-ips">Allowed IPs</a></p></li>
 <li><p><a class="reference internal" href="#api-disabled-add">API Disabled Add</a></p></li>
 <li><p><a class="reference internal" href="#api-disabled-delete">API Disabled Delete</a></p></li>
@@ -66,21 +69,6 @@
 <li><p><a class="reference internal" href="#api-log-edit">API Log Edit</a></p></li>
 <li><p><a class="reference internal" href="#api-log-read">API Log Read</a></p></li>
 <li><p><a class="reference internal" href="#api-log-schema">API Log Schema</a></p></li>
-<li><p><a class="reference internal" href="#api-post-query-add">API Post Query Add</a></p></li>
-<li><p><a class="reference internal" href="#api-post-query-delete">API Post Query Delete</a></p></li>
-<li><p><a class="reference internal" href="#api-post-query-edit">API Post Query Edit</a></p></li>
-<li><p><a class="reference internal" href="#api-post-query-read">API Post Query Read</a></p></li>
-<li><p><a class="reference internal" href="#api-post-query-schema">API Post Query Schema</a></p></li>
-<li><p><a class="reference internal" href="#api-pre-query-add">API Pre Query Add</a></p></li>
-<li><p><a class="reference internal" href="#api-pre-query-delete">API Pre Query Delete</a></p></li>
-<li><p><a class="reference internal" href="#api-pre-query-edit">API Pre Query Edit</a></p></li>
-<li><p><a class="reference internal" href="#api-pre-query-read">API Pre Query Read</a></p></li>
-<li><p><a class="reference internal" href="#api-pre-query-schema">API Pre Query Schema</a></p></li>
-<li><p><a class="reference internal" href="#api-public-add">API Public Add</a></p></li>
-<li><p><a class="reference internal" href="#api-public-delete">API Public Delete</a></p></li>
-<li><p><a class="reference internal" href="#api-public-edit">API Public Edit</a></p></li>
-<li><p><a class="reference internal" href="#api-public-read">API Public Read</a></p></li>
-<li><p><a class="reference internal" href="#api-public-schema">API Public Schema</a></p></li>
 <li><p><a class="reference internal" href="#blocked-ips">Blocked IPs</a></p></li>
 <li><p><a class="reference internal" href="#cache-permissions">Cache Permissions</a></p></li>
 <li><p><a class="reference internal" href="#cache-sessions">Cache Sessions</a></p></li>
@@ -107,6 +95,8 @@
 <li><p><a class="reference internal" href="#otp-period">OTP Period</a></p></li>
 <li><p><a class="reference internal" href="#otp-skew">OTP Skew</a></p></li>
 <li><p><a class="reference internal" href="#page-length">Page Length</a></p></li>
+<li><p><a class="reference internal" href="#password-attempts">Password Attempts</a></p></li>
+<li><p><a class="reference internal" href="#password-timeout">Password Timeout</a></p></li>
 <li><p><a class="reference internal" href="#port">Port</a></p></li>
 <li><p><a class="reference internal" href="#public-media">Public Media</a></p></li>
 <li><p><a class="reference internal" href="#rate-limit">Rate Limit</a></p></li>
@@ -122,6 +112,16 @@
 <li><p><a class="reference internal" href="#trail-logging-level">Trail Logging Level</a></p></li>
 <li><p><a class="reference internal" href="#user-metrics">User Metrics</a></p></li>
 </ul>
+<div class="section" id="allowed-hosts">
+<h2>Allowed Hosts<a class="headerlink" href="#allowed-hosts" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Allowed Hosts is a comma separated list of allowed hosts for the server to work. The default value if only for development and production domain should be added before deployment.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 0.0.0.0,127.0.0.1,localhost,::1</p></li>
+<li><p><strong>Data Type</strong>: String</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-allowedhosts">uAdmin.AllowedHosts</a></p></li>
+</ul>
+</div>
 <div class="section" id="allowed-ips">
 <h2>Allowed IPs<a class="headerlink" href="#allowed-ips" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
@@ -137,7 +137,7 @@
 <ul class="simple">
 <li><p><strong>Default Value</strong>: *</p></li>
 <li><p><strong>Data Type</strong>: String</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-allowedips">uAdmin.AllowedIPs</a></p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-allowedips">uAdmin.AllowedIPs</a></p></li>
 </ul>
 <p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
 <img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
@@ -631,156 +631,6 @@ http://api.example.com/api/d/item/schema/
 </div>
 <p>As expected, the user’s action in getting the schema of the Item model through HTTP API was not recorded in the Log model.</p>
 </div>
-<div class="section" id="api-post-query-add">
-<h2>API Post Query Add<a class="headerlink" href="#api-post-query-add" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Post Query Add controls the data API’s post query for add commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryadd">uAdmin.APIPostQueryAdd</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-post-query-delete">
-<h2>API Post Query Delete<a class="headerlink" href="#api-post-query-delete" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Post Query Delete controls the data API’s post query for delete commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostquerydelete">uAdmin.APIPostQueryDelete</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-post-query-edit">
-<h2>API Post Query Edit<a class="headerlink" href="#api-post-query-edit" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Post Query Edit controls the data API’s post query for edit commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryedit">uAdmin.APIPostQueryEdit</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-post-query-read">
-<h2>API Post Query Read<a class="headerlink" href="#api-post-query-read" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Post Query Read controls the data API’s post query for read commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryread">uAdmin.APIPostQueryRead</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-post-query-schema">
-<h2>API Post Query Schema<a class="headerlink" href="#api-post-query-schema" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Post Query Schema controls the data API’s post query for schema commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#uadmin-apipostqueryschema">uAdmin.APIPostQuerySchema</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-pre-query-add">
-<h2>API Pre Query Add<a class="headerlink" href="#api-pre-query-add" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Pre Query Add controls the data API’s pre query for add commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryadd">uAdmin.APIPreQueryAdd</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-pre-query-delete">
-<h2>API Pre Query Delete<a class="headerlink" href="#api-pre-query-delete" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Pre Query Delete controls the data API’s pre query for delete commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequerydelete">uAdmin.APIPreQueryDelete</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-pre-query-edit">
-<h2>API Pre Query Edit<a class="headerlink" href="#api-pre-query-edit" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Pre Query Edit controls the data API’s pre query for edit commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryedit">uAdmin.APIPreQueryEdit</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-pre-query-read">
-<h2>API Pre Query Read<a class="headerlink" href="#api-pre-query-read" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Pre Query Read controls the data API’s pre query for read commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryread">uAdmin.APIPreQueryRead</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-pre-query-schema">
-<h2>API Pre Query Schema<a class="headerlink" href="#api-pre-query-schema" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Pre Query Schema controls the data API’s pre query for schema commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#uadmin-apiprequeryschema">uAdmin.APIPreQuerySchema</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-public-add">
-<h2>API Public Add<a class="headerlink" href="#api-public-add" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Public Add controls the data API’s public for add commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicadd">uAdmin.APIPublicAdd</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-public-delete">
-<h2>API Public Delete<a class="headerlink" href="#api-public-delete" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Public Delete controls the data API’s public for delete commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicdelete">uAdmin.APIPublicDelete</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-public-edit">
-<h2>API Public Edit<a class="headerlink" href="#api-public-edit" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Public Edit controls the data API’s public for edit commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicedit">uAdmin.APIPublicEdit</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-public-read">
-<h2>API Public Read<a class="headerlink" href="#api-public-read" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Public Read controls the data API’s public for read commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicread">uAdmin.APIPublicRead</a></p></li>
-</ul>
-</div>
-<div class="section" id="api-public-schema">
-<h2>API Public Schema<a class="headerlink" href="#api-public-schema" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
-<p>API Public Schema controls the data API’s public for schema commands.</p>
-<ul class="simple">
-<li><p><strong>Default Value</strong>: 0</p></li>
-<li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#uadmin-apipublicschema">uAdmin.APIPublicSchema</a></p></li>
-</ul>
-</div>
 <div class="section" id="blocked-ips">
 <h2>Blocked IPs<a class="headerlink" href="#blocked-ips" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
@@ -796,7 +646,7 @@ http://api.example.com/api/d/item/schema/
 <ul class="simple">
 <li><p><strong>Default Value</strong>: “”</p></li>
 <li><p><strong>Data Type</strong>: String</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-blockedips">uAdmin.BlockedIPs</a></p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-blockedips">uAdmin.BlockedIPs</a></p></li>
 </ul>
 <p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
 <img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
@@ -1594,6 +1444,26 @@ http://api.example.com/api/d/item/schema/
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
 </ul>
 </div>
+<div class="section" id="password-attempts">
+<h2>Password Attempts<a class="headerlink" href="#password-attempts" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Password Attempts is the maximum number of invalid password attempts before the IP address is blocked for some time from using the system.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 5</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-passwordattempts">uAdmin.PasswordAttempts</a></p></li>
+</ul>
+</div>
+<div class="section" id="password-timeout">
+<h2>Password Timeout<a class="headerlink" href="#password-timeout" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
+<p>Password Attempts is the maximum number of invalid password attempts before the IP address is blocked for some time from using the system.</p>
+<ul class="simple">
+<li><p><strong>Default Value</strong>: 5</p></li>
+<li><p><strong>Data Type</strong>: Integer</p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-passwordtimeout">uAdmin.PasswordTimeout</a></p></li>
+</ul>
+</div>
 <div class="section" id="port">
 <h2>Port<a class="headerlink" href="#port" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#uadmin-settings">Back To Top</a></p>
@@ -1601,7 +1471,7 @@ http://api.example.com/api/d/item/schema/
 <ul class="simple">
 <li><p><strong>Default Value</strong>: 8080</p></li>
 <li><p><strong>Data Type</strong>: Integer</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-port">uAdmin.Port</a></p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-port">uAdmin.Port</a></p></li>
 </ul>
 <p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
 <img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
@@ -1676,7 +1546,7 @@ http://api.example.com/api/d/item/schema/
 <ul class="simple">
 <li><p><strong>Default Value</strong>: 3</p></li>
 <li><p><strong>Data Type</strong>: Integer</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-ratelimit">uAdmin.RateLimit</a></p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-ratelimit">uAdmin.RateLimit</a></p></li>
 </ul>
 <p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
 <img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
@@ -1725,7 +1595,7 @@ http://api.example.com/api/d/item/schema/
 <ul class="simple">
 <li><p><strong>Default Value</strong>: 3</p></li>
 <li><p><strong>Data Type</strong>: Integer</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-ratelimitburst">uAdmin.RateLimitBurst</a></p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-ratelimitburst">uAdmin.RateLimitBurst</a></p></li>
 </ul>
 <p>Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.</p>
 <img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
@@ -1861,7 +1731,7 @@ http://api.example.com/api/d/item/schema/
 <ul class="simple">
 <li><p><strong>Default Value</strong>: 0</p></li>
 <li><p><strong>Data Type</strong>: Boolean</p></li>
-<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ip_functions.html#uadmin-restrictsessionip">uAdmin.RestrictSessionIP</a></p></li>
+<li><p><strong>Code</strong>: <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-restrictsessionip">uAdmin.RestrictSessionIP</a></p></li>
 </ul>
 <p>Enable</p>
 <img alt="../_images/restrictsessionipsettingenabled.png" src="../_images/restrictsessionipsettingenabled.png" />
@@ -2115,6 +1985,7 @@ http://api.example.com/api/d/item/schema/
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -2159,7 +2030,7 @@ http://api.example.com/api/d/item/schema/
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -2176,13 +2047,14 @@ http://api.example.com/api/d/item/schema/
         <li class="right" >
           <a href="../system_reference.html" title="System Reference"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../system_reference.html" >System Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../system_reference.html" >System Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">uAdmin Settings</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

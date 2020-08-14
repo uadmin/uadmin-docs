@@ -7,34 +7,42 @@ A/B Test Functions
 In this section, we will cover the following functions in-depth listed below:
 
 * `uadmin.ABTest`_
+    * `func (ABTest) Reset`_
+    * `func (*ABTest) Save`_
 * `uadmin.ABTestClick`_
 * `uadmin.ABTestType`_
+    * `func (ABTestType) Model`_
+    * `func (ABTestType) Static`_
 * `uadmin.ABTestValue`_
+    * `func (*ABTestValue) ClickThroughRate`_
+    * `func (ABTestValue) ClickThroughRate__Form__List`_
+    * `func (ABTestValue) HideInDashboard`_
+    * `func (ABTestValue) Preview__Form__List`_
+    * `func (*ABTestValue) String`_
 * `uadmin.FieldList`_
 * `uadmin.GetABTest`_
 * `uadmin.ModelList`_
 
-**uadmin.ABTest**
-^^^^^^^^^^^^^^^^^
+uadmin.ABTest
+-------------
 `Back To Top`_
-
-ABTest is a model that stores an A/B test.
-
-Structure:
 
 .. code-block:: go
 
     type ABTest struct {
         Model
-        Name       string   `uadmin:"required"`
-        Type       ABTestType `uadmin:"required"`
-        StaticPath string
-        ModelName  ModelList
-        Field      FieldList
-        PrimaryKey int
-        Active     bool
-        Group      string
+        Name        string     `uadmin:"required"`
+        Type        ABTestType `uadmin:"required"`
+        StaticPath  string
+        ModelName   ModelList
+        Field       FieldList
+        PrimaryKey  int
+        Active      bool
+        Group       string
+        ResetABTest string `uadmin:"link"`
     }
+
+ABTest is a model that stores an A/B test.
 
 Here are the following fields and their definitions:
 
@@ -46,6 +54,27 @@ Here are the following fields and their definitions:
 * **PrimaryKey** - Used to uniquely identify each row in the table
 * **Active** - Checks whether the A/B Test is Active
 * **Group** - The name of the group
+* **ResetABTest** - A button to reset an AB Test
+
+**func (ABTest) Reset**
+^^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top`_
+
+.. code-block:: go
+
+    func (a ABTest) Reset()
+
+Reset resets the impressions and clicks to 0 based on a specified AB Test ID.
+
+**func (\*ABTest) Save**
+^^^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top`_
+
+.. code-block:: go
+
+    func (a *ABTest) Save()
+
+Save saves the AB Test model to database.
 
 There are 2 ways you can do for initialization process using this function: one-by-one and by group.
 
@@ -121,13 +150,11 @@ uadmin.ABTestClick
 ------------------
 `Back To Top`_
 
-ABTestClick is a function to register a click for an ABTest group.
-
-Function:
-
 .. code-block:: go
 
-    func(r *http.Request, group string)
+    func ABTestClick(r *http.Request, group string)
+
+ABTestClick is a function to register a click for an ABTest group.
 
 Parameters:
 
@@ -147,18 +174,33 @@ uadmin.ABTestType
 -----------------
 `Back To Top`_
 
-ABTestType is a list of test types from a dropdown menu.
-
-Type:
-
 .. code-block:: go
 
-    int
+    type ABTestType int
+
+ABTestType is the type of the AB testing: model or static.
 
 ABTestType has 2 functions:
 
-* **Static()** - Test static files
-* **Model()** - Test registered models
+**func (ABTestType) Model**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top`_
+
+.. code-block:: go
+
+    func (ABTestType) Model() ABTestType
+
+Model is used to do AB testing for model values coming from database.
+
+**func (ABTestType) Static**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top`_
+
+.. code-block:: go
+
+    func (ABTestType) Static() ABTestType
+
+Static is used to do AB testing for static assets (images, js, css, ...).
 
 See `Part 3: A/B Test Function for Static`_ and `Part 2: A/B Test Function for Model`_ for examples.
 
@@ -166,21 +208,19 @@ uadmin.ABTestValue
 ------------------
 `Back To Top`_
 
-ABTest is a model that stores a value for an A/B test.
-
-Structure:
-
 .. code-block:: go
 
     type ABTestValue struct {
         Model
         ABTest      ABTest
         ABTestID    uint
-        Value       string
+        Value       string `uadmin:"list_exclude"`
         Active      bool
         Impressions int
         Clicks      int
     }
+
+ABTestValue is a model to represent a possible value of an AB test.
 
 Here are the following fields and their definitions:
 
@@ -191,12 +231,55 @@ Here are the following fields and their definitions:
 * **Impressions** - The number of visits
 * **Clicks** - The number of clicks
 
-There are 4 functions that you can use in ABTestValue:
+**func (\*ABTestValue) ClickThroughRate**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
 
-* **String()** - Returns the value
-* **ClickThroughRate()** - Returns the rate/percentage of the user clicks
-* **ClickThroughRate__Form__List()** - Displays the rate/percentage of the user clicks in the form and the list
-* **HideInDashboard()** - Return true and auto hide this from dashboard
+.. code-block:: go
+
+    func (a *ABTestValue) ClickThroughRate() float64
+
+ClickThroughRate returns the rate of click through of this value.
+
+**func (ABTestValue) ClickThroughRate__Form__List**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (a ABTestValue) ClickThroughRate__Form__List() string
+
+ClickThroughRate__Form__List shows the click through rate in form and list views.
+
+**func (ABTestValue) HideInDashboard**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (ABTestValue) HideInDashboard() bool
+
+HideInDashboard to hide it from dashboard.
+
+**func (ABTestValue) Preview__Form__List**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (a ABTestValue) Preview__Form__List() string
+
+Preview__Form__List shows a preview of the AB test's value.
+
+**func (\*ABTestValue) String**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (a ABTestValue) Preview__Form__List() string
+
+String returns a value.
 
 There are 2 ways you can do for initialization process using this function: one-by-one and by group.
 
@@ -242,13 +325,11 @@ uadmin.FieldList
 ----------------
 `Back To Top`_
 
-FieldList is a list of fields from schema for a registered model.
-
-Type:
-
 .. code-block:: go
 
-    int
+    type FieldList int
+
+FieldList is a list of fields from schema for a registered model.
 
 See `Part 3: A/B Test Function for Static`_ for the example.
 
@@ -256,13 +337,11 @@ uadmin.GetABTest
 ----------------
 `Back To Top`_
 
-GetABTest is a function that gets an active A/B tests for any field in AB Test model.
-
-Function:
-
 .. code-block:: go
 
-    func(r *http.Request, a interface{}, query interface{}, args ...interface{}) (err error)
+    func GetABTest(r *http.Request, a interface{}, query interface{}, args ...interface{}) (err error)
+
+GetABTest is like Get function but implements AB testing for the results.
 
 Parameters:
 
@@ -284,12 +363,10 @@ uadmin.ModelList
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#a-b-test-functions
 
-ModelList a list of registered models.
-
-Type:
-
 .. code-block:: go
 
-    int
+    type ModelList int
+
+ModelList is a list of registered models.
 
 See `Part 3: A/B Test Function for Static`_ for the example.

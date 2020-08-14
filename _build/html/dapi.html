@@ -1,20 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>dAPI Reference &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dAPI Reference &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script type="text/javascript" src="_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -40,7 +41,8 @@
         <li class="right" >
           <a href="api/user_functions.html" title="User Functions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">dAPI Reference</a></li> 
       </ul>
     </div>  
 
@@ -95,22 +97,24 @@
 </li>
 <li><dl class="simple">
 <dt><a class="reference internal" href="#special-parameters">Special Parameters</a></dt><dd><ul>
-<li><p><a class="reference internal" href="#or">$or</a></p></li>
-<li><p><a class="reference internal" href="#limit">$limit</a></p></li>
-<li><p><a class="reference internal" href="#order-ascending">$order (Ascending)</a></p></li>
-<li><p><a class="reference internal" href="#order-descending">$order (Descending)</a></p></li>
-<li><p><a class="reference internal" href="#order-list-of-fields">$order (List of Fields)</a></p></li>
-<li><p><a class="reference internal" href="#limit-offset-order">Limit, offset, order</a></p></li>
+<li><p><a class="reference internal" href="#allmodels">$allmodels</a></p></li>
+<li><p><a class="reference internal" href="#choices">$choices</a></p></li>
+<li><p><a class="reference internal" href="#distinct">$distinct</a></p></li>
+<li><p><a class="reference internal" href="#deleted">$deleted</a></p></li>
 <li><p><a class="reference internal" href="#f">$f</a></p></li>
 <li><p><a class="reference internal" href="#groupby">$groupby</a></p></li>
 <li><p><a class="reference internal" href="#join">$join</a></p></li>
-<li><p><a class="reference internal" href="#deleted">$deleted</a></p></li>
+<li><p><a class="reference internal" href="#limit">$limit</a></p></li>
+<li><p><a class="reference internal" href="#limit-offset-order">Limit, offset, order</a></p></li>
 <li><p><a class="reference internal" href="#m2m">$m2m</a></p></li>
-<li><p><a class="reference internal" href="#q">$q</a></p></li>
 <li><p><a class="reference internal" href="#next">$next</a></p></li>
+<li><p><a class="reference internal" href="#or">$or</a></p></li>
+<li><p><a class="reference internal" href="#order-ascending">$order (Ascending)</a></p></li>
+<li><p><a class="reference internal" href="#order-descending">$order (Descending)</a></p></li>
+<li><p><a class="reference internal" href="#order-list-of-fields">$order (List of Fields)</a></p></li>
 <li><p><a class="reference internal" href="#preload">$preload</a></p></li>
+<li><p><a class="reference internal" href="#q">$q</a></p></li>
 <li><p><a class="reference internal" href="#stat">$stat</a></p></li>
-<li><p><a class="reference internal" href="#allmodels">$allmodels</a></p></li>
 </ul>
 </dd>
 </dl>
@@ -1309,7 +1313,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIDisabledAdd controls the data API’s disabled for add commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to disable access to add method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1321,7 +1325,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIDisabledDelete controls the data API’s disabled for delete commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to disable access to delete method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1333,7 +1337,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIDisabledEdit controls the data API’s disabled for edit commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to disable access to edit method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1345,7 +1349,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIDisabledRead controls the data API’s disabled for read commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to disable access to read method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1357,7 +1361,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIDisabledSchema controls the data API’s disabled for schema commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to disable access to schema method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledSchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIDisabledSchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1369,7 +1373,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APILogAdd controls the data API’s logging for add commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to record add action in logs</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1381,7 +1385,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APILogDelete controls the data API’s logging for delete commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to record delete action in logs</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>  <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>  <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1393,7 +1397,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APILogEdit controls the data API’s logging for edit commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to record edit action in logs</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1405,7 +1409,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APILogRead controls the data API’s logging for read commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to record read action in logs</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1417,7 +1421,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APILogSchema controls the data API’s logging for schema commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to record schema action in logs</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogSchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APILogSchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1429,7 +1433,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPreQueryAdd controls the data API’s pre query for add commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to add method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryAdd</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1441,7 +1445,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPreQueryDelete controls the data API’s pre query for delete commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to delete method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>  <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryDelete</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>  <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1453,7 +1457,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPreQueryEdit controls the data API’s pre query for edit commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to edit method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryEdit</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1465,7 +1469,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPreQueryRead controls the data API’s pre query for read commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to read method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryRead</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1477,7 +1481,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPreQuerySchema controls the data API’s pre query for schema commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to schema method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQuerySchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQuerySchema</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1489,7 +1493,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPostQueryAdd controls the data API’s post query for add commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to add method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryAdd</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1501,7 +1505,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPostQueryDelete controls the data API’s post query for delete commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to delete method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>  <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryDelete</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span>  <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1513,7 +1517,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPostQueryEdit controls the data API’s post query for edit commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to edit method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryEdit</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1525,7 +1529,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPostQueryRead controls the data API’s post query for read commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to read method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryRead</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1537,7 +1541,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPostQuerySchema controls the data API’s post query for schema commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to schema method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQuerySchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQuerySchema</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1549,7 +1553,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPublicAdd controls the data API’s public for add commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable public access to add method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1561,7 +1565,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPublicDelete controls the data API’s public for delete commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable public access to delete method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1573,7 +1577,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPublicEdit controls the data API’s public for edit commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable public access to edit method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1585,7 +1589,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPublicRead controls the data API’s public for read commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable public access to read method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1597,7 +1601,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>APIPublicSchema controls the data API’s public for schema commands.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable public access to schema method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicSchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPublicSchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -1619,12 +1623,10 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <h2>Special Parameters<a class="headerlink" href="#special-parameters" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#or">$or</a></p></li>
-<li><p><a class="reference internal" href="#limit">$limit</a></p></li>
-<li><p><a class="reference internal" href="#order-ascending">$order (Ascending)</a></p></li>
-<li><p><a class="reference internal" href="#order-descending">$order (Descending)</a></p></li>
-<li><p><a class="reference internal" href="#order-list-of-fields">$order (List of Fields)</a></p></li>
-<li><p><a class="reference internal" href="#limit-offset-order">Limit, offset, order</a></p></li>
+<li><p><a class="reference internal" href="#allmodels">$allmodels</a></p></li>
+<li><p><a class="reference internal" href="#choices">$choices</a></p></li>
+<li><p><a class="reference internal" href="#distinct">$distinct</a></p></li>
+<li><p><a class="reference internal" href="#deleted">$deleted</a></p></li>
 <li><dl class="simple">
 <dt><a class="reference internal" href="#f">$f</a></dt><dd><ul>
 <li><p><a class="reference internal" href="#sum">__sum</a></p></li>
@@ -1638,192 +1640,117 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 </li>
 <li><p><a class="reference internal" href="#groupby">$groupby</a></p></li>
 <li><p><a class="reference internal" href="#join">$join</a></p></li>
-<li><p><a class="reference internal" href="#deleted">$deleted</a></p></li>
+<li><p><a class="reference internal" href="#limit">$limit</a></p></li>
+<li><p><a class="reference internal" href="#limit-offset-order">Limit, offset, order</a></p></li>
 <li><p><a class="reference internal" href="#m2m">$m2m</a></p></li>
-<li><p><a class="reference internal" href="#q">$q</a></p></li>
 <li><p><a class="reference internal" href="#next">$next</a></p></li>
+<li><p><a class="reference internal" href="#or">$or</a></p></li>
+<li><p><a class="reference internal" href="#order-ascending">$order (Ascending)</a></p></li>
+<li><p><a class="reference internal" href="#order-descending">$order (Descending)</a></p></li>
+<li><p><a class="reference internal" href="#order-list-of-fields">$order (List of Fields)</a></p></li>
 <li><p><a class="reference internal" href="#preload">$preload</a></p></li>
+<li><p><a class="reference internal" href="#q">$q</a></p></li>
 <li><p><a class="reference internal" href="#stat">$stat</a></p></li>
-<li><p><a class="reference internal" href="#allmodels">$allmodels</a></p></li>
 </ul>
-<div class="section" id="or">
-<h3><strong>$or</strong><a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="allmodels">
+<h3><strong>$allmodels</strong><a class="headerlink" href="#allmodels" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
-<p>$or compares which of the parameters matches the specified criteria.</p>
 <p>Structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
 <span class="c1"># $ represents a symbol for special parameters</span>
-<span class="c1"># | is a symbol for OR operator ($or)</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$or</span><span class="o">=(</span>field_name<span class="o">)=(</span>value<span class="o">)</span><span class="p">|</span><span class="o">(</span>field_name<span class="o">)=(</span>value<span class="o">)</span>
-
-<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
-<span class="c1"># WHERE field_name1 = value1 NOT OR field_name2 = value2</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$!or</span><span class="o">=(</span>field_name<span class="o">)=(</span>value<span class="o">)</span><span class="p">|</span><span class="o">(</span>field_name<span class="o">)=(</span>value<span class="o">)</span>
-
-<span class="c1"># + is a symbol for AND operator</span>
-<span class="c1"># WHERE (field_name1 = value1 AND field_name2 = value2) OR (field_name1 = value1 AND field_name2 = value2)</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$or</span><span class="o">=(</span>field_name1<span class="o">)=(</span>value1<span class="o">)</span>+<span class="o">(</span>field_name2<span class="o">)=(</span>value2<span class="o">)</span><span class="p">|</span><span class="o">(</span>field_name1<span class="o">)=(</span>value1<span class="o">)</span>+<span class="o">(</span>field_name2<span class="o">)=(</span>value2<span class="o">)</span>
+<span class="c1"># allmodels is a parameter to get all models</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/?<span class="nv">$allmodels</span>
 </pre></div>
 </div>
-<p>Suppose you have five records in the Item model.</p>
-<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<p>Suppose you have the following models in the uAdmin dashboard.</p>
+<img alt="_images/uadmindashboardupdate.png" src="_images/uadmindashboardupdate.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Run your application and call this URL to read record(s) where the name of an item is equal to “Robot” or the rating of an item is 5.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
-<span class="c1"># name and rating are field names</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$or</span><span class="o">=</span><span class="nv">name</span><span class="o">=</span>Robot<span class="p">|</span><span class="nv">rating</span><span class="o">=</span><span class="m">5</span>
+<p>Run your application and call this URL to read the full schema of all models.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="nv">$allmodels</span>
 </pre></div>
 </div>
 <p>Result:</p>
-<img alt="_images/orresult.png" class="align-center" src="_images/orresult.png" />
+<img alt="_images/allmodelsresult.png" class="align-center" src="_images/allmodelsresult.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>It returns a list of records where the name of an item is equal to “Robot” or the rating of an item is 5.</p>
+<p>It returns a JSON array representing uAdmin’s ModelSchema of all models.</p>
 </div>
-<div class="section" id="limit">
-<h3><strong>$limit</strong><a class="headerlink" href="#limit" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="choices">
+<h3><strong>$choices</strong><a class="headerlink" href="#choices" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>$choices is used in schema command to preload foreign key and M2M choices.</p>
 <p>Structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
 <span class="c1"># $ represents a symbol for special parameters</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$limit</span><span class="o">=(</span>integer_value<span class="o">)</span>
+<span class="c1"># value can be either 0 (disabled) or 1 (enabled)</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/schema/?<span class="nv">$choices</span><span class="o">={</span><span class="m">0</span>,1<span class="o">}</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="distinct">
+<h3><strong>$distinct</strong><a class="headerlink" href="#distinct" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>$distinct returns only distinct (different) values. It is applied to all columns.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+<span class="c1"># value can be either 0 (disabled) or 1 (enabled)</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$distinct</span><span class="o">={</span><span class="m">0</span>,1<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deleted">
+<h3><strong>$deleted</strong><a class="headerlink" href="#deleted" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>$deleted returns the list of deleted records in the database based on the assigned model.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+<span class="c1"># value can be either 0 (disabled) or 1 (enabled)</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$deleted</span><span class="o">={</span><span class="m">0</span>,1<span class="o">}</span>
+</pre></div>
+</div>
+<p>If the value is 0, it will return the list of deleted records. If the value is 1, it will return the list of deleted and existing records.</p>
 <p>Suppose you have five records in the Item model.</p>
 <img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Run your application and call this URL to read up to 3 records.</p>
+<p>Now let’s delete the iPad Mini and iPad Pro items.</p>
+<img alt="_images/ipaddeleteselected.png" src="_images/ipaddeleteselected.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/ipadconfirmdelete.png" src="_images/ipadconfirmdelete.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result:</p>
+<img alt="_images/deletemultipleresult.png" src="_images/deletemultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read a record that displays the list of existing records in the Item model.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
-<span class="c1"># 3 is the limit value</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$limit</span><span class="o">=</span><span class="m">3</span>
+<span class="c1"># id and rating are field names</span>
+<span class="c1"># 0 is the value to display the list of existing records</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$deleted</span><span class="o">=</span><span class="m">0</span>
 </pre></div>
 </div>
 <p>Result:</p>
-<img alt="_images/limitresult.png" class="align-center" src="_images/limitresult.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>It returns up to 3 records.</p>
-</div>
-<div class="section" id="order-ascending">
-<h3><strong>$order (Ascending)</strong><a class="headerlink" href="#order-ascending" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
-<p>Structure:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
-<span class="c1"># $ represents a symbol for special parameters</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$order</span><span class="o">=(</span>field_name<span class="o">)</span>
-</pre></div>
-</div>
-<p>Suppose you have five records in the Item model.</p>
-<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Run your application and call this URL to read record(s) where ID number is sorted in ascending order.</p>
+<img alt="_images/deleted0result.png" class="align-center" src="_images/deleted0result.png" />
+<p>Now let’s call this URL to read a record that displays the list of both deleted and existing records in the Item model.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
-<span class="c1"># id is the field name</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$order</span><span class="o">=</span>id
+<span class="c1"># id and rating are field names</span>
+<span class="c1"># 1 is the value to display the list of both deleted and existing records</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$deleted</span><span class="o">=</span><span class="m">1</span>
 </pre></div>
 </div>
 <p>Result:</p>
-<img alt="_images/orderascendingresult.png" class="align-center" src="_images/orderascendingresult.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>It returns a list of records where ID number is sorted in ascending order.</p>
-</div>
-<div class="section" id="order-descending">
-<h3><strong>$order (Descending)</strong><a class="headerlink" href="#order-descending" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
-<p>Structure:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
-<span class="c1"># $ represents a symbol for special parameters</span>
-<span class="c1"># - is a symbol for descending order</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$order</span><span class="o">=</span>-<span class="o">(</span>field_name<span class="o">)</span>
-</pre></div>
-</div>
-<p>Suppose you have five records in the Item model.</p>
-<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Run your application and call this URL to read record(s) where ID number is sorted in descending order.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
-<span class="c1"># id is the field name</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$order</span><span class="o">=</span>-id
-</pre></div>
-</div>
-<p>Result:</p>
-<img alt="_images/orderdescendingresult.png" class="align-center" src="_images/orderdescendingresult.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>It returns a list of records where ID number is sorted in descending order.</p>
-</div>
-<div class="section" id="order-list-of-fields">
-<h3><strong>$order (List of Fields)</strong><a class="headerlink" href="#order-list-of-fields" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
-<p>Structure:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
-<span class="c1"># $ represents a symbol for special parameters</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$order</span><span class="o">=(</span>field_name1<span class="o">)</span>,<span class="o">(</span>field_name2<span class="o">)</span>
-</pre></div>
-</div>
-<p>Suppose you have five records in the Item model.</p>
-<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Run your application and call this URL to read record(s) where price is sorted in descending order and rating is sorted in ascending order.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
-<span class="c1"># - is a symbol for descending order</span>
-<span class="c1"># price and rating are field names</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$order</span><span class="o">=</span>-price,rating
-</pre></div>
-</div>
-<p>Result:</p>
-<img alt="_images/orderlistoffieldsresult.png" class="align-center" src="_images/orderlistoffieldsresult.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>It returns a list of records where price is sorted in descending order and rating is sorted in ascending order</p>
-</div>
-<div class="section" id="limit-offset-order">
-<h3><strong>Limit, offset, order</strong><a class="headerlink" href="#limit-offset-order" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
-<p>Limit is the number of records that you want to return.</p>
-<p>Offset is the starting point to read in the list of records. It is equivalent to an index number. For instance, if you put the offset value as 2, your application will start reading on the third record.</p>
-<p>Order is used to sort the result-set in ascending or descending order. <a class="footnote-reference brackets" href="#f4" id="id2">4</a></p>
-<p>Structure:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
-<span class="c1"># $ represents a symbol for special parameters</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$limit</span><span class="o">=(</span>integer_value<span class="o">)</span><span class="p">&amp;</span><span class="nv">$offset</span><span class="o">=(</span>integer_value<span class="o">)</span><span class="p">&amp;</span><span class="nv">$order</span><span class="o">=(</span>field_name<span class="o">)</span>
-</pre></div>
-</div>
-<p>Suppose you have five records in the Item model.</p>
-<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Run your application and call this URL to return three records starting from the third record that sorts the ID number in ascending order.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
-<span class="c1"># 3 is the limit value to display up to three records</span>
-<span class="c1"># 2 is the offset value to start reading the third record</span>
-<span class="c1"># id is the field name to sort in ascending order</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$limit</span><span class="o">=</span><span class="m">3</span><span class="p">&amp;</span><span class="nv">$offset</span><span class="o">=</span><span class="m">2</span><span class="p">&amp;</span><span class="nv">$order</span><span class="o">=</span>id
-</pre></div>
-</div>
-<p>Result:</p>
-<img alt="_images/limitoffsetorderresult.png" class="align-center" src="_images/limitoffsetorderresult.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>It returns the list of up to three records starting from the third record that sorts the ID number in ascending order.</p>
+<img alt="_images/deleted1result.png" class="align-center" src="_images/deleted1result.png" />
 </div>
 <div class="section" id="f">
 <h3><strong>$f</strong><a class="headerlink" href="#f" title="Permalink to this headline">¶</a></h3>
@@ -1832,7 +1759,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>Structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
 <span class="c1"># $ represents a symbol for special parameters</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$f</span><span class="o">=(</span>field_name1<span class="o">)</span>,<span class="o">(</span>field_name2<span class="o">)</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$f</span><span class="o">={</span>FIELD_NAME1<span class="o">}</span>,<span class="o">{</span>FIELD_NAME2<span class="o">}</span>
 </pre></div>
 </div>
 </div>
@@ -1849,7 +1776,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <div class="section" id="sum">
 <h4><strong>__sum</strong><a class="headerlink" href="#sum" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#supported-operators">Back to Top (Supported Operators)</a></p>
-<p>Returns the total sum of a numeric field. <a class="footnote-reference brackets" href="#f1" id="id3">1</a> The formula to calculate this is (value1 +  value2 + … + value(n)). Example: (3 + 4 + 5) = 12</p>
+<p>Returns the total sum of a numeric field. <a class="footnote-reference brackets" href="#f1" id="id2">1</a> The formula to calculate this is (value1 +  value2 + … + value(n)). Example: (3 + 4 + 5) = 12</p>
 <p>Structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
 <span class="c1"># $ represents a symbol for special parameters</span>
@@ -1878,7 +1805,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <div class="section" id="avg">
 <h4><strong>__avg</strong><a class="headerlink" href="#avg" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#supported-operators">Back to Top (Supported Operators)</a></p>
-<p>Returns the average value of a numeric field. <a class="footnote-reference brackets" href="#f1" id="id4">1</a> The formula to calculate this is (value1 +  value2 + … + value(n)) / (number of values). Example: (3 + 4 + 5) / 3 = 4</p>
+<p>Returns the average value of a numeric field. <a class="footnote-reference brackets" href="#f1" id="id3">1</a> The formula to calculate this is (value1 +  value2 + … + value(n)) / (number of values). Example: (3 + 4 + 5) / 3 = 4</p>
 <p>Structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
 <span class="c1"># $ represents a symbol for special parameters</span>
@@ -1907,7 +1834,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <div class="section" id="min">
 <h4><strong>__min</strong><a class="headerlink" href="#min" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#supported-operators">Back to Top (Supported Operators)</a></p>
-<p>Returns the smallest value of the selected column <a class="footnote-reference brackets" href="#f2" id="id5">2</a></p>
+<p>Returns the smallest value of the selected column <a class="footnote-reference brackets" href="#f2" id="id4">2</a></p>
 <p>Structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
 <span class="c1"># $ represents a symbol for special parameters</span>
@@ -1935,7 +1862,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <div class="section" id="max">
 <h4><strong>__max</strong><a class="headerlink" href="#max" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#supported-operators">Back to Top (Supported Operators)</a></p>
-<p>Returns the largest value of the selected column <a class="footnote-reference brackets" href="#f2" id="id6">2</a></p>
+<p>Returns the largest value of the selected column <a class="footnote-reference brackets" href="#f2" id="id5">2</a></p>
 <p>Structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
 <span class="c1"># $ represents a symbol for special parameters</span>
@@ -1963,7 +1890,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <div class="section" id="count">
 <h4><strong>__count</strong><a class="headerlink" href="#count" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#supported-operators">Back to Top (Supported Operators)</a></p>
-<p>Returns the number of rows that matches a specified criteria <a class="footnote-reference brackets" href="#f1" id="id7">1</a></p>
+<p>Returns the number of rows that matches a specified criteria <a class="footnote-reference brackets" href="#f1" id="id6">1</a></p>
 <p>Structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
 <span class="c1"># $ represents a symbol for special parameters</span>
@@ -1994,8 +1921,8 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <div class="section" id="groupby">
 <h3><strong>$groupby</strong><a class="headerlink" href="#groupby" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
-<p>The GROUP BY statement groups rows that have the same values into summary rows, like “find the number of purchased items in each transaction”.</p>
-<p>The GROUP BY statement is often used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns. <a class="footnote-reference brackets" href="#f3" id="id8">3</a></p>
+<p>$groupby groups rows that have the same values into summary rows, like “find the number of purchased items in each transaction”.</p>
+<p>$groupby is often used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns. <a class="footnote-reference brackets" href="#f3" id="id7">3</a></p>
 <p>Structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
 <span class="c1"># $ represents a symbol for special parameters</span>
@@ -2084,55 +2011,64 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>Result:</p>
 <img alt="_images/joinresultjson3.png" src="_images/joinresultjson3.png" />
 </div>
-<div class="section" id="deleted">
-<h3><strong>$deleted</strong><a class="headerlink" href="#deleted" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="limit">
+<h3><strong>$limit</strong><a class="headerlink" href="#limit" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
-<p>$deleted displays the list of deleted records in the database based on the assigned model.</p>
 <p>Structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
 <span class="c1"># $ represents a symbol for special parameters</span>
-<span class="c1"># value can be either 0 (disabled) or 1 (enabled)</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$deleted</span><span class="o">={</span>VALUE<span class="o">}</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$limit</span><span class="o">={</span>INTEGER_VALUE<span class="o">}</span>
 </pre></div>
 </div>
-<p>If the value is 0, it will return the list of deleted records. If the value is 1, it will return the list of deleted and existing records.</p>
 <p>Suppose you have five records in the Item model.</p>
 <img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Now let’s delete the iPad Mini and iPad Pro items.</p>
-<img alt="_images/ipaddeleteselected.png" src="_images/ipaddeleteselected.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<img alt="_images/ipadconfirmdelete.png" src="_images/ipadconfirmdelete.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Result:</p>
-<img alt="_images/deletemultipleresult.png" src="_images/deletemultipleresult.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Run your application and call this URL to read a record that displays the list of existing records in the Item model.</p>
+<p>Run your application and call this URL to read up to 3 records.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
-<span class="c1"># id and rating are field names</span>
-<span class="c1"># 0 is the value to display the list of existing records</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$deleted</span><span class="o">=</span><span class="m">0</span>
+<span class="c1"># 3 is the limit value</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$limit</span><span class="o">=</span><span class="m">3</span>
 </pre></div>
 </div>
 <p>Result:</p>
-<img alt="_images/deleted0result.png" class="align-center" src="_images/deleted0result.png" />
-<p>Now let’s call this URL to read a record that displays the list of both deleted and existing records in the Item model.</p>
+<img alt="_images/limitresult.png" class="align-center" src="_images/limitresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns up to 3 records.</p>
+</div>
+<div class="section" id="limit-offset-order">
+<h3><strong>Limit, offset, order</strong><a class="headerlink" href="#limit-offset-order" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>Limit is the number of records that you want to return.</p>
+<p>Offset is the starting point to read in the list of records. It is equivalent to an index number. For instance, if you put the offset value as 2, your application will start reading on the third record.</p>
+<p>Order is used to sort the result-set in ascending or descending order. <a class="footnote-reference brackets" href="#f4" id="id8">4</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$limit</span><span class="o">={</span>INTEGER_VALUE<span class="o">}</span><span class="p">&amp;</span><span class="nv">$offset</span><span class="o">={</span>INTEGER_VALUE<span class="o">}</span><span class="p">&amp;</span><span class="nv">$order</span><span class="o">={</span>FIELD_NAME<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to return three records starting from the third record that sorts the ID number in ascending order.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
-<span class="c1"># id and rating are field names</span>
-<span class="c1"># 1 is the value to display the list of both deleted and existing records</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$deleted</span><span class="o">=</span><span class="m">1</span>
+<span class="c1"># 3 is the limit value to display up to three records</span>
+<span class="c1"># 2 is the offset value to start reading the third record</span>
+<span class="c1"># id is the field name to sort in ascending order</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$limit</span><span class="o">=</span><span class="m">3</span><span class="p">&amp;</span><span class="nv">$offset</span><span class="o">=</span><span class="m">2</span><span class="p">&amp;</span><span class="nv">$order</span><span class="o">=</span>id
 </pre></div>
 </div>
 <p>Result:</p>
-<img alt="_images/deleted1result.png" class="align-center" src="_images/deleted1result.png" />
+<img alt="_images/limitoffsetorderresult.png" class="align-center" src="_images/limitoffsetorderresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns the list of up to three records starting from the third record that sorts the ID number in ascending order.</p>
 </div>
 <div class="section" id="m2m">
 <h3><strong>$m2m</strong><a class="headerlink" href="#m2m" title="Permalink to this headline">¶</a></h3>
@@ -2186,17 +2122,6 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>Result:</p>
 <img alt="_images/m2midresultjson.png" src="_images/m2midresultjson.png" />
 </div>
-<div class="section" id="q">
-<h3><strong>$q</strong><a class="headerlink" href="#q" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
-<p>$q searches all string based fields for read, edit, and delete requests.</p>
-<p>Structure:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
-<span class="c1"># Searches all string based fields for read, edit, and delete requests</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$q</span><span class="o">=</span>abc
-</pre></div>
-</div>
-</div>
 <div class="section" id="next">
 <h3><strong>$next</strong><a class="headerlink" href="#next" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
@@ -2210,6 +2135,126 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/method/<span class="o">{</span>METHOD_NAME<span class="o">}</span>/?<span class="nv">$next</span><span class="o">=</span><span class="nv">$back</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="or">
+<h3><strong>$or</strong><a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>$or compares which of the parameters matches the specified criteria.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+<span class="c1"># | is a symbol for OR operator ($or)</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$or</span><span class="o">={</span>FIELD_NAME1<span class="o">}={</span>VALUE1<span class="o">}</span><span class="p">|</span><span class="o">{</span>FIELD_NAME2<span class="o">}={</span>VALUE2<span class="o">}</span>
+
+<span class="c1"># ! is a negate symbol equivalent to SQL NOT</span>
+<span class="c1"># WHERE field_name1 = value1 NOT OR field_name2 = value2</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$!or</span><span class="o">={</span>FIELD_NAME1<span class="o">}={</span>VALUE1<span class="o">}</span><span class="p">|</span><span class="o">{</span>FIELD_NAME2<span class="o">}={</span>VALUE2<span class="o">}</span>
+
+<span class="c1"># + is a symbol for AND operator</span>
+<span class="c1"># WHERE (field_name1 = value1 AND field_name2 = value2) OR (field_name1 = value1 AND field_name2 = value2)</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$or</span><span class="o">={</span>FIELD_NAME1<span class="o">}={</span>VALUE1<span class="o">}</span>+<span class="o">{</span>FIELD_NAME2<span class="o">}={</span>VALUE2<span class="o">}</span><span class="p">|</span><span class="o">{</span>FIELD_NAME1<span class="o">}={</span>VALUE1<span class="o">}</span>+<span class="o">{</span>FIELD_NAME2<span class="o">}={</span>VALUE2<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where the name of an item is equal to “Robot” or the rating of an item is 5.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name and rating are field names</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$or</span><span class="o">=</span><span class="nv">name</span><span class="o">=</span>Robot<span class="p">|</span><span class="nv">rating</span><span class="o">=</span><span class="m">5</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/orresult.png" class="align-center" src="_images/orresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where the name of an item is equal to “Robot” or the rating of an item is 5.</p>
+</div>
+<div class="section" id="order-ascending">
+<h3><strong>$order (Ascending)</strong><a class="headerlink" href="#order-ascending" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$order</span><span class="o">={</span>FIELD_NAME<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where ID number is sorted in ascending order.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># id is the field name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$order</span><span class="o">=</span>id
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/orderascendingresult.png" class="align-center" src="_images/orderascendingresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where ID number is sorted in ascending order.</p>
+</div>
+<div class="section" id="order-descending">
+<h3><strong>$order (Descending)</strong><a class="headerlink" href="#order-descending" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+<span class="c1"># - is a symbol for descending order</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$order</span><span class="o">=</span>-<span class="o">{</span>FIELD_NAME<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where ID number is sorted in descending order.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># id is the field name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$order</span><span class="o">=</span>-id
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/orderdescendingresult.png" class="align-center" src="_images/orderdescendingresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where ID number is sorted in descending order.</p>
+</div>
+<div class="section" id="order-list-of-fields">
+<h3><strong>$order (List of Fields)</strong><a class="headerlink" href="#order-list-of-fields" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$order</span><span class="o">={</span>FIELD_NAME1<span class="o">}</span>,<span class="o">{</span>FIELD_NAME2<span class="o">}</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read record(s) where price is sorted in descending order and rating is sorted in ascending order.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># - is a symbol for descending order</span>
+<span class="c1"># price and rating are field names</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$order</span><span class="o">=</span>-price,rating
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/orderlistoffieldsresult.png" class="align-center" src="_images/orderlistoffieldsresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where price is sorted in descending order and rating is sorted in ascending order</p>
 </div>
 <div class="section" id="preload">
 <h3><strong>$preload</strong><a class="headerlink" href="#preload" title="Permalink to this headline">¶</a></h3>
@@ -2249,6 +2294,17 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>Result:</p>
 <img alt="_images/preload1resultjson.png" class="align-center" src="_images/preload1resultjson.png" />
 </div>
+<div class="section" id="q">
+<h3><strong>$q</strong><a class="headerlink" href="#q" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
+<p>$q searches all string based fields for read, edit, and delete requests.</p>
+<p>Structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
+<span class="c1"># Searches all string based fields for read, edit, and delete requests</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/read/?<span class="nv">$q</span><span class="o">=</span>abc
+</pre></div>
+</div>
+</div>
 <div class="section" id="stat">
 <h3><strong>$stat</strong><a class="headerlink" href="#stat" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
@@ -2257,7 +2313,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
 <span class="c1"># $ represents a symbol for special parameters</span>
 <span class="c1"># stat_value can be either 0 (disabled) or 1 (enabled)</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/?<span class="nv">$stat</span><span class="o">=(</span>stat_value<span class="o">)</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/?<span class="nv">$stat</span><span class="o">={</span>STAT_VALUE<span class="o">}</span>
 </pre></div>
 </div>
 <p>Suppose you have five records in the Item model.</p>
@@ -2278,32 +2334,6 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 </div>
 <p>It returns a record that reads all item records and stat containing the query execution time and its related details when you perform an action that reads all records in the Item model.</p>
 <p>“qtime” is in milliseconds.</p>
-</div>
-<div class="section" id="allmodels">
-<h3><strong>$allmodels</strong><a class="headerlink" href="#allmodels" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#special-parameters">Back to Top (Special Parameters)</a></p>
-<p>Structure:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
-<span class="c1"># $ represents a symbol for special parameters</span>
-<span class="c1"># allmodels is a parameter to get all models</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/?<span class="nv">$allmodels</span>
-</pre></div>
-</div>
-<p>Suppose you have the following models in the uAdmin dashboard.</p>
-<img alt="_images/uadmindashboardupdate.png" src="_images/uadmindashboardupdate.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Run your application and call this URL to read the full schema of all models.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="nv">$allmodels</span>
-</pre></div>
-</div>
-<p>Result:</p>
-<img alt="_images/allmodelsresult.png" class="align-center" src="_images/allmodelsresult.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>It returns a JSON array representing uAdmin’s ModelSchema of all models.</p>
 </div>
 </div>
 <div class="section" id="writing-data-symbol">
@@ -2501,16 +2531,16 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets">1</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>,<a href="#id7">3</a>)</span></dt>
+<dt class="label" id="f1"><span class="brackets">1</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id3">2</a>,<a href="#id6">3</a>)</span></dt>
 <dd><p>Refsnes Data (2019). SQL COUNT(), AVG() and SUM() Functions. Retrieved from <a class="reference external" href="https://www.w3schools.com/sql/sql_count_avg_sum.asp">https://www.w3schools.com/sql/sql_count_avg_sum.asp</a></p>
 </dd>
-<dt class="label" id="f2"><span class="brackets">2</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id6">2</a>)</span></dt>
+<dt class="label" id="f2"><span class="brackets">2</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id5">2</a>)</span></dt>
 <dd><p>Refsnes Data (2019). SQL ORDER BY Keyword. Retrieved from <a class="reference external" href="https://www.w3schools.com/sql/sql_orderby.asp">https://www.w3schools.com/sql/sql_orderby.asp</a></p>
 </dd>
-<dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id8">3</a></span></dt>
+<dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id7">3</a></span></dt>
 <dd><p>Refsnes Data (2019). SQL GROUP BY Statement. Retrieved from <a class="reference external" href="https://www.w3schools.com/sql/sql_groupby.asp">https://www.w3schools.com/sql/sql_groupby.asp</a></p>
 </dd>
-<dt class="label" id="f4"><span class="brackets"><a class="fn-backref" href="#id2">4</a></span></dt>
+<dt class="label" id="f4"><span class="brackets"><a class="fn-backref" href="#id8">4</a></span></dt>
 <dd><p>Refsnes Data (2019). SQL ORDER BY Keyword. Retrieved from <a class="reference external" href="https://www.w3schools.com/sql/sql_orderby.asp">https://www.w3schools.com/sql/sql_orderby.asp</a></p>
 </dd>
 <dt class="label" id="f5"><span class="brackets"><a class="fn-backref" href="#id1">5</a></span></dt>
@@ -2521,6 +2551,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -2565,7 +2596,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -2582,12 +2613,13 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
         <li class="right" >
           <a href="api/user_functions.html" title="User Functions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.4 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">dAPI Reference</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

@@ -1,25 +1,26 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Model Functions &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Model Functions &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Language Functions" href="language_functions.html" />
-    <link rel="prev" title="IP Functions" href="ip_functions.html" />
+    <link rel="next" title="Network Functions" href="network_functions.html" />
+    <link rel="prev" title="Metric Functions" href="metric_functions.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -35,13 +36,14 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="language_functions.html" title="Language Functions"
+          <a href="network_functions.html" title="Network Functions"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="ip_functions.html" title="IP Functions"
+          <a href="metric_functions.html" title="Metric Functions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Model Functions</a></li> 
       </ul>
     </div>  
 
@@ -55,7 +57,14 @@
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
 <p>In this section, we will cover the following functions in-depth listed below:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#uadmin-dashboardmenu">uadmin.DashboardMenu</a></p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#uadmin-dashboardmenu">uadmin.DashboardMenu</a></dt><dd><ul>
+<li><p><a class="reference internal" href="#func-dashboardmenu-getimagesize">func (DashboardMenu) GetImageSize</a></p></li>
+<li><p><a class="reference internal" href="#func-dashboardmenu-string">func (DashboardMenu) String</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
 <li><p><a class="reference internal" href="#uadmin-hideindashboarder">uadmin.HideInDashboarder</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-model">uadmin.Model</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-newmodel">uadmin.NewModel</a></p></li>
@@ -64,8 +73,6 @@
 <div class="section" id="uadmin-dashboardmenu">
 <h2>uadmin.DashboardMenu<a class="headerlink" href="#uadmin-dashboardmenu" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions">Back To Top</a></p>
-<p>DashboardMenu is a system in uAdmin that is used to add, modify and delete the elements of a model.</p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">DashboardMenu</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Model</span>
     <span class="nx">MenuName</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;required;list_exclude;multilingual;filter&quot;`</span>
@@ -77,10 +84,22 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>There is a function that you can use in DashboardMenu:</p>
-<ul class="simple">
-<li><p><strong>String()</strong> - Returns the MenuName</p></li>
-</ul>
+<p>DashboardMenu is a system in uAdmin that is used to add, modify and delete the elements of a model.</p>
+<div class="section" id="func-dashboardmenu-getimagesize">
+<h3><strong>func (DashboardMenu) GetImageSize</strong><a class="headerlink" href="#func-dashboardmenu-getimagesize" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="nx">DashboardMenu</span><span class="p">)</span> <span class="nx">GetImageSize</span><span class="p">()</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>GetImageSize customizes the icons as 128x128.</p>
+</div>
+<div class="section" id="func-dashboardmenu-string">
+<h3><strong>func (DashboardMenu) String</strong><a class="headerlink" href="#func-dashboardmenu-string" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions">Back to Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="nx">DashboardMenu</span><span class="p">)</span> <span class="nx">String</span><span class="p">()</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>String returns the MenuName.</p>
 <p>Go to the main.go and apply the following codes below after the RegisterInlines section.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
 
@@ -118,16 +137,16 @@
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/dashboard-menu.html">Dashboard Menu</a></p></li>
 </ul>
 </div>
+</div>
 <div class="section" id="uadmin-hideindashboarder">
 <h2>uadmin.HideInDashboarder<a class="headerlink" href="#uadmin-hideindashboarder" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions">Back To Top</a></p>
-<p>HideInDashboarder is used to check if a model should be hidden in the dashboard.</p>
-<p>Structure:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">HideInDashboarder</span> <span class="kd">interface</span><span class="p">{</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">HideInDashboarder</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nx">HideInDashboard</span><span class="p">()</span> <span class="kt">bool</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>HideInDashboarder is used to check if a model should be hidden in the dashboard.</p>
 <p>Suppose I have five models in my dashboard: Todos, Categorys, Items, Friends, and Expressions. I want Friends and Expressions models to be hidden in the dashboard. In order to do that, go to the friend.go and expression.go inside the models folder and apply the HideInDashboard() function. Set the return value to <strong>true</strong> inside it.</p>
 <p><strong>friend.go</strong></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">Friend</span><span class="p">)</span> <span class="nx">HideInDashboard</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
@@ -202,14 +221,13 @@
 <div class="section" id="uadmin-model">
 <h2>uadmin.Model<a class="headerlink" href="#uadmin-model" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions">Back To Top</a></p>
-<p>Model is the standard struct to be embedded in any other struct to make it a model for uAdmin.</p>
-<p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Model</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">ID</span>        <span class="kt">uint</span>       <span class="s">`gorm:&quot;primary_key&quot;`</span>
     <span class="nx">DeletedAt</span> <span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span> <span class="s">`sql:&quot;index&quot;`</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Model is the standard struct to be embedded in any other struct to make it a model for uadmin.</p>
 <p>In every struct, uadmin.Model must always come first before creating a field.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="p">(</span><span class="nx">struct_name</span><span class="p">)</span> <span class="kd">struct</span><span class="p">{</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span> <span class="c1">// &lt;-- place it here</span>
@@ -225,11 +243,10 @@
 <div class="section" id="uadmin-newmodel">
 <h2>uadmin.NewModel<a class="headerlink" href="#uadmin-newmodel" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions">Back To Top</a></p>
-<p>NewModel creates a new model from a model name.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">pointer</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">Value</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">NewModel</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">pointer</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">Value</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>NewModel creates a new model from a model name.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>modelName string:</strong> Is the model you want to call in the function</p>
@@ -291,11 +308,10 @@
 <div class="section" id="uadmin-newmodelarray">
 <h2>uadmin.NewModelArray<a class="headerlink" href="#uadmin-newmodelarray" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions">Back To Top</a></p>
-<p>NewModelArray creates a new model array from a model name.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">pointer</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">Value</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">NewModelArray</span><span class="p">(</span><span class="nx">modelName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">pointer</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">Value</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>NewModelArray creates a new model array from a model name.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>modelName string:</strong> Is the model you want to call in the function</p>
@@ -351,6 +367,7 @@
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -374,11 +391,11 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="ip_functions.html"
-                        title="previous chapter">IP Functions</a></p>
+  <p class="topless"><a href="metric_functions.html"
+                        title="previous chapter">Metric Functions</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="language_functions.html"
-                        title="next chapter">Language Functions</a></p>
+  <p class="topless"><a href="network_functions.html"
+                        title="next chapter">Network Functions</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -395,7 +412,7 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -407,18 +424,19 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="language_functions.html" title="Language Functions"
+          <a href="network_functions.html" title="Network Functions"
              >next</a> |</li>
         <li class="right" >
-          <a href="ip_functions.html" title="IP Functions"
+          <a href="metric_functions.html" title="Metric Functions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Model Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

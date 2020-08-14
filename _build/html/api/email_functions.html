@@ -1,20 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Email Functions &#8212; uadmin 0.4 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Functions &#8212; uadmin 0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="../_static/custom.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -40,8 +41,9 @@
         <li class="right" >
           <a href="database_functions.html" title="Database Functions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Email Functions</a></li> 
       </ul>
     </div>  
 
@@ -65,11 +67,10 @@
 <div class="section" id="uadmin-emailfrom">
 <h2>uadmin.EmailFrom<a class="headerlink" href="#uadmin-emailfrom" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#email-functions">Back To Top</a></p>
-<p>EmailFrom identifies where the email is coming from.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">EmailFrom</span> <span class="kt">string</span>
 </pre></div>
 </div>
+<p>EmailFrom identifies where the email is coming from.</p>
 <p>Used in the tutorial:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part16.html">uAdmin Tutorial Part 16 - Advanced Security (Part 2)</a></p></li>
@@ -152,29 +153,30 @@
 <div class="section" id="uadmin-emailpassword">
 <h2>uadmin.EmailPassword<a class="headerlink" href="#uadmin-emailpassword" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#email-functions">Back To Top</a></p>
-<p>EmailPassword assigns the password of an email.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">EmailPassword</span> <span class="kt">string</span>
 </pre></div>
 </div>
+<p>EmailPassword sets the password of an email.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-password">Email Password</a> page for an example.</p>
 <p>To assign a value in the code, visit <a class="reference internal" href="#uadmin-emailfrom">uadmin.EmailFrom</a> for an example.</p>
 </div>
 <div class="section" id="uadmin-emailsmtpserver">
 <h2>uadmin.EmailSMTPServer<a class="headerlink" href="#uadmin-emailsmtpserver" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#email-functions">Back To Top</a></p>
-<p>EmailSMTPServer assigns the name of the SMTP Server in an email.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">EmailSMTPServer</span> <span class="kt">string</span>
 </pre></div>
 </div>
+<p>EmailSMTPServer sets the name of the SMTP Server in an email.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-smtp-server">Email SMTP Server</a> page for an example.</p>
 <p>To assign a value in the code, visit <a class="reference internal" href="#uadmin-emailfrom">uadmin.EmailFrom</a> for an example.</p>
 </div>
 <div class="section" id="uadmin-emailsmtpserverport">
 <h2>uadmin.EmailSMTPServerPort<a class="headerlink" href="#uadmin-emailsmtpserverport" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#email-functions">Back To Top</a></p>
-<p>EmailSMTPServerPort assigns the port number of an SMTP Server in an email.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">EmailSMTPServerPort</span> <span class="kt">int</span>
+</pre></div>
+</div>
+<p>EmailSMTPServerPort sets the port number of an SMTP Server in an email.</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>
 </pre></div>
@@ -185,11 +187,10 @@
 <div class="section" id="uadmin-emailusername">
 <h2>uadmin.EmailUsername<a class="headerlink" href="#uadmin-emailusername" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#email-functions">Back To Top</a></p>
-<p>EmailUsername assigns the username of an email.</p>
-<p>Type:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">EmailUsername</span> <span class="kt">string</span>
 </pre></div>
 </div>
+<p>EmailUsername sets the username of an email.</p>
 <p>See <a class="reference internal" href="#uadmin-emailfrom">uadmin.EmailFrom</a> for the example.</p>
 <p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-username">Email Username</a> page for an example.</p>
 <p>To assign a value in the code, visit <a class="reference internal" href="#uadmin-emailfrom">uadmin.EmailFrom</a> for an example.</p>
@@ -197,16 +198,15 @@
 <div class="section" id="uadmin-sendemail">
 <h2>uadmin.SendEmail<a class="headerlink" href="#uadmin-sendemail" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#email-functions">Back To Top</a></p>
-<p>SendEmail sends email using system configured variables.</p>
-<p>Function:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="nx">cc</span><span class="p">,</span> <span class="nx">bcc</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">subject</span><span class="p">,</span> <span class="nx">body</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">SendEmail</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="nx">cc</span><span class="p">,</span> <span class="nx">bcc</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">subject</span><span class="p">,</span> <span class="nx">body</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>SendEmail sends email using system configured variables.</p>
 <p>Parameters:</p>
 <blockquote>
 <div><p><strong>to []string:</strong> This is who you are primarily writing the email to, it’s clear to both the writer and the recipient who is writing the email and to whom it intended.</p>
 <p><strong>cc []string:</strong> This means carbon copy and it includes people who might be interested in knowing that there was an email between the sender and the primary TO, typically CC’s are not meant to respond, only the primary sender. Everyone can see who was included in the To and CC.</p>
-<p><strong>bcc []string:</strong> This means blind carbon copy. The sender has added people that the receiving TO and CC are not able to see as a part of the email, someone on BCC is not to respond and they will not be included in the response from the TO or CC. BCC is often used to include a stakeholder like a boss to make sure they are aware of a situation but they can’t respond. <a class="footnote-reference brackets" href="#f1" id="id2">1</a></p>
+<p><strong>bcc []string:</strong> This means blind carbon copy. The sender has added people that the receiving TO and CC are not able to see as a part of the email, someone on BCC is not to respond and they will not be included in the response from the TO or CC. BCC is often used to include a stakeholder like a boss to make sure they are aware of a situation but they can’t respond. <a class="footnote-reference brackets" href="#f1" id="id1">1</a></p>
 <p><strong>subject string:</strong> This means what your email content is all about.</p>
 <p><strong>body string:</strong> This means the content of your email. It would be either a job application, the letter of your friend, notifications from your subscribed website, etc.</p>
 </div></blockquote>
@@ -240,7 +240,7 @@
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Corbin, Anke (2017, Feb 27). What is the meaning of TO, CC and BCC in e-mail? Retrieved from <a class="reference external" href="https://www.quora.com/What-is-the-meaning-of-TO-CC-and-BCC-in-e-mail">https://www.quora.com/What-is-the-meaning-of-TO-CC-and-BCC-in-e-mail</a></p>
 </dd>
 </dl>
@@ -248,6 +248,7 @@
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -292,7 +293,7 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -309,13 +310,14 @@
         <li class="right" >
           <a href="database_functions.html" title="Database Functions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Email Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, uadmin.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>
