@@ -1997,7 +1997,7 @@ Reporting Level
 
 ReportingLevel is the standard reporting level.
 
-There are 6 different levels:
+There are 9 different levels:
 
 * DEBUG = 0
 * WORKING = 1
@@ -2005,6 +2005,9 @@ There are 6 different levels:
 * OK = 3
 * WARNING = 4
 * ERROR = 5
+* CRITICAL = 6
+* ALERT = 7
+* EMERGENCY = 8
 
 --------------------------------------
 

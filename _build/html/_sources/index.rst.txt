@@ -153,7 +153,7 @@ Open your terminal and apply the following commands:
     $ cd ~/go/src/github.com/uadmin/uadmin
     $ go install
     $ uadmin version
-    [  INFO  ]   0.5.1
+    [  INFO  ]   0.5.2
 
 .. toctree::
    :maxdepth: 1

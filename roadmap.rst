@@ -8,6 +8,7 @@ Roadmap
 * `Version 0.4.0 (2019-12-26)`_
 * `Version 0.5.0 Atlas Moth (2020-08-02)`_
 * `Version 0.5.1 Atlas Moth (2020-08-07)`_
+* `Version 0.5.2 Atlas Moth (2020-08-20)`_
 
 Version 0.1.0 (2018-12-23)
 --------------------------
@@ -249,8 +250,6 @@ Version 0.5.1 Atlas Moth (2020-08-07)
 -------------------------------------
 `Back to Top`_
 
-.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap
-
 **Changed**
 ^^^^^^^^^^^
 * dAPI function `method` can return a value if the method called has a return. Note: if you have a return, you cannot use `$next` to redirect.
@@ -267,3 +266,14 @@ Version 0.5.1 Atlas Moth (2020-08-07)
 * Template function `CSRF` implemented in `uadmin.RenderHTML` and `uadmin.RenderMultiHTML`. It returns anti CSRF token.
 * `uadmin.IsAuthenticated` recognizes `nouser` sessions. These sessions are for users who are not authenticated in the system. To set a session cookie, user `SetSessionCookie`.
 * `uadmin.SetSessionCookie` receives a pointer to a session and sets the session cookie in a secure way. If you pass a `nil` to the session, the session will be created as a `nouser` session which is still a session but gives the user to access as an authenticated user. These sessions can be used to protect against CSRF attacks in case you have a public API.
+
+Version 0.5.2 Atlas Moth (2020-08-20)
+-------------------------------------
+`Back to Top`_
+
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap
+
+**Fixed**
+^^^^^^^^^
+* Added CSRF token to inlines form for deleting
+* User was overwritten with old user on logout when using cache sessions

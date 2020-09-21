@@ -545,7 +545,7 @@ uadmin.Version
 .. code-block:: go
 
     // Type: string
-    const Version = "0.5.1"
+    const Version = "0.5.2"
 
 Version number as per Semantic Versioning 2.0.0 (semver.org)
 
@@ -564,7 +564,7 @@ Result
 
     [   OK   ]   Initializing DB: [13/13]
     [   OK   ]   Synching System Settings: [46/46]
-    [  INFO  ]   0.5.1
+    [  INFO  ]   0.5.2
     [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -577,7 +577,7 @@ You can also directly check it by typing **uadmin version** in your terminal.
 .. code-block:: bash
 
     $ uadmin version
-    [  INFO  ]   0.5.1
+    [  INFO  ]   0.5.2
 
 Quiz:
 
@@ -618,8 +618,38 @@ uadmin.WORKING
     // Type: int
     const WORKING = 1
 
-WORKING is the display tag under Trail. It is a status to show that the application is working.
+WORKING is a tag that is used for animation. It can be used for something like a progress bar that you can show on your console. For instance:
+
+.. code-block:: go
+
+    package main
+
+    import (
+        "time"
+
+        "github.com/uadmin/uadmin"
+    )
+
+    func main() {
+        for i := 1; i <= 3; i++ {
+            uadmin.Trail(uadmin.WORKING, "%d/3", i)
+
+            // Equivalent to 1 second
+            time.Sleep(1000 * time.Millisecond)
+        }
+        uadmin.Trail(uadmin.OK, "Done!")
+    }
+
+The application will return a result after you wait for 3 seconds.
+
+.. code-block:: bash
+
+    [ WORKING]   1/3
+    [ WORKING]   2/3
+    [ WORKING]   3/3
+    [   OK   ]   Done!
+
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions
 
-See `uadmin.Trail`_ for the example.
+See `uadmin.Trail`_ for more examples.

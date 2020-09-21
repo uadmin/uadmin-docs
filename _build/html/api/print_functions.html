@@ -493,7 +493,7 @@ main.main<span class="o">()</span>
 <h2>uadmin.Version<a class="headerlink" href="#uadmin-version" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#print-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: string</span>
-<span class="kd">const</span> <span class="nx">Version</span> <span class="p">=</span> <span class="s">&quot;0.5.1&quot;</span>
+<span class="kd">const</span> <span class="nx">Version</span> <span class="p">=</span> <span class="s">&quot;0.5.2&quot;</span>
 </pre></div>
 </div>
 <p>Version number as per Semantic Versioning 2.0.0 (semver.org)</p>
@@ -507,7 +507,7 @@ main.main<span class="o">()</span>
 <p>Result</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
 <span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
-<span class="o">[</span>  INFO  <span class="o">]</span>   <span class="m">0</span>.5.1
+<span class="o">[</span>  INFO  <span class="o">]</span>   <span class="m">0</span>.5.2
 <span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
          ___       __          _
   __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
@@ -518,7 +518,7 @@ main.main<span class="o">()</span>
 </div>
 <p>You can also directly check it by typing <strong>uadmin version</strong> in your terminal.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ uadmin version
-<span class="o">[</span>  INFO  <span class="o">]</span>   <span class="m">0</span>.5.1
+<span class="o">[</span>  INFO  <span class="o">]</span>   <span class="m">0</span>.5.2
 </pre></div>
 </div>
 <p>Quiz:</p>
@@ -552,8 +552,34 @@ main.main<span class="o">()</span>
 <span class="kd">const</span> <span class="nx">WORKING</span> <span class="p">=</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>WORKING is the display tag under Trail. It is a status to show that the application is working.</p>
-<p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for the example.</p>
+<p>WORKING is a tag that is used for animation. It can be used for something like a progress bar that you can show on your console. For instance:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;time&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">WORKING</span><span class="p">,</span> <span class="s">&quot;%d/3&quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+
+        <span class="c1">// Equivalent to 1 second</span>
+        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;Done!&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The application will return a result after you wait for 3 seconds.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span> WORKING<span class="o">]</span>   <span class="m">1</span>/3
+<span class="o">[</span> WORKING<span class="o">]</span>   <span class="m">2</span>/3
+<span class="o">[</span> WORKING<span class="o">]</span>   <span class="m">3</span>/3
+<span class="o">[</span>   OK   <span class="o">]</span>   Done!
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#uadmin-trail">uadmin.Trail</a> for more examples.</p>
 </div>
 </div>
 
@@ -626,7 +652,7 @@ main.main<span class="o">()</span>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2019, uadmin.
+        &#169; Copyright 2020, uadmin.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
