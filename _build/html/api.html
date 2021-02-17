@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Reference &#8212; uadmin 0.5 documentation</title>
+    <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="A/B Test Functions" href="api/ab_test_functions.html" />
+    <link rel="prev" title="uAdmin Quizzes" href="quiz.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="api/ab_test_functions.html" title="A/B Test Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="quiz.html" title="uAdmin Quizzes"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">API Reference</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<p>Here are all public uAdmin functions, their format, and how to use them in the project.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#full-list">Full List</a></p></li>
+<li><p><a class="reference internal" href="#categorized-list">Categorized List</a></p></li>
+</ul>
+<div class="section" id="full-list">
+<h2>Full List<a class="headerlink" href="#full-list" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To Top</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-abtest">uadmin.ABTest</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-abtestclick">uadmin.ABTestClick</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-abtesttype">uadmin.ABTestType</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-abtestvalue">uadmin.ABTestValue</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-action">uadmin.Action</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-adminpage">uadmin.AdminPage</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-alert">uadmin.ALERT</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-all">uadmin.All</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-allowedhosts">uadmin.AllowedHosts</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-allowedips">uadmin.AllowedIPs</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approval">uadmin.Approval</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approvalaction">uadmin.ApprovalAction</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approvalhandlefunc">uadmin.ApprovalHandleFunc</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-bindip">uadmin.BindIP</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-blockedips">uadmin.BlockedIPs</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-cachetranslation">uadmin.CacheTranslation</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-checkratelimit">uadmin.CheckRateLimit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-choice">uadmin.Choice</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-cleardb">uadmin.ClearDB</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cookietimeout">uadmin.CookieTimeout</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-count">uadmin.Count</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-critical">uadmin.CRITICAL</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cachepermissions">uadmin.CachePermissions</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cachesessions">uadmin.CacheSessions</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-checkcsrf">uadmin.CheckCSRF</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-customtranslation">uadmin.CustomTranslation</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-dashboardmenu">uadmin.DashboardMenu</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-database">uadmin.Database</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-datatype">uadmin.DataType</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-dbsettings">uadmin.DBSettings</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-debug">uadmin.DEBUG</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-debugdb">uadmin.DebugDB</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-defaultmediapermission">uadmin.DefaultMediaPermission</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-delete">uadmin.Delete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-deletelist">uadmin.DeleteList</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailfrom">uadmin.EmailFrom</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailpassword">uadmin.EmailPassword</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailsmtpserver">uadmin.EmailSMTPServer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailsmtpserverport">uadmin.EmailSMTPServerPort</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailusername">uadmin.EmailUsername</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-emergency">uadmin.EMERGENCY</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-encryptkey">uadmin.EncryptKey</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-error">uadmin.ERROR</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-errorhandlefunc">uadmin.ErrorHandleFunc</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-f">uadmin.F</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-fieldlist">uadmin.FieldList</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/field_type.html#uadmin-field_type">uadmin.FieldType</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filter">uadmin.Filter</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filterbuilder">uadmin.FilterBuilder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filterlist">uadmin.FilterList</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-generatebase32">uadmin.GenerateBase32</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-generatebase64">uadmin.GenerateBase64</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-get">uadmin.Get</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-getabtest">uadmin.GetABTest</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-getactivelanguages">uadmin.GetActiveLanguages</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-getdb">uadmin.GetDB</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-getdefaultlanguage">uadmin.GetDefaultLanguage</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getfieldsapi">uadmin.GetFieldsAPI</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getform">uadmin.GetForm</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getid">uadmin.GetID</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getimagesizer">uadmin.GetImageSizer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getmodelsapi">uadmin.GetModelsAPI</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-getremoteip">uadmin.GetRemoteIP</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-getsetting">uadmin.GetSetting</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getstring">uadmin.GetString</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getstringer">uadmin.GetStringer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-getuserfromrequest">uadmin.GetUserFromRequest</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-grouppermission">uadmin.GroupPermission</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/handler_functions.html#uadmin-handler">uadmin.Handler</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-hideindashboarder">uadmin.HideInDashboarder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-httplogformat">uadmin.HTTPLogFormat</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-incrementmetric">uadmin.IncrementMetric</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-info">uadmin.INFO</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-isauthenticated">uadmin.IsAuthenticated</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-jsonmarshal">uadmin.JSONMarshal</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-language">uadmin.Language</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-log">uadmin.Log</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logadd">uadmin.LogAdd</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logdelete">uadmin.LogDelete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logedit">uadmin.LogEdit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-loghttprequests">uadmin.LogHTTPRequests</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-login">uadmin.Login</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-login2fa">uadmin.Login2FA</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-logout">uadmin.Logout</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logread">uadmin.LogRead</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logtrail">uadmin.LogTrail</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maximageheight">uadmin.MaxImageHeight</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maximagewidth">uadmin.MaxImageWidth</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maxuploadfilesize">uadmin.MaxUploadFileSize</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-model">uadmin.Model</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-modellist">uadmin.ModelList</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-modelschema">uadmin.ModelSchema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-newmetric">uadmin.NewMetric</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-newmodel">uadmin.NewModel</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-newmodelarray">uadmin.NewModelArray</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-optimizesqlquery">uadmin.OptimizeSQLQuery</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-ok">uadmin.OK</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpalgorithm">uadmin.OTPAlgorithm</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpdigits">uadmin.OTPDigits</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpperiod">uadmin.OTPPeriod</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpskew">uadmin.OTPSkew</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-pagelength">uadmin.PageLength</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-passwordattempts">uadmin.PasswordAttempts</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-passwordtimeout">uadmin.PasswordTimeout</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-port">uadmin.Port</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-preload">uadmin.Preload</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-publicmedia">uadmin.PublicMedia</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-ratelimit">uadmin.RateLimit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-ratelimitburst">uadmin.RateLimitBurst</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/register_functions.html#uadmin-register">uadmin.Register</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/register_functions.html#uadmin-registerinlines">uadmin.RegisterInlines</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-renderhtml">uadmin.RenderHTML</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-rendermultihtml">uadmin.RenderMultiHTML</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-reportinglevel">uadmin.ReportingLevel</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-reporttimestamp">uadmin.ReportTimeStamp</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-restrictsessionip">uadmin.RestrictSessionIP</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-retainmediaversions">uadmin.RetainMediaVersions</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-returnjson">uadmin.ReturnJSON</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-rooturl">uadmin.RootURL</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-salt">uadmin.Salt</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-save">uadmin.Save</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-schema">uadmin.Schema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-sendemail">uadmin.SendEmail</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-serverready">uadmin.ServerReady</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-session">uadmin.Session</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-setmetric">uadmin.SetMetric</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-setsessioncookie">uadmin.SetSessionCookie</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-setting">uadmin.Setting</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-settingcategory">uadmin.SettingCategory</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-sitename">uadmin.SiteName</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-sqlinjection">uadmin.SQLInjection</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-startsecureserver">uadmin.StartSecureServer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-startserver">uadmin.StartServer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/handler_functions.html#uadmin-statichandler">uadmin.StaticHandler</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-syslogf">uadmin.Syslogf</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-systemmetrics">uadmin.SystemMetrics</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-tf">uadmin.Tf</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-theme">uadmin.Theme</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-timemetric">uadmin.TimeMetric</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-trail">uadmin.Trail</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-traillogginglevel">uadmin.TrailLoggingLevel</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-translate">uadmin.Translate</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-translateschema">uadmin.TranslateSchema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-update">uadmin.Update</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-user">uadmin.User</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-usergroup">uadmin.UserGroup</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-usermetrics">uadmin.UserMetrics</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-userpermission">uadmin.UserPermission</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-validateip">uadmin.ValidateIP</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-version">uadmin.Version</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-versioncodename">uadmin.VersionCodeName</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-warning">uadmin.WARNING</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-working">uadmin.WORKING</a></p></li>
+</ul>
+</div>
+<div class="section" id="categorized-list">
+<h2>Categorized List<a class="headerlink" href="#categorized-list" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To Top</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#a-b-test-functions">A/B Test Functions</a></p></li>
+<li><p><a class="reference internal" href="#approval-functions">Approval Functions</a></p></li>
+<li><p><a class="reference internal" href="#basic-functions">Basic Functions</a></p></li>
+<li><p><a class="reference internal" href="#database-functions">Database Functions</a></p></li>
+<li><p><a class="reference internal" href="#email-functions">Email Functions</a></p></li>
+<li><p><a class="reference internal" href="#for-customizing-records">For Customizing Records</a></p></li>
+<li><p><a class="reference internal" href="#for-fetching-records">For Fetching Records</a></p></li>
+<li><p><a class="reference internal" href="#handler-functions">Handler Functions</a></p></li>
+<li><p><a class="reference internal" href="#language-functions">Language Functions</a></p></li>
+<li><p><a class="reference internal" href="#log-functions">Log Functions</a></p></li>
+<li><p><a class="reference internal" href="#metric-functions">Metric Functions</a></p></li>
+<li><p><a class="reference internal" href="#model-functions">Model Functions</a></p></li>
+<li><p><a class="reference internal" href="#network-functions">Network Functions</a></p></li>
+<li><p><a class="reference internal" href="#print-functions">Print Functions</a></p></li>
+<li><p><a class="reference internal" href="#register-functions">Register Functions</a></p></li>
+<li><p><a class="reference internal" href="#security-functions">Security Functions</a></p></li>
+<li><p><a class="reference internal" href="#setting-functions">Setting Functions</a></p></li>
+<li><p><a class="reference internal" href="#user-functions">User Functions</a></p></li>
+</ul>
+<div class="section" id="a-b-test-functions">
+<h3><strong>A/B Test Functions</strong><a class="headerlink" href="#a-b-test-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-abtest">uadmin.ABTest</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-abtestclick">uadmin.ABTestClick</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-abtesttype">uadmin.ABTestType</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-abtestvalue">uadmin.ABTestValue</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-fieldlist">uadmin.FieldList</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-getabtest">uadmin.GetABTest</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-modellist">uadmin.ModelList</a></p></li>
+</ul>
+</div>
+<div class="section" id="approval-functions">
+<h3><strong>Approval Functions</strong><a class="headerlink" href="#approval-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approval">uadmin.Approval</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approvalaction">uadmin.ApprovalAction</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approvalhandlefunc">uadmin.ApprovalHandleFunc</a></p></li>
+</ul>
+</div>
+<div class="section" id="basic-functions">
+<h3><strong>Basic Functions</strong><a class="headerlink" href="#basic-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maximageheight">uadmin.MaxImageHeight</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maximagewidth">uadmin.MaxImageWidth</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maxuploadfilesize">uadmin.MaxUploadFileSize</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-pagelength">uadmin.PageLength</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-retainmediaversions">uadmin.RetainMediaVersions</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-serverready">uadmin.ServerReady</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-sitename">uadmin.SiteName</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-startserver">uadmin.StartServer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-theme">uadmin.Theme</a></p></li>
+</ul>
+</div>
+<div class="section" id="database-functions">
+<h3><strong>Database Functions</strong><a class="headerlink" href="#database-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-cleardb">uadmin.ClearDB</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-database">uadmin.Database</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-dbsettings">uadmin.DBSettings</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-debugdb">uadmin.DebugDB</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-getdb">uadmin.GetDB</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-optimizesqlquery">uadmin.OptimizeSQLQuery</a></p></li>
+</ul>
+</div>
+<div class="section" id="email-functions">
+<h3><strong>Email Functions</strong><a class="headerlink" href="#email-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailfrom">uadmin.EmailFrom</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailpassword">uadmin.EmailPassword</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailsmtpserver">uadmin.EmailSMTPServer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailsmtpserverport">uadmin.EmailSMTPServerPort</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailusername">uadmin.EmailUsername</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-sendemail">uadmin.SendEmail</a></p></li>
+</ul>
+</div>
+<div class="section" id="for-customizing-records">
+<h3><strong>For Customizing Records</strong><a class="headerlink" href="#for-customizing-records" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-delete">uadmin.Delete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-deletelist">uadmin.DeleteList</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-f">uadmin.F</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-modelschema">uadmin.ModelSchema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-save">uadmin.Save</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-schema">uadmin.Schema</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-update">uadmin.Update</a></p></li>
+</ul>
+</div>
+<div class="section" id="for-fetching-records">
+<h3><strong>For Fetching Records</strong><a class="headerlink" href="#for-fetching-records" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-adminpage">uadmin.AdminPage</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-all">uadmin.All</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-choice">uadmin.Choice</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-count">uadmin.Count</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filter">uadmin.Filter</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filterbuilder">uadmin.FilterBuilder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filterlist">uadmin.FilterList</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-get">uadmin.Get</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getfieldsapi">uadmin.GetFieldsAPI</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getform">uadmin.GetForm</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getid">uadmin.GetID</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getimagesizer">uadmin.GetImageSizer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getmodelsapi">uadmin.GetModelsAPI</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-getsetting">uadmin.GetSetting</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getstring">uadmin.GetString</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getstringer">uadmin.GetStringer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-preload">uadmin.Preload</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-renderhtml">uadmin.RenderHTML</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-rendermultihtml">uadmin.RenderMultiHTML</a></p></li>
+</ul>
+</div>
+<div class="section" id="handler-functions">
+<h3><strong>Handler Functions</strong><a class="headerlink" href="#handler-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/handler_functions.html#uadmin-handler">uadmin.Handler</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/handler_functions.html#uadmin-statichandler">uadmin.StaticHandler</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/handler_functions.html#uadmin-uploadimagehandler">uadmin.UploadImageHandler</a></p></li>
+</ul>
+</div>
+<div class="section" id="language-functions">
+<h3><strong>Language Functions</strong><a class="headerlink" href="#language-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-cachetranslation">uadmin.CacheTranslation</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-customtranslation">uadmin.CustomTranslation</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-getactivelanguages">uadmin.GetActiveLanguages</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-getdefaultlanguage">uadmin.GetDefaultLanguage</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-language">uadmin.Language</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-tf">uadmin.Tf</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-translate">uadmin.Translate</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-translateschema">uadmin.TranslateSchema</a></p></li>
+</ul>
+</div>
+<div class="section" id="log-functions">
+<h3><strong>Log Functions</strong><a class="headerlink" href="#log-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-action">uadmin.Action</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-httplogformat">uadmin.HTTPLogFormat</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-log">uadmin.Log</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logadd">uadmin.LogAdd</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logdelete">uadmin.LogDelete</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logedit">uadmin.LogEdit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-loghttprequests">uadmin.LogHTTPRequests</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logread">uadmin.LogRead</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logtrail">uadmin.LogTrail</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-syslogf">uadmin.Syslogf</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-traillogginglevel">uadmin.TrailLoggingLevel</a></p></li>
+</ul>
+</div>
+<div class="section" id="metric-functions">
+<h3><strong>Metric Functions</strong><a class="headerlink" href="#metric-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-incrementmetric">uadmin.IncrementMetric</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-newmetric">uadmin.NewMetric</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-setmetric">uadmin.SetMetric</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-systemmetrics">uadmin.SystemMetrics</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-timemetric">uadmin.TimeMetric</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-usermetrics">uadmin.UserMetrics</a></p></li>
+</ul>
+</div>
+<div class="section" id="model-functions">
+<h3><strong>Model Functions</strong><a class="headerlink" href="#model-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-dashboardmenu">uadmin.DashboardMenu</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-hideindashboarder">uadmin.HideInDashboarder</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-model">uadmin.Model</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-newmodel">uadmin.NewModel</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-newmodelarray">uadmin.NewModelArray</a></p></li>
+</ul>
+</div>
+<div class="section" id="network-functions">
+<h3><strong>Network Functions</strong><a class="headerlink" href="#network-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-allowedhosts">uadmin.AllowedHosts</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-allowedips">uadmin.AllowedIPs</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-bindip">uadmin.BindIP</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-blockedips">uadmin.BlockedIPs</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-checkratelimit">uadmin.CheckRateLimit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-getremoteip">uadmin.GetRemoteIP</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-port">uadmin.Port</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-ratelimit">uadmin.RateLimit</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-ratelimitburst">uadmin.RateLimitBurst</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-restrictsessionip">uadmin.RestrictSessionIP</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-validateip">uadmin.ValidateIP</a></p></li>
+</ul>
+</div>
+<div class="section" id="print-functions">
+<h3><strong>Print Functions</strong><a class="headerlink" href="#print-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-alert">uadmin.ALERT</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-critical">uadmin.CRITICAL</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-debug">uadmin.DEBUG</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-emergency">uadmin.EMERGENCY</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-error">uadmin.ERROR</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-errorhandlefunc">uadmin.ErrorHandleFunc</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-info">uadmin.INFO</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-jsonmarshal">uadmin.JSONMarshal</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-ok">uadmin.OK</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-reportinglevel">uadmin.ReportingLevel</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-reporttimestamp">uadmin.ReportTimeStamp</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-returnjson">uadmin.ReturnJSON</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-trail">uadmin.Trail</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-version">uadmin.Version</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-versioncodename">uadmin.VersionCodeName</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-warning">uadmin.WARNING</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-working">uadmin.WORKING</a></p></li>
+</ul>
+</div>
+<div class="section" id="register-functions">
+<h3><strong>Register Functions</strong><a class="headerlink" href="#register-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/register_functions.html#uadmin-register">uadmin.Register</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/register_functions.html#uadmin-registerinlines">uadmin.RegisterInlines</a></p></li>
+</ul>
+</div>
+<div class="section" id="security-functions">
+<h3><strong>Security Functions</strong><a class="headerlink" href="#security-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-checkcsrf">uadmin.CheckCSRF</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-defaultmediapermission">uadmin.DefaultMediaPermission</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-encryptkey">uadmin.EncryptKey</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-generatebase32">uadmin.GenerateBase32</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-generatebase64">uadmin.GenerateBase64</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-grouppermission">uadmin.GroupPermission</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpalgorithm">uadmin.OTPAlgorithm</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpdigits">uadmin.OTPDigits</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpperiod">uadmin.OTPPeriod</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpskew">uadmin.OTPSkew</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-passwordattempts">uadmin.PasswordAttempts</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-passwordtimeout">uadmin.PasswordTimeout</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-publicmedia">uadmin.PublicMedia</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-salt">uadmin.Salt</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-sqlinjection">uadmin.SQLInjection</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-startsecureserver">uadmin.StartSecureServer</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-userpermission">uadmin.UserPermission</a></p></li>
+</ul>
+</div>
+<div class="section" id="setting-functions">
+<h3><strong>Setting Functions</strong><a class="headerlink" href="#setting-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-datatype">uadmin.DataType</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-getsetting">uadmin.GetSetting</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-setting">uadmin.Setting</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-settingcategory">uadmin.SettingCategory</a></p></li>
+</ul>
+</div>
+<div class="section" id="user-functions">
+<h3><strong>User Functions</strong><a class="headerlink" href="#user-functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list">Back To Top (Categorized List)</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cachepermissions">uadmin.CachePermissions</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cachesessions">uadmin.CacheSessions</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cookietimeout">uadmin.CookieTimeout</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-getuserfromrequest">uadmin.GetUserFromRequest</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-isauthenticated">uadmin.IsAuthenticated</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-login">uadmin.Login</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-login2fa">uadmin.Login2FA</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-logout">uadmin.Logout</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-session">uadmin.Session</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-setsessioncookie">uadmin.SetSessionCookie</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-user">uadmin.User</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-usergroup">uadmin.UserGroup</a></p></li>
+</ul>
+<p>Page:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/ab_test_functions.html">A/B Test Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/approval_functions.html">Approval Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/basic_functions.html">Basic Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/customizing_records.html">For Customizing Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/database_functions.html">Database Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/email_functions.html">Email Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/fetching_records.html">For Fetching Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/handler_functions.html">Handler Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/language_functions.html">Language Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/log_functions.html">Log Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/metric_functions.html">Metric Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/model_functions.html">Model Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/network_functions.html">Network Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/print_functions.html">Print Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/register_functions.html">Register Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/security_functions.html">Security Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/setting_functions.html">Setting Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/field_type.html">uadmin.FieldType</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/user_functions.html">User Functions</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="quiz.html"
+                        title="previous chapter">uAdmin Quizzes</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api/ab_test_functions.html"
+                        title="next chapter">A/B Test Functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/api.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="api/ab_test_functions.html" title="A/B Test Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="quiz.html" title="uAdmin Quizzes"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">API Reference</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

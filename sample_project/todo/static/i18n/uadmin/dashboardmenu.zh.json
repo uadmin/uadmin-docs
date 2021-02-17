@@ -1,0 +1,54 @@
+{
+  "display_name": "Translate me ---> Dashboard Menu",
+  "fields": {
+    "Cat": {
+      "display_name": "Translate me ---> Cat",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Hidden": {
+      "display_name": "Translate me ---> Hidden",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Icon": {
+      "display_name": "Translate me ---> Icon",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "MenuName": {
+      "display_name": "Translate me ---> Menu Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ToolTip": {
+      "display_name": "Translate me ---> Tool Tip",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "URL": {
+      "display_name": "Translate me ---> URL",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

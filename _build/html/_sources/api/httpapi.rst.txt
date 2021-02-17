@@ -1,0 +1,2289 @@
+Create an HTTP API to access data
+=================================
+In this section, we will discuss on URL mapping, security, data query and authentication along with any other related topics to this API.
+
+* `API Help`_
+* `Add Multiple`_
+* `Add One`_
+* `Delete Multiple`_
+* `Delete One`_
+* `Edit Multiple`_
+* `Edit One`_
+* `Read Multiple`_
+    * `__gt`_
+    * `__gte`_
+    * `__lt`_
+    * `__lte`_
+    * `__in`_
+    * `__is`_
+    * `__contains`_
+    * `__between`_
+    * `__startswith`_
+    * `__endswith`_
+    * `__re`_
+    * `__icontains`_
+    * `__istartswith`_
+    * `__iendswith`_
+* `Read One`_
+* `Return Format`_
+* `Schema`_
+* `API Permissions`_
+* `Logging`_
+* `Model Methods`_
+* `Special Parameters`_
+    * `OR operator`_
+    * `Limit`_
+    * `Order (Ascending)`_
+    * `Order (Descending)`_
+    * `Order (List of Fields)`_
+    * `Limit, offset, order`_
+    * `Selecting Fields`_
+        * `__sum`_
+        * `__avg`_
+        * `__min`_
+        * `__max`_
+        * `__count`_
+    * `Group By`_
+    * `Deleted`_
+    * `M2M (Read)`_
+    * `M2M (Add)`_
+    * `M2M (Edit)`_
+    * `Stats`_
+    * `All Models`_
+* `Writing Data Symbol`_
+
+API Help
+--------
+`Back to Top`_
+
+To display information about data access HTTP API, call this URL in the address bar as shown below:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/
+
+Result:
+
+.. image:: assets/dataaccessapihelp.png
+   :align: center
+
+Add Multiple
+------------
+`Back to Top`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # For writing data, put _ symbol first before the field name
+    http://api.example.com/api/d/(model_name)/add/?_(fieldname__n=value)
+
+**Method**: GET, POST
+
+**Authentication**: Cookie, URL parameter "?code=abcd" or POST parameter "code=abcd"
+
+The model's fields could be added as parameters depending of the HTTP method. If a field is required and there is no value passed, the API will return a status:" 'error' with an err_msg detailing which required field was missing.
+
+.. code-block:: JSON
+
+    {
+        "status": "error",
+        "err_msg": "This field is required and no value is assigned or missing.",
+        "err_f": "Name",
+    }
+
+To identify each field in the request, there is a suffix of __n where n is the index of the record being added. This is a 0-based index.
+
+Suppose you don't have any records in the Document model.
+
+.. image:: assets/emptyrecorddocument.png
+
+|
+
+Run your application and call this URL to add multiple records in the Document model with the following information below:
+
+**First Record**
+
+* Name: Golang
+* Author: John
+
+**Second Record**
+
+* Name: uAdmin
+* Author: Adam
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    # __0 is the first index
+    # __1 is the second index
+    http://api.example.com/api/d/document/add/?_name__0=Golang&_author__0=John&_name__1=uAdmin&_author__1=Adam
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "id": [
+            1,
+            2
+        ],
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+It returns an array with a list of IDs for the newly created records.
+
+To check the details of the newly created records, there are two methods: by visiting the Document model from uAdmin dashboard or by applying __in operator in the id field then assign the IDs of the newly created records to read multiple data in the API.
+
+**Method 1:** Visiting the Document model from uAdmin dashboard
+
+.. image:: assets/addmultipleresult.png
+
+**Method 2:** Using __in operator to read multiple records in the API
+
+.. code-block:: bash
+
+    # document is a model name
+    # id is a field name
+    # __in is an operator used to read record(s) to find a value matching
+    # any of these values
+    http://api.example.com/api/d/document/read/?id__in=1,2
+
+Result:
+
+.. image:: assets/addmultipleresultjson.png
+   :align: center
+
+|
+
+It returns a JSON array representing newly created items where ID=1,2.
+
+Add One
+-------
+`Back to Top`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # For writing data, put _ symbol first before the field name
+    http://api.example.com/api/d/(model_name)/add/?_(field_name=value)
+
+**Method**: GET, POST
+
+**Authentication**: Cookie, URL parameter "?code=abcd" or POST parameter "code=abcd"
+
+The model's fields could be added as parameters depending of the HTTP method. If a field is required and there is no value passed, the API will return a status:" 'error' with an err_msg detailing which required field was missing.
+
+.. code-block:: JSON
+
+    {
+        "status": "error",
+        "err_msg": "This field is required and no value is assigned or missing.",
+        "err_f": "Name"
+    }
+
+Suppose you have two records in the Document model.
+
+.. image:: assets/addmultipleresult.png
+
+|
+
+Run your application and call this URL to add a new record in the Document model with the following information below:
+
+* Name: Programming
+* Author: Admin
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    http://api.example.com/api/d/document/add/?_name=Programming&_author=Admin
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "id": 3,
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+It returns the ID of the newly created record.
+
+To check the details of a newly created record, there are two methods: by visiting the Document model in the dashboard or by using HTTP API to read one by assigning the ID of the newly created record.
+
+**Method 1:** Visiting the Document model from uAdmin dashboard
+
+.. image:: assets/addoneresult.png
+
+**Method 2:** Using HTTP API to read one record
+
+.. code-block:: bash
+
+    # document is a model name
+    # 3 is an ID number
+    http://api.example.com/api/d/document/read/3/
+
+Result:
+
+.. image:: assets/addoneresultjson.png
+   :align: center
+
+|
+
+It returns a JSON object representing an item where ID=3.
+
+Delete Multiple
+---------------
+`Back to Top`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/delete/?(field_name=value)
+
+    # This API call will delete all records in the database.
+    http://api.example.com/api/d/(model_name)/delete/
+
+**Method**: GET, POST
+
+**Authentication**: Cookie, URL parameter "?code=abcd" or POST parameter "code=abcd"
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to delete records where the name of an item contains "iPad".
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    http://api.example.com/api/d/item/delete/?name__contains=iPad
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query.
+
+To check if the record(s) with the substring "iPad" were removed from the database, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read all data.
+
+**Method 1:** Visiting the Item model from uAdmin dashboard
+
+.. image:: assets/deletemultipleresult.png
+
+**Method 2:** Using HTTP API to read all data
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/api/d/item/read/
+
+Result:
+
+.. image:: assets/deletemultipleresultjson.png
+   :align: center
+
+|
+
+It returns a JSON array with all remaining items in the database.
+
+What if you don't specify which record do you want to delete in the database? Let's call this URL without assigning any query.
+
+.. code-block:: bash
+
+    # item is a model name
+    # This API call will delete all records in the Item model.
+    http://api.example.com/api/d/item/delete/
+
+Result:
+
+.. image:: assets/deleteallresult.png
+   :align: center
+
+|
+
+By default, delete all is blocked to the user.
+
+Delete One
+----------
+`Back to Top`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/delete/(id_number)/
+
+**Method**: GET, POST
+
+**Authentication**: Cookie, URL parameter "?code=abcd" or POST parameter "code=abcd"
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to delete the third record in the database.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 3 is an ID number
+    http://api.example.com/api/d/item/delete/3/
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query.
+
+To check if the third record was removed from the database, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read all data.
+
+**Method 1:** Visiting the Item model from uAdmin dashboard
+
+.. image:: assets/deleteoneresult.png
+
+**Method 2:** Using HTTP API to read all data
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/api/d/item/read/
+
+Result:
+
+.. image:: assets/deleteoneresultjson.png
+   :align: center
+
+|
+
+It returns a JSON array with all remaining items in the database.
+
+Edit Multiple
+-------------
+`Back to Top`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # ! stands for query
+    # For writing data, put _ symbol first before the field name
+    # Pass a query that matches a record to be updated then assign a
+    # new value in the specified field
+    http://api.example.com/api/d/(model_name)/edit/?(field_name=value)&_(field_name=value)
+
+    # If there is no assigned field selector, it will update all records in
+    # the database.
+    http://api.example.com/api/d/(model_name)/edit/?_(field_name=value)
+
+**Method**: GET, POST
+
+**Authentication**: Cookie, URL parameter "?code=abcd" or POST parameter "code=abcd"
+
+Suppose you have five records in the Item model where all iPad items have a rating of 4.
+
+.. image:: assets/itemipadoldrating.png
+
+|
+
+Run your application and call this URL to edit the rating of all iPad items to a value of 5.
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    # rating=4&_rating=5 means that where rating is equal to 4, change the
+    # rating value to 5
+    http://api.example.com/api/d/item/edit/?rating=4&_rating=5
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query.
+
+To check if the rating of iPad items has edited, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read multiple data where name contains "iPad".
+
+**Method 1:** Visiting the Item model from uAdmin dashboard
+
+.. image:: assets/editmultipleresult.png
+
+**Method 2:** Using HTTP API to read multiple data
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    http://api.example.com/api/d/item/read/?name__contains=iPad
+
+Result:
+
+.. image:: assets/editmultipleresultjson.png
+   :align: center
+
+|
+
+It returns a JSON array representing newly modified iPad items where rating has a value of 5.
+
+What if you don't specify which record do you want to update in the database? Let's call this URL to edit the rating to a value of 2.
+
+.. code-block:: bash
+
+    http://api.example.com/api/d/item/edit/?_rating=2
+
+Now let's see what happens.
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 5,
+        "status": "ok"
+    }
+
+Based on the result, it seems that all rows are affected by your query.
+
+To check if the rating of all items has edited, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read all records in the database.
+
+**Method 1:** Visiting the Item model from uAdmin dashboard
+
+.. image:: assets/editallresult.png
+
+**Method 2:** Using HTTP API to read all records
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/api/d/item/read/
+
+Result:
+
+.. image:: assets/editallresultjson.png
+   :align: center
+
+Edit One
+--------
+`Back to Top`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # For writing data, put _ symbol first before the field name
+    http://api.example.com/api/d/(model_name)/edit/(id_number)/?_(field_name=value)
+
+**Method**: GET, POST
+
+**Authentication**: Cookie, URL parameter "?code=abcd" or POST parameter "code=abcd"
+
+Suppose the first record in the Item model is named as "Robot".
+
+.. image:: assets/itemfirstrecordrobot.png
+
+|
+
+Run your application and call this URL to edit the name of the first record in the database from "Robot" to "Supercomputer".
+
+.. code-block:: bash
+
+    # item is a model name
+    # 1 is an ID number
+    # name is a field name
+    http://api.example.com/api/d/item/edit/1/?_name=Supercomputer
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query.
+
+To check if the name of the first record has modified, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read the first record.
+
+**Method 1:** Visiting the Item model from uAdmin dashboard
+
+.. image:: assets/editoneresult.png
+
+**Method 2:** Using HTTP API to read the first record
+
+.. code-block:: bash
+
+    # item is a model name
+    # 1 is an ID number
+    http://api.example.com/api/d/item/read/1/
+
+Result:
+
+.. image:: assets/editoneresultjson.png
+   :align: center
+
+|
+
+It returns a JSON object representing a modified item where name=Supercomputer.
+
+Read Multiple
+-------------
+`Back to Top`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(field_name=value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name != value
+    http://api.example.com/api/d/(model_name)/read/?!(field_name=value)
+
+    # This API call will read all records in the database.
+    http://api.example.com/api/d/(model_name)/read/
+
+**Method**: GET, POST
+
+**Authentication**: Cookie, URL parameter "?code=abcd" or POST parameter "code=abcd"
+
+Any field of the model could be passed as a parameter to filter the results. Multiple filters could be used together where the system will apply AND operator between them. Evaluation operator could be added using __ e.g. ?name__contains=contract.
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where rating is equal to 3.
+
+.. code-block:: bash
+
+    # item is a model name
+    # rating is a field name
+    http://api.example.com/api/d/item/read/?rating=3
+
+Result:
+
+.. image:: assets/readmultipleresult.png
+   :align: center
+
+|
+
+It returns a list of records where rating is equal to 3.
+
+Now let's call this URL to read record(s) where rating is not equal to 3.
+
+.. code-block:: bash
+
+    # item is a model name
+    # rating is a field name
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE rating != 3
+    http://api.example.com/api/d/item/read/?!rating=3
+
+Result:
+
+.. image:: assets/readmultiplenotresult.png
+   :align: center
+
+|
+
+It returns a list of records where rating is not equal to 3.
+
+What if you don't specify which record do you want to read in the database? Let's call this URL without assigning any query.
+
+.. code-block:: bash
+
+    # item is a model name
+    # This API call will read all records in the Item model.
+    http://api.example.com/api/d/item/read/
+
+Result:
+
+.. image:: assets/readallresult.png
+   :align: center
+
+|
+
+It returns a JSON array with all items in the database.
+
+List of Operators
+^^^^^^^^^^^^^^^^^
+`Back to Top (Read Multiple)`_
+
+.. _Back to Top (Read Multiple): https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#read-multiple
+
+* `__gt`_
+* `__gte`_
+* `__lt`_
+* `__lte`_
+* `__in`_
+* `__is`_
+* `__contains`_
+* `__between`_
+* `__startswith`_
+* `__endswith`_
+* `__re`_
+* `__icontains`_
+* `__istartswith`_
+* `__iendswith`_
+
+**__gt**
+^^^^^^^^
+`Back to Top (List of Operators)`_
+
+Greater than. Applies to: numbers, dates
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__gt=value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name <= value
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__gt=value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where price is greater than 15000.
+
+.. code-block:: bash
+
+    # item is a model name
+    # price is a field name
+    # __gt is an operator used to read record(s) where price is greater
+    # than 15000
+    http://api.example.com/api/d/item/read/?price__gt=15000
+
+Result:
+
+.. image:: assets/gtresult.png
+   :align: center
+
+|
+
+It returns a list of records where price is greater than 15000.
+
+**__gte**
+^^^^^^^^^
+`Back to Top (List of Operators)`_
+
+Greater than or equal to. Applies to: numbers, dates
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__gte=value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name < value
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__gte=value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where price is greater than or equal to 15000.
+
+.. code-block:: bash
+
+    # item is a model name
+    # price is a field name
+    # __gte is an operator used to read record(s) where price is greater
+    # than or equal to 15000
+    http://api.example.com/api/d/item/read/?price__gte=15000
+
+Result:
+
+.. image:: assets/gteresult.png
+   :align: center
+
+|
+
+It returns a list of records where price is greater than or equal 15000.
+
+**__lt**
+^^^^^^^^
+`Back to Top (List of Operators)`_
+
+Less than. Applies to: numbers, dates
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__lt=value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name >= value
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__lt=value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where price is less than 15000.
+
+.. code-block:: bash
+
+    # item is a model name
+    # price is a field name
+    # __lt is an operator used to read record(s) where price is less
+    # than 15000
+    http://api.example.com/api/d/item/read/?price__lt=15000
+
+Result:
+
+.. image:: assets/ltresult.png
+   :align: center
+
+|
+
+It returns a list of records where price is less than 15000.
+
+**__lte**
+^^^^^^^^^
+`Back to Top (List of Operators)`_
+
+Less than or equal to. Applies to: numbers, dates
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__lte=value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name > value
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__lte=value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where price is less than or equal to 15000.
+
+.. code-block:: bash
+
+    # item is a model name
+    # price is a field name
+    # __lte is an operator used to read record(s) where price is less
+    # than or equal to 15000
+    http://api.example.com/api/d/item/read/?price__lte=15000
+
+Result:
+
+.. image:: assets/lteresult.png
+   :align: center
+
+|
+
+It returns a list of records where price is less than or equal to 15000.
+
+**__in**
+^^^^^^^^
+`Back to Top (List of Operators)`_
+
+Uses SQL IN (a,c,b...) operator to find a value matching any of these values. In the URL the values will be comma separated in this way id__in=1,2,3. Applies to: numbers
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__in=value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name NOT IN value
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__in=value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where the rating of an item is 3 and 5.
+
+.. code-block:: bash
+
+    # item is a model name
+    # rating is a field name
+    # __in is an operator used to read record(s) to find a value matching
+    # any of these values
+    http://api.example.com/api/d/item/read/?rating__in=3,5
+
+Result:
+
+.. image:: assets/inresult.png
+   :align: center
+
+|
+
+It returns a list of records where the rating of an item is 3 or 5.
+
+Now let's call this URL to read record(s) where the rating of an item is outside of 3 and 5.
+
+.. code-block:: bash
+
+    # item is a model name
+    # rating is a field name
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE rating NOT IN (3,5)
+    http://api.example.com/api/d/item/read/?!rating__in=3,5
+
+Result:
+
+.. image:: assets/notinresult.png
+   :align: center
+
+|
+
+It returns a list of records where the rating of an item is outside of 3 or 5.
+
+**__is**
+^^^^^^^^
+`Back to Top (List of Operators)`_
+
+Stands for IS NULL. It should be used like date__is=null
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__is=null)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name IS NOT NULL
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__is=null)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application. Inside the Item model, delete the iPad Pro and iPad Mini items.
+
+.. image:: assets/ipaddeleteselected.png
+
+|
+
+.. image:: assets/ipadconfirmdelete.png
+
+|
+
+Result:
+
+.. image:: assets/deletemultipleresult.png
+
+|
+
+In the address bar, call this URL to read record(s) where the Deleted At date value is null.
+
+.. code-block:: bash
+
+    # item is a model name
+    # deletedat is a field name
+    # __is is an operator that stands for IS NULL
+    http://api.example.com/api/d/item/read/?deletedat__is=null
+
+Result:
+
+.. image:: assets/isnullresult.png
+   :align: center
+
+|
+
+It returns a list of records where the Deleted At date value is null.
+
+Now let's call this URL to read record(s) where the Deleted At date value is not null.
+
+.. code-block:: bash
+
+    # item is a model name
+    # deletedat is a field name
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE deletedat IS NOT NULL
+    http://api.example.com/api/d/item/read/?!deletedat__is=null
+
+Result:
+
+.. image:: assets/isnotnullresult.png
+   :align: center
+
+|
+
+It returns a list of records where the Deleted At date value is not null.
+
+**__contains**
+^^^^^^^^^^^^^^
+`Back to Top (List of Operators)`_
+
+Will search for string values that contract. Applies to: string
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__contains=value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name NOT LIKE BINARY %value%
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__contains=value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where the name of an item contains the substring "iPad".
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    http://api.example.com/api/d/item/read/?name__contains=iPad
+
+Result:
+
+.. image:: assets/containsresult.png
+   :align: center
+
+|
+
+It returns a list of records where the name of an item contains the substring "iPad".
+
+Now let's search the substring "ipad" where p is the lowercase letter and see what happens.
+
+.. code-block:: bash
+
+    http://api.example.com/api/d/item/read/?name__contains=ipad
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "result": [],
+        "status": "ok"
+    }
+
+It returns an empty array because __contains operator searches for an exact match string value. It is case sensitive. If you want to search a string value that is not case sensitive, go to `__icontains`_ for an example.
+
+**__between**
+^^^^^^^^^^^^^
+`Back to Top (List of Operators)`_
+
+The __between operator selects values within a given range. The values can be numbers, text, or dates.
+
+The __between operator is inclusive: begin and end values are included. [#f5]_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__between=value1,value2)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name NOT BETWEEN value1 AND value2
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__between=value1,value2)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where price is between the range of 15000 and 30000.
+
+.. code-block:: bash
+
+    # item is a model name
+    # price is a field name
+    # __between is an operator that selects values within a given range
+    http://api.example.com/api/d/item/read/?price__between=15000,30000
+
+Result:
+
+.. image:: assets/betweenresult.png
+   :align: center
+
+|
+
+It returns a list of records where where price is between the range of 15000 and 30000.
+
+**__startswith**
+^^^^^^^^^^^^^^^^
+`Back to Top (List of Operators)`_
+
+Will search for string values that starts with a given substring. Applies to: string
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__startswith=value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name NOT LIKE BINARY value%
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__startswith=value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where the name of an item starts with "iPad".
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __startswith is an operator that will search for string values that
+    # starts with a given substring
+    http://api.example.com/api/d/item/read/?name__startswith=iPad
+
+Result:
+
+.. image:: assets/startswithresult.png
+   :align: center
+
+|
+
+It returns a list of records where the name of an item starts with "iPad".
+
+Now let's search the substring "ipad" where p is the lowercase letter and see what happens.
+
+.. code-block:: bash
+
+    http://api.example.com/api/d/item/read/?name__startswith=ipad
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "result": [],
+        "status": "ok"
+    }
+
+It returns an empty array because __startswith operator searches for an exact match string value. It is case sensitive. If you want to search a string value that is not case sensitive, go to `__istartswith`_ for an example.
+
+**__endswith**
+^^^^^^^^^^^^^^
+`Back to Top (List of Operators)`_
+
+Will search for string values that ends with a given substring. Applies to: string
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__endswith=value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name NOT LIKE BINARY %value
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__endswith=value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where the description of an item ends with "device".
+
+.. code-block:: bash
+
+    # item is a model name
+    # description is a field name
+    # __endswith is an operator that will search for string values that
+    # ends with a given substring
+    http://api.example.com/api/d/item/read/?description__endswith=device
+
+Result:
+
+.. image:: assets/endswithresult.png
+   :align: center
+
+|
+
+It returns a list of records where the description of an item ends with "device".
+
+Now let's search the substring "Device" where D is the uppercase letter and see what happens.
+
+.. code-block:: bash
+
+    http://api.example.com/api/d/item/read/?description__endswith=Device
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "result": [],
+        "status": "ok"
+    }
+
+It returns an empty array because __endswith operator searches for an exact match string value. It is case sensitive. If you want to search a string value that is not case sensitive, go to `__iendswith`_ for an example.
+
+**__re**
+^^^^^^^^
+`Back to Top (List of Operators)`_
+
+Regular expression or regex. It is a sequence of characters that define a search pattern.
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__re=value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name NOT REGEXP value
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__re=value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where the name of an item starts with "iPad" followed by letter M or P in the second word.
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __re is an operator that defines a search pattern
+    # %20 represents a space in an encoded URL
+    # [M,P] is a list that can be letter M or P
+    http://api.example.com/api/d/item/?name__re=iPad%20[M,P]
+
+Result:
+
+.. image:: assets/reresult.png
+   :align: center
+
+|
+
+It returns a list of records where the name of an item starts with "iPad" followed by letter M or P in the second word.
+
+**__icontains**
+^^^^^^^^^^^^^^^
+`Back to Top (List of Operators)`_
+
+Will search for string values that contract. This is case insensitive. Applies to: string
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__icontains=value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE UPPER(field_name) LIKE %value%
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__icontains=value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where the name of an item contains the substring "iPad".
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __icontains is an operator that will search for string values that contract
+    # __icontains is case insensitive
+    http://api.example.com/api/d/item/read/?name__icontains=iPad
+
+Result:
+
+.. image:: assets/containsresult.png
+   :align: center
+
+|
+
+It returns a list of records where the name of an item contains the substring "iPad".
+
+Now let's search the substring "ipad" where p is the lowercase letter and see what happens.
+
+.. code-block:: bash
+
+    http://api.example.com/api/d/item/read/?name__icontains=ipad
+
+Result:
+
+.. image:: assets/containsresult.png
+   :align: center
+
+|
+
+It returns the same thing.
+
+**__istartswith**
+^^^^^^^^^^^^^^^^^
+`Back to Top (List of Operators)`_
+
+Will search for string values that starts with a given substring. This is case insensitive. Applies to: string
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__istartswith=value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE UPPER(field_name) LIKE value%
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__istartswith=value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where the name of an item starts with "iPad".
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __istartswith is an operator that will search for string values that
+    # starts with a given substring. This is case insensitive.
+    http://api.example.com/api/d/item/read/?name__istartswith=iPad
+
+Result:
+
+.. image:: assets/startswithresult.png
+   :align: center
+
+|
+
+It returns a list of records where the name of an item starts with "iPad".
+
+Now let's search the substring "ipad" where p is the lowercase letter and see what happens.
+
+.. code-block:: bash
+
+    http://api.example.com/api/d/item/?name__istartswith=ipad
+
+Result:
+
+.. image:: assets/startswithresult.png
+   :align: center
+
+|
+
+It returns the same thing.
+
+**__iendswith**
+^^^^^^^^^^^^^^^
+`Back to Top (List of Operators)`_
+
+.. _Back to Top (List of Operators): https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#list-of-operators
+
+Will search for string values that ends with a given substring. This is case insensitive. Applies to: string
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/?(fieldname__iendswith=value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE UPPER(field_name) LIKE %value
+    http://api.example.com/api/d/(model_name)/read/?!(fieldname__iendswith=value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where the description of an item ends with "device".
+
+.. code-block:: bash
+
+    # item is a model name
+    # description is a field name
+    # __iendswith is an operator that will search for string values that
+    # ends with a given substring. This is case insensitive.
+    http://api.example.com/api/d/item/?description__iendswith=device
+
+Result:
+
+.. image:: assets/endswithresult.png
+   :align: center
+
+|
+
+It returns a list of records where the description of an item ends with "device".
+
+Now let's search the substring "Device" where D is the uppercase letter and see what happens.
+
+.. code-block:: bash
+
+    http://api.example.com/api/d/item/read/?description__iendswith=Device
+
+Result:
+
+.. image:: assets/endswithresult.png
+   :align: center
+
+|
+
+It returns the same thing.
+
+Read One
+--------
+`Back to Top`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/read/(id_number)/
+
+**Method**: GET, POST
+
+**Authentication**: Cookie, URL parameter "?code=abcd" or POST parameter "code=abcd"
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read the second record in the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 2 is an ID number
+    http://api.example.com/api/d/item/read/2/
+
+Result:
+
+.. image:: assets/readoneresult.png
+   :align: center
+
+|
+
+It returns a JSON object representing an item where ID=2.
+
+Return Format
+-------------
+`Back to Top`_
+
+The return format is always JSON in this format:
+
+.. code-block:: JSON
+
+    {
+        "status": "ok",
+        "result": {}
+    }
+
+Where **value** has the return value of the call. Not all calls will have a return value. In case of error you will get a JSON result that looks like this:
+
+.. code-block:: JSON
+
+    {
+        "status": "error",
+        "err_msg": "error message",
+        "err_f": "Name"
+    }
+
+If the API should return a single result, then the value of items could be either an object or null.
+
+.. code-block:: JSON
+
+    {
+        "status": "ok",
+        "result": {
+            "name": "item 1",
+            "description": "description 1"
+        }
+    }
+
+.. code-block:: JSON
+
+    {
+        "status": "ok",
+        "items": null
+    }
+
+If the API should return multiple results, then the value of items is always an array that could be of length 0.
+
+.. code-block:: JSON
+
+    {
+        "status": "ok",
+        "result": []
+    }
+
+Schema
+------
+`Back to Top`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    http://api.example.com/api/d/(model_name)/schema/
+
+**Method**: GET, POST
+
+**Authentication**: Cookie, URL parameter "?code=abcd" or POST parameter "code=abcd"
+
+By default this is disabled for all users unless it is enabled with method **APIDisabledSchema** and **APIPublicSchema**.
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read the full schema of the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/api/d/item/schema/
+
+Result:
+
+.. image:: assets/schemaresult.png
+   :align: center
+
+|
+
+It returns a JSON object representing uAdmin's ModelSchema of the Item model.
+
+API Permissions
+---------------
+`Back to Top`_
+
+The API should check the user's permissions to ensure proper permissions before executing any queries or returning data. If there is not proper permissions then the API will return an error message detailing lack of access.
+
+Logging
+-------
+`Back to Top`_
+
+The API can log all access to data in the built in Logs system on uAdmin. This behavior could be controlled using 5 system wide settings:
+
+* APILogRead = false
+* APILogEdit = true
+* APILogAdd = true
+* APILogDelete = true
+* APILogSchema = true
+
+This can also be customized for any single model by implementing one of five methods:
+
+* `APILogRead`_
+* `APILogEdit`_
+* `APILogAdd`_
+* `APILogDelete`_
+* `APILogSchema`_
+
+.. _APILogAdd: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-add
+.. _APILogDelete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-delete
+.. _APILogEdit: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-edit
+.. _APILogRead: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-read
+.. _APILogSchema: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-schema
+
+Model Methods
+-------------
+`Back to Top`_
+
+* func (m \*Model) APIPublicRead(r \*http.Request) bool
+* func (m \*Model) APIPublicAdd(r \*http.Request) bool
+* func (m \*Model) APIPublicEdit(r \*http.Request) bool
+* func (m \*Model) APIPublicDelete(r \*http.Request) bool
+* func (m \*Model) APIPublicSchema(r \*http.Request) bool
+* func (m \*Model) APIDisabledRead(r \*http.Request) bool
+* func (m \*Model) APIDisabledAdd(r \*http.Request) bool
+* func (m \*Model) APIDisabledEdit(r \*http.Request) bool
+* func (m \*Model) APIDisabledDelete(r \*http.Request) bool
+* func (m \*Model) APIDisabledSchema(r \*http.Request) bool
+* func (m \*Model) APILogRead(r \*http.Request) bool
+* func (m \*Model) APILogEdit(r \*http.Request) bool
+* func (m \*Model) APILogAdd(r \*http.Request) bool
+* func (m \*Model) APILogDelete(r \*http.Request) bool
+* func (m \*Model) APILogSchema(r \*http.Request) bool
+
+It is necessary to have http.Request parameter in these methods for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.
+
+Special Parameters
+------------------
+`Back to Top`_
+
+* `OR operator`_
+* `Limit`_
+* `Order (Ascending)`_
+* `Order (Descending)`_
+* `Order (List of Fields)`_
+* `Limit, offset, order`_
+* `Selecting Fields`_
+    * `__sum`_
+    * `__avg`_
+    * `__min`_
+    * `__max`_
+    * `__count`_
+* `Group By`_
+* `Deleted`_
+* `M2M (Read)`_
+* `M2M (Add)`_
+* `M2M (Edit)`_
+* `Stats`_
+* `All Models`_
+
+**OR operator**
+^^^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+OR operator compares which of the parameters matches the specified criteria.
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    # | is a symbol for OR operator
+    http://api.example.com/api/d/(model_name)/read/?$or=(field_name)=(value)|(field_name)=(value)
+
+    # ! is a negate symbol equivalent to SQL NOT
+    # WHERE field_name1 = value1 NOT OR field_name2 = value2
+    http://api.example.com/api/d/(model_name)/read/?$!or=(field_name)=(value)|(field_name)=(value)
+
+    # + is a symbol for AND operator
+    # WHERE (field_name1 = value1 AND field_name2 = value2) OR (field_name1 = value1 AND field_name2 = value2)
+    http://api.example.com/api/d/(model_name)/read/?$or=(field_name1)=(value1)+(field_name2)=(value2)|(field_name1)=(value1)+(field_name2)=(value2)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where the name of an item is equal to "Robot" or the rating of an item is 5.
+
+.. code-block:: bash
+
+    # item is a model name
+    # name and rating are field names
+    http://api.example.com/api/d/item/read/?$or=name=Robot|rating=5
+
+Result:
+
+.. image:: assets/orresult.png
+   :align: center
+
+|
+
+It returns a list of records where the name of an item is equal to "Robot" or the rating of an item is 5.
+
+**Limit**
+^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/api/d/(model_name)/read/?$limit=(integer_value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read up to 3 records.
+
+.. code-block:: bash
+
+    # item is the model name
+    # 3 is the limit value
+    http://api.example.com/api/d/item/read/?$limit=3
+
+Result:
+
+.. image:: assets/limitresult.png
+   :align: center
+
+|
+
+It returns up to 3 records.
+
+**Order (Ascending)**
+^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/api/d/(model_name)/read/?$order=(field_name)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where ID number is sorted in ascending order.
+
+.. code-block:: bash
+
+    # item is the model name
+    # id is the field name
+    http://api.example.com/api/d/item/read/?$order=id
+
+Result:
+
+.. image:: assets/orderascendingresult.png
+   :align: center
+
+|
+
+It returns a list of records where ID number is sorted in ascending order.
+
+**Order (Descending)**
+^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    # - is a symbol for descending order
+    http://api.example.com/api/d/(model_name)/read/?$order=-(field_name)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where ID number is sorted in descending order.
+
+.. code-block:: bash
+
+    # item is the model name
+    # id is the field name
+    http://api.example.com/api/d/item/read/?$order=-id
+
+Result:
+
+.. image:: assets/orderdescendingresult.png
+   :align: center
+
+|
+
+It returns a list of records where ID number is sorted in descending order.
+
+**Order (List of Fields)**
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/api/d/(model_name)/read/?$order=(field_name1),(field_name2)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read record(s) where price is sorted in descending order and rating is sorted in ascending order.
+
+.. code-block:: bash
+
+    # item is the model name
+    # - is a symbol for descending order
+    # price and rating are field names
+    http://api.example.com/api/d/item/read/?$order=-price,rating
+
+Result:
+
+.. image:: assets/orderlistoffieldsresult.png
+   :align: center
+
+|
+
+It returns a list of records where price is sorted in descending order and rating is sorted in ascending order
+
+**Limit, offset, order**
+^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Limit is the number of records that you want to return.
+
+Offset is the starting point to read in the list of records. It is equivalent to an index number. For instance, if you put the offset value as 2, your application will start reading on the third record.
+
+Order is used to sort the result-set in ascending or descending order. [#f4]_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/api/d/(model_name)/read/?$limit=(integer_value)&$offset=(integer_value)&$order=(field_name)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to return three records starting from the third record that sorts the ID number in ascending order.
+
+.. code-block:: bash
+
+    # item is the model name
+    # 3 is the limit value to display up to three records
+    # 2 is the offset value to start reading the third record
+    # id is the field name to sort in ascending order
+    http://api.example.com/api/d/item/read/?$limit=3&$offset=2&$order=id
+
+Result:
+
+.. image:: assets/limitoffsetorderresult.png
+   :align: center
+
+|
+
+It returns the list of up to three records starting from the third record that sorts the ID number in ascending order.
+
+**Selecting Fields**
+^^^^^^^^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/api/d/(model_name)/read/?$f=(field_name1),(field_name2)
+
+Supported Operators
+^^^^^^^^^^^^^^^^^^^
+`Back to Top (Selecting Fields)`_
+
+.. _Back to Top (Selecting Fields): https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#selecting-fields
+
+* `__sum`_
+* `__avg`_
+* `__min`_
+* `__max`_
+* `__count`_
+
+**__sum**
+"""""""""
+`Back to Top (Supported Operators)`_
+
+Returns the total sum of a numeric field. [#f1]_ The formula to calculate this is (value1 +  value2 + ... + value(n)). Example: (3 + 4 + 5) = 12
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/api/d/(model_name)/read/?$f=(fieldname__sum)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to return the total price of all items.
+
+.. code-block:: bash
+
+    # item is the model name
+    # price is the field name
+    # __sum is an operator that returns the total sum of a numeric field
+    http://api.example.com/api/d/item/read/?$f=price__sum
+
+Result:
+
+.. image:: assets/sumresult.png
+   :align: center
+
+|
+
+It returns a record that displays the total price of all items.
+
+**__avg**
+"""""""""
+`Back to Top (Supported Operators)`_
+
+Returns the average value of a numeric field. [#f1]_ The formula to calculate this is (value1 +  value2 + ... + value(n)) / (number of values). Example: (3 + 4 + 5) / 3 = 4
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/api/d/(model_name)/read/?$f=(fieldname__avg)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to return the average price of all items.
+
+.. code-block:: bash
+
+    # item is the model name
+    # price is the field name
+    # __avg is an operator that returns the average value of a numeric field
+    http://api.example.com/api/d/item/read/$f=price__avg
+
+Result:
+
+.. image:: assets/avgresult.png
+   :align: center
+
+|
+
+It returns a record that displays the average price of all items.
+
+**__min**
+"""""""""
+`Back to Top (Supported Operators)`_
+
+Returns the smallest value of the selected column [#f2]_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/api/d/(model_name)/read/?$f=(fieldname__min)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read which record has the minimum price value.
+
+.. code-block:: bash
+
+    # item is the model name
+    # price is the field name
+    http://api.example.com/api/d/item/read/?$f=price__min
+
+Result:
+
+.. image:: assets/minresult.png
+   :align: center
+
+|
+
+It returns a record with the minimum price value.
+
+**__max**
+"""""""""
+`Back to Top (Supported Operators)`_
+
+Returns the largest value of the selected column [#f2]_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/api/d/(model_name)/read/?$f=(fieldname__max)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read which record has the maximum price value.
+
+.. code-block:: bash
+
+    # item is the model name
+    # price is the field name
+    http://api.example.com/api/d/item/read/?$f=price__max
+
+Result:
+
+.. image:: assets/maxresult.png
+   :align: center
+
+|
+
+It returns a record with the maximum price value.
+
+**__count**
+"""""""""""
+`Back to Top (Supported Operators)`_
+
+.. _Back to Top (Supported Operators): https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#supported-operators
+
+Returns the number of rows that matches a specified criteria [#f1]_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/api/d/(model_name)/read/?$f=(fieldname__count)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read a record that displays the number of all records you have in the Item model.
+
+.. code-block:: bash
+
+    # item is the model name
+    # id is the field name
+    # __count is an operator that counts the number of rows that matches
+    # a specified criteria
+    http://api.example.com/api/d/item/read/?$f=id__count
+
+Result:
+
+.. image:: assets/countresult.png
+   :align: center
+
+|
+
+It returns a record that displays the number of all records you have in the Item model.
+
+**Group By**
+^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+The GROUP BY statement groups rows that have the same values into summary rows, like "find the number of purchased items in each transaction".
+
+The GROUP BY statement is often used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns. [#f3]_
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    http://api.example.com/api/d/(model_name)/read/?$groupby=(field_name)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read a record that contains how many rows that matches a specified rating.
+
+.. code-block:: bash
+
+    # item is the model name
+    # id and rating are field names
+    # $f is a parameter for selecting fields
+    # __count is an operator that counts the number of rows that matches
+    # a specified rating
+    # SELECT COUNT(id), rating FROM items GROUP BY rating
+    http://api.example.com/api/d/item/read/?$f=id__count,rating&$groupby=rating
+
+Result:
+
+.. image:: assets/groupbyresult.png
+   :align: center
+
+|
+
+We found out that there are two records that has a rating of 3, two records that has a rating of 4, and one record that has a rating of 5.
+
+**Deleted**
+^^^^^^^^^^^
+Deleted displays the list of deleted records in the database based on the assigned model.
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    # value can be either 0 (disabled) or 1 (enabled)
+    http://api.example.com/api/d/(model_name)/read/?$deleted=(value)
+
+If the value is 0, it will return the list of deleted records. If the value is 1, it will return the list of deleted and existing records.
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Now let's delete the iPad Mini and iPad Pro items.
+
+.. image:: assets/ipaddeleteselected.png
+
+|
+
+.. image:: assets/ipadconfirmdelete.png
+
+|
+
+Result:
+
+.. image:: assets/deletemultipleresult.png
+
+|
+
+Run your application and call this URL to read a record that displays the list of existing records in the Item model.
+
+.. code-block:: bash
+
+    # item is the model name
+    # id and rating are field names
+    # 0 is the value to display the list of existing records
+    http://api.example.com/api/d/item/read/?$deleted=0
+
+Result:
+
+.. image:: assets/deleted0result.png
+   :align: center
+
+Now let's call this URL to read a record that displays the list of both deleted and existing records in the Item model.
+
+.. code-block:: bash
+
+    # item is the model name
+    # id and rating are field names
+    # 1 is the value to display the list of both deleted and existing records
+    http://api.example.com/api/d/item/read/?$deleted=1
+
+Result:
+
+.. image:: assets/deleted1result.png
+   :align: center
+
+**M2M (Read)**
+^^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Coming soon
+
+**M2M (Add)**
+^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Coming soon
+
+**M2M (Edit)**
+^^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Coming soon
+
+**Stats**
+^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+Checks the query execution time and its related details
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    # stats_value can be either 0 (disabled) or 1 (enabled)
+    http://api.example.com/api/d/(model_name)/?$stats=(stats_value)
+
+Suppose you have five records in the Item model.
+
+.. image:: assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to check the query execution time and its related details when you perform an action that reads all records in the Item model.
+
+.. code-block:: bash
+
+    # item is the model name
+    # To enable stats, ?$stats=1
+    http://api.example.com/api/d/item/?$stats=1
+
+Result:
+
+.. image:: assets/statsresult.png
+   :align: center
+
+|
+
+It returns a record that reads all item records and stats containing the query execution time and its related details when you perform an action that reads all records in the Item model.
+
+"qtime" is in milliseconds.
+
+**All Models**
+^^^^^^^^^^^^^^
+`Back to Top (Special Parameters)`_
+
+.. _Back to Top (Special Parameters): https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#special-parameters
+
+Structure:
+
+.. code-block:: bash
+
+    # d stands for data
+    # $ represents a symbol for special parameters
+    # allmodels is a parameter to get all models
+    http://api.example.com/api/d/?$allmodels
+
+Suppose you have the following models in the uAdmin dashboard.
+
+.. image:: assets/uadmindashboardupdate.png
+
+|
+
+Run your application and call this URL to read the full schema of all models.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/api/d/$allmodels
+
+Result:
+
+.. image:: assets/allmodelsresult.png
+   :align: center
+
+|
+
+It returns a JSON array representing uAdmin's ModelSchema of all models.
+
+Writing Data Symbol
+-------------------
+`Back to Top`_
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/httpapi.html#
+
+For writing data (Add/Edit), we need to put _ symbol before the field name after the WHERE symbol (?) in the URL.
+
+.. code-block:: bash
+
+    # d stands for data
+    # _name is a field name to be added with the value of "John"
+    http://api.example.com/api/d/(model_name)/add/?_name=John
+
+    # d stands for data
+    # name is a field name that was selected for updating
+    # _name is a field name to be added with the value of "Adam"
+    http://api.example.com/api/d/(model_name)/edit/?name=John&_name=Adam
+
+Without the _ symbol, that field is a selector.
+
+Reference
+---------
+.. [#f1] Refsnes Data (2019). SQL COUNT(), AVG() and SUM() Functions. Retrieved from https://www.w3schools.com/sql/sql_count_avg_sum.asp
+.. [#f2] Refsnes Data (2019). SQL ORDER BY Keyword. Retrieved from https://www.w3schools.com/sql/sql_orderby.asp
+.. [#f3] Refsnes Data (2019). SQL GROUP BY Statement. Retrieved from https://www.w3schools.com/sql/sql_groupby.asp
+.. [#f4] Refsnes Data (2019). SQL ORDER BY Keyword. Retrieved from https://www.w3schools.com/sql/sql_orderby.asp
+.. [#f5] Refsnes Data (2019). SQL BETWEEN Operator. Retrieved from https://www.w3schools.com/sql/sql_between.asp

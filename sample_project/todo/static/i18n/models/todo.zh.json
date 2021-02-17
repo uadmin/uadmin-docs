@@ -1,0 +1,61 @@
+{
+  "display_name": "Translate me ---> Todo",
+  "fields": {
+    "Category": {
+      "display_name": "Translate me ---> Category",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Description": {
+      "display_name": "Translate me ---> Description",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Friend": {
+      "display_name": "Translate me ---> Friend",
+      "help": "Translate me ---> Who will be a part of your activity?",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Item": {
+      "display_name": "Translate me ---> Item",
+      "help": "Translate me ---> What are the requirements needed in order to accomplish your activity?",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Name": {
+      "display_name": "Translate me ---> Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Progress": {
+      "display_name": "Translate me ---> Progress",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "TargetDate": {
+      "display_name": "Translate me ---> Target Date",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

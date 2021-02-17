@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>uAdmin Tutorial Part 7 - M2M (Many-to-many) &#8212; uadmin 0.5 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)" href="full_code/part7.html" />
+    <link rel="prev" title="uAdmin Tutorial Part 6 - Applying uAdmin Tags (Current Progress)" href="full_code/part6.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="full_code/part7.html" title="uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="full_code/part6.html" title="uAdmin Tutorial Part 6 - Applying uAdmin Tags (Current Progress)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../coverage.html" accesskey="U">uAdmin Tutorials</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">uAdmin Tutorial Part 7 - M2M (Many-to-many)</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="uadmin-tutorial-part-7-m2m-many-to-many">
+<h1>uAdmin Tutorial Part 7 - M2M (Many-to-many)<a class="headerlink" href="#uadmin-tutorial-part-7-m2m-many-to-many" title="Permalink to this headline">¶</a></h1>
+<p>uAdmin has a multiselection feature that allows you to select multiple values inside an input box field.</p>
+<p>Before we proceed, run your application first. Let’s add more records in the Category model.</p>
+<p><strong>First Record</strong></p>
+<img alt="../_images/addnewworkrecord.png" class="align-center" src="../_images/addnewworkrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Second Record</strong></p>
+<img alt="../_images/addnewfamilyrecord.png" class="align-center" src="../_images/addnewfamilyrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Third Record</strong></p>
+<img alt="../_images/addneweducationrecord.png" class="align-center" src="../_images/addneweducationrecord.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/addnewcategoryresult.png" class="align-center" src="../_images/addnewcategoryresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Exit your application. Let’s add <strong>Category</strong> field with the array data type of the Category model, set the type tag as “list_exclude”, and add <strong>CategoryList</strong> field as well with the type tag “read_only” in <strong>models/category.go</strong> so we can see the result in the list page after you save the record.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">Category</span>     <span class="p">[]</span><span class="nx">Category</span> <span class="s">`uadmin:&quot;list_exclude&quot;`</span>
+<span class="nx">CategoryList</span> <span class="kt">string</span>     <span class="s">`uadmin:&quot;read_only&quot;`</span>
+</pre></div>
+</div>
+<p>Expected result</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>         <span class="kt">string</span>     <span class="s">`uadmin:&quot;search;categorical_filter;filter;display_name:Product Name&quot;`</span>
+    <span class="nx">Description</span>  <span class="kt">string</span>     <span class="s">`uadmin:&quot;multilingual&quot;`</span>
+
+    <span class="c1">// FIELDS ADDED</span>
+    <span class="nx">Category</span>     <span class="p">[]</span><span class="nx">Category</span> <span class="s">`uadmin:&quot;list_exclude&quot;`</span>
+    <span class="nx">CategoryList</span> <span class="kt">string</span>     <span class="s">`uadmin:&quot;read_only&quot;`</span>
+
+    <span class="nx">Cost</span>         <span class="kt">int</span>        <span class="s">`uadmin:&quot;money;pattern:^[0-9]*$;pattern_msg:Your input must be a number.&quot;`</span>
+    <span class="nx">Rating</span>       <span class="kt">int</span>        <span class="s">`uadmin:&quot;min:1;max:5&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Copy this one as well and paste it below the Item struct.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Save !</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">i</span> <span class="o">*</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Add a new string array type variable called categoryList</span>
+    <span class="nx">categoryList</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{}</span>
+
+    <span class="c1">// Append every element to the categoryList array</span>
+    <span class="k">for</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">i</span><span class="p">.</span><span class="nx">Category</span> <span class="p">{</span>
+        <span class="nx">categoryList</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">categoryList</span><span class="p">,</span> <span class="nx">i</span><span class="p">.</span><span class="nx">Category</span><span class="p">[</span><span class="nx">c</span><span class="p">].</span><span class="nx">Name</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Concatenate the categoryList to a single string separated by comma</span>
+    <span class="nx">joinList</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Join</span><span class="p">(</span><span class="nx">categoryList</span><span class="p">,</span> <span class="s">&quot;, &quot;</span><span class="p">)</span>
+
+    <span class="c1">// Store the joined string to the CategoryList field</span>
+    <span class="nx">i</span><span class="p">.</span><span class="nx">CategoryList</span> <span class="p">=</span> <span class="nx">joinList</span>
+
+    <span class="c1">// Save it to the database</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application, go to <strong>ITEMS</strong> model from uAdmin dashboard, and inside it, click <strong>Add New Item</strong> button on the top right corner. In the Category field, add new tag there.</p>
+<img alt="../_images/m2mtagapplied.png" src="../_images/m2mtagapplied.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../_images/m2mtagappliedoutput.png" src="../_images/m2mtagappliedoutput.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Well done! Now you know how to create multiple elements in M2M tag field and concatenate into a single string stored in another field to display in the list page.</p>
+<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html">here</a> to view our progress so far.</p>
+<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part8.html">next part</a>, we will discuss on how to apply validation in the back-end.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="full_code/part7.html">uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)</a></li>
+</ul>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="full_code/part6.html"
+                        title="previous chapter">uAdmin Tutorial Part 6 - Applying uAdmin Tags (Current Progress)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="full_code/part7.html"
+                        title="next chapter">uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/part7.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="full_code/part7.html" title="uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="full_code/part6.html" title="uAdmin Tutorial Part 6 - Applying uAdmin Tags (Current Progress)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../coverage.html" >uAdmin Tutorials</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">uAdmin Tutorial Part 7 - M2M (Many-to-many)</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

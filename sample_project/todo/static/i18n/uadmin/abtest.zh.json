@@ -1,0 +1,75 @@
+{
+  "display_name": "Translate me ---> AB Test",
+  "fields": {
+    "Active": {
+      "display_name": "Translate me ---> Active",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Field": {
+      "display_name": "Translate me ---> Field",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Group": {
+      "display_name": "Translate me ---> Group",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ModelName": {
+      "display_name": "Translate me ---> Model Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Name": {
+      "display_name": "Translate me ---> Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "PrimaryKey": {
+      "display_name": "Translate me ---> Primary Key",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ResetABTest": {
+      "display_name": "Translate me ---> Reset AB Test",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "StaticPath": {
+      "display_name": "Translate me ---> Static Path",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Type": {
+      "display_name": "Translate me ---> Type",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

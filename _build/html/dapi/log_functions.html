@@ -1,0 +1,595 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log Functions &#8212; uadmin 0.5 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Post Query Functions" href="post_query_functions.html" />
+    <link rel="prev" title="Disabled Functions" href="disabled_functions.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="post_query_functions.html" title="Post Query Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="disabled_functions.html" title="Disabled Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dapi.html" accesskey="U">dAPI Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Log Functions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="log-functions">
+<h1>Log Functions<a class="headerlink" href="#log-functions" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#uadmin-functions">Back To uAdmin Functions List</a></p>
+<p>In this section, we will cover the following functions in-depth listed below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#uadmin-apilogadd">uadmin.APILogAdd</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apilogadder">uadmin.APILogAdder</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apilogdelete">uadmin.APILogDelete</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apilogdeleter">uadmin.APILogDeleter</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apilogedit">uadmin.APILogEdit</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apilogeditor">uadmin.APILogEditor</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apilogread">uadmin.APILogRead</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apilogreader">uadmin.APILogReader</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apilogschema">uadmin.APILogSchema</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-apilogschemer">uadmin.APILogSchemer</a></p></li>
+</ul>
+<div class="section" id="uadmin-apilogadd">
+<h2>uadmin.APILogAdd<a class="headerlink" href="#uadmin-apilogadd" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
+<p>APILogAdd controls the data API’s logging for add commands.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-add">API Log Add</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#add-multiple">Add Multiple</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#add-one">Add One</a></p></li>
+</ul>
+<p>Go to the main.go and assign the value of the API Log Add to true.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">APILogAdd</span> <span class="p">=</span> <span class="kc">true</span>
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. Let’s call this URL in the address bar to add multiple records in the Document model with the following information below:</p>
+<p><strong>First Record</strong></p>
+<ul class="simple">
+<li><p>Name: Golang</p></li>
+<li><p>Author: John</p></li>
+</ul>
+<p><strong>Second Record</strong></p>
+<ul class="simple">
+<li><p>Name: uAdmin</p></li>
+<li><p>Author: Adam</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+<span class="c1"># __0 is the first index</span>
+<span class="c1"># __1 is the second index</span>
+http://api.example.com/api/d/document/add/?_name__0<span class="o">=</span>Golang<span class="p">&amp;</span><span class="nv">_author__0</span><span class="o">=</span>John<span class="p">&amp;</span><span class="nv">_name__1</span><span class="o">=</span>uAdmin<span class="p">&amp;</span><span class="nv">_author__1</span><span class="o">=</span>Adam
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">1</span><span class="p">,</span>
+        <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns an array with a list of IDs for the newly created records.</p>
+<p>Now go back to the uAdmin dashboard. Click on “LOGS”.</p>
+<img alt="../_images/logshighlighted2.png" src="../_images/logshighlighted2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in adding records through HTTP API was recorded in the Log model.</p>
+<img alt="../_images/apilogaddenabled.png" src="../_images/apilogaddenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Exit your application. Go to the main.go and assign the value of the API Log Add to false.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">APILogAdd</span> <span class="p">=</span> <span class="kc">false</span>
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. Let’s call this URL to add a new record in the Document model with the following information below:</p>
+<ul class="simple">
+<li><p>Name: Programming</p></li>
+<li><p>Author: Admin</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+http://api.example.com/api/d/document/add/?_name<span class="o">=</span>Programming<span class="p">&amp;</span><span class="nv">_author</span><span class="o">=</span>Admin
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the ID of the newly created record.</p>
+<p>Check the “LOGS” to see the result.</p>
+<img alt="../_images/apilogadddisabled.png" src="../_images/apilogadddisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in adding a record through HTTP API was not recorded in the Log model.</p>
+</div>
+<div class="section" id="uadmin-apilogadder">
+<h2>uadmin.APILogAdder<a class="headerlink" href="#uadmin-apilogadder" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
+<p>APILogAdder is an interface that contains the method APILogAdd with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as Added when he use the dAPI add method.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-apilogdelete">
+<h2>uadmin.APILogDelete<a class="headerlink" href="#uadmin-apilogdelete" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
+<p>APILogDelete controls the data API’s logging for delete commands.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-delete">API Log Delete</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#delete-multiple">Delete Multiple</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#delete-one">Delete One</a></p></li>
+</ul>
+<p>Go to the main.go and assign the value of the API Log Delete to true.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">APILogDelete</span> <span class="p">=</span> <span class="kc">true</span>
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. Suppose you have five records in the Item model.</p>
+<img alt="../_images/itemfiverecords.png" src="../_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this URL in the address bar to delete records where the name of an item contains “iPad”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+http://api.example.com/api/d/item/delete/?name__contains<span class="o">=</span>iPad
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>Now go back to the uAdmin dashboard. Click on “LOGS”.</p>
+<img alt="../_images/logshighlighted2.png" src="../_images/logshighlighted2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in deleting records through HTTP API that contains “iPad” in the item name was recorded in the Log model.</p>
+<img alt="../_images/apilogdeleteenabled.png" src="../_images/apilogdeleteenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Exit your application. Go to the main.go and assign the value of the API Log Delete to false.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">APILogDelete</span> <span class="p">=</span> <span class="kc">false</span>
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. Let’s call this URL in the address bar to delete the fourth record in the database.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 4 is an ID number</span>
+http://api.example.com/api/d/item/delete/4/
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>Check the “LOGS” to see the result.</p>
+<img alt="../_images/apilogdeletedisabled.png" src="../_images/apilogdeletedisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in deleting the fourth record through HTTP API was not recorded in the Log model.</p>
+</div>
+<div class="section" id="uadmin-apilogdeleter">
+<h2>uadmin.APILogDeleter<a class="headerlink" href="#uadmin-apilogdeleter" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
+<p>APILogDeleter is an interface that contains the method APILogDelete with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as Deleted when he use the dAPI delete method.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-apilogedit">
+<h2>uadmin.APILogEdit<a class="headerlink" href="#uadmin-apilogedit" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
+<p>APILogEdit controls the data API’s logging for edit commands.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-edit">API Log Edit</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#edit-multiple">Edit Multiple</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#edit-one">Edit One</a></p></li>
+</ul>
+<p>Go to the main.go and assign the value of the API Log Edit to true.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">APILogEdit</span> <span class="p">=</span> <span class="kc">true</span>
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. Suppose you have five records in the Item model where all iPad items have a rating of 4.</p>
+<img alt="../_images/itemipadoldrating.png" src="../_images/itemipadoldrating.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this URL to edit the rating of all iPad items to a value of 5.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+<span class="c1"># rating=4&amp;_rating=5 means that where rating is equal to 4, change the</span>
+<span class="c1"># rating value to 5</span>
+http://api.example.com/api/d/item/edit/?rating<span class="o">=</span><span class="m">4</span><span class="p">&amp;</span><span class="nv">_rating</span><span class="o">=</span><span class="m">5</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>Now go back to the uAdmin dashboard. Click on “LOGS”.</p>
+<img alt="../_images/logshighlighted2.png" src="../_images/logshighlighted2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in editing records through HTTP API was recorded in the Log model.</p>
+<img alt="../_images/apilogeditenabled.png" src="../_images/apilogeditenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Exit your application. Go to the main.go and assign the value of the API Log Edit to false.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">APILogEdit</span> <span class="p">=</span> <span class="kc">false</span>
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. Suppose the first record in the Item model is named as “Robot”.</p>
+<img alt="../_images/itemfirstrecordrobot.png" src="../_images/itemfirstrecordrobot.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this URL to edit the name of the first record in the database from “Robot” to “Supercomputer”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 1 is an ID number</span>
+<span class="c1"># name is a field name</span>
+http://api.example.com/api/d/item/edit/1/?_name<span class="o">=</span>Supercomputer
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>Check the “LOGS” to see the result.</p>
+<img alt="../_images/apilogeditdisabled.png" src="../_images/apilogeditdisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in editing the first record through HTTP API was not recorded in the Log model.</p>
+</div>
+<div class="section" id="uadmin-apilogeditor">
+<h2>uadmin.APILogEditor<a class="headerlink" href="#uadmin-apilogeditor" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
+<p>APILogEditor is an interface that contains the method APILogEdit with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as Modified when he use the dAPI edit method.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-apilogread">
+<h2>uadmin.APILogRead<a class="headerlink" href="#uadmin-apilogread" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
+<p>APILogRead controls the data API’s logging for read commands.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-read">API Log Read</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#read-multiple">Read Multiple</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#read-one">Read One</a></p></li>
+</ul>
+<p>Go to the main.go and assign the value of the API Log Read to true.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">APILogRead</span> <span class="p">=</span> <span class="kc">true</span>
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. Suppose you have five records in the Item model.</p>
+<img alt="../_images/itemfiverecords.png" src="../_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this URL to read record(s) where rating is equal to 3.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># rating is a field name</span>
+http://api.example.com/api/d/item/read/?rating<span class="o">=</span><span class="m">3</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="../_images/readmultipleresult.png" class="align-center" src="../_images/readmultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a list of records where rating is equal to 3.</p>
+<p>Now go back to the uAdmin dashboard. Click on “LOGS”.</p>
+<img alt="../_images/logshighlighted2.png" src="../_images/logshighlighted2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in reading records through HTTP API was recorded in the Log model.</p>
+<img alt="../_images/apilogreadenabled.png" src="../_images/apilogreadenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Exit your application. Go to the main.go and assign the value of the API Log Read to false.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">APILogRead</span> <span class="p">=</span> <span class="kc">false</span>
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. Call this URL to read the second record in the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 2 is an ID number</span>
+http://api.example.com/api/d/item/read/2/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="../_images/readoneresult.png" class="align-center" src="../_images/readoneresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing an item where ID=2.</p>
+<p>Check the “LOGS” to see the result.</p>
+<img alt="../_images/apilogreaddisabled.png" src="../_images/apilogreaddisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in reading the second record through HTTP API was not recorded in the Log model.</p>
+</div>
+<div class="section" id="uadmin-apilogreader">
+<h2>uadmin.APILogReader<a class="headerlink" href="#uadmin-apilogreader" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
+<p>APILogReader is an interface that contains the method APILogRead with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as Read when he use the dAPI read method.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uadmin-apilogschema">
+<h2>uadmin.APILogSchema<a class="headerlink" href="#uadmin-apilogschema" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
+<p>APILogSchema controls the data API’s logging for schema commands.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span>
+</pre></div>
+</div>
+<p>To assign a value within an application, visit <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#api-log-schema">API Log Schema</a> page for an example.</p>
+<p>To assign a value in the code, follow this approach:</p>
+<p>Prerequisite:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#schema">Schema</a></p></li>
+</ul>
+<p>Go to the main.go and assign the value of the API Log Schema to true.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">APILogSchema</span> <span class="p">=</span> <span class="kc">true</span>
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. Suppose you have five records in the Item model.</p>
+<img alt="../_images/itemfiverecords.png" src="../_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Call this URL to read the full schema of the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/api/d/item/schema/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="../_images/schemaresult.png" class="align-center" src="../_images/schemaresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing uAdmin’s ModelSchema of the Item model.</p>
+<p>Now go back to the uAdmin dashboard. Click on “LOGS”.</p>
+<img alt="../_images/logshighlighted2.png" src="../_images/logshighlighted2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in getting the schema of the Item model through HTTP API was recorded in the Log model.</p>
+<img alt="../_images/apilogschemaenabled.png" src="../_images/apilogschemaenabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Exit your application. Go to the main.go and assign the value of the API Log Schema to false.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">APILogSchema</span> <span class="p">=</span> <span class="kc">false</span>
+    <span class="c1">// Some codes</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. Recall this URL to read the full schema of the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/api/d/item/schema/
+</pre></div>
+</div>
+<p>Check the “LOGS” to see the result.</p>
+<img alt="../_images/apilogschemadisabled.png" src="../_images/apilogschemadisabled.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the user’s action in getting the schema of the Item model through HTTP API was not recorded in the Log model.</p>
+</div>
+<div class="section" id="uadmin-apilogschemer">
+<h2>uadmin.APILogSchemer<a class="headerlink" href="#uadmin-apilogschemer" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
+<p>APILogSchemer is an interface that contains the method APILogSchema with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as GetSchema when he use the dAPI schema method.</p>
+<p>Type:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="disabled_functions.html"
+                        title="previous chapter">Disabled Functions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="post_query_functions.html"
+                        title="next chapter">Post Query Functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/dapi/log_functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="post_query_functions.html" title="Post Query Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="disabled_functions.html" title="Disabled Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dapi.html" >dAPI Reference</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Log Functions</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+{
+  "display_name": "Translate me ---> Group Permission",
+  "fields": {
+    "Add": {
+      "display_name": "Translate me ---> Add",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Approval": {
+      "display_name": "Translate me ---> Approval",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "DashboardMenu": {
+      "display_name": "Translate me ---> Dashboard Menu",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Delete": {
+      "display_name": "Translate me ---> Delete",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Edit": {
+      "display_name": "Translate me ---> Edit",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Read": {
+      "display_name": "Translate me ---> Read",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "UserGroup": {
+      "display_name": "Translate me ---> User Group",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

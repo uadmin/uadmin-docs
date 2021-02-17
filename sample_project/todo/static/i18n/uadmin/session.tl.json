@@ -1,0 +1,68 @@
+{
+  "display_name": "Translate me ---> Session",
+  "fields": {
+    "Active": {
+      "display_name": "Translate me ---> Active",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ExpiresOn": {
+      "display_name": "Translate me ---> Expires On",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "IP": {
+      "display_name": "Translate me ---> IP",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Key": {
+      "display_name": "Translate me ---> Key",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "LastLogin": {
+      "display_name": "Translate me ---> Last Login",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "LoginTime": {
+      "display_name": "Translate me ---> Login Time",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "PendingOTP": {
+      "display_name": "Translate me ---> Pending OTP",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "User": {
+      "display_name": "Translate me ---> User",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

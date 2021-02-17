@@ -1,0 +1,61 @@
+{
+  "display_name": "Translate me ---> AB Test Value",
+  "fields": {
+    "ABTest": {
+      "display_name": "Translate me ---> AB Test",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Active": {
+      "display_name": "Translate me ---> Active",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ClickThroughRate__Form__List": {
+      "display_name": "Translate me ---> Click Through Rate",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Clicks": {
+      "display_name": "Translate me ---> Clicks",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Impressions": {
+      "display_name": "Translate me ---> Impressions",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Preview__Form__List": {
+      "display_name": "Translate me ---> Preview",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Value": {
+      "display_name": "Translate me ---> Value",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

@@ -1,0 +1,374 @@
+Model Functions
+===============
+`Back To uAdmin Functions List`_
+
+.. _Back To uAdmin Functions List: https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference
+
+In this section, we will cover the following functions in-depth listed below:
+
+* `uadmin.DashboardMenu`_
+    * `func (DashboardMenu) GetImageSize`_
+    * `func (DashboardMenu) String`_
+* `uadmin.HideInDashboarder`_
+* `uadmin.Model`_
+* `uadmin.NewModel`_
+* `uadmin.NewModelArray`_
+
+uadmin.DashboardMenu
+--------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    type DashboardMenu struct {
+        Model
+        MenuName string `uadmin:"required;list_exclude;multilingual;filter"`
+        URL      string `uadmin:"required"`
+        ToolTip  string
+        Icon     string `uadmin:"image"`
+        Cat      string `uadmin:"filter"`
+        Hidden   bool   `uadmin:"filter"`
+    }
+
+DashboardMenu is a system in uAdmin that is used to add, modify and delete the elements of a model.
+
+**func (DashboardMenu) GetImageSize**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (m DashboardMenu) GetImageSize() (int, int)
+
+GetImageSize customizes the icons as 128x128.
+
+**func (DashboardMenu) String**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back to Top`_
+
+.. code-block:: go
+
+    func (m DashboardMenu) String() string
+
+String returns the MenuName.
+
+Go to the main.go and apply the following codes below after the RegisterInlines section.
+
+.. code-block:: go
+
+    func main(){
+
+        // Some codes
+
+        dashboardmenu := uadmin.DashboardMenu{
+            MenuName: "Expressions",
+            URL:      "expression",
+            ToolTip:  "",
+            Icon:     "/media/images/expression.png",
+            Cat:      "Yeah!",
+            Hidden:   false,
+        }
+
+        // This will create a new model based on the information assigned in
+        // the dashboardmenu variable.
+        uadmin.Save(&dashboardmenu)
+
+        // Returns the MenuName
+        uadmin.Trail(uadmin.INFO, "String() returns %s.", dashboardmenu.String())
+    }
+
+Now run your application and see what happens.
+
+**Terminal**
+
+.. code-block:: bash
+
+    [  INFO  ]   String() returns Expressions.
+
+.. image:: ../assets/expressionmodelcreated.png
+
+|
+
+Quiz:
+
+* `Dashboard Menu`_
+
+.. _Dashboard Menu: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/dashboard-menu.html
+
+uadmin.HideInDashboarder
+------------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    type HideInDashboarder interface {
+        HideInDashboard() bool
+    }
+
+HideInDashboarder is used to check if a model should be hidden in the dashboard.
+
+Suppose I have five models in my dashboard: Todos, Categorys, Items, Friends, and Expressions. I want Friends and Expressions models to be hidden in the dashboard. In order to do that, go to the friend.go and expression.go inside the models folder and apply the HideInDashboard() function. Set the return value to **true** inside it.
+
+**friend.go**
+
+.. code-block:: go
+
+    func (Friend) HideInDashboard() bool {
+        return true
+    }
+
+**expression.go**
+
+.. code-block:: go
+
+    func (Expression) HideInDashboard() bool {
+        return true
+    }
+
+Now go to the main.go and apply the following codes below inside the main function:
+
+.. code-block:: go
+
+    // Initialize the Expression and Friend models inside the modelList with
+    // the array type of interface
+    modelList := []interface{}{
+        models.Expression{},
+        models.Friend{},
+    }
+
+    // Loop the execution process based on the modelList count
+    for i := range modelList {
+
+        // Returns the reflection type that represents the dynamic type of i
+        t := reflect.TypeOf(modelList[i])
+
+        // Calls the HideInDashboarder function to access the HideInDashboard
+        // function
+        hideItem := modelList[i].(uadmin.HideInDashboarder).HideInDashboard()
+
+        // Initializes the dashboardmenu variable to assign the DashboardMenu
+        dashboardmenu := uadmin.DashboardMenu{
+
+            // Returns the name of the model based on reflection
+            MenuName: t.Name(),
+
+            // Returns the boolean value based on the assigned return in the
+            // HideInDashboard()
+            Hidden:   hideItem,
+        }
+
+        // Prints the information of the dashboardmenu
+        uadmin.Trail(uadmin.INFO, "MenuName: %s,  Hidden: %t", dashboardmenu.MenuName, dashboardmenu.Hidden)
+    }
+
+Go back to your application. Open the DashboardMenu then delete the Expressions and Friends model.
+
+.. image:: ../assets/deletetwomodels.png
+
+|
+
+Now rerun your application and see what happens.
+
+.. code-block:: bash
+
+    [  INFO  ]   MenuName: Expression,  Hidden: true
+    [  INFO  ]   MenuName: Friend,  Hidden: true
+
+.. image:: ../assets/twomodelshidden.png
+
+|
+
+As expected, Friends and Expressions models are now hidden in the dashboard. If you go to the Dashboard Menus, you will see that they are checked in the Hidden field.
+
+.. image:: ../assets/twomodelshiddenchecked.png
+
+|
+
+Quiz:
+
+* `Miscellaneous Functions (2)`_
+
+.. _Miscellaneous Functions (2): https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions-2.html
+
+uadmin.Model
+------------
+`Back To Top`_
+
+.. code-block:: go
+
+    type Model struct {
+        ID        uint       `gorm:"primary_key"`
+        DeletedAt *time.Time `sql:"index"`
+    }
+
+Model is the standard struct to be embedded in any other struct to make it a model for uadmin.
+
+In every struct, uadmin.Model must always come first before creating a field.
+
+.. code-block:: go
+
+    type (struct_name) struct{
+        uadmin.Model // <-- place it here
+        // Some codes here
+    }
+
+Quiz:
+
+* `Miscellaneous Functions`_
+
+.. _Miscellaneous Functions: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html
+
+uadmin.NewModel
+---------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func NewModel(modelName string, pointer bool) (reflect.Value, bool)
+
+NewModel creates a new model from a model name.
+
+Parameters:
+
+    **modelName string:** Is the model you want to call in the function
+
+    **pointer bool** Points to the interface
+
+Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
+
+.. _Tutorial Part 9 - Introduction to API: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html
+
+Suppose I have four records in my Category model.
+
+* Education ID = 4
+* Family ID = 3
+* Work ID = 2
+* Travel ID = 1
+
+.. image:: ../assets/categorylist.png
+
+Create a file named custom_todo.go inside the api folder with the following codes below:
+
+.. code-block:: go
+
+    // CustomTodoHandler !
+    func CustomTodoHandler(w http.ResponseWriter, r *http.Request) {
+        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/custom_todo")
+        r.URL.Path = strings.TrimSuffix(r.URL.Path, "/")
+
+        res := map[string]interface{}{}
+
+        // Call the category model and set the pointer to true
+        m, _ := uadmin.NewModel("category", true)
+
+        // Get the third record in the category model
+        uadmin.Get(m.Interface(), "id = ?", 3)
+
+        // Assign the m.Interface() to the newmodel
+        newmodel := m.Interface()
+
+        // Print the result in JSON format
+        res["status"] = "ok"
+        res["category"] = newmodel
+        uadmin.ReturnJSON(w, r, res)
+    }
+
+Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+
+        // CustomTodoHandler
+        http.HandleFunc("/custom_todo/", uadmin.Handler(api.CustomTodoHandler)) // <-- place it here
+    }
+
+api is the folder name while CustomTodoHandler is the name of the function inside custom_todo.go.
+
+Run your application and see what happens.
+
+.. image:: ../assets/newmodeljson.png
+
+|
+
+Quiz:
+
+* `New Model and New Model Array`_
+
+uadmin.NewModelArray
+--------------------
+`Back To Top`_
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#model-functions
+
+.. code-block:: go
+
+    func NewModelArray(modelName string, pointer bool) (reflect.Value, bool)
+
+NewModelArray creates a new model array from a model name.
+
+Parameters:
+
+    **modelName string:** Is the model you want to call in the function
+
+    **pointer bool** Points to the interface
+
+Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
+
+.. _Tutorial Part 9 - Introduction to API: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html
+
+Suppose I have four records in my Category model.
+
+.. image:: ../assets/categorylist.png
+
+Create a file named custom_todo.go inside the api folder with the following codes below:
+
+.. code-block:: go
+
+    // CustomTodoHandler !
+    func CustomTodoHandler(w http.ResponseWriter, r *http.Request) {
+        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/custom_todo")
+        r.URL.Path = strings.TrimSuffix(r.URL.Path, "/")
+
+        res := map[string]interface{}{}
+
+        // Call the category model and set the pointer to true
+        m, _ := uadmin.NewModelArray("category", true)
+
+        // Fetch the records of the category model
+        uadmin.Filter(m.Interface(), "id >= ?", 1)
+
+        // Assign the m.Interface() to the newmodelarray
+        newmodelarray := m.Interface()
+
+        // Print the result in JSON format
+        res["status"] = "ok"
+        res["category"] = newmodelarray
+        uadmin.ReturnJSON(w, r, res)
+    }
+
+Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.
+
+.. code-block:: go
+
+    func main() {
+        // Some codes
+
+        // CustomTodoHandler
+        http.HandleFunc("/custom_todo/", uadmin.Handler(api.CustomTodoHandler)) // <-- place it here
+    }
+
+api is the folder name while CustomTodoHandler is the name of the function inside custom_todo.go.
+
+Run your application and see what happens.
+
+.. image:: ../assets/newmodelarrayjson.png
+
+|
+
+Quiz:
+
+* `New Model and New Model Array`_
+
+.. _New Model and New Model Array: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/new-model-and-new-model-array.html

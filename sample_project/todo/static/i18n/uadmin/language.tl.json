@@ -1,0 +1,68 @@
+{
+  "display_name": "Translate me ---> Language",
+  "fields": {
+    "Active": {
+      "display_name": "Translate me ---> Active",
+      "help": "Translate me ---> To show this in available languages",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "AvailableInGui": {
+      "display_name": "Translate me ---> Available In Gui",
+      "help": "Translate me ---> The App is available in this language",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Code": {
+      "display_name": "Translate me ---> Code",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Default": {
+      "display_name": "Translate me ---> Default",
+      "help": "Translate me ---> Set as the default language",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "EnglishName": {
+      "display_name": "Translate me ---> English Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Flag": {
+      "display_name": "Translate me ---> Flag",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Name": {
+      "display_name": "Translate me ---> Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "RTL": {
+      "display_name": "Translate me ---> RTL",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

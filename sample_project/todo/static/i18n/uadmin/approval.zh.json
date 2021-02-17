@@ -1,0 +1,103 @@
+{
+  "display_name": "Translate me ---> Approval",
+  "fields": {
+    "ApprovalAction": {
+      "display_name": "Translate me ---> Approval Action",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ApprovalBy": {
+      "display_name": "Translate me ---> Approval By",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ApprovalDate": {
+      "display_name": "Translate me ---> Approval Date",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ChangeDate": {
+      "display_name": "Translate me ---> Change Date",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ChangedBy": {
+      "display_name": "Translate me ---> Changed By",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ColumnName": {
+      "display_name": "Translate me ---> Column Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ModelName": {
+      "display_name": "Translate me ---> Model Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ModelPK": {
+      "display_name": "Translate me ---> Model PK",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "NewValue": {
+      "display_name": "Translate me ---> New Value",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "NewValueDescription": {
+      "display_name": "Translate me ---> New Value Description",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "OldValue": {
+      "display_name": "Translate me ---> Old Value",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "UpdatedBy": {
+      "display_name": "Translate me ---> Updated By",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ViewRecord": {
+      "display_name": "Translate me ---> View Record",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

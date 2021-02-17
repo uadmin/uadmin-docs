@@ -1,0 +1,1382 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>For Fetching Records &#8212; uadmin 0.4 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="IP Functions" href="ip_functions.html" />
+    <link rel="prev" title="Email Functions" href="email_functions.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ip_functions.html" title="IP Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="email_functions.html" title="Email Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="for-fetching-records">
+<h1>For Fetching Records<a class="headerlink" href="#for-fetching-records" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
+<p>In this section, we will cover the following functions in-depth listed below:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#uadmin-adminpage">uadmin.AdminPage</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-all">uadmin.All</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-choice">uadmin.Choice</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-count">uadmin.Count</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-filter">uadmin.Filter</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-filterbuilder">uadmin.FilterBuilder</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-filterlist">uadmin.FilterList</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-get">uadmin.Get</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-getfieldsapi">uadmin.GetFieldsAPI</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-getform">uadmin.GetForm</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-getid">uadmin.GetID</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-getmodelsapi">uadmin.GetModelsAPI</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-getstring">uadmin.GetString</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-getstringer">uadmin.GetStringer</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-preload">uadmin.Preload</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-renderhtml">uadmin.RenderHTML</a></p></li>
+</ul>
+<div class="section" id="uadmin-adminpage">
+<h2>uadmin.AdminPage<a class="headerlink" href="#uadmin-adminpage" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>AdminPage fetches records from the database with some standard rules such as sorting data, multiples of, and setting a limit that can be used in pagination.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">offset</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">limit</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>order string:</strong> Is the field you want to specify in the database.</p>
+<p><strong>asc bool:</strong> true in ascending order, false in descending order.</p>
+<p><strong>offset int:</strong> Is the starting point of your list.</p>
+<p><strong>limit int:</strong> Is the number of records that you want to display in your application.</p>
+<p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
+<p><strong>query interface{}:</strong> Is an action that you want to perform in your database</p>
+<p><strong>args …interface{}:</strong> Is the series of arguments for query input</p>
+</div></blockquote>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part13.html">Document System Tutorial Part 13 - Custom AdminPage function</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part8.html">uAdmin Tutorial Part 8 - Customizing your API Handler</a></p></li>
+</ul>
+<p>Create a file named admin_page_list.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// AdminPageHandler !</span>
+<span class="kd">func</span> <span class="nx">AdminPageHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/admin_page_list&quot;</span><span class="p">)</span>
+
+    <span class="nx">todo</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{}</span>
+
+    <span class="c1">// &quot;id&quot; - order the todo model by id field</span>
+    <span class="c1">// false - to sort in descending order</span>
+    <span class="c1">// 0 - start at index 0</span>
+    <span class="c1">// 3 - get three records</span>
+    <span class="c1">// &amp;todo - todo model to execute</span>
+    <span class="c1">// id &gt; ? - a query where id is greater than the value</span>
+    <span class="c1">// 0 - a value to be set in ?</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">AdminPage</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">todo</span><span class="p">,</span> <span class="s">&quot;id &gt; ?&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">todo</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// AdminPageHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/api/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">AdminPageHandler</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while AdminPageHandler is the name of the function inside admin_page_list.go.</p>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/adminpagelistapi.png" class="align-center" src="../_images/adminpagelistapi.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/admin-page.html">Admin Page</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-all">
+<h2>uadmin.All<a class="headerlink" href="#uadmin-all" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>All fetches all object in the database.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameter:</p>
+<blockquote>
+<div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
+</div></blockquote>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">uAdmin Tutorial Part 7 - Introduction to API</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part12.html">uAdmin Tutorial Part 12 - Storing the data to HTML</a></p></li>
+</ul>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">Tutorial Part 7 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Create a file named friend_list.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// FriendListHandler !</span>
+<span class="kd">func</span> <span class="nx">FriendListHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/friend_list&quot;</span><span class="p">)</span>
+
+    <span class="nx">friend</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">models</span><span class="p">.</span><span class="nx">Friend</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">All</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">friend</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">friend</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// FriendListHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/friend_list/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">FriendListHandler</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while FriendListHandler is the name of the function inside friend_list.go.</p>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/friendlistapi.png" class="align-center" src="../_images/friendlistapi.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/all-and-get.html">All and Get</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-choice">
+<h2>uadmin.Choice<a class="headerlink" href="#uadmin-choice" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>Choice is a struct for the list of choices.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Choice</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">V</span>        <span class="kt">string</span>
+    <span class="nx">K</span>        <span class="kt">uint</span>
+    <span class="nx">Selected</span> <span class="kt">bool</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Suppose I have four records in my Category model.</p>
+<ul class="simple">
+<li><p>Education ID = 4</p></li>
+<li><p>Family ID = 3</p></li>
+<li><p>Work ID = 2</p></li>
+<li><p>Travel ID = 1</p></li>
+</ul>
+<img alt="../_images/categorylist1.png" src="../_images/categorylist1.png" />
+<p>And you have the given fields in the Todo model.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>        <span class="kt">string</span>
+    <span class="nx">Description</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;html&quot;`</span>
+    <span class="nx">Category</span>    <span class="nx">Category</span>
+    <span class="nx">CategoryID</span>  <span class="kt">uint</span>
+    <span class="nx">TargetDate</span>  <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+    <span class="nx">Progress</span>    <span class="kt">int</span> <span class="s">`uadmin:&quot;progress_bar&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Inside the main function, apply <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-schema">uadmin.Schema</a> function that calls a model name of "todo” that accesses the category field in the docS variable. Limit the choices by getting the second and fourth record only in the category field.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Initialize docS variable that calls the category field of the</span>
+<span class="c1">// Todo model in the schema</span>
+<span class="nx">docS</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Schema</span><span class="p">[</span><span class="s">&quot;todo&quot;</span><span class="p">].</span><span class="nx">FieldByName</span><span class="p">(</span><span class="s">&quot;category&quot;</span><span class="p">)</span>
+
+<span class="c1">// LimitChoicesTo is based on the fetched records to be appended in the</span>
+<span class="c1">// drop down list.</span>
+<span class="nx">docS</span><span class="p">.</span><span class="nx">LimitChoicesTo</span> <span class="p">=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">m</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">u</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">)</span> <span class="p">[]</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Choice</span> <span class="p">{</span>
+    <span class="c1">// Build choices</span>
+    <span class="nx">choices</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Choice</span><span class="p">{</span>
+        <span class="p">{</span>
+            <span class="nx">V</span><span class="p">:</span>        <span class="s">&quot;-&quot;</span><span class="p">,</span>
+            <span class="nx">K</span><span class="p">:</span>        <span class="mi">0</span><span class="p">,</span>
+            <span class="nx">Selected</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Initialize an array of Category model</span>
+    <span class="nx">categorylist</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">models</span><span class="p">.</span><span class="nx">Category</span><span class="p">{}</span>
+
+    <span class="c1">// Get the second and fourth record</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Filter</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">categorylist</span><span class="p">,</span> <span class="s">&quot;id IN (2,4)&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Loop the fetched records</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">categorylist</span> <span class="p">{</span>
+        <span class="c1">// Append by getting the ID and string of each category records</span>
+        <span class="nx">choices</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">choices</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Choice</span><span class="p">{</span>
+            <span class="nx">V</span><span class="p">:</span>        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetString</span><span class="p">(</span><span class="nx">c</span><span class="p">),</span>
+            <span class="nx">K</span><span class="p">:</span>        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetID</span><span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">ValueOf</span><span class="p">(</span><span class="nx">c</span><span class="p">)),</span>
+            <span class="nx">Selected</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">choices</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application, go to the Todo model and see what happens in the Category field.</p>
+<img alt="../_images/choiceeducation.png" src="../_images/choiceeducation.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>When you notice, the value of the Category field is empty by default. You can also type whatever you want to search in the choices list above. For this example, let’s choose "Education”.</p>
+<p>Once you are done, save the record and see what happens.</p>
+<img alt="../_images/choiceeducationresult.png" src="../_images/choiceeducationresult.png" />
+<p>Congrats, now you know how to create a choice by building an empty choice, fetching records from the database, and appending the fetched records in the drop down list.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/choice.html">Choice</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-count">
+<h2>uadmin.Count<a class="headerlink" href="#uadmin-count" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>Count return the count of records in a table based on a filter.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">int</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
+<p><strong>query interface{}:</strong> Is an action that you want to perform in your database</p>
+<p><strong>args …interface{}:</strong> Is the series of arguments for query input</p>
+</div></blockquote>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part9.html">Document System Tutorial Part 9 - Updating the Document Version</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part6.html">uAdmin Tutorial Part 6 - Back-end Validation</a></p></li>
+</ul>
+<p>Suppose you have ten records in your Todo model.</p>
+<img alt="../_images/tendataintodomodel1.png" src="../_images/tendataintodomodel1.png" />
+<p>Go to the main.go. Let’s count how many todos do you have with a friend in your model.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Initialize the Todo model in the todo variable</span>
+    <span class="nx">todo</span> <span class="o">:=</span> <span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{}</span>
+
+    <span class="c1">// Initialize the Friend model in the todo variable</span>
+    <span class="nx">friend</span> <span class="o">:=</span> <span class="nx">models</span><span class="p">.</span><span class="nx">Friend</span><span class="p">{}</span>
+
+    <span class="c1">// Fetch the first record from the database</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">friend</span><span class="p">,</span> <span class="s">&quot;id=?&quot;</span><span class="p">,</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">FriendID</span><span class="p">)</span>
+
+    <span class="c1">// Return the count of records in a table based on a Get function to</span>
+    <span class="c1">// be stored in the total variable</span>
+    <span class="nx">total</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Count</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">todo</span><span class="p">,</span> <span class="s">&quot;friend_id = ?&quot;</span><span class="p">,</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">FriendID</span><span class="p">)</span>
+
+    <span class="c1">// Print the result</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;You have %v todos with a friend in your list.&quot;</span><span class="p">,</span> <span class="nx">total</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Check your terminal to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   You have <span class="m">5</span> todos with a friend in your list.
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/count.html">Count</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-filter">
+<h2>uadmin.Filter<a class="headerlink" href="#uadmin-filter" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>Filter fetches records from the database.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
+<p><strong>query interface{}:</strong> Is an action that you want to perform in your database</p>
+<p><strong>args …interface{}:</strong> Is the series of arguments for query input</p>
+</div></blockquote>
+<p>Before we proceed to the examples, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">Tutorial Part 7 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#example-1-assigning-multiple-values-in-a-parameter">Example #1: Assigning Multiple Values in a Parameter</a></p></li>
+<li><p><a class="reference internal" href="#example-2-returning-the-name">Example #2: Returning the Name</a></p></li>
+</ul>
+<div class="section" id="example-1-assigning-multiple-values-in-a-parameter">
+<h3><strong>Example #1:</strong> Assigning Multiple Values in a Parameter<a class="headerlink" href="#example-1-assigning-multiple-values-in-a-parameter" title="Permalink to this headline">¶</a></h3>
+<p>Suppose you have five records in your Todo model.</p>
+<img alt="../_images/fiverecordstodomodel1.png" src="../_images/fiverecordstodomodel1.png" />
+<p>Create a file named filter_list.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">FilterListHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called /filter_list</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/filter_list&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Call an array of Todo model</span>
+    <span class="nx">todo</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{}</span>
+
+    <span class="c1">// Set the parameter as todo_id that can get multiple values</span>
+    <span class="nx">todoList</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">FormValue</span><span class="p">(</span><span class="s">&quot;todo_id&quot;</span><span class="p">),</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Fetch ID records from DB</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Filter</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">todo</span><span class="p">,</span> <span class="s">&quot;id IN (?)&quot;</span><span class="p">,</span> <span class="nx">todoList</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+
+    <span class="c1">// Prints the todo in JSON format</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">todo</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// FilterListHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/filter_list/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">FilterListHandler</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while FilterListHandler is the name of the function inside filter_list.go.</p>
+<p>Run your application. Search for the first and third ID on the todo_id parameter in the address bar and see what happens.</p>
+<img alt="../_images/filterlistapiexample1.png" class="align-center" src="../_images/filterlistapiexample1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="example-2-returning-the-name">
+<h3><strong>Example #2</strong>: Returning the Name<a class="headerlink" href="#example-2-returning-the-name" title="Permalink to this headline">¶</a></h3>
+<p>Create a file named filter_list.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+
+    <span class="s">&quot;github.com/username/todo/models&quot;</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// FilterListHandler !</span>
+<span class="kd">func</span> <span class="nx">FilterListHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/filter_list&quot;</span><span class="p">)</span>
+
+    <span class="nx">res</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{}</span>
+
+    <span class="nx">filterList</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{}</span>
+    <span class="nx">valueList</span> <span class="o">:=</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}{}</span>
+    <span class="k">if</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Query</span><span class="p">().</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;todo_id&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span> <span class="p">{</span>
+        <span class="nx">filterList</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">filterList</span><span class="p">,</span> <span class="s">&quot;todo_id = ?&quot;</span><span class="p">)</span>
+        <span class="nx">valueList</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">valueList</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Query</span><span class="p">().</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;todo_id&quot;</span><span class="p">))</span>
+    <span class="p">}</span>
+    <span class="nx">filter</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Join</span><span class="p">(</span><span class="nx">filterList</span><span class="p">,</span> <span class="s">&quot; AND &quot;</span><span class="p">)</span>
+
+    <span class="nx">todo</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{}</span>
+    <span class="nx">results</span> <span class="o">:=</span> <span class="p">[]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{}</span>
+
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Filter</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">todo</span><span class="p">,</span> <span class="nx">filter</span><span class="p">,</span> <span class="nx">valueList</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+
+    <span class="c1">// This loop returns only the name of your todo list.</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">todo</span> <span class="p">{</span>
+        <span class="nx">results</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">results</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
+            <span class="s">&quot;Name&quot;</span><span class="p">:</span> <span class="nx">todo</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">Name</span><span class="p">,</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+
+    <span class="nx">res</span><span class="p">[</span><span class="s">&quot;status&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;ok&quot;</span>
+    <span class="nx">res</span><span class="p">[</span><span class="s">&quot;todo&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">results</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// FilterListHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/filter_list/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">FilterListHandler</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while FilterListHandler is the name of the function inside filter_list.go.</p>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/filterlistapi.png" class="align-center" src="../_images/filterlistapi.png" />
+<p>See <a class="reference internal" href="#uadmin-preload">uadmin.Preload</a> for more examples of using this function.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter.html">Filter Function</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="uadmin-filterbuilder">
+<h2>uadmin.FilterBuilder<a class="headerlink" href="#uadmin-filterbuilder" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>FilterBuilder changes a map filter into a query.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">params</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{})</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>params map[string]interface{}:</strong> Stores arbitrary JSON objects and arrays</p>
+<p><strong>query string:</strong> Returns an AND to concatenate the parameters based on a filter</p>
+<p><strong>args []interface{}:</strong> Is the variable or container that can be used in execution process.</p>
+</div></blockquote>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">Tutorial Part 7 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Suppose you have ten records in your Todo model.</p>
+<img alt="../_images/tendataintodomodel1.png" src="../_images/tendataintodomodel1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Create a file named filterbuilder.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+
+    <span class="s">&quot;github.com/username/todo/models&quot;</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// FilterBuilderHandler !</span>
+<span class="kd">func</span> <span class="nx">FilterBuilderHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called /filterbuilder</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/filterbuilder&quot;</span><span class="p">)</span>
+
+    <span class="nx">res</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{}</span>
+
+    <span class="c1">// Initialize the Todo model</span>
+    <span class="nx">todo</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{}</span>
+
+    <span class="c1">// Fetch data from DB</span>
+    <span class="nx">query</span><span class="p">,</span> <span class="nx">args</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">FilterBuilder</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Filter</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">todo</span><span class="p">,</span> <span class="nx">query</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span>
+
+    <span class="c1">// Accesses and fetches data from another model</span>
+    <span class="k">for</span> <span class="nx">t</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">todo</span> <span class="p">{</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Preload</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">todo</span><span class="p">[</span><span class="nx">t</span><span class="p">])</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Prints the todo in JSON format</span>
+    <span class="nx">res</span><span class="p">[</span><span class="s">&quot;status&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;ok&quot;</span>
+    <span class="nx">res</span><span class="p">[</span><span class="s">&quot;todo&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">todo</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// FilterBuilderHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/filterbuilder/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">FilterBuilderHandler</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while FilterBuilderHandler is the name of the function inside filterbuilder.go.</p>
+<p>Run your application and see what happens.</p>
+<img alt="../_images/filterbuilderapi.png" class="align-center" src="../_images/filterbuilderapi.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz//filter-builder.html">Filter Builder</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-filterlist">
+<h2>uadmin.FilterList<a class="headerlink" href="#uadmin-filterlist" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>FilterList fetches the all record from the database matching query and args where it selects only visible fields in the form based on given schema.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">offset</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">limit</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>s *ModelSchema:</strong> Is the variable where the model was called in the Schema</p>
+<p><strong>order string:</strong> Is the field you want to specify in the database.</p>
+<p><strong>asc bool:</strong> true in ascending order, false in descending order.</p>
+<p><strong>offset int:</strong> Is the starting point of your list.</p>
+<p><strong>limit int:</strong> Is the number of records that you want to display in your application.</p>
+<p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
+<p><strong>query interface{}:</strong> Is an action that you want to perform in your database</p>
+<p><strong>args …interface{}:</strong> Is the series of arguments for query input</p>
+</div></blockquote>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">Tutorial Part 7 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Suppose you have five records in the Todo model that has a field of Name and CreatedAt.</p>
+<img alt="../_images/todocreatedatvisible.png" class="align-center" src="../_images/todocreatedatvisible.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Open your Todo List project, go to the todo.go and set the list_exclude tag in the CreatedAt field.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;time&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// Todo model ...</span>
+<span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>      <span class="kt">string</span>
+    <span class="nx">CreatedAt</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span> <span class="s">`uadmin:&quot;list_exclude&quot;`</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. From uAdmin dashboard, go to Todo model and ensure that the CreatedAt field in the list is now hidden.</p>
+<img alt="../_images/fiverecordstodomodel1.png" class="align-center" src="../_images/fiverecordstodomodel1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now exit your application. Create a file named filter_list.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/todo/models&quot;</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// FilterListAPIHandler !</span>
+<span class="kd">func</span> <span class="nx">FilterListAPIHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called /filter_list</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/filter_list&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Set the parameter as id that can get multiple values</span>
+    <span class="nx">id</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">FormValue</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">),</span> <span class="s">&quot;,&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Initialize the Todo model</span>
+    <span class="nx">todo</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{}</span>
+
+    <span class="c1">// Call the schema of &quot;todo&quot; model</span>
+    <span class="nx">modelschema</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Schema</span><span class="p">[</span><span class="s">&quot;todo&quot;</span><span class="p">]</span>
+
+    <span class="c1">// Fetch records from DB based on the assigned ID</span>
+    <span class="c1">// &amp;modelschema - todo model in the schema to execute</span>
+    <span class="c1">// &quot;id&quot; - order the todo model by id field</span>
+    <span class="c1">// true - to sort in ascending order</span>
+    <span class="c1">// 0 - start at index 0</span>
+    <span class="c1">// -1 - get all the records</span>
+    <span class="c1">// &amp;todo - todo model to execute</span>
+    <span class="c1">// id &gt; ? - a query where id specifies multiple values</span>
+    <span class="c1">// id - a value assigned in the id variable to be set in ?</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">FilterList</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">modelschema</span><span class="p">,</span> <span class="s">&quot;id&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">todo</span><span class="p">,</span> <span class="s">&quot;id IN (?)&quot;</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>
+
+    <span class="c1">// Print the result in JSON format</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">todo</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// FilterListAPIHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/filter_list/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">FilterListAPIHandler</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while FilterListAPIHandler is the name of the function inside filter_list.go.</p>
+<p>Run your application. Search for the first three records on the id parameter in the address bar and see what happens.</p>
+<img alt="../_images/filterlistcreatedatnovalue.png" class="align-center" src="../_images/filterlistcreatedatnovalue.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Even though there is an assigned date on the CreatedAt field in the form, the API does not return a value because the CreatedAt field is hidden in the list. Now exit your application, go to todo.go in the models folder and remove the list_exclude tag in the CreatedAt field.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;time&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// Todo model ...</span>
+<span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>      <span class="kt">string</span>
+    <span class="nx">CreatedAt</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span> <span class="c1">// Tag removed</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. Search for the first three records on the id parameter in the address bar and see what happens.</p>
+<img alt="../_images/filterlistcreatedatwithvalue.png" class="align-center" src="../_images/filterlistcreatedatwithvalue.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the API is now returning a CreatedAt value because the CreatedAt field in the list is visible.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter-list-get-form-and-stringer.html">Filter List, Get Form, and Get Stringer</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-get">
+<h2>uadmin.Get<a class="headerlink" href="#uadmin-get" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>Get fetches the first record from the database matching query and args.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
+<p><strong>query interface{}:</strong> Is an action that you want to perform in your database</p>
+<p><strong>args …interface{}:</strong> Is the series of arguments for query input</p>
+</div></blockquote>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part9.html">Document System Tutorial Part 9 - Updating the Document Version</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part11.html">Document System Tutorial Part 11 - Document and Folder Permissions</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part13.html">Document System Tutorial Part 13 - Custom AdminPage function</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part14.html">Document System Tutorial Part 14 - Permissions Form</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part3.html">Login System Tutorial Part 3 - Sending Request</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part8.html">Login System Tutorial Part 8 - Webpage Manipulation</a></p></li>
+</ul>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">Tutorial Part 7 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Suppose you have five records in your Todo model.</p>
+<img alt="../_images/fiverecordstodomodel1.png" src="../_images/fiverecordstodomodel1.png" />
+<p>Create a file named get_list.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetListHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called /get_list</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/get_list&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Set the parameter as todo_id</span>
+    <span class="nx">todoID</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">FormValue</span><span class="p">(</span><span class="s">&quot;todo_id&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Get a record from DB</span>
+    <span class="nx">todo</span> <span class="o">:=</span> <span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">todo</span><span class="p">,</span> <span class="s">&quot;id=? &quot;</span><span class="p">,</span> <span class="nx">todoID</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+
+    <span class="c1">// Prints the todo in JSON format</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">todo</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// GetListHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/get_list/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">GetListHandler</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while GetListHandler is the name of the function inside get_list.go.</p>
+<p>Run your application. Search for the third ID on the todo_id parameter in the address bar and see what happens.</p>
+<img alt="../_images/getlistapi.png" class="align-center" src="../_images/getlistapi.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/all-and-get.html">All and Get</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-getfieldsapi">
+<h2>uadmin.GetFieldsAPI<a class="headerlink" href="#uadmin-getfieldsapi" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>GetFieldsAPI is a function that gets all fields based on an assigned model name.
+Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">session</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>w http.ResponseWriter:</strong> Assembles the HTTP server’s response; by writing to it, we send data to the HTTP client</p>
+<p><strong>r *http.Request</strong> Is a data structure that represents the client HTTP request</p>
+<p><strong>session *Session</strong> Is an activity that a user with a unique IP address spends on a Web site during a specified period of time</p>
+</div></blockquote>
+<p>Create a file named get_fields_api.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// GetFieldsAPIHandler !</span>
+<span class="kd">func</span> <span class="nx">GetFieldsAPIHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called /get_fields_api</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/get_fields_api&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Get the session key</span>
+    <span class="nx">session</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">IsAuthenticated</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+
+    <span class="c1">// Get fields in the API based on the assigned model name</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetFieldsAPI</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">session</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Get Fields API Handler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/get_fields_api/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">GetFieldsAPIHandler</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while GetFieldsAPIHandler is the name of the function inside get_fields_api.go.</p>
+<p>Run your application and login using "admin” as username and password.</p>
+<img alt="../_images/loginform3.png" src="../_images/loginform3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go to /get_fields_api/ path in the address bar where m is equal to an assigned model name (e.g. <a class="reference external" href="http://0.0.0.0:8080/get_fields_api/?m=dashboardmenu">http://0.0.0.0:8080/get_fields_api/?m=dashboardmenu</a>).</p>
+<img alt="../_images/getfieldsapiresult.png" class="align-center" src="../_images/getfieldsapiresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns all fields in the Dashboard Menu model.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-fields-api-and-get-models-api.html">Get Fields API and Get Models API</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-getform">
+<h2>uadmin.GetForm<a class="headerlink" href="#uadmin-getform" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>GetForm fetches the first record from the database matching query and args where it selects only visible fields in the form based on given schema.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
+<p><strong>s *ModelSchema:</strong> Is the variable where the model was called in the Schema</p>
+<p><strong>query interface{}:</strong> Is an action that you want to perform in your database</p>
+<p><strong>args …interface{}:</strong> Is the series of arguments for query input</p>
+</div></blockquote>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">Tutorial Part 7 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Suppose you have a record in the Todo model that has a field of Name and CreatedAt.</p>
+<img alt="../_images/todoreadabookcreatedat.png" class="align-center" src="../_images/todoreadabookcreatedat.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Open your Todo List project, go to the todo.go and set the hidden tag in the CreatedAt field.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;time&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// Todo model ...</span>
+<span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>      <span class="kt">string</span>
+    <span class="nx">CreatedAt</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span> <span class="s">`uadmin:&quot;hidden&quot;`</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. From uAdmin dashboard, go to Todo model, click any existing record that you have and you should get this result.</p>
+<img alt="../_images/todoreadabookcreatedathidden.png" class="align-center" src="../_images/todoreadabookcreatedathidden.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now exit your application. Create a file named get_form.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/todo/models&quot;</span>
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// GetFormAPIHandler !</span>
+<span class="kd">func</span> <span class="nx">GetFormAPIHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called /get_form</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/get_form&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Set the parameter as id</span>
+    <span class="nx">id</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">FormValue</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Initialize the Todo model</span>
+    <span class="nx">todo</span> <span class="o">:=</span> <span class="nx">models</span><span class="p">.</span><span class="nx">Todo</span><span class="p">{}</span>
+
+    <span class="c1">// Call the schema of &quot;todo&quot; model</span>
+    <span class="nx">modelschema</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Schema</span><span class="p">[</span><span class="s">&quot;todo&quot;</span><span class="p">]</span>
+
+    <span class="c1">// Get a record from DB based on the assigned ID</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetForm</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">todo</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">modelschema</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>
+
+    <span class="c1">// Print the result in JSON format</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">todo</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// GetFormAPIHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/get_form/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">GetFormAPIHandler</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while GetFormAPIHandler is the name of the function inside get_form.go.</p>
+<p>Run your application. Search for the first ID on the id parameter in the address bar and see what happens.</p>
+<img alt="../_images/getformcreatedatnovalue.png" class="align-center" src="../_images/getformcreatedatnovalue.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Even though there is an assigned date on the CreatedAt field in the form, the API does not return a value because the CreatedAt field is hidden in the form. Now exit your application, go to todo.go in the models folder and remove the hidden tag in the CreatedAt field.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;time&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// Todo model ...</span>
+<span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>      <span class="kt">string</span>
+    <span class="nx">CreatedAt</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span> <span class="c1">// Tag removed</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application. Search for the first ID on the id parameter in the address bar and see what happens.</p>
+<img alt="../_images/getformcreatedatwithvalue.png" class="align-center" src="../_images/getformcreatedatwithvalue.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>As expected, the API is now returning a CreatedAt value because the CreatedAt field in the form is visible.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter-list-get-form-and-stringer.html">Filter List, Get Form, and Get Stringer</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-getid">
+<h2>uadmin.GetID<a class="headerlink" href="#uadmin-getid" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>GetID returns an ID number of a field.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">reflectValue</span><span class="p">)</span> <span class="kt">uint</span>
+</pre></div>
+</div>
+<p>Parameter:</p>
+<blockquote>
+<div><p><strong>m.reflectValue:</strong> Creates a new instance to read, set, or add values</p>
+</div></blockquote>
+<p>Suppose I have four records in my Category model.</p>
+<ul class="simple">
+<li><p>Education ID = 4</p></li>
+<li><p>Family ID = 3</p></li>
+<li><p>Work ID = 2</p></li>
+<li><p>Travel ID = 1</p></li>
+</ul>
+<img alt="../_images/categorylist1.png" src="../_images/categorylist1.png" />
+<p>Go to the main.go and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Initialize the Category model</span>
+    <span class="nx">categorylist</span> <span class="o">:=</span> <span class="nx">models</span><span class="p">.</span><span class="nx">Category</span><span class="p">{}</span>
+
+    <span class="c1">// Get the value of the name in the categorylist</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">categorylist</span><span class="p">,</span> <span class="s">&quot;name = &#39;Family&#39;&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Get the ID of the name &quot;Family&quot;</span>
+    <span class="nx">getid</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetID</span><span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">ValueOf</span><span class="p">(</span><span class="nx">categorylist</span><span class="p">))</span>
+
+    <span class="c1">// Print the result</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;GetID is %d.&quot;</span><span class="p">,</span> <span class="nx">getid</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application and check the terminal to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   GetID is <span class="m">3</span>.
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-id-and-get-string.html">Get ID and Get String</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-getmodelsapi">
+<h2>uadmin.GetModelsAPI<a class="headerlink" href="#uadmin-getmodelsapi" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>GetModelsAPI is a function that gets all models in the dashboard.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">session</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>w http.ResponseWriter:</strong> Assembles the HTTP server’s response; by writing to it, we send data to the HTTP client</p>
+<p><strong>r *http.Request</strong> Is a data structure that represents the client HTTP request</p>
+<p><strong>session *Session</strong> Is an activity that a user with a unique IP address spends on a Web site during a specified period of time</p>
+</div></blockquote>
+<p>Create a file named get_models_api.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// GetModelsAPIHandler !</span>
+<span class="kd">func</span> <span class="nx">GetModelsAPIHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called /get_models_api</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/get_models_api&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Get the session key</span>
+    <span class="nx">session</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">IsAuthenticated</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+
+    <span class="c1">// Get all models from uAdmin dashboard</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetModelsAPI</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">session</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Get Models API Handler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/get_models_api/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">GetModelsAPIHandler</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while GetModelsAPIHandler is the name of the function inside get_models_api.go.</p>
+<p>Run your application and login using "admin” as username and password.</p>
+<img alt="../_images/loginform3.png" src="../_images/loginform3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go to /get_models_api/ path in the address bar to see the result (e.g. <a class="reference external" href="http://0.0.0.0:8080/get_models_api/">http://0.0.0.0:8080/get_models_api/</a>).</p>
+<img alt="../_images/getmodelsapiresult.png" class="align-center" src="../_images/getmodelsapiresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns all models that you have in the uAdmin dashboard.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-fields-api-and-get-models-api.html">Get Fields API and Get Models API</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-getstring">
+<h2>uadmin.GetString<a class="headerlink" href="#uadmin-getstring" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>GetString returns string representation on an instance of a model.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">string</span>
+</pre></div>
+</div>
+<p>Parameter:</p>
+<blockquote>
+<div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
+</div></blockquote>
+<p>Suppose I have four records in my Category model.</p>
+<ul class="simple">
+<li><p>Education ID = 4</p></li>
+<li><p>Family ID = 3</p></li>
+<li><p>Work ID = 2</p></li>
+<li><p>Travel ID = 1</p></li>
+</ul>
+<img alt="../_images/categorylist1.png" src="../_images/categorylist1.png" />
+<p>Go to the main.go and apply the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Initialize the Category model</span>
+    <span class="nx">categorylist</span> <span class="o">:=</span> <span class="nx">models</span><span class="p">.</span><span class="nx">Category</span><span class="p">{}</span>
+
+    <span class="c1">// Get the ID in the categorylist</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">categorylist</span><span class="p">,</span> <span class="s">&quot;id = 3&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Get the name of the ID 3</span>
+    <span class="nx">getstring</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetString</span><span class="p">(</span><span class="nx">categorylist</span><span class="p">)</span>
+
+    <span class="c1">// Print the result</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;GetString is %s.&quot;</span><span class="p">,</span> <span class="nx">getstring</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application and check the terminal to see the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   GetString is Family.
+</pre></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-id-and-get-string.html">Get ID and Get String</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-getstringer">
+<h2>uadmin.GetStringer<a class="headerlink" href="#uadmin-getstringer" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>GetStringer fetches the first record from the database matching query and args and get only fields tagged with <cite>stringer</cite> tag. If no field has <cite>stringer</cite> tag, then it gets all the fields.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
+<p><strong>query interface{}:</strong> Is an action that you want to perform in your database</p>
+<p><strong>args …interface{}:</strong> Is the series of arguments for query input</p>
+</div></blockquote>
+<p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">Tutorial Part 7 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
+<p>Suppose you have a record in the Friend model that has an ID of 1 where Name field has a <cite>stringer</cite> tag.</p>
+<img alt="../_images/friendjohndoe.png" src="../_images/friendjohndoe.png" />
+<p>Create a file named get_stringer.go inside the api folder with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// GetStringerHandler !</span>
+<span class="kd">func</span> <span class="nx">GetStringerHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called /get_stringer</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/get_stringer&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Set the parameter as friend_id</span>
+    <span class="nx">friendID</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">FormValue</span><span class="p">(</span><span class="s">&quot;friend_id&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Get a record from DB that fetches a field with a stringer tag</span>
+    <span class="nx">friend</span> <span class="o">:=</span> <span class="nx">models</span><span class="p">.</span><span class="nx">Friend</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetStringer</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">friend</span><span class="p">,</span> <span class="s">&quot;id = ?&quot;</span><span class="p">,</span> <span class="nx">friendID</span><span class="p">)</span>
+
+    <span class="c1">// Print result in JSON format</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">ReturnJSON</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">friend</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the main.go to the API by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// GetStringerHandler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/get_stringer/&quot;</span><span class="p">,</span> <span class="nx">api</span><span class="p">.</span><span class="nx">GetStringerHandler</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>api is the folder name while GetStringerHandler is the name of the function inside get_stringer.go.</p>
+<p>Run your application. Search for the first ID on the friend_id parameter in the address bar and see what happens.</p>
+<img alt="../_images/getstringerapi.png" class="align-center" src="../_images/getstringerapi.png" />
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter-list-get-form-and-stringer.html">Filter List, Get Form, and Get Stringer</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-preload">
+<h2>uadmin.Preload<a class="headerlink" href="#uadmin-preload" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>Preload fills the data from foreign keys into structs. You can pass in preload a list of fields to be preloaded. If nothing is passed, every foreign key is preloaded.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">preload</span> <span class="o">...</span><span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameters:</p>
+<blockquote>
+<div><p><strong>a interface{}:</strong> Is the variable where the model was initialized</p>
+<p><strong>preload …string</strong> Is the field that you want to access with</p>
+</div></blockquote>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part3.html">Document System Tutorial Part 3 - Linking Models (Folders)</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part5.html">Document System Tutorial Part 5 - Linking Models (Documents)</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part7.html">uAdmin Tutorial Part 7 - Introduction to API</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part8.html">uAdmin Tutorial Part 8 - Customizing your API Handler</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part12.html">uAdmin Tutorial Part 12 - Storing the data to HTML</a></p></li>
+</ul>
+<p>Go to the friend.go and add the Points field inside the struct.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Friend model ...</span>
+<span class="kd">type</span> <span class="nx">Friend</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="nx">Name</span>     <span class="kt">string</span> <span class="s">`uadmin:&quot;required&quot;`</span>
+    <span class="nx">Email</span>    <span class="kt">string</span> <span class="s">`uadmin:&quot;email&quot;`</span>
+    <span class="nx">Password</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;password;list_exclude&quot;`</span>
+    <span class="nx">TotalPoints</span> <span class="kt">int</span> <span class="c1">// &lt;-- place it here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now go to the todo.go and apply some business logic that will get the total points of each friend in the todo list. Let’s apply overriding save function and put it below the Todo struct.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Save ...</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">Todo</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Save the model to DB</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
+
+    <span class="c1">// Get a list of other todo items that share the same</span>
+    <span class="c1">// FriendID. Notice that in the filter we use friend_id which</span>
+    <span class="c1">// is the way this is created in the DB</span>
+    <span class="nx">todoList</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">Todo</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Filter</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">todoList</span><span class="p">,</span> <span class="s">&quot;friend_id = ?&quot;</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">FriendID</span><span class="p">)</span>
+    <span class="nx">progressSum</span> <span class="o">:=</span> <span class="mi">0</span>
+
+    <span class="c1">// Sum up the progress of all todos</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">todo</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">todoList</span> <span class="p">{</span>
+        <span class="nx">progressSum</span> <span class="o">+=</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">Progress</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Preload the todo model to get the related points</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Preload</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="c1">// &lt;-- place it here</span>
+
+    <span class="c1">// Calculate the total progress</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nx">Friend</span><span class="p">.</span><span class="nx">TotalPoints</span> <span class="p">=</span> <span class="nx">progressSum</span>
+
+    <span class="c1">// Finally save the Friend</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">t</span><span class="p">.</span><span class="nx">Friend</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Suppose you have ten records in your Todo model.</p>
+<img alt="../_images/tendataintodomodel1.png" src="../_images/tendataintodomodel1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go to the Friend model and see what happens.</p>
+<img alt="../_images/friendpoints.png" src="../_images/friendpoints.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In my list, Willie Revillame wins 85 points and Even Demata wins 130 points.</p>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/preload.html">Preload</a></p></li>
+</ul>
+</div>
+<div class="section" id="uadmin-renderhtml">
+<h2>uadmin.RenderHTML<a class="headerlink" href="#uadmin-renderhtml" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<p>RenderHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 …etc.</p>
+<p>Function:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">path</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">data</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">funcs</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
+</pre></div>
+</div>
+<p>Used in the tutorial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part2.html">Login System Tutorial Part 2 - Login Form</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part6.html">Login System Tutorial Part 6 - Home Page</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part7.html">Login System Tutorial Part 7 - Logout</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part8.html">Login System Tutorial Part 8 - Webpage Manipulation</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part11.html">uAdmin Tutorial Part 11 - Accessing an HTML file</a></p></li>
+</ul>
+<p>Create an HTML file in templates folder named <strong>friends.html</strong> with the following codes below:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;ie=edge&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Friends List<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container-fluid&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;table table-striped&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Name<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Email<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>In views folder, create a new file named <strong>friends_list.go</strong> with the following codes below:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">views</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/todo/models&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// FriendsList !</span>
+<span class="kd">func</span> <span class="nx">FriendsList</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called /friends</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/friends&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Friends field inside the Context that will be used in Golang</span>
+    <span class="c1">// HTML template</span>
+    <span class="kd">type</span> <span class="nx">Context</span> <span class="kd">struct</span> <span class="p">{</span>
+        <span class="nx">Friends</span> <span class="p">[]</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Assigns Context struct to the c variable</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nx">Context</span><span class="p">{}</span>
+
+    <span class="c1">// Fetch Data from DB</span>
+    <span class="nx">friend</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">models</span><span class="p">.</span><span class="nx">Friend</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">All</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">friend</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="nx">f</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">friend</span> <span class="p">{</span>
+        <span class="c1">// Assigns the Friend records</span>
+        <span class="nx">c</span><span class="p">.</span><span class="nx">Friends</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">Friends</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
+            <span class="s">&quot;ID&quot;</span><span class="p">:</span>    <span class="nx">friend</span><span class="p">[</span><span class="nx">f</span><span class="p">].</span><span class="nx">ID</span><span class="p">,</span>
+            <span class="s">&quot;Name&quot;</span><span class="p">:</span>  <span class="nx">friend</span><span class="p">[</span><span class="nx">f</span><span class="p">].</span><span class="nx">Name</span><span class="p">,</span>
+            <span class="s">&quot;Email&quot;</span><span class="p">:</span> <span class="nx">friend</span><span class="p">[</span><span class="nx">f</span><span class="p">].</span><span class="nx">Email</span><span class="p">,</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Pass Friends data object to the specified HTML path</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RenderHTML</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="s">&quot;templates/friends.html&quot;</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Go back to friends.html in templates folder. Inside the &lt;tbody&gt; tag, add the following codes shown below.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{{range .Friends}}
+<span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{.Name}}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{.Email}}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+{{end}}
+</pre></div>
+</div>
+<p>In Go programming language, <strong>range</strong> is equivalent to <strong>for</strong> loop.</p>
+<p>The double brackets <strong>{{ }}</strong> are Golang delimiter.</p>
+<p><strong>.Friends</strong> is the assigned field inside the Context struct.</p>
+<p><strong>.Name</strong> and <strong>.Email</strong> are the fields assigned in c.Friends.</p>
+<p>Establish a connection in the main.go to the views by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/todo/models&quot;</span>
+
+    <span class="c1">// Import this library</span>
+    <span class="s">&quot;github.com/username/todo/views&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Friend Handler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/friends/&quot;</span><span class="p">,</span> <span class="nx">views</span><span class="p">.</span><span class="nx">FriendsList</span><span class="p">)</span> <span class="o">&lt;--</span> <span class="nx">place</span> <span class="nx">it</span> <span class="nx">here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The path is /friends/ in HandleFunc because that is the name that we used in r.URL.Path on FriendsList function located in views/friends_list.go.</p>
+<p>Now run your application, go to /friends/ path and see what happens.</p>
+<img alt="../_images/friendhtmlresult.png" src="../_images/friendhtmlresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Quiz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/render-html.html">Render HTML</a></p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="email_functions.html"
+                        title="previous chapter">Email Functions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ip_functions.html"
+                        title="next chapter">IP Functions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/fetching_records.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ip_functions.html" title="IP Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="email_functions.html" title="Email Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, uadmin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+  </body>
+</html>

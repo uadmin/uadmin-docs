@@ -1,0 +1,110 @@
+{
+  "display_name": "Translate me ---> User",
+  "fields": {
+    "Active": {
+      "display_name": "Translate me ---> Active",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Admin": {
+      "display_name": "Translate me ---> Admin",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Email": {
+      "display_name": "Translate me ---> Email",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ExpiresOn": {
+      "display_name": "Translate me ---> Expires On",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "FirstName": {
+      "display_name": "Translate me ---> First Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "ID": {
+      "display_name": "Translate me ---> ID",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "LastLogin": {
+      "display_name": "Translate me ---> Last Login",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "LastName": {
+      "display_name": "Translate me ---> Last Name",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "OTPRequired": {
+      "display_name": "Translate me ---> OTP Required",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "OTPSeed": {
+      "display_name": "Translate me ---> OTP Seed",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Password": {
+      "display_name": "Translate me ---> Password",
+      "help": "Translate me ---> To reset password, clear the field and type a new password.",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Photo": {
+      "display_name": "Translate me ---> Photo",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "RemoteAccess": {
+      "display_name": "Translate me ---> Remote Access",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "UserGroup": {
+      "display_name": "Translate me ---> User Group",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    },
+    "Username": {
+      "display_name": "Translate me ---> Username",
+      "help": "",
+      "pattern_msg": "",
+      "err_msg": {},
+      "Choices": null
+    }
+  }
+}

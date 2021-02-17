@@ -1,0 +1,23 @@
+uadmin.StaticHandler
+====================
+`Back To uAdmin Functions List`_
+
+.. _Back To uAdmin Functions List: https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference
+
+StaticHandler is a function that serves static files.
+
+Function:
+
+.. code-block:: go
+
+    func(w http.ResponseWriter, r *http.Request)
+
+Parameters:
+
+    **w http.ResponseWriter:** Assembles the HTTP server's response; by writing to it, we send data to the HTTP client
+
+    **r \*http.Request** Is a data structure that represents the client HTTP request
+
+See `Part 2: Static Handler`_ for the example.
+
+.. _Part 2\: Static Handler: https://uadmin-docs.readthedocs.io/en/latest/api/abtest.html#part-2-static-handler
