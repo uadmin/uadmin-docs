@@ -4,16 +4,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Log Functions &#8212; uadmin 0.5 documentation</title>
-    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Log Functions &#8212; uadmin 0.6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pyramid.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="language-functions/language.html" title="uadmin.Language"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Log Functions</a></li> 
       </ul>
@@ -52,7 +52,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="log-functions">
+  <section id="log-functions">
 <h1>Log Functions<a class="headerlink" href="#log-functions" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
 <p>In this section, we will cover the following functions in-depth listed below:</p>
@@ -69,7 +69,7 @@
 <li><p><a class="reference internal" href="#uadmin-syslogf">uadmin.Syslogf</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-traillogginglevel">uadmin.TrailLoggingLevel</a></p></li>
 </ul>
-<div class="section" id="uadmin-action">
+<section id="uadmin-action">
 <h2>uadmin.Action<a class="headerlink" href="#uadmin-action" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Action</span> <span class="kt">int</span>
@@ -148,8 +148,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/action-and-log.html">Action and Log</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-httplogformat">
+</section>
+<section id="uadmin-httplogformat">
 <h2>uadmin.HTTPLogFormat<a class="headerlink" href="#uadmin-httplogformat" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: string</span>
@@ -169,13 +169,13 @@
 %<span class="o">{</span>POST<span class="o">}</span>f: POST request parameters
 %B: Response length
 %&gt;s: Response code
-%D: Time taken in microseconds
-%T: Time taken in seconds
+%D: Time taken <span class="k">in</span> microseconds
+%T: Time taken <span class="k">in</span> seconds
 %I: Request length
 </pre></div>
 </div>
-</div>
-<div class="section" id="uadmin-log">
+</section>
+<section id="uadmin-log">
 <h2>uadmin.Log<a class="headerlink" href="#uadmin-log" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Log</span> <span class="kd">struct</span> <span class="p">{</span>
@@ -262,8 +262,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/action-and-log.html">Action and Log</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-logadd">
+</section>
+<section id="uadmin-logadd">
 <h2>uadmin.LogAdd<a class="headerlink" href="#uadmin-logadd" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
@@ -292,12 +292,12 @@
 </pre></div>
 </div>
 <p>Run your application and go to “LOGS” model.</p>
-<img alt="../_images/logshighlighted1.png" src="../_images/logshighlighted1.png" />
+<img alt="../_images/logshighlighted.png" src="../_images/logshighlighted.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Suppose that you have this record in your logs as shown below:</p>
-<img alt="../_images/loginitialrecord1.png" src="../_images/loginitialrecord1.png" />
+<img alt="../_images/loginitialrecord.png" src="../_images/loginitialrecord.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -359,8 +359,8 @@
 </div>
 <p>As you can see, the log content remains the same. Well done!</p>
 <p>See <a class="reference internal" href="#uadmin-logread">uadmin.LogRead</a> for the continuation.</p>
-</div>
-<div class="section" id="uadmin-logdelete">
+</section>
+<section id="uadmin-logdelete">
 <h2>uadmin.LogDelete<a class="headerlink" href="#uadmin-logdelete" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
@@ -394,7 +394,7 @@
 </pre></div>
 </div>
 <p>Run your application and go to “LOGS” model.</p>
-<img alt="../_images/logshighlighted1.png" src="../_images/logshighlighted1.png" />
+<img alt="../_images/logshighlighted.png" src="../_images/logshighlighted.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -450,8 +450,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/log-permissions.html">Log Permissions</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-logedit">
+</section>
+<section id="uadmin-logedit">
 <h2>uadmin.LogEdit<a class="headerlink" href="#uadmin-logedit" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
@@ -484,7 +484,7 @@
 </pre></div>
 </div>
 <p>Run your application and go to “LOGS” model.</p>
-<img alt="../_images/logshighlighted1.png" src="../_images/logshighlighted1.png" />
+<img alt="../_images/logshighlighted.png" src="../_images/logshighlighted.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -556,8 +556,8 @@
 </div>
 <p>As you can see, the log content remains the same. Well done!</p>
 <p>See <a class="reference internal" href="#uadmin-logdelete">uadmin.LogDelete</a> for the continuation.</p>
-</div>
-<div class="section" id="uadmin-loghttprequests">
+</section>
+<section id="uadmin-loghttprequests">
 <h2>uadmin.LogHTTPRequests<a class="headerlink" href="#uadmin-loghttprequests" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
@@ -565,8 +565,8 @@
 </pre></div>
 </div>
 <p>LogHTTPRequests logs http requests to syslog.</p>
-</div>
-<div class="section" id="uadmin-logread">
+</section>
+<section id="uadmin-logread">
 <h2>uadmin.LogRead<a class="headerlink" href="#uadmin-logread" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
@@ -598,7 +598,7 @@
 </pre></div>
 </div>
 <p>Run your application and go to “LOGS” model.</p>
-<img alt="../_images/logshighlighted1.png" src="../_images/logshighlighted1.png" />
+<img alt="../_images/logshighlighted.png" src="../_images/logshighlighted.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -659,8 +659,8 @@
 </div>
 <p>As you can see, the log content remains the same. Well done!</p>
 <p>See <a class="reference internal" href="#uadmin-logedit">uadmin.LogEdit</a> for the continuation.</p>
-</div>
-<div class="section" id="uadmin-logtrail">
+</section>
+<section id="uadmin-logtrail">
 <h2>uadmin.LogTrail<a class="headerlink" href="#uadmin-logtrail" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
@@ -668,8 +668,8 @@
 </pre></div>
 </div>
 <p>LogTrail stores Trail logs to syslog.</p>
-</div>
-<div class="section" id="uadmin-syslogf">
+</section>
+<section id="uadmin-syslogf">
 <h2>uadmin.Syslogf<a class="headerlink" href="#uadmin-syslogf" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// For Mac / Linux</span>
@@ -680,8 +680,8 @@
 </pre></div>
 </div>
 <p>Syslogf records a log in the system in syslog. For Windows it created a file and records the logs there.</p>
-</div>
-<div class="section" id="uadmin-traillogginglevel">
+</section>
+<section id="uadmin-traillogginglevel">
 <h2>uadmin.TrailLoggingLevel<a class="headerlink" href="#uadmin-traillogginglevel" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#log-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: int</span>
@@ -689,8 +689,8 @@
 </pre></div>
 </div>
 <p>TrailLoggingLevel is the minimum level to be logged into syslog.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -755,14 +755,14 @@
         <li class="right" >
           <a href="language-functions/language.html" title="uadmin.Language"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Log Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+        &#169; Copyright 2021, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
     </div>
   </body>
 </html>

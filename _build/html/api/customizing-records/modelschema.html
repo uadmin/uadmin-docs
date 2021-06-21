@@ -4,16 +4,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>uadmin.ModelSchema &#8212; uadmin 0.5 documentation</title>
-    <link rel="stylesheet" href="../../_static/pyramid.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>uadmin.ModelSchema &#8212; uadmin 0.6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pyramid.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
     <script src="../../_static/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="f.html" title="uadmin.F"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../customizing_records.html" accesskey="U">For Customizing Records</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">uadmin.ModelSchema</a></li> 
@@ -53,7 +53,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="uadmin-modelschema">
+  <section id="uadmin-modelschema">
 <h1>uadmin.ModelSchema<a class="headerlink" href="#uadmin-modelschema" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html">Back to Customizing Records Page</a></p>
 <p>ModelSchema is a representation of a plan or theory in the form of an outline or model.</p>
@@ -133,7 +133,7 @@
 </pre></div>
 </div>
 <p>In this example, we will use “by group” initialization process.</p>
-<div class="section" id="uadmin-modelschema-examples">
+<section id="uadmin-modelschema-examples">
 <h2>uadmin.ModelSchema Examples<a class="headerlink" href="#uadmin-modelschema-examples" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="#example-1-includeformjs">Example #1: IncludeFormJS</a></p></li>
@@ -142,8 +142,8 @@
 <li><p><a class="reference internal" href="#example-4-formmodifier-and-listmodifier">Example #4: FormModifier and ListModifier</a></p></li>
 <li><p><a class="reference internal" href="#example-5-formtheme-and-listtheme">Example #5: FormTheme and ListTheme</a></p></li>
 </ul>
-</div>
-<div class="section" id="example-1-includeformjs">
+</section>
+<section id="example-1-includeformjs">
 <h2><strong>Example #1:</strong> IncludeFormJS<a class="headerlink" href="#example-1-includeformjs" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
 <p>Type:</p>
@@ -194,7 +194,7 @@
         <span class="c1">// Checks whether the user clicks the input Name field</span>
         <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input[name=&#39;Name&#39;]&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
             <span class="c1">// Set the value of the Progress field to 50.</span>
-            <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input[name=&#39;Progress&#39;]&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input[name=&#39;Progress&#39;]&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="mf">50</span><span class="p">);</span>
         <span class="p">});</span>
     <span class="p">});</span>
 <span class="p">})(</span><span class="nb">window</span><span class="p">,</span> <span class="nb">document</span><span class="p">,</span> <span class="nx">$</span><span class="p">);</span>
@@ -227,8 +227,8 @@
 </div>
 <p>Result:</p>
 <img alt="../../_images/clickinputnamefieldresult.png" class="align-center" src="../../_images/clickinputnamefieldresult.png" />
-</div>
-<div class="section" id="example-2-includelistjs">
+</section>
+<section id="example-2-includelistjs">
 <h2><strong>Example #2:</strong> IncludeListJS<a class="headerlink" href="#example-2-includelistjs" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
 <p>Type:</p>
@@ -310,8 +310,8 @@
 </div>
 <p>If you leave the cursor, the name of the first record will go back to normal.</p>
 <img alt="../../_images/readabookhighlighted.png" src="../../_images/readabookhighlighted.png" />
-</div>
-<div class="section" id="example-3-fields">
+</section>
+<section id="example-3-fields">
 <h2><strong>Example #3:</strong> Fields<a class="headerlink" href="#example-3-fields" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
 <p>Type:</p>
@@ -319,8 +319,8 @@
 </pre></div>
 </div>
 <p>See <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html">uadmin.F</a> for the examples.</p>
-</div>
-<div class="section" id="example-4-formmodifier-and-listmodifier">
+</section>
+<section id="example-4-formmodifier-and-listmodifier">
 <h2><strong>Example #4:</strong> FormModifier and ListModifier<a class="headerlink" href="#example-4-formmodifier-and-listmodifier" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
 <p>Functions:</p>
@@ -438,8 +438,8 @@
 </div>
 <p>Now login any of your non-admin account and see what happens.</p>
 <img alt="../../_images/assignedtovisible.png" src="../../_images/assignedtovisible.png" />
-</div>
-<div class="section" id="example-5-formtheme-and-listtheme">
+</section>
+<section id="example-5-formtheme-and-listtheme">
 <h2><strong>Example #5:</strong> FormTheme and ListTheme<a class="headerlink" href="#example-5-formtheme-and-listtheme" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/modelschema.html#uadmin-modelschema-examples">Back to Top</a></p>
 <p>Type:</p>
@@ -485,8 +485,8 @@
 <span class="p">[</span>  <span class="nx">DEBUG</span> <span class="p">]</span>   <span class="nx">List</span> <span class="nx">Theme</span><span class="p">:</span> <span class="nx">custom</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -551,15 +551,15 @@
         <li class="right" >
           <a href="f.html" title="uadmin.F"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../customizing_records.html" >For Customizing Records</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">uadmin.ModelSchema</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+        &#169; Copyright 2021, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
     </div>
   </body>
 </html>

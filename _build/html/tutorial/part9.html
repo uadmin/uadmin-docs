@@ -4,16 +4,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>uAdmin Tutorial Part 9 - Introduction to API &#8212; uadmin 0.5 documentation</title>
-    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>uAdmin Tutorial Part 9 - Introduction to API &#8212; uadmin 0.6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pyramid.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="part8.html" title="uAdmin Tutorial Part 8 - Back-end Validation"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" accesskey="U">uAdmin Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">uAdmin Tutorial Part 9 - Introduction to API</a></li> 
       </ul>
@@ -52,7 +52,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="uadmin-tutorial-part-9-introduction-to-api">
+  <section id="uadmin-tutorial-part-9-introduction-to-api">
 <h1>uAdmin Tutorial Part 9 - Introduction to API<a class="headerlink" href="#uadmin-tutorial-part-9-introduction-to-api" title="Permalink to this headline">¶</a></h1>
 <p>In this part, we will talk about establishing a connection to the API, setting the URL path name, and getting the todo list data in the API Handler using JSON.</p>
 <p>Create a file named api.go inside the api folder with the following codes below:</p>
@@ -77,7 +77,7 @@
 <li><p><a class="reference internal" href="#method-1-within-the-application-settings">Method 1: Within the Application Settings</a></p></li>
 <li><p><a class="reference internal" href="#method-2-parseformvalue-function">Method 2: ParseFormValue Function</a></p></li>
 </ul>
-<div class="section" id="method-1-within-the-application-settings">
+<section id="method-1-within-the-application-settings">
 <h2>Method 1: Within the Application Settings<a class="headerlink" href="#method-1-within-the-application-settings" title="Permalink to this headline">¶</a></h2>
 <p>Run your application. From uAdmin dashboard, click the wrench icon on the top right side to go to the settings.</p>
 <img alt="../_images/wrenchicondashboard.png" src="../_images/wrenchicondashboard.png" />
@@ -86,8 +86,8 @@
 </div>
 <p>Replace the value of Root URL from / to /admin/. Save it afterwards.</p>
 <img alt="../_images/rooturladminsettings.png" src="../_images/rooturladminsettings.png" />
-</div>
-<div class="section" id="method-2-parseformvalue-function">
+</section>
+<section id="method-2-parseformvalue-function">
 <h2>Method 2: ParseFormValue Function<a class="headerlink" href="#method-2-parseformvalue-function" title="Permalink to this headline">¶</a></h2>
 <p>Go to main.go and set <strong>uadmin.RootURL</strong> value as “/admin/”.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
@@ -108,7 +108,7 @@
 </pre></div>
 </div>
 <p>Now rebuild your application. Go to <a class="reference external" href="http://localhost:8080/admin/">http://localhost:8080/admin/</a> and see what happens.</p>
-<img alt="../_images/uadmindashboard3.png" src="../_images/uadmindashboard3.png" />
+<img alt="../_images/uadmindashboard1.png" src="../_images/uadmindashboard1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -201,8 +201,8 @@
 <li class="toctree-l1"><a class="reference internal" href="full_code/part9.html">uAdmin Tutorial Part 9 - Introduction to API (Current Progress)</a></li>
 </ul>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -267,14 +267,14 @@
         <li class="right" >
           <a href="part8.html" title="uAdmin Tutorial Part 8 - Back-end Validation"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" >uAdmin Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">uAdmin Tutorial Part 9 - Introduction to API</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+        &#169; Copyright 2021, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
     </div>
   </body>
 </html>

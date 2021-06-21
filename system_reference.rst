@@ -2266,6 +2266,7 @@ uAdmin
 * `Email SMTP Server`_
 * `Email SMTP Server Port`_
 * `Email Username`_
+* `Fav Icon`_
 * `HTTP Log Format`_
 * `Log Add`_
 * `Log Delete`_
@@ -2273,6 +2274,7 @@ uAdmin
 * `Log HTTP Requests`_
 * `Log Read`_
 * `Log Trail`_
+* `Logo`_
 * `Max Image Width`_
 * `Max Image Height`_
 * `Max Upload File Size`_
@@ -2328,6 +2330,7 @@ Page:
 .. _Email SMTP Server: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-smtp-server
 .. _Email SMTP Server Port: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-smtp-server-port
 .. _Email Username: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#email-username
+.. _Fav Icon: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#fav-icon
 .. _HTTP Log Format: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#http-log-format
 .. _Log Add: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-add
 .. _Log Delete: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-delete
@@ -2335,6 +2338,7 @@ Page:
 .. _Log HTTP Requests: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-http-requests
 .. _Log Read: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-read
 .. _Log Trail: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#log-trail
+.. _Logo: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#logo
 .. _Max Image Width: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#max-image-width
 .. _Max Image Height: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#max-image-height
 .. _Max Upload File Size: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#max-upload-file-size

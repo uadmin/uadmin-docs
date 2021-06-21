@@ -4,16 +4,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Database Functions &#8212; uadmin 0.5 documentation</title>
-    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Database Functions &#8212; uadmin 0.6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pyramid.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="customizing-records/schema.html" title="uadmin.Schema"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Database Functions</a></li> 
       </ul>
@@ -52,7 +52,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="database-functions">
+  <section id="database-functions">
 <h1>Database Functions<a class="headerlink" href="#database-functions" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
 <p>In this section, we will cover the following functions in-depth listed below:</p>
@@ -64,7 +64,7 @@
 <li><p><a class="reference internal" href="#uadmin-getdb">uadmin.GetDB</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-optimizesqlquery">uadmin.OptimizeSQLQuery</a></p></li>
 </ul>
-<div class="section" id="uadmin-cleardb">
+<section id="uadmin-cleardb">
 <h2>uadmin.ClearDB<a class="headerlink" href="#uadmin-cleardb" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">ClearDB</span><span class="p">()</span>
@@ -150,7 +150,7 @@
 </pre></div>
 </div>
 <p>Run the application. Go to the Expressions model and add at least 3 interjections, all Status set to “Keep”.</p>
-<img alt="../_images/expressionkeep1.png" src="../_images/expressionkeep1.png" />
+<img alt="../_images/expressionkeep.png" src="../_images/expressionkeep.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -169,8 +169,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/clear-db-and-get-db.html">ClearDB and GetDB</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-database">
+</section>
+<section id="uadmin-database">
 <h2>uadmin.Database<a class="headerlink" href="#uadmin-database" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Database</span> <span class="o">*</span><span class="nx">DBSettings</span>
@@ -220,8 +220,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/database-and-db-settings.html">Database and DBSettings</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-dbsettings">
+</section>
+<section id="uadmin-dbsettings">
 <h2>uadmin.DBSettings<a class="headerlink" href="#uadmin-dbsettings" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">DBSettings</span> <span class="kd">struct</span> <span class="p">{</span>
@@ -345,8 +345,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/database-and-db-settings.html">Database and DBSettings</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-debugdb">
+</section>
+<section id="uadmin-debugdb">
 <h2>uadmin.DebugDB<a class="headerlink" href="#uadmin-debugdb" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back to Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
@@ -401,8 +401,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions.html">Miscellaneous Functions</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-getdb">
+</section>
+<section id="uadmin-getdb">
 <h2>uadmin.GetDB<a class="headerlink" href="#uadmin-getdb" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetDB</span><span class="p">()</span> <span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span>
@@ -456,8 +456,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/clear-db-and-get-db.html">ClearDB and GetDB</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-optimizesqlquery">
+</section>
+<section id="uadmin-optimizesqlquery">
 <h2>uadmin.OptimizeSQLQuery<a class="headerlink" href="#uadmin-optimizesqlquery" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Type: bool</span>
@@ -492,8 +492,8 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -558,14 +558,14 @@
         <li class="right" >
           <a href="customizing-records/schema.html" title="uadmin.Schema"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Database Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+        &#169; Copyright 2021, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
     </div>
   </body>
 </html>

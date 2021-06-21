@@ -28,6 +28,7 @@ Here are all build-in uAdmin Settings, their format, and how to use them in the 
 * `Email SMTP Server`_
 * `Email SMTP Server Port`_
 * `Email Username`_
+* `Fav Icon`_
 * `HTTP Log Format`_
 * `Log Add`_
 * `Log Delete`_
@@ -35,6 +36,7 @@ Here are all build-in uAdmin Settings, their format, and how to use them in the 
 * `Log HTTP Requests`_
 * `Log Read`_
 * `Log Trail`_
+* `Logo`_
 * `Max Image Width`_
 * `Max Image Height`_
 * `Max Upload File Size`_
@@ -967,6 +969,40 @@ Email Username sets the username of an email.
 
 See `Email From`_ for the example.
 
+Fav Icon
+--------
+`Back To Top`_
+
+Fav Icon is the fav icon that shows on uAdmin UI.
+
+* **Default Value**: "/static/uadmin/favicon.ico"
+* **Data Type**: File
+* **Code**: `uAdmin.FavIcon`_
+
+.. _uAdmin.FavIcon: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-favicon
+
+Suppose you have favicon.ico file in your custom folder.
+
+.. image:: assets/favicon_highlighted.png
+
+|
+
+Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.
+
+.. image:: assets/wrenchiconfromdashboard.png
+
+|
+
+In the Settings, click the Browse button in the FavIcon field.
+
+.. image:: assets/favicon_browse.png
+
+|
+
+Go to the path where your favicon.ico file is located. Click Save button afterwards and see the results below.
+
+.. image:: assets/favicon_result.png
+
 HTTP Log Format
 ---------------
 `Back To Top`_
@@ -1465,6 +1501,40 @@ As expected, the profile pic will be uploaded to the user profile that automatic
 Quiz:
 
 * `Max Functions`_
+
+Logo
+----
+`Back To Top`_
+
+Logo is the main logo that shows on uAdmin UI.
+
+* **Default Value**: "/static/uadmin/logo.png"
+* **Data Type**: Image
+* **Code**: `uAdmin.Logo`_
+
+.. _uAdmin.Logo: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-logo
+
+Suppose you have logo.png file in your custom folder.
+
+.. image:: assets/logo_highlighted.png
+
+|
+
+Run your application and login your account. From uAdmin dashboard, click the wrench icon located on the top right.
+
+.. image:: assets/wrenchiconfromdashboard.png
+
+|
+
+In the Settings, click the Browse button in the Logo field.
+
+.. image:: assets/logo_browse.png
+
+|
+
+Go to the path where your logo.png file is located. Click Save button afterwards and see the results below.
+
+.. image:: assets/logo_result.png
 
 Max Image Height
 ----------------

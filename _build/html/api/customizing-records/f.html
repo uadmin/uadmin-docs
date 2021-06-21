@@ -4,16 +4,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>uadmin.F &#8212; uadmin 0.5 documentation</title>
-    <link rel="stylesheet" href="../../_static/pyramid.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>uadmin.F &#8212; uadmin 0.6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pyramid.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
     <script src="../../_static/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="../customizing_records.html" title="For Customizing Records"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../customizing_records.html" accesskey="U">For Customizing Records</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">uadmin.F</a></li> 
@@ -53,7 +53,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="uadmin-f">
+  <section id="uadmin-f">
 <h1>uadmin.F<a class="headerlink" href="#uadmin-f" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html">Back to Customizing Records Page</a></p>
 <p>F is a field.</p>
@@ -177,7 +177,7 @@
 <li><p><a class="reference internal" href="#example-4-upload-to">Example #4: Upload To</a></p></li>
 <li><p><a class="reference internal" href="#example-5-approval">Example #5: Approval</a></p></li>
 </ul>
-<div class="section" id="example-1-string-data-type">
+<section id="example-1-string-data-type">
 <h2><strong>Example #1:</strong> String Data Type<a class="headerlink" href="#example-1-string-data-type" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#uadmin-f">Back to Top</a></p>
 <p>In this example, we will discuss the following:</p>
@@ -193,7 +193,7 @@
 <li><p>Adding an error message tag</p></li>
 <li><p>Encrypt the value of the name in the database</p></li>
 </ul>
-<div class="section" id="string-data-type-links">
+<section id="string-data-type-links">
 <h3>String Data Type (Links)<a class="headerlink" href="#string-data-type-links" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="#name-field-in-category-model-displayname">Name Field in Category Model - DisplayName</a></p></li>
@@ -253,8 +253,8 @@
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. As expected, we got the same result.</p>
 <img alt="../../_images/categorynamedefault.png" class="align-center" src="../../_images/categorynamedefault.png" />
-</div>
-<div class="section" id="name-field-in-category-model-displayname">
+</section>
+<section id="name-field-in-category-model-displayname">
 <h3><strong>Name Field in Category Model - DisplayName</strong><a class="headerlink" href="#name-field-in-category-model-displayname" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type">Back to Top (Example #1)</a></p>
 <p>Now let’s replace the actual field name. In order to do that, declare a value in the DisplayName field inside uadmin.F function then assign that value to the DisplayName field in the Category model.</p>
@@ -277,8 +277,8 @@
 </div>
 <p>Run your application and go to Category model. As expected, the name has changed to “CATEGORY NAME”.</p>
 <img alt="../../_images/categorydisplayname.png" src="../../_images/categorydisplayname.png" />
-</div>
-<div class="section" id="name-field-in-category-model-defaultvalue">
+</section>
+<section id="name-field-in-category-model-defaultvalue">
 <h3><strong>Name Field in Category Model - DefaultValue</strong><a class="headerlink" href="#name-field-in-category-model-defaultvalue" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type">Back to Top (Example #1)</a></p>
 <p>You can also assign a value in the Name field automatically when creating a new record. In order to do that, declare a value in the DefaultValue field inside uadmin.F function then assign that value to the DefaultValue field in the Category model.</p>
@@ -301,8 +301,8 @@
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. As expected, “Type here” value has assigned automatically in the Name field.</p>
 <img alt="../../_images/categorydefaultvalue.png" class="align-center" src="../../_images/categorydefaultvalue.png" />
-</div>
-<div class="section" id="name-field-in-category-model-help">
+</section>
+<section id="name-field-in-category-model-help">
 <h3><strong>Name Field in Category Model - Help</strong><a class="headerlink" href="#name-field-in-category-model-help" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type">Back to Top (Example #1)</a></p>
 <p>Let’s assign a help note in the Name field to instruct the user what to do on that field. In order to do that, declare a value in the Help field inside uadmin.F function then assign that value to the Help field in the Category model.</p>
@@ -324,8 +324,8 @@
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. As expected, the help note was displayed below the input Name field.</p>
 <img alt="../../_images/categorynamehelp.png" class="align-center" src="../../_images/categorynamehelp.png" />
-</div>
-<div class="section" id="name-field-in-category-model-required">
+</section>
+<section id="name-field-in-category-model-required">
 <h3><strong>Name Field in Category Model - Required</strong><a class="headerlink" href="#name-field-in-category-model-required" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type">Back to Top (Example #1)</a></p>
 <p>Let’s set a feature where the user needs to fill up the Name field. If the value is empty, the user will prompt the user that the value of the Name field should be assigned. In order to do that, declare a value in the Required field inside uadmin.F function then assign that value to the Required field in the Category model.</p>
@@ -348,8 +348,8 @@
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. If you notice, there is an asterisk (*) symbol located on the top right after the “Name:”. Let’s leave the Name field value as it is. If you click Save, the system will prompt the user that the Name must be filled out.</p>
 <img alt="../../_images/categorynamerequired.png" class="align-center" src="../../_images/categorynamerequired.png" />
-</div>
-<div class="section" id="name-field-in-category-model-pattern-and-patternmsg">
+</section>
+<section id="name-field-in-category-model-pattern-and-patternmsg">
 <h3><strong>Name Field in Category Model - Pattern and PatternMsg</strong><a class="headerlink" href="#name-field-in-category-model-pattern-and-patternmsg" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type">Back to Top (Example #1)</a></p>
 <p>Let’s set a feature where the user can assign letters only in the Name field. In order to do that, declare a value in the Required field inside uadmin.F function then assign that value to the Required field in the Category model.</p>
@@ -376,8 +376,8 @@
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. Let’s assign a numeric value in the Name field. If you click Save, the system will prompt the user the the value of the Name field must assign letters only.</p>
 <img alt="../../_images/categorynamepattern.png" class="align-center" src="../../_images/categorynamepattern.png" />
-</div>
-<div class="section" id="name-field-in-category-model-searchable">
+</section>
+<section id="name-field-in-category-model-searchable">
 <h3><strong>Name Field in Category Model - Searchable</strong><a class="headerlink" href="#name-field-in-category-model-searchable" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type">Back to Top (Example #1)</a></p>
 <p>Let’s set a feature where the user can search the name in the Category model. In order to do that, declare a value in the Searchable field inside uadmin.F function then assign that value to the Searchable field in the Category model.</p>
@@ -404,8 +404,8 @@
 </div>
 <p>Let’s search “Work” and see what happens.</p>
 <img alt="../../_images/categorysearchablework.png" src="../../_images/categorysearchablework.png" />
-</div>
-<div class="section" id="name-field-in-category-model-filter-and-categoricalfilter">
+</section>
+<section id="name-field-in-category-model-filter-and-categoricalfilter">
 <h3><strong>Name Field in Category Model - Filter and CategoricalFilter</strong><a class="headerlink" href="#name-field-in-category-model-filter-and-categoricalfilter" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type">Back to Top (Example #1)</a></p>
 <p>Let’s set a feature where the user can filter the name in the Category model. In order to do that, declare a value in the Filter and CategoricalFilter fields inside uadmin.F function then assign that value to those fields in the Category model.</p>
@@ -442,8 +442,8 @@
 </div>
 <p>As expected, the Category record has filtered out where the name contains “Work”.</p>
 <img alt="../../_images/categorynamefilterresult.png" src="../../_images/categorynamefilterresult.png" />
-</div>
-<div class="section" id="name-field-in-category-model-readonly">
+</section>
+<section id="name-field-in-category-model-readonly">
 <h3><strong>Name Field in Category Model - ReadOnly</strong><a class="headerlink" href="#name-field-in-category-model-readonly" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type">Back to Top (Example #1)</a></p>
 <p>Let’s set a feature where the user cannot modify a Name field in the Category model. In order to do that, declare a value in the ReadOnly field inside uadmin.F function then assign that value to the ReadOnly field in the Category model.</p>
@@ -465,8 +465,8 @@
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. As expected, the Name field is now Read Only that means the value cannot be modified.</p>
 <img alt="../../_images/categorynamereadonly.png" class="align-center" src="../../_images/categorynamereadonly.png" />
-</div>
-<div class="section" id="name-field-in-category-model-errmsg">
+</section>
+<section id="name-field-in-category-model-errmsg">
 <h3><strong>Name Field in Category Model - ErrMsg</strong><a class="headerlink" href="#name-field-in-category-model-errmsg" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type">Back to Top (Example #1)</a></p>
 <p>Let’s set a feature where an error message will be displayed beneath the input Name field. In order to do that, declare a value in the ErrMsg field inside uadmin.F function then assign that value to the ErrMsg field in the Category model.</p>
@@ -488,8 +488,8 @@
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. As expected, the error message was displayed beneath the input Name field.</p>
 <img alt="../../_images/categorynameerrmsg.png" class="align-center" src="../../_images/categorynameerrmsg.png" />
-</div>
-<div class="section" id="name-field-in-category-model-listdisplay">
+</section>
+<section id="name-field-in-category-model-listdisplay">
 <h3><strong>Name Field in Category Model - ListDisplay</strong><a class="headerlink" href="#name-field-in-category-model-listdisplay" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type">Back to Top (Example #1)</a></p>
 <p>Let’s set a feature that will hide the field or column name in the viewing section of the Category model. In order to do that, declare a value in the ListDisplay field inside uadmin.F function then assign that value to the ListDisplay field in the Category model.</p>
@@ -512,8 +512,8 @@
 </div>
 <p>Run your application and go to the Category model. As expected, the Name Field in Category Model is now invisible in the list.</p>
 <img alt="../../_images/categorynamelistdisplay.png" src="../../_images/categorynamelistdisplay.png" />
-</div>
-<div class="section" id="name-field-in-category-model-formdisplay">
+</section>
+<section id="name-field-in-category-model-formdisplay">
 <h3><strong>Name Field in Category Model - FormDisplay</strong><a class="headerlink" href="#name-field-in-category-model-formdisplay" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type">Back to Top (Example #1)</a></p>
 <p>Let’s set a feature that will hide the field in the editing section of the Category model. In order to do that, declare a value in the FormDisplay field inside uadmin.F function then assign that value to the FormDisplay field in the Category model.</p>
@@ -536,8 +536,8 @@
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. As expected, the Name Field is now invisible in the Category model.</p>
 <img alt="../../_images/categorynameformdisplay.png" class="align-center" src="../../_images/categorynameformdisplay.png" />
-</div>
-<div class="section" id="name-field-in-category-model-hidden">
+</section>
+<section id="name-field-in-category-model-hidden">
 <h3><strong>Name Field in Category Model - Hidden</strong><a class="headerlink" href="#name-field-in-category-model-hidden" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type">Back to Top (Example #1)</a></p>
 <p>Unlike in FormDisplay, the field will hide if the value is true. In order to hide the Name field in the Category model, declare a value in the Hidden field inside uadmin.F function then assign that value to the Hidden field in the Category model.</p>
@@ -559,8 +559,8 @@
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. As expected, the Name Field is now invisible in the Category model.</p>
 <img alt="../../_images/categorynameformdisplay.png" class="align-center" src="../../_images/categorynameformdisplay.png" />
-</div>
-<div class="section" id="name-field-in-category-model-encrypt">
+</section>
+<section id="name-field-in-category-model-encrypt">
 <h3><strong>Name Field in Category Model - Encrypt</strong><a class="headerlink" href="#name-field-in-category-model-encrypt" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-1-string-data-type">Back to Top (Example #1)</a></p>
 <p>Suppose you have two records as shown below:</p>
@@ -602,8 +602,8 @@
 </div>
 <p>As expected, the Name value is encrypted in the database.</p>
 <img alt="../../_images/categorynameencrypt.png" class="align-center" src="../../_images/categorynameencrypt.png" />
-</div>
-<div class="section" id="example-2-progress-bar">
+</section>
+<section id="example-2-progress-bar">
 <h3><strong>Example #2:</strong> Progress Bar<a class="headerlink" href="#example-2-progress-bar" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#uadmin-f">Back to Top</a></p>
 <p>In this example, we will discuss the following:</p>
@@ -614,8 +614,8 @@
 <li><p>Set the minimum and maximum limit the user can assign in the progress bar</p></li>
 <li><p>Assign a value automatically if you are creating a new record</p></li>
 </ul>
-</div>
-<div class="section" id="progress-bar-links">
+</section>
+<section id="progress-bar-links">
 <h3>Progress Bar (Links)<a class="headerlink" href="#progress-bar-links" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="#progress-field-in-todo-model-displayname">Progress Field in Todo Model - DisplayName</a></p></li>
@@ -664,8 +664,8 @@
 </div>
 <p>Run your application and go to the Todo model. As expected, we got the same result.</p>
 <img alt="../../_images/todoprogressdefault.png" src="../../_images/todoprogressdefault.png" />
-</div>
-<div class="section" id="progress-field-in-todo-model-displayname">
+</section>
+<section id="progress-field-in-todo-model-displayname">
 <h3><strong>Progress Field in Todo Model - DisplayName</strong><a class="headerlink" href="#progress-field-in-todo-model-displayname" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-2-progress-bar">Back to Top (Example #2)</a></p>
 <p>Now let’s replace the actual field name. In order to do that, declare a value in the DisplayName field inside uadmin.F function then assign that value to the DisplayName field in the Todo model.</p>
@@ -688,8 +688,8 @@
 </div>
 <p>Run your application and go to the Todo model. As expected, the name has changed to “CURRENT PROGRESS”.</p>
 <img alt="../../_images/todoprogressdisplayname.png" src="../../_images/todoprogressdisplayname.png" />
-</div>
-<div class="section" id="progress-field-in-todo-model-type">
+</section>
+<section id="progress-field-in-todo-model-type">
 <h3><strong>Progress Field in Todo Model - Type</strong><a class="headerlink" href="#progress-field-in-todo-model-type" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-2-progress-bar">Back to Top (Example #2)</a></p>
 <p>Let’s convert the input type to the progress bar. In order to do that, declare a value in the Type field inside uadmin.F function then assign that value to the Type field in the Todo model.</p>
@@ -711,8 +711,8 @@
 </div>
 <p>Run your application and go to the Todo model. As expected, the field type has changed from regular to a progress bar. However, the appearance does not look good because we have not assigned the value and color of the progress bar yet.</p>
 <img alt="../../_images/todoprogresstype.png" src="../../_images/todoprogresstype.png" />
-</div>
-<div class="section" id="progress-field-in-todo-model-progressbar">
+</section>
+<section id="progress-field-in-todo-model-progressbar">
 <h3><strong>Progress Field in Todo Model - ProgressBar</strong><a class="headerlink" href="#progress-field-in-todo-model-progressbar" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-2-progress-bar">Back to Top (Example #2)</a></p>
 <p>Let’s assign the value and the color of the progress bar. In order to do that, declare a value in the ProgressBar field inside uadmin.F function then assign that value to the ProgressBar field in the Todo model.</p>
@@ -738,8 +738,8 @@
 </div>
 <p>Run your application and go to the Todo model. As expected, the appearance of the progress bar is now good enough.</p>
 <img alt="../../_images/todoprogressbar.png" src="../../_images/todoprogressbar.png" />
-</div>
-<div class="section" id="progress-field-in-todo-model-max-and-min">
+</section>
+<section id="progress-field-in-todo-model-max-and-min">
 <h3><strong>Progress Field in Todo Model - Max and Min</strong><a class="headerlink" href="#progress-field-in-todo-model-max-and-min" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-2-progress-bar">Back to Top (Example #2)</a></p>
 <p>Let’s set a limitation where the user can assign a value between the range of 0 and 100. In order to do that, declare a value in the Max and Min fields inside uadmin.F function then assign that value to those fields in the Todo model.</p>
@@ -765,8 +765,8 @@
 </div>
 <p>Run your application and go to the Todo model. Let’s put a numeric value outside the range of 0 and 100 in the Progress field and see what happens.</p>
 <img alt="../../_images/todoprogressmax.png" src="../../_images/todoprogressmax.png" />
-</div>
-<div class="section" id="progress-field-in-todo-model-defaultvalue">
+</section>
+<section id="progress-field-in-todo-model-defaultvalue">
 <h3><strong>Progress Field in Todo Model - DefaultValue</strong><a class="headerlink" href="#progress-field-in-todo-model-defaultvalue" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-2-progress-bar">Back to Top (Example #2)</a></p>
 <p>You can also assign a value in the Progress field automatically when creating a new record. In order to do that, declare a value in the DefaultValue field inside uadmin.F function then assign that value to the DefaultValue field in the Todo model.</p>
@@ -789,8 +789,8 @@
 </div>
 <p>Run your application, go to the Todo model and click Add New Todo button on the top right corner of the screen. As expected, “50” value has assigned automatically in the Progress field.</p>
 <img alt="../../_images/todoprogressdefaultvalue.png" src="../../_images/todoprogressdefaultvalue.png" />
-</div>
-<div class="section" id="example-3-choices">
+</section>
+<section id="example-3-choices">
 <h3><strong>Example #3:</strong> Choices<a class="headerlink" href="#example-3-choices" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#uadmin-f">Back to Top</a></p>
 <p>In this example, we will discuss the following:</p>
@@ -798,8 +798,8 @@
 <li><p>Build choices</p></li>
 <li><p>Hide the field in the form and list</p></li>
 </ul>
-</div>
-<div class="section" id="choices-links">
+</section>
+<section id="choices-links">
 <h3>Choices (Links)<a class="headerlink" href="#choices-links" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="#nationality-field-in-friend-model-choices">Nationality Field in Friend Model - Choices</a></p></li>
@@ -871,8 +871,8 @@
 </div>
 <p>Run your application, go to the Friend model and click Add New Friend button on the top right corner of the screen. As expected, we got the same result.</p>
 <img alt="../../_images/friendnationalitydefault.png" src="../../_images/friendnationalitydefault.png" />
-</div>
-<div class="section" id="nationality-field-in-friend-model-choices">
+</section>
+<section id="nationality-field-in-friend-model-choices">
 <h3><strong>Nationality Field in Friend Model - Choices</strong><a class="headerlink" href="#nationality-field-in-friend-model-choices" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-3-choices">Back to Top (Example #3)</a></p>
 <p>Let’s build a choice that includes Chinese and Filipino and excludes Others. In order to do that, declare a value in the Choices field inside uadmin.F function then assign that value to the Choices field in the Friend model.</p>
@@ -902,8 +902,8 @@
 </div>
 <p>Run your application, go to the Friend model and click Add New Friend button on the top right corner of the screen. As expected, Chinese and Filipino choices are included in the list.</p>
 <img alt="../../_images/friendnationalitychoices.png" src="../../_images/friendnationalitychoices.png" />
-</div>
-<div class="section" id="nationality-field-in-friend-model-listdisplay">
+</section>
+<section id="nationality-field-in-friend-model-listdisplay">
 <h3><strong>Nationality Field in Friend Model - ListDisplay</strong><a class="headerlink" href="#nationality-field-in-friend-model-listdisplay" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-3-choices">Back to Top (Example #3)</a></p>
 <p>Let’s set a feature that will hide the field or column name in the viewing section of the Friend model. In order to do that, declare a value in the ListDisplay field inside uadmin.F function then assign that value to the ListDisplay field in the Friend model.</p>
@@ -926,8 +926,8 @@
 </div>
 <p>Run your application and go to the Friend model. As expected, the Nationality Field in the Friend Model is now invisible in the list.</p>
 <img alt="../../_images/friendnationalitylistdisplay.png" src="../../_images/friendnationalitylistdisplay.png" />
-</div>
-<div class="section" id="nationality-field-in-friend-model-formdisplay">
+</section>
+<section id="nationality-field-in-friend-model-formdisplay">
 <h3><strong>Nationality Field in Friend Model - FormDisplay</strong><a class="headerlink" href="#nationality-field-in-friend-model-formdisplay" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-3-choices">Back to Top (Example #3)</a></p>
 <p>Let’s set a feature that will hide the field in the editing section of the Friend model. In order to do that, declare a value in the FormDisplay field inside uadmin.F function then assign that value to the FormDisplay field in the Friend model.</p>
@@ -950,8 +950,8 @@
 </div>
 <p>Run your application, go to the Friend model and click Add New Friend button on the top right corner of the screen. As expected, the Nationality Field is now invisible in the Friend model.</p>
 <img alt="../../_images/friendnationalityformdisplay.png" src="../../_images/friendnationalityformdisplay.png" />
-</div>
-<div class="section" id="nationality-field-in-friend-model-hidden">
+</section>
+<section id="nationality-field-in-friend-model-hidden">
 <h3><strong>Nationality Field in Friend Model - Hidden</strong><a class="headerlink" href="#nationality-field-in-friend-model-hidden" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-3-choices">Back to Top (Example #3)</a></p>
 <p>Unlike in FormDisplay, the field will hide if the value is true. In order to hide the Name field in the Category model, declare a value in the Hidden field inside uadmin.F function then assign that value to the Hidden field in the Category model.</p>
@@ -974,8 +974,8 @@
 </div>
 <p>Run your application, go to the Friend model and click Add New Friend button on the top right corner of the screen. As expected, the Nationality Field is now invisible in the Friend model.</p>
 <img alt="../../_images/friendnationalityformdisplay.png" src="../../_images/friendnationalityformdisplay.png" />
-</div>
-<div class="section" id="example-4-upload-to">
+</section>
+<section id="example-4-upload-to">
 <h3><strong>Example #4:</strong> Upload To<a class="headerlink" href="#example-4-upload-to" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#uadmin-f">Back to Top</a></p>
 <p>In this example, we will discuss the following:</p>
@@ -986,8 +986,8 @@
 <li><p>Adding an error message tag</p></li>
 <li><p>Hide the field in the form and list</p></li>
 </ul>
-</div>
-<div class="section" id="upload-to-links">
+</section>
+<section id="upload-to-links">
 <h3>Upload To (Links)<a class="headerlink" href="#upload-to-links" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="#file-field-in-category-model-type">File Field in Category Model - Type</a></p></li>
@@ -1037,8 +1037,8 @@
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. As expected, we got the same result.</p>
 <img alt="../../_images/categoryfiledefault.png" class="align-center" src="../../_images/categoryfiledefault.png" />
-</div>
-<div class="section" id="file-field-in-category-model-type">
+</section>
+<section id="file-field-in-category-model-type">
 <h3><strong>File Field in Category Model - Type</strong><a class="headerlink" href="#file-field-in-category-model-type" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-4-upload-to">Back to Top (Example #4)</a></p>
 <p>Let’s convert the input type to the file. In order to do that, declare a value in the Type field inside uadmin.F function then assign that value to the Type field in the Category model.</p>
@@ -1060,8 +1060,8 @@
 </div>
 <p>Run your application and go to the Category model. As expected, the field type has changed from regular to a file input.</p>
 <img alt="../../_images/categoryfiletype.png" class="align-center" src="../../_images/categoryfiletype.png" />
-</div>
-<div class="section" id="file-field-in-category-model-required">
+</section>
+<section id="file-field-in-category-model-required">
 <h3><strong>File Field in Category Model - Required</strong><a class="headerlink" href="#file-field-in-category-model-required" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-4-upload-to">Back to Top (Example #4)</a></p>
 <p>Let’s set a feature where the user needs to fill up the File field. If the value is empty, the user will prompt the user that the value of the File field should be assigned. In order to do that, declare a value in the Required field inside uadmin.F function then assign that value to the Required field in the Category model.</p>
@@ -1083,8 +1083,8 @@
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. If you notice, there is an asterisk (*) symbol located on the top right after the “File:”. Let’s leave the File field value as it is. If you click Save, nothing will happen until you fill out the File field.</p>
 <img alt="../../_images/categoryfilerequired.png" class="align-center" src="../../_images/categoryfilerequired.png" />
-</div>
-<div class="section" id="file-field-in-category-model-uploadto">
+</section>
+<section id="file-field-in-category-model-uploadto">
 <h3><strong>File Field in Category Model - UploadTo</strong><a class="headerlink" href="#file-field-in-category-model-uploadto" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-4-upload-to">Back to Top (Example #4)</a></p>
 <p>Let’s set a feature where the uploaded file will save in the specified path on your project folder. In order to do that, declare a value in the UploadTo field inside uadmin.F function then assign that value to the UploadTo field in the Category model.</p>
@@ -1105,19 +1105,19 @@
 </pre></div>
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. Let’s add a new record that includes the uploaded file from your computer (e.g. Windows Installation.pdf).</p>
-<img alt="../../_images/categoryinstallationrecord1.png" class="align-center" src="../../_images/categoryinstallationrecord1.png" />
+<img alt="../../_images/categoryinstallationrecord.png" class="align-center" src="../../_images/categoryinstallationrecord.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Result:</p>
-<img alt="../../_images/categoryinstallationrecordresult1.png" src="../../_images/categoryinstallationrecordresult1.png" />
+<img alt="../../_images/categoryinstallationrecordresult.png" src="../../_images/categoryinstallationrecordresult.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>From your project folder, go to /media/files/(generated_folder_name)/. As expected, the “Windows Installation.pdf” file was saved on that path.</p>
 <img alt="../../_images/categoryfileuploadto.png" class="align-center" src="../../_images/categoryfileuploadto.png" />
-</div>
-<div class="section" id="file-field-in-category-model-errmsg">
+</section>
+<section id="file-field-in-category-model-errmsg">
 <h3><strong>File Field in Category Model - ErrMsg</strong><a class="headerlink" href="#file-field-in-category-model-errmsg" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-4-upload-to">Back to Top (Example #4)</a></p>
 <p>Let’s set a feature where an error message will be displayed beneath the input File field. In order to do that, declare a value in the ErrMsg field inside uadmin.F function then assign that value to the ErrMsg field in the Category model.</p>
@@ -1139,8 +1139,8 @@
 </div>
 <p>Run your application, go to the Category model and click the existing record that you have. As expected, the error message was displayed beneath the input File field.</p>
 <img alt="../../_images/categoryfileerrmsg.png" src="../../_images/categoryfileerrmsg.png" />
-</div>
-<div class="section" id="file-field-in-category-model-listdisplay">
+</section>
+<section id="file-field-in-category-model-listdisplay">
 <h3><strong>File Field in Category Model - ListDisplay</strong><a class="headerlink" href="#file-field-in-category-model-listdisplay" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-4-upload-to">Back to Top (Example #4)</a></p>
 <p>Let’s set a feature that will hide the field or column name in the viewing section of the Category model. In order to do that, declare a value in the ListDisplay field inside uadmin.F function then assign that value to the ListDisplay field in the Category model.</p>
@@ -1163,8 +1163,8 @@
 </div>
 <p>Run your application and go to the Category model. As expected, the File Field in the Category Model is now invisible in the list.</p>
 <img alt="../../_images/categoryfilelistdisplay.png" src="../../_images/categoryfilelistdisplay.png" />
-</div>
-<div class="section" id="file-field-in-category-model-formdisplay">
+</section>
+<section id="file-field-in-category-model-formdisplay">
 <h3><strong>File Field in Category Model - FormDisplay</strong><a class="headerlink" href="#file-field-in-category-model-formdisplay" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-4-upload-to">Back to Top (Example #4)</a></p>
 <p>Let’s set a feature that will hide the field in the editing section of the Category model. In order to do that, declare a value in the FormDisplay field inside uadmin.F function then assign that value to the FormDisplay field in the Category model.</p>
@@ -1187,8 +1187,8 @@
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. As expected, the File Field is now invisible in the Category model.</p>
 <img alt="../../_images/categoryfileformdisplay.png" class="align-center" src="../../_images/categoryfileformdisplay.png" />
-</div>
-<div class="section" id="file-field-in-category-model-hidden">
+</section>
+<section id="file-field-in-category-model-hidden">
 <h3><strong>File Field in Category Model - Hidden</strong><a class="headerlink" href="#file-field-in-category-model-hidden" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#example-4-upload-to">Back to Top (Example #4)</a></p>
 <p>Unlike in FormDisplay, the field will hide if the value is true. In order to hide the File field in the Category model, declare a value in the Hidden field inside uadmin.F function then assign that value to the Hidden field in the Category model.</p>
@@ -1210,8 +1210,8 @@
 </div>
 <p>Run your application, go to the Category model and click Add New Category button on the top right corner of the screen. As expected, the File Field is now invisible in the Category model.</p>
 <img alt="../../_images/categoryfileformdisplay.png" class="align-center" src="../../_images/categoryfileformdisplay.png" />
-</div>
-<div class="section" id="example-5-approval">
+</section>
+<section id="example-5-approval">
 <h3><strong>Example #5:</strong> Approval<a class="headerlink" href="#example-5-approval" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing-records/f.html#uadmin-f">Back to Top</a></p>
 <p>In this example, we will discuss on how to set an approval permission in the field.</p>
@@ -1317,9 +1317,9 @@
 </div>
 <p>The input Name field has a checkmark sign that means the record created by “johndoe” was approved.</p>
 <img alt="../../_images/johndoeapprovedrecord.png" class="align-center" src="../../_images/johndoeapprovedrecord.png" />
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -1384,15 +1384,15 @@
         <li class="right" >
           <a href="../customizing_records.html" title="For Customizing Records"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../customizing_records.html" >For Customizing Records</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">uadmin.F</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+        &#169; Copyright 2021, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
     </div>
   </body>
 </html>

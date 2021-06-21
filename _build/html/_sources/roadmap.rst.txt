@@ -9,6 +9,8 @@ Roadmap
 * `Version 0.5.0 Atlas Moth (2020-08-02)`_
 * `Version 0.5.1 Atlas Moth (2020-08-07)`_
 * `Version 0.5.2 Atlas Moth (2020-08-20)`_
+* `Version 0.5.3 Atlas Moth (2021-04-08)`_
+* `Version 0.6.1 Beetle (2021-04-27)`_
 
 Version 0.1.0 (2018-12-23)
 --------------------------
@@ -271,9 +273,50 @@ Version 0.5.2 Atlas Moth (2020-08-20)
 -------------------------------------
 `Back to Top`_
 
-.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap
-
 **Fixed**
 ^^^^^^^^^
 * Added CSRF token to inlines form for deleting
 * User was overwritten with old user on logout when using cache sessions
+
+Version 0.5.3 Atlas Moth (2021-04-08)
+-------------------------------------
+`Back to Top`_
+
+**Changed**
+^^^^^^^^^^^
+* Drop support for GO version 1.11 and 1.12
+
+**Fixed**
+^^^^^^^^^
+* Fixed adding more than 10 items in dAPI
+* Fixed saving of language not removing the previous default language
+
+Version 0.6.1 Beetle (2021-04-27)
+---------------------------------
+`Back to Top`_
+
+.. _Back to Top: https://uadmin-docs.readthedocs.io/en/latest/roadmap.html#roadmap
+
+**Added**
+^^^^^^^^^
+* Support for getting static files when running `uadmin prepare` from modules instead of source folder
+* `uadmin prepare` now accepts a new parameter `--src` that allows to overide the default behavior and get the static files from source instead of module
+* `uadmin prepare` takes go.mod into consideration to decide where to get the static files from. This allows developers to develop multiple applications that uses different version of uAdmin. If you use replace directive inside go.mod, the prepare tool will copy the files from the local folder as instructed in the replace directive.
+* Two new settings "Logo" and "FavIcon" to customize your application even further.
+
+**Changed**
+^^^^^^^^^^^
+* Added `.DS_Store` and `.vscode` to .gitignore
+
+**Removed**
+^^^^^^^^^^^
+* `uadmin publish` is removed. It used to be an internal development tool and was cool to have it runnig publicly for a while
+
+**Fixed**
+^^^^^^^^^
+* dAPI didn't have docs for `method` and fixed some typos
+* Linting (So much linting)
+
+**Security**
+^^^^^^^^^^^^
+* The system reads two envirnment variables `UADMIN_USER` and `UADMIN_PASS` for new deployments to create admin username and password. If these environment variables do not exist, uAdmin will user "admin" and "admin" for username and password.

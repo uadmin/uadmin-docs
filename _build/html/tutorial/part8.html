@@ -4,16 +4,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>uAdmin Tutorial Part 8 - Back-end Validation &#8212; uadmin 0.5 documentation</title>
-    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>uAdmin Tutorial Part 8 - Back-end Validation &#8212; uadmin 0.6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pyramid.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="full_code/part7.html" title="uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" accesskey="U">uAdmin Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">uAdmin Tutorial Part 8 - Back-end Validation</a></li> 
       </ul>
@@ -52,7 +52,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="uadmin-tutorial-part-8-back-end-validation">
+  <section id="uadmin-tutorial-part-8-back-end-validation">
 <h1>uAdmin Tutorial Part 8 - Back-end Validation<a class="headerlink" href="#uadmin-tutorial-part-8-back-end-validation" title="Permalink to this headline">¶</a></h1>
 <p>For more advanced validation, sometimes you need to implement some validation from the back-end. This is the case for validation that required access to the database to check for duplicate entries or check some permissions like “You are not allowed to assign this task to people outside your department”. Regardless of the case this is how to implement back-end validation.</p>
 <p>Let’s say we don’t want people to add duplicate entries for todo. The way we will do that is check the database and see if there is another todo record with the same name. If we find another record, we can return a message that tells the user that the todo item has been added to the system already.</p>
@@ -101,7 +101,7 @@
 <div class="line"><br /></div>
 </div>
 <p>You may also do the same process of applying validate function in the other models that you have, this time with using different variables related to the model and different error messages as part of your challenge. Once you master them, congrats! You are now ready to proceed with <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html">configuring APIs</a>.</p>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -166,14 +166,14 @@
         <li class="right" >
           <a href="full_code/part7.html" title="uAdmin Tutorial Part 7 - M2M (Many-to-many) (Current Progress)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" >uAdmin Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">uAdmin Tutorial Part 8 - Back-end Validation</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+        &#169; Copyright 2021, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
     </div>
   </body>
 </html>

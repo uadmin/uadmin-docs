@@ -4,16 +4,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>uAdmin Tutorial Part 16 - Advanced Security (Part 2) &#8212; uadmin 0.5 documentation</title>
-    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>uAdmin Tutorial Part 16 - Advanced Security (Part 2) &#8212; uadmin 0.6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pyramid.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="part15.html" title="uAdmin Tutorial Part 15 - Advanced Security (Part 1)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" accesskey="U">uAdmin Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">uAdmin Tutorial Part 16 - Advanced Security (Part 2)</a></li> 
       </ul>
@@ -52,27 +52,27 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="uadmin-tutorial-part-16-advanced-security-part-2">
+  <section id="uadmin-tutorial-part-16-advanced-security-part-2">
 <h1>uAdmin Tutorial Part 16 - Advanced Security (Part 2)<a class="headerlink" href="#uadmin-tutorial-part-16-advanced-security-part-2" title="Permalink to this headline">¶</a></h1>
 <p>In this part, we will discuss about password reset, hash salt, and database encryption.</p>
-<div class="section" id="password-reset">
+<section id="password-reset">
 <h2>Password Reset<a class="headerlink" href="#password-reset" title="Permalink to this headline">¶</a></h2>
 <p>For password reset to work you need to setup an email account that will send the password reset link. Also make sure that your user has an email in the system, otherwise they will not be able to reset their password. To setup an email account, you can use your gmail account or any SMTP account.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#method-1-within-the-application-settings">Method 1: Within the Application Settings</a></p></li>
 <li><p><a class="reference internal" href="#method-2-parseformvalue-function">Method 2: ParseFormValue Function</a></p></li>
 </ul>
-<div class="section" id="method-1-within-the-application-settings">
+<section id="method-1-within-the-application-settings">
 <h3><strong>Method 1: Within the Application Settings</strong><a class="headerlink" href="#method-1-within-the-application-settings" title="Permalink to this headline">¶</a></h3>
 <p>Run your application. From uAdmin dashboard, click the wrench icon on the top right side to go to the settings.</p>
-<img alt="../_images/wrenchiconfromdashboard1.png" src="../_images/wrenchiconfromdashboard1.png" />
+<img alt="../_images/wrenchiconfromdashboard.png" src="../_images/wrenchiconfromdashboard.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Assign the following email configurations. Save it afterwards.</p>
-<img alt="../_images/emailconfigurationsetting1.png" src="../_images/emailconfigurationsetting1.png" />
-</div>
-<div class="section" id="method-2-parseformvalue-function">
+<img alt="../_images/emailconfigurationsetting.png" src="../_images/emailconfigurationsetting.png" />
+</section>
+<section id="method-2-parseformvalue-function">
 <h3><strong>Method 2: ParseFormValue Function</strong><a class="headerlink" href="#method-2-parseformvalue-function" title="Permalink to this headline">¶</a></h3>
 <p>Open your main.go and add these lines of code:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
@@ -111,31 +111,31 @@
 </pre></div>
 </div>
 <p>Let’s go back to the uAdmin dashboard, go to Users model, create your own user account and set the email address based on your assigned EmailFrom in the code above.</p>
-<img alt="../_images/useremailhighlighted2.png" src="../_images/useremailhighlighted2.png" />
+<img alt="../_images/useremailhighlighted.png" src="../_images/useremailhighlighted.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Log out your account. At the moment, you suddenly forgot your password. How can we retrieve our account? Click Forgot Password at the bottom of the login form.</p>
-<img alt="../_images/forgotpasswordhighlighted2.png" src="../_images/forgotpasswordhighlighted2.png" />
+<img alt="../_images/forgotpasswordhighlighted.png" src="../_images/forgotpasswordhighlighted.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Input your email address based on the user account you wish to retrieve it back.</p>
-<img alt="../_images/forgotpasswordinputemail2.png" src="../_images/forgotpasswordinputemail2.png" />
+<img alt="../_images/forgotpasswordinputemail.png" src="../_images/forgotpasswordinputemail.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Once you are done, open your email account. You will receive a password reset notification from the Todo List support. To reset your password, click the link highlighted below.</p>
-<img alt="../_images/passwordresetnotification2.png" src="../_images/passwordresetnotification2.png" />
+<img alt="../_images/passwordresetnotification.png" src="../_images/passwordresetnotification.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>You will be greeted by the reset password form. Input the following information in order to create a new password for you.</p>
-<img alt="../_images/resetpasswordform2.png" src="../_images/resetpasswordform2.png" />
+<img alt="../_images/resetpasswordform.png" src="../_images/resetpasswordform.png" />
 <p>Once you are done, you can now access your account using your new password.</p>
-</div>
-</div>
-<div class="section" id="hash-salt">
+</section>
+</section>
+<section id="hash-salt">
 <h2>Hash Salt<a class="headerlink" href="#hash-salt" title="Permalink to this headline">¶</a></h2>
 <p>All user passwords are hashed in the database. That means they are encrypted using a one way encryption meaning, your system does not know any user’s password. It actually encrypts the password again using the same algorithm and compares the two “hashes”. Bcrypt adds standard salt to your password to make it even more secure.</p>
 <p>What happens when you get attacked and your database leaks into the Internet? We added one more level on security for you for this scenario. We create a file called .salt to your app’s folder which includes a 128 bytes of extra salt. This means doing any attack on your hashed passwords without knowing that long salt value is useless!</p>
@@ -180,12 +180,12 @@ $ go build<span class="p">;</span> ./todo
 <div class="line"><br /></div>
 </div>
 <p>After you log in, you should see the uAdmin Dashboard as shown below.</p>
-<img alt="../_images/uadmindashboard2.png" src="../_images/uadmindashboard2.png" />
+<img alt="../_images/uadmindashboard.png" src="../_images/uadmindashboard.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="database-encryption">
+</section>
+<section id="database-encryption">
 <h2>Database Encryption<a class="headerlink" href="#database-encryption" title="Permalink to this headline">¶</a></h2>
 <p>You can keep your data in the database encrypted for any field. You might do that to protect some data or to comply with standards or fulfill client’s request. Let’s encrypt the name of our Friend model. To do that, open /models/friend.go and add this tag to the Password field:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Friend model ...</span>
@@ -221,8 +221,8 @@ $ go build<span class="p">;</span> ./todo
 </div>
 <p>Congrats, now you know how to generate a self-signed SSL certificate, implement two factor authentication, reset your password by email, hash salt, and encrypt your database.</p>
 <p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part17.html">last part</a> of this tutorial, we will talk about customizing your dashboard and publishing your application for the world to see.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -287,14 +287,14 @@ $ go build<span class="p">;</span> ./todo
         <li class="right" >
           <a href="part15.html" title="uAdmin Tutorial Part 15 - Advanced Security (Part 1)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../coverage.html" >uAdmin Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">uAdmin Tutorial Part 16 - Advanced Security (Part 2)</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+        &#169; Copyright 2021, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
     </div>
   </body>
 </html>

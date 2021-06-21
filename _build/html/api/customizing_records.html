@@ -4,16 +4,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>For Customizing Records &#8212; uadmin 0.5 documentation</title>
-    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>For Customizing Records &#8212; uadmin 0.6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pyramid.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="basic_functions.html" title="Basic Functions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">For Customizing Records</a></li> 
       </ul>
@@ -52,7 +52,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="for-customizing-records">
+  <section id="for-customizing-records">
 <h1>For Customizing Records<a class="headerlink" href="#for-customizing-records" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
 <p>In this section, we will cover the following functions in-depth listed below:</p>
@@ -80,7 +80,7 @@
 <li><p><a class="reference internal" href="#uadmin-schema">uadmin.Schema</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-update">uadmin.Update</a></p></li>
 </ul>
-<div class="section" id="uadmin-delete">
+<section id="uadmin-delete">
 <h2>uadmin.Delete<a class="headerlink" href="#uadmin-delete" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Delete</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
@@ -96,7 +96,7 @@
 <li><p><a class="reference internal" href="#example-1-by-using-api-handler-uadmin-delete">Example #1: By Using API Handler (uadmin.Delete)</a></p></li>
 <li><p><a class="reference internal" href="#example-2-by-drop-down-list-selection-uadmin-delete">Example #2: By Drop Down List Selection (uadmin.Delete)</a></p></li>
 </ul>
-<div class="section" id="example-1-by-using-api-handler-uadmin-delete">
+<section id="example-1-by-using-api-handler-uadmin-delete">
 <h3><strong>Example #1:</strong> By Using API Handler (uadmin.Delete)<a class="headerlink" href="#example-1-by-using-api-handler-uadmin-delete" title="Permalink to this headline">¶</a></h3>
 <p>Suppose you have five records in your Todo model.</p>
 <img alt="../_images/fiverecordstodomodel.png" src="../_images/fiverecordstodomodel.png" />
@@ -132,8 +132,8 @@
 <div class="line"><br /></div>
 </div>
 <p>All records are deleted from the database.</p>
-</div>
-<div class="section" id="example-2-by-drop-down-list-selection-uadmin-delete">
+</section>
+<section id="example-2-by-drop-down-list-selection-uadmin-delete">
 <h3><strong>Example #2:</strong> By Drop Down List Selection (uadmin.Delete)<a class="headerlink" href="#example-2-by-drop-down-list-selection-uadmin-delete" title="Permalink to this headline">¶</a></h3>
 <p>Let’s create a new file in the models folder named “expression.go” with the following codes below:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
@@ -208,9 +208,9 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/delete-and-delete-list.html">Delete and Delete List</a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="uadmin-deletelist">
+</section>
+</section>
+<section id="uadmin-deletelist">
 <h2>uadmin.DeleteList<a class="headerlink" href="#uadmin-deletelist" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">DeleteList</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
@@ -228,7 +228,7 @@
 <li><p><a class="reference internal" href="#example-1-by-using-api-handler-uadmin-deletelist">Example #1: By Using API Handler (uadmin.DeleteList)</a></p></li>
 <li><p><a class="reference internal" href="#example-2-by-drop-down-list-selection-uadmin-deletelist">Example #2: By Drop Down List Selection (uadmin.DeleteList)</a></p></li>
 </ul>
-<div class="section" id="example-1-by-using-api-handler-uadmin-deletelist">
+<section id="example-1-by-using-api-handler-uadmin-deletelist">
 <h3><strong>Example #1:</strong> By Using API Handler (uadmin.DeleteList)<a class="headerlink" href="#example-1-by-using-api-handler-uadmin-deletelist" title="Permalink to this headline">¶</a></h3>
 <p>Suppose you have five records in your Todo model.</p>
 <img alt="../_images/fiverecordstodomodel.png" src="../_images/fiverecordstodomodel.png" />
@@ -267,8 +267,8 @@
 <div class="line"><br /></div>
 </div>
 <p>Based on the result shown above, the first three records are deleted from the database while the last two records remain.</p>
-</div>
-<div class="section" id="example-2-by-drop-down-list-selection-uadmin-deletelist">
+</section>
+<section id="example-2-by-drop-down-list-selection-uadmin-deletelist">
 <h3><strong>Example #2:</strong> By Drop Down List Selection (uadmin.DeleteList)<a class="headerlink" href="#example-2-by-drop-down-list-selection-uadmin-deletelist" title="Permalink to this headline">¶</a></h3>
 <p>Let’s create a new file in the models folder named “expression.go” with the following codes below:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">models</span>
@@ -348,9 +348,9 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/delete-and-delete-list.html">Delete and Delete List</a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="uadmin-f">
+</section>
+</section>
+<section id="uadmin-f">
 <h2>uadmin.F<a class="headerlink" href="#uadmin-f" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">F</span> <span class="kd">struct</span> <span class="p">{</span>
@@ -441,7 +441,7 @@
 <li><p><strong>WebCam</strong> - A feature which adds web can access directly from the image and file fields</p></li>
 <li><p><strong>Stringer</strong> - A feature that assigns a field as a unique type</p></li>
 </ul>
-<div class="section" id="func-f-marshaljson">
+<section id="func-f-marshaljson">
 <h3><strong>func (F) MarshalJSON</strong><a class="headerlink" href="#func-f-marshaljson" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back to Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="nx">F</span><span class="p">)</span> <span class="nx">MarshalJSON</span><span class="p">()</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
@@ -492,9 +492,9 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/schema-functions.html">Schema Functions</a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="uadmin-modelschema">
+</section>
+</section>
+<section id="uadmin-modelschema">
 <h2>uadmin.ModelSchema<a class="headerlink" href="#uadmin-modelschema" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">ModelSchema</span> <span class="kd">struct</span> <span class="p">{</span>
@@ -533,7 +533,7 @@
 <li><p><strong>FormTheme</strong> - Name of the theme for the form</p></li>
 <li><p><strong>ListTheme</strong> - Name of the theme for the list</p></li>
 </ul>
-<div class="section" id="func-modelschema-fieldbyname">
+<section id="func-modelschema-fieldbyname">
 <h3><strong>func (ModelSchema) FieldByName</strong><a class="headerlink" href="#func-modelschema-fieldbyname" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back to Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">ModelSchema</span><span class="p">)</span> <span class="nx">FieldByName</span><span class="p">(</span><span class="nx">a</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">F</span>
@@ -545,24 +545,24 @@
 </pre></div>
 </div>
 <p>XXXX has many things: See <a class="reference internal" href="#uadmin-f">uadmin.F</a> for the list. It is an alternative way of changing the feature of the field rather than using Tags. For more information, see <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tags.html">Tag Reference</a>.</p>
-</div>
-<div class="section" id="func-modelschema-getformtheme">
+</section>
+<section id="func-modelschema-getformtheme">
 <h3><strong>func (*ModelSchema) GetFormTheme</strong><a class="headerlink" href="#func-modelschema-getformtheme" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back to Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">)</span> <span class="nx">GetFormTheme</span><span class="p">()</span> <span class="kt">string</span>
 </pre></div>
 </div>
 <p>GetFormTheme returns the theme for this model or the global theme if there is no assigned theme for the model.</p>
-</div>
-<div class="section" id="func-modelschema-getlisttheme">
+</section>
+<section id="func-modelschema-getlisttheme">
 <h3><strong>func (*ModelSchema) GetListTheme</strong><a class="headerlink" href="#func-modelschema-getlisttheme" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back to Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">)</span> <span class="nx">GetListTheme</span><span class="p">()</span> <span class="kt">string</span>
 </pre></div>
 </div>
 <p>GetListTheme returns the theme for this model or the global theme if there is no assigned theme for the model.</p>
-</div>
-<div class="section" id="func-modelschema-marshaljson">
+</section>
+<section id="func-modelschema-marshaljson">
 <h3><strong>func (ModelSchema) MarshalJSON</strong><a class="headerlink" href="#func-modelschema-marshaljson" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back to Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">ModelSchema</span><span class="p">)</span> <span class="nx">MarshalJSON</span><span class="p">()</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
@@ -612,9 +612,9 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/schema-functions.html">Schema Functions</a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="uadmin-save">
+</section>
+</section>
+<section id="uadmin-save">
 <h2>uadmin.Save<a class="headerlink" href="#uadmin-save" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Save</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
@@ -663,8 +663,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/overriding-save.html">Overriding Save</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-schema">
+</section>
+<section id="uadmin-schema">
 <h2>uadmin.Schema<a class="headerlink" href="#uadmin-schema" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Schema</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">ModelSchema</span>
@@ -711,8 +711,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/schema-functions.html">Schema Functions</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-update">
+</section>
+<section id="uadmin-update">
 <h2>uadmin.Update<a class="headerlink" href="#uadmin-update" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#for-customizing-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Update</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">fieldName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">value</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
@@ -755,8 +755,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/update.html">Update</a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -821,14 +821,14 @@
         <li class="right" >
           <a href="basic_functions.html" title="Basic Functions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">For Customizing Records</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+        &#169; Copyright 2021, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
     </div>
   </body>
 </html>

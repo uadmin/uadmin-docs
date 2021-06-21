@@ -6,6 +6,8 @@ Basic Functions
 
 In this section, we will cover the following functions in-depth listed below:
 
+* `uadmin.FavIcon`_
+* `uadmin.Logo`_
 * `uadmin.MaxImageHeight`_
 * `uadmin.MaxImageWidth`_
 * `uadmin.MaxUploadFileSize`_
@@ -16,6 +18,82 @@ In this section, we will cover the following functions in-depth listed below:
 * `uadmin.ServerReady`_
 * `uadmin.StartServer`_
 * `uadmin.Theme`_
+
+uadmin.FavIcon
+--------------
+`Back To Top`_
+
+.. code-block:: go
+
+    // Type: string
+    var FavIcon = "/static/uadmin/favicon.ico"
+
+FavIcon is the fav icon that shows on uAdmin UI.
+
+To assign a value within an application, visit `Fav Icon`_ page for an example.
+
+.. _Fav Icon: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#fav-icon
+
+To assign a value in the code, follow this approach supposedly you have favicon.ico in your custom folder:
+
+.. image:: assets/favicon_highlighted.png
+
+.. code-block:: go
+
+    func main() {
+        // NOTE: This code works only on first build.
+        uadmin.FavIcon = "/static/custom/favicon.ico"
+
+        // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
+
+        // Assign the Fav Icon value to the path where favicon.ico is located.
+        setting := uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.FavIcon")
+        setting.ParseFormValue([]string{"/static/custom/favicon.ico"})
+        setting.Save()
+    }
+
+Run your application. As you can see, the favicon has been applied in the tab.
+
+.. image:: assets/favicon_result.png
+
+uadmin.Logo
+-----------
+`Back To Top`_
+
+.. code-block:: go
+
+    // Type: string
+    var Logo = "/static/uadmin/logo.png"
+
+Logo is the main logo that shows on uAdmin UI.
+
+To assign a value within an application, visit `Logo`_ page for an example.
+
+.. _Logo: https://uadmin-docs.readthedocs.io/en/latest/system-reference/setting.html#logo
+
+To assign a value in the code, follow this approach supposedly you have logo.png in your custom folder:
+
+.. image:: assets/logo_highlighted.png
+
+.. code-block:: go
+
+    func main() {
+        // NOTE: This code works only on first build.
+        uadmin.Logo = "/static/custom/logo.png"
+
+        // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
+
+        // Assign the Logo value to the path where logo.png is located.
+        setting := uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.Logo")
+        setting.ParseFormValue([]string{"/static/custom/logo.png"})
+        setting.Save()
+    }
+
+Run your application. As you can see, the logo has been applied in the navigation tab.
+
+.. image:: assets/logo_result.png
 
 uadmin.MaxImageHeight
 ---------------------

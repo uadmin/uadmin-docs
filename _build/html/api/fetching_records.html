@@ -4,16 +4,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>For Fetching Records &#8212; uadmin 0.5 documentation</title>
-    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>For Fetching Records &#8212; uadmin 0.6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pyramid.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="email_functions.html" title="Email Functions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">For Fetching Records</a></li> 
       </ul>
@@ -52,7 +52,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="for-fetching-records">
+  <section id="for-fetching-records">
 <h1>For Fetching Records<a class="headerlink" href="#for-fetching-records" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference">Back To uAdmin Functions List</a></p>
 <p>In this section, we will cover the following functions in-depth listed below:</p>
@@ -76,7 +76,7 @@
 <li><p><a class="reference internal" href="#uadmin-renderhtml">uadmin.RenderHTML</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-rendermultihtml">uadmin.RenderMultiHTML</a></p></li>
 </ul>
-<div class="section" id="uadmin-adminpage">
+<section id="uadmin-adminpage">
 <h2>uadmin.AdminPage<a class="headerlink" href="#uadmin-adminpage" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">AdminPage</span><span class="p">(</span><span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">offset</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">limit</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
@@ -135,8 +135,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/admin-page.html">Admin Page</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-all">
+</section>
+<section id="uadmin-all">
 <h2>uadmin.All<a class="headerlink" href="#uadmin-all" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">All</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
@@ -182,8 +182,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/all-and-get.html">All and Get</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-choice">
+</section>
+<section id="uadmin-choice">
 <h2>uadmin.Choice<a class="headerlink" href="#uadmin-choice" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Choice</span> <span class="kd">struct</span> <span class="p">{</span>
@@ -263,8 +263,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/choice.html">Choice</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-count">
+</section>
+<section id="uadmin-count">
 <h2>uadmin.Count<a class="headerlink" href="#uadmin-count" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Count</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">int</span>
@@ -307,15 +307,15 @@
 </pre></div>
 </div>
 <p>Check your terminal to see the result.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   You have <span class="m">5</span> todos with a friend in your list.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   You have <span class="m">5</span> todos with a friend <span class="k">in</span> your list.
 </pre></div>
 </div>
 <p>Quiz:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/count.html">Count</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-filter">
+</section>
+<section id="uadmin-filter">
 <h2>uadmin.Filter<a class="headerlink" href="#uadmin-filter" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Filter</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
@@ -333,10 +333,10 @@
 <li><p><a class="reference internal" href="#example-1-assigning-multiple-values-in-a-parameter">Example #1: Assigning Multiple Values in a Parameter</a></p></li>
 <li><p><a class="reference internal" href="#example-2-returning-the-name">Example #2: Returning the Name</a></p></li>
 </ul>
-<div class="section" id="example-1-assigning-multiple-values-in-a-parameter">
+<section id="example-1-assigning-multiple-values-in-a-parameter">
 <h3><strong>Example #1:</strong> Assigning Multiple Values in a Parameter<a class="headerlink" href="#example-1-assigning-multiple-values-in-a-parameter" title="Permalink to this headline">¶</a></h3>
 <p>Suppose you have five records in your Todo model.</p>
-<img alt="../_images/fiverecordstodomodel1.png" src="../_images/fiverecordstodomodel1.png" />
+<img alt="../_images/fiverecordstodomodel.png" src="../_images/fiverecordstodomodel.png" />
 <p>Create a file named filter_list.go inside the api folder with the following codes below:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">FilterListHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// r.URL.Path creates a new path called /filter_list</span>
@@ -372,8 +372,8 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="example-2-returning-the-name">
+</section>
+<section id="example-2-returning-the-name">
 <h3><strong>Example #2</strong>: Returning the Name<a class="headerlink" href="#example-2-returning-the-name" title="Permalink to this headline">¶</a></h3>
 <p>Create a file named filter_list.go inside the api folder with the following codes below:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">api</span>
@@ -436,9 +436,9 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter.html">Filter Function</a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="uadmin-filterbuilder">
+</section>
+</section>
+<section id="uadmin-filterbuilder">
 <h2>uadmin.FilterBuilder<a class="headerlink" href="#uadmin-filterbuilder" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">FilterBuilder</span><span class="p">(</span><span class="nx">params</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">query</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{})</span>
@@ -511,8 +511,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz//filter-builder.html">Filter Builder</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-filterlist">
+</section>
+<section id="uadmin-filterlist">
 <h2>uadmin.FilterList<a class="headerlink" href="#uadmin-filterlist" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">FilterList</span><span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">offset</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">limit</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
@@ -554,7 +554,7 @@
 </pre></div>
 </div>
 <p>Run your application. From uAdmin dashboard, go to Todo model and ensure that the CreatedAt field in the list is now hidden.</p>
-<img alt="../_images/fiverecordstodomodel1.png" class="align-center" src="../_images/fiverecordstodomodel1.png" />
+<img alt="../_images/fiverecordstodomodel.png" class="align-center" src="../_images/fiverecordstodomodel.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -643,8 +643,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter-list-get-form-and-stringer.html">Filter List, Get Form, and Get Stringer</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-get">
+</section>
+<section id="uadmin-get">
 <h2>uadmin.Get<a class="headerlink" href="#uadmin-get" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Get</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
@@ -668,7 +668,7 @@
 </ul>
 <p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html">Tutorial Part 9 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
 <p>Suppose you have five records in your Todo model.</p>
-<img alt="../_images/fiverecordstodomodel1.png" src="../_images/fiverecordstodomodel1.png" />
+<img alt="../_images/fiverecordstodomodel.png" src="../_images/fiverecordstodomodel.png" />
 <p>Create a file named get_list.go inside the api folder with the following codes below:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetListHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// r.URL.Path creates a new path called /get_list</span>
@@ -703,8 +703,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/all-and-get.html">All and Get</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-getfieldsapi">
+</section>
+<section id="uadmin-getfieldsapi">
 <h2>uadmin.GetFieldsAPI<a class="headerlink" href="#uadmin-getfieldsapi" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetFieldsAPI</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">session</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span>
@@ -766,8 +766,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-fields-api-and-get-models-api.html">Get Fields API and Get Models API</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-getform">
+</section>
+<section id="uadmin-getform">
 <h2>uadmin.GetForm<a class="headerlink" href="#uadmin-getform" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetForm</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">s</span> <span class="o">*</span><span class="nx">ModelSchema</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
@@ -886,8 +886,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter-list-get-form-and-stringer.html">Filter List, Get Form, and Get Stringer</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-getid">
+</section>
+<section id="uadmin-getid">
 <h2>uadmin.GetID<a class="headerlink" href="#uadmin-getid" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetID</span><span class="p">(</span><span class="nx">m</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span> <span class="kt">uint</span>
@@ -933,8 +933,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-id-and-get-string.html">Get ID and Get String</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-getimagesizer">
+</section>
+<section id="uadmin-getimagesizer">
 <h2>uadmin.GetImageSizer<a class="headerlink" href="#uadmin-getimagesizer" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">GetImageSizer</span> <span class="kd">interface</span> <span class="p">{</span>
@@ -943,8 +943,8 @@
 </pre></div>
 </div>
 <p>GetImageSizer can be inplemented for any model to customize the image size uploaded to that model.</p>
-</div>
-<div class="section" id="uadmin-getmodelsapi">
+</section>
+<section id="uadmin-getmodelsapi">
 <h2>uadmin.GetModelsAPI<a class="headerlink" href="#uadmin-getmodelsapi" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetModelsAPI</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">session</span> <span class="o">*</span><span class="nx">Session</span><span class="p">)</span>
@@ -1006,8 +1006,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-fields-api-and-get-models-api.html">Get Fields API and Get Models API</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-getstring">
+</section>
+<section id="uadmin-getstring">
 <h2>uadmin.GetString<a class="headerlink" href="#uadmin-getstring" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetString</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">string</span>
@@ -1053,8 +1053,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-id-and-get-string.html">Get ID and Get String</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-getstringer">
+</section>
+<section id="uadmin-getstringer">
 <h2>uadmin.GetStringer<a class="headerlink" href="#uadmin-getstringer" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetStringer</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
@@ -1105,8 +1105,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter-list-get-form-and-stringer.html">Filter List, Get Form, and Get Stringer</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-preload">
+</section>
+<section id="uadmin-preload">
 <h2>uadmin.Preload<a class="headerlink" href="#uadmin-preload" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Preload</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">preload</span> <span class="o">...</span><span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
@@ -1181,8 +1181,8 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/preload.html">Preload</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-renderhtml">
+</section>
+<section id="uadmin-renderhtml">
 <h2>uadmin.RenderHTML<a class="headerlink" href="#uadmin-renderhtml" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">RenderHTML</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">path</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">data</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">funcs</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
@@ -1315,16 +1315,277 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/render-html.html">Render HTML</a></p></li>
 </ul>
-</div>
-<div class="section" id="uadmin-rendermultihtml">
+</section>
+<section id="uadmin-rendermultihtml">
 <h2>uadmin.RenderMultiHTML<a class="headerlink" href="#uadmin-rendermultihtml" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">RenderMultiHTML</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">path</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">data</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">funcs</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span>
 </pre></div>
 </div>
 <p>RenderMultiHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 …etc.</p>
+<p>Let’s create a Javascript library for navigation called <strong>nav.js</strong>. This library will allow the system to have partial update functionality whenever the user goes to another webpage and goes back. Partial update will load the website faster and cheaper. Add it in <strong>/static/assets/js</strong> path.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;popstate&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+    <span class="nx">partialLoad</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#content-container&quot;</span><span class="p">),</span> <span class="nx">preLoad</span><span class="p">,</span> <span class="nx">postLoad</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">function</span> <span class="nx">partialLoad</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">target</span><span class="p">,</span> <span class="nx">preLoad</span><span class="p">,</span> <span class="nx">postLoad</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">href</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="o">==</span><span class="s2">&quot;popstate&quot;</span><span class="p">){</span>
+        <span class="nx">href</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="nx">href</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">href</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="o">||</span> <span class="nx">href</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;#&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span> <span class="o">==</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">)){</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">preLoad</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">preLoad</span> <span class="o">==</span> <span class="s2">&quot;function&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">preLoad</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// fetch the page</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+        <span class="nx">url</span><span class="o">:</span> <span class="nx">href</span><span class="p">,</span>
+        <span class="nx">target</span><span class="o">:</span> <span class="nx">target</span><span class="p">,</span>
+        <span class="nx">preLoad</span><span class="o">:</span> <span class="nx">preLoad</span><span class="p">,</span>
+        <span class="nx">postLoad</span><span class="o">:</span> <span class="nx">postLoad</span><span class="p">,</span>
+        <span class="nx">originalEvent</span><span class="o">:</span> <span class="nx">e</span><span class="p">,</span>
+    <span class="p">}).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
+        <span class="nx">data</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+
+        <span class="c1">// Add the title to the page and remove it from the response</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">());</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+
+        <span class="c1">// Add content to the page</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="o">!=</span><span class="s2">&quot;popstate&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">pushState</span><span class="p">({</span><span class="s2">&quot;href&quot;</span><span class="o">:</span><span class="nx">href</span><span class="p">},</span> <span class="nx">$</span><span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">filter</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(),</span> <span class="nx">href</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}).</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">postLoad</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">postLoad</span> <span class="o">==</span> <span class="s2">&quot;function&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">postLoad</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">originalEvent</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
 </div>
+<p>Create the following HTML files that we need in <strong>/templates/custom</strong> path.</p>
+<section id="index-html">
+<h3><strong>index.html</strong><a class="headerlink" href="#index-html" title="Permalink to this headline">¶</a></h3>
+<p>This is the base HTML that you will visit first. For full update, this HTML will be loaded.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;IE=edge&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css&quot;</span><span class="p">&gt;</span>
+
+  {{template &quot;title&quot; .}}
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-- This element will access home.html as a partial update. That means, it will load the stub_index.html. --&gt;</span>
+  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary page-loader&quot;</span><span class="p">&gt;</span>Home Page<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+
+  <span class="c">&lt;!-- This element will access page1.html as a partial update. That means, it will load the stub_index.html. --&gt;</span>
+  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/page1&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary page-loader&quot;</span><span class="p">&gt;</span>Page 1<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+
+  <span class="c">&lt;!-- This element will access page2.html as a full update. That means, it will load the index.html. --&gt;</span>
+  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/page2&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary page-loader full-update&quot;</span><span class="p">&gt;</span>Page 2<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+
+  <span class="c">&lt;!-- This is where HTML codes from other files are stored. --&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;content-container&quot;</span><span class="p">&gt;</span>
+    {{template &quot;content&quot; .}}
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://code.jquery.com/jquery-3.6.0.js&quot;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&quot;sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=&quot;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&quot;anonymous&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/static/assets/js/nav.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="kd">function</span> <span class="nx">preLoad</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">postLoad</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;a.page-loader&quot;</span><span class="p">).</span><span class="nx">not</span><span class="p">(</span><span class="s2">&quot;.full-update&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+      <span class="nx">partialLoad</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#content-container&quot;</span><span class="p">),</span> <span class="nx">preLoad</span><span class="p">,</span> <span class="nx">postLoad</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
 </div>
+</section>
+<section id="stub-index-html">
+<h3><strong>stub_index.html</strong><a class="headerlink" href="#stub-index-html" title="Permalink to this headline">¶</a></h3>
+<p>For partial update, this HTML will be loaded. That means, when you go to Inspect Element, only the HTML codes under the define will be displayed.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{{template &quot;title&quot; .}}
+{{template &quot;content&quot; .}}
+</pre></div>
+</div>
+</section>
+<section id="home-html">
+<h3><strong>home.html</strong><a class="headerlink" href="#home-html" title="Permalink to this headline">¶</a></h3>
+<p>This is the sub HTML that will be loaded on the template. As an example, it will be accessed as a partial update so this will load to stub_index.html.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{{define &quot;title&quot;}}
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Home Page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+{{end}}
+
+{{define &quot;content&quot;}}
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>This is the home page.<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+{{end}}
+</pre></div>
+</div>
+</section>
+<section id="page1-html">
+<h3><strong>page1.html</strong><a class="headerlink" href="#page1-html" title="Permalink to this headline">¶</a></h3>
+<p>This is the sub HTML that will be loaded on the template. As an example, it will be accessed as a partial update so this will load to stub_index.html.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{{define &quot;title&quot;}}
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Page 1<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+{{end}}
+
+{{define &quot;content&quot;}}
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>This is Page 1.<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+{{end}}
+</pre></div>
+</div>
+</section>
+<section id="page2-html">
+<h3><strong>page2.html</strong><a class="headerlink" href="#page2-html" title="Permalink to this headline">¶</a></h3>
+<p>This is the sub HTML that will be loaded on the template. As an example, it will be accessed as a full update so this will load to index.html.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{{define &quot;title&quot;}}
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Page 2<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+{{end}}
+
+{{define &quot;content&quot;}}
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>This is Page 2.<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+{{end}}
+</pre></div>
+</div>
+<p>Once you are done with this step, create a file called <strong>page.go</strong> to implement the PageHandler in the views folder.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">views</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+  <span class="s">&quot;net/http&quot;</span>
+  <span class="s">&quot;strings&quot;</span>
+
+  <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// PageHandler allows the system to create a connection to the HTML pages.</span>
+<span class="kd">func</span> <span class="nx">PageHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Initialize an array of string to the variable.</span>
+  <span class="nx">tmplList</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{}</span>
+
+  <span class="c1">// Check if this is a partial update</span>
+  <span class="k">if</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Header</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;X-Requested-With&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&quot;XMLHttpRequest&quot;</span> <span class="p">{</span>
+    <span class="nx">tmplList</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">tmplList</span><span class="p">,</span> <span class="s">&quot;./templates/custom/stub_index.html&quot;</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">tmplList</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">tmplList</span><span class="p">,</span> <span class="s">&quot;./templates/custom/index.html&quot;</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Initialize the URL Path and trim it by slash. URL Path will depend on the name of your HTML file in order to access it.</span>
+  <span class="c1">// For example: Your HTML filename is page1.html. To access that, the URL should be localhost:8080/page1.</span>
+  <span class="nx">filename</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span>
+  <span class="nx">filename</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+  <span class="nx">filename</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+
+  <span class="c1">// If the path is / then use the default file</span>
+  <span class="c1">// NOTE: no leading slash in default file name</span>
+  <span class="k">if</span> <span class="nx">filename</span> <span class="o">==</span> <span class="s">&quot;&quot;</span> <span class="p">{</span>
+    <span class="nx">filename</span> <span class="p">=</span> <span class="s">&quot;home&quot;</span>
+  <span class="p">}</span>
+  <span class="c1">// To avoid displaying an error message on console, the code below should be implemented.</span>
+  <span class="k">if</span> <span class="nx">filename</span> <span class="o">==</span> <span class="s">&quot;favicon.ico&quot;</span> <span class="p">{</span>
+    <span class="k">return</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Build the full path with the specified filename and append to the template list.</span>
+  <span class="nx">path</span> <span class="o">:=</span> <span class="s">&quot;./templates/custom/&quot;</span> <span class="o">+</span> <span class="nx">filename</span> <span class="o">+</span> <span class="s">&quot;.html&quot;</span>
+  <span class="nx">tmplList</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">tmplList</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span>
+
+  <span class="c1">// RenderMultiHTML creates a new template and applies a parsed template to the specified data object.</span>
+  <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RenderMultiHTML</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">tmplList</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Establish a connection in the <strong>main.go</strong> to the views by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+  <span class="s">&quot;net/http&quot;</span>
+
+  <span class="s">&quot;github.com/your_name/project_name/views&quot;</span>
+  <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// To avoid having issues when running an application, register function should be called.</span>
+  <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">()</span>
+
+  <span class="c1">// Assign the Root URL value to /admin/. This code allows to resolve multiple registration issue when running an application.</span>
+  <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+  <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.RootURL&quot;</span><span class="p">)</span>
+  <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;/admin/&quot;</span><span class="p">})</span>
+  <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+
+  <span class="c1">// Register the Page Handler</span>
+  <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">views</span><span class="p">.</span><span class="nx">PageHandler</span><span class="p">))</span>
+
+  <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application, go to <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a> and see what happens.</p>
+<img alt="../_images/home_page_ui.png" src="../_images/home_page_ui.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Right click your mouse. Click “View Page Source” to find out whether the page you have loaded is a partial or full update.</p>
+<img alt="../_images/home_page_view_source_full.png" src="../_images/home_page_view_source_full.png" />
+<p>If you see the code that starts with &lt;html&gt; tag then the rest following the standards, this one is the full update.</p>
+<p>Go back to the home page UI. Let’s click the Page 1 button and see what happens.</p>
+<img alt="../_images/page1_button_highlighted.png" src="../_images/page1_button_highlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You have been redirected to /page1 path. That means, you have loaded the page1.html.</p>
+<img alt="../_images/page1_ui.png" src="../_images/page1_ui.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Right click your mouse. Click “View Page Source” to find out whether the page you have loaded is a partial or full update.</p>
+<img alt="../_images/page1_view_source_partial.png" src="../_images/page1_view_source_partial.png" />
+<p>As you can see, only the title and the content have loaded. This one is a partial update.</p>
+<p>Go back to your browser. Let’s click the Page 2 button and see what happens.</p>
+<img alt="../_images/page2_button_highlighted.png" src="../_images/page2_button_highlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You have been redirected to /page2 path. That means, you have loaded the page2.html.</p>
+<img alt="../_images/page2_ui.png" src="../_images/page2_ui.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Right click your mouse. Click “View Page Source” to find out whether the page you have loaded is a partial or full update.</p>
+<img alt="../_images/page2_view_source_full.png" src="../_images/page2_view_source_full.png" />
+<p>This one is a full update.</p>
+<p>Go back again to your browser. Click the Home Page button. Right click your mouse. Click “View Page Source” to find out whether the page you have loaded is a partial or full update.</p>
+<img alt="../_images/home_page_view_source_partial.png" src="../_images/home_page_view_source_partial.png" />
+<p>Congratulations! You have created an application that renders multiple HTML.</p>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -1389,14 +1650,14 @@
         <li class="right" >
           <a href="email_functions.html" title="Email Functions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">For Fetching Records</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+        &#169; Copyright 2021, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
     </div>
   </body>
 </html>

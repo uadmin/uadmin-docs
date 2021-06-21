@@ -1579,3 +1579,293 @@ uadmin.RenderMultiHTML
     func RenderMultiHTML(w http.ResponseWriter, r *http.Request, path []string, data interface{}, funcs ...interface{})
 
 RenderMultiHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 ...etc.
+
+Let's create a Javascript library for navigation called **nav.js**. This library will allow the system to have partial update functionality whenever the user goes to another webpage and goes back. Partial update will load the website faster and cheaper. Add it in **/static/assets/js** path.
+
+.. code-block:: javascript
+
+    $(window).on("popstate", function(e){
+        partialLoad.call(null, e, $("#content-container"), preLoad, postLoad);
+    });
+
+    function partialLoad(e, target, preLoad, postLoad) {
+        var href;
+        if (e.type=="popstate"){
+            href = window.location.pathname;
+        } else {
+            e.preventDefault();
+            href = $(this).attr("href");
+        }
+        if (href == "" || href[0]=="#") {
+            return;
+        }
+
+        if(window.location.pathname == $(this).attr("href")){
+            return
+        }
+
+        if (preLoad && typeof preLoad == "function") {
+            preLoad(e);
+        }
+
+        // fetch the page
+        $.ajax({
+            url: href,
+            target: target,
+            preLoad: preLoad,
+            postLoad: postLoad,
+            originalEvent: e,
+        }).done(function(data, a, b){
+            data = $(data)
+
+            // Add the title to the page and remove it from the response
+            $("title").text(data.filter("title").text());
+                this.target.html(data);
+                this.target.find("title").remove();
+
+            // Add content to the page 
+            if (e.type!="popstate") {
+            window.history.pushState({"href":href}, $(data).filter("title").text(), href);
+            }
+        }).always(function(e){
+            if (postLoad && typeof postLoad == "function") {
+            postLoad(this.originalEvent);
+            }
+        });
+    }
+
+Create the following HTML files that we need in **/templates/custom** path.
+
+**index.html**
+^^^^^^^^^^^^^^
+This is the base HTML that you will visit first. For full update, this HTML will be loaded.
+
+.. code-block:: html
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+      
+      {{template "title" .}}
+    </head>
+    <body>
+      <!-- This element will access home.html as a partial update. That means, it will load the stub_index.html. -->
+      <a href="/" class="btn btn-primary page-loader">Home Page</a>
+    
+      <!-- This element will access page1.html as a partial update. That means, it will load the stub_index.html. -->
+      <a href="/page1" class="btn btn-primary page-loader">Page 1</a>
+    
+      <!-- This element will access page2.html as a full update. That means, it will load the index.html. -->
+      <a href="/page2" class="btn btn-primary page-loader full-update">Page 2</a>
+
+      <!-- This is where HTML codes from other files are stored. -->
+      <div id="content-container">
+        {{template "content" .}}
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+      <script src="/static/assets/js/nav.js"></script>
+      <script>
+        function preLoad(e) {
+          $(e.currentTarget);
+        }
+
+        function postLoad(e) {
+          $(e.currentTarget);
+        }
+
+        $("a.page-loader").not(".full-update").on("click", function(e){
+          partialLoad.call(this, e, $("#content-container"), preLoad, postLoad);
+        });
+      </script>
+    </body>
+    </html>
+
+**stub_index.html**
+^^^^^^^^^^^^^^^^^^^
+For partial update, this HTML will be loaded. That means, when you go to Inspect Element, only the HTML codes under the define will be displayed.
+
+.. code-block:: html
+
+   {{template "title" .}}
+   {{template "content" .}}
+
+**home.html**
+^^^^^^^^^^^^^
+This is the sub HTML that will be loaded on the template. As an example, it will be accessed as a partial update so this will load to stub_index.html.
+
+.. code-block:: html
+
+    {{define "title"}}
+    <title>Home Page</title>
+    {{end}}
+
+    {{define "content"}}
+    <h1>This is the home page.</h1>
+    {{end}}
+
+**page1.html**
+^^^^^^^^^^^^^^
+This is the sub HTML that will be loaded on the template. As an example, it will be accessed as a partial update so this will load to stub_index.html.
+
+.. code-block:: html
+
+    {{define "title"}}
+    <title>Page 1</title>
+    {{end}}
+
+    {{define "content"}}
+    <h1>This is Page 1.</h1>
+    {{end}}
+
+**page2.html**
+^^^^^^^^^^^^^^
+This is the sub HTML that will be loaded on the template. As an example, it will be accessed as a full update so this will load to index.html.
+
+.. code-block:: html
+
+    {{define "title"}}
+    <title>Page 2</title>
+    {{end}}
+
+    {{define "content"}}
+    <h1>This is Page 2.</h1>
+    {{end}}
+
+Once you are done with this step, create a file called **page.go** to implement the PageHandler in the views folder.
+
+.. code-block:: go
+
+    package views
+
+    import (
+      "net/http"
+      "strings"
+
+      "github.com/uadmin/uadmin"
+    )
+
+    // PageHandler allows the system to create a connection to the HTML pages.
+    func PageHandler(w http.ResponseWriter, r *http.Request) {
+      // Initialize an array of string to the variable.
+      tmplList := []string{}
+
+      // Check if this is a partial update
+      if r.Header.Get("X-Requested-With") == "XMLHttpRequest" {
+        tmplList = append(tmplList, "./templates/custom/stub_index.html")
+      } else {
+        tmplList = append(tmplList, "./templates/custom/index.html")
+      }
+
+      // Initialize the URL Path and trim it by slash. URL Path will depend on the name of your HTML file in order to access it.
+      // For example: Your HTML filename is page1.html. To access that, the URL should be localhost:8080/page1.
+      filename := r.URL.Path
+      filename = strings.TrimPrefix(filename, "/")
+      filename = strings.TrimSuffix(filename, "/")
+
+      // If the path is / then use the default file
+      // NOTE: no leading slash in default file name
+      if filename == "" {
+        filename = "home"
+      }
+      // To avoid displaying an error message on console, the code below should be implemented.
+      if filename == "favicon.ico" {
+        return
+      }
+
+      // Build the full path with the specified filename and append to the template list.
+      path := "./templates/custom/" + filename + ".html"
+      tmplList = append(tmplList, path)
+
+      // RenderMultiHTML creates a new template and applies a parsed template to the specified data object.
+      uadmin.RenderMultiHTML(w, r, tmplList, nil)
+    }
+
+Establish a connection in the **main.go** to the views by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.
+
+.. code-block:: go
+
+    package main
+
+    import (
+      "net/http"
+
+      "github.com/your_name/project_name/views"
+      "github.com/uadmin/uadmin"
+    )
+
+    func main() {
+      // To avoid having issues when running an application, register function should be called.
+      uadmin.Register()
+
+      // Assign the Root URL value to /admin/. This code allows to resolve multiple registration issue when running an application.
+      setting := uadmin.Setting{}
+      uadmin.Get(&setting, "code = ?", "uAdmin.RootURL")
+      setting.ParseFormValue([]string{"/admin/"})
+      setting.Save()
+
+      // Register the Page Handler
+      http.HandleFunc("/", uadmin.Handler(views.PageHandler))
+
+      uadmin.StartServer()
+    }
+
+Now run your application, go to http://localhost:8080/ and see what happens.
+
+.. image:: assets/home_page_ui.png
+
+|
+
+Right click your mouse. Click "View Page Source" to find out whether the page you have loaded is a partial or full update.
+
+.. image:: assets/home_page_view_source_full.png
+
+If you see the code that starts with <html> tag then the rest following the standards, this one is the full update.
+
+Go back to the home page UI. Let's click the Page 1 button and see what happens.
+
+.. image:: assets/page1_button_highlighted.png
+
+|
+
+You have been redirected to /page1 path. That means, you have loaded the page1.html.
+
+.. image:: assets/page1_ui.png
+
+|
+
+Right click your mouse. Click "View Page Source" to find out whether the page you have loaded is a partial or full update.
+
+.. image:: assets/page1_view_source_partial.png
+
+As you can see, only the title and the content have loaded. This one is a partial update.
+
+Go back to your browser. Let's click the Page 2 button and see what happens.
+
+.. image:: assets/page2_button_highlighted.png
+
+|
+
+You have been redirected to /page2 path. That means, you have loaded the page2.html.
+
+.. image:: assets/page2_ui.png
+
+|
+
+Right click your mouse. Click "View Page Source" to find out whether the page you have loaded is a partial or full update.
+
+.. image:: assets/page2_view_source_full.png
+
+This one is a full update.
+
+Go back again to your browser. Click the Home Page button. Right click your mouse. Click "View Page Source" to find out whether the page you have loaded is a partial or full update.
+
+.. image:: assets/home_page_view_source_partial.png
+
+Congratulations! You have created an application that renders multiple HTML.

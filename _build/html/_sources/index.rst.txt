@@ -18,17 +18,12 @@ To test if your installation is fine, run the **uadmin** command line:
 .. code-block:: bash
 
     $ uadmin
-    Usage: uadmin COMMAND [-e email] [-d domain]
-    This tools allows you to publish your project online
+    Usage: uadmin COMMAND [--src]
+    This tools helps you prepare a folder for a new project or update static files and templates
 
     Commands:
-    publish         This publishes your project online
     prepare         Generates folders and prepares static and templates
     version         Shows the version of uAdmin
-
-    Arguments:
-    -e, --email     Your email. This is required for you to be able to maintain your project.
-    -d, --domain    You can choose your domain name which will customize your URL
 
     Get full documentation online:
     https://uadmin-docs.readthedocs.io/en/latest/
@@ -49,8 +44,7 @@ Let's build your first app which is a Todo list. First, we will create a folder 
     [   OK   ]   Created: /home/pc_name/go/src/github.com/your_name/todo/static
     [   OK   ]   Created: /home/pc_name/go/src/github.com/your_name/todo/templates
 
-Use your favorite editor to create "main.go" inside that path. Put the
-following code in "main.go".
+Now use your code editor to create `main.go` and put this code inside it.
 
 .. code-block:: go
 
@@ -63,6 +57,13 @@ following code in "main.go".
     func main() {
         uadmin.StartServer()
     }
+
+Prepare modules
+
+.. code-block:: bash
+
+   go mod init
+   go mod tidy
 
 Now to run your code (Linux and Apple macOS):
 
@@ -126,23 +127,12 @@ Go to `uAdmin Tutorials`_ section for the continuation.
 
 .. _system models: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html
 
-Publish your app
-^^^^^^^^^^^^^^^^
-To take your app live, it is simple:
-
+Dockerize Your App
+^^^^^^^^^^^^^^^^^^
 .. code-block:: bash
 
-    $ uadmin publish
-    Enter your email: me@example.com
-    Your project will be published to https://my-proj.uadmin.io
-    Enter the name of your sub-domain (my-proj) [auto]: my-app
-    Did you change the default port from 8080?
-    This is the port you have in uadmin.Port = 8080
-    Enter the port that your server run on [8080]:
-    [   OK   ]   Compressing [420/420]
-    [   OK   ]   Your application has been uploaded
-    [   OK   ]   Application installed succesfully
-    [   OK   ]   Your Project has been published to https://my-app.uadmin.io/
+   docker create
+
 
 Update uAdmin to latest version
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -153,7 +143,7 @@ Open your terminal and apply the following commands:
     $ cd ~/go/src/github.com/uadmin/uadmin
     $ go install
     $ uadmin version
-    [  INFO  ]   0.5.2
+    [  INFO  ]   0.6.2
 
 .. toctree::
    :maxdepth: 1
