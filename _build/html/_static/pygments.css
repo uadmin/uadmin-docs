@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -5,6 +6,10 @@ td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: #ffffcc }
 .highlight { background: #f8f8f8; }
+=======
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 .highlight .c { color: #60a0b0; font-style: italic } /* Comment */
 .highlight .err { color: #a40000; background-color: #fbe3e4 } /* Error */
 .highlight .k { color: #007020; font-weight: bold } /* Keyword */

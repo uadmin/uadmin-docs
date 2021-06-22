@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Getting Started
 ===============
 
@@ -74,3 +75,81 @@ Before you start the tutorial, make sure you finish this part from `Your First A
 
 .. _17: https://uadmin-docs.readthedocs.io/en/latest/coverage.html
 .. _Your First Application: https://uadmin-docs.readthedocs.io/en/latest/index.html
+=======
+Getting Started
+===============
+
+Before you start, make sure you have Golang 1.10.3 or later installed on your machine and configured.
+To install Golang, follow instructions for your OS on `Golang Downloads`_.
+
+If you are not familiar with Golang, we advise you to go over `Golang Tour`_.
+
+.. _Golang Downloads: https://golang.org/dl/
+
+.. _Golang Tour: https://tour.golang.org/
+
+Apple macOS
+^^^^^^^^^^^
+
+.. code-block:: bash
+
+    $ nano .bash_profile
+
+Add the following codes inside it.
+
+.. code-block:: bash
+
+    export GOPATH=$HOME/go
+    export PATH=$PATH:$GOPATH/bin
+
+For detailed instructions, visit `Golang and uAdmin Apple macOS Installation`_.
+
+.. _Golang and uAdmin Apple macOS Installation: https://uadmin-docs.readthedocs.io/en/latest/_static/install/Apple%20macOS%20Installation.pdf
+
+Linux
+^^^^^
+
+.. code-block:: bash
+
+    $ nano .profile
+
+Add the following codes inside it.
+
+.. code-block:: bash
+
+    # set PATH so it includes user's private bin directories
+
+    PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+    export PATH=$PATH:/usr/local/go/bin
+    export GOPATH=$HOME/go
+    export PATH=$PATH:$GOPATH/bin
+
+For detailed instructions, visit `Golang and uAdmin Linux Installation`_.
+
+.. _Golang and uAdmin Linux Installation: https://uadmin-docs.readthedocs.io/en/latest/_static/install/Linux%20Installation.pdf
+
+Windows
+^^^^^^^
+You have to set your ENVIRONMENT VARIABLES. Click `here`_ for the detailed instructions.
+
+.. _here: https://uadmin-docs.readthedocs.io/en/latest/_static/install/Windows%20Installation.pdf
+
+.. image:: assets/environmentvariables.png
+
+|
+
+If you have encountered a problem that are looking for gcc, please install `this`_ to aid the problem.
+
+.. _this: http://tdm-gcc.tdragon.net/download
+
+.. image:: assets/gccerror.png
+
+Tutorial
+^^^^^^^^
+This is a `17`_ part tutorial that will guide you through building upon your Todo list application.
+
+Before you start the tutorial, make sure you finish this part from `Your First Application`_.
+
+.. _17: https://uadmin-docs.readthedocs.io/en/latest/coverage.html
+.. _Your First Application: https://uadmin-docs.readthedocs.io/en/latest/index.html
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5

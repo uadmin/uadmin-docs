@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1288,4 +1289,1296 @@
     <script type="text/javascript" src="js/selection.js"></script>
     <script type="text/javascript" src="js/timer.js"></script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Approval Functions</title>
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/site-design.css">
+</head>
+<body onload="loadTimer()">
+    <div class="question-header">
+        <p><b>QUESTION #1</b></p>
+    </div>
+    <div class="container">
+        <p>Which of the following will be used to choose the Approval Action as Approved?</p>
+        <form class="selection" action="">
+            <div class="selection-group"><input type="radio" name="Q1" id="rQ1A1"> <span id="Q1A1"><b>A.</b> uadmin.ApprovalAction.Approved()</span><br></div>
+            <div class="selection-group"><input type="radio" name="Q1" id="rQ1A2"> <span id="Q1A2"><b>B.</b> uadmin.ApprovalAction.Approved()[0]</span><br></div>
+            <div class="selection-group"><input type="radio" name="Q1" id="rQ1A3"> <span id="Q1A3"><b>C.</b> uadmin.ApprovalAction().Approved()</span><br></div>
+            <div data-correct="true" class="selection-group" ><input type="radio" name="Q1" id="rQ1A4"> <span id="Q1A4"><b>D.</b> uadmin.ApprovalAction(0).Approved()</span><br></div><br>
+        </form>
+    </div><br>
+
+    <div class="question-header">
+        <p><b>QUESTION #2</b></p>
+    </div>
+    <div class="container">
+        <p>Which of the following will be used to choose the Approval Action as Rejected?</p>
+        <form class="selection" action="">
+            <div class="selection-group"><input type="radio" name="Q2" id="rQ2A1" value="Q2A1"> <span id="Q2A1"><b>A.</b> uadmin.ApprovalAction().Rejected()</span><br></div>
+            <div data-correct="true" class="selection-group"><input type="radio" name="Q2" id="rQ2A2" value="Q2A2"> <span id="Q2A2"><b>B.</b> uadmin.ApprovalAction(0).Rejected()</span><br></div>
+            <div class="selection-group"><input type="radio" name="Q2" id="rQ2A3" value="Q2A3"> <span id="Q2A3"><b>C.</b> uadmin.ApprovalAction.Rejected()</span><br></div>
+            <div class="selection-group"><input type="radio" name="Q2" id="rQ2A4" value="Q2A4"> <span id="Q2A4"><b>D.</b> uadmin.ApprovalAction.Rejected()[0]</span><br></div><br>
+        </form>
+    </div><br>
+    
+    <div class="question-header">
+        <p><b>QUESTION #3</b></p>
+    </div>
+    <div class="container">
+        <p>Suppose you have this model as shown below:</p>
+        <table class="table-session-format">
+            <tr>
+                <th>APPROVAL</th>
+                <th>MODEL NAME</th>
+                <th>MODEL PK</th>
+                <th>COLUMN NAME</th>
+                <th>OLD VALUE</th>
+                <th>NEW VALUE</th>
+                <th>NEW VALUE DESCRIPTION</th>
+                <th>CHANGED BY</th>
+                <th>CHANGE DATE</th>
+                <th>APPROVAL ACTION</th>
+                <th>APPROVAL BY</th>
+                <th>APPROVAL DATE</th>
+                <th>VIEW RECORD</th>
+            </tr>
+            <tr>
+                <td>activity.Name 1</td>
+                <td>activity</td>
+                <td>1</td>
+                <td>Name</td>
+                <td>Read a book</td>
+                <td>Read a magazine</td>
+                <td>Read a magazine</td>
+                <td>user</td>
+                <td>2019-07-01 12:00:00</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td><span style="font-size:9px" class="button">View Record</span></td>
+            </tr>
+        </table>
+        <p>Which uAdmin function will match the given statement above?</p>
+        <form class="selection" action="">
+            <div data-correct="true" class="selection-group"><input type="radio" name="Q3" id="rQ3A1" value="Q3A1"> <span id="Q3A1"><b>A.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Read a book",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Read a magazine",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Read a magazine",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q3" id="rQ3A2" value="Q3A2"> <span id="Q3A2"><b>B.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Read a magazine",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Read a book",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Read a book",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q3" id="rQ3A3" value="Q3A3"> <span id="Q3A3"><b>C.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Read a book",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Read a magazine",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Read a magazine"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q3" id="rQ3A4" value="Q3A4"> <span id="Q3A4"><b>D.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Read a magazine",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Read a book",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Read a book"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+        </form>
+    </div><br>
+
+    <div class="question-header">
+        <p><b>QUESTION #4</b></p>
+    </div>
+    <div class="container">
+        <p>Suppose you have this model as shown below:</p>
+        <table class="table-session-format">
+            <tr>
+                <th>APPROVAL</th>
+                <th>MODEL NAME</th>
+                <th>MODEL PK</th>
+                <th>COLUMN NAME</th>
+                <th>OLD VALUE</th>
+                <th>NEW VALUE</th>
+                <th>NEW VALUE DESCRIPTION</th>
+                <th>CHANGED BY</th>
+                <th>CHANGE DATE</th>
+                <th>APPROVAL ACTION</th>
+                <th>APPROVAL BY</th>
+                <th>APPROVAL DATE</th>
+                <th>VIEW RECORD</th>
+            </tr>
+            <tr>
+                <td>music.Instrument 1</td>
+                <td>music</td>
+                <td>1</td>
+                <td>Instrument</td>
+                <td>Guitar</td>
+                <td>Piano</td>
+                <td>Piano</td>
+                <td>user</td>
+                <td>2019-07-01 12:00:00</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td><span style="font-size:9px" class="button">View Record</span></td>
+            </tr>
+        </table>
+        <p>Which uAdmin function will match the given statement above?</p>
+        <form class="selection" action="">
+            <div class="selection-group"><input type="radio" name="Q4" id="rQ4A1" value="Q4A1"> <span id="Q4A1"><b>A.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Guitar",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Piano",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Piano"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q4" id="rQ4A2" value="Q4A2"> <span id="Q4A2"><b>B.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Piano",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Guitar",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Guitar",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div data-correct="true" class="selection-group"><input type="radio" name="Q4" id="rQ4A3" value="Q4A3"> <span id="Q4A3"><b>C.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Guitar",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Piano",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Piano",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q4" id="rQ4A4" value="Q4A4"> <span id="Q4A4"><b>D.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Piano",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Guitar",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Guitar"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+        </form>
+    </div><br>
+
+    <div class="question-header">
+        <p><b>QUESTION #5</b></p>
+    </div>
+    <div class="container">
+        <p>Suppose you have this model as shown below:</p>
+        <table class="table-session-format">
+            <tr>
+                <th>APPROVAL</th>
+                <th>MODEL NAME</th>
+                <th>MODEL PK</th>
+                <th>COLUMN NAME</th>
+                <th>OLD VALUE</th>
+                <th>NEW VALUE</th>
+                <th>NEW VALUE DESCRIPTION</th>
+                <th>CHANGED BY</th>
+                <th>CHANGE DATE</th>
+                <th>APPROVAL ACTION</th>
+                <th>APPROVAL BY</th>
+                <th>APPROVAL DATE</th>
+                <th>VIEW RECORD</th>
+            </tr>
+            <tr>
+                <td>animal.Breed 1</td>
+                <td>animal</td>
+                <td>1</td>
+                <td>Breed</td>
+                <td>German Shepherd</td>
+                <td>Labrador Retriever</td>
+                <td>Labrador Retriever</td>
+                <td>user</td>
+                <td>2019-07-01 12:00:00</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td><span style="font-size:9px" class="button">View Record</span></td>
+            </tr>
+        </table>
+        <p>Which uAdmin function will match the given statement above?</p>
+        <form class="selection" action="">
+            <div class="selection-group"><input type="radio" name="Q5" id="rQ5A1" value="Q5A1"> <span id="Q5A1"><b>A.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "German Shepherd",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Labrador Retriever",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Labrador Retriever"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q5" id="rQ5A2" value="Q5A2"> <span id="Q5A2"><b>B.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Labrador Retriever",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "German Shepherd",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: German Shepherd",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div data-correct="true" class="selection-group"><input type="radio" name="Q5" id="rQ5A3" value="Q5A3"> <span id="Q5A3"><b>C.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "German Shepherd",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Labrador Retriever",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: Labrador Retriever",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q5" id="rQ5A4" value="Q5A4"> <span id="Q5A4"><b>D.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Labrador Retriever",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "German Shepherd",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: German Shepherd"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+        </form>
+    </div><br>
+
+    <div class="question-header">
+        <p><b>QUESTION #6</b></p>
+    </div>
+    <div class="container">
+        <p>Suppose you have this model as shown below:</p>
+        <table class="table-session-format">
+            <tr>
+                <th>APPROVAL</th>
+                <th>MODEL NAME</th>
+                <th>MODEL PK</th>
+                <th>COLUMN NAME</th>
+                <th>OLD VALUE</th>
+                <th>NEW VALUE</th>
+                <th>NEW VALUE DESCRIPTION</th>
+                <th>CHANGED BY</th>
+                <th>CHANGE DATE</th>
+                <th>APPROVAL ACTION</th>
+                <th>APPROVAL BY</th>
+                <th>APPROVAL DATE</th>
+                <th>VIEW RECORD</th>
+            </tr>
+            <tr>
+                <td>appliance.Name 1</td>
+                <td>appliance</td>
+                <td>1</td>
+                <td>Name</td>
+                <td>Refrigerator</td>
+                <td>Microwave Oven</td>
+                <td>Microwave Oven</td>
+                <td>author</td>
+                <td>2019-07-01 12:00:00</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td><span style="font-size:9px" class="button">View Record</span></td>
+            </tr>
+        </table>
+        <p><b>Code:</b></p>
+        <p>user := uadmin.User{}<br>
+        uadmin.Get(&user, "id = ?", 1)<br>
+        now := time.Now()</p>
+        <p>Which uAdmin function will match the given statement above?</p>
+        <form class="selection" action="">
+            <div class="selection-group"><input type="radio" name="Q6" id="rQ6A1" value="Q6A1"> <span id="Q6A1"><b>A.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Refrigerator",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Microwave Oven",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Microwave Oven",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: author,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: "2019-07-01 12:00:00",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div data-correct="true" class="selection-group"><input type="radio" name="Q6" id="rQ6A2" value="Q6A2"> <span id="Q6A2"><b>B.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Refrigerator",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Microwave Oven",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Microwave Oven",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q6" id="rQ6A3" value="Q6A3"> <span id="Q6A3"><b>C.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Refrigerator",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Microwave Oven",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Microwave Oven",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q6" id="rQ6A4" value="Q6A4"> <span id="Q6A4"><b>D.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Refrigerator",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Microwave Oven",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Microwave Oven",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: "author",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: 2019-07-01 12:00:00,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+        </form>
+    </div><br>
+
+    <div class="question-header">
+        <p><b>QUESTION #7</b></p>
+    </div>
+    <div class="container">
+        <p>Suppose you have this model as shown below:</p>
+        <table class="table-session-format">
+            <tr>
+                <th>APPROVAL</th>
+                <th>MODEL NAME</th>
+                <th>MODEL PK</th>
+                <th>COLUMN NAME</th>
+                <th>OLD VALUE</th>
+                <th>NEW VALUE</th>
+                <th>NEW VALUE DESCRIPTION</th>
+                <th>CHANGED BY</th>
+                <th>CHANGE DATE</th>
+                <th>APPROVAL ACTION</th>
+                <th>APPROVAL BY</th>
+                <th>APPROVAL DATE</th>
+                <th>VIEW RECORD</th>
+            </tr>
+            <tr>
+                <td>body.Organ 1</td>
+                <td>body</td>
+                <td>1</td>
+                <td>Organ</td>
+                <td>Lungs</td>
+                <td>Heart</td>
+                <td>Heart</td>
+                <td>doctor</td>
+                <td>2019-07-01 12:00:00</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td><span style="font-size:9px" class="button">View Record</span></td>
+            </tr>
+        </table>
+        <p><b>Code:</b></p>
+        <p>user := uadmin.User{}<br>
+        uadmin.Get(&user, "id = ?", 1)<br>
+        now := time.Now()</p>
+        <p>Which uAdmin function will match the given statement above?</p>
+        <form class="selection" action="">
+            <div class="selection-group"><input type="radio" name="Q7" id="rQ7A1" value="Q7A1"> <span id="Q7A1"><b>A.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Lungs",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Heart",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Heart",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q7" id="rQ7A2" value="Q7A2"> <span id="Q7A2"><b>B.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Lungs",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Heart",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Heart",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: "doctor",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: 2019-07-01 12:00:00,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q7" id="rQ7A3" value="Q7A3"> <span id="Q7A3"><b>C.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Lungs",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Heart",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Heart",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: doctor,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: "2019-07-01 12:00:00",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div data-correct="true" class="selection-group"><input type="radio" name="Q7" id="rQ7A4" value="Q7A4"> <span id="Q7A4"><b>D.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Lungs",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Heart",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Heart",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+        </form>
+    </div><br>
+
+    <div class="question-header">
+        <p><b>QUESTION #8</b></p>
+    </div>
+    <div class="container">
+        <p>Suppose you have this model as shown below:</p>
+        <table class="table-session-format">
+            <tr>
+                <th>APPROVAL</th>
+                <th>MODEL NAME</th>
+                <th>MODEL PK</th>
+                <th>COLUMN NAME</th>
+                <th>OLD VALUE</th>
+                <th>NEW VALUE</th>
+                <th>NEW VALUE DESCRIPTION</th>
+                <th>CHANGED BY</th>
+                <th>CHANGE DATE</th>
+                <th>APPROVAL ACTION</th>
+                <th>APPROVAL BY</th>
+                <th>APPROVAL DATE</th>
+                <th>VIEW RECORD</th>
+            </tr>
+            <tr>
+                <td>comedy.Show 1</td>
+                <td>comedy</td>
+                <td>1</td>
+                <td>Show</td>
+                <td>Laugh In</td>
+                <td>Just for Laughs</td>
+                <td>Just for Laughs</td>
+                <td>producer</td>
+                <td>2019-07-01 12:00:00</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td><span style="font-size:9px" class="button">View Record</span></td>
+            </tr>
+        </table>
+        <p><b>Code:</b></p>
+        <p>user := uadmin.User{}<br>
+        uadmin.Get(&user, "id = ?", 1)<br>
+        now := time.Now()</p>
+        <p>Which uAdmin function will match the given statement above?</p>
+        <form class="selection" action="">
+            <div data-correct="true" class="selection-group"><input type="radio" name="Q8" id="rQ8A1" value="Q8A1"> <span id="Q8A1"><b>A.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Laugh In",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Just for Laughs",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Just for Laughs",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q8" id="rQ8A2" value="Q8A2"> <span id="Q8A2"><b>B.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Laugh In",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Just for Laughs",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Just for Laughs",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: "producer",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: 2019-07-01 12:00:00,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q8" id="rQ8A3" value="Q8A3"> <span id="Q8A3"><b>C.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Laugh In",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Just for Laughs",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Just for Laughs",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q8" id="rQ8A4" value="Q8A4"> <span id="Q8A4"><b>D.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Laugh In",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Just for Laughs",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Just for Laughs",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: producer,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: "2019-07-01 12:00:00",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+        </form>
+    </div><br>
+
+    <div class="question-header">
+        <p><b>QUESTION #9</b></p>
+    </div>
+    <div class="container">
+        <p>Suppose you have this model as shown below:</p>
+        <table class="table-session-format">
+            <tr>
+                <th>APPROVAL</th>
+                <th>MODEL NAME</th>
+                <th>MODEL PK</th>
+                <th>COLUMN NAME</th>
+                <th>OLD VALUE</th>
+                <th>NEW VALUE</th>
+                <th>NEW VALUE DESCRIPTION</th>
+                <th>CHANGED BY</th>
+                <th>CHANGE DATE</th>
+                <th>APPROVAL ACTION</th>
+                <th>APPROVAL BY</th>
+                <th>APPROVAL DATE</th>
+                <th>VIEW RECORD</th>
+            </tr>
+            <tr>
+                <td>building.Skyscraper 1</td>
+                <td>building</td>
+                <td>1</td>
+                <td>Skyscraper</td>
+                <td>Empire East Building</td>
+                <td>Burj Khalifa</td>
+                <td>Burj Khalifa</td>
+                <td>architect</td>
+                <td>2019-07-01 12:00:00</td>
+                <td>Approved</td>
+                <td>chief officer</td>
+                <td>2019-07-01 16:00:00</td>
+                <td><span style="font-size:9px" class="button">View Record</span></td>
+            </tr>
+        </table>
+        <p><b>Code:</b></p>
+        <p>approver := uadmin.User{}<br>
+        uadmin.Get(&approver, "id = ?", 1)<br>
+        user := uadmin.User{}<br>
+        uadmin.Get(&user, "id = ?", 2)<br>
+        now := time.Now()<br>
+        then := now.Add(-time.Hour*4)</p>
+        <p>Which uAdmin function will match the given statement above?</p>
+        <form class="selection" action="">
+            <div class="selection-group"><input type="radio" name="Q9" id="rQ9A1" value="Q9A1"> <span id="Q9A1"><b>A.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Empire East Building",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Burj Khalifa",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Burj Khalifa",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: then,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalAction: uadmin.ApprovalAction(0).Approved(),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalBy: approver,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q9" id="rQ9A2" value="Q9A2"> <span id="Q9A2"><b>B.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Empire East Building",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Burj Khalifa",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Burj Khalifa",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalAction: uadmin.ApprovalAction(0).Approved(),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalBy: approver.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalDate: then,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div data-correct="true" class="selection-group"><input type="radio" name="Q9" id="rQ9A3" value="Q9A3"> <span id="Q9A3"><b>C.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Empire East Building",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Burj Khalifa",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Burj Khalifa",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: then,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalAction: uadmin.ApprovalAction(0).Approved(),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalBy: approver.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q9" id="rQ9A4" value="Q9A4"> <span id="Q9A4"><b>D.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Empire East Building",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Burj Khalifa",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Burj Khalifa",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: then,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalAction: uadmin.ApprovalAction().Approved(),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalBy: approver.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+        </form>
+    </div><br>
+
+    <div class="question-header">
+        <p><b>QUESTION #10</b></p>
+    </div>
+    <div class="container">
+        <p>Suppose you have this model as shown below:</p>
+        <table class="table-session-format">
+            <tr>
+                <th>APPROVAL</th>
+                <th>MODEL NAME</th>
+                <th>MODEL PK</th>
+                <th>COLUMN NAME</th>
+                <th>OLD VALUE</th>
+                <th>NEW VALUE</th>
+                <th>NEW VALUE DESCRIPTION</th>
+                <th>CHANGED BY</th>
+                <th>CHANGE DATE</th>
+                <th>APPROVAL ACTION</th>
+                <th>APPROVAL BY</th>
+                <th>APPROVAL DATE</th>
+                <th>VIEW RECORD</th>
+            </tr>
+            <tr>
+                <td>mobile.Brand 1</td>
+                <td>mobile</td>
+                <td>1</td>
+                <td>Brand</td>
+                <td>Lenovo</td>
+                <td>Huawei</td>
+                <td>Huawei</td>
+                <td>seller</td>
+                <td>2019-07-01 12:00:00</td>
+                <td>Rejected</td>
+                <td>marketing</td>
+                <td>2019-07-01 16:00:00</td>
+                <td><span style="font-size:9px" class="button">View Record</span></td>
+            </tr>
+        </table>
+        <p><b>Code:</b></p>
+        <p>approver := uadmin.User{}<br>
+        uadmin.Get(&approver, "id = ?", 1)<br>
+        user := uadmin.User{}<br>
+        uadmin.Get(&user, "id = ?", 2)<br>
+        now := time.Now()<br>
+        then := now.Add(-time.Hour*4)</p>
+        <p>Which uAdmin function will match the given statement above?</p>
+        <form class="selection" action="">
+            <div class="selection-group"><input type="radio" name="Q10" id="rQ10A1" value="Q10A1"> <span id="Q10A1"><b>A.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Lenovo",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Huawei",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Huawei",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalAction: uadmin.ApprovalAction(0).Rejected(),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalBy: approver.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalDate: then,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div data-correct="true" class="selection-group"><input type="radio" name="Q10" id="rQ10A2" value="Q10A2"> <span id="Q10A2"><b>B.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Lenovo",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Huawei",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Huawei",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: then,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalAction: uadmin.ApprovalAction(0).Rejected(),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalBy: approver.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q10" id="rQ10A3" value="Q10A3"> <span id="Q10A3"><b>C.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Lenovo",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Huawei",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Huawei",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: then,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalAction: uadmin.ApprovalAction().Rejected(),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalBy: approver.Username,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q10" id="rQ10A4" value="Q10A4"> <span id="Q10A4"><b>D.</b>
+                approval := uadmin.Approval{<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    OldValue: "Lenovo",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValue: "Huawei",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    NewValueDescription: "Huawei",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangedBy: user,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ChangeDate: then,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalAction: uadmin.ApprovalAction(0).Rejected(),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalBy: approver,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ApprovalDate: now,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+        </form>
+    </div><br>
+
+    <div class="question-header">
+        <p><b>QUESTION #11</b></p>
+    </div>
+    <div class="container">
+        <p>Suppose there is an inquiry form in the website that has a field of Name, Company, Message, and Status. If someone in the support team approves the message, the Status field will display a message that says "Approved".</p>
+        <p>Which uAdmin function will match the given statement above?</p>
+        <form class="selection" action="">
+            <div data-correct="true" class="selection-group"><input type="radio" name="Q11" id="rQ11A1" value="Q11A1"> <span id="Q11A1"><b>A.</b>
+                uadmin.ApprovalHandleFunc := func(a *uadmin.Approval) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    if a.ModelName == "inquiry" && a.ApprovalAction == a.ApprovalAction.Approved() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        i := models.Inquiry{}<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Get(&i, "id = ?", a.ModelPK)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        i.Status = "Approved"<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Save(&i)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        }<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q11" id="rQ11A2" value="Q11A2"> <span id="Q11A2"><b>B.</b>
+                uadmin.ApprovalHandleFunc := func(a *uadmin.Approval) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    if a.ModelName == "inquiry" && a.ApprovalAction == a.ApprovalAction.Approved() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        i := models.Inquiry{}<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Get(&i, "id = ?", a.ModelPK)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        i.Status = "Approved"<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Save(i)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        }<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q11" id="rQ11A3" value="Q11A3"> <span id="Q11A3"><b>C.</b>
+                uadmin.ApprovalHandleFunc := func(a *uadmin.Approval) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    if a.ModelName == "inquiry" && a.ApprovalAction == a.ApprovalAction.Approved {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        i := models.Inquiry{}<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Get(&i, "id = ?", a.ModelPK)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        i.Status = "Approved"<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Save(&i)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        }<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q11" id="rQ11A4" value="Q11A4"> <span id="Q11A4"><b>D.</b>
+                uadmin.ApprovalHandleFunc := func(a *uadmin.Approval) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    if a.ModelName == "inquiry" && a.ApprovalAction == a.ApprovalAction.Approved {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        i := models.Inquiry{}<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Get(&i, "id = ?", a.ModelPK)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        i.Status = "Approved"<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Save(i)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        }<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+        </form>
+    </div><br>
+
+    <div class="question-header">
+        <p><b>QUESTION #12</b></p>
+    </div>
+    <div class="container">
+        <p>Suppose there is a ticketing form in the website that has a field of Name, Category, Details, and Status. If someone in the department team rejects the request, the Status field will display a message that says "Declined".</p>
+        <p>Which uAdmin function will match the given statement above?</p>
+        <form class="selection" action="">
+            <div class="selection-group"><input type="radio" name="Q12" id="rQ12A1" value="Q12A1"> <span id="Q12A1"><b>A.</b>
+                uadmin.ApprovalHandleFunc := func(a *uadmin.Approval) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    if a.ModelName == "ticketing" && a.ApprovalAction == a.ApprovalAction.Rejected {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        t := models.Ticketing{}<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Get(&t, "id = ?", a.ModelPK)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        t.Status = "Declined"<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Save(t)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        }<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q12" id="rQ12A2" value="Q12A2"> <span id="Q12A2"><b>B.</b>
+                uadmin.ApprovalHandleFunc := func(a *uadmin.Approval) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    if a.ModelName == "ticketing" && a.ApprovalAction == a.ApprovalAction.Rejected {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        t := models.Ticketing{}<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Get(&t, "id = ?", a.ModelPK)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        t.Status = "Declined"<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Save(&t)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        }<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div class="selection-group"><input type="radio" name="Q12" id="rQ12A3" value="Q12A3"> <span id="Q12A3"><b>C.</b>
+                uadmin.ApprovalHandleFunc := func(a *uadmin.Approval) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    if a.ModelName == "ticketing" && a.ApprovalAction == a.ApprovalAction.Rejected() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        t := models.Ticketing{}<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Get(&t, "id = ?", a.ModelPK)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        t.Status = "Declined"<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Save(t)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        }<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+            <div data-correct="true" class="selection-group"><input type="radio" name="Q12" id="rQ12A4" value="Q12A4"> <span id="Q12A4"><b>D.</b>
+                uadmin.ApprovalHandleFunc := func(a *uadmin.Approval) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    if a.ModelName == "ticketing" && a.ApprovalAction == a.ApprovalAction.Rejected() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        t := models.Ticketing{}<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Get(&t, "id = ?", a.ModelPK)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        t.Status = "Declined"<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        uadmin.Save(&t)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        }<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                }
+            </span><br></div><br>
+        </form>
+    </div><br>
+
+    <div class="btn-group">
+        <input type="button" name="validate" class="validate" value="Submit">
+        <input type="button" name="reset" class="reset" value="Reset">
+    </div>
+
+    <p id="result"></p>
+    <p id="skipped"></p>
+
+    <p id="countdown"></p>
+    <p id="space">&nbsp;</p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/selection.js"></script>
+    <script type="text/javascript" src="js/timer.js"></script>
+</body>
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 </html>

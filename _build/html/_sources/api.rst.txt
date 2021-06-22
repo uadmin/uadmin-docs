@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 API Reference
 =============
 Here are all public uAdmin functions, their format, and how to use them in the project.
@@ -618,3 +619,619 @@ Page:
 .. _uadmin.VersionCodeName: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-versioncodename
 .. _uadmin.WARNING: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-warning
 .. _uadmin.WORKING: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-working
+=======
+API Reference
+=============
+Here are all public uAdmin functions, their format, and how to use them in the project.
+
+* `Full List`_
+* `Categorized List`_
+
+Full List
+---------
+`Back To Top`_
+
+* `uadmin.ABTest`_
+* `uadmin.ABTestClick`_
+* `uadmin.ABTestType`_
+* `uadmin.ABTestValue`_
+* `uadmin.Action`_
+* `uadmin.AdminPage`_
+* `uadmin.ALERT`_
+* `uadmin.All`_
+* `uadmin.AllowedHosts`_
+* `uadmin.AllowedIPs`_
+* `uadmin.Approval`_
+* `uadmin.ApprovalAction`_
+* `uadmin.ApprovalHandleFunc`_
+* `uadmin.BindIP`_
+* `uadmin.BlockedIPs`_
+* `uadmin.CacheTranslation`_
+* `uadmin.CheckRateLimit`_
+* `uadmin.Choice`_
+* `uadmin.ClearDB`_
+* `uadmin.CookieTimeout`_
+* `uadmin.Count`_
+* `uadmin.CRITICAL`_
+* `uadmin.CachePermissions`_
+* `uadmin.CacheSessions`_
+* `uadmin.CheckCSRF`_
+* `uadmin.CustomTranslation`_
+* `uadmin.DashboardMenu`_
+* `uadmin.Database`_
+* `uadmin.DataType`_
+* `uadmin.DBSettings`_
+* `uadmin.DEBUG`_
+* `uadmin.DebugDB`_
+* `uadmin.DefaultMediaPermission`_
+* `uadmin.Delete`_
+* `uadmin.DeleteList`_
+* `uadmin.EmailFrom`_
+* `uadmin.EmailPassword`_
+* `uadmin.EmailSMTPServer`_
+* `uadmin.EmailSMTPServerPort`_
+* `uadmin.EmailUsername`_
+* `uadmin.EMERGENCY`_
+* `uadmin.EncryptKey`_
+* `uadmin.ERROR`_
+* `uadmin.ErrorHandleFunc`_
+* `uadmin.F`_
+* `uadmin.FieldList`_
+* `uadmin.FieldType`_
+* `uadmin.Filter`_
+* `uadmin.FilterBuilder`_
+* `uadmin.FilterList`_
+* `uadmin.GenerateBase32`_
+* `uadmin.GenerateBase64`_
+* `uadmin.Get`_
+* `uadmin.GetABTest`_
+* `uadmin.GetActiveLanguages`_
+* `uadmin.GetDB`_
+* `uadmin.GetDefaultLanguage`_
+* `uadmin.GetFieldsAPI`_
+* `uadmin.GetForm`_
+* `uadmin.GetID`_
+* `uadmin.GetImageSizer`_
+* `uadmin.GetModelsAPI`_
+* `uadmin.GetRemoteIP`_
+* `uadmin.GetSetting`_
+* `uadmin.GetString`_
+* `uadmin.GetStringer`_
+* `uadmin.GetUserFromRequest`_
+* `uadmin.GroupPermission`_
+* `uadmin.Handler`_
+* `uadmin.HideInDashboarder`_
+* `uadmin.HTTPLogFormat`_
+* `uadmin.IncrementMetric`_
+* `uadmin.INFO`_
+* `uadmin.IsAuthenticated`_
+* `uadmin.JSONMarshal`_
+* `uadmin.Language`_
+* `uadmin.Log`_
+* `uadmin.LogAdd`_
+* `uadmin.LogDelete`_
+* `uadmin.LogEdit`_
+* `uadmin.LogHTTPRequests`_
+* `uadmin.Login`_
+* `uadmin.Login2FA`_
+* `uadmin.Logout`_
+* `uadmin.LogRead`_
+* `uadmin.LogTrail`_
+* `uadmin.MaxImageHeight`_
+* `uadmin.MaxImageWidth`_
+* `uadmin.MaxUploadFileSize`_
+* `uadmin.Model`_
+* `uadmin.ModelList`_
+* `uadmin.ModelSchema`_
+* `uadmin.NewMetric`_
+* `uadmin.NewModel`_
+* `uadmin.NewModelArray`_
+* `uadmin.OptimizeSQLQuery`_
+* `uadmin.OK`_
+* `uadmin.OTPAlgorithm`_
+* `uadmin.OTPDigits`_
+* `uadmin.OTPPeriod`_
+* `uadmin.OTPSkew`_
+* `uadmin.PageLength`_
+* `uadmin.PasswordAttempts`_
+* `uadmin.PasswordTimeout`_
+* `uadmin.Port`_
+* `uadmin.Preload`_
+* `uadmin.PublicMedia`_
+* `uadmin.RateLimit`_
+* `uadmin.RateLimitBurst`_
+* `uadmin.Register`_
+* `uadmin.RegisterInlines`_
+* `uadmin.RenderHTML`_
+* `uadmin.RenderMultiHTML`_
+* `uadmin.ReportingLevel`_
+* `uadmin.ReportTimeStamp`_
+* `uadmin.RestrictSessionIP`_
+* `uadmin.RetainMediaVersions`_
+* `uadmin.ReturnJSON`_
+* `uadmin.RootURL`_
+* `uadmin.Salt`_
+* `uadmin.Save`_
+* `uadmin.Schema`_
+* `uadmin.SendEmail`_
+* `uadmin.ServerReady`_
+* `uadmin.Session`_
+* `uadmin.SetMetric`_
+* `uadmin.SetSessionCookie`_
+* `uadmin.Setting`_
+* `uadmin.SettingCategory`_
+* `uadmin.SiteName`_
+* `uadmin.SQLInjection`_
+* `uadmin.StartSecureServer`_
+* `uadmin.StartServer`_
+* `uadmin.StaticHandler`_
+* `uadmin.Syslogf`_
+* `uadmin.SystemMetrics`_
+* `uadmin.Tf`_
+* `uadmin.Theme`_
+* `uadmin.TimeMetric`_
+* `uadmin.Trail`_
+* `uadmin.TrailLoggingLevel`_
+* `uadmin.Translate`_
+* `uadmin.TranslateSchema`_
+* `uadmin.Update`_
+* `uadmin.User`_
+* `uadmin.UserGroup`_
+* `uadmin.UserMetrics`_
+* `uadmin.UserPermission`_
+* `uadmin.ValidateIP`_
+* `uadmin.Version`_
+* `uadmin.VersionCodeName`_
+* `uadmin.WARNING`_
+* `uadmin.WORKING`_
+
+Categorized List
+----------------
+`Back To Top`_
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api.html#api-reference
+
+* `A/B Test Functions`_
+* `Approval Functions`_
+* `Basic Functions`_
+* `Database Functions`_
+* `Email Functions`_
+* `For Customizing Records`_
+* `For Fetching Records`_
+* `Handler Functions`_
+* `Language Functions`_
+* `Log Functions`_
+* `Metric Functions`_
+* `Model Functions`_
+* `Network Functions`_
+* `Print Functions`_
+* `Register Functions`_
+* `Security Functions`_
+* `Setting Functions`_
+* `User Functions`_
+
+**A/B Test Functions**
+^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.ABTest`_
+* `uadmin.ABTestClick`_
+* `uadmin.ABTestType`_
+* `uadmin.ABTestValue`_
+* `uadmin.FieldList`_
+* `uadmin.GetABTest`_
+* `uadmin.ModelList`_
+
+**Approval Functions**
+^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.Approval`_
+* `uadmin.ApprovalAction`_
+* `uadmin.ApprovalHandleFunc`_
+
+**Basic Functions**
+^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.MaxImageHeight`_
+* `uadmin.MaxImageWidth`_
+* `uadmin.MaxUploadFileSize`_
+* `uadmin.PageLength`_
+* `uadmin.RetainMediaVersions`_
+* `uadmin.ServerReady`_
+* `uadmin.SiteName`_
+* `uadmin.StartServer`_
+* `uadmin.Theme`_
+
+**Database Functions**
+^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.ClearDB`_
+* `uadmin.Database`_
+* `uadmin.DBSettings`_
+* `uadmin.DebugDB`_
+* `uadmin.GetDB`_
+* `uadmin.OptimizeSQLQuery`_
+
+**Email Functions**
+^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.EmailFrom`_
+* `uadmin.EmailPassword`_
+* `uadmin.EmailSMTPServer`_
+* `uadmin.EmailSMTPServerPort`_
+* `uadmin.EmailUsername`_
+* `uadmin.SendEmail`_
+
+**For Customizing Records**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.Delete`_
+* `uadmin.DeleteList`_
+* `uadmin.F`_
+* `uadmin.ModelSchema`_
+* `uadmin.Save`_
+* `uadmin.Schema`_
+* `uadmin.Update`_
+
+**For Fetching Records**
+^^^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.AdminPage`_
+* `uadmin.All`_
+* `uadmin.Choice`_
+* `uadmin.Count`_
+* `uadmin.Filter`_
+* `uadmin.FilterBuilder`_
+* `uadmin.FilterList`_
+* `uadmin.Get`_
+* `uadmin.GetFieldsAPI`_
+* `uadmin.GetForm`_
+* `uadmin.GetID`_
+* `uadmin.GetImageSizer`_
+* `uadmin.GetModelsAPI`_
+* `uadmin.GetSetting`_
+* `uadmin.GetString`_
+* `uadmin.GetStringer`_
+* `uadmin.Preload`_
+* `uadmin.RenderHTML`_
+* `uadmin.RenderMultiHTML`_
+
+**Handler Functions**
+^^^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.Handler`_
+* `uadmin.StaticHandler`_
+* `uadmin.UploadImageHandler`_
+
+**Language Functions**
+^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.CacheTranslation`_
+* `uadmin.CustomTranslation`_
+* `uadmin.GetActiveLanguages`_
+* `uadmin.GetDefaultLanguage`_
+* `uadmin.Language`_
+* `uadmin.Tf`_
+* `uadmin.Translate`_
+* `uadmin.TranslateSchema`_
+
+**Log Functions**
+^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.Action`_
+* `uadmin.HTTPLogFormat`_
+* `uadmin.Log`_
+* `uadmin.LogAdd`_
+* `uadmin.LogDelete`_
+* `uadmin.LogEdit`_
+* `uadmin.LogHTTPRequests`_
+* `uadmin.LogRead`_
+* `uadmin.LogTrail`_
+* `uadmin.Syslogf`_
+* `uadmin.TrailLoggingLevel`_
+
+**Metric Functions**
+^^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.IncrementMetric`_
+* `uadmin.NewMetric`_
+* `uadmin.SetMetric`_
+* `uadmin.SystemMetrics`_
+* `uadmin.TimeMetric`_
+* `uadmin.UserMetrics`_
+
+**Model Functions**
+^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.DashboardMenu`_
+* `uadmin.HideInDashboarder`_
+* `uadmin.Model`_
+* `uadmin.NewModel`_
+* `uadmin.NewModelArray`_
+
+**Network Functions**
+^^^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.AllowedHosts`_
+* `uadmin.AllowedIPs`_
+* `uadmin.BindIP`_
+* `uadmin.BlockedIPs`_
+* `uadmin.CheckRateLimit`_
+* `uadmin.GetRemoteIP`_
+* `uadmin.Port`_
+* `uadmin.RateLimit`_
+* `uadmin.RateLimitBurst`_
+* `uadmin.RestrictSessionIP`_
+* `uadmin.ValidateIP`_
+
+**Print Functions**
+^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.ALERT`_
+* `uadmin.CRITICAL`_
+* `uadmin.DEBUG`_
+* `uadmin.EMERGENCY`_
+* `uadmin.ERROR`_
+* `uadmin.ErrorHandleFunc`_
+* `uadmin.INFO`_
+* `uadmin.JSONMarshal`_
+* `uadmin.OK`_
+* `uadmin.ReportingLevel`_
+* `uadmin.ReportTimeStamp`_
+* `uadmin.ReturnJSON`_
+* `uadmin.Trail`_
+* `uadmin.Version`_
+* `uadmin.VersionCodeName`_
+* `uadmin.WARNING`_
+* `uadmin.WORKING`_
+
+**Register Functions**
+^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.Register`_
+* `uadmin.RegisterInlines`_
+
+**Security Functions**
+^^^^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.CheckCSRF`_
+* `uadmin.DefaultMediaPermission`_
+* `uadmin.EncryptKey`_
+* `uadmin.GenerateBase32`_
+* `uadmin.GenerateBase64`_
+* `uadmin.GroupPermission`_
+* `uadmin.OTPAlgorithm`_
+* `uadmin.OTPDigits`_
+* `uadmin.OTPPeriod`_
+* `uadmin.OTPSkew`_
+* `uadmin.PasswordAttempts`_
+* `uadmin.PasswordTimeout`_
+* `uadmin.PublicMedia`_
+* `uadmin.Salt`_
+* `uadmin.SQLInjection`_
+* `uadmin.StartSecureServer`_
+* `uadmin.UserPermission`_
+
+**Setting Functions**
+^^^^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+* `uadmin.DataType`_
+* `uadmin.GetSetting`_
+* `uadmin.Setting`_
+* `uadmin.SettingCategory`_
+
+**User Functions**
+^^^^^^^^^^^^^^^^^^
+`Back To Top (Categorized List)`_
+
+.. _Back To Top (Categorized List): https://uadmin-docs.readthedocs.io/en/latest/api.html#categorized-list
+
+* `uadmin.CachePermissions`_
+* `uadmin.CacheSessions`_
+* `uadmin.CookieTimeout`_
+* `uadmin.GetUserFromRequest`_
+* `uadmin.IsAuthenticated`_
+* `uadmin.Login`_
+* `uadmin.Login2FA`_
+* `uadmin.Logout`_
+* `uadmin.Session`_
+* `uadmin.SetSessionCookie`_
+* `uadmin.User`_
+* `uadmin.UserGroup`_
+
+Page:
+
+.. toctree::
+   :maxdepth: 1
+
+   api/ab_test_functions
+   api/approval_functions
+   api/basic_functions
+   api/customizing_records
+   api/database_functions
+   api/email_functions
+   api/fetching_records
+   api/handler_functions
+   api/language_functions
+   api/log_functions
+   api/metric_functions
+   api/model_functions
+   api/network_functions
+   api/print_functions
+   api/register_functions
+   api/security_functions
+   api/setting_functions
+   api/field_type
+   api/user_functions
+
+.. _uadmin.ABTest: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-abtest
+.. _uadmin.ABTestClick: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-abtestclick
+.. _uadmin.ABTestType: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-abtesttype
+.. _uadmin.ABTestValue: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-abtestvalue
+.. _uadmin.Action: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-action
+.. _uadmin.AdminPage: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-adminpage
+.. _uadmin.ALERT: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-alert
+.. _uadmin.All: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-all
+.. _uadmin.AllowedHosts: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-allowedhosts
+.. _uadmin.AllowedIPs: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-allowedips
+.. _uadmin.Approval: https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approval
+.. _uadmin.ApprovalAction: https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approvalaction
+.. _uadmin.ApprovalHandleFunc: https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approvalhandlefunc
+.. _uadmin.BindIP: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-bindip
+.. _uadmin.BlockedIPs: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-blockedips
+.. _uadmin.CachePermissions: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cachepermissions
+.. _uadmin.CacheSessions: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cachesessions
+.. _uadmin.CacheTranslation: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-cachetranslation
+.. _uadmin.CheckCSRF: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-checkcsrf
+.. _uadmin.CheckRateLimit: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-checkratelimit
+.. _uadmin.Choice: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-choice
+.. _uadmin.ClearDB: https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-cleardb
+.. _uadmin.CookieTimeout: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cookietimeout
+.. _uadmin.Count: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-count
+.. _uadmin.CRITICAL: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-critical
+.. _uadmin.CustomTranslation: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-customtranslation
+.. _uadmin.DashboardMenu: https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-dashboardmenu
+.. _uadmin.Database: https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-database
+.. _uadmin.DataType: https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-datatype
+.. _uadmin.DBSettings: https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-dbsettings
+.. _uadmin.DEBUG: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-debug
+.. _uadmin.DebugDB: https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-debugdb
+.. _uadmin.DefaultMediaPermission: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-defaultmediapermission
+.. _uadmin.Delete: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-delete
+.. _uadmin.DeleteList: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-deletelist
+.. _uadmin.EmailFrom: https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailfrom
+.. _uadmin.EmailPassword: https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailpassword
+.. _uadmin.EmailSMTPServer: https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailsmtpserver
+.. _uadmin.EmailSMTPServerPort: https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailsmtpserverport
+.. _uadmin.EmailUsername: https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailusername
+.. _uadmin.EMERGENCY: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-emergency
+.. _uadmin.EncryptKey: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-encryptkey
+.. _uadmin.ERROR: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-error
+.. _uadmin.ErrorHandleFunc: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-errorhandlefunc
+.. _uadmin.F: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-f
+.. _uadmin.FieldList: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-fieldlist
+.. _uadmin.FieldType: https://uadmin-docs.readthedocs.io/en/latest/api/field_type.html#uadmin-field_type
+.. _uadmin.Filter: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filter
+.. _uadmin.FilterBuilder: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filterbuilder
+.. _uadmin.FilterList: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filterlist
+.. _uadmin.GenerateBase32: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-generatebase32
+.. _uadmin.GenerateBase64: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-generatebase64
+.. _uadmin.Get: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-get
+.. _uadmin.GetABTest: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-getabtest
+.. _uadmin.GetActiveLanguages: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-getactivelanguages
+.. _uadmin.GetDB: https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-getdb
+.. _uadmin.GetDefaultLanguage: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-getdefaultlanguage
+.. _uadmin.GetFieldsAPI: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getfieldsapi
+.. _uadmin.GetForm: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getform
+.. _uadmin.GetID: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getid
+.. _uadmin.GetImageSizer: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getimagesizer
+.. _uadmin.GetModelsAPI: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getmodelsapi
+.. _uadmin.GetRemoteIP: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-getremoteip
+.. _uadmin.GetSetting: https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-getsetting
+.. _uadmin.GetString: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getstring
+.. _uadmin.GetStringer: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getstringer
+.. _uadmin.GetUserFromRequest: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-getuserfromrequest
+.. _uadmin.GroupPermission: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-grouppermission
+.. _uadmin.Handler: https://uadmin-docs.readthedocs.io/en/latest/api/handler_functions.html#uadmin-handler
+.. _uadmin.HideInDashboarder: https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-hideindashboarder
+.. _uadmin.HTTPLogFormat: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-httplogformat
+.. _uadmin.IncrementMetric: https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-incrementmetric
+.. _uadmin.INFO: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-info
+.. _uadmin.IsAuthenticated: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-isauthenticated
+.. _uadmin.JSONMarshal: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-jsonmarshal
+.. _uadmin.Language: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-language
+.. _uadmin.Log: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-log
+.. _uadmin.LogAdd: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logadd
+.. _uadmin.LogDelete: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logdelete
+.. _uadmin.LogEdit: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logedit
+.. _uadmin.LogHTTPRequests: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-loghttprequests
+.. _uadmin.Login: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-login
+.. _uadmin.Login2FA: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-login2fa
+.. _uadmin.Logout: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-logout
+.. _uadmin.LogRead: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logread
+.. _uadmin.LogTrail: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logtrail
+.. _uadmin.MaxImageHeight: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maximageheight
+.. _uadmin.MaxImageWidth: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maximagewidth
+.. _uadmin.MaxUploadFileSize: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maxuploadfilesize
+.. _uadmin.Model: https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-model
+.. _uadmin.ModelList: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-modellist
+.. _uadmin.ModelSchema: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-modelschema
+.. _uadmin.NewMetric: https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-newmetric
+.. _uadmin.NewModel: https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-newmodel
+.. _uadmin.NewModelArray: https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-newmodelarray
+.. _uadmin.OK: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-ok
+.. _uadmin.OptimizeSQLQuery: https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-optimizesqlquery
+.. _uadmin.OTPAlgorithm: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpalgorithm
+.. _uadmin.OTPDigits: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpdigits
+.. _uadmin.OTPPeriod: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpperiod
+.. _uadmin.OTPSkew: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-otpskew
+.. _uadmin.PageLength: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-pagelength
+.. _uadmin.PasswordAttempts: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-passwordattempts
+.. _uadmin.PasswordTimeout: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-passwordtimeout
+.. _uadmin.Port: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-port
+.. _uadmin.Preload: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-preload
+.. _uadmin.PublicMedia: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-publicmedia
+.. _uadmin.RateLimit: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-ratelimit
+.. _uadmin.RateLimitBurst: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-ratelimitburst
+.. _uadmin.Register: https://uadmin-docs.readthedocs.io/en/latest/api/register_functions.html#uadmin-register
+.. _uadmin.RegisterInlines: https://uadmin-docs.readthedocs.io/en/latest/api/register_functions.html#uadmin-registerinlines
+.. _uadmin.RenderHTML: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-renderhtml
+.. _uadmin.RenderMultiHTML: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-rendermultihtml
+.. _uadmin.ReportingLevel: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-reportinglevel
+.. _uadmin.ReportTimeStamp: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-reporttimestamp
+.. _uadmin.RestrictSessionIP: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-restrictsessionip
+.. _uadmin.RetainMediaVersions: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-retainmediaversions
+.. _uadmin.ReturnJSON: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-returnjson
+.. _uadmin.RootURL: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-rooturl
+.. _uadmin.Salt: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-salt
+.. _uadmin.Save: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-save
+.. _uadmin.Schema: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-schema
+.. _uadmin.SetMetric: https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-setmetric
+.. _uadmin.SendEmail: https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-sendemail
+.. _uadmin.ServerReady: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-serverready
+.. _uadmin.Session: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-session
+.. _uadmin.SetSessionCookie: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-setsessioncookie
+.. _uadmin.Setting: https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-setting
+.. _uadmin.SettingCategory: https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-settingcategory
+.. _uadmin.SiteName: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-sitename
+.. _uadmin.SQLInjection: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-sqlinjection
+.. _uadmin.StartSecureServer: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-startsecureserver
+.. _uadmin.StartServer: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-startserver
+.. _uadmin.StaticHandler: https://uadmin-docs.readthedocs.io/en/latest/api/handler_functions.html#uadmin-statichandler
+.. _uadmin.Syslogf: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-syslogf
+.. _uadmin.SystemMetrics: https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-systemmetrics
+.. _uadmin.Tf: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-tf
+.. _uadmin.Theme: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-theme
+.. _uadmin.TimeMetric: https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-timemetric
+.. _uadmin.Trail: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-trail
+.. _uadmin.TrailLoggingLevel: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-traillogginglevel
+.. _uadmin.Translate: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-translate
+.. _uadmin.TranslateSchema: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-translateschema
+.. _uadmin.Update: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-update
+.. _uadmin.UploadImageHandler: https://uadmin-docs.readthedocs.io/en/latest/api/handler_functions.html#uadmin-uploadimagehandler
+.. _uadmin.User: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-user
+.. _uadmin.UserGroup: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-usergroup
+.. _uadmin.UserMetrics: https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-usermetrics
+.. _uadmin.UserPermission: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-userpermission
+.. _uadmin.ValidateIP: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-validateip
+.. _uadmin.Version: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-version
+.. _uadmin.VersionCodeName: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-versioncodename
+.. _uadmin.WARNING: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-warning
+.. _uadmin.WORKING: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-working
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5

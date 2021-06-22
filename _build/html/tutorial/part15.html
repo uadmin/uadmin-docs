@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>uAdmin Tutorial Part 15 - Advanced Security (Part 1) &#8212; uadmin 0.6 documentation</title>
@@ -14,6 +15,18 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+=======
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>uAdmin Tutorial Part 15 - Advanced Security (Part 1) &#8212; uadmin 0.5 documentation</title>
+    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
     <script src="../_static/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
@@ -41,7 +54,11 @@
         <li class="right" >
           <a href="full_code/part14.html" title="uAdmin Tutorial Part 14 - Storing the data to HTML (Current Progress)"
              accesskey="P">previous</a> |</li>
+<<<<<<< HEAD
         <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
+=======
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
           <li class="nav-item nav-item-1"><a href="../coverage.html" accesskey="U">uAdmin Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">uAdmin Tutorial Part 15 - Advanced Security (Part 1)</a></li> 
       </ul>
@@ -52,10 +69,17 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
+<<<<<<< HEAD
   <section id="uadmin-tutorial-part-15-advanced-security-part-1">
 <h1>uAdmin Tutorial Part 15 - Advanced Security (Part 1)<a class="headerlink" href="#uadmin-tutorial-part-15-advanced-security-part-1" title="Permalink to this headline">¶</a></h1>
 <p>In this part, we will talk about generating a self-signed SSL certificate using the <strong>openssl</strong> command and implementing two factor authentication (2FA).</p>
 <section id="ssl">
+=======
+  <div class="section" id="uadmin-tutorial-part-15-advanced-security-part-1">
+<h1>uAdmin Tutorial Part 15 - Advanced Security (Part 1)<a class="headerlink" href="#uadmin-tutorial-part-15-advanced-security-part-1" title="Permalink to this headline">¶</a></h1>
+<p>In this part, we will talk about generating a self-signed SSL certificate using the <strong>openssl</strong> command and implementing two factor authentication (2FA).</p>
+<div class="section" id="ssl">
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <h2>SSL<a class="headerlink" href="#ssl" title="Permalink to this headline">¶</a></h2>
 <p>To enable SSL for your project, you need an SSL certificate. This is a two parts system with a public key and a private key. The public key is used for encryption and the private key is used for decryption. To get an SSL certificate, you can generate one using openssl which is a tool for generating self-signed SSL certificate.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl req -x509 -nodes -days <span class="m">365</span> -newkey rsa:2048 -keyout priv.pem -out pub.pem
@@ -64,7 +88,11 @@
 <p>It will ask you for several certificate parameters but you can just press “Enter” and skip filling them for development.</p>
 <p>You can change the key size by changing 2048 to a higher value like 4096. For production, you would want to get a certificate that is not self-signed to avoid the SSL error message on the browser. For that, you can buy one from any SSL vendor or you can get a free one from <a class="reference external" href="https://letsencrypt.org/">letsencrypt.org</a> or follow the instructions <a class="reference external" href="https://medium.com/&#64;saurabh6790/generate-wildcard-ssl-certificate-using-lets-encrypt-certbot-273e432794d7">here</a>.</p>
 <p>Once installed, move the <strong>pub.pem</strong> and <strong>priv.pem</strong> to your project folder.</p>
+<<<<<<< HEAD
 <img alt="../_images/sslcertificate.png" class="align-center" src="../_images/sslcertificate.png" />
+=======
+<img alt="../_images/sslcertificate1.png" class="align-center" src="../_images/sslcertificate1.png" />
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -97,8 +125,13 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<<<<<<< HEAD
 </section>
 <section id="factor-authentication">
+=======
+</div>
+<div class="section" id="factor-authentication">
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <h2>2-Factor Authentication<a class="headerlink" href="#factor-authentication" title="Permalink to this headline">¶</a></h2>
 <p>It is also referred to as 2FA which is a way of using a OTP (One Time Password) for your login process to add an extra level of security to your account. uAdmin allows you to enable 2FA per user. To enable it for your account, open your profile:</p>
 <img alt="../_images/adminhighlighted2fa.png" src="../_images/adminhighlighted2fa.png" />
@@ -126,8 +159,13 @@
 </pre></div>
 </div>
 <p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part16.html">next part</a>, we will discuss about password reset, hash salt, and database encryption.</p>
+<<<<<<< HEAD
 </section>
 </section>
+=======
+</div>
+</div>
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 
 
             <div class="clearer"></div>
@@ -192,14 +230,23 @@
         <li class="right" >
           <a href="full_code/part14.html" title="uAdmin Tutorial Part 14 - Storing the data to HTML (Current Progress)"
              >previous</a> |</li>
+<<<<<<< HEAD
         <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
+=======
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
           <li class="nav-item nav-item-1"><a href="../coverage.html" >uAdmin Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">uAdmin Tutorial Part 15 - Advanced Security (Part 1)</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
+<<<<<<< HEAD
         &#169; Copyright 2021, uadmin.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+=======
+        &#169; Copyright 2020, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
     </div>
   </body>
 </html>

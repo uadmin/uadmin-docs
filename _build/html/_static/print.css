@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @media print {
     div.header, div.relnav, #toc { display: none; }
     #contentwrapper { padding: 0; margin: 0; border: none; }
@@ -5,3 +6,12 @@
     div.footer { border-top: 1px solid #888; color: #888; margin-top: 1cm; }
     div.footer a { text-decoration: none; }
 }
+=======
+@media print {
+    div.header, div.relnav, #toc { display: none; }
+    #contentwrapper { padding: 0; margin: 0; border: none; }
+    body { color: black; background-color: white; }
+    div.footer { border-top: 1px solid #888; color: #888; margin-top: 1cm; }
+    div.footer a { text-decoration: none; }
+}
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5

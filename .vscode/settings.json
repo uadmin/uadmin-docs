@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 {
     "python.linting.pylintEnabled": true
+=======
+{
+    "python.linting.pylintEnabled": true
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 }

@@ -545,7 +545,11 @@ uadmin.Version
 .. code-block:: go
 
     // Type: string
+<<<<<<< HEAD
     const Version = "0.6.2"
+=======
+    const Version = "0.5.2"
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 
 Version number as per Semantic Versioning 2.0.0 (semver.org)
 
@@ -564,7 +568,11 @@ Result
 
     [   OK   ]   Initializing DB: [13/13]
     [   OK   ]   Synching System Settings: [46/46]
+<<<<<<< HEAD
     [  INFO  ]   0.6.2
+=======
+    [  INFO  ]   0.5.2
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
     [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -577,7 +585,11 @@ You can also directly check it by typing **uadmin version** in your terminal.
 .. code-block:: bash
 
     $ uadmin version
+<<<<<<< HEAD
     [  INFO  ]   0.6.2
+=======
+    [  INFO  ]   0.5.2
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 
 Quiz:
 
@@ -592,9 +604,15 @@ uadmin.VersionCodeName
 .. code-block:: go
 
     // Type: string
+<<<<<<< HEAD
     const VersionCodeName = "Beetle"
 
 VersionCodeName is the cool name we give to versions with significant changes. This name should always be a bug's name starting from A-Z them revolving back. This started at version 0.5.0 (Atlas Moth) 0.6.0 Beetle
+=======
+    const VersionCodeName = "Atlas Moth"
+
+VersionCodeName is the cool name we give to versions with significant changes. This name should always be a bug's name starting from A-Z then revolving back. This started at version 0.5.0 (Atlas Moth).
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 
 uadmin.WARNING
 --------------

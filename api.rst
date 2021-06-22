@@ -54,7 +54,6 @@ Full List
 * `uadmin.ERROR`_
 * `uadmin.ErrorHandleFunc`_
 * `uadmin.F`_
-* `uadmin.FavIcon`_
 * `uadmin.FieldList`_
 * `uadmin.FieldType`_
 * `uadmin.Filter`_
@@ -87,7 +86,6 @@ Full List
 * `uadmin.JSONMarshal`_
 * `uadmin.Language`_
 * `uadmin.Log`_
-* `uadmin.Logo`_
 * `uadmin.LogAdd`_
 * `uadmin.LogDelete`_
 * `uadmin.LogEdit`_
@@ -214,8 +212,6 @@ Categorized List
 ^^^^^^^^^^^^^^^^^^^
 `Back To Top (Categorized List)`_
 
-* `uadmin.FavIcon`_
-* `uadmin.Logo`_
 * `uadmin.MaxImageHeight`_
 * `uadmin.MaxImageWidth`_
 * `uadmin.MaxUploadFileSize`_
@@ -507,7 +503,6 @@ Page:
 .. _uadmin.ERROR: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-error
 .. _uadmin.ErrorHandleFunc: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-errorhandlefunc
 .. _uadmin.F: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-f
-.. _uadmin.FavIcon: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-favicon
 .. _uadmin.FieldList: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-fieldlist
 .. _uadmin.FieldType: https://uadmin-docs.readthedocs.io/en/latest/api/field_type.html#uadmin-field_type
 .. _uadmin.Filter: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filter
@@ -540,7 +535,6 @@ Page:
 .. _uadmin.JSONMarshal: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-jsonmarshal
 .. _uadmin.Language: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-language
 .. _uadmin.Log: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-log
-.. _uadmin.Logo: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-logo
 .. _uadmin.LogAdd: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logadd
 .. _uadmin.LogDelete: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logdelete
 .. _uadmin.LogEdit: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logedit

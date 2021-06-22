@@ -1579,6 +1579,7 @@ uadmin.RenderMultiHTML
     func RenderMultiHTML(w http.ResponseWriter, r *http.Request, path []string, data interface{}, funcs ...interface{})
 
 RenderMultiHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 ...etc.
+<<<<<<< HEAD
 
 Let's create a Javascript library for navigation called **nav.js**. This library will allow the system to have partial update functionality whenever the user goes to another webpage and goes back. Partial update will load the website faster and cheaper. Add it in **/static/assets/js** path.
 
@@ -1869,3 +1870,5 @@ Go back again to your browser. Click the Home Page button. Right click your mous
 .. image:: assets/home_page_view_source_partial.png
 
 Congratulations! You have created an application that renders multiple HTML.
+=======
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5

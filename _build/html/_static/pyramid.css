@@ -4,6 +4,7 @@
  *
  * Sphinx stylesheet -- pylons theme.
  *
+<<<<<<< HEAD
  * :copyright: Copyright 2007-2021 by the Sphinx team, see AUTHORS.
  * :license: BSD, see LICENSE for details.
  *
@@ -13,6 +14,17 @@
 
 /* -- page layout ----------------------------------------------------------- */
 
+=======
+ * :copyright: Copyright 2007-2020 by the Sphinx team, see AUTHORS.
+ * :license: BSD, see LICENSE for details.
+ *
+ */
+ 
+@import url("basic.css");
+ 
+/* -- page layout ----------------------------------------------------------- */
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 body {
     font-family: "Nobile", sans-serif;
     font-size: 100%;
@@ -34,7 +46,11 @@ div.bodywrapper {
 hr {
     border: 1px solid #B1B4B6;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.document {
     background-color: #eee;
 }
@@ -59,7 +75,11 @@ div.body {
     border-right-style: none;
     overflow: auto;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.footer {
     color: #ffffff;
     width: 100%;
@@ -69,7 +89,11 @@ div.footer {
     background: transparent;
     clear:both;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.footer a {
     color: #ffffff;
     text-decoration: none;
@@ -79,14 +103,22 @@ div.footer a:hover {
     color: #e88f00;
     text-decoration: underline;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.related {
     line-height: 30px;
     color: #373839;
     font-size: 0.8em;
     background-color: #eee;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.related a {
     color: #1b61d6;
 }
@@ -94,7 +126,11 @@ div.related a {
 div.related ul {
     padding-left: calc(230px + 10px);
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.sphinxsidebar {
     font-size: 0.75em;
     line-height: 1.5em;
@@ -103,7 +139,11 @@ div.sphinxsidebar {
 div.sphinxsidebarwrapper{
     padding: 10px 0;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.sphinxsidebar h3,
 div.sphinxsidebar h4 {
     font-family: "Neuton", sans-serif;
@@ -118,30 +158,54 @@ div.sphinxsidebar h4 {
 div.sphinxsidebar h4{
     font-size: 1.3em;
 }
+<<<<<<< HEAD
 
 div.sphinxsidebar h3 a {
     color: #000000;
 }
 
 
+=======
+ 
+div.sphinxsidebar h3 a {
+    color: #000000;
+}
+ 
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.sphinxsidebar p {
     color: #888;
     padding: 5px 20px;
 }
+<<<<<<< HEAD
 
 div.sphinxsidebar p.topless {
 }
 
+=======
+ 
+div.sphinxsidebar p.topless {
+}
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.sphinxsidebar ul {
     margin: 10px 20px;
     padding: 0;
     color: #373839;
 }
+<<<<<<< HEAD
 
 div.sphinxsidebar a {
     color: #444;
 }
 
+=======
+ 
+div.sphinxsidebar a {
+    color: #444;
+}
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.sphinxsidebar input {
     border: 1px solid #ccc;
     font-family: sans-serif;
@@ -171,16 +235,28 @@ p.sidebar-title {
 }
 
 /* -- body styles ----------------------------------------------------------- */
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 a, a .pre {
     color: #1b61d6;
     text-decoration: none;
 }
+<<<<<<< HEAD
 
 a:hover, a:hover .pre {
     text-decoration: underline;
 }
 
+=======
+ 
+a:hover, a:hover .pre {
+    text-decoration: underline;
+}
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.body h1,
 div.body h2,
 div.body h3,
@@ -194,20 +270,29 @@ div.body h6 {
     margin: 30px 0px 10px 0px;
     padding: 5px 0;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.body h1 { border-top: 20px solid white; margin-top: 0; font-size: 200%; }
 div.body h2 { font-size: 150%; background-color: #ffffff; }
 div.body h3 { font-size: 120%; background-color: #ffffff; }
 div.body h4 { font-size: 110%; background-color: #ffffff; }
 div.body h5 { font-size: 100%; background-color: #ffffff; }
 div.body h6 { font-size: 100%; background-color: #ffffff; }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 a.headerlink {
     color: #1b61d6;
     font-size: 0.8em;
     padding: 0 4px 0 4px;
     text-decoration: none;
 }
+<<<<<<< HEAD
 
 a.headerlink:hover {
     text-decoration: underline;
@@ -217,6 +302,17 @@ div.body p, div.body dd, div.body li {
     line-height: 1.5em;
 }
 
+=======
+ 
+a.headerlink:hover {
+    text-decoration: underline;
+}
+ 
+div.body p, div.body dd, div.body li {
+    line-height: 1.5em;
+}
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.admonition p.admonition-title + p {
     display: inline;
 }
@@ -236,7 +332,11 @@ div.note {
     padding: 10px 20px 10px 60px;
     background: #e1ecfe url(dialog-note.png) no-repeat 10px 8px;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.seealso {
     background: #fff6bf url(dialog-seealso.png) no-repeat 10px 8px;
     border: 2px solid #ffd324;
@@ -244,7 +344,11 @@ div.seealso {
     border-right-style: none;
     padding: 10px 20px 10px 60px;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.topic {
     background: #eeeeee;
     border: 2px solid #C6C9CB;
@@ -252,7 +356,11 @@ div.topic {
     border-right-style: none;
     border-left-style: none;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.warning {
     background: #fbe3e4 url(dialog-warning.png) no-repeat 10px 8px;
     border: 2px solid #fbc2c4;
@@ -268,18 +376,30 @@ div.admonition-todo {
     border-left-style: none;
     padding: 10px 20px 10px 60px;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.note p.admonition-title,
 div.warning p.admonition-title,
 div.seealso p.admonition-title,
 div.admonition-todo p.admonition-title {
     display: none;
 }
+<<<<<<< HEAD
 
 p.admonition-title:after {
     content: ":";
 }
 
+=======
+ 
+p.admonition-title:after {
+    content: ":";
+}
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 pre {
     padding: 10px;
     line-height: 1.2em;
@@ -289,7 +409,11 @@ pre {
     border-right-style: none;
     border-left-style: none;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 code {
     background-color: transparent;
     color: #222;

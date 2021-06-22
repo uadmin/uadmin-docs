@@ -4,7 +4,11 @@
  *
  * Sphinx JavaScript utilities for the full-text search.
  *
+<<<<<<< HEAD
  * :copyright: Copyright 2007-2021 by the Sphinx team, see AUTHORS.
+=======
+ * :copyright: Copyright 2007-2020 by the Sphinx team, see AUTHORS.
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
  * :license: BSD, see LICENSE for details.
  *
  */
@@ -59,10 +63,17 @@ var Search = {
   _pulse_status : -1,
 
   htmlToText : function(htmlString) {
+<<<<<<< HEAD
       var virtualDocument = document.implementation.createHTMLDocument('virtual');
       var htmlElement = $(htmlString, virtualDocument);
       htmlElement.find('.headerlink').remove();
       docContent = htmlElement.find('[role=main]')[0];
+=======
+      var htmlElement = document.createElement('span');
+      htmlElement.innerHTML = htmlString;
+      $(htmlElement).find('.headerlink').remove();
+      docContent = $(htmlElement).find('[role=main]')[0];
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
       if(docContent === undefined) {
           console.warn("Content block not found. Sphinx search tries to obtain it " +
                        "via '[role=main]'. Could you check your theme or template.");
@@ -248,7 +259,11 @@ var Search = {
       // results left, load the summary and display it
       if (results.length) {
         var item = results.pop();
+<<<<<<< HEAD
         var listItem = $('<li></li>');
+=======
+        var listItem = $('<li style="display:none"></li>');
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
         var requestUrl = "";
         var linkUrl = "";
         if (DOCUMENTATION_OPTIONS.BUILDER === 'dirhtml') {
@@ -273,9 +288,15 @@ var Search = {
         if (item[3]) {
           listItem.append($('<span> (' + item[3] + ')</span>'));
           Search.output.append(listItem);
+<<<<<<< HEAD
           setTimeout(function() {
             displayNextItem();
           }, 5);
+=======
+          listItem.slideDown(5, function() {
+            displayNextItem();
+          });
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
         } else if (DOCUMENTATION_OPTIONS.HAS_SOURCE) {
           $.ajax({url: requestUrl,
                   dataType: "text",
@@ -285,16 +306,28 @@ var Search = {
                       listItem.append(Search.makeSearchSummary(data, searchterms, hlterms));
                     }
                     Search.output.append(listItem);
+<<<<<<< HEAD
                     setTimeout(function() {
                       displayNextItem();
                     }, 5);
+=======
+                    listItem.slideDown(5, function() {
+                      displayNextItem();
+                    });
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
                   }});
         } else {
           // no source available, just display title
           Search.output.append(listItem);
+<<<<<<< HEAD
           setTimeout(function() {
             displayNextItem();
           }, 5);
+=======
+          listItem.slideDown(5, function() {
+            displayNextItem();
+          });
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
         }
       }
       // search finished, update title and status message
@@ -380,6 +413,7 @@ var Search = {
   },
 
   /**
+<<<<<<< HEAD
    * See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
    */
   escapeRegExp : function(string) {
@@ -387,6 +421,8 @@ var Search = {
   },
 
   /**
+=======
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
    * search for full-text terms in the index
    */
   performTermsSearch : function(searchterms, excluded, terms, titleterms) {
@@ -409,14 +445,23 @@ var Search = {
       ];
       // add support for partial matches
       if (word.length > 2) {
+<<<<<<< HEAD
         var word_regex = this.escapeRegExp(word);
         for (var w in terms) {
           if (w.match(word_regex) && !terms[word]) {
+=======
+        for (var w in terms) {
+          if (w.match(word) && !terms[word]) {
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
             _o.push({files: terms[w], score: Scorer.partialTerm})
           }
         }
         for (var w in titleterms) {
+<<<<<<< HEAD
           if (w.match(word_regex) && !titleterms[word]) {
+=======
+          if (w.match(word) && !titleterms[word]) {
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
               _o.push({files: titleterms[w], score: Scorer.partialTitle})
           }
         }
@@ -509,7 +554,11 @@ var Search = {
     var excerpt = ((start > 0) ? '...' : '') +
       $.trim(text.substr(start, 240)) +
       ((start + 240 - text.length) ? '...' : '');
+<<<<<<< HEAD
     var rv = $('<p class="context"></p>').text(excerpt);
+=======
+    var rv = $('<div class="context"></div>').text(excerpt);
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
     $.each(hlwords, function() {
       rv = rv.highlightText(this, 'highlighted');
     });

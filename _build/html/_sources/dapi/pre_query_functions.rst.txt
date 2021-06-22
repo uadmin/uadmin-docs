@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Pre Query Functions
 ===================
 `Back To uAdmin Functions List`_
@@ -128,3 +129,135 @@ Type:
 .. code-block:: go
 
     interface
+=======
+Pre Query Functions
+===================
+`Back To uAdmin Functions List`_
+
+.. _Back To uAdmin Functions List: https://uadmin-docs.readthedocs.io/en/latest/dapi.html#uadmin-functions
+
+In this section, we will cover the following functions in-depth listed below:
+
+* `uadmin.APIPreQueryAdd`_
+* `uadmin.APIPreQueryAdder`_
+* `uadmin.APIPreQueryDelete`_
+* `uadmin.APIPreQueryDeleter`_
+* `uadmin.APIPreQueryEdit`_
+* `uadmin.APIPreQueryEditor`_
+* `uadmin.APIPreQueryRead`_
+* `uadmin.APIPreQueryReader`_
+* `uadmin.APIPreQuerySchema`_
+* `uadmin.APIPreQuerySchemer`_
+
+uadmin.APIPreQueryAdd
+---------------------
+`Back To Top`_
+
+APIPreQueryAdd controls the data API's pre query for add commands.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+uadmin.APIPreQueryAdder
+-----------------------
+`Back To Top`_
+
+Type:
+
+.. code-block:: go
+
+    interface
+
+uadmin.APIPreQueryDelete
+------------------------
+`Back To Top`_
+
+APIPreQueryDelete controls the data API's pre query for delete commands.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+uadmin.APIPreQueryDeleter
+-------------------------
+`Back To Top`_
+
+Type:
+
+.. code-block:: go
+
+    interface
+
+uadmin.APIPreQueryEdit
+----------------------
+`Back To Top`_
+
+APIPreQueryEdit controls the data API's pre query for edit commands.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+uadmin.APIPreQueryEditor
+------------------------
+`Back To Top`_
+
+Type:
+
+.. code-block:: go
+
+    interface
+
+uadmin.APIPreQueryRead
+----------------------
+`Back To Top`_
+
+APIPreQueryRead controls the data API's pre query for read commands.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+uadmin.APIPreQueryReader
+------------------------
+`Back To Top`_
+
+Type:
+
+.. code-block:: go
+
+    interface
+
+uadmin.APIPreQuerySchema
+------------------------
+`Back To Top`_
+
+APIPreQuerySchema controls the data API's pre query for schema commands.
+
+Type:
+
+.. code-block:: go
+
+    bool
+
+uadmin.APIPreQuerySchemer
+-------------------------
+`Back To Top`_
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#pre-query-functions
+
+Type:
+
+.. code-block:: go
+
+    interface
+>>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
