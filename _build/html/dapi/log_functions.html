@@ -4,7 +4,6 @@
 <html>
   <head>
     <meta charset="utf-8" />
-<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Log Functions &#8212; uadmin 0.6 documentation</title>
@@ -15,18 +14,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-=======
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Log Functions &#8212; uadmin 0.5 documentation</title>
-    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
     <script src="../_static/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
@@ -54,11 +41,7 @@
         <li class="right" >
           <a href="disabled_functions.html" title="Disabled Functions"
              accesskey="P">previous</a> |</li>
-<<<<<<< HEAD
         <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
-=======
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
           <li class="nav-item nav-item-1"><a href="../dapi.html" accesskey="U">dAPI Reference</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Log Functions</a></li> 
       </ul>
@@ -69,11 +52,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-<<<<<<< HEAD
   <section id="log-functions">
-=======
-  <div class="section" id="log-functions">
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <h1>Log Functions<a class="headerlink" href="#log-functions" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#uadmin-functions">Back To uAdmin Functions List</a></p>
 <p>In this section, we will cover the following functions in-depth listed below:</p>
@@ -89,11 +68,7 @@
 <li><p><a class="reference internal" href="#uadmin-apilogschema">uadmin.APILogSchema</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-apilogschemer">uadmin.APILogSchemer</a></p></li>
 </ul>
-<<<<<<< HEAD
 <section id="uadmin-apilogadd">
-=======
-<div class="section" id="uadmin-apilogadd">
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <h2>uadmin.APILogAdd<a class="headerlink" href="#uadmin-apilogadd" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
 <p>APILogAdd controls the data API’s logging for add commands.</p>
@@ -146,11 +121,7 @@ http://api.example.com/api/d/document/add/?_name__0<span class="o">=</span>Golan
 </div>
 <p>It returns an array with a list of IDs for the newly created records.</p>
 <p>Now go back to the uAdmin dashboard. Click on “LOGS”.</p>
-<<<<<<< HEAD
 <img alt="../_images/logshighlighted1.png" src="../_images/logshighlighted1.png" />
-=======
-<img alt="../_images/logshighlighted2.png" src="../_images/logshighlighted2.png" />
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -191,13 +162,8 @@ http://api.example.com/api/d/document/add/?_name<span class="o">=</span>Programm
 <div class="line"><br /></div>
 </div>
 <p>As expected, the user’s action in adding a record through HTTP API was not recorded in the Log model.</p>
-<<<<<<< HEAD
 </section>
 <section id="uadmin-apilogadder">
-=======
-</div>
-<div class="section" id="uadmin-apilogadder">
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <h2>uadmin.APILogAdder<a class="headerlink" href="#uadmin-apilogadder" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
 <p>APILogAdder is an interface that contains the method APILogAdd with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as Added when he use the dAPI add method.</p>
@@ -205,13 +171,8 @@ http://api.example.com/api/d/document/add/?_name<span class="o">=</span>Programm
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>
 </div>
-<<<<<<< HEAD
 </section>
 <section id="uadmin-apilogdelete">
-=======
-</div>
-<div class="section" id="uadmin-apilogdelete">
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <h2>uadmin.APILogDelete<a class="headerlink" href="#uadmin-apilogdelete" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
 <p>APILogDelete controls the data API’s logging for delete commands.</p>
@@ -254,11 +215,7 @@ http://api.example.com/api/d/item/delete/?name__contains<span class="o">=</span>
 </div>
 <p>It returns the status and the rows affected by your query.</p>
 <p>Now go back to the uAdmin dashboard. Click on “LOGS”.</p>
-<<<<<<< HEAD
 <img alt="../_images/logshighlighted1.png" src="../_images/logshighlighted1.png" />
-=======
-<img alt="../_images/logshighlighted2.png" src="../_images/logshighlighted2.png" />
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -294,13 +251,8 @@ http://api.example.com/api/d/item/delete/4/
 <div class="line"><br /></div>
 </div>
 <p>As expected, the user’s action in deleting the fourth record through HTTP API was not recorded in the Log model.</p>
-<<<<<<< HEAD
 </section>
 <section id="uadmin-apilogdeleter">
-=======
-</div>
-<div class="section" id="uadmin-apilogdeleter">
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <h2>uadmin.APILogDeleter<a class="headerlink" href="#uadmin-apilogdeleter" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
 <p>APILogDeleter is an interface that contains the method APILogDelete with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as Deleted when he use the dAPI delete method.</p>
@@ -308,13 +260,8 @@ http://api.example.com/api/d/item/delete/4/
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>
 </div>
-<<<<<<< HEAD
 </section>
 <section id="uadmin-apilogedit">
-=======
-</div>
-<div class="section" id="uadmin-apilogedit">
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <h2>uadmin.APILogEdit<a class="headerlink" href="#uadmin-apilogedit" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
 <p>APILogEdit controls the data API’s logging for edit commands.</p>
@@ -359,11 +306,7 @@ http://api.example.com/api/d/item/edit/?rating<span class="o">=</span><span clas
 </div>
 <p>It returns the status and the rows affected by your query.</p>
 <p>Now go back to the uAdmin dashboard. Click on “LOGS”.</p>
-<<<<<<< HEAD
 <img alt="../_images/logshighlighted1.png" src="../_images/logshighlighted1.png" />
-=======
-<img alt="../_images/logshighlighted2.png" src="../_images/logshighlighted2.png" />
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -405,13 +348,8 @@ http://api.example.com/api/d/item/edit/1/?_name<span class="o">=</span>Supercomp
 <div class="line"><br /></div>
 </div>
 <p>As expected, the user’s action in editing the first record through HTTP API was not recorded in the Log model.</p>
-<<<<<<< HEAD
 </section>
 <section id="uadmin-apilogeditor">
-=======
-</div>
-<div class="section" id="uadmin-apilogeditor">
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <h2>uadmin.APILogEditor<a class="headerlink" href="#uadmin-apilogeditor" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
 <p>APILogEditor is an interface that contains the method APILogEdit with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as Modified when he use the dAPI edit method.</p>
@@ -419,13 +357,8 @@ http://api.example.com/api/d/item/edit/1/?_name<span class="o">=</span>Supercomp
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>
 </div>
-<<<<<<< HEAD
 </section>
 <section id="uadmin-apilogread">
-=======
-</div>
-<div class="section" id="uadmin-apilogread">
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <h2>uadmin.APILogRead<a class="headerlink" href="#uadmin-apilogread" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
 <p>APILogRead controls the data API’s logging for read commands.</p>
@@ -465,11 +398,7 @@ http://api.example.com/api/d/item/read/?rating<span class="o">=</span><span clas
 </div>
 <p>It returns a list of records where rating is equal to 3.</p>
 <p>Now go back to the uAdmin dashboard. Click on “LOGS”.</p>
-<<<<<<< HEAD
 <img alt="../_images/logshighlighted1.png" src="../_images/logshighlighted1.png" />
-=======
-<img alt="../_images/logshighlighted2.png" src="../_images/logshighlighted2.png" />
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -503,13 +432,8 @@ http://api.example.com/api/d/item/read/2/
 <div class="line"><br /></div>
 </div>
 <p>As expected, the user’s action in reading the second record through HTTP API was not recorded in the Log model.</p>
-<<<<<<< HEAD
 </section>
 <section id="uadmin-apilogreader">
-=======
-</div>
-<div class="section" id="uadmin-apilogreader">
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <h2>uadmin.APILogReader<a class="headerlink" href="#uadmin-apilogreader" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
 <p>APILogReader is an interface that contains the method APILogRead with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as Read when he use the dAPI read method.</p>
@@ -517,13 +441,8 @@ http://api.example.com/api/d/item/read/2/
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>
 </div>
-<<<<<<< HEAD
 </section>
 <section id="uadmin-apilogschema">
-=======
-</div>
-<div class="section" id="uadmin-apilogschema">
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <h2>uadmin.APILogSchema<a class="headerlink" href="#uadmin-apilogschema" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
 <p>APILogSchema controls the data API’s logging for schema commands.</p>
@@ -561,11 +480,7 @@ http://api.example.com/api/d/item/schema/
 </div>
 <p>It returns a JSON object representing uAdmin’s ModelSchema of the Item model.</p>
 <p>Now go back to the uAdmin dashboard. Click on “LOGS”.</p>
-<<<<<<< HEAD
 <img alt="../_images/logshighlighted1.png" src="../_images/logshighlighted1.png" />
-=======
-<img alt="../_images/logshighlighted2.png" src="../_images/logshighlighted2.png" />
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -592,13 +507,8 @@ http://api.example.com/api/d/item/schema/
 <div class="line"><br /></div>
 </div>
 <p>As expected, the user’s action in getting the schema of the Item model through HTTP API was not recorded in the Log model.</p>
-<<<<<<< HEAD
 </section>
 <section id="uadmin-apilogschemer">
-=======
-</div>
-<div class="section" id="uadmin-apilogschemer">
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 <h2>uadmin.APILogSchemer<a class="headerlink" href="#uadmin-apilogschemer" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
 <p>APILogSchemer is an interface that contains the method APILogSchema with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as GetSchema when he use the dAPI schema method.</p>
@@ -606,13 +516,8 @@ http://api.example.com/api/d/item/schema/
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>
 </div>
-<<<<<<< HEAD
 </section>
 </section>
-=======
-</div>
-</div>
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 
 
             <div class="clearer"></div>
@@ -677,23 +582,14 @@ http://api.example.com/api/d/item/schema/
         <li class="right" >
           <a href="disabled_functions.html" title="Disabled Functions"
              >previous</a> |</li>
-<<<<<<< HEAD
         <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
-=======
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.5 documentation</a> &#187;</li>
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
           <li class="nav-item nav-item-1"><a href="../dapi.html" >dAPI Reference</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Log Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-<<<<<<< HEAD
         &#169; Copyright 2021, uadmin.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
-=======
-        &#169; Copyright 2020, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
     </div>
   </body>
 </html>

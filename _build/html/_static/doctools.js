@@ -4,11 +4,7 @@
  *
  * Sphinx JavaScript utilities for all documentation.
  *
-<<<<<<< HEAD
  * :copyright: Copyright 2007-2021 by the Sphinx team, see AUTHORS.
-=======
- * :copyright: Copyright 2007-2020 by the Sphinx team, see AUTHORS.
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
  * :license: BSD, see LICENSE for details.
  *
  */
@@ -33,7 +29,6 @@ if (!window.console || !console.firebug) {
 
 /**
  * small helper function to urldecode strings
-<<<<<<< HEAD
  *
  * See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent#Decoding_query_parameters_from_a_URL
  */
@@ -42,11 +37,6 @@ jQuery.urldecode = function(x) {
     return x
   }
   return decodeURIComponent(x.replace(/\+/g, ' '));
-=======
- */
-jQuery.urldecode = function(x) {
-  return decodeURIComponent(x).replace(/\+/g, ' ');
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 };
 
 /**
@@ -300,16 +290,10 @@ var Documentation = {
   initOnKeyListeners: function() {
     $(document).keydown(function(event) {
       var activeElementType = document.activeElement.tagName;
-<<<<<<< HEAD
       // don't navigate when in search box, textarea, dropdown or button
       if (activeElementType !== 'TEXTAREA' && activeElementType !== 'INPUT' && activeElementType !== 'SELECT'
           && activeElementType !== 'BUTTON' && !event.altKey && !event.ctrlKey && !event.metaKey
           && !event.shiftKey) {
-=======
-      // don't navigate when in search box or textarea
-      if (activeElementType !== 'TEXTAREA' && activeElementType !== 'INPUT' && activeElementType !== 'SELECT'
-          && !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
         switch (event.keyCode) {
           case 37: // left
             var prevHref = $('link[rel="prev"]').prop('href');

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 uAdmin Tutorial Part 3 - Image Cropping
 =======================================
 In this tutorial, we will discuss about cropping an image on the field with an image type tag in the model.
@@ -52,59 +51,4 @@ uAdmin also allows you to crop your images.
 .. image:: assets/croppedicon.png
    :align: center
 
-=======
-uAdmin Tutorial Part 3 - Image Cropping
-=======================================
-In this tutorial, we will discuss about cropping an image on the field with an image type tag in the model.
-
-Create a file named category.go inside the models folder with the following codes below:
-
-.. code-block:: go
-
-	package models
-
-	import (
-        "github.com/uadmin/uadmin"
-    )
-
-	// Category !
-	type Category struct {
-	    uadmin.Model
-	    Name string `uadmin:"required"`
-	    Icon string `uadmin:"image"`
-	}
-
-Now register the model on main.go where models is folder name and Category is model/struct name:
-
-.. code-block:: go
-
-	func main() {
-	    uadmin.Register(
-	        models.Todo{},
-	        models.Category{}, // <-- place it here
-	    )
-	    uadmin.StartServer()
-	}
-
-Run your application. As expected, the category model is added in the uAdmin Dashboard.
-
-.. image:: assets/categorymodelselected.png
-
-|
-
-Let's create a new data in the category model.
-
-.. image:: assets/categorywithtagapplied.png
-
-As you can see, the Name field is required indicated by the * symbol. Required field cannot be an empty string. In the Icon field, you can browse an image file in .png, .jpg, .jpeg, or .gif in your computer.
-
-uAdmin also allows you to crop your images.
-
-.. image:: assets/cropiconhighlighted.png
-   :align: center
-
-.. image:: assets/croppedicon.png
-   :align: center
-
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 Once you are done, click the Crop button below and refresh the webpage to save your progress.

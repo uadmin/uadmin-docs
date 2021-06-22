@@ -28,10 +28,7 @@ Here are all build-in uAdmin Settings, their format, and how to use them in the 
 * `Email SMTP Server`_
 * `Email SMTP Server Port`_
 * `Email Username`_
-<<<<<<< HEAD
 * `Fav Icon`_
-=======
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 * `HTTP Log Format`_
 * `Log Add`_
 * `Log Delete`_
@@ -39,10 +36,7 @@ Here are all build-in uAdmin Settings, their format, and how to use them in the 
 * `Log HTTP Requests`_
 * `Log Read`_
 * `Log Trail`_
-<<<<<<< HEAD
 * `Logo`_
-=======
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 * `Max Image Width`_
 * `Max Image Height`_
 * `Max Upload File Size`_
@@ -975,7 +969,6 @@ Email Username sets the username of an email.
 
 See `Email From`_ for the example.
 
-<<<<<<< HEAD
 Fav Icon
 --------
 `Back To Top`_
@@ -1010,8 +1003,6 @@ Go to the path where your favicon.ico file is located. Click Save button afterwa
 
 .. image:: assets/favicon_result.png
 
-=======
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 HTTP Log Format
 ---------------
 `Back To Top`_
@@ -1511,7 +1502,6 @@ Quiz:
 
 * `Max Functions`_
 
-<<<<<<< HEAD
 Logo
 ----
 `Back To Top`_
@@ -1546,8 +1536,6 @@ Go to the path where your logo.png file is located. Click Save button afterwards
 
 .. image:: assets/logo_result.png
 
-=======
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 Max Image Height
 ----------------
 `Back To Top`_

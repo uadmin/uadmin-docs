@@ -6,11 +6,8 @@ Basic Functions
 
 In this section, we will cover the following functions in-depth listed below:
 
-<<<<<<< HEAD
 * `uadmin.FavIcon`_
 * `uadmin.Logo`_
-=======
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 * `uadmin.MaxImageHeight`_
 * `uadmin.MaxImageWidth`_
 * `uadmin.MaxUploadFileSize`_
@@ -22,7 +19,6 @@ In this section, we will cover the following functions in-depth listed below:
 * `uadmin.StartServer`_
 * `uadmin.Theme`_
 
-<<<<<<< HEAD
 uadmin.FavIcon
 --------------
 `Back To Top`_
@@ -99,8 +95,6 @@ Run your application. As you can see, the logo has been applied in the navigatio
 
 .. image:: assets/logo_result.png
 
-=======
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 uadmin.MaxImageHeight
 ---------------------
 `Back To Top`_

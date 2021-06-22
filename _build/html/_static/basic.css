@@ -4,11 +4,7 @@
  *
  * Sphinx stylesheet -- basic theme.
  *
-<<<<<<< HEAD
  * :copyright: Copyright 2007-2021 by the Sphinx team, see AUTHORS.
-=======
- * :copyright: Copyright 2007-2020 by the Sphinx team, see AUTHORS.
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
  * :license: BSD, see LICENSE for details.
  *
  */
@@ -134,11 +130,7 @@ ul.search li a {
     font-weight: bold;
 }
 
-<<<<<<< HEAD
 ul.search li p.context {
-=======
-ul.search li div.context {
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
     color: #888;
     margin: 2px 0 0 30px;
     text-align: left;
@@ -285,41 +277,25 @@ p.rubric {
     font-weight: bold;
 }
 
-<<<<<<< HEAD
 img.align-left, figure.align-left, .figure.align-left, object.align-left {
-=======
-img.align-left, .figure.align-left, object.align-left {
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
     clear: left;
     float: left;
     margin-right: 1em;
 }
 
-<<<<<<< HEAD
 img.align-right, figure.align-right, .figure.align-right, object.align-right {
-=======
-img.align-right, .figure.align-right, object.align-right {
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
     clear: right;
     float: right;
     margin-left: 1em;
 }
 
-<<<<<<< HEAD
 img.align-center, figure.align-center, .figure.align-center, object.align-center {
-=======
-img.align-center, .figure.align-center, object.align-center {
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-<<<<<<< HEAD
 img.align-default, figure.align-default, .figure.align-default {
-=======
-img.align-default, .figure.align-default {
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -343,12 +319,8 @@ img.align-default, .figure.align-default {
 
 /* -- sidebars -------------------------------------------------------------- */
 
-<<<<<<< HEAD
 div.sidebar,
 aside.sidebar {
-=======
-div.sidebar {
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
     margin: 0 0 0.5em 1em;
     border: 1px solid #ddb;
     padding: 7px;
@@ -406,20 +378,14 @@ div.body p.centered {
 /* -- content of sidebars/topics/admonitions -------------------------------- */
 
 div.sidebar > :last-child,
-<<<<<<< HEAD
 aside.sidebar > :last-child,
-=======
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.topic > :last-child,
 div.admonition > :last-child {
     margin-bottom: 0;
 }
 
 div.sidebar::after,
-<<<<<<< HEAD
 aside.sidebar::after,
-=======
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 div.topic::after,
 div.admonition::after,
 blockquote::after {
@@ -492,16 +458,11 @@ td > :last-child {
 
 /* -- figures --------------------------------------------------------------- */
 
-<<<<<<< HEAD
 div.figure, figure {
-=======
-div.figure {
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
     margin: 0.5em;
     padding: 0.5em;
 }
 
-<<<<<<< HEAD
 div.figure p.caption, figcaption {
     padding: 0.3em;
 }
@@ -513,17 +474,6 @@ figcaption span.caption-number {
 
 div.figure p.caption span.caption-text,
 figcaption span.caption-text {
-=======
-div.figure p.caption {
-    padding: 0.3em;
-}
-
-div.figure p.caption span.caption-number {
-    font-style: italic;
-}
-
-div.figure p.caption span.caption-text {
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 }
 
 /* -- field list styles ----------------------------------------------------- */
@@ -558,7 +508,6 @@ table.hlist td {
     vertical-align: top;
 }
 
-<<<<<<< HEAD
 /* -- object description styles --------------------------------------------- */
 
 .sig {
@@ -616,8 +565,6 @@ code.descname {
 	color: #067D17;
 }
 
-=======
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 
 /* -- other body styles ----------------------------------------------------- */
 
@@ -744,17 +691,6 @@ dl.glossary dt {
     font-size: 1.1em;
 }
 
-<<<<<<< HEAD
-=======
-.optional {
-    font-size: 1.3em;
-}
-
-.sig-paren {
-    font-size: larger;
-}
-
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 .versionmodified {
     font-style: italic;
 }
@@ -882,7 +818,6 @@ div.code-block-caption code {
 }
 
 table.highlighttable td.linenos,
-<<<<<<< HEAD
 span.linenos,
 div.doctest > div.highlight span.gp {  /* gp: Generic.Prompt */
   user-select: none;
@@ -890,10 +825,6 @@ div.doctest > div.highlight span.gp {  /* gp: Generic.Prompt */
   -webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
-=======
-div.doctest > div.highlight span.gp {  /* gp: Generic.Prompt */
-    user-select: none;
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 }
 
 div.code-block-caption span.caption-number {
@@ -908,19 +839,6 @@ div.literal-block-wrapper {
     margin: 1em 0;
 }
 
-<<<<<<< HEAD
-=======
-code.descname {
-    background-color: transparent;
-    font-weight: bold;
-    font-size: 1.2em;
-}
-
-code.descclassname {
-    background-color: transparent;
-}
-
->>>>>>> de25cdd8a29ca2bb2c2df08be00b703b967aaed5
 code.xref, a code {
     background-color: transparent;
     font-weight: bold;
