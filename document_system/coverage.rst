@@ -55,7 +55,7 @@ In `Part 15`_, we will talk about schema form modifier based on the CreatedBy fo
 
 In `Part 16`_, we will discuss about schema list modifier based on the document list filter that checks the admin status of the user. If it is not an admin, what are the models that user can access to.
 
-In `Part 17`_, we will talk about customizing your dashboard and publishing your application for the world to see.
+In `Part 17`_, we will talk about customizing your dashboard and dockerizing your application for the world to see.
 
 .. _Part 1: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part1.html
 .. _Part 2: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part2.html

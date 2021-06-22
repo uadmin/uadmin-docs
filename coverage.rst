@@ -55,7 +55,7 @@ In `Part 15`_, we will talk about generating a self-signed SSL certificate using
 
 In `Part 16`_, we will discuss about password reset, hash salt, and database encryption.
 
-In `Part 17`_, we will talk about customizing your dashboard and publishing your application for the world to see.
+In `Part 17`_, we will talk about customizing your dashboard and dockerizing your application for the world to see.
 
 .. _Part 1: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part1.html
 .. _Part 2: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part2.html

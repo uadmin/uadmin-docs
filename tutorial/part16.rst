@@ -194,7 +194,7 @@ When you check your database, you will notice that your data is encrypted there.
 
 Congrats, now you know how to generate a self-signed SSL certificate, implement two factor authentication, reset your password by email, hash salt, and encrypt your database.
 
-In the `last part`_ of this tutorial, we will talk about customizing your dashboard and publishing your application for the world to see.
+In the `last part`_ of this tutorial, we will talk about customizing your dashboard and dockerizing your application for the world to see.
 
 .. _last part: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part17.html
 

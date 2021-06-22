@@ -130,7 +130,7 @@ Click on **To Do List**. If you notice, there is no save button on the bottom ri
 
 Click `here`_ to view our progress so far.
 
-In the `last part`_ of this tutorial, we will talk about customizing your dashboard and publishing your application for the world to see.
+In the `last part`_ of this tutorial, we will talk about customizing your dashboard and dockerizing your application for the world to see.
 
 .. _here: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html
 .. _last part: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part17.html
