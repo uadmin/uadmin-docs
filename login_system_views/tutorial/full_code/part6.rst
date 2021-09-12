@@ -13,7 +13,7 @@ Structure:
     * `home.go`_
     * `login.go`_
     * `logout.go`_
-    * `main.go (views)`_
+    * `views_main.go`_
 * `main.go`_
 
 templates
@@ -240,7 +240,7 @@ views
         http.Redirect(w, r, "/login_system/", http.StatusSeeOther)
     }
 
-**main.go (views)**
+**views_main.go**
 ^^^^^^^^^^^^^^^^^^^
 `Back to Top`_
 

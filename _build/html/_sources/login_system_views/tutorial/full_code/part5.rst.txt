@@ -12,7 +12,7 @@ Structure:
 * `views`_
     * `home.go`_
     * `login.go`_
-    * `main.go (views)`_
+    * `views_main.go`_
 * `main.go`_
 
 templates
@@ -204,7 +204,7 @@ views
         uadmin.RenderHTML(w, r, "templates/login.html", c)
     }
 
-**main.go (views)**
+**views_main.go**
 ^^^^^^^^^^^^^^^^^^^
 `Back to Top`_
 
