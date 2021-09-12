@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Login System Tutorial Part 4 - Login Access Debugging &#8212; uadmin 0.6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pyramid.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Login System Tutorial Part 4 - Login Access Debugging (Current Progress)" href="full_code/part4.html" />
+    <link rel="prev" title="Login System Tutorial Part 3 - Sending Request (Current Progress)" href="full_code/part3.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="full_code/part4.html" title="Login System Tutorial Part 4 - Login Access Debugging (Current Progress)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="full_code/part3.html" title="Login System Tutorial Part 3 - Sending Request (Current Progress)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../coverage.html" accesskey="U">Login System Tutorials</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Login System Tutorial Part 4 - Login Access Debugging</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="login-system-tutorial-part-4-login-access-debugging">
+<h1>Login System Tutorial Part 4 - Login Access Debugging<a class="headerlink" href="#login-system-tutorial-part-4-login-access-debugging" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, we will discuss about checking the status of the user login with and without OTP validation.</p>
+<p>Go to <strong>login.go</strong> and assign the login validation if the credentials are invalid or does not meet the expected condition.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// If the request method is POST</span>
+<span class="k">if</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Method</span> <span class="o">==</span> <span class="s">&quot;POST&quot;</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// Login2FA login using username, password and otp for users with OTPRequired = true.</span>
+    <span class="nx">session</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Login2FA</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">otp</span><span class="p">)</span>
+
+    <span class="c1">// ------------------- ADD THIS CODE ------------------- //</span>
+    <span class="c1">// Check whether the session returned is nil or the user is not active.</span>
+    <span class="k">if</span> <span class="nx">session</span> <span class="o">==</span> <span class="kc">nil</span> <span class="o">||</span> <span class="p">!</span><span class="nx">session</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">Active</span> <span class="p">{</span>
+        <span class="c1">// Assign the login validation here that will be used for UI displaying. ErrExists and Err fields are coming from the Context struct.</span>
+        <span class="nx">c</span><span class="p">.</span><span class="nx">ErrExists</span> <span class="p">=</span> <span class="kc">true</span>
+        <span class="nx">c</span><span class="p">.</span><span class="nx">Err</span> <span class="p">=</span> <span class="s">&quot;Invalid username/password or inactive user&quot;</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// Display the results</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="s">&quot;Username and password is valid.&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="c1">// ---------------------------------------------------- //</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Add an error message in <strong>login.html</strong>.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- Some codes here --&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+
+  <span class="c">&lt;!----------- ADD THIS CODE -----------&gt;</span>
+  {{if .ErrExists}}
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">b</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;color:red&quot;</span><span class="p">&gt;</span>{{.Err}}<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  {{end}}
+  <span class="c">&lt;!-------------------------------------&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Now run your application and go to the login system path in the address bar (e.g. <a class="reference external" href="http://localhost:8080/login_system/">http://localhost:8080/login_system/</a>). Assign the invalid username and password in the login form (e.g. sdfsdf, 123123). Click Login button to submit.</p>
+<img alt="../../_images/invaliduserpass.png" class="align-center" src="../../_images/invaliduserpass.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../../_images/invaliduserpassresult.png" class="align-center" src="../../_images/invaliduserpassresult.png" />
+<p>But if you assign the valid username and password in the login form (e.g. admin, admin)</p>
+<img alt="../../_images/adminloginformuserpass.png" class="align-center" src="../../_images/adminloginformuserpass.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Check your terminal for the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  DEBUG <span class="o">]</span>   Username and password is valid.
+</pre></div>
+</div>
+<p>Exit your application. Go to <strong>login.go</strong> in views folder and let’s create a validation to check if the user requires OTP for the login process.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check whether the session returned is nil or the user is not active.</span>
+<span class="k">if</span> <span class="nx">session</span> <span class="o">==</span> <span class="kc">nil</span> <span class="o">||</span> <span class="p">!</span><span class="nx">session</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">Active</span> <span class="p">{</span>
+    <span class="c1">// Some codes here</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// ----------------------------- ADD THIS CODE ----------------------------- //</span>
+    <span class="c1">// If the user has OTPRequired enabled, it will print the username and OTP in the terminal.</span>
+    <span class="k">if</span> <span class="nx">session</span><span class="p">.</span><span class="nx">PendingOTP</span> <span class="p">{</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;User: %s OTP: %s&quot;</span><span class="p">,</span> <span class="nx">session</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">Username</span><span class="p">,</span> <span class="nx">session</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">GetOTP</span><span class="p">())</span>
+    <span class="p">}</span>
+
+    <span class="c1">// As long as the username and password is valid, it will create a session cookie in the browser.</span>
+    <span class="nx">cookie</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Cookie</span><span class="p">(</span><span class="s">&quot;session&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">cookie</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">cookie</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Cookie</span><span class="p">{}</span>
+    <span class="p">}</span>
+    <span class="nx">cookie</span><span class="p">.</span><span class="nx">Name</span> <span class="p">=</span> <span class="s">&quot;session&quot;</span>
+    <span class="nx">cookie</span><span class="p">.</span><span class="nx">Value</span> <span class="p">=</span> <span class="nx">session</span><span class="p">.</span><span class="nx">Key</span>
+    <span class="nx">cookie</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="s">&quot;/&quot;</span>
+    <span class="nx">cookie</span><span class="p">.</span><span class="nx">SameSite</span> <span class="p">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">SameSiteStrictMode</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">SetCookie</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">cookie</span><span class="p">)</span>
+
+    <span class="c1">// Check for OTP</span>
+    <span class="k">if</span> <span class="nx">session</span><span class="p">.</span><span class="nx">PendingOTP</span> <span class="p">{</span>
+        <span class="c1">// After the user enters a valid username and password in the first part of the form, these values will be used on the second part in the UI where the OTP input field will be displayed afterwards.</span>
+        <span class="nx">c</span><span class="p">.</span><span class="nx">Username</span> <span class="p">=</span> <span class="nx">username</span>
+        <span class="nx">c</span><span class="p">.</span><span class="nx">Password</span> <span class="p">=</span> <span class="nx">password</span>
+        <span class="nx">c</span><span class="p">.</span><span class="nx">OTPRequired</span> <span class="p">=</span> <span class="kc">true</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="s">&quot;Your login credentials are valid.&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="c1">// ------------------------------------------------------------------------- //</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Add validation in <strong>login.html</strong> to say that OTP input field should be displayed if the user has OTPRequired enabled in the database and after the user enters a valid username and password.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-- ADD THIS CODE : This code already exists before but we add the value</span>
+<span class="c">  attributes in username and password input tags. --&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;username&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Username&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;{{.Username}}&quot;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Password&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;{{.Password}}&quot;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+
+  <span class="c">&lt;!-- ADD THIS CODE : The OTP field will be displayed if the user has OTPRequired</span>
+<span class="c">    enabled and after the user enters a valid username and password.--&gt;</span>
+  {{if .OTPRequired}}
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;otp&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;OTP&quot;</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+  {{end}}
+  <span class="c">&lt;!--------------------------------------------------&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Login<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Run your application and go to the admin path in the address bar (e.g. <a class="reference external" href="http://localhost:8080/admin/">http://localhost:8080/admin/</a>). Login using “admin” as username and password.</p>
+<img alt="../../_images/loginform3.png" class="align-center" src="../../_images/loginform3.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click on “USERS”.</p>
+<img alt="../../_images/usermodelhighlighted1.png" src="../../_images/usermodelhighlighted1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click System Admin.</p>
+<img alt="../../_images/systemadminhighlighted1.png" src="../../_images/systemadminhighlighted1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Scroll down the form then activate OTP Required on that user.</p>
+<img alt="../../_images/activateotprequired1.png" src="../../_images/activateotprequired1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../../_images/otprequiredtrue1.png" src="../../_images/otprequiredtrue1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click the blue person icon on the top right corner then select admin in order to visit the profile page.</p>
+<img alt="../../_images/adminhighlightedprofile1.png" class="align-center" src="../../_images/adminhighlightedprofile1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Scroll down the form. There is a 2FA image to fetch the QR code which is typically used for storing URLs or other information for reading by the camera on a smartphone. In order to do that, you can use Google Authenticator (<a class="reference external" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en">Android</a>, <a class="reference external" href="https://itunes.apple.com/ph/app/google-authenticator/id388497605?mt=8">iOS</a>). It is a software-based authenticator that implements two-step verification services using the Time-based One-time Password Algorithm and HMAC-based One-time Password algorithm, for authenticating users of mobile applications by Google. <a class="footnote-reference brackets" href="#f1" id="id1">1</a></p>
+<img alt="../../_images/2faimage1.png" class="align-center" src="../../_images/2faimage1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If there is a problem, you may go to your terminal and check the OTP verification code for login.</p>
+<p>Now go to the login system path in the address bar (e.g. <a class="reference external" href="http://localhost:8080/login_system/">http://localhost:8080/login_system/</a>). Assign the username and password first. Click Login button to submit.</p>
+<img alt="../../_images/adminuserpasshiddenotp.png" class="align-center" src="../../_images/adminuserpasshiddenotp.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>After the system validates the username and password, it will display the OTP input field in the UI. Check your terminal or Google Authenticator for the OTP (e.g. 123456).</p>
+<img alt="../../_images/adminloginformdatatest1.png" class="align-center" src="../../_images/adminloginformdatatest1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Check your terminal for the result.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  DEBUG <span class="o">]</span>   Your login credentials are valid.
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can also see that the session cookie is created in your browser.</p>
+<img alt="../../_images/sessioncookiebrowser.png" class="align-center" src="../../_images/sessioncookiebrowser.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/full_code/part4.html">here</a> to view our progress so far.</p>
+<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part5.html">next part</a>, we will talk about accessing the home page after the user logins an account with valid credentials.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="full_code/part4.html">Login System Tutorial Part 4 - Login Access Debugging (Current Progress)</a></li>
+</ul>
+</div>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>No author (28 May 2019). Google Authenticator. Retrieved from <a class="reference external" href="https://en.wikipedia.org/wiki/Google_Authenticator">https://en.wikipedia.org/wiki/Google_Authenticator</a></p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="full_code/part3.html"
+                        title="previous chapter">Login System Tutorial Part 3 - Sending Request (Current Progress)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="full_code/part4.html"
+                        title="next chapter">Login System Tutorial Part 4 - Login Access Debugging (Current Progress)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/login_system_views/tutorial/part4.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="full_code/part4.html" title="Login System Tutorial Part 4 - Login Access Debugging (Current Progress)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="full_code/part3.html" title="Login System Tutorial Part 3 - Sending Request (Current Progress)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../coverage.html" >Login System Tutorials</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Login System Tutorial Part 4 - Login Access Debugging</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+    </div>
+  </body>
+</html>

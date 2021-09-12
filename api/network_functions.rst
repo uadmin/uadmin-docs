@@ -97,7 +97,7 @@ Used in the tutorial:
 * `Login System Tutorial Part 1 - Build A Project`_
 
 .. _Document System Tutorial Part 1 - Build A Project: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part1.html
-.. _Login System Tutorial Part 1 - Build A Project: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part1.html
+.. _Login System Tutorial Part 1 - Build A Project: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part1.html
 
 Go to the main.go. Connect to the server using a loopback IP address (127.x.x.x). Let's say **127.0.0.2**.
 
@@ -113,7 +113,7 @@ If you run your code,
 .. code-block:: bash
 
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [   OK   ]   Server Started: http://127.0.0.2:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -330,7 +330,7 @@ If you run your code,
 .. code-block:: bash
 
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [   OK   ]   Server Started: http://0.0.0.0:8000
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___

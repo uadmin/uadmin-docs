@@ -227,6 +227,10 @@ Parameter:
 
     **r \*http.Request:** Is a data structure that represents the client HTTP request
 
+Used in the tutorial:
+
+* `Login System Tutorial Part 5 - Home Page Access`_
+
 See `uadmin.Session`_ for the list of fields and functions that you can use in IsAuthenticated.
 
 Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
@@ -343,12 +347,6 @@ Parameters:
 
     **password string:** Is the password of the user account
 
-Used in the tutorial:
-
-* `Login System Tutorial Part 4 - Login Access Debugging`_
-
-.. _Login System Tutorial Part 4 - Login Access Debugging: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part4.html
-
 Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
 
 Create a file named info.go inside the api folder with the following codes below:
@@ -396,14 +394,12 @@ And the user OTP for the System Admin is not enabled.
 
 Visit `Login System Tutorials`_ for more examples.
 
-.. _Login System Tutorials: https://uadmin-docs.readthedocs.io/en/latest/login_system/coverage.html
-
 Page:
 
 .. toctree::
    :maxdepth: 1
 
-   ../login_system/coverage
+   ../login_system_views/coverage
 
 Quiz:
 
@@ -431,9 +427,11 @@ Parameters:
 
 Used in the tutorial:
 
+* `Login System Tutorial Part 3 - Sending Request`_
 * `Login System Tutorial Part 4 - Login Access Debugging`_
 
-.. _Login System Tutorial Part 4 - Login Access Debugging: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part4.html
+.. _Login System Tutorial Part 3 - Sending Request: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part3.html
+.. _Login System Tutorial Part 4 - Login Access Debugging: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part4.html
 
 Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
 
@@ -505,14 +503,12 @@ The result is coming from the session model that is currently used.
 
 Visit `Login System Tutorials`_ for more examples.
 
-.. _Login System Tutorials: https://uadmin-docs.readthedocs.io/en/latest/login_system/coverage.html
-
 Page:
 
 .. toctree::
    :maxdepth: 1
 
-   ../login_system/coverage
+   ../login_system_views/coverage
 
 Quiz:
 
@@ -534,9 +530,9 @@ Parameter:
 
 Used in the tutorial:
 
-* `Login System Tutorial Part 7 - Logout`_
+* `Login System Tutorial Part 6 - Logout`_
 
-.. _Login System Tutorial Part 7 - Logout: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part7.html
+.. _Login System Tutorial Part 6 - Logout: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part6.html
 
 Suppose that the admin account has logined.
 
@@ -584,14 +580,12 @@ Your account has been logged out automatically that redirects you to the login p
 
 Visit `Login System Tutorials`_ for more examples.
 
-.. _Login System Tutorials: https://uadmin-docs.readthedocs.io/en/latest/login_system/coverage.html
-
 Page:
 
 .. toctree::
    :maxdepth: 1
 
-   ../login_system/coverage
+   ../login_system_views/coverage
 
 Quiz:
 
@@ -619,6 +613,13 @@ uadmin.Session
     }
 
 Session is an activity that a user with a unique IP address spends on a Web site during a specified period of time. [#f1]_
+
+Used in the tutorial:
+
+* `Login System Tutorial Part 5 - Home Page Access`_
+* `Login System Tutorial Part 6 - Logout`_
+
+.. _Login System Tutorial Part 5 - Home Page Access: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part5.html
 
 **func (\*Session) GenerateKey**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -979,14 +980,10 @@ Used in the tutorial:
 * `Document System Tutorial Part 14 - Permissions Form`_
 * `Document System Tutorial Part 15 - Schema Form Modifier`_
 * `Document System Tutorial Part 16 - Schema List Modifier`_
-* `Login System Tutorial Part 3 - Sending Request`_
-* `Login System Tutorial Part 4 - Login Access Debugging`_
 
 .. _Document System Tutorial Part 14 - Permissions Form: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part14.html
 .. _Document System Tutorial Part 15 - Schema Form Modifier: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part15.html
 .. _Document System Tutorial Part 16 - Schema List Modifier: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part16.html
-.. _Login System Tutorial Part 3 - Sending Request: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part3.html
-.. _Login System Tutorial Part 4 - Login Access Debugging: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part4.html
 
 There are 2 ways you can do for initialization process using this function: one-by-one and by group.
 
@@ -1181,14 +1178,14 @@ Congrats, now you know how to configure the User fields, fetching the username r
 
 Visit `Login System Tutorials`_ for more examples.
 
-.. _Login System Tutorials: https://uadmin-docs.readthedocs.io/en/latest/login_system/coverage.html
+.. _Login System Tutorials: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/coverage.html
 
 Page:
 
 .. toctree::
    :maxdepth: 1
 
-   ../login_system/coverage
+   ../login_system_views/coverage
 
 Quiz:
 

@@ -22,22 +22,6 @@ Structure:
     * `Items`_
     * `Todos`_
 
-.. _api: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id1
-.. _api.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id2
-.. _custom_list.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id3
-.. _todo_list.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id4
-.. _models: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id5
-.. _category.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id6
-.. _friend.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id7
-.. _item.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id8
-.. _todo.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id9
-.. _main.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id10
-.. _uadmin.db: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id11
-.. _Categories: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id12
-.. _Friends: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id13
-.. _Items: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id14
-.. _Todos: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part10.html#id15
-
 api
 ---
 
@@ -248,7 +232,7 @@ models
         uadmin.Model
         Name         string     `uadmin:"required;search;categorical_filter;filter;display_name:Product Name;default_value:Computer"`
         Description  string     `uadmin:"multilingual"`
-        Category     []Category `uadmin:"list_exclude"`
+        Category     []Category `uadmin:"list_exclude" gorm:"many2many:category"`
         CategoryList string     `uadmin:"read_only"`
         Cost         int        `uadmin:"money;pattern:^[0-9]*$;pattern_msg:Your input must be a number.;help:Input numeric characters only in this field."`
         Rating       int        `uadmin:"min:1;max:5"`
@@ -322,6 +306,7 @@ main.go
     )
 
     func main() {
+        // Register Models
         uadmin.Register(
             models.Todo{},
             models.Category{},
@@ -329,6 +314,7 @@ main.go
             models.Item{},
         )
 
+        // Register Inlines
         uadmin.RegisterInlines(models.Category{}, map[string]string{
             "Todo": "CategoryID",
         })
@@ -339,6 +325,16 @@ main.go
             "Todo": "ItemID",
         })
 
+        // API Handler
+        http.HandleFunc("/api/", uadmin.Handler(api.Handler))
+
+        // Call InitializeRootURL function to change the RootURL value in the Settings model.
+        InitializeRootURL()
+
+        uadmin.StartServer()
+    }
+
+    func InitializeRootURL() {
         // Initialize Setting model
         setting := uadmin.Setting{}
 
@@ -350,13 +346,7 @@ main.go
 
         // Save changes
         setting.Save()
-
-        // API Handler
-        http.HandleFunc("/api/", uadmin.Handler(api.Handler))
-
-        uadmin.StartServer()
     }
-
 
 uadmin.db
 ---------

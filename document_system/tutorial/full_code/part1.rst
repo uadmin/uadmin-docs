@@ -8,8 +8,6 @@ Structure:
 
 * `main.go`_
 
-.. _main.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part1.html#id1
-
 main.go
 -------
 `Back to Top`_

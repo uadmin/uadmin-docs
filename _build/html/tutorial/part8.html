@@ -57,7 +57,7 @@
 <p>For more advanced validation, sometimes you need to implement some validation from the back-end. This is the case for validation that required access to the database to check for duplicate entries or check some permissions like “You are not allowed to assign this task to people outside your department”. Regardless of the case this is how to implement back-end validation.</p>
 <p>Let’s say we don’t want people to add duplicate entries for todo. The way we will do that is check the database and see if there is another todo record with the same name. If we find another record, we can return a message that tells the user that the todo item has been added to the system already.</p>
 <p>Open <strong>/models/todo.go</strong> and add a new method called <strong>Validate</strong> to your Todo struct.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Todo model ...</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Todo Model !</span>
 <span class="kd">type</span> <span class="nx">Todo</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
     <span class="nx">Name</span>        <span class="kt">string</span>
@@ -72,14 +72,14 @@
     <span class="nx">Progress</span>    <span class="kt">int</span> <span class="s">`uadmin:&quot;progress_bar&quot;`</span>
 <span class="p">}</span>
 
-<span class="c1">// Save model ...</span>
+<span class="c1">// Save function !</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">Todo</span><span class="p">)</span> <span class="nx">Save</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Save the model to DB</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
     <span class="c1">// Some other business Logic ...</span>
 <span class="p">}</span>
 
-<span class="c1">// Validate function ...</span>
+<span class="c1">// Validate function !</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="nx">Todo</span><span class="p">)</span> <span class="nx">Validate</span><span class="p">()</span> <span class="p">(</span><span class="nx">errMsg</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Initialize the error messages</span>
     <span class="nx">errMsg</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{}</span>
@@ -144,7 +144,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -173,7 +173,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

@@ -414,7 +414,6 @@ Used in the tutorial:
 * `Login System Tutorial Part 1 - Build A Project`_
 * `uAdmin Tutorial Part 9 - Introduction to API`_
 
-.. _Login System Tutorial Part 1 - Build A Project: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part1.html
 .. _uAdmin Tutorial Part 9 - Introduction to API: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html
 
 To assign a value within an application, visit `Root URL`_ page for an example.
@@ -471,8 +470,6 @@ Used in the tutorial:
 * `Login System Tutorial Part 1 - Build A Project`_
 * `uAdmin Tutorial Part 17 - Wrapping Up Your Application`_
 
-.. _Document System Tutorial Part 1 - Build A Project: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part1.html
-.. _Login System Tutorial Part 1 - Build A Project: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part1.html
 .. _uAdmin Tutorial Part 17 - Wrapping Up Your Application: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part17.html
 
 To assign a value within an application, visit `Site Name`_ page for an example.
@@ -542,7 +539,7 @@ Used in the tutorial:
 * `uAdmin Tutorial Part 6 - Applying uAdmin Tags`_
 
 .. _Document System Tutorial Part 1 - Build A Project: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part1.html
-.. _Login System Tutorial Part 1 - Build A Project: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part1.html
+.. _Login System Tutorial Part 1 - Build A Project: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part1.html
 .. _uAdmin Tutorial Part 2 - Internal vs. External Models: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part2.
 .. _uAdmin Tutorial Part 4 - Linking Models: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part4.html
 .. _uAdmin Tutorial Part 6 - Applying uAdmin Tags: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part6.html
@@ -564,7 +561,7 @@ Now to run your code:
     [   OK   ]   Initializing DB: [13/13]
     [   OK   ]   Initializing Languages: [185/185]
     [  INFO  ]   Auto generated admin user. Username: admin, Password: admin.
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___

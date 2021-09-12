@@ -12,12 +12,6 @@ Structure:
 * `uadmin.db`_
     * `Folders`_
 
-.. _models: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part2.html#id1
-.. _folder.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part2.html#id2
-.. _main.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part2.html#id3
-.. _uadmin.db: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part2.html#id4
-.. _Folders: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part2.html#id5
-
 models
 ------
 **folder.go**

@@ -1,8 +1,8 @@
 uAdmin Tutorial Part 13 - Accessing an HTML file
 ================================================
-In this part, we will talk about establishing a connection to the HTTP Handler, setting the URL path name, and executing an HTML file.
+In this part, we will talk about establishing a connection to the Page Handler, setting the URL path name, and executing an HTML file.
 
-Go to view.go inside the views folder with the following codes below:
+Go to **view.go** inside the views folder with the following codes below:
 
 .. code-block:: go
 
@@ -13,10 +13,10 @@ Go to view.go inside the views folder with the following codes below:
         "strings"
     )
 
-    // HTTPHandler !
-    func HTTPHandler(w http.ResponseWriter, r *http.Request) {
-        // r.URL.Path creates a new path called "/http_handler"
-        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/http_handler")
+    // PageHandler !
+    func PageHandler(w http.ResponseWriter, r *http.Request) {
+        // r.URL.Path creates a new path called "/page/"
+        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/page")
         r.URL.Path = strings.TrimSuffix(r.URL.Path, "/")
     }
 
@@ -41,31 +41,28 @@ Establish a connection in the main.go to the views by using http.HandleFunc. It 
         // Some codes
 
         // HTTP UI Handler
-        http.HandleFunc("/http_handler/", uadmin.Handler(views.HTTPHandler))
+        http.HandleFunc("/page/", uadmin.Handler(views.PageHandler))
     }
 
-Create a file named todo_view.go inside the views folder with the following codes below:
+Create a file named **todo_view.go** inside the views folder with the following codes below:
 
 .. code-block:: go
 
     package views
 
     import (
-        "html/template"
         "net/http"
-        "strings"
 
         "github.com/uadmin/uadmin"
     )
 
+    // TodoList field inside the Context that will be used in Golang HTML template
+    type Context struct {
+        TodoList []map[string]interface{}
+    }
+
     // TodoHandler !
     func TodoHandler(w http.ResponseWriter, r *http.Request) {
-        // TodoList field inside the Context that will be used in Golang
-        // HTML template
-        type Context struct {
-            TodoList []map[string]interface{}
-        }
-
         // Assigns Context struct to the c variable
         c := Context{}
 
@@ -73,14 +70,14 @@ Create a file named todo_view.go inside the views folder with the following code
         uadmin.RenderHTML(w, r, "templates/todo.html", c)
     }
 
-Finally, add this piece of code in the view.go shown below. This will establish a communication between the HTTPHandler and the TodoHandler.
+Finally, add this piece of code in the **view.go** shown below. This will establish a communication between the PageHandler and the TodoHandler.
 
 .. code-block:: go
 
-    // HTTPHandler !
-    func HTTPHandler(w http.ResponseWriter, r *http.Request) {
-        // r.URL.Path creates a new path called "/http_handler/"
-        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/http_handler")
+    // PageHandler !
+    func PageHandler(w http.ResponseWriter, r *http.Request) {
+        // r.URL.Path creates a new path called "/page/"
+        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/page")
         r.URL.Path = strings.TrimSuffix(r.URL.Path, "/")
 
         if strings.HasPrefix(r.URL.Path, "/todo") {
@@ -89,7 +86,7 @@ Finally, add this piece of code in the view.go shown below. This will establish 
         }
     }
 
-Now run your application, go to http://localhost:8080/http_handler/todo path and see what happens.
+Now run your application, go to http://localhost:8080/page/todo path and see what happens.
 
 .. image:: assets/todohtmlaccess.png
 

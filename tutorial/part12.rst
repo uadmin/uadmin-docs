@@ -6,9 +6,9 @@ Before you proceed, make sure you have at least the basic knowledge of HTML. If 
 
 .. _W3Schools: https://www.w3schools.com/
 
-In this tutorial, we will use `Bootstrap 4`_.
+In this tutorial, we will use `Bootstrap 5`_.
 
-.. _Bootstrap 4: https://www.w3schools.com/bootstrap4/default.asp
+.. _Bootstrap 5: https://getbootstrap.com/
 
 First of all, go to your project folder and select templates.
 
@@ -30,20 +30,20 @@ Inside the todo.html, create an HTML5 structure following the codes below and ch
 
     <!DOCTYPE html>
     <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-      <!-- Latest compiled and minified CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <!-- Latest compiled and minified CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
-      <!-- Change the title from Document to Todo List -->
-      <title>Todo List</title> 
-    </head>
-    <body>
-        
-    </body>
+        <!-- Change the title from Document to Todo List -->
+        <title>Todo List</title>
+      </head>
+      <body>
+
+      </body>
     </html>
 
 Save the file. Run your application in the browser and see what happens.

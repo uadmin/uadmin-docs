@@ -23,23 +23,6 @@ Structure:
     * `Items`_
     * `Todos`_
 
-.. _api: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id1
-.. _add_friend.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id2
-.. _api.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id3
-.. _custom_list.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id4
-.. _todo_list.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id5
-.. _models: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id6
-.. _category.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id7
-.. _friend.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id8
-.. _item.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id9
-.. _todo.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id10
-.. _main.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id11
-.. _uadmin.db: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id12
-.. _Categories: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id13
-.. _Friends: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id14
-.. _Items: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id15
-.. _Todos: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part11.html#id16
-
 api
 ---
 
@@ -61,21 +44,28 @@ api
 
     // AddFriendAPIHandler !
     func AddFriendAPIHandler(w http.ResponseWriter, r *http.Request) {
-        res := map[string]interface{}{}
-
         // Fetch data from Friend DB
         friend := models.Friend{}
 
-        // Set the parameters of Name, Email, and Password
+        // Set the parameters of Name, Email, Password, and Nationality such that where nationality is
+        // equivalent to the following:
+        // 1 - Chinese
+        // 2 - Filipino
+        // 3 - Others
         friendName := r.FormValue("name")
         friendEmail := r.FormValue("email")
         friendPassword := r.FormValue("password")
+        friendNationalityRaw := r.FormValue("nationality")
+
+        // Convert the nationality to an integer.
+        friendNationality, err := strconv.Atoi(friendNationalityRaw)
 
         // Validate if the friendName variable is empty.
         if friendName == "" {
-            res["status"] = "ERROR"
-            res["err_msg"] = "Name is required."
-            uadmin.ReturnJSON(w, r, res)
+            uadmin.ReturnJSON(w, r, map[string]interface{}{
+                "status":  "error",
+                "err_msg": "Name is required.",
+            })
             return
         }
 
@@ -83,12 +73,23 @@ api
         friend.Name = friendName
         friend.Email = friendEmail
         friend.Password = friendPassword
+        friend.Nationality = models.Nationality(friendNationality)
 
-        // Store input in the Friend model
-        uadmin.Save(&friend)
+        // Save input in the Friend model
+        err = uadmin.Save(&friend)
+        if err != nil {
+            // Return an error message if the database did not save properly.
+            uadmin.ReturnJSON(w, r, map[string]interface{}{
+                "status":  "error",
+                "err_msg": "Error saving the database : " + err.Error(),
+            })
+            return
+        }
 
-        res["status"] = "ok"
-        uadmin.ReturnJSON(w, r, res)
+        // Return JSON to the client.
+        uadmin.ReturnJSON(w, r, map[string]interface{}{
+            "status": "ok",
+        })
     }
 
 **api.go**
@@ -302,7 +303,7 @@ models
         uadmin.Model
         Name         string     `uadmin:"required;search;categorical_filter;filter;display_name:Product Name;default_value:Computer"`
         Description  string     `uadmin:"multilingual"`
-        Category     []Category `uadmin:"list_exclude"`
+        Category     []Category `uadmin:"list_exclude" gorm:"many2many:category"`
         CategoryList string     `uadmin:"read_only"`
         Cost         int        `uadmin:"money;pattern:^[0-9]*$;pattern_msg:Your input must be a number.;help:Input numeric characters only in this field."`
         Rating       int        `uadmin:"min:1;max:5"`
@@ -376,6 +377,7 @@ main.go
     )
 
     func main() {
+        // Register Models
         uadmin.Register(
             models.Todo{},
             models.Category{},
@@ -383,6 +385,7 @@ main.go
             models.Item{},
         )
 
+        // Register Inlines
         uadmin.RegisterInlines(models.Category{}, map[string]string{
             "Todo": "CategoryID",
         })
@@ -393,6 +396,16 @@ main.go
             "Todo": "ItemID",
         })
 
+        // API Handler
+        http.HandleFunc("/api/", uadmin.Handler(api.Handler))
+
+        // Call InitializeRootURL function to change the RootURL value in the Settings model.
+        InitializeRootURL()
+
+        uadmin.StartServer()
+    }
+
+    func InitializeRootURL() {
         // Initialize Setting model
         setting := uadmin.Setting{}
 
@@ -404,13 +417,7 @@ main.go
 
         // Save changes
         setting.Save()
-
-        // API Handler
-        http.HandleFunc("/api/", uadmin.Handler(api.Handler))
-
-        uadmin.StartServer()
     }
-
 
 uadmin.db
 ---------

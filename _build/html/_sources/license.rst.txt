@@ -1,6 +1,8 @@
 License
 =======
-Copyright 2020 `IntegrityNet Solutions and Services`_
+The MIT License (MIT)
+
+Copyright 2021 `IntegrityNet Solutions and Services`_
 
 .. _IntegrityNet Solutions and Services: https://www.integritynet.biz/
 

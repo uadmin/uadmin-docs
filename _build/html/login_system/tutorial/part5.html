@@ -42,8 +42,9 @@
           <a href="full_code/part4.html" title="Login System Tutorial Part 4 - Login Access Debugging (Current Progress)"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../coverage.html" accesskey="U">Login System Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../api/user_functions.html" >User Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../coverage.html" accesskey="U">Login System Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Login System Tutorial Part 5 - Session and Cookie</a></li> 
       </ul>
     </div>  
@@ -57,8 +58,8 @@
 <h1>Login System Tutorial Part 5 - Session and Cookie<a class="headerlink" href="#login-system-tutorial-part-5-session-and-cookie" title="Permalink to this headline">¶</a></h1>
 <p>In this tutorial, we will talk about getting the session key if the user login is valid and setting an HTTP cookie for the user session.</p>
 <p>Go to login.go in views folder and apply the following codes below:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check if the session is fetched from the Login function</span>
-<span class="k">if</span> <span class="nx">session</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check if the session is fetched from either login or login2fa</span>
+<span class="k">if</span> <span class="nx">login</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
     <span class="c1">// Create a cookie named &quot;user_session&quot; with the value of</span>
     <span class="c1">// UserID</span>
     <span class="nx">usersession</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Cookie</span><span class="p">{</span>
@@ -126,9 +127,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../coverage.html">uAdmin Tutorials</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quiz.html">uAdmin Quizzes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../system_reference.html">System Reference</a></li>
@@ -156,7 +157,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -179,14 +180,15 @@
           <a href="full_code/part4.html" title="Login System Tutorial Part 4 - Login Access Debugging (Current Progress)"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../coverage.html" >Login System Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../api/user_functions.html" >User Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../coverage.html" >Login System Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Login System Tutorial Part 5 - Session and Cookie</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

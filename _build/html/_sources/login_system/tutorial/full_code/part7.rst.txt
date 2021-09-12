@@ -13,13 +13,6 @@ Structure:
     * `login.go`_
 * `main.go`_
 
-.. _templates: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part7.html#id1
-.. _home.html: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part7.html#id2
-.. _login.html: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part7.html#id3
-.. _views: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part7.html#id4
-.. _login.go: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part7.html#id5
-.. _main.go: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part7.html#id6
-
 templates
 ---------
 **home.html**

@@ -33,7 +33,7 @@ The parent model Todo is now included in the Category submodel as shown above. Y
 
 Drop Down List in a Field
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-Go to the friend.go in the models folder. Let's create a drop down list selection in the Nationality field. In order to do that, initialize a variable with the type int. Create a function that will set an item and return the integer value inside it. One function is equivalent to one item. Put it above the Friend model.
+Go to the **friend.go** in the models folder. Let's create a drop down list selection in the Nationality field. In order to do that, initialize a variable with the type int. Create a function that will set an item and return the integer value inside it. One function is equivalent to one item. Put it above the Friend model.
 
 .. code-block:: go
 

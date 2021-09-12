@@ -19,7 +19,7 @@ Go to login.go in views folder and call the login function that passes the HTTP 
         login, otp := uadmin.Login(r, username, password)
 
         // Print results
-        uadmin.Trail(uadmin.DEBUG, "Login as: %s", login)
+        uadmin.Trail(uadmin.DEBUG, "Login as: %s", login.User)
         uadmin.Trail(uadmin.DEBUG, "OTP: %t", otp)
     }
 
@@ -56,8 +56,8 @@ Exit your application. Go to login.go in views folder and call the login2fa func
         login, otp := uadmin.Login(r, username, password)
 
         // ----------------------- PLACE IT HERE -----------------------
-        // Initialize Login2FA that returns the User
-        login2fa := &uadmin.User{}
+        // Initialize Login2FA that returns the Session
+        login2fa := &uadmin.Session{}
 
         // Check whether the OTP value from Login function is true
         // and the OTP Password is valid
@@ -67,13 +67,19 @@ Exit your application. Go to login.go in views folder and call the login2fa func
             login2fa = uadmin.Login2FA(r, username, password, otpPass)
 
             // Print the result
-            uadmin.Trail(uadmin.DEBUG, "Login with 2FA as: %s", login2fa)
+            uadmin.Trail(uadmin.DEBUG, "Login with 2FA as: %s", login2fa.User)
         }
+        // --------------------------------------------------------------
+
+        // Print results
+        uadmin.Trail(uadmin.DEBUG, "Login as: %s", login.User)
+        uadmin.Trail(uadmin.DEBUG, "OTP: %t", otp)
     }
 
 Run your application and go to the admin path in the address bar (e.g. http://localhost:8080/admin/). Login using "admin” as username and password.
 
 .. image:: assets/loginform.png
+   :align: center
 
 |
 

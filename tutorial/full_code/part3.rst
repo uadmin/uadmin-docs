@@ -14,14 +14,6 @@ Structure:
     * `Categories`_
     * `Todos`_
 
-.. _models: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part3.html#id1
-.. _category.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part3.html#id2
-.. _todo.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part3.html#id3
-.. _main.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part3.html#id4
-.. _uadmin.db: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part3.html#id5
-.. _Categories: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part3.html#id6
-.. _Todos: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part3.html#id7
-
 models
 ------
 
@@ -83,6 +75,7 @@ main.go
     )
 
     func main() {
+        // Register Models
         uadmin.Register(
             models.Todo{},
             models.Category{},
@@ -106,4 +99,4 @@ uadmin.db
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part3.html#uadmin-tutorial-part-3-image-cropping-current-progress
 
-.. image:: ../../assets/todomodeloutput.png
+.. image:: ../../tutorial/assets/todomodeloutput.png

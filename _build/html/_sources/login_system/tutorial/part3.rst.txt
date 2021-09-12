@@ -2,7 +2,7 @@ Login System Tutorial Part 3 - Sending Request
 ==============================================
 In this tutorial, we will talk about sending data from login form in HTML to the LoginHandler.
 
-Go to login.go in views folder and initialize the User model inside the LoginHandler function.
+Go to **login.go** in views folder and initialize the User model inside the LoginHandler function.
 
 .. code-block:: go
 
@@ -52,7 +52,7 @@ Check your terminal for the result.
 
     [  DEBUG ]   Username: admin
 
-Exit your application. Go to the login.go in the views folder. Create a validation whether the fetched record from the User model is existing. Inside the validation, assign the parameters then check if the password and OTP password contains a value.
+Exit your application. Go to the **login.go** in the views folder. Create a validation whether the fetched record from the User model is existing. Inside the validation, assign the parameters then check if the password and OTP password contains a value.
 
 .. code-block:: go
 

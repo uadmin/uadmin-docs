@@ -12,12 +12,6 @@ Structure:
     * `login.go`_
 * `main.go`_
 
-.. _templates: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part4.html#id1
-.. _login.html: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part4.html#id2
-.. _views: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part4.html#id3
-.. _login.go: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part4.html#id4
-.. _main.go: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/full_code/part4.html#id5
-
 templates
 ---------
 **login.html**
@@ -100,7 +94,8 @@ views
                     otpPass := r.FormValue("otp_pass")
 
                     // Pass the requested username and password in Login function to
-                    // return the session and the boolean value for IsOTPRequired
+                    // return the full name of the User and the boolean value for
+                    // IsOTPRequired
                     login, otp := uadmin.Login(r, username, password)
 
                     // Initialize Login2FA that returns the Session
@@ -110,7 +105,7 @@ views
                     // and the OTP Password is valid
                     if otp == true && user.VerifyOTP(otpPass) {
                         // Pass the requested username, password, and OTP Password in
-                        // Login2FA function to return the session
+                        // Login2FA function to return the full name of the User
                         login2fa = uadmin.Login2FA(r, username, password, otpPass)
 
                         // Print the result

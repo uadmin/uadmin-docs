@@ -18,18 +18,6 @@ Structure:
     * `Items`_
     * `Todos`_
 
-.. _models: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id1
-.. _category.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id2
-.. _friend.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id3
-.. _item.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id4
-.. _todo.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id5
-.. _main.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id6
-.. _uadmin.db: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id7
-.. _Categories: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id8
-.. _Friends: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id9
-.. _Items: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id10
-.. _Todos: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part6.html#id11
-
 models
 ------
 
@@ -164,6 +152,7 @@ main.go
     )
 
     func main() {
+        // Register Models
         uadmin.Register(
             models.Todo{},
             models.Category{},
@@ -171,6 +160,7 @@ main.go
             models.Item{},
         )
 
+        // Register Inlines
         uadmin.RegisterInlines(models.Category{}, map[string]string{
             "Todo": "CategoryID",
         })

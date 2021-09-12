@@ -42,8 +42,9 @@
           <a href="full_code/part1.html" title="Login System Tutorial Part 1 - Build A Project (Current Progress)"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../coverage.html" accesskey="U">Login System Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../api/user_functions.html" >User Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../coverage.html" accesskey="U">Login System Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Login System Tutorial Part 2 - Login Form</a></li> 
       </ul>
     </div>  
@@ -57,9 +58,9 @@
 <h1>Login System Tutorial Part 2 - Login Form<a class="headerlink" href="#login-system-tutorial-part-2-login-form" title="Permalink to this headline">¶</a></h1>
 <p>In this, we will discuss about creating a login form in HTML.</p>
 <p>Before you proceed, make sure you have at least the basic knowledge of HTML. If you are not familiar with HTML, we advise you to go over <a class="reference external" href="https://www.w3schools.com/">W3Schools</a>.</p>
-<p>First of all, create a new file in the templates folder named “login.html”.</p>
+<p>First of all, create a new file in the templates folder named <strong>login.html</strong>.</p>
 <img alt="../../_images/loginfileviews.png" src="../../_images/loginfileviews.png" />
-<p>Inside login.html, create a login form containing the username, password, OTP Password input fields, and a submit button with the method of “POST”.</p>
+<p>Inside login.html, create a login form containing the username, password, OTP Password input fields, and a submit button with the method of <strong>POST</strong>.</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -82,7 +83,7 @@
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>Now create a new file in the views folder named “login.go”.</p>
+<p>Now create a new file in the views folder named <strong>login.go</strong>.</p>
 <img alt="../../_images/loginfilehandler.png" src="../../_images/loginfilehandler.png" />
 <p>Inside login.go, let’s build a UserContext struct containing the User field that has a data type of a pointer of uadmin.User that is a built-in system model, an OTP field that has a data type of boolean, and a Message field that has a data type of string. We will use that in the later chapter of this tutorial.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">views</span>
@@ -160,9 +161,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../coverage.html">uAdmin Tutorials</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quiz.html">uAdmin Quizzes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../system_reference.html">System Reference</a></li>
@@ -190,7 +191,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -213,14 +214,15 @@
           <a href="full_code/part1.html" title="Login System Tutorial Part 1 - Build A Project (Current Progress)"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../coverage.html" >Login System Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../api/user_functions.html" >User Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../coverage.html" >Login System Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Login System Tutorial Part 2 - Login Form</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

@@ -16,16 +16,6 @@ Structure:
     * `Friends`_
     * `Todos`_
 
-.. _models: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part5.html#id1
-.. _category.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part5.html#id2
-.. _friend.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part5.html#id3
-.. _todo.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part5.html#id4
-.. _main.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part5.html#id5
-.. _uadmin.db: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part5.html#id6
-.. _Categories: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part5.html#id7
-.. _Friends: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part5.html#id8
-.. _Todos: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part5.html#id9
-
 models
 ------
 
@@ -137,12 +127,14 @@ main.go
     )
 
     func main() {
+        // Register Models
         uadmin.Register(
             models.Todo{},
             models.Category{},
             models.Friend{},
         )
 
+        // Register Inlines
         uadmin.RegisterInlines(models.Category{}, map[string]string{
             "Todo": "CategoryID",
         })

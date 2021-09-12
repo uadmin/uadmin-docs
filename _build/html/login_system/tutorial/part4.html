@@ -42,8 +42,9 @@
           <a href="full_code/part3.html" title="Login System Tutorial Part 3 - Sending Request (Current Progress)"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../coverage.html" accesskey="U">Login System Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../api/user_functions.html" >User Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../coverage.html" accesskey="U">Login System Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Login System Tutorial Part 4 - Login Access Debugging</a></li> 
       </ul>
     </div>  
@@ -70,7 +71,7 @@
     <span class="nx">login</span><span class="p">,</span> <span class="nx">otp</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Login</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">)</span>
 
     <span class="c1">// Print results</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="s">&quot;Login as: %s&quot;</span><span class="p">,</span> <span class="nx">login</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="s">&quot;Login as: %s&quot;</span><span class="p">,</span> <span class="nx">login</span><span class="p">.</span><span class="nx">User</span><span class="p">)</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="s">&quot;OTP: %t&quot;</span><span class="p">,</span> <span class="nx">otp</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
@@ -100,8 +101,8 @@
     <span class="nx">login</span><span class="p">,</span> <span class="nx">otp</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Login</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">)</span>
 
     <span class="c1">// ----------------------- PLACE IT HERE -----------------------</span>
-    <span class="c1">// Initialize Login2FA that returns the User</span>
-    <span class="nx">login2fa</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">User</span><span class="p">{}</span>
+    <span class="c1">// Initialize Login2FA that returns the Session</span>
+    <span class="nx">login2fa</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span><span class="p">{}</span>
 
     <span class="c1">// Check whether the OTP value from Login function is true</span>
     <span class="c1">// and the OTP Password is valid</span>
@@ -111,13 +112,18 @@
         <span class="nx">login2fa</span> <span class="p">=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Login2FA</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">otpPass</span><span class="p">)</span>
 
         <span class="c1">// Print the result</span>
-        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="s">&quot;Login with 2FA as: %s&quot;</span><span class="p">,</span> <span class="nx">login2fa</span><span class="p">)</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="s">&quot;Login with 2FA as: %s&quot;</span><span class="p">,</span> <span class="nx">login2fa</span><span class="p">.</span><span class="nx">User</span><span class="p">)</span>
     <span class="p">}</span>
+    <span class="c1">// --------------------------------------------------------------</span>
+
+    <span class="c1">// Print results</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="s">&quot;Login as: %s&quot;</span><span class="p">,</span> <span class="nx">login</span><span class="p">.</span><span class="nx">User</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">,</span> <span class="s">&quot;OTP: %t&quot;</span><span class="p">,</span> <span class="nx">otp</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Run your application and go to the admin path in the address bar (e.g. <a class="reference external" href="http://localhost:8080/admin/">http://localhost:8080/admin/</a>). Login using “admin” as username and password.</p>
-<img alt="../../_images/loginform2.png" src="../../_images/loginform2.png" />
+<img alt="../../_images/loginform2.png" class="align-center" src="../../_images/loginform2.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -191,9 +197,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../coverage.html">uAdmin Tutorials</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quiz.html">uAdmin Quizzes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dapi.html">dAPI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../system_reference.html">System Reference</a></li>
@@ -221,7 +227,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -244,14 +250,15 @@
           <a href="full_code/part3.html" title="Login System Tutorial Part 3 - Sending Request (Current Progress)"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../coverage.html" >Login System Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../api.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../api/user_functions.html" >User Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../coverage.html" >Login System Tutorials</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Login System Tutorial Part 4 - Login Access Debugging</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

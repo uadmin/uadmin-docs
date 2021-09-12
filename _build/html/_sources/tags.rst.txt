@@ -1049,7 +1049,7 @@ To run your code:
     $ cd ~/go/src/github.com/your_name/todo
     $ go build; ./todo
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [   OK   ]   Server Started: http://127.0.0.1:8000
 
 Let's open the category model.
@@ -1325,7 +1325,7 @@ To run your code:
     $ cd ~/go/src/github.com/your_name/todo
     $ go build; ./todo
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [   OK   ]   Server Started: http://127.0.0.1:8000
 
 Let's open the Todos model.
@@ -1336,19 +1336,19 @@ Let's open the Todos model.
 
 On the right side, click Add New Todo.
 
-.. image:: assets/todomodel.png
+.. image:: tutorial/assets/todomodel.png
 
 |
 
 Input the progress value to 50 then let's see what happens.
 
-.. image:: assets/todomodelcreate.png
+.. image:: tutorial/assets/todomodelcreate.png
 
 |
 
 Tada! The progress bar is set to 50% with the blue color as the default one.
 
-.. image:: assets/todomodeloutput.png
+.. image:: tutorial/assets/todomodeloutput.png
 
 |
 

@@ -663,8 +663,6 @@
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part11.html">Document System Tutorial Part 11 - Document and Folder Permissions</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part13.html">Document System Tutorial Part 13 - Custom AdminPage function</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part14.html">Document System Tutorial Part 14 - Permissions Form</a></p></li>
-<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part3.html">Login System Tutorial Part 3 - Sending Request</a></p></li>
-<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part8.html">Login System Tutorial Part 8 - Webpage Manipulation</a></p></li>
 </ul>
 <p>Before we proceed to the example, read <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html">Tutorial Part 9 - Introduction to API</a> to familiarize how API works in uAdmin.</p>
 <p>Suppose you have five records in your Todo model.</p>
@@ -1191,10 +1189,9 @@
 <p>RenderHTML creates a new template and applies a parsed template to the specified data object. For function, Tf is available by default and if you want to add functions to your template, just add them to funcs which will add them to the template with their original function names. If you added anonymous functions, they will be available in your templates as func1, func2 …etc.</p>
 <p>Used in the tutorial:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part2.html">Login System Tutorial Part 2 - Login Form</a></p></li>
-<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part6.html">Login System Tutorial Part 6 - Home Page</a></p></li>
-<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part7.html">Login System Tutorial Part 7 - Logout</a></p></li>
-<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part8.html">Login System Tutorial Part 8 - Webpage Manipulation</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part2.html">Login System Tutorial Part 2 - Login Form</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part3.html">Login System Tutorial Part 3 - Sending Request</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part5.html">Login System Tutorial Part 5 - Home Page Access</a></p></li>
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tutorial/part13.html">uAdmin Tutorial Part 13 - Accessing an HTML file</a></p></li>
 </ul>
 <p>Create an HTML file in templates folder named <strong>friends.html</strong> with the following codes below:</p>
@@ -1628,7 +1625,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -1657,7 +1654,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

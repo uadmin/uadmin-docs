@@ -138,6 +138,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<p><strong>NOTE:</strong> Rebuild your application to take effect.</p>
 <p>Result</p>
 <img alt="../_images/searchtagapplied.png" src="../_images/searchtagapplied.png" />
 <div class="line-block">
@@ -148,14 +149,15 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Nice! Now go back to item.go and apply the tag <cite>categorical_filter</cite> and <cite>filter</cite> in the Name field and see what happens.</p>
+<p>Nice! Now go back to <strong>item.go</strong> and apply the tag <cite>categorical_filter</cite> and <cite>filter</cite> in the Name field and see what happens.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="s">`categorical_filter;filter`</span>
 </pre></div>
 </div>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">Name</span> <span class="kt">string</span> <span class="s">`uadmin:&quot;required;search;categorical_filter;filter&quot;`</span>
 </pre></div>
 </div>
-<p>Rebuild your application. In Item model, click the filter button on the upper right.</p>
+<p><strong>NOTE:</strong> Rebuild your application to take effect.</p>
+<p>In Item model, click the filter button on the upper right.</p>
 <p>Result</p>
 <img alt="../_images/filtertagapplied.png" src="../_images/filtertagapplied.png" />
 <div class="line-block">
@@ -176,6 +178,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<p><strong>NOTE:</strong> Rebuild your application to take effect.</p>
 <p>Result</p>
 <img alt="../_images/displaynametagapplied1.png" class="align-center" src="../_images/displaynametagapplied1.png" />
 <div class="line-block">
@@ -191,6 +194,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<p><strong>NOTE:</strong> Rebuild your application to take effect.</p>
 <p>Result</p>
 <img alt="../_images/defaultvaluetagapplied1.png" class="align-center" src="../_images/defaultvaluetagapplied1.png" />
 <div class="line-block">
@@ -203,6 +207,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<p><strong>NOTE:</strong> Rebuild your application to take effect.</p>
 <p>Result</p>
 <img alt="../_images/multilingualtagapplied1.png" src="../_images/multilingualtagapplied1.png" />
 <div class="line-block">
@@ -231,18 +236,23 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<p><strong>NOTE:</strong> Rebuild your application to take effect.</p>
 <p>Result</p>
 <img alt="../_images/moneytagapplied1.png" src="../_images/moneytagapplied1.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>You can also set <cite>pattern</cite> and <cite>pattern_msg</cite> tag in the Cost field. This means the user must input numbers only. If he inputs otherwise, the pattern message will show up on the screen.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="s">`pattern:^[0-9]*$;pattern_msg:Your input must be a number.`</span>
+</pre></div>
+</div>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">Cost</span> <span class="kt">int</span> <span class="s">`uadmin:&quot;money;pattern:^[0-9]*$;pattern_msg:Your input must be a number.&quot;`</span>
 </pre></div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<p><strong>NOTE:</strong> Rebuild your application to take effect.</p>
 <p>Result</p>
 <img alt="../_images/patterntagapplied1.png" src="../_images/patterntagapplied1.png" />
 <div class="line-block">
@@ -258,6 +268,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<p><strong>NOTE:</strong> Rebuild your application to take effect.</p>
 <p>Result</p>
 <img alt="../_images/helptagapplied1.png" class="align-center" src="../_images/helptagapplied1.png" />
 <div class="line-block">
@@ -270,6 +281,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<p><strong>NOTE:</strong> Rebuild your application to take effect.</p>
 <p>See what happens if the user inputs the value outside the range.</p>
 <img alt="../_images/minmaxtagapplied.png" src="../_images/minmaxtagapplied.png" />
 <div class="line-block">
@@ -297,7 +309,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../coverage.html">uAdmin Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../application.html">uAdmin Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quiz.html">uAdmin Quizzes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dapi.html">dAPI Reference</a></li>
@@ -327,7 +339,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -356,7 +368,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

@@ -39,7 +39,7 @@ Once you start your app, you will notice that your terminal logs are showing a m
 
     $ ~/go/src/github.com/username/todo$ go build; ./todo
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [   OK   ]   Server Started: https://0.0.0.0:8000
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___

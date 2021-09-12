@@ -317,7 +317,7 @@ Result
 .. code-block:: bash
 
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -342,7 +342,7 @@ Result
 .. code-block:: bash
 
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
      / / / / /| |/ __  / __  __ \/ / __ \
@@ -395,7 +395,7 @@ If you run your code,
 .. code-block:: bash
 
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     2018/11/07 08:52:14 [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -465,15 +465,11 @@ Used in the tutorial:
 * `Document System Tutorial Part 13 - Custom AdminPage function`_
 * `Login System Tutorial Part 3 - Sending Request`_
 * `Login System Tutorial Part 4 - Login Access Debugging`_
-* `Login System Tutorial Part 5 - Session and Cookie`_
-* `Login System Tutorial Part 8 - Webpage Manipulation`_
 
 .. _Document System Tutorial Part 9 - Updating the Document Version: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part9.html
 .. _Document System Tutorial Part 13 - Custom AdminPage function: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part13.html
-.. _Login System Tutorial Part 3 - Sending Request: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part3.html
-.. _Login System Tutorial Part 4 - Login Access Debugging: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part4.html
-.. _Login System Tutorial Part 5 - Session and Cookie: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part5.html
-.. _Login System Tutorial Part 8 - Webpage Manipulation: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part8.html
+.. _Login System Tutorial Part 3 - Sending Request: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part3.html
+.. _Login System Tutorial Part 4 - Login Access Debugging: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part4.html
 
 Trail has 9 different tags:
 
@@ -563,7 +559,7 @@ Result
 .. code-block:: bash
 
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [  INFO  ]   0.6.2
     [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _

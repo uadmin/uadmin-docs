@@ -39,13 +39,9 @@ Now assign the value of the login, login2fa, and otp in the UserContext struct.
         // Assign the full name of the user and OTP boolean value to the
         // userContext
         userContext = UserContext{
-            User: login2fa,
+            User: &login2fa.User,
             OTP:  otp,
         }
-
-        // Pass the userContext data object to the HTML file
-        uadmin.RenderHTML(w, r, "templates/home.html", userContext)
-        return
     }
 
     if otp == false && otpPass == "" {
@@ -55,14 +51,14 @@ Now assign the value of the login, login2fa, and otp in the UserContext struct.
         // Assign the full name of the user and OTP boolean value to the
         // userContext
         userContext = UserContext{
-            User: login,
+            User: &login.User,
             OTP:  otp,
         }
-
-        // Pass the userContext data object to the HTML file
-        uadmin.RenderHTML(w, r, "templates/home.html", userContext)
-        return
     }
+
+    // Pass the userContext data object to the HTML file
+    uadmin.RenderHTML(w, r, "templates/home.html", userContext)
+    return
 
 Run your application. Go to the login path in the address bar (e.g. http://localhost:8080/login/). Assign the username, password, and OTP password fetched from the 2FA image in /admin/profile/ path in the address bar or assigned on your terminal in the login form (e.g. admin, admin, 123456). Click Login button to submit.
 

@@ -12,12 +12,6 @@ Structure:
 * `uadmin.db`_
     * `Todos`_
 
-.. _models: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part2.html#id1
-.. _todo.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part2.html#id2
-.. _main.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part2.html#id3
-.. _uadmin.db: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part2.html#id4
-.. _Todos: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part2.html#id5
-
 models
 ------
 
@@ -60,6 +54,7 @@ main.go
     )
 
     func main() {
+        // Register Models
         uadmin.Register(
             models.Todo{},
         )
@@ -76,4 +71,4 @@ uadmin.db
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part2.html#uadmin-tutorial-part-2-internal-vs-external-models-current-progress
 
-.. image:: ../../assets/todomodeloutput.png
+.. image:: ../../tutorial/assets/todomodeloutput.png

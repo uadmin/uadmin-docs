@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Login System Tutorial Part 6 - Logout &#8212; uadmin 0.6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pyramid.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Login System Tutorial Part 6 - Logout</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="login-system-tutorial-part-6-logout">
+<h1>Login System Tutorial Part 6 - Logout<a class="headerlink" href="#login-system-tutorial-part-6-logout" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, we will discuss about logging out a user account from the home page.</p>
+<p>First of all, go to <strong>home.html</strong> in the templates folder and add the logout link text in the code.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-- Some codes here --&gt;</span>
+
+  <span class="c">&lt;!-- ADD THIS CODE --&gt;</span>
+  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/login_system/logout&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span><span class="p">&gt;</span>Logout<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-------------------&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Create a new file in the views folder named <strong>logout.go</strong>. Inside the file, create a handler for the logout process.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">views</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// LogoutHandler !</span>
+<span class="kd">func</span> <span class="nx">LogoutHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">session</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Log out the user.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Logout</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+
+    <span class="c1">// Expire all cookies on logout by setting MaxAge to be less than 0.</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">cookie</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Cookies</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">c</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Cookie</span><span class="p">{</span>
+            <span class="nx">Name</span><span class="p">:</span>   <span class="nx">cookie</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>
+            <span class="nx">MaxAge</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="nx">http</span><span class="p">.</span><span class="nx">SetCookie</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">Redirect</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="s">&quot;/login_system/&quot;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusSeeOther</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Lastly, add a validation depending on the request URL path in <strong>main.go</strong> under views folder.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// MainHandler is the main handler for the login system.</span>
+<span class="kd">func</span> <span class="nx">MainHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+    <span class="c1">// ------------- ADD THIS CODE ------------- //</span>
+    <span class="k">if</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="o">==</span> <span class="s">&quot;&quot;</span> <span class="p">{</span>
+        <span class="c1">// HomeHandler handles the home page.</span>
+        <span class="nx">HomeHandler</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">session</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="o">==</span> <span class="s">&quot;/logout&quot;</span> <span class="p">{</span>
+        <span class="cm">/* If the request URL Path is /logout after the /login_system/, it will proceed to this part.</span>
+<span class="cm">        e.g. localhost:8080/login_system/logout */</span>
+
+        <span class="c1">// LogoutHandler handles the logout process for the user.</span>
+        <span class="nx">LogoutHandler</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">session</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="c1">// ---------------------------------------- //</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application and login your account where OTPRequired is disabled.</p>
+<img alt="../../_images/adminuserpasshiddenotp.png" class="align-center" src="../../_images/adminuserpasshiddenotp.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../../_images/loginwithout2fawithlogout.png" class="align-center" src="../../_images/loginwithout2fawithlogout.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s try to manipulate the system. To ensure that login process really works, let’s refresh the page and see what happens.</p>
+<img alt="../../_images/loginwithout2fawithlogout.png" class="align-center" src="../../_images/loginwithout2fawithlogout.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Nice! The webpage sticks to the home page after we refresh it. Let’s check if the session cookie is created in the browser.</p>
+<img alt="../../_images/sessioncookiebrowserlogin.png" class="align-center" src="../../_images/sessioncookiebrowserlogin.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now let’s click Logout and see what happens.</p>
+<img alt="../../_images/customloginform1.png" class="align-center" src="../../_images/customloginform1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Refresh the page one more time to ensure if logout process really works.</p>
+<img alt="../../_images/customloginform1.png" class="align-center" src="../../_images/customloginform1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Nice! The webpage sticks to the login page after we refresh it. Let’s check if the session cookie is removed in the browser.</p>
+<img alt="../../_images/sessioncookiebrowserlogout.png" class="align-center" src="../../_images/sessioncookiebrowserlogout.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The session cookie is there by now but once you did anything in the browser such as clicking the login button or refreshing the page, the session cookie will disappear.</p>
+<p>Same thing goes if the account you login has OTPRequired enabled.</p>
+<img alt="../../_images/adminuserpasshiddenotp.png" class="align-center" src="../../_images/adminuserpasshiddenotp.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../_images/adminloginformdatatest1.png" class="align-center" src="../../_images/adminloginformdatatest1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../../_images/sessioncookiebrowserloginotp.png" class="align-center" src="../../_images/sessioncookiebrowserloginotp.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>And if you click logout</p>
+<img alt="../../_images/sessioncookiebrowserlogout.png" class="align-center" src="../../_images/sessioncookiebrowserlogout.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Congrats, now you know how to do the following in the entire series:</p>
+<ul class="simple">
+<li><p>Preparing uAdmin files in the project folder</p></li>
+<li><p>Build an application from scratch</p></li>
+<li><p>Change the dashboard title</p></li>
+<li><p>Create custom login form in HTML</p></li>
+<li><p>Sending request from front-end to back-end</p></li>
+<li><p>Getting the session key based on the user credentials</p></li>
+<li><p>Setting an HTTP cookie</p></li>
+<li><p>OTP Scanning</p></li>
+<li><p>Logout user</p></li>
+<li><p>Deleting the cookie</p></li>
+<li><p>Maintaining the webpage based on the user login status</p></li>
+</ul>
+<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/full_code/part6.html">here</a> to view the full progress of this application.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="full_code/part6.html">Login System Tutorial Part 6 - Logout (Current Progress)</a></li>
+</ul>
+</div>
+<p>If you want to learn more and discover about the concepts of uAdmin, you may go to these references with examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/quick_reference.html">Quick Reference</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/system_reference.html">System Reference</a></p></li>
+<li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/tags.html">Tag Reference</a></p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/login_system_views/tutorial/part6.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Login System Tutorial Part 6 - Logout</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+    </div>
+  </body>
+</html>

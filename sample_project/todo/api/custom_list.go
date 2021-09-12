@@ -3,7 +3,6 @@ package api
 import (
 	"net/http"
 
-	// Specify the username that you used inside github.com folder
 	"github.com/uadmin/uadmin"
 	"github.com/uadmin/uadmin-docs/sample_project/todo/models"
 )

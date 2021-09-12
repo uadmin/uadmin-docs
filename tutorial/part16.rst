@@ -104,7 +104,7 @@ What about when the worst case scenario happens and both your database and your 
     $ rm .salt
     $ go build; ./todo
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [ WARNING]   Your salt file was missing, and a new one was generated NO USERS CAN LOGIN UNTIL PASSWORDS ARE RESET.
     [  INFO  ]   uAdmin generated a recovery user for you. Username: f1d3xk3 Password: _edoOmxwqlwBWuyDrHZElpiI
     [   OK   ]   Server Started: https://0.0.0.0:8000

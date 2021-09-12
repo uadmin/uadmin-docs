@@ -16,21 +16,28 @@ Create a file named **add_friend.go** inside the api folder with the following c
 
     // AddFriendAPIHandler !
     func AddFriendAPIHandler(w http.ResponseWriter, r *http.Request) {
-        res := map[string]interface{}{}
-
         // Fetch data from Friend DB
         friend := models.Friend{}
 
-        // Set the parameters of Name, Email, and Password
+        // Set the parameters of Name, Email, Password, and Nationality such that where nationality is
+        // equivalent to the following:
+        // 1 - Chinese
+        // 2 - Filipino
+        // 3 - Others
         friendName := r.FormValue("name")
         friendEmail := r.FormValue("email")
         friendPassword := r.FormValue("password")
+        friendNationalityRaw := r.FormValue("nationality")
+
+        // Convert the nationality to an integer.
+        friendNationality, err := strconv.Atoi(friendNationalityRaw)
 
         // Validate if the friendName variable is empty.
         if friendName == "" {
-            res["status"] = "ERROR"
-            res["err_msg"] = "Name is required."
-            uadmin.ReturnJSON(w, r, res)
+            uadmin.ReturnJSON(w, r, map[string]interface{}{
+                "status":  "error",
+                "err_msg": "Name is required.",
+            })
             return
         }
 
@@ -38,19 +45,30 @@ Create a file named **add_friend.go** inside the api folder with the following c
         friend.Name = friendName
         friend.Email = friendEmail
         friend.Password = friendPassword
+        friend.Nationality = models.Nationality(friendNationality)
 
-        // Store input in the Friend model
-        uadmin.Save(&friend)
+        // Save input in the Friend model
+        err = uadmin.Save(&friend)
+        if err != nil {
+            // Return an error message if the database did not save properly.
+            uadmin.ReturnJSON(w, r, map[string]interface{}{
+                "status":  "error",
+                "err_msg": "Error saving the database : " + err.Error(),
+            })
+            return
+        }
 
-        res["status"] = "ok"
-        uadmin.ReturnJSON(w, r, res)
+        // Return JSON to the client.
+        uadmin.ReturnJSON(w, r, map[string]interface{}{
+            "status": "ok",
+        })
     }
 
-Finally, add the following pieces of code in the api.go shown below. This will establish a communication between the AddFriendHandler and the APIHandler.
+Finally, add the following pieces of code in the api.go shown below. This will establish a communication between the AddFriendHandler and the Handler.
 
 .. code-block:: go
 
-    func APIHandler(w http.ResponseWriter, r *http.Request) {
+    func Handler(w http.ResponseWriter, r *http.Request) {
 
         // Some codes contained in this part
 
@@ -67,10 +85,11 @@ Now run your application. In order to insert the information in the Friend model
 * name = Allen
 * email = allen@gmail.com
 * password = 123456
+* nationality = 3
 
 .. code-block:: bash
 
-    http://localhost:8080/api/add_friend?name=Allen&email=allen@gmail.com&password=123456
+    http://localhost:8080/api/add_friend?name=Allen&email=allen@gmail.com&password=123456&nationality=3
 
 .. code-block:: json
 

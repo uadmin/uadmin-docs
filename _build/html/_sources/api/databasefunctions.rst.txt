@@ -420,7 +420,7 @@ Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ 
 
 Suppose I have one record in the Todo model.
 
-.. image:: ../assets/todomodeloutput.png
+.. image:: ../tutorial/assets/todomodeloutput.png
 
 Create a file named custom_todo.go inside the api folder with the following codes below:
 

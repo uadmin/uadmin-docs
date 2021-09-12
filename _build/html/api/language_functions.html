@@ -344,7 +344,7 @@ the default language.</p>
 </div>
 <p>The error message appears. Now rebuild your application and see what happens.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>   <span class="nx">OK</span>   <span class="p">]</span>   <span class="nx">Initializing</span> <span class="nx">DB</span><span class="p">:</span> <span class="p">[</span><span class="mi">13</span><span class="o">/</span><span class="mi">13</span><span class="p">]</span>
-<span class="p">[</span>   <span class="nx">OK</span>   <span class="p">]</span>   <span class="nx">Synching</span> <span class="nx">System</span> <span class="nx">Settings</span><span class="p">:</span> <span class="p">[</span><span class="mi">46</span><span class="o">/</span><span class="mi">46</span><span class="p">]</span>
+<span class="p">[</span>   <span class="nx">OK</span>   <span class="p">]</span>   <span class="nx">Synching</span> <span class="nx">System</span> <span class="nx">Settings</span><span class="p">:</span> <span class="p">[</span><span class="mi">51</span><span class="o">/</span><span class="mi">51</span><span class="p">]</span>
 <span class="p">[</span> <span class="nx">WARNING</span><span class="p">]</span>   <span class="nx">Translation</span> <span class="nx">of</span> <span class="nx">tl</span> <span class="nx">at</span> <span class="mi">0</span><span class="o">%</span> <span class="p">[</span><span class="mi">0</span><span class="o">/</span><span class="mi">134</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -361,7 +361,7 @@ the default language.</p>
 </div>
 <p>And if you rebuild your application, you will notice that uAdmin has found 1 word we have translated and is telling us we are at 1% translation for the Tagalog language.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
-<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">51</span>/51<span class="o">]</span>
 <span class="o">[</span> WARNING<span class="o">]</span>   Translation of tl at <span class="m">1</span>% <span class="o">[</span><span class="m">1</span>/134<span class="o">]</span>
 </pre></div>
 </div>
@@ -483,7 +483,7 @@ the default language.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -512,7 +512,7 @@ the default language.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

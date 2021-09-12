@@ -186,10 +186,19 @@
 <li><p><strong>Type</strong> - returns a string. There are 2 types: SQLLite and MySQL.</p></li>
 <li><p><strong>User</strong> - returns a user string</p></li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>uadmin.Database function is deprecated on version 0.4.0 and above. Instead, we have to create a new file called .database.</p>
+<p>There are two ways to set the database. Choose <strong>ANY</strong> of these methods that you prefer.</p>
+<p><strong>Method 1:</strong> Database Configuration in the main file</p>
+<p>Apply the following codes in <strong>main.go</strong> file below to create SQLite database:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some business logic</span>
+
+    <span class="nx">database</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Database</span>
+    <span class="nx">database</span><span class="p">.</span><span class="nx">Type</span> <span class="p">=</span> <span class="s">&quot;sqlite&quot;</span>      <span class="c1">// sqlite, mysql, postgres</span>
+    <span class="nx">database</span><span class="p">.</span><span class="nx">Name</span> <span class="p">=</span> <span class="s">&quot;todolist.db&quot;</span> <span class="c1">// File/DB name</span>
+<span class="p">}</span>
+</pre></div>
 </div>
+<p><strong>Method 2:</strong> Database Configuration in external JSON file</p>
 <p>Apply the following codes in <strong>.database</strong> file below to create SQLite database:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;type&quot;</span><span class="p">:</span>     <span class="s2">&quot;sqlite&quot;</span><span class="p">,</span>
@@ -201,7 +210,7 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
 <span class="o">[</span>   OK   <span class="o">]</span>   Initializing Languages: <span class="o">[</span><span class="m">185</span>/185<span class="o">]</span>
 <span class="o">[</span>  INFO  <span class="o">]</span>   Auto generated admin user. Username: admin, Password: admin.
-<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">51</span>/51<span class="o">]</span>
 <span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
          ___       __          _
   __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
@@ -225,7 +234,7 @@
 <h2>uadmin.DBSettings<a class="headerlink" href="#uadmin-dbsettings" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#database-functions">Back To Top</a></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">DBSettings</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">Type</span>     <span class="kt">string</span> <span class="s">`json:&quot;type&quot;`</span> <span class="c1">// sqlite, mysql</span>
+    <span class="nx">Type</span>     <span class="kt">string</span> <span class="s">`json:&quot;type&quot;`</span> <span class="c1">// sqlite, mysql, postgres</span>
     <span class="nx">Name</span>     <span class="kt">string</span> <span class="s">`json:&quot;name&quot;`</span> <span class="c1">// File/DB name</span>
     <span class="nx">User</span>     <span class="kt">string</span> <span class="s">`json:&quot;user&quot;`</span>
     <span class="nx">Password</span> <span class="kt">string</span> <span class="s">`json:&quot;password&quot;`</span>
@@ -235,10 +244,20 @@
 </pre></div>
 </div>
 <p>DBSettings is a feature that allows a user to configure the settings of a database.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>uadmin.DBSettings function is deprecated on version 0.4.0 and above. Instead, we have to create a new file called .database.</p>
+<p>There are two ways to set the database. Choose <strong>ANY</strong> of these methods that you prefer.</p>
+<p><strong>Method 1:</strong> Database Configuration in the main file</p>
+<p>Apply the following codes in <strong>main.go</strong> file below to create SQLite database:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some business logic</span>
+
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Database</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DBSettings</span><span class="p">{</span>
+        <span class="nx">Type</span><span class="p">:</span> <span class="s">&quot;sqlite&quot;</span><span class="p">,</span>      <span class="c1">// sqlite, mysql, postgres</span>
+        <span class="nx">Name</span><span class="p">:</span> <span class="s">&quot;todolist.db&quot;</span><span class="p">,</span> <span class="c1">// File/DB name</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
+<p><strong>Method 2:</strong> Database Configuration in the external JSON file</p>
 <p>Apply the following codes in <strong>.database</strong> file below to create SQLite database:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;type&quot;</span><span class="p">:</span>     <span class="s2">&quot;sqlite&quot;</span><span class="p">,</span>
@@ -250,7 +269,7 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
 <span class="o">[</span>   OK   <span class="o">]</span>   Initializing Languages: <span class="o">[</span><span class="m">185</span>/185<span class="o">]</span>
 <span class="o">[</span>  INFO  <span class="o">]</span>   Auto generated admin user. Username: admin, Password: admin.
-<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">51</span>/51<span class="o">]</span>
 <span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
          ___       __          _
   __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
@@ -299,10 +318,24 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>uadmin.DBSettings function is deprecated on version 0.4.0 and above. Instead, we have to create a new file called .database.</p>
+<p>There are two ways to set the database. Choose <strong>ANY</strong> of these methods that you prefer.</p>
+<p><strong>Method 1:</strong> Database Configuration in the main file</p>
+<p>Apply the following codes in <strong>main.go</strong> file below to create MySQL database:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Some business logic</span>
+
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Database</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">DBSettings</span><span class="p">{</span>
+        <span class="nx">Type</span><span class="p">:</span>     <span class="s">&quot;mysql&quot;</span><span class="p">,</span> <span class="c1">// sqlite, mysql, postgres</span>
+        <span class="nx">Name</span><span class="p">:</span>     <span class="s">&quot;todo&quot;</span><span class="p">,</span>  <span class="c1">// File/DB name</span>
+        <span class="nx">User</span><span class="p">:</span>     <span class="s">&quot;root&quot;</span><span class="p">,</span>
+        <span class="nx">Password</span><span class="p">:</span> <span class="s">&quot;(your MySQL password&quot;</span><span class="p">,</span>
+        <span class="nx">Host</span><span class="p">:</span>     <span class="s">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+        <span class="nx">Port</span><span class="p">:</span>     <span class="mi">3306</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
+<p><strong>Method 2:</strong> Database Configuration in the external JSON file</p>
 <p>Apply the following codes in <strong>.database</strong> file below o create MySQL database:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;type&quot;</span><span class="p">:</span>     <span class="s2">&quot;mysql&quot;</span><span class="p">,</span>
@@ -319,7 +352,7 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
 <span class="o">[</span>   OK   <span class="o">]</span>   Initializing Languages: <span class="o">[</span><span class="m">185</span>/185<span class="o">]</span>
 <span class="o">[</span>  INFO  <span class="o">]</span>   Auto generated admin user. Username: admin, Password: admin.
-<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">51</span>/51<span class="o">]</span>
 <span class="o">[</span>   OK   <span class="o">]</span>   Server Started: http://0.0.0.0:8080
          ___       __          _
   __  __/   <span class="p">|</span> ____/ /___ ___  <span class="o">(</span>_<span class="o">)</span>___
@@ -374,7 +407,7 @@
 </div>
 <p>Check your terminal to see the result.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   Initializing DB: <span class="o">[</span><span class="m">13</span>/13<span class="o">]</span>
-<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">46</span>/46<span class="o">]</span>
+<span class="o">[</span>   OK   <span class="o">]</span>   Synching System Settings: <span class="o">[</span><span class="m">51</span>/51<span class="o">]</span>
 
 <span class="o">(</span>/home/dev1/go/src/github.com/uadmin/uadmin/db.go:428<span class="o">)</span>
 <span class="o">[</span><span class="m">2018</span>-11-10 <span class="m">12</span>:43:07<span class="o">]</span>  <span class="o">[</span><span class="m">0</span>.09ms<span class="o">]</span>  SELECT count<span class="o">(</span>*<span class="o">)</span> FROM <span class="s2">&quot;languages&quot;</span>  WHERE <span class="s2">&quot;languages&quot;</span>.<span class="s2">&quot;deleted_at&quot;</span> IS NULL
@@ -536,7 +569,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -565,7 +598,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

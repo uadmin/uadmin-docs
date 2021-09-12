@@ -50,7 +50,7 @@ Expected result
         Description  string     `uadmin:"multilingual"`
 
         // FIELDS ADDED
-        Category     []Category `uadmin:"list_exclude"`
+        Category     []Category `uadmin:"list_exclude" gorm:"many2many:category"`
         CategoryList string     `uadmin:"read_only"`
 
         Cost         int        `uadmin:"money;pattern:^[0-9]*$;pattern_msg:Your input must be a number."`
@@ -81,7 +81,7 @@ Copy this one as well and paste it below the Item struct.
         uadmin.Save(i)
     }
 
-Now run your application, go to **ITEMS** model from uAdmin dashboard, and inside it, click **Add New Item** button on the top right corner. In the Category field, add new tag there.
+Now rebuild your application, go to **ITEMS** model from uAdmin dashboard, and inside it, click **Add New Item** button on the top right corner. In the Category field, add new tag there.
 
 .. image:: assets/m2mtagapplied.png
 

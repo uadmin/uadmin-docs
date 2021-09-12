@@ -7,11 +7,11 @@ Before you proceed, make sure you have at least the basic knowledge of HTML. If 
 .. _W3Schools: https://www.w3schools.com/
 
 
-First of all, create a new file in the templates folder named "login.html".
+First of all, create a new file in the templates folder named **login.html**.
 
 .. image:: assets/loginfileviews.png
 
-Inside login.html, create a login form containing the username, password, OTP Password input fields, and a submit button with the method of "POST".
+Inside login.html, create a login form containing the username, password, OTP Password input fields, and a submit button with the method of **POST**.
 
 .. code-block:: html
 
@@ -36,7 +36,7 @@ Inside login.html, create a login form containing the username, password, OTP Pa
     </body>
     </html>
 
-Now create a new file in the views folder named "login.go".
+Now create a new file in the views folder named **login.go**.
 
 .. image:: assets/loginfilehandler.png
 

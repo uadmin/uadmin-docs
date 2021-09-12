@@ -29,29 +29,6 @@ Structure:
     * `Group Permissions`_
     * `Users`_
 
-.. _models: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id1
-.. _channel.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id2
-.. _document_group.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id3
-.. _document_user.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id4
-.. _document_version.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id5
-.. _document.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id6
-.. _folder_group.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id7
-.. _folder_user.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id8
-.. _folder.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id9
-.. _format.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id10
-.. _main.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id11
-.. _uadmin.db: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id12
-.. _Channels: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id13
-.. _Documents: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id14
-.. _Document Groups: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id15
-.. _Document Users: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id16
-.. _Document Versions: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id17
-.. _Folder Groups: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id18
-.. _Folder Users: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id19
-.. _Folders: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id20
-.. _Group Permissions: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id21
-.. _Users: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part16.html#id22
-
 models
 ------
 **channel.go**
@@ -652,7 +629,7 @@ models
         ParentID uint
     }
 
-**folder.go**
+**format.go**
 ^^^^^^^^^^^^^
 `Back to Top`_
 

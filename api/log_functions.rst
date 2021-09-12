@@ -297,7 +297,7 @@ Suppose that you have this record in your logs as shown below:
 
 Go back to uAdmin dashboard then select "TODOS".
 
-.. image:: /assets/todoshighlightedlog.png
+.. image:: ../tutorial/assets/todoshighlightedlog.png
 
 |
 
@@ -421,7 +421,7 @@ Suppose that you have this record in your logs as shown below:
 
 Go back to uAdmin dashboard then select "TODOS".
 
-.. image:: /assets/todoshighlightedlog.png
+.. image:: ../tutorial/assets/todoshighlightedlog.png
 
 |
 
@@ -532,7 +532,7 @@ Suppose that you have this record in your logs as shown below:
 
 Go back to uAdmin dashboard then select "TODOS".
 
-.. image:: /assets/todoshighlightedlog.png
+.. image:: ../tutorial/assets/todoshighlightedlog.png
 
 |
 
@@ -672,7 +672,7 @@ Suppose that you have this record in your logs as shown below:
 
 Go back to uAdmin dashboard then select "TODOS".
 
-.. image:: /assets/todoshighlightedlog.png
+.. image:: ../tutorial/assets/todoshighlightedlog.png
 
 |
 

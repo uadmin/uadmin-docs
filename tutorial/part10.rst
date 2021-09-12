@@ -19,7 +19,7 @@ Let's also create at least 10 records in the Todo model.
 
 |
 
-For the case scenario, our client requests a data that returns only the last 5 activities sorted in descending order. In order to do that, use the public function called **uadmin.AdminPage**. AdminPage fetches records from the database with some standard rules such as sorting data, multiples of, and setting a limit that can be used in pagination. He also requests that the linking models should return only the name, not the other details within that model. Let's create another API file named "custom_list.go" containing the following codes below:
+For the case scenario, our client requests a data that returns only the last 5 activities sorted in descending order. In order to do that, use the public function called **uadmin.AdminPage**. AdminPage fetches records from the database with some standard rules such as sorting data, multiples of, and setting a limit that can be used in pagination. He also requests that the linking models should return only the name, not the other details within that model. Let's create another API file named **custom_list.go** containing the following codes below:
 
 .. code-block:: go
 
@@ -98,7 +98,7 @@ Finally, add the following pieces of code in the api.go shown below. This will e
         // ---------------------------------------------------
     }
 
-Now run your application. If you go to /api/custom_list, you will see the list of your last 5 activities sorted in descending order in a more powerful way using JSON format.
+Now run your application. If you go to **/api/custom_list**, you will see the list of your last 5 activities sorted in descending order in a more powerful way using JSON format.
 
 .. image:: assets/todoapicustomjson.png
 

@@ -339,7 +339,7 @@ Search whatever languages you want to be available in your application. For this
 
 Open "TODOS" model and create at least one record inside it.
 
-.. image:: ../assets/todomodeloutput.png
+.. image:: ../tutorial/assets/todomodeloutput.png
 
 |
 
@@ -361,7 +361,7 @@ The error message appears. Now rebuild your application and see what happens.
 .. code-block:: go
 
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [ WARNING]   Translation of tl at 0% [0/134]
 
 It says tl is 0% which means we have not translated yet. 
@@ -384,7 +384,7 @@ And if you rebuild your application, you will notice that uAdmin has found 1 wor
 .. code-block:: bash
 
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [ WARNING]   Translation of tl at 1% [1/134]
 
 Congrats, now you know how to translate your sentence using uadmin.Tf.

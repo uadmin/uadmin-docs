@@ -232,7 +232,7 @@ Search whatever languages you want to be available in your application. For this
 
 Open "TODOS" model and create at least one record inside it.
 
-.. image:: ../assets/todomodeloutput.png
+.. image:: ../tutorial/assets/todomodeloutput.png
 
 |
 

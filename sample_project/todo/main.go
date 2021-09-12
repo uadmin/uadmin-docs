@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	// Register Models
 	uadmin.Register(
 		models.Todo{},
 		models.Category{},
@@ -18,6 +19,7 @@ func main() {
 		models.Item{},
 	)
 
+	// Register Inlines
 	uadmin.RegisterInlines(models.Category{}, map[string]string{
 		"Todo": "CategoryID",
 	})
@@ -28,6 +30,22 @@ func main() {
 		"Todo": "ItemID",
 	})
 
+	// API Handler
+	http.HandleFunc("/api/", uadmin.Handler(api.Handler))
+
+	// Page Handler
+	http.HandleFunc("/page/", uadmin.Handler(views.PageHandler))
+
+	// Call InitializeRootURL function to change the RootURL value in the Settings model.
+	InitializeRootURL()
+
+	// Call InitializeSiteName function to assign the SiteName value in the Settings model.
+	InitializeSiteName()
+
+	uadmin.StartServer()
+}
+
+func InitializeRootURL() {
 	// Initialize Setting model
 	setting := uadmin.Setting{}
 
@@ -39,18 +57,12 @@ func main() {
 
 	// Save changes
 	setting.Save()
+}
 
+func InitializeSiteName() {
 	// Assign Site Name in the Settings
-	setting = uadmin.Setting{}
+	setting := uadmin.Setting{}
 	uadmin.Get(&setting, "code = ?", "uAdmin.SiteName")
 	setting.ParseFormValue([]string{"Todo List"})
 	setting.Save()
-
-	// API Handler
-	http.HandleFunc("/api/", uadmin.Handler(api.Handler))
-
-	// HTTP UI Handler
-	http.HandleFunc("/http_handler/", uadmin.Handler(views.HTTPHandler))
-
-	uadmin.StartServer()
 }

@@ -18,18 +18,6 @@ Structure:
     * `Items`_
     * `Todos`_
 
-.. _models: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html#id1
-.. _category.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html#id2
-.. _friend.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html#id3
-.. _item.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html#id4
-.. _todo.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html#id5
-.. _main.go: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html#id6
-.. _uadmin.db: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html#id7
-.. _Categories: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html#id8
-.. _Friends: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html#id9
-.. _Items: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html#id10
-.. _Todos: https://uadmin-docs.readthedocs.io/en/latest/tutorial/full_code/part7.html#id11
-
 models
 ------
 
@@ -117,7 +105,7 @@ models
         uadmin.Model
         Name         string     `uadmin:"required;search;categorical_filter;filter;display_name:Product Name;default_value:Computer"`
         Description  string     `uadmin:"multilingual"`
-        Category     []Category `uadmin:"list_exclude"`
+        Category     []Category `uadmin:"list_exclude" gorm:"many2many:category"`
         CategoryList string     `uadmin:"read_only"`
         Cost         int        `uadmin:"money;pattern:^[0-9]*$;pattern_msg:Your input must be a number.;help:Input numeric characters only in this field."`
         Rating       int        `uadmin:"min:1;max:5"`
@@ -189,6 +177,7 @@ main.go
     )
 
     func main() {
+        // Register Models
         uadmin.Register(
             models.Todo{},
             models.Category{},
@@ -196,6 +185,7 @@ main.go
             models.Item{},
         )
 
+        // Register Models
         uadmin.RegisterInlines(models.Category{}, map[string]string{
             "Todo": "CategoryID",
         })

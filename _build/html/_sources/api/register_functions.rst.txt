@@ -62,7 +62,7 @@ Output
 
 If you click the Todos model, it will display this result as shown below.
 
-.. image:: ../assets/todomodel.png
+.. image:: ../tutorial/assets/todomodel.png
 
 |
 

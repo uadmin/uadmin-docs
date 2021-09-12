@@ -33,7 +33,7 @@ Result of my dashboard setup
 
 |
 
-Let's change the title of the dashboard in general. 
+Let's change the title of the dashboard in general. Choose **ANY** of these methods that you prefer.
 
 * `Method 1: Within the Application Settings`_
 * `Method 2: ParseFormValue Function`_
@@ -59,6 +59,11 @@ Go to the main.go and assign site name in the settings.
     func main() {
         // Some codes
 
+        // Call InitializeSiteName function to assign the SiteName value in the Settings model.
+        InitializeSiteName()
+    }
+
+    func InitializeSiteName() {
         // Assign Site Name in the Settings
         setting = uadmin.Setting{}
         uadmin.Get(&setting, "code = ?", "uAdmin.SiteName")

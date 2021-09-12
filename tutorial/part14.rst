@@ -19,14 +19,14 @@ Go to **todo_view.go** inside the views folder with the following codes below:
         "github.com/uadmin/uadmin"
     )
 
+    // TodoList field inside the Context that will be used in Golang HTML template
+    type Context struct {
+        TodoList []map[string]interface{}
+    }
+
     // TodoHandler !
     func TodoHandler(w http.ResponseWriter, r *http.Request) {
-        r.URL.Path = strings.TrimPrefix(r.URL.Path, "/todo")
-        r.URL.Path = strings.TrimSuffix(r.URL.Path, "/")
-
-        type Context struct {
-            TodoList []map[string]interface{}
-        }
+        // Assigns Context struct to the c variable
         c := Context{}
 
         // ------------------ ADD THIS CODE ------------------

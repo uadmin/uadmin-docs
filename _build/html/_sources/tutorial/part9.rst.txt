@@ -22,7 +22,7 @@ Create a file named api.go inside the api folder with the following codes below:
 
 As shown above, we have to call the variable named "APIHelp" to inform the user what are the methods to visit in the api path. To make the API function, we create a handler named "Handler" that handles two parameters which are **http.ResponseWriter** that assembles the HTTP server's response; by writing to it, we send data to the HTTP client; and **http.Request** which is a data structure that represents the client HTTP request. **r.URL.Path** is the path component of the request URL.
 
-Let's set the RootURL to "/admin/" to make the "/api/" path functional.
+Let's set the RootURL to "/admin/" to make the "/api/" path functional. Choose **ANY** of these methods that you prefer.
 
 * `Method 1: Within the Application Settings`_
 * `Method 2: ParseFormValue Function`_
@@ -48,6 +48,11 @@ Go to main.go and set **uadmin.RootURL** value as "/admin/".
     func main() {
         // RegisterInlines codes
 
+        // Call InitializeRootURL function to change the RootURL value in the Settings model.
+        InitializeRootURL()
+    }
+
+    func InitializeRootURL() {
         // Initialize Setting model
         setting := uadmin.Setting{}
 
@@ -122,7 +127,7 @@ Let's create another file inside the api folder named **todo_list.go**. This wil
         uadmin.ReturnJSON(w, r, todo)
     }
 
-Finally, add this piece of code in the api.go shown below. This will establish a communication between the TodoListAPIHandler and the Handler.
+Finally, add this piece of code in the **api.go** shown below. This will establish a communication between the TodoListAPIHandler and the Handler.
 
 .. code-block:: go
 
@@ -145,7 +150,7 @@ Now run your application. Suppose you have two records in your Todo model.
 
 |
 
-If you go to /api/todo_list, you will see the list of each data in a more powerful way using JSON format.
+If you go to **/api/todo_list**, you will see the list of each data in a more powerful way using JSON format.
 
 .. image:: assets/todoapijson.png
    :align: center

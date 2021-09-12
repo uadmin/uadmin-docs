@@ -1078,7 +1078,7 @@ Suppose that you have this record in your logs as shown below:
 
 Go back to uAdmin dashboard then select "TODOS".
 
-.. image:: ../assets/todoshighlightedlog.png
+.. image:: ../tutorial/assets/todoshighlightedlog.png
 
 |
 
@@ -1180,7 +1180,7 @@ Suppose that you have this record in your logs as shown below:
 
 Go back to uAdmin dashboard then select "TODOS".
 
-.. image:: ../assets/todoshighlightedlog.png
+.. image:: ../tutorial/assets/todoshighlightedlog.png
 
 |
 
@@ -1267,7 +1267,7 @@ Suppose that you have this record in your logs as shown below:
 
 Go back to uAdmin dashboard then select "TODOS".
 
-.. image:: ../assets/todoshighlightedlog.png
+.. image:: ../tutorial/assets/todoshighlightedlog.png
 
 |
 
@@ -1387,7 +1387,7 @@ Suppose that you have this record in your logs as shown below:
 
 Go back to uAdmin dashboard then select "TODOS".
 
-.. image:: ../assets/todoshighlightedlog.png
+.. image:: ../tutorial/assets/todoshighlightedlog.png
 
 |
 
@@ -1848,7 +1848,7 @@ Rebuild your application. Check your terminal to see the result.
 .. code-block:: bash
 
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [   OK   ]   Server Started: http://0.0.0.0:8000
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -2049,7 +2049,7 @@ Rebuild your application. Check your terminal to see the result.
 .. code-block:: bash
 
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     2018/11/07 08:52:14 [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -2104,7 +2104,7 @@ Rebuild your application. Check your terminal to see the result.
 .. code-block:: bash
 
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -2123,7 +2123,7 @@ Result
 .. code-block:: bash
 
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
      / / / / /| |/ __  / __  __ \/ / __ \

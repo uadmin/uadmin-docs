@@ -523,7 +523,7 @@ Export is one of the features of uAdmin that can replicate the data inside the m
 
 First of all, open any models in the dashboard (e.g. TODOS).
 
-.. image:: assets/todoshighlightedlog.png
+.. image:: tutorial/assets/todoshighlightedlog.png
 
 |
 
@@ -1777,25 +1777,25 @@ You will notice that there is another type of action called "Read" using the adm
 
 Go back to the uAdmin Dashboard and open "TODOS" model.
 
-.. image:: assets/todoshighlightedlog.png
+.. image:: tutorial/assets/todoshighlightedlog.png
 
 |
 
 Click Add New TODO.
 
-.. image:: assets/todomodel.png
+.. image:: tutorial/assets/todomodel.png
 
 |
 
 Fill up the fields like in the example below:
 
-.. image:: assets/todomodelcreate.png
+.. image:: tutorial/assets/todomodelcreate.png
 
 |
 
 Save it and new data will be added to your model.
 
-.. image:: assets/todomodeloutput.png
+.. image:: tutorial/assets/todomodeloutput.png
 
 |
 
@@ -1833,13 +1833,13 @@ Click on "Roll Back" and see what happens.
 
 You will not see anything in the screen except the white background. To fix this, type **0.0.0.0:8000** in the address bar. Once you are done, you will see the uAdmin dashboard again. Open "TODOS" model.
 
-.. image:: assets/todoshighlightedlog.png
+.. image:: tutorial/assets/todoshighlightedlog.png
 
 |
 
 You will notice that the name field has reverted from "Read a magazine" to "Read a book".
 
-.. image:: assets/todomodeloutput.png
+.. image:: tutorial/assets/todomodeloutput.png
 
 |
 
@@ -1863,13 +1863,13 @@ Click on "Roll Back" and see what happens.
 
 You will not see anything in the screen except the white background. To fix this, type **0.0.0.0:8000** in the address bar. Once you are done, you will see the uAdmin dashboard again. Open "TODOS" model.
 
-.. image:: assets/todoshighlightedlog.png
+.. image:: tutorial/assets/todoshighlightedlog.png
 
 |
 
 As expected, we recovered a record in the Todo model.
 
-.. image:: assets/todomodeloutput.png
+.. image:: tutorial/assets/todomodeloutput.png
 
 |
 

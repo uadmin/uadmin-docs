@@ -86,25 +86,25 @@ Now register the model on **main.go** where `models` is the package name and `To
 
 Run your application. As expected, the Todo model was added in the uAdmin Dashboard.
 
-.. image:: ../assets/todoshighlightedlog.png
+.. image:: assets/todoshighlightedlog.png
 
 |
 
 Click Add New TODO.
 
-.. image:: ../assets/todomodel.png
+.. image:: assets/todomodel.png
 
 |
 
 Fill up the fields as shown in the example below.
 
-.. image:: ../assets/todomodelcreate.png
+.. image:: assets/todomodelcreate.png
 
 |
 
 Save it and new data will be added to your model.
 
-.. image:: ../assets/todomodeloutput.png
+.. image:: assets/todomodeloutput.png
 
 |
 

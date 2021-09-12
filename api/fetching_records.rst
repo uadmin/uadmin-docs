@@ -758,15 +758,11 @@ Used in the tutorial:
 * `Document System Tutorial Part 11 - Document and Folder Permissions`_
 * `Document System Tutorial Part 13 - Custom AdminPage function`_
 * `Document System Tutorial Part 14 - Permissions Form`_
-* `Login System Tutorial Part 3 - Sending Request`_
-* `Login System Tutorial Part 8 - Webpage Manipulation`_
 
 .. _Document System Tutorial Part 9 - Updating the Document Version: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part9.html
 .. _Document System Tutorial Part 11 - Document and Folder Permissions: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part11.html
 .. _Document System Tutorial Part 13 - Custom AdminPage function: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part13.html
 .. _Document System Tutorial Part 14 - Permissions Form: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/part14.html
-.. _Login System Tutorial Part 3 - Sending Request: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part3.html
-.. _Login System Tutorial Part 8 - Webpage Manipulation: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part8.html
 
 Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
 
@@ -1422,15 +1418,13 @@ RenderHTML creates a new template and applies a parsed template to the specified
 Used in the tutorial:
 
 * `Login System Tutorial Part 2 - Login Form`_
-* `Login System Tutorial Part 6 - Home Page`_
-* `Login System Tutorial Part 7 - Logout`_
-* `Login System Tutorial Part 8 - Webpage Manipulation`_
+* `Login System Tutorial Part 3 - Sending Request`_
+* `Login System Tutorial Part 5 - Home Page Access`_
 * `uAdmin Tutorial Part 13 - Accessing an HTML file`_
 
-.. _Login System Tutorial Part 2 - Login Form: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part2.html
-.. _Login System Tutorial Part 6 - Home Page: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part6.html
-.. _Login System Tutorial Part 7 - Logout: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part7.html
-.. _Login System Tutorial Part 8 - Webpage Manipulation: https://uadmin-docs.readthedocs.io/en/latest/login_system/tutorial/part8.html
+.. _Login System Tutorial Part 2 - Login Form: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part2.html
+.. _Login System Tutorial Part 3 - Sending Request: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part3.html
+.. _Login System Tutorial Part 5 - Home Page Access: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part5.html
 
 .. _uAdmin Tutorial Part 13 - Accessing an HTML file: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part13.html
 

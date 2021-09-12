@@ -151,8 +151,23 @@ There are 6 fields that you can use in this function:
 * **Type** - returns a string. There are 2 types: SQLLite and MySQL.
 * **User** - returns a user string
 
-.. WARNING::
-   uadmin.Database function is deprecated on version 0.4.0 and above. Instead, we have to create a new file called .database.
+There are two ways to set the database. Choose **ANY** of these methods that you prefer.
+
+**Method 1:** Database Configuration in the main file
+
+Apply the following codes in **main.go** file below to create SQLite database:
+
+.. code-block:: go
+
+    func main() {
+        // Some business logic
+
+        database := uadmin.Database
+        database.Type = "sqlite"      // sqlite, mysql, postgres
+        database.Name = "todolist.db" // File/DB name
+    }
+
+**Method 2:** Database Configuration in external JSON file
 
 Apply the following codes in **.database** file below to create SQLite database:
 
@@ -170,7 +185,7 @@ If you run your code,
     [   OK   ]   Initializing DB: [13/13]
     [   OK   ]   Initializing Languages: [185/185]
     [  INFO  ]   Auto generated admin user. Username: admin, Password: admin.
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -197,7 +212,7 @@ uadmin.DBSettings
 .. code-block:: go
 
     type DBSettings struct {
-        Type     string `json:"type"` // sqlite, mysql
+        Type     string `json:"type"` // sqlite, mysql, postgres
         Name     string `json:"name"` // File/DB name
         User     string `json:"user"`
         Password string `json:"password"`
@@ -207,9 +222,24 @@ uadmin.DBSettings
 
 DBSettings is a feature that allows a user to configure the settings of a database.
 
-.. WARNING::
-   uadmin.DBSettings function is deprecated on version 0.4.0 and above. Instead, we have to create a new file called .database.
+There are two ways to set the database. Choose **ANY** of these methods that you prefer.
 
+**Method 1:** Database Configuration in the main file
+
+Apply the following codes in **main.go** file below to create SQLite database:
+
+.. code-block:: go
+
+    func main() {
+        // Some business logic
+
+        uadmin.Database = &uadmin.DBSettings{
+            Type: "sqlite",      // sqlite, mysql, postgres
+            Name: "todolist.db", // File/DB name
+        }
+    }
+
+**Method 2:** Database Configuration in the external JSON file
 
 Apply the following codes in **.database** file below to create SQLite database:
 
@@ -227,7 +257,7 @@ If you run your code,
     [   OK   ]   Initializing DB: [13/13]
     [   OK   ]   Initializing Languages: [185/185]
     [  INFO  ]   Auto generated admin user. Username: admin, Password: admin.
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -288,8 +318,28 @@ Your todo schema has been created in the MySQL. Congrats!
 
 |
 
-.. WARNING::
-   uadmin.DBSettings function is deprecated on version 0.4.0 and above. Instead, we have to create a new file called .database.
+There are two ways to set the database. Choose **ANY** of these methods that you prefer.
+
+**Method 1:** Database Configuration in the main file
+
+Apply the following codes in **main.go** file below to create MySQL database:
+
+.. code-block:: go
+
+    func main() {
+        // Some business logic
+
+        uadmin.Database = &uadmin.DBSettings{
+            Type:     "mysql", // sqlite, mysql, postgres
+            Name:     "todo",  // File/DB name
+            User:     "root",
+            Password: "(your MySQL password",
+            Host:     "127.0.0.1",
+            Port:     3306,
+        }
+    }
+
+**Method 2:** Database Configuration in the external JSON file
 
 Apply the following codes in **.database** file below o create MySQL database:
 
@@ -313,7 +363,7 @@ Once you are done, run your application and see what happens.
     [   OK   ]   Initializing DB: [13/13]
     [   OK   ]   Initializing Languages: [185/185]
     [  INFO  ]   Auto generated admin user. Username: admin, Password: admin.
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
     [   OK   ]   Server Started: http://0.0.0.0:8080
              ___       __          _
       __  __/   | ____/ /___ ___  (_)___
@@ -389,7 +439,7 @@ Check your terminal to see the result.
 .. code-block:: bash
 
     [   OK   ]   Initializing DB: [13/13]
-    [   OK   ]   Synching System Settings: [46/46]
+    [   OK   ]   Synching System Settings: [51/51]
 
     (/home/dev1/go/src/github.com/uadmin/uadmin/db.go:428) 
     [2018-11-10 12:43:07]  [0.09ms]  SELECT count(*) FROM "languages"  WHERE "languages"."deleted_at" IS NULL  
@@ -433,7 +483,7 @@ Before we proceed to the example, read `Tutorial Part 9 - Introduction to API`_ 
 
 Suppose I have one record in the Todo model.
 
-.. image:: ../assets/todomodeloutput.png
+.. image:: ../tutorial/assets/todomodeloutput.png
 
 Create a file named custom_todo.go inside the api folder with the following codes below:
 

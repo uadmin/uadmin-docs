@@ -8,17 +8,17 @@ import (
 	"github.com/uadmin/uadmin-docs/sample_project/todo/models"
 )
 
+// TodoList field inside the Context that will be used in Golang HTML template
+type Context struct {
+	TodoList []map[string]interface{}
+}
+
 // TodoHandler !
 func TodoHandler(w http.ResponseWriter, r *http.Request) {
-	// TodoList field inside the Context that will be used in Golang
-	// HTML template
-	type Context struct {
-		TodoList []map[string]interface{}
-	}
-
 	// Assigns Context struct to the c variable
 	c := Context{}
 
+	// Fetch Data from DB
 	todo := []models.Todo{}
 	uadmin.All(&todo)
 

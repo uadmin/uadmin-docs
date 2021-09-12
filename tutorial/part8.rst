@@ -8,7 +8,7 @@ Open **/models/todo.go** and add a new method called **Validate** to your Todo s
 
 .. code-block:: go
 
-    // Todo model ...
+    // Todo Model !
     type Todo struct {
         uadmin.Model
         Name        string
@@ -23,14 +23,14 @@ Open **/models/todo.go** and add a new method called **Validate** to your Todo s
         Progress    int `uadmin:"progress_bar"`
     }
 
-    // Save model ...
+    // Save function !
     func (t *Todo) Save() {
         // Save the model to DB
         uadmin.Save(t)
         // Some other business Logic ...
     }
 
-    // Validate function ...
+    // Validate function !
     func (t Todo) Validate() (errMsg map[string]string) {
         // Initialize the error messages
         errMsg = map[string]string{}

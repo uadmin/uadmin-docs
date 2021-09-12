@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Login System Tutorial Part 5 - Home Page Access &#8212; uadmin 0.6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pyramid.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Login System Tutorial Part 5 - Home Page Access (Current Progress)" href="full_code/part5.html" />
+    <link rel="prev" title="Login System Tutorial Part 4 - Login Access Debugging (Current Progress)" href="full_code/part4.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="full_code/part5.html" title="Login System Tutorial Part 5 - Home Page Access (Current Progress)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="full_code/part4.html" title="Login System Tutorial Part 4 - Login Access Debugging (Current Progress)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../coverage.html" accesskey="U">Login System Tutorials</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Login System Tutorial Part 5 - Home Page Access</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="login-system-tutorial-part-5-home-page-access">
+<h1>Login System Tutorial Part 5 - Home Page Access<a class="headerlink" href="#login-system-tutorial-part-5-home-page-access" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, we will talk about accessing the home page after the user logins an account with valid credentials.</p>
+<p>Create a new file in the views folder named <strong>home.go</strong>. Inside the file, create a handler for the home page.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">views</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// HomeHandler handles the home page.</span>
+<span class="kd">func</span> <span class="nx">HomeHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">session</span> <span class="o">*</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">Session</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Initialize the fields that we need in the custom struct.</span>
+    <span class="kd">type</span> <span class="nx">Context</span> <span class="kd">struct</span> <span class="p">{</span>
+        <span class="nx">User</span>        <span class="kt">string</span>
+        <span class="nx">OTPRequired</span> <span class="kt">bool</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Call the custom struct and assign the full name in the User field under the context object.</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nx">Context</span><span class="p">{}</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">User</span> <span class="p">=</span> <span class="nx">session</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">FirstName</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="nx">session</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">LastName</span>
+
+    <span class="c1">// Check if the user has OTPRequired enabled in the database.</span>
+    <span class="k">if</span> <span class="nx">session</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">OTPRequired</span> <span class="p">{</span>
+        <span class="cm">/* Assign a boolean value to OTPRequired field. We will use this to manipulate the grammar</span>
+<span class="cm">        in the UI. */</span>
+        <span class="nx">c</span><span class="p">.</span><span class="nx">OTPRequired</span> <span class="p">=</span> <span class="kc">true</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Render the home filepath and pass the context data object to the HTML file.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RenderHTML</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="s">&quot;templates/home.html&quot;</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Create a new file in the templates folder named <strong>home.html</strong>. Inside the file, let the user know that the user is logged in by displaying their full name and if the OTPRequired is enabled or not.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;ie=edge&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Home Page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- .User is a field that came from the HomeHandler in Golang --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Login as {{.User}}
+
+    <span class="c">&lt;!-- Validate if the OTP is enabled in the user. Use &quot;with&quot; if the</span>
+<span class="c">    use has OTPRequired enabled in the database. Otherwise, use &quot;without&quot;. --&gt;</span>
+    {{if eq .OTPRequired true}} with {{else}} without {{end}}
+    2FA Authentication<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>In <strong>login.go</strong>, add redirection to say that if the OTP has inputted properly, it will go to the path based on the value of the next.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check for OTP</span>
+<span class="k">if</span> <span class="nx">session</span><span class="p">.</span><span class="nx">PendingOTP</span> <span class="p">{</span>
+    <span class="c1">// Some codes</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// ----------------- ADD THIS CODE HERE ----------------- //</span>
+    <span class="cm">/* If the next value is empty, redirect the page that omits the logout keyword in the</span>
+<span class="cm">    last part. */</span>
+    <span class="k">if</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Query</span><span class="p">().</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;next&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&quot;&quot;</span> <span class="p">{</span>
+        <span class="nx">http</span><span class="p">.</span><span class="nx">Redirect</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">RequestURI</span><span class="p">,</span> <span class="s">&quot;logout&quot;</span><span class="p">),</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusSeeOther</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Redirect to the page depending on the value of the next.</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">Redirect</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Query</span><span class="p">().</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;next&quot;</span><span class="p">),</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusSeeOther</span><span class="p">)</span>
+    <span class="k">return</span>
+    <span class="c1">// ----------------------------------------------------- //</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Lastly, add an authentication in the <strong>main.go</strong> to say that this session is preloaded with a user. Otherwise, load the LoginHandler.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// MainHandler is the main handler for the login system.</span>
+<span class="kd">func</span> <span class="nx">MainHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// r.URL.Path creates a new path called &quot;/login_system/&quot;</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/login_system&quot;</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">TrimSuffix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+
+    <span class="c1">// -------------- ADD THIS CODE HERE -------------- //</span>
+    <span class="c1">// Authentication : This session is preloaded with a user.</span>
+    <span class="nx">session</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">IsAuthenticated</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">session</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="c1">// LoginHandler verifies login data and creating sessions for users.</span>
+        <span class="nx">LoginHandler</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+
+    <span class="c1">// HomeHandler handles the home page.</span>
+    <span class="nx">HomeHandler</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">session</span><span class="p">)</span>
+    <span class="k">return</span>
+    <span class="c1">// ----------------------------------------------- //</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application and login your account.</p>
+<img alt="../../_images/adminuserpasshiddenotp.png" class="align-center" src="../../_images/adminuserpasshiddenotp.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>After the system validates the username and password, it will display the OTP input field in the UI. Check your terminal or Google Authenticator for the OTP (e.g. 123456).</p>
+<img alt="../../_images/adminloginformdatatest1.png" class="align-center" src="../../_images/adminloginformdatatest1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../../_images/loginwith2faresult1.png" src="../../_images/loginwith2faresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now go to the admin path in the address bar (e.g. <a class="reference external" href="http://localhost:8080/admin/">http://localhost:8080/admin/</a>). Inside the “USERS” model, disable the OTPRequired in the System Admin user.</p>
+<img alt="../../_images/otprequiredfalse1.png" src="../../_images/otprequiredfalse1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to the login system path in the address bar (e.g. <a class="reference external" href="http://localhost:8080/login_system/">http://localhost:8080/login_system/</a>). Assign the username and password in the login form (e.g. admin, admin). Click Login button to submit.</p>
+<img alt="../../_images/adminuserpasshiddenotp.png" class="align-center" src="../../_images/adminuserpasshiddenotp.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result</p>
+<img alt="../../_images/loginwithout2faresult1.png" src="../../_images/loginwithout2faresult1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/full_code/part5.html">here</a> to view our progress so far.</p>
+<p>In the <a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part6.html">next part</a>, we will discuss about logging out a user account from the home page.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="full_code/part5.html">Login System Tutorial Part 5 - Home Page Access (Current Progress)</a></li>
+</ul>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coverage.html">uAdmin Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../application.html">uAdmin Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quiz.html">uAdmin Quizzes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dapi.html">dAPI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quick_reference.html">Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_reference.html">System Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tags.html">Tag Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bestpractices.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About uAdmin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">Roadmap</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="full_code/part4.html"
+                        title="previous chapter">Login System Tutorial Part 4 - Login Access Debugging (Current Progress)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="full_code/part5.html"
+                        title="next chapter">Login System Tutorial Part 5 - Home Page Access (Current Progress)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/login_system_views/tutorial/part5.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="full_code/part5.html" title="Login System Tutorial Part 5 - Home Page Access (Current Progress)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="full_code/part4.html" title="Login System Tutorial Part 4 - Login Access Debugging (Current Progress)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">uadmin 0.6 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../application.html" >uAdmin Applications</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../coverage.html" >Login System Tutorials</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Login System Tutorial Part 5 - Home Page Access</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, uadmin.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+    </div>
+  </body>
+</html>

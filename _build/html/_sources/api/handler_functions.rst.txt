@@ -24,9 +24,11 @@ Used in the tutorial:
 
 * `uAdmin Tutorial Part 9 - Introduction to API`_
 * `uAdmin Tutorial Part 13 - Accessing an HTML file`_
+* `Login System Tutorial Part 2 - Login Form`_
 
 .. _uAdmin Tutorial Part 9 - Introduction to API: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html
 .. _uAdmin Tutorial Part 13 - Accessing an HTML file: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part13.html
+.. _Login System Tutorial Part 2 - Login Form: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/tutorial/part2.html
 
 uadmin.StaticHandler
 --------------------

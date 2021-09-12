@@ -6,8 +6,8 @@ Go to login.go in views folder and apply the following codes below:
 
 .. code-block:: go
 
-    // Check if the session is fetched from the Login function
-    if session != nil {
+    // Check if the session is fetched from either login or login2fa
+    if login != nil {
         // Create a cookie named "user_session" with the value of
         // UserID
         usersession := &http.Cookie{

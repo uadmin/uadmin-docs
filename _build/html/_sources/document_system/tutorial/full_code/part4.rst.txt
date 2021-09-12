@@ -17,17 +17,6 @@ Structure:
     * `Folders`_
     * `Users`_
 
-.. _models: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part4.html#id1
-.. _folder_group.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part4.html#id2
-.. _folder_user.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part4.html#id3
-.. _folder.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part4.html#id4
-.. _main.go: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part4.html#id5
-.. _uadmin.db: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part4.html#id6
-.. _Folder Groups: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part4.html#id7
-.. _Folder Users: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part4.html#id8
-.. _Folders: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part4.html#id9
-.. _Users: https://uadmin-docs.readthedocs.io/en/latest/document_system/tutorial/full_code/part4.html#id10
-
 models
 ------
 **folder_group.go**

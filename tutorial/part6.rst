@@ -92,6 +92,8 @@ Now let's try something much cooler that we can apply in the Item model by addin
         Rating      int
     }
 
+**NOTE:** Rebuild your application to take effect.
+
 Result
 
 .. image:: assets/searchtagapplied.png
@@ -104,7 +106,7 @@ Search the word **mini** and see what happens.
 
 |
 
-Nice! Now go back to item.go and apply the tag `categorical_filter` and `filter` in the Name field and see what happens.
+Nice! Now go back to **item.go** and apply the tag `categorical_filter` and `filter` in the Name field and see what happens.
 
 .. code-block:: go
 
@@ -114,7 +116,9 @@ Nice! Now go back to item.go and apply the tag `categorical_filter` and `filter`
 
 	Name string `uadmin:"required;search;categorical_filter;filter"`
 
-Rebuild your application. In Item model, click the filter button on the upper right.
+**NOTE:** Rebuild your application to take effect.
+
+In Item model, click the filter button on the upper right.
 
 Result
 
@@ -140,6 +144,8 @@ We can also apply `display_name` tag with a given value such as **Product Name**
 
 |
 
+**NOTE:** Rebuild your application to take effect.
+
 Result
 
 .. image:: assets/displaynametagapplied.png
@@ -159,6 +165,8 @@ uAdmin has a `default_value` tag which will generate a value automatically in th
 
 |
 
+**NOTE:** Rebuild your application to take effect.
+
 Result
 
 .. image:: assets/defaultvaluetagapplied.png
@@ -173,6 +181,8 @@ You can also add `multilingual` tag in the Description field.
     Description string `uadmin:"multilingual"`
 
 |
+
+**NOTE:** Rebuild your application to take effect.
 
 Result
 
@@ -211,6 +221,8 @@ In the Cost field, set the `money` tag and see what happens.
 
 |
 
+**NOTE:** Rebuild your application to take effect.
+
 Result
 
 .. image:: assets/moneytagapplied.png
@@ -221,9 +233,15 @@ You can also set `pattern` and `pattern_msg` tag in the Cost field. This means t
 
 .. code-block:: go
 
+    `pattern:^[0-9]*$;pattern_msg:Your input must be a number.`
+
+.. code-block:: go
+
     Cost int `uadmin:"money;pattern:^[0-9]*$;pattern_msg:Your input must be a number."`
 
 |
+
+**NOTE:** Rebuild your application to take effect.
 
 Result
 
@@ -243,6 +261,8 @@ To solve this case, we can use a help tag feature in order to give users a solut
 
 |
 
+**NOTE:** Rebuild your application to take effect.
+
 Result
 
 .. image:: assets/helptagapplied.png
@@ -257,6 +277,8 @@ We can also use min and max tags in the Rating field. Min tag means the minimum 
     Rating int `uadmin:"min:1;max:5"`
 
 |
+
+**NOTE:** Rebuild your application to take effect.
 
 See what happens if the user inputs the value outside the range.
 
