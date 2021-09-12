@@ -35,6 +35,8 @@ Create a new file in the views folder named **logout.go**. Inside the file, crea
         for _, cookie := range r.Cookies() {
             c := &http.Cookie{
                 Name:   cookie.Name,
+                Value:  "",
+                Path:   "/",
                 MaxAge: -1,
             }
 
@@ -43,7 +45,7 @@ Create a new file in the views folder named **logout.go**. Inside the file, crea
         http.Redirect(w, r, "/login_system/", http.StatusSeeOther)
     }
 
-Lastly, add a validation depending on the request URL path in **main.go** under views folder.
+Lastly, add a validation depending on the request URL path in **views_main.go**.
 
 .. code-block:: go
 

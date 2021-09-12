@@ -30,7 +30,7 @@ First of all, create a new file in the templates folder named **login.html**. In
       </body>
     </html>
 
-Now create a new file in the views folder named **main.go**. Inside main.go, create a MainHandler function that calls the /login_system/ URL path.
+Now create a new file in the views folder named **views_main.go**. Inside views_main.go, create a MainHandler function that calls the /login_system/ URL path.
 
 .. code-block:: go
 
@@ -77,7 +77,7 @@ Create another file in the views folder named **login.go**. Inside login.go, cre
         uadmin.RenderHTML(w, r, "templates/login.html", c)
     }
 
-Call the LoginHandler function in **views/main.go**.
+Call the LoginHandler function in **views_main.go**.
 
 .. code-block:: go
 

@@ -78,7 +78,7 @@
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>Now create a new file in the views folder named <strong>main.go</strong>. Inside main.go, create a MainHandler function that calls the /login_system/ URL path.</p>
+<p>Now create a new file in the views folder named <strong>views_main.go</strong>. Inside views_main.go, create a MainHandler function that calls the /login_system/ URL path.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">views</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -121,7 +121,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Call the LoginHandler function in <strong>views/main.go</strong>.</p>
+<p>Call the LoginHandler function in <strong>views_main.go</strong>.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// MainHandler is the main handler for the login system.</span>
 <span class="kd">func</span> <span class="nx">MainHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Some codes</span>

@@ -15,6 +15,8 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request, session *uadmin.Sessi
 	for _, cookie := range r.Cookies() {
 		c := &http.Cookie{
 			Name:   cookie.Name,
+			Value:  "",
+			Path:   "/",
 			MaxAge: -1,
 		}
 

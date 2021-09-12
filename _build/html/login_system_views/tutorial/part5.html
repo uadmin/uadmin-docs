@@ -132,7 +132,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Lastly, add an authentication in the <strong>main.go</strong> to say that this session is preloaded with a user. Otherwise, load the LoginHandler.</p>
+<p>Lastly, add an authentication in the <strong>views_main.go</strong> to say that this session is preloaded with a user. Otherwise, load the LoginHandler.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// MainHandler is the main handler for the login system.</span>
 <span class="kd">func</span> <span class="nx">MainHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// r.URL.Path creates a new path called &quot;/login_system/&quot;</span>

@@ -286,6 +286,8 @@
     <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">cookie</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Cookies</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">c</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Cookie</span><span class="p">{</span>
             <span class="nx">Name</span><span class="p">:</span>   <span class="nx">cookie</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>
+            <span class="nx">Value</span><span class="p">:</span>  <span class="s">&quot;&quot;</span><span class="p">,</span>
+            <span class="nx">Path</span><span class="p">:</span>   <span class="s">&quot;/&quot;</span><span class="p">,</span>
             <span class="nx">MaxAge</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
         <span class="p">}</span>
 

@@ -84,7 +84,7 @@ In **login.go**, add redirection to say that if the OTP has inputted properly, i
         // ----------------------------------------------------- //
     }
 
-Lastly, add an authentication in the **main.go** to say that this session is preloaded with a user. Otherwise, load the LoginHandler.
+Lastly, add an authentication in the **views_main.go** to say that this session is preloaded with a user. Otherwise, load the LoginHandler.
 
 .. code-block:: go
 

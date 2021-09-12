@@ -16,7 +16,7 @@ First of all, let's create a folder for your project and prepare it.
     [   OK   ]   Created: /home/pc_name/go/src/github.com/your_name/login_system_views/static
     [   OK   ]   Created: /home/pc_name/go/src/github.com/your_name/login_system_views/templates
 
-Use your favorite editor to create **main.go** inside that path. Put the following code in **main.go**.
+Use your favorite editor to create **main.go** inside that path. Put the following code in main.go.
 
 .. code-block:: go
 

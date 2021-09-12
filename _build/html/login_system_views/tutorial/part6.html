@@ -84,6 +84,8 @@
     <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">cookie</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Cookies</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">c</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Cookie</span><span class="p">{</span>
             <span class="nx">Name</span><span class="p">:</span>   <span class="nx">cookie</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>
+            <span class="nx">Value</span><span class="p">:</span>  <span class="s">&quot;&quot;</span><span class="p">,</span>
+            <span class="nx">Path</span><span class="p">:</span>   <span class="s">&quot;/&quot;</span><span class="p">,</span>
             <span class="nx">MaxAge</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
         <span class="p">}</span>
 
@@ -93,7 +95,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Lastly, add a validation depending on the request URL path in <strong>main.go</strong> under views folder.</p>
+<p>Lastly, add a validation depending on the request URL path in <strong>views_main.go</strong>.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// MainHandler is the main handler for the login system.</span>
 <span class="kd">func</span> <span class="nx">MainHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Some codes</span>
