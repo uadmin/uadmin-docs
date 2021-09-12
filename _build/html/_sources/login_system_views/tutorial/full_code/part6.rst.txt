@@ -37,7 +37,7 @@ templates
         <h1>Login as {{.User}}
 
         <!-- Validate if the OTP is enabled in the user. Use "with" if the
-        use has OTPRequired enabled in the database. Otherwise, use "without". -->
+        user has OTPRequired enabled in the database. Otherwise, use "without". -->
         {{if eq .OTPRequired true}} with {{else}} without {{end}}
         2FA Authentication</h1>
 
