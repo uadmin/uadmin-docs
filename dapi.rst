@@ -337,7 +337,7 @@ Structure:
 .. code-block:: bash
 
     # d stands for data
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/delete/{ID}/
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/delete/{ID}/?x-csrf-token={YOUR_SESSION_KEY}
 
 **Method**: GET, POST
 
@@ -355,7 +355,8 @@ Run your application and call this URL to delete the third record in the databas
 
     # item is a model name
     # 3 is an ID number
-    http://api.example.com/{ROOT_URL}/api/d/item/delete/3/
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/delete/3/?x-csrf-token={YOUR_SESSION_KEY}
 
 Result:
 
@@ -1610,7 +1611,7 @@ Methods
 """"""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIDisabledAdd controls the data API's disabled for add commands.
+APIDisabledAdd controls the data API's disabled for add commands. The purpose of this model function is to disable add access to an assigned model regardless of the user privilege so even if you are logged in as admin, you are still not permitted to add the records in the assigned model because it is disabled. By default, APIDisabledAdd returns **false**.
 
 Structure:
 
@@ -1625,7 +1626,7 @@ Structure:
 """""""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIDisabledDelete controls the data API's disabled for delete commands.
+APIDisabledDelete controls the data API's disabled for delete commands. The purpose of this model function is to disable delete access to an assigned model regardless of the user privilege so even if you are logged in as admin, you are still not permitted to delete the records in the assigned model because it is disabled. By default, APIDisabledDelete returns **false**.
 
 Structure:
 
@@ -1636,11 +1637,74 @@ Structure:
         return true
     }
 
+Suppose you are logged in as **admin** and you have five records in the Item model.
+
+Run your application and call this URL to delete the third record in the database.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 3 is an ID number
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/delete/3/?x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query. Now go back to the Item model in the admin page and see what happens to the number of records in the Item model.
+
+.. image:: dapi/assets/deleteoneresult.png
+
+As you can see, the "iPad Pro" record has been deleted in the Item model.
+
+Now things have changed and you do not want to allow anyone to tamper the records stored in the Item model. They are really essential that you want to keep it forever. In order to do that, you need to apply APIDisabledDelete function in the Go file inside the models folder (e.g. item.go for Item model)
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to disable access to delete method
+    func (Item) APIDisabledDelete(r *http.Request) bool {
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application, log in your account as admin. Execute dAPI delete command again in the address bar and see what happens.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 3 is an ID number
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/delete/3/?x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "err_msg": "Permission denied",
+        "status": "error"
+    }
+
+It now adds a security where no one is permitted to delete the records in Item model even if the user's position is an admin.
+
 **APIDisabledEdit**
 """""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIDisabledEdit controls the data API's disabled for edit commands.
+APIDisabledEdit controls the data API's disabled for edit commands. The purpose of this model function is to disable edit access to an assigned model regardless of the user privilege so even if you are logged in as admin, you are still not permitted to edit the records in the assigned model because it is disabled. By default, APIDisabledEdit returns **false**.
 
 Structure:
 
@@ -1655,7 +1719,7 @@ Structure:
 """""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIDisabledRead controls the data API's disabled for read commands.
+APIDisabledRead controls the data API's disabled for read commands. The purpose of this model function is to disable read access to an assigned model regardless of the user privilege so even if you are logged in as admin, you are still not permitted to read the records in the assigned model because it is disabled. By default, APIDisabledRead returns **false**.
 
 Structure:
 
@@ -1670,7 +1734,7 @@ Structure:
 """""""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIDisabledSchema controls the data API's disabled for schema commands.
+APIDisabledSchema controls the data API's disabled for schema commands. The purpose of this model function is to disable schema access to an assigned model regardless of the user privilege so even if you are logged in as admin, you are still not permitted to schema the records in the assigned model because it is disabled. By default, APIDisabledSchema returns **false**.
 
 Structure:
 
@@ -1685,7 +1749,7 @@ Structure:
 """""""""""""
 `Back to Top (Model Methods)`_
 
-APILogAdd controls the data API's logging for add commands.
+APILogAdd controls the data API's logging for add commands. The purpose of this model function is to enable add access given an assigned model that will be recorded to the logs. By default, APILogAdd returns **true**.
 
 Structure:
 
@@ -1700,7 +1764,7 @@ Structure:
 """"""""""""""""
 `Back to Top (Model Methods)`_
 
-APILogDelete controls the data API's logging for delete commands.
+APILogDelete controls the data API's logging for delete commands. The purpose of this model function is to enable delete access given an assigned model that will be recorded to the logs. By default, APILogDelete returns **true**.
 
 Structure:
 
@@ -1715,7 +1779,7 @@ Structure:
 """"""""""""""
 `Back to Top (Model Methods)`_
 
-APILogEdit controls the data API's logging for edit commands.
+APILogEdit controls the data API's logging for edit commands. The purpose of this model function is to enable edit access given an assigned model that will be recorded to the logs. By default, APILogEdit returns **true**.
 
 Structure:
 
@@ -1730,7 +1794,7 @@ Structure:
 """"""""""""""
 `Back to Top (Model Methods)`_
 
-APILogRead controls the data API's logging for read commands.
+APILogRead controls the data API's logging for read commands. The purpose of this model function is to enable read access given an assigned model that will be recorded to the logs. By default, APILogRead returns **false**.
 
 Structure:
 
@@ -1745,7 +1809,7 @@ Structure:
 """"""""""""""""
 `Back to Top (Model Methods)`_
 
-APILogSchema controls the data API's logging for schema commands.
+APILogSchema controls the data API's logging for schema commands. The purpose of this model function is to enable schema access given an assigned model that will be recorded to the logs. By default, APILogSchema returns **true**.
 
 Structure:
 
@@ -1760,7 +1824,7 @@ Structure:
 """"""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPreQueryAdd controls the data API's pre query for add commands.
+APIPreQueryAdd controls the data API's pre query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPreQueryAdd function regardless even if the communication with the web server is not successful. By default, APIPreQueryAdd returns **false**.
 
 Structure:
 
@@ -1775,7 +1839,7 @@ Structure:
 """""""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPreQueryDelete controls the data API's pre query for delete commands.
+APIPreQueryDelete controls the data API's pre query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPreQueryDelete function regardless even if the communication with the web server is not successful. By default, APIPreQueryDelete returns **false**.
 
 Structure:
 
@@ -1790,7 +1854,7 @@ Structure:
 """""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPreQueryEdit controls the data API's pre query for edit commands.
+APIPreQueryEdit controls the data API's pre query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPreQueryEdit function regardless even if the communication with the web server is not successful. By default, APIPreQueryEdit returns **false**.
 
 Structure:
 
@@ -1805,7 +1869,7 @@ Structure:
 """""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPreQueryRead controls the data API's pre query for read commands.
+APIPreQueryRead controls the data API's pre query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPreQueryRead function regardless even if the communication with the web server is not successful. By default, APIPreQueryRead returns **false**.
 
 Structure:
 
@@ -1820,7 +1884,7 @@ Structure:
 """""""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPreQuerySchema controls the data API's pre query for schema commands.
+APIPreQuerySchema controls the data API's pre query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPreQuerySchema function regardless even if the communication with the web server is not successful. By default, APIPreQuerySchema returns **false**.
 
 Structure:
 
@@ -1835,7 +1899,7 @@ Structure:
 """""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPostQueryAdd controls the data API's post query for add commands.
+APIPostQueryAdd controls the data API's post query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPostQueryAdd function only if the communication with the web server is successful. By default, APIPostQueryAdd returns **false**.
 
 Structure:
 
@@ -1850,7 +1914,7 @@ Structure:
 """"""""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPostQueryDelete controls the data API's post query for delete commands.
+APIPostQueryDelete controls the data API's post query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPostQueryDelete function only if the communication with the web server is successful. By default, APIPostQueryDelete returns **false**.
 
 Structure:
 
@@ -1865,7 +1929,7 @@ Structure:
 """"""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPostQueryEdit controls the data API's post query for edit commands.
+APIPostQueryEdit controls the data API's post query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPostQueryEdit function only if the communication with the web server is successful. By default, APIPostQueryEdit returns **false**.
 
 Structure:
 
@@ -1880,7 +1944,7 @@ Structure:
 """"""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPostQueryRead controls the data API's post query for read commands.
+APIPostQueryRead controls the data API's post query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPostQueryRead function only if the communication with the web server is successful. By default, APIPostQueryRead returns **false**.
 
 Structure:
 
@@ -1895,7 +1959,7 @@ Structure:
 """"""""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPostQuerySchema controls the data API's post query for schema commands.
+APIPostQuerySchema controls the data API's post query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPostQuerySchema function only if the communication with the web server is successful. By default, APIPostQuerySchema returns **false**.
 
 Structure:
 
@@ -1910,7 +1974,7 @@ Structure:
 """"""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPublicAdd controls the data API's public for add commands.
+APIPublicAdd controls the data API's public for add commands. The purpose of this model function is to enable add access to an assigned model regardless of the user privilege so even if you are not logged in as admin, you are still permitted to add the records in the assigned model because it is accessible to everyone. By default, APIPublicAdd returns **false**.
 
 Structure:
 
@@ -1925,7 +1989,7 @@ Structure:
 """""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPublicDelete controls the data API's public for delete commands.
+APIPublicDelete controls the data API's public for delete commands. The purpose of this model function is to enable delete access to an assigned model regardless of the user privilege so even if you are not logged in as admin, you are still permitted to delete the records in the assigned model because it is accessible to everyone. By default, APIPublicDelete returns **false**.
 
 Structure:
 
@@ -1940,7 +2004,7 @@ Structure:
 """""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPublicEdit controls the data API's public for edit commands.
+APIPublicEdit controls the data API's public for edit commands. The purpose of this model function is to enable edit access to an assigned model regardless of the user privilege so even if you are not logged in as admin, you are still permitted to edit the records in the assigned model because it is accessible to everyone. By default, APIPublicEdit returns **false**.
 
 Structure:
 
@@ -1955,7 +2019,7 @@ Structure:
 """""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPublicRead controls the data API's public for read commands.
+APIPublicRead controls the data API's public for read commands. The purpose of this model function is to enable read access to an assigned model regardless of the user privilege so even if you are not logged in as admin, you are still permitted to read the records in the assigned model because it is accessible to everyone. By default, APIPublicRead returns **false**.
 
 Structure:
 
@@ -1972,7 +2036,7 @@ Structure:
 
 .. _Back to Top (Model Methods): https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods
 
-APIPublicSchema controls the data API's public for schema commands.
+APIPublicSchema controls the data API's public for schema commands. The purpose of this model function is to enable schema access to an assigned model regardless of the user privilege so even if you are not logged in as admin, you are still permitted to schema the records in the assigned model because it is accessible to everyone. By default, APIPublicSchema returns **false**.
 
 Structure:
 
