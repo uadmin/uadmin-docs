@@ -177,7 +177,8 @@ Structure:
 
     # d stands for data
     # For writing data, put _ symbol first before the field name
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/add/?_{FIELD_NAME=VALUE}
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/add/?_{FIELD_NAME=VALUE}&x-csrf-token={YOUR_SESSION_KEY}
 
 **Method**: GET, POST
 
@@ -208,16 +209,19 @@ Run your application and call this URL to add a new record in the Document model
 
     # document is a model name
     # name and author are field names
-    http://api.example.com/{ROOT_URL}/api/d/document/add/?_name=Programming&_author=Admin
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/document/add/?_name=Programming&_author=Admin&x-csrf-token={YOUR_SESSION_KEY}
 
 Result:
 
 .. code-block:: JSON
 
     {
-        "id": 3,
-        "rows_count": 1,
-        "status": "ok"
+      "id": [
+        3
+      ],
+      "rows_count": 1,
+      "status": "ok"
     }
 
 It returns the ID of the newly created record.
@@ -337,6 +341,7 @@ Structure:
 .. code-block:: bash
 
     # d stands for data
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
     http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/delete/{ID}/?x-csrf-token={YOUR_SESSION_KEY}
 
 **Method**: GET, POST
@@ -511,7 +516,8 @@ Structure:
 
     # d stands for data
     # For writing data, put _ symbol first before the field name
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/edit/{ID}/?_{FIELD_NAME=VALUE}
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/edit/{ID}/?_{FIELD_NAME=VALUE}&x-csrf-token={YOUR_SESSION_KEY}
 
 **Method**: GET, POST
 
@@ -530,7 +536,8 @@ Run your application and call this URL to edit the name of the first record in t
     # item is a model name
     # 1 is an ID number
     # name is a field name
-    http://api.example.com/{ROOT_URL}/api/d/item/edit/1/?_name=Supercomputer
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/edit/1/?_name=Supercomputer&x-csrf-token={YOUR_SESSION_KEY}
 
 Result:
 
@@ -1514,14 +1521,6 @@ Structure:
 
 **Authentication**: Cookie, URL parameter "?code=abcd" or POST parameter "code=abcd"
 
-By default this is disabled for all users unless it is enabled with method **APIDisabledSchema** and **APIPublicSchema**.
-
-Suppose you have five records in the Item model.
-
-.. image:: dapi/assets/itemfiverecords.png
-
-|
-
 Run your application and call this URL to read the full schema of the Item model.
 
 .. code-block:: bash
@@ -1622,6 +1621,98 @@ Structure:
         return true
     }
 
+Suppose you are logged in as **admin** and you have two records in the Document model.
+
+.. image:: dapi/assets/addmultipleresult.png
+
+|
+
+Run your application and call this URL to add a new record in the Document model with the following information below:
+
+* Name: Programming
+* Author: Admin
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/document/add/?_name=Programming&_author=Admin&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+      "id": [
+        3
+      ],
+      "rows_count": 1,
+      "status": "ok"
+    }
+
+It returns the ID of the newly created record.
+
+To check the details of a newly created record, there are two methods: by visiting the Document model in the dashboard or by using HTTP API to read one by assigning the ID of the newly created record.
+
+**Method 1:** Visiting the Document model from uAdmin dashboard
+
+.. image:: dapi/assets/addoneresult.png
+
+**Method 2:** Using HTTP API to read one record
+
+.. code-block:: bash
+
+    # document is a model name
+    # 3 is an ID number
+    http://api.example.com/{ROOT_URL}/api/d/document/read/3/
+
+Result:
+
+.. image:: dapi/assets/addoneresultjson.png
+   :align: center
+
+|
+
+It returns a JSON object representing an item where ID=3.
+
+Now things have changed and you do not want to allow anyone to tamper the records stored in the Item model. In order to do that, you need to apply APIDisabledAdd function in the Go file inside the models folder (e.g. item.go for Item model)
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to disable access to add method
+    func (Item) APIDisabledAdd(r *http.Request) bool {
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application, log in your account as admin. Execute dAPI add command again in the address bar and see what happens.
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/document/add/?_name=Programming&_author=Admin&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "err_msg": "Permission denied",
+        "status": "error"
+    }
+
+It now adds a security where no one is permitted to add the records in Item model even if the user's position is an admin.
+
 **APIDisabledDelete**
 """""""""""""""""""""
 `Back to Top (Model Methods)`_
@@ -1638,6 +1729,10 @@ Structure:
     }
 
 Suppose you are logged in as **admin** and you have five records in the Item model.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
 
 Run your application and call this URL to delete the third record in the database.
 
@@ -1715,6 +1810,75 @@ Structure:
         return true
     }
 
+Suppose you are logged in as **admin** and you have the first record in the Item model is named as "Robot".
+
+.. image:: dapi/assets/itemfirstrecordrobot.png
+
+|
+
+Run your application and call this URL to edit the name of the first record in the database from "Robot" to "Supercomputer".
+
+.. code-block:: bash
+
+    # item is a model name
+    # 1 is an ID number
+    # name is a field name
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/edit/1/?_name=Supercomputer&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query. Now go back to the Item model in the admin page and check the results.
+
+.. image:: dapi/assets/editoneresult.png
+
+As you can see, the first record in the Item model has been modified from "Robot" to "Supercomputer".
+
+Now things have changed and you do not want to allow anyone to tamper the records stored in the Item model. In order to do that, you need to apply APIDisabledEdit function in the Go file inside the models folder (e.g. item.go for Item model)
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to disable access to edit method
+    func (Item) APIDisabledEdit(r *http.Request) bool {
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application, log in your account as admin. Execute dAPI edit command again in the address bar and see what happens.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 1 is an ID number
+    # name is a field name
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/edit/1/?_name=Supercomputer&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "err_msg": "Permission denied",
+        "status": "error"
+    }
+
+It now adds a security where no one is permitted to edit the records in Item model even if the user's position is an admin.
+
 **APIDisabledRead**
 """""""""""""""""""
 `Back to Top (Model Methods)`_
@@ -1730,11 +1894,70 @@ Structure:
         return true
     }
 
+Suppose you are logged in as **admin** and you have five records in the Item model.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read the second record in the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 2 is an ID number
+    http://api.example.com/{ROOT_URL}/api/d/item/read/2/
+
+Result:
+
+.. image:: dapi/assets/readoneresult.png
+   :align: center
+
+|
+
+It returns a JSON object representing an item where ID=2.
+
+Now things have changed and you do not want to allow anyone to view the records stored in the Item model. In order to do that, you need to apply APIDisabledRead function in the Go file inside the models folder (e.g. item.go for Item model)
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to disable access to read method
+    func (Item) APIDisabledRead(r *http.Request) bool {
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application, log in your account as admin. Execute dAPI read command again in the address bar and see what happens.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 2 is an ID number
+    http://api.example.com/{ROOT_URL}/api/d/item/read/2/
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "err_msg": "Permission denied",
+        "status": "error"
+    }
+
+It now adds a security where no one is permitted to read the records in Item model even if the user's position is an admin.
+
 **APIDisabledSchema**
 """""""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIDisabledSchema controls the data API's disabled for schema commands. The purpose of this model function is to disable schema access to an assigned model regardless of the user privilege so even if you are logged in as admin, you are still not permitted to schema the records in the assigned model because it is disabled. By default, APIDisabledSchema returns **false**.
+APIDisabledSchema controls the data API's disabled for schema commands. The purpose of this model function is to disable schema access to an assigned model regardless of the user privilege so even if you are logged in as admin, you are still not permitted to view the schema of the assigned model because it is disabled. By default, APIDisabledSchema returns **false**.
 
 Structure:
 
@@ -1744,6 +1967,57 @@ Structure:
     func (Model) APIDisabledSchema(r *http.Request) bool {
         return true
     }
+
+Suppose you are logged in as **admin**. Run your application and call this URL to read the full schema of the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/
+
+Result:
+
+.. image:: dapi/assets/schemaresult.png
+   :align: center
+
+|
+
+It returns a JSON object representing uAdmin's ModelSchema of the Item model.
+
+Now things have changed and you do not want to allow anyone to view the schema of the Item model. In order to do that, you need to apply APIDisabledRead function in the Go file inside the models folder (e.g. item.go for Item model)
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to disable access to schema method
+    func (Item) APIDisabledSchema(r *http.Request) bool {
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application, log in your account as admin. Execute dAPI read command again in the address bar and see what happens.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "err_msg": "Permission denied",
+        "status": "error"
+    }
+
+It now adds a security where no one is permitted to view the schema of the Item model even if the user's position is an admin.
 
 **APILogAdd**
 """""""""""""
@@ -1985,6 +2259,8 @@ Structure:
         return true
     }
 
+It is necessary to have http.Request parameter in this method for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.
+
 **APIPublicDelete**
 """""""""""""""""""
 `Back to Top (Model Methods)`_
@@ -1999,6 +2275,8 @@ Structure:
     func (Model) APIPublicDelete(r *http.Request) bool {
         return true
     }
+
+It is necessary to have http.Request parameter in this method for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.
 
 **APIPublicEdit**
 """""""""""""""""
@@ -2015,6 +2293,8 @@ Structure:
         return true
     }
 
+It is necessary to have http.Request parameter in this method for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.
+
 **APIPublicRead**
 """""""""""""""""
 `Back to Top (Model Methods)`_
@@ -2030,13 +2310,74 @@ Structure:
         return true
     }
 
+It is necessary to have http.Request parameter in this method for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.
+
+Suppose you are not logged in as **admin** and you have five records in the Item model.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read the second record in the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 2 is an ID number
+    http://api.example.com/{ROOT_URL}/api/d/item/read/2/
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "err_msg": "Permission denied",
+        "status": "error"
+    }
+
+Based on the results, you are not permitted to read the records in Item model because you are not logged in as **admin**. If you want to allow anyone to view the records stored in the item model, you need to apply APIPublicRead function in the Go file inside the models folder (e.g. item.go for Item model).
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable public access to read method
+    func (Item) APIPublicRead(r *http.Request) bool {
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application and stay signed out. Execute dAPI read command again in the address bar and see what happens.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 2 is an ID number
+    http://api.example.com/{ROOT_URL}/api/d/item/read/2/
+
+Result:
+
+.. image:: dapi/assets/readoneresult.png
+   :align: center
+
+|
+
+It returns a JSON object representing an item where ID=2.
+
+It now provides full permission access to read the records in Item model even if the user is not signed in.
+
 **APIPublicSchema**
 """""""""""""""""""
 `Back to Top (Model Methods)`_
 
 .. _Back to Top (Model Methods): https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods
 
-APIPublicSchema controls the data API's public for schema commands. The purpose of this model function is to enable schema access to an assigned model regardless of the user privilege so even if you are not logged in as admin, you are still permitted to schema the records in the assigned model because it is accessible to everyone. By default, APIPublicSchema returns **false**.
+APIPublicSchema controls the data API's public for schema commands. The purpose of this model function is to enable schema access to an assigned model regardless of the user privilege so even if you are not logged in as admin, you are still permitted to view the schema of the assigned model because it is accessible to everyone. By default, APIPublicSchema returns **false**.
 
 Structure:
 
@@ -2047,7 +2388,58 @@ Structure:
         return true
     }
 
-It is necessary to have http.Request parameter in these methods for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.
+It is necessary to have http.Request parameter in this method for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.
+
+Suppose you are not logged in as **admin**. Run your application and call this URL to read the full schema of the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "err_msg": "Permission denied",
+        "status": "error"
+    }
+
+Based on the results, you are not permitted to view the schema of the Item model because you are not logged in as **admin**. If you want to allow anyone to view the schema of the item model, you need to apply APIPublicSchema function in the Go file inside the models folder (e.g. item.go for Item model).
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable public access to schema method
+    func (Item) APIPublicSchema(r *http.Request) bool {
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application and stay signed out. Execute dAPI schema command again in the address bar and see what happens.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/
+
+Result:
+
+.. image:: dapi/assets/schemaresult.png
+   :align: center
+
+|
+
+It returns a JSON object representing uAdmin's ModelSchema of the Item model.
+
+It now provides full permission access to view the schema of the Item model even if the user is not signed in.
 
 **Custom Methods**
 ^^^^^^^^^^^^^^^^^^
