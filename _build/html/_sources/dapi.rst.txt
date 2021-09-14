@@ -2298,9 +2298,6 @@ Because our URL query is successful, it will execute your business logic inside 
     [  INFO  ]   - iPad Pro
     [  INFO  ]   - Ballpen
     [  INFO  ]   - Speaker
-    [  INFO  ]   - Slipper
-    [  INFO  ]   - Frisbee
-    [  INFO  ]   - Mouse
 
 **APIPostQuerySchema**
 """"""""""""""""""""""
