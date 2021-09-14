@@ -50,7 +50,7 @@ Expected result
         Description  string     `uadmin:"multilingual"`
 
         // FIELDS ADDED
-        Category     []Category `uadmin:"list_exclude" gorm:"many2many:category"`
+        Category     []Category `uadmin:"list_exclude" gorm:"many2many:-"`
         CategoryList string     `uadmin:"read_only"`
 
         Cost         int        `uadmin:"money;pattern:^[0-9]*$;pattern_msg:Your input must be a number."`

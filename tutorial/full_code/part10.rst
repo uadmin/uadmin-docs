@@ -232,7 +232,7 @@ models
         uadmin.Model
         Name         string     `uadmin:"required;search;categorical_filter;filter;display_name:Product Name;default_value:Computer"`
         Description  string     `uadmin:"multilingual"`
-        Category     []Category `uadmin:"list_exclude" gorm:"many2many:category"`
+        Category     []Category `uadmin:"list_exclude" gorm:"many2many:-"`
         CategoryList string     `uadmin:"read_only"`
         Cost         int        `uadmin:"money;pattern:^[0-9]*$;pattern_msg:Your input must be a number.;help:Input numeric characters only in this field."`
         Rating       int        `uadmin:"min:1;max:5"`

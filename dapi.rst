@@ -1676,19 +1676,19 @@ Result:
 
 It returns a JSON object representing an item where ID=3.
 
-Now things have changed and you do not want to allow anyone to tamper the records stored in the Item model. In order to do that, you need to apply APIDisabledAdd function in the Go file inside the models folder (e.g. item.go for Item model)
+Now things have changed and you do not want to allow anyone to tamper the records stored in the Document model. In order to do that, you need to apply APIDisabledAdd function in the Go file inside the models folder (e.g. document.go for Document model)
 
 .. code-block:: go
 
-    // Item Model !
-    type Item struct {
+    // Document Model !
+    type Document struct {
         uadmin.Model
         // Your fields here
     }
 
     // ----------------- ADD THIS CODE ---------------------------
     // Return the value to true to disable access to add method
-    func (Item) APIDisabledAdd(r *http.Request) bool {
+    func (Document) APIDisabledAdd(r *http.Request) bool {
         return true
     }
     // -----------------------------------------------------------
@@ -2229,6 +2229,79 @@ Structure:
         return true
     }
 
+Run your application and call this URL without assigning any query.
+
+.. code-block:: bash
+
+    # item is a model name
+    # This API call will read all records in the Item model.
+    http://api.example.com/{ROOT_URL}/api/d/item/read/
+
+Result:
+
+.. image:: dapi/assets/readallresult.png
+   :align: center
+
+|
+
+It returns a JSON array with all items in the database.
+
+Our goal here now is to print only the name of all items in the terminal from the result object displayed in the web. In order to do that, you need to apply APIPostQueryRead function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter **res** in the APIPostQueryRead function to return a JSON array with all items in the database to the terminal.
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable post query access to read field
+    func (Item) APIPostQueryRead(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        // Convert the result object to a type of Item model because the structure of the result object is very similar to the structure of Item model.
+        items := *res["result"].(*[]Item)
+        uadmin.Trail(uadmin.INFO, "Item Names")
+
+        // Loop the values of the item model.
+        for _, item := range items {
+            // Print the item name in the terminal.
+            uadmin.Trail(uadmin.INFO, "- %s", item.Name)
+        }
+
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application again and call this URL without assigning any query.
+
+.. code-block:: bash
+
+    # item is a model name
+    # This API call will read all records in the Item model.
+    http://api.example.com/{ROOT_URL}/api/d/item/read/
+
+Result:
+
+.. image:: dapi/assets/readallresult.png
+   :align: center
+
+|
+
+Because our URL query is successful, it will execute your business logic inside the APIPostQueryRead function. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  INFO  ]   Item Names
+    [  INFO  ]   - Robot
+    [  INFO  ]   - iPad Mini
+    [  INFO  ]   - iPad Pro
+    [  INFO  ]   - Ballpen
+    [  INFO  ]   - Speaker
+    [  INFO  ]   - Slipper
+    [  INFO  ]   - Frisbee
+    [  INFO  ]   - Mouse
+
 **APIPostQuerySchema**
 """"""""""""""""""""""
 `Back to Top (Model Methods)`_
@@ -2243,6 +2316,91 @@ Structure:
     func (Model) APIPostQuerySchema(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
         return true
     }
+
+Run your application and call this URL to read the full schema of the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/
+
+Result:
+
+.. image:: dapi/assets/schemaresult.png
+   :align: center
+
+|
+
+It returns a JSON object representing uAdmin's ModelSchema of the Item model.
+
+Our goal here now is to print some field values in the terminal such as Name, Model Name, and Table Name from the result object displayed in the web. In order to do that, you need to apply APIPostQuerySchema function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter **res** in the APIPostQuerySchema function to return a JSON object representing uAdmin's ModelSchema of the Item model to the terminal.
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable post query access to schema method
+    func (Item) APIPostQuerySchema(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        // Convert the result object to a type of ModelSchema because the structure of the result object is very similar to the structure of ModelSchema.
+        modelSchema := res["result"].(uadmin.ModelSchema)
+
+        // Print the name, display name, and table name in the terminal.
+        uadmin.Trail(uadmin.INFO, "Name : %s", modelSchema.Name)
+        uadmin.Trail(uadmin.INFO, "Display Name : %s", modelSchema.DisplayName)
+        uadmin.Trail(uadmin.INFO, "Table Name : %s", modelSchema.TableName)
+
+        // Loop the values of the inline object.
+        for _, i := range modelSchema.Inlines {
+            // We assigned the variable as (*i) in order to remove the pointer in the variable type then access the name field to display the name of the inline.
+            uadmin.Trail(uadmin.INFO, "Inline Name : %s", (*i).Name)
+
+            // Print the field names of this inline.
+            uadmin.Trail(uadmin.INFO, "Field Names")
+            for _, f := range (*i).Fields {
+                uadmin.Trail(uadmin.INFO, "- %s", f.Name)
+            }
+        }
+
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application again and call this URL to read the full schema of the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/
+
+Result:
+
+.. image:: dapi/assets/schemaresult.png
+   :align: center
+
+|
+
+Because our URL query is successful, it will execute your business logic inside the APIPostQuerySchema function. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  INFO  ]   Name : Item
+    [  INFO  ]   Display Name : Item
+    [  INFO  ]   Table Name : items
+    [  INFO  ]   Inline Name : Todo
+    [  INFO  ]   Field Names
+    [  INFO  ]   - ID
+    [  INFO  ]   - Name
+    [  INFO  ]   - Description
+    [  INFO  ]   - Category
+    [  INFO  ]   - Friend
+    [  INFO  ]   - Item
+    [  INFO  ]   - TargetDate
+    [  INFO  ]   - Progress
 
 **APIPublicAdd**
 """"""""""""""""
@@ -2261,6 +2419,104 @@ Structure:
 
 It is necessary to have http.Request parameter in this method for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.
 
+Suppose you are logged in as a non-admin or guest account and you have no add access permission to the Document model in uAdmin dashboard.
+
+.. image:: dapi/assets/emptyuadmindashboard.png
+
+|
+
+There are two records in the Document model behind the scenes.
+
+.. image:: dapi/assets/addmultipleresult.png
+
+|
+
+Run your application and call this URL to add a new record in the Document model with the following information below:
+
+* Name: Programming
+* Author: Admin
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/document/add/?_name=Programming&_author=Admin&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "err_msg": "Permission denied",
+        "status": "error"
+    }
+
+Based on the results, you are not permitted to add the records in Document model because you have no add access permission to the Document model in uAdmin dashboard. If you want to allow anyone to add the records stored in the Document model, you need to apply APIPublicAdd function in the Go file inside the models folder (e.g. document.go for Document model).
+
+.. code-block:: go
+
+    // Document Model !
+    type Document struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable public access to add method
+    func (Document) APIPublicAdd(r *http.Request) bool {
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application and stay signed in as non-admin or guest account. Execute dAPI add command again in the address bar and see what happens.
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/document/add/?_name=Programming&_author=Admin&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+      "id": [
+        3
+      ],
+      "rows_count": 1,
+      "status": "ok"
+    }
+
+It returns the ID of the newly created record.
+
+To check the details of a newly created record, there are two methods: by visiting the Document model in the dashboard or by using HTTP API to read one by assigning the ID of the newly created record.
+
+**Method 1:** Visiting the Document model from uAdmin dashboard
+
+.. image:: dapi/assets/addoneresult.png
+
+**Method 2:** Using HTTP API to read one record
+
+.. code-block:: bash
+
+    # document is a model name
+    # 3 is an ID number
+    http://api.example.com/{ROOT_URL}/api/d/document/read/3/
+
+Result:
+
+.. image:: dapi/assets/addoneresultjson.png
+   :align: center
+
+|
+
+It returns a JSON object representing an item where ID=3.
+
+It now provides full permission access to add the records in Document model even if the user has no add permission access to the Document model in uAdmin dashboard.
+
 **APIPublicDelete**
 """""""""""""""""""
 `Back to Top (Model Methods)`_
@@ -2278,6 +2534,97 @@ Structure:
 
 It is necessary to have http.Request parameter in this method for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.
 
+Suppose you are logged in as a non-admin or guest account and you have no delete access permission to the Item model in uAdmin dashboard.
+
+.. image:: dapi/assets/emptyuadmindashboard.png
+
+|
+
+There are five records in the Item model behind the scenes.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to delete the third record in the database.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 3 is an ID number
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/delete/3/?x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "err_msg": "Permission denied",
+        "status": "error"
+    }
+
+Based on the results, you are not permitted to delete the records in Item model because you have no delete access permission to the Item model in uAdmin dashboard. If you want to allow anyone to delete the records stored in the Item model, you need to apply APIPublicDelete function in the Go file inside the models folder (e.g. item.go for Item model).
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable public access to delete method
+    func (Item) APIPublicDelete(r *http.Request) bool {
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application and stay signed in as non-admin or guest account. Execute dAPI delete command again in the address bar and see what happens.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 3 is an ID number
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/delete/3/?x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query.
+
+To check if the third record was removed from the database, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read all data.
+
+**Method 1:** Visiting the Item model from uAdmin dashboard
+
+.. image:: dapi/assets/deleteoneresult.png
+
+**Method 2:** Using HTTP API to read all data
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/{ROOT_URL}/api/d/item/read/
+
+Result:
+
+.. image:: dapi/assets/deleteoneresultjson.png
+   :align: center
+
+|
+
+It returns a JSON array with all remaining items in the database.
+
+It now provides full permission access to delete the records in Item model even if the user has no delete permission access to the Item model in uAdmin dashboard.
+
 **APIPublicEdit**
 """""""""""""""""
 `Back to Top (Model Methods)`_
@@ -2294,6 +2641,91 @@ Structure:
     }
 
 It is necessary to have http.Request parameter in this method for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.
+
+Suppose you are logged in as a non-admin or guest account and the first record in the Item model is named as "Robot".
+
+.. image:: dapi/assets/itemfirstrecordrobot.png
+
+|
+
+Run your application and call this URL to edit the name of the first record in the database from "Robot" to "Supercomputer".
+
+.. code-block:: bash
+
+    # item is a model name
+    # 1 is an ID number
+    # name is a field name
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/edit/1/?_name=Supercomputer&x-csrf-token={YOUR_SESSION_KEY}
+
+.. code-block:: JSON
+
+    {
+        "err_msg": "Permission denied",
+        "status": "error"
+    }
+
+Based on the results, you are not permitted to edit the records in Item model because you have no edit access permission to the Item model in uAdmin dashboard. If you want to allow anyone to edit the records stored in the Item model, you need to apply APIPublicEdit function in the Go file inside the models folder (e.g. item.go for Item model).
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable public access to edit method
+    func (Item) APIPublicEdit(r *http.Request) bool {
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application and stay signed in as non-admin or guest account. Execute dAPI edit command again in the address bar and see what happens.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 3 is an ID number
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/delete/3/?x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query.
+
+To check if the name of the first record has modified, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read the first record.
+
+**Method 1:** Visiting the Item model from uAdmin dashboard
+
+.. image:: dapi/assets/editoneresult.png
+
+**Method 2:** Using HTTP API to read the first record
+
+.. code-block:: bash
+
+    # item is a model name
+    # 1 is an ID number
+    http://api.example.com/{ROOT_URL}/api/d/item/read/1/
+
+Result:
+
+.. image:: dapi/assets/editoneresultjson.png
+   :align: center
+
+|
+
+It returns a JSON object representing a modified item where name=Supercomputer.
+
+It now provides full permission access to edit the records in Item model even if the user has no edit permission access to the Item model in uAdmin dashboard.
 
 **APIPublicRead**
 """""""""""""""""

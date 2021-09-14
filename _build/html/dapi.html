@@ -1362,16 +1362,16 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <div class="line"><br /></div>
 </div>
 <p>It returns a JSON object representing an item where ID=3.</p>
-<p>Now things have changed and you do not want to allow anyone to tamper the records stored in the Item model. In order to do that, you need to apply APIDisabledAdd function in the Go file inside the models folder (e.g. item.go for Item model)</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
-<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+<p>Now things have changed and you do not want to allow anyone to tamper the records stored in the Document model. In order to do that, you need to apply APIDisabledAdd function in the Go file inside the models folder (e.g. document.go for Document model)</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Document Model !</span>
+<span class="kd">type</span> <span class="nx">Document</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
     <span class="c1">// Your fields here</span>
 <span class="p">}</span>
 
 <span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
 <span class="c1">// Return the value to true to disable access to add method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIDisabledAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Document</span><span class="p">)</span> <span class="nx">APIDisabledAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
 <span class="c1">// -----------------------------------------------------------</span>
@@ -1799,6 +1799,66 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Run your application and call this URL without assigning any query.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># This API call will read all records in the Item model.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/readallresult.png" class="align-center" src="_images/readallresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON array with all items in the database.</p>
+<p>Our goal here now is to print only the name of all items in the terminal from the result object displayed in the web. In order to do that, you need to apply APIPostQueryRead function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter <strong>res</strong> in the APIPostQueryRead function to return a JSON array with all items in the database to the terminal.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable post query access to read field</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPostQueryRead</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Convert the result object to a type of Item model because the structure of the result object is very similar to the structure of Item model.</span>
+    <span class="nx">items</span> <span class="o">:=</span> <span class="o">*</span><span class="nx">res</span><span class="p">[</span><span class="s">&quot;result&quot;</span><span class="p">].(</span><span class="o">*</span><span class="p">[]</span><span class="nx">Item</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Item Names&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Loop the values of the item model.</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">item</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">items</span> <span class="p">{</span>
+        <span class="c1">// Print the item name in the terminal.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;- %s&quot;</span><span class="p">,</span> <span class="nx">item</span><span class="p">.</span><span class="nx">Name</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Now run your application again and call this URL without assigning any query.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># This API call will read all records in the Item model.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/readallresult.png" class="align-center" src="_images/readallresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Because our URL query is successful, it will execute your business logic inside the APIPostQueryRead function. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   Item Names
+<span class="o">[</span>  INFO  <span class="o">]</span>   - Robot
+<span class="o">[</span>  INFO  <span class="o">]</span>   - iPad Mini
+<span class="o">[</span>  INFO  <span class="o">]</span>   - iPad Pro
+<span class="o">[</span>  INFO  <span class="o">]</span>   - Ballpen
+<span class="o">[</span>  INFO  <span class="o">]</span>   - Speaker
+<span class="o">[</span>  INFO  <span class="o">]</span>   - Slipper
+<span class="o">[</span>  INFO  <span class="o">]</span>   - Frisbee
+<span class="o">[</span>  INFO  <span class="o">]</span>   - Mouse
+</pre></div>
+</div>
 </section>
 <section id="apipostqueryschema">
 <h4><strong>APIPostQuerySchema</strong><a class="headerlink" href="#apipostqueryschema" title="Permalink to this headline">¶</a></h4>
@@ -1809,6 +1869,78 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQuerySchema</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application and call this URL to read the full schema of the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/schema/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/schemaresult.png" class="align-center" src="_images/schemaresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing uAdmin’s ModelSchema of the Item model.</p>
+<p>Our goal here now is to print some field values in the terminal such as Name, Model Name, and Table Name from the result object displayed in the web. In order to do that, you need to apply APIPostQuerySchema function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter <strong>res</strong> in the APIPostQuerySchema function to return a JSON object representing uAdmin’s ModelSchema of the Item model to the terminal.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable post query access to schema method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPostQuerySchema</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Convert the result object to a type of ModelSchema because the structure of the result object is very similar to the structure of ModelSchema.</span>
+    <span class="nx">modelSchema</span> <span class="o">:=</span> <span class="nx">res</span><span class="p">[</span><span class="s">&quot;result&quot;</span><span class="p">].(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ModelSchema</span><span class="p">)</span>
+
+    <span class="c1">// Print the name, display name, and table name in the terminal.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Name : %s&quot;</span><span class="p">,</span> <span class="nx">modelSchema</span><span class="p">.</span><span class="nx">Name</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Display Name : %s&quot;</span><span class="p">,</span> <span class="nx">modelSchema</span><span class="p">.</span><span class="nx">DisplayName</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Table Name : %s&quot;</span><span class="p">,</span> <span class="nx">modelSchema</span><span class="p">.</span><span class="nx">TableName</span><span class="p">)</span>
+
+    <span class="c1">// Loop the values of the inline object.</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">modelSchema</span><span class="p">.</span><span class="nx">Inlines</span> <span class="p">{</span>
+        <span class="c1">// We assigned the variable as (*i) in order to remove the pointer in the variable type then access the name field to display the name of the inline.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Inline Name : %s&quot;</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="nx">i</span><span class="p">).</span><span class="nx">Name</span><span class="p">)</span>
+
+        <span class="c1">// Print the field names of this inline.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Field Names&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">f</span> <span class="o">:=</span> <span class="k">range</span> <span class="p">(</span><span class="o">*</span><span class="nx">i</span><span class="p">).</span><span class="nx">Fields</span> <span class="p">{</span>
+            <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;- %s&quot;</span><span class="p">,</span> <span class="nx">f</span><span class="p">.</span><span class="nx">Name</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Now run your application again and call this URL to read the full schema of the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/schema/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/schemaresult.png" class="align-center" src="_images/schemaresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Because our URL query is successful, it will execute your business logic inside the APIPostQuerySchema function. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   Name : Item
+<span class="o">[</span>  INFO  <span class="o">]</span>   Display Name : Item
+<span class="o">[</span>  INFO  <span class="o">]</span>   Table Name : items
+<span class="o">[</span>  INFO  <span class="o">]</span>   Inline Name : Todo
+<span class="o">[</span>  INFO  <span class="o">]</span>   Field Names
+<span class="o">[</span>  INFO  <span class="o">]</span>   - ID
+<span class="o">[</span>  INFO  <span class="o">]</span>   - Name
+<span class="o">[</span>  INFO  <span class="o">]</span>   - Description
+<span class="o">[</span>  INFO  <span class="o">]</span>   - Category
+<span class="o">[</span>  INFO  <span class="o">]</span>   - Friend
+<span class="o">[</span>  INFO  <span class="o">]</span>   - Item
+<span class="o">[</span>  INFO  <span class="o">]</span>   - TargetDate
+<span class="o">[</span>  INFO  <span class="o">]</span>   - Progress
 </pre></div>
 </div>
 </section>
@@ -1824,6 +1956,83 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 </pre></div>
 </div>
 <p>It is necessary to have http.Request parameter in this method for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.</p>
+<p>Suppose you are logged in as a non-admin or guest account and you have no add access permission to the Document model in uAdmin dashboard.</p>
+<img alt="_images/emptyuadmindashboard.png" src="_images/emptyuadmindashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>There are two records in the Document model behind the scenes.</p>
+<img alt="_images/addmultipleresult.png" src="_images/addmultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to add a new record in the Document model with the following information below:</p>
+<ul class="simple">
+<li><p>Name: Programming</p></li>
+<li><p>Author: Admin</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name<span class="o">=</span>Programming<span class="p">&amp;</span><span class="nv">_author</span><span class="o">=</span>Admin<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;err_msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Permission denied&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Based on the results, you are not permitted to add the records in Document model because you have no add access permission to the Document model in uAdmin dashboard. If you want to allow anyone to add the records stored in the Document model, you need to apply APIPublicAdd function in the Go file inside the models folder (e.g. document.go for Document model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Document Model !</span>
+<span class="kd">type</span> <span class="nx">Document</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable public access to add method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Document</span><span class="p">)</span> <span class="nx">APIPublicAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Now run your application and stay signed in as non-admin or guest account. Execute dAPI add command again in the address bar and see what happens.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name<span class="o">=</span>Programming<span class="p">&amp;</span><span class="nv">_author</span><span class="o">=</span>Admin<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="mi">3</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the ID of the newly created record.</p>
+<p>To check the details of a newly created record, there are two methods: by visiting the Document model in the dashboard or by using HTTP API to read one by assigning the ID of the newly created record.</p>
+<p><strong>Method 1:</strong> Visiting the Document model from uAdmin dashboard</p>
+<img alt="_images/addoneresult.png" src="_images/addoneresult.png" />
+<p><strong>Method 2:</strong> Using HTTP API to read one record</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># 3 is an ID number</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/read/3/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/addoneresultjson.png" class="align-center" src="_images/addoneresultjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing an item where ID=3.</p>
+<p>It now provides full permission access to add the records in Document model even if the user has no add permission access to the Document model in uAdmin dashboard.</p>
 </section>
 <section id="apipublicdelete">
 <h4><strong>APIPublicDelete</strong><a class="headerlink" href="#apipublicdelete" title="Permalink to this headline">¶</a></h4>
@@ -1837,6 +2046,75 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 </pre></div>
 </div>
 <p>It is necessary to have http.Request parameter in this method for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.</p>
+<p>Suppose you are logged in as a non-admin or guest account and you have no delete access permission to the Item model in uAdmin dashboard.</p>
+<img alt="_images/emptyuadmindashboard.png" src="_images/emptyuadmindashboard.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>There are five records in the Item model behind the scenes.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to delete the third record in the database.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 3 is an ID number</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/3/?x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;err_msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Permission denied&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Based on the results, you are not permitted to delete the records in Item model because you have no delete access permission to the Item model in uAdmin dashboard. If you want to allow anyone to delete the records stored in the Item model, you need to apply APIPublicDelete function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable public access to delete method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPublicDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Now run your application and stay signed in as non-admin or guest account. Execute dAPI delete command again in the address bar and see what happens.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 3 is an ID number</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/3/?x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>To check if the third record was removed from the database, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read all data.</p>
+<p><strong>Method 1:</strong> Visiting the Item model from uAdmin dashboard</p>
+<img alt="_images/deleteoneresult.png" src="_images/deleteoneresult.png" />
+<p><strong>Method 2:</strong> Using HTTP API to read all data</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/deleteoneresultjson.png" class="align-center" src="_images/deleteoneresultjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON array with all remaining items in the database.</p>
+<p>It now provides full permission access to delete the records in Item model even if the user has no delete permission access to the Item model in uAdmin dashboard.</p>
 </section>
 <section id="apipublicedit">
 <h4><strong>APIPublicEdit</strong><a class="headerlink" href="#apipublicedit" title="Permalink to this headline">¶</a></h4>
@@ -1850,6 +2128,71 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 </pre></div>
 </div>
 <p>It is necessary to have http.Request parameter in this method for allowing and blocking the IP of a user on accessing an API. For instance, you want to access the built-in APIs for an employee within the company. If the user is outside the company, he cannot access the API.</p>
+<p>Suppose you are logged in as a non-admin or guest account and the first record in the Item model is named as “Robot”.</p>
+<img alt="_images/itemfirstrecordrobot.png" src="_images/itemfirstrecordrobot.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to edit the name of the first record in the database from “Robot” to “Supercomputer”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 1 is an ID number</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/1/?_name<span class="o">=</span>Supercomputer<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;err_msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Permission denied&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Based on the results, you are not permitted to edit the records in Item model because you have no edit access permission to the Item model in uAdmin dashboard. If you want to allow anyone to edit the records stored in the Item model, you need to apply APIPublicEdit function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable public access to edit method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPublicEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Now run your application and stay signed in as non-admin or guest account. Execute dAPI edit command again in the address bar and see what happens.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 3 is an ID number</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/3/?x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>To check if the name of the first record has modified, there are two methods: by visiting the Item model from uAdmin dashboard or by using HTTP API to read the first record.</p>
+<p><strong>Method 1:</strong> Visiting the Item model from uAdmin dashboard</p>
+<img alt="_images/editoneresult.png" src="_images/editoneresult.png" />
+<p><strong>Method 2:</strong> Using HTTP API to read the first record</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 1 is an ID number</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/1/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/editoneresultjson.png" class="align-center" src="_images/editoneresultjson.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing a modified item where name=Supercomputer.</p>
+<p>It now provides full permission access to edit the records in Item model even if the user has no edit permission access to the Item model in uAdmin dashboard.</p>
 </section>
 <section id="apipublicread">
 <h4><strong>APIPublicRead</strong><a class="headerlink" href="#apipublicread" title="Permalink to this headline">¶</a></h4>
