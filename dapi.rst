@@ -83,7 +83,8 @@ Structure:
 
     # d stands for data
     # For writing data, put _ symbol first before the field name
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/add/?_{FIELD_NAME__n=VALUE}
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/add/?_{FIELD_NAME__n=VALUE}&x-csrf-token={YOUR_SESSION_KEY}
 
 **Method**: GET, POST
 
@@ -125,7 +126,8 @@ Run your application and call this URL to add multiple records in the Document m
     # name and author are field names
     # __0 is the first index
     # __1 is the second index
-    http://api.example.com/{ROOT_URL}/api/d/document/add/?_name__0=Golang&_author__0=John&_name__1=uAdmin&_author__1=Adam
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/document/add/?_name__0=Golang&_author__0=John&_name__1=uAdmin&_author__1=Adam&x-csrf-token={YOUR_SESSION_KEY}
 
 Result:
 
@@ -140,7 +142,7 @@ Result:
         "status": "ok"
     }
 
-It returns an array with a list of IDs for the newly created records.
+It returns an array with a list of IDs for the newly created records, status and the rows affected by your query.
 
 To check the details of the newly created records, there are two methods: by visiting the Document model from uAdmin dashboard or by applying __in operator in the id field then assign the IDs of the newly created records to read multiple data in the API.
 
@@ -258,10 +260,12 @@ Structure:
 .. code-block:: bash
 
     # d stands for data
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/delete/?{FIELD_NAME=VALUE}
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/delete/?{FIELD_NAME=VALUE}&x-csrf-token={YOUR_SESSION_KEY}
 
     # This API call will delete all records in the database.
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/delete/
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/delete/&x-csrf-token={YOUR_SESSION_KEY}
 
 **Method**: GET, POST
 
@@ -280,7 +284,8 @@ Run your application and call this URL to delete records where the name of an it
     # item is a model name
     # name is a field name
     # __contains is an operator that will search for string values that contract
-    http://api.example.com/{ROOT_URL}/api/d/item/delete/?name__contains=iPad
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/delete/?name__contains=iPad&x-csrf-token={YOUR_SESSION_KEY}
 
 Result:
 
@@ -321,7 +326,8 @@ What if you don't specify which record do you want to delete in the database? Le
 
     # item is a model name
     # This API call will delete all records in the Item model.
-    http://api.example.com/{ROOT_URL}/api/d/item/delete/
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/delete/&x-csrf-token={YOUR_SESSION_KEY}
 
 Result:
 
@@ -409,11 +415,12 @@ Structure:
     # For writing data, put _ symbol first before the field name
     # Pass a query that matches a record to be updated then assign a
     # new value in the specified field
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/edit/?{FIELD_NAME=VALUE}&_{FIELD_NAME=VALUE}
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/edit/?{FIELD_NAME=VALUE}&_{FIELD_NAME=VALUE}&x-csrf-token={YOUR_SESSION_KEY}
 
-    # If there is no assigned field selector, it will update all records in
-    # the database.
-    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/edit/?_{FIELD_NAME=VALUE}
+    # If there is no assigned field selector, it will update all records in the database.
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/edit/?_{FIELD_NAME=VALUE}&x-csrf-token={YOUR_SESSION_KEY}
 
 **Method**: GET, POST
 
@@ -434,7 +441,8 @@ Run your application and call this URL to edit the rating of all iPad items to a
     # __contains is an operator that will search for string values that contract
     # rating=4&_rating=5 means that where rating is equal to 4, change the
     # rating value to 5
-    http://api.example.com/{ROOT_URL}/api/d/item/edit/?rating=4&_rating=5
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/edit/?rating=4&_rating=5&x-csrf-token={YOUR_SESSION_KEY}
 
 Result:
 
@@ -475,7 +483,9 @@ What if you don't specify which record do you want to update in the database? Le
 
 .. code-block:: bash
 
-    http://api.example.com/{ROOT_URL}/api/d/item/edit/?_rating=2
+    # item is a model name
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/edit/?_rating=2&x-csrf-token={YOUR_SESSION_KEY}
 
 Now let's see what happens.
 
@@ -2109,6 +2119,8 @@ Structure:
         return true
     }
 
+
+
 **APIPreQueryDelete**
 """""""""""""""""""""
 `Back to Top (Model Methods)`_
@@ -2184,6 +2196,117 @@ Structure:
         return true
     }
 
+Behind the scenes, it returns an array with a list of IDs for the newly created records, status and the rows affected by your query once you performed dAPI add command in the URL.
+
+.. code-block:: JSON
+
+    {
+        "id": [
+            1
+        ],
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+Our goal here is to print the number of rows affected by your query, and the name of a created item filtered out by ID displayed in the web. In order to do that, you need to apply APIPostQueryAdd function in the Go file inside the models folder (e.g. document.go for Document model). Use the third parameter **res** in the APIPostQueryAdd function to return an array with a list of IDs for the newly created records, status and the rows affected by your query once you performed dAPI add command in the URL.
+
+.. code-block:: go
+
+    // Document Model !
+    type Document struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable post query access to add field
+    func (Document) APIPostQueryAdd(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        // Initialize the Document model as an array.
+        documents := []Document{}
+
+        // Filter the document records by the list of returned IDs in the database.
+        uadmin.Filter(&documents, "id IN (?)", res["id"])
+
+        // Print the list of created documents in the terminal.
+        uadmin.Trail(uadmin.INFO, "List of created documents")
+        uadmin.Trail(uadmin.INFO, "-------------------------")
+        for _, value := range documents {
+            uadmin.Trail(uadmin.INFO, "Name : %s", value.Name)
+            uadmin.Trail(uadmin.INFO, "Author : %s", value.Author)
+
+            // Add a space here for better design output.
+            uadmin.Trail(uadmin.INFO, "")
+        }
+
+        // Print the number of rows affected by your query in the terminal.
+        uadmin.Trail(uadmin.INFO, "Number of rows affected by your query : %d", res["rows_count"])
+
+        return true
+    }
+    // -----------------------------------------------------------
+
+Suppose you don't have any records in the Document model.
+
+.. image:: dapi/assets/emptyrecorddocument.png
+
+|
+
+Run your application and call this URL to add multiple records in the Document model with the following information below:
+
+**First Record**
+
+* Name: Golang
+* Author: John
+
+**Second Record**
+
+* Name: uAdmin
+* Author: Adam
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    # __0 is the first index
+    # __1 is the second index
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/document/add/?_name__0=Golang&_author__0=John&_name__1=uAdmin&_author__1=Adam&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "id": [
+            1,
+            2
+        ],
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+It returns an array with a list of IDs for the newly created records, status and the rows affected by your query.
+
+Check the Document model in the uAdmin dashboard to see the results.
+
+.. image:: dapi/assets/addmultipleresult.png
+
+|
+
+Because our URL query is successful, it will execute your business logic inside the APIPostQueryAdd function. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  INFO  ]   List of created documents
+    [  INFO  ]   -------------------------
+    [  INFO  ]   Name : Golang
+    [  INFO  ]   Author : John
+    [  INFO  ]
+    [  INFO  ]   Name : uAdmin
+    [  INFO  ]   Author : Adam
+    [  INFO  ]
+    [  INFO  ]   Number of rows affected by your query : 2
+
 **APIPostQueryDelete**
 """"""""""""""""""""""
 `Back to Top (Model Methods)`_
@@ -2199,6 +2322,74 @@ Structure:
         return true
     }
 
+Behind the scenes, it returns the status and the rows affected by your query once you performed dAPI delete command in the URL.
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+Our goal here is to print the number of rows affected by your query from the result object displayed in the web. In order to do that, you need to apply APIPostQueryDelete function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter **res** in the APIPostQueryDelete function to return the status and the rows affected by your query once you performed dAPI delete command in the URL.
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable post query access to delete field
+    func (Item) APIPostQueryDelete(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        // Print the number of rows affected by your query in the terminal.
+        uadmin.Trail(uadmin.INFO, "Number of rows affected by your query : %d", res["rows_count"])
+
+        return true
+    }
+    // -----------------------------------------------------------
+
+Suppose you have five records in the Item model.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to delete records where the name of an item contains "iPad".
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/delete/?name__contains=iPad&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query.
+
+Check the Item model in the uAdmin dashboard to see the results.
+
+.. image:: dapi/assets/deletemultipleresult.png
+
+|
+
+Because our URL query is successful, it will execute your business logic inside the APIPostQueryDelete function. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  INFO  ]   Number of rows affected by your query : 2
+
 **APIPostQueryEdit**
 """"""""""""""""""""
 `Back to Top (Model Methods)`_
@@ -2213,6 +2404,74 @@ Structure:
     func (Model) APIPostQueryEdit(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
         return true
     }
+
+Behind the scenes, it returns the status and the rows affected by your query once you performed dAPI edit command in the URL.
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+Our goal here is to print the number of rows affected by your query from the result object displayed in the web. In order to do that, you need to apply APIPostQueryEdit function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter **res** in the APIPostQueryEdit function to return the status and the rows affected by your query once you performed dAPI edit command in the URL.
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable post query access to edit field
+    func (Item) APIPostQueryEdit(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        // Print the number of rows affected by your query in the terminal.
+        uadmin.Trail(uadmin.INFO, "Number of rows affected by your query : %d", res["rows_count"])
+
+        return true
+    }
+    // -----------------------------------------------------------
+
+Suppose you have five records in the Item model where all iPad items have a rating of 4.
+
+.. image:: dapi/assets/itemipadoldrating.png
+
+|
+
+Run your application and call this URL to edit the rating of all iPad items to a value of 5.
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    # rating=4&_rating=5 means that where rating is equal to 4, change the
+    # rating value to 5
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/edit/?rating=4&_rating=5&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+Check the Item model in the uAdmin dashboard to see the results.
+
+.. image:: dapi/assets/editmultipleresult.png
+
+|
+
+Because our URL query is successful, it will execute your business logic inside the APIPostQueryEdit function. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  INFO  ]   Number of rows affected by your query : 2
 
 **APIPostQueryRead**
 """"""""""""""""""""

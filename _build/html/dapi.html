@@ -140,7 +140,8 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>Structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
 <span class="c1"># For writing data, put _ symbol first before the field name</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/add/?_<span class="o">{</span><span class="nv">FIELD_NAME__n</span><span class="o">=</span>VALUE<span class="o">}</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/add/?_<span class="o">{</span><span class="nv">FIELD_NAME__n</span><span class="o">=</span>VALUE<span class="o">}</span><span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
 </pre></div>
 </div>
 <p><strong>Method</strong>: GET, POST</p>
@@ -174,7 +175,8 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="c1"># name and author are field names</span>
 <span class="c1"># __0 is the first index</span>
 <span class="c1"># __1 is the second index</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name__0<span class="o">=</span>Golang<span class="p">&amp;</span><span class="nv">_author__0</span><span class="o">=</span>John<span class="p">&amp;</span><span class="nv">_name__1</span><span class="o">=</span>uAdmin<span class="p">&amp;</span><span class="nv">_author__1</span><span class="o">=</span>Adam
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name__0<span class="o">=</span>Golang<span class="p">&amp;</span><span class="nv">_author__0</span><span class="o">=</span>John<span class="p">&amp;</span><span class="nv">_name__1</span><span class="o">=</span>uAdmin<span class="p">&amp;</span><span class="nv">_author__1</span><span class="o">=</span>Adam<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
 </pre></div>
 </div>
 <p>Result:</p>
@@ -188,7 +190,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>It returns an array with a list of IDs for the newly created records.</p>
+<p>It returns an array with a list of IDs for the newly created records, status and the rows affected by your query.</p>
 <p>To check the details of the newly created records, there are two methods: by visiting the Document model from uAdmin dashboard or by applying __in operator in the id field then assign the IDs of the newly created records to read multiple data in the API.</p>
 <p><strong>Method 1:</strong> Visiting the Document model from uAdmin dashboard</p>
 <img alt="_images/addmultipleresult.png" src="_images/addmultipleresult.png" />
@@ -275,10 +277,12 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#dapi-reference">Back to Top</a></p>
 <p>Structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># d stands for data</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/delete/?<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/delete/?<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span><span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
 
 <span class="c1"># This API call will delete all records in the database.</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/delete/
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/delete/<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
 </pre></div>
 </div>
 <p><strong>Method</strong>: GET, POST</p>
@@ -292,7 +296,8 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
 <span class="c1"># name is a field name</span>
 <span class="c1"># __contains is an operator that will search for string values that contract</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/?name__contains<span class="o">=</span>iPad
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/?name__contains<span class="o">=</span>iPad<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
 </pre></div>
 </div>
 <p>Result:</p>
@@ -320,7 +325,8 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <p>What if you don’t specify which record do you want to delete in the database? Let’s call this URL without assigning any query.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
 <span class="c1"># This API call will delete all records in the Item model.</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
 </pre></div>
 </div>
 <p>Result:</p>
@@ -385,11 +391,12 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="c1"># For writing data, put _ symbol first before the field name</span>
 <span class="c1"># Pass a query that matches a record to be updated then assign a</span>
 <span class="c1"># new value in the specified field</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/edit/?<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span><span class="p">&amp;</span>_<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/edit/?<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span><span class="p">&amp;</span>_<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span><span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
 
-<span class="c1"># If there is no assigned field selector, it will update all records in</span>
-<span class="c1"># the database.</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/edit/?_<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span>
+<span class="c1"># If there is no assigned field selector, it will update all records in the database.</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/edit/?_<span class="o">{</span><span class="nv">FIELD_NAME</span><span class="o">=</span>VALUE<span class="o">}</span><span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
 </pre></div>
 </div>
 <p><strong>Method</strong>: GET, POST</p>
@@ -405,7 +412,8 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="c1"># __contains is an operator that will search for string values that contract</span>
 <span class="c1"># rating=4&amp;_rating=5 means that where rating is equal to 4, change the</span>
 <span class="c1"># rating value to 5</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/?rating<span class="o">=</span><span class="m">4</span><span class="p">&amp;</span><span class="nv">_rating</span><span class="o">=</span><span class="m">5</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/?rating<span class="o">=</span><span class="m">4</span><span class="p">&amp;</span><span class="nv">_rating</span><span class="o">=</span><span class="m">5</span><span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
 </pre></div>
 </div>
 <p>Result:</p>
@@ -433,7 +441,9 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 </div>
 <p>It returns a JSON array representing newly modified iPad items where rating has a value of 5.</p>
 <p>What if you don’t specify which record do you want to update in the database? Let’s call this URL to edit the rating to a value of 2.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/?_rating<span class="o">=</span><span class="m">2</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/?_rating<span class="o">=</span><span class="m">2</span><span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
 </pre></div>
 </div>
 <p>Now let’s see what happens.</p>
@@ -1763,6 +1773,104 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Behind the scenes, it returns an array with a list of IDs for the newly created records, status and the rows affected by your query once you performed dAPI add command in the URL.</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">1</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Our goal here is to print the number of rows affected by your query, and the name of a created item filtered out by ID displayed in the web. In order to do that, you need to apply APIPostQueryAdd function in the Go file inside the models folder (e.g. document.go for Document model). Use the third parameter <strong>res</strong> in the APIPostQueryAdd function to return an array with a list of IDs for the newly created records, status and the rows affected by your query once you performed dAPI add command in the URL.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Document Model !</span>
+<span class="kd">type</span> <span class="nx">Document</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable post query access to add field</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Document</span><span class="p">)</span> <span class="nx">APIPostQueryAdd</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Initialize the Document model as an array.</span>
+    <span class="nx">documents</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">Document</span><span class="p">{}</span>
+
+    <span class="c1">// Filter the document records by the list of returned IDs in the database.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Filter</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">documents</span><span class="p">,</span> <span class="s">&quot;id IN (?)&quot;</span><span class="p">,</span> <span class="nx">res</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">])</span>
+
+    <span class="c1">// Print the list of created documents in the terminal.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;List of created documents&quot;</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;-------------------------&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">value</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">documents</span> <span class="p">{</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Name : %s&quot;</span><span class="p">,</span> <span class="nx">value</span><span class="p">.</span><span class="nx">Name</span><span class="p">)</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Author : %s&quot;</span><span class="p">,</span> <span class="nx">value</span><span class="p">.</span><span class="nx">Author</span><span class="p">)</span>
+
+        <span class="c1">// Add a space here for better design output.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Print the number of rows affected by your query in the terminal.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Number of rows affected by your query : %d&quot;</span><span class="p">,</span> <span class="nx">res</span><span class="p">[</span><span class="s">&quot;rows_count&quot;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Suppose you don’t have any records in the Document model.</p>
+<img alt="_images/emptyrecorddocument.png" src="_images/emptyrecorddocument.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to add multiple records in the Document model with the following information below:</p>
+<p><strong>First Record</strong></p>
+<ul class="simple">
+<li><p>Name: Golang</p></li>
+<li><p>Author: John</p></li>
+</ul>
+<p><strong>Second Record</strong></p>
+<ul class="simple">
+<li><p>Name: uAdmin</p></li>
+<li><p>Author: Adam</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+<span class="c1"># __0 is the first index</span>
+<span class="c1"># __1 is the second index</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name__0<span class="o">=</span>Golang<span class="p">&amp;</span><span class="nv">_author__0</span><span class="o">=</span>John<span class="p">&amp;</span><span class="nv">_name__1</span><span class="o">=</span>uAdmin<span class="p">&amp;</span><span class="nv">_author__1</span><span class="o">=</span>Adam<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">1</span><span class="p">,</span>
+        <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns an array with a list of IDs for the newly created records, status and the rows affected by your query.</p>
+<p>Check the Document model in the uAdmin dashboard to see the results.</p>
+<img alt="_images/addmultipleresult.png" src="_images/addmultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Because our URL query is successful, it will execute your business logic inside the APIPostQueryAdd function. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   List of created documents
+<span class="o">[</span>  INFO  <span class="o">]</span>   -------------------------
+<span class="o">[</span>  INFO  <span class="o">]</span>   Name : Golang
+<span class="o">[</span>  INFO  <span class="o">]</span>   Author : John
+<span class="o">[</span>  INFO  <span class="o">]</span>
+<span class="o">[</span>  INFO  <span class="o">]</span>   Name : uAdmin
+<span class="o">[</span>  INFO  <span class="o">]</span>   Author : Adam
+<span class="o">[</span>  INFO  <span class="o">]</span>
+<span class="o">[</span>  INFO  <span class="o">]</span>   Number of rows affected by your query : <span class="m">2</span>
+</pre></div>
+</div>
 </section>
 <section id="apipostquerydelete">
 <h4><strong>APIPostQueryDelete</strong><a class="headerlink" href="#apipostquerydelete" title="Permalink to this headline">¶</a></h4>
@@ -1775,6 +1883,61 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Behind the scenes, it returns the status and the rows affected by your query once you performed dAPI delete command in the URL.</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Our goal here is to print the number of rows affected by your query from the result object displayed in the web. In order to do that, you need to apply APIPostQueryDelete function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter <strong>res</strong> in the APIPostQueryDelete function to return the status and the rows affected by your query once you performed dAPI delete command in the URL.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable post query access to delete field</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPostQueryDelete</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Print the number of rows affected by your query in the terminal.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Number of rows affected by your query : %d&quot;</span><span class="p">,</span> <span class="nx">res</span><span class="p">[</span><span class="s">&quot;rows_count&quot;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to delete records where the name of an item contains “iPad”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/?name__contains<span class="o">=</span>iPad<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>Check the Item model in the uAdmin dashboard to see the results.</p>
+<img alt="_images/deletemultipleresult.png" src="_images/deletemultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Because our URL query is successful, it will execute your business logic inside the APIPostQueryDelete function. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   Number of rows affected by your query : <span class="m">2</span>
+</pre></div>
+</div>
 </section>
 <section id="apipostqueryedit">
 <h4><strong>APIPostQueryEdit</strong><a class="headerlink" href="#apipostqueryedit" title="Permalink to this headline">¶</a></h4>
@@ -1785,6 +1948,62 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryEdit</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
 <span class="p">}</span>
+</pre></div>
+</div>
+<p>Behind the scenes, it returns the status and the rows affected by your query once you performed dAPI edit command in the URL.</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Our goal here is to print the number of rows affected by your query from the result object displayed in the web. In order to do that, you need to apply APIPostQueryEdit function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter <strong>res</strong> in the APIPostQueryEdit function to return the status and the rows affected by your query once you performed dAPI edit command in the URL.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable post query access to edit field</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPostQueryEdit</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Print the number of rows affected by your query in the terminal.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Number of rows affected by your query : %d&quot;</span><span class="p">,</span> <span class="nx">res</span><span class="p">[</span><span class="s">&quot;rows_count&quot;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model where all iPad items have a rating of 4.</p>
+<img alt="_images/itemipadoldrating.png" src="_images/itemipadoldrating.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to edit the rating of all iPad items to a value of 5.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+<span class="c1"># rating=4&amp;_rating=5 means that where rating is equal to 4, change the</span>
+<span class="c1"># rating value to 5</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/?rating<span class="o">=</span><span class="m">4</span><span class="p">&amp;</span><span class="nv">_rating</span><span class="o">=</span><span class="m">5</span><span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Check the Item model in the uAdmin dashboard to see the results.</p>
+<img alt="_images/editmultipleresult.png" src="_images/editmultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Because our URL query is successful, it will execute your business logic inside the APIPostQueryEdit function. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   Number of rows affected by your query : <span class="m">2</span>
 </pre></div>
 </div>
 </section>
