@@ -33,7 +33,7 @@ uadmin.APIPublicAdder
 ---------------------
 `Back To Top`_
 
-APIPublicAdder is an interface that contains the method APIPublicAdd with the type of func(\*http.Request) bool. If the value is true, anyone will have permission access to add the record in the model using the dAPI add method even if the account is not logged in.
+APIPublicAdder is an interface for models to control public access to add function in dAPI.
 
 Type:
 
@@ -57,7 +57,7 @@ uadmin.APIPublicDeleter
 -----------------------
 `Back To Top`_
 
-APIPublicDeleter is an interface that contains the method APIPublicDelete with the type of func(\*http.Request) bool. If the value is true, anyone will have permission access to delete the record in the model using the dAPI delete method even if the account is not logged in.
+APIPublicDeleter is an interface for models to control public access to delete function in dAPI.
 
 Type:
 
@@ -81,7 +81,7 @@ uadmin.APIPublicEditor
 ----------------------
 `Back To Top`_
 
-APIPublicEditor is an interface that contains the method APIPublicEdit with the type of func(\*http.Request) bool. If the value is true, anyone will have permission access to edit the record in the model using the dAPI edit method even if the account is not logged in.
+APIPublicEditor is an interface for models to control public access to edit function in dAPI.
 
 Type:
 
@@ -105,7 +105,7 @@ uadmin.APIPublicReader
 ----------------------
 `Back To Top`_
 
-APIPublicReader is an interface that contains the method APIPublicRead with the type of func(\*http.Request) bool. If the value is true, anyone will have permission access to read the record in the model using the dAPI read method even if the account is not logged in.
+APIPublicReader is an interface for models to control public access to read function in dAPI.
 
 Type:
 
@@ -131,7 +131,7 @@ uadmin.APIPublicSchemer
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#public-functions
 
-APIPublicSchemer is an interface that contains the method APIPublicSchema with the type of func(\*http.Request) bool. If the value is true, anyone will have permission access to read the full schema of the model using the dAPI schema method even if the account is not logged in.
+APIPublicSchemer is an interface for models to control public access to schema function in dAPI.
 
 Type:
 

@@ -1243,7 +1243,7 @@ Run your application and call this URL to read record(s) where the name of an it
     # __re is an operator that defines a search pattern
     # %20 represents a space in an encoded URL
     # [M,P] is a list that can be letter M or P
-    http://api.example.com/{ROOT_URL}/api/d/item/?name__re=iPad%20[M,P]
+    http://api.example.com/{ROOT_URL}/api/d/item/read/?name__re=iPad%20[M,P]
 
 Result:
 
@@ -1357,7 +1357,7 @@ Now let's search the substring "ipad" where p is the lowercase letter and see wh
 
 .. code-block:: bash
 
-    http://api.example.com/{ROOT_URL}/api/d/item/?name__istartswith=ipad
+    http://api.example.com/{ROOT_URL}/api/d/item/read/?name__istartswith=ipad
 
 Result:
 
@@ -1401,7 +1401,7 @@ Run your application and call this URL to read record(s) where the description o
     # description is a field name
     # __iendswith is an operator that will search for string values that
     # ends with a given substring. This is case insensitive.
-    http://api.example.com/{ROOT_URL}/api/d/item/?description__iendswith=device
+    http://api.example.com/{ROOT_URL}/api/d/item/read/?description__iendswith=device
 
 Result:
 
@@ -1820,7 +1820,7 @@ Structure:
         return true
     }
 
-Suppose you are logged in as **admin** and you have the first record in the Item model is named as "Robot".
+Suppose you are logged in as **admin** and you have the first record in the Item model that is named as "Robot".
 
 .. image:: dapi/assets/itemfirstrecordrobot.png
 
@@ -2044,6 +2044,101 @@ Structure:
         return true
     }
 
+Suppose that you have this record in your logs as shown below.
+
+.. image:: dapi/assets/apilogaddinitial.png
+
+|
+
+And suppose you don't have any records in the Document model.
+
+.. image:: dapi/assets/emptyrecorddocument.png
+
+|
+
+Run your application and call this URL to add a new record in the Document model with the following information below:
+
+* Name: Programming
+* Author: Admin
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/document/add/?_name=Programming&_author=Admin&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+      "id": [
+        1
+      ],
+      "rows_count": 1,
+      "status": "ok"
+    }
+
+Check the Document model in the uAdmin dashboard to see the result.
+
+.. image:: dapi/assets/documentsinglerecordadded.png
+
+|
+
+Check your logs to see the result.
+
+.. image:: dapi/assets/apilogaddtrueresult.png
+
+|
+
+Suppose you have changed your mind and decided to disable log recording when someone tried to perform dAPI add command. In order to do that, you need to apply APILogAdd function in the Go file inside the models folder (e.g. document.go for Document model).
+
+.. code-block:: go
+
+    // Document Model !
+    type Document struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to false to disable log access to add method
+    func (Document) APILogAdd(r *http.Request) bool {
+        return false
+    }
+    // -----------------------------------------------------------
+
+Now run your application and call this URL again to add a new record in the Document model with the following information below:
+
+* Name: Programming
+* Author: Admin
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/document/add/?_name=Programming&_author=Admin&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+      "id": [
+        2
+      ],
+      "rows_count": 1,
+      "status": "ok"
+    }
+
+Check your logs to see the result.
+
+.. image:: dapi/assets/apilogaddfalseresult.png
+
+Although the dAPI add command works, it no longer records when someone tried to execute dAPI add command in the logs.
+
 **APILogDelete**
 """"""""""""""""
 `Back to Top (Model Methods)`_
@@ -2058,6 +2153,89 @@ Structure:
     func (Model) APILogDelete(r *http.Request)  {
         return true
     }
+
+Suppose that you have this record in your logs as shown below.
+
+.. image:: dapi/assets/apilogaddfalseresult.png
+
+|
+
+And suppose you have five records in the Item model.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to delete the third record in the database.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 3 is an ID number
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/delete/3/?x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query. Now go back to the Item model in the admin page and see what happens to the number of records in the Item model.
+
+.. image:: dapi/assets/deleteoneresult.png
+
+As you can see, the "iPad Pro" record has been deleted in the Item model.
+
+Check your logs to see the result.
+
+.. image:: dapi/assets/apilogdeletetrueresult.png
+
+|
+
+Suppose you have changed your mind and decided to disable log recording when someone tried to perform dAPI delete command. In order to do that, you need to apply APILogDelete function in the Go file inside the models folder (e.g. item.go for Item model).
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to false to disable log access to delete method
+    func (Item) APILogDelete(r *http.Request) bool {
+        return false
+    }
+    // -----------------------------------------------------------
+
+Now run your application and call this URL again to delete the third record in the database.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 3 is an ID number
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/delete/3/?x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 0,
+        "status": "ok"
+    }
+
+Check your logs to see the result.
+
+.. image:: dapi/assets/apilogdeletefalseresult.png
+
+Although the dAPI delete command works, it no longer records when someone tried to execute dAPI delete command in the logs.
 
 **APILogEdit**
 """"""""""""""
@@ -2074,6 +2252,91 @@ Structure:
         return true
     }
 
+Suppose that you have this record in your logs as shown below.
+
+.. image:: dapi/assets/apilogdeletefalseresult.png
+
+|
+
+And suppose you have the first record in the Item model that is named as "Robot".
+
+.. image:: dapi/assets/itemfirstrecordrobot.png
+
+|
+
+Run your application and call this URL to edit the name of the first record in the database from "Robot" to "Supercomputer".
+
+.. code-block:: bash
+
+    # item is a model name
+    # 1 is an ID number
+    # name is a field name
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/edit/1/?_name=Supercomputer&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query. Now go back to the Item model in the admin page and check the results.
+
+.. image:: dapi/assets/editoneresult.png
+
+As you can see, the first record in the Item model has been modified from "Robot" to "Supercomputer".
+
+Check your logs to see the result.
+
+.. image:: dapi/assets/apilogedittrueresult.png
+
+|
+
+Suppose you have changed your mind and decided to disable log recording when someone tried to perform dAPI edit command. In order to do that, you need to apply APILogEdit function in the Go file inside the models folder (e.g. item.go for Item model).
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to false to disable log access to edit method
+    func (Item) APILogEdit(r *http.Request) bool {
+        return false
+    }
+    // -----------------------------------------------------------
+
+Now run your application and call this URL again to edit the name of the first record in the database from "Robot" to "Supercomputer".
+
+.. code-block:: bash
+
+    # item is a model name
+    # 1 is an ID number
+    # name is a field name
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/edit/1/?_name=Supercomputer&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+Check your logs to see the result.
+
+.. image:: dapi/assets/apilogeditfalseresult.png
+
+Although the dAPI edit command works, it no longer records when someone tried to execute dAPI edit command in the logs.
+
 **APILogRead**
 """"""""""""""
 `Back to Top (Model Methods)`_
@@ -2088,6 +2351,58 @@ Structure:
     func (Model) APILogRead(r *http.Request) bool {
         return true
     }
+
+Our goal here is to enable log recording when someone tried to perform dAPI read command. In order to do that, you need to apply APILogRead function in the Go file inside the models folder (e.g. item.go for Item model).
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable log access to read method
+    func (Item) APILogRead(r *http.Request) bool {
+        return true
+    }
+    // -----------------------------------------------------------
+
+Suppose that you have this record in your logs as shown below.
+
+.. image:: dapi/assets/apilogeditfalseresult.png
+
+|
+
+And suppose you have five records in the Item model.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to read the second record in the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    # 2 is an ID number
+    http://api.example.com/{ROOT_URL}/api/d/item/read/2/
+
+Result:
+
+.. image:: dapi/assets/readoneresult.png
+   :align: center
+
+|
+
+It returns a JSON object representing an item where ID=2.
+
+Check your logs to see the result.
+
+.. image:: dapi/assets/apilogreadtrueresult.png
+
+It now records when someone tried to execute dAPI read command in the logs.
 
 **APILogSchema**
 """"""""""""""""
@@ -2104,11 +2419,78 @@ Structure:
         return true
     }
 
+Suppose that you have this record in your logs as shown below.
+
+.. image:: dapi/assets/apilogreadfalseresult.png
+
+|
+
+Run your application and call this URL to read the full schema of the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/
+
+Result:
+
+.. image:: dapi/assets/schemaresult.png
+   :align: center
+
+|
+
+It returns a JSON object representing uAdmin's ModelSchema of the Item model.
+
+Check your logs to see the result.
+
+.. image:: dapi/assets/apilogschematrueresult.png
+
+|
+
+Suppose you have changed your mind and decided to disable log recording when someone tried to perform dAPI schema command. In order to do that, you need to apply APILogSchema function in the Go file inside the models folder (e.g. item.go for Item model).
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to false to disable log access to schema method
+    func (Item) APILogSchema(r *http.Request) bool {
+        return false
+    }
+    // -----------------------------------------------------------
+
+Now run your application and call this URL again to read the full schema of the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/
+
+Result:
+
+.. image:: dapi/assets/schemaresult.png
+   :align: center
+
+|
+
+Check your logs to see the result.
+
+.. image:: dapi/assets/apilogschemafalseresult.png
+
+Although the dAPI schema command works, it no longer records when someone tried to execute dAPI schema command in the logs.
+
 **APIPreQueryAdd**
 """"""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPreQueryAdd controls the data API's pre query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPreQueryAdd function regardless even if the communication with the web server is not successful. By default, APIPreQueryAdd returns **false**.
+APIPreQueryAdd controls the data API's pre query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPreQueryAdd function if the communication with the web server is successful. By default, APIPreQueryAdd returns **false**.
+
+One of the common usage of APIPreQueryAdd is your business logic of validating something first before the system performs dAPI add command execution.
 
 Structure:
 
@@ -2119,13 +2501,114 @@ Structure:
         return true
     }
 
+Our goal here is to restrict access to dAPI add if the client's domain is localhost. In order to do that, you need to apply APIPreQueryAdd function in the Go file inside the models folder (e.g. document.go for Document model).
 
+.. code-block:: go
+
+    // Document Model !
+    type Document struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable pre query access to add method
+    func (Document) APIPreQueryAdd(w http.ResponseWriter, r *http.Request) bool {
+        // Get the client host and split it by colon.
+        // r.Host returns something like this: "localhost:8080"
+        host := strings.Split(r.Host, ":")
+
+        // If the domain is localhost
+        if host[0] == "localhost" {
+            // Return the failed result to notify the user that his domain is not authorized for dAPI add access.
+            uadmin.Trail(uadmin.ERROR, "The localhost HTTP request is not authorized for dAPI add access.")
+            return false
+        }
+
+        // Return the success result to notify the user that his domain is authorized for dAPI add access.
+        uadmin.Trail(uadmin.OK, "The %s HTTP request is authorized for dAPI add access.", host[0])
+        return true
+    }
+    // -----------------------------------------------------------
+
+Suppose you don't have any records in the Document model.
+
+.. image:: dapi/assets/emptyrecorddocument.png
+
+|
+
+Run your application and call this URL to add multiple records in the Document model with the following information below. Let's use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).
+
+**First Record**
+
+* Name: Golang
+* Author: John
+
+**Second Record**
+
+* Name: uAdmin
+* Author: Adam
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    # __0 is the first index
+    # __1 is the second index
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://127.0.0.1:8080/{ROOT_URL}/api/d/document/add/?_name__0=Golang&_author__0=John&_name__1=uAdmin&_author__1=Adam&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "id": [
+            1,
+            2
+        ],
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+It returns an array with a list of IDs for the newly created records, status and the rows affected by your query.
+
+Check the Document model in the uAdmin dashboard to see the results.
+
+.. image:: dapi/assets/addmultipleresult.png
+
+|
+
+Go to your terminal and see the results performed by APIPreQueryAdd.
+
+.. code-block:: bash
+
+    [   OK   ]   The 127.0.0.1 HTTP request is authorized for dAPI add access.
+
+Now let's call this URL again using the localhost domain.
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    # __0 is the first index
+    # __1 is the second index
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://localhost:8080/{ROOT_URL}/api/d/document/add/?_name__0=Golang&_author__0=John&_name__1=uAdmin&_author__1=Adam&x-csrf-token={YOUR_SESSION_KEY}
+
+You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  ERROR ]   The localhost HTTP request is not authorized for dAPI add access.
 
 **APIPreQueryDelete**
 """""""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPreQueryDelete controls the data API's pre query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPreQueryDelete function regardless even if the communication with the web server is not successful. By default, APIPreQueryDelete returns **false**.
+APIPreQueryDelete controls the data API's pre query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPreQueryDelete if the communication with the web server is successful. By default, APIPreQueryDelete returns **false**.
+
+One of the common usage of APIPreQueryDelete is your business logic of validating something first before the system performs dAPI delete command execution.
 
 Structure:
 
@@ -2136,11 +2619,98 @@ Structure:
         return true
     }
 
+Our goal here is to restrict access to dAPI delete if the client's domain is localhost. In order to do that, you need to apply APIPreQueryDelete function in the Go file inside the models folder (e.g. item.go for Item model).
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable pre query access to delete method
+    func (Item) APIPreQueryDelete(w http.ResponseWriter, r *http.Request) bool {
+        // Get the client host and split it by colon.
+        // r.Host returns something like this: "localhost:8080"
+        host := strings.Split(r.Host, ":")
+
+        // If the domain is localhost
+        if host[0] == "localhost" {
+            // Return the failed result to notify the user that his domain is not authorized for dAPI delete access.
+            uadmin.Trail(uadmin.ERROR, "The localhost HTTP request is not authorized for dAPI delete access.")
+            return false
+        }
+
+        // Return the success result to notify the user that his domain is authorized for dAPI delete access.
+        uadmin.Trail(uadmin.OK, "The %s HTTP request is authorized for dAPI delete access.", host[0])
+        return true
+    }
+    // -----------------------------------------------------------
+
+Suppose you have five records in the Item model.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to delete records where the name of an item contains "iPad". Let's use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://127.0.0.1:8080/{ROOT_URL}/api/d/item/delete/?name__contains=iPad&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query.
+
+Check the Item model in the uAdmin dashboard to see the results.
+
+.. image:: dapi/assets/deletemultipleresult.png
+
+|
+
+Go to your terminal and see the results performed by APIPreQueryDelete.
+
+.. code-block:: bash
+
+    [   OK   ]   The 127.0.0.1 HTTP request is authorized for dAPI delete access.
+
+Now let's call this URL again using the localhost domain.
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://localhost:8080/{ROOT_URL}/api/d/item/delete/?name__contains=iPad&x-csrf-token={YOUR_SESSION_KEY}
+
+You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  ERROR ]   The localhost HTTP request is not authorized for dAPI delete access.
+
 **APIPreQueryEdit**
 """""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPreQueryEdit controls the data API's pre query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPreQueryEdit function regardless even if the communication with the web server is not successful. By default, APIPreQueryEdit returns **false**.
+APIPreQueryEdit controls the data API's pre query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPreQueryEdit function if the communication with the web server is successful. By default, APIPreQueryEdit returns **false**.
+
+One of the common usage of APIPreQueryEdit is your business logic of validating something first before the system performs dAPI edit command execution.
 
 Structure:
 
@@ -2151,11 +2721,100 @@ Structure:
         return true
     }
 
+Our goal here is to restrict access to dAPI edit if the client's domain is localhost. In order to do that, you need to apply APIPreQueryEdit function in the Go file inside the models folder (e.g. item.go for Item model).
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable pre query access to edit method
+    func (Item) APIPreQueryEdit(w http.ResponseWriter, r *http.Request) bool {
+        // Get the client host and split it by colon.
+        // r.Host returns something like this: "localhost:8080"
+        host := strings.Split(r.Host, ":")
+
+        // If the domain is localhost
+        if host[0] == "localhost" {
+            // Return the failed result to notify the user that his domain is not authorized for dAPI edit access.
+            uadmin.Trail(uadmin.ERROR, "The localhost HTTP request is not authorized for dAPI edit access.")
+            return false
+        }
+
+        // Return the success result to notify the user that his domain is authorized for dAPI edit access.
+        uadmin.Trail(uadmin.OK, "The %s HTTP request is authorized for dAPI edit access.", host[0])
+        return true
+    }
+    // -----------------------------------------------------------
+
+Suppose you have five records in the Item model where all iPad items have a rating of 4.
+
+.. image:: dapi/assets/itemipadoldrating.png
+
+|
+
+Run your application and call this URL to edit the rating of all iPad items to a value of 5. Let's use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    # rating=4&_rating=5 means that where rating is equal to 4, change the
+    # rating value to 5
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://127.0.0.1:8080/{ROOT_URL}/api/d/item/edit/?rating=4&_rating=5&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+Check the Item model in the uAdmin dashboard to see the results.
+
+.. image:: dapi/assets/editmultipleresult.png
+
+|
+
+Go to your terminal and see the results performed by APIPreQueryEdit.
+
+.. code-block:: bash
+
+    [   OK   ]   The 127.0.0.1 HTTP request is authorized for dAPI edit access.
+
+Now let's call this URL again using the localhost domain.
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    # rating=4&_rating=5 means that where rating is equal to 4, change the
+    # rating value to 5
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://localhost:8080/{ROOT_URL}/api/d/item/edit/?rating=4&_rating=5&x-csrf-token={YOUR_SESSION_KEY}
+
+You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  ERROR ]   The localhost HTTP request is not authorized for dAPI edit access.
+
 **APIPreQueryRead**
 """""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPreQueryRead controls the data API's pre query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPreQueryRead function regardless even if the communication with the web server is not successful. By default, APIPreQueryRead returns **false**.
+APIPreQueryRead controls the data API's pre query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPreQueryRead function if the communication with the web server is successful. By default, APIPreQueryRead returns **false**.
+
+One of the common usage of APIPreQueryRead is your business logic of validating something first before the system performs dAPI read command execution.
 
 Structure:
 
@@ -2166,11 +2825,80 @@ Structure:
         return true
     }
 
+Our goal here is to restrict access to dAPI read if the client's domain is localhost. In order to do that, you need to apply APIPreQueryRead function in the Go file inside the models folder (e.g. item.go for Item model).
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable pre query access to read method
+    func (Item) APIPreQueryRead(w http.ResponseWriter, r *http.Request) bool {
+        // Get the client host and split it by colon.
+        // r.Host returns something like this: "localhost:8080"
+        host := strings.Split(r.Host, ":")
+
+        // If the domain is localhost
+        if host[0] == "localhost" {
+            // Return the failed result to notify the user that his domain is not authorized for dAPI read access.
+            uadmin.Trail(uadmin.ERROR, "The localhost HTTP request is not authorized for dAPI read access.")
+            return false
+        }
+
+        // Return the success result to notify the user that his domain is authorized for dAPI read access.
+        uadmin.Trail(uadmin.OK, "The %s HTTP request is authorized for dAPI read access.", host[0])
+        return true
+    }
+    // -----------------------------------------------------------
+
+Run your application and call this URL without assigning any query. Let's use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).
+
+.. code-block:: bash
+
+    # item is a model name
+    # This API call will read all records in the Item model.
+    http://127.0.0.1:8080/{ROOT_URL}/api/d/item/read/
+
+Result:
+
+.. image:: dapi/assets/readallresult.png
+   :align: center
+
+|
+
+It returns a JSON array with all items in the database.
+
+Go to your terminal and see the results performed by APIPreQueryRead.
+
+.. code-block:: bash
+
+    [   OK   ]   The 127.0.0.1 HTTP request is authorized for dAPI read access.
+
+Now let's call this URL again using the localhost domain.
+
+.. code-block:: bash
+
+    # item is a model name
+    # This API call will read all records in the Item model.
+    http://localhost:8080/{ROOT_URL}/api/d/item/read/
+
+You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  ERROR ]   The localhost HTTP request is not authorized for dAPI read access.
+
 **APIPreQuerySchema**
 """""""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPreQuerySchema controls the data API's pre query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPreQuerySchema function regardless even if the communication with the web server is not successful. By default, APIPreQuerySchema returns **false**.
+APIPreQuerySchema controls the data API's pre query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPreQuerySchema function if the communication with the web server is successful. By default, APIPreQuerySchema returns **false**.
+
+One of the common usage of APIPreQuerySchema is your business logic of validating something first before the system performs dAPI schema command execution.
 
 Structure:
 
@@ -2181,11 +2909,78 @@ Structure:
         return true
     }
 
+Our goal here is to restrict access to dAPI schema if the client's domain is localhost. In order to do that, you need to apply APIPreQuerySchema function in the Go file inside the models folder (e.g. item.go for Item model).
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable pre query access to schema method
+    func (Item) APIPreQuerySchema(w http.ResponseWriter, r *http.Request) bool {
+        // Get the client host and split it by colon.
+        // r.Host returns something like this: "localhost:8080"
+        host := strings.Split(r.Host, ":")
+
+        // If the domain is localhost
+        if host[0] == "localhost" {
+            // Return the failed result to notify the user that his domain is not authorized for dAPI schema access.
+            uadmin.Trail(uadmin.ERROR, "The localhost HTTP request is not authorized for dAPI schema access.")
+            return false
+        }
+
+        // Return the success result to notify the user that his domain is authorized for dAPI schema access.
+        uadmin.Trail(uadmin.OK, "The %s HTTP request is authorized for dAPI schema access.", host[0])
+        return true
+    }
+    // -----------------------------------------------------------
+
+Run your application and call this URL to read the full schema of the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/
+
+Result:
+
+.. image:: dapi/assets/schemaresult.png
+   :align: center
+
+|
+
+It returns a JSON object representing uAdmin's ModelSchema of the Item model.
+
+Go to your terminal and see the results performed by APIPreQuerySchema.
+
+.. code-block:: bash
+
+    [   OK   ]   The 127.0.0.1 HTTP request is authorized for dAPI schema access.
+
+Now let's call this URL again using the localhost domain.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/
+
+You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  ERROR ]   The localhost HTTP request is not authorized for dAPI schema access.
+
 **APIPostQueryAdd**
 """""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPostQueryAdd controls the data API's post query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPostQueryAdd function only if the communication with the web server is successful. By default, APIPostQueryAdd returns **false**.
+APIPostQueryAdd controls the data API's post query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPostQueryAdd function if the communication with the web server is successful. By default, APIPostQueryAdd returns **false**.
+
+One of the common usage of APIPostQueryAdd is your business logic of manipulating the result object after the system performs dAPI add command execution.
 
 Structure:
 
@@ -2311,7 +3106,9 @@ Because our URL query is successful, it will execute your business logic inside 
 """"""""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPostQueryDelete controls the data API's post query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPostQueryDelete function only if the communication with the web server is successful. By default, APIPostQueryDelete returns **false**.
+APIPostQueryDelete controls the data API's post query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPostQueryDelete function if the communication with the web server is successful. By default, APIPostQueryDelete returns **false**.
+
+One of the common usage of APIPostQueryDelete is your business logic of manipulating the result object after the system performs dAPI delete command execution.
 
 Structure:
 
@@ -2394,7 +3191,9 @@ Because our URL query is successful, it will execute your business logic inside 
 """"""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPostQueryEdit controls the data API's post query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPostQueryEdit function only if the communication with the web server is successful. By default, APIPostQueryEdit returns **false**.
+APIPostQueryEdit controls the data API's post query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPostQueryEdit function if the communication with the web server is successful. By default, APIPostQueryEdit returns **false**.
+
+One of the common usage of APIPostQueryEdit is your business logic of manipulating the result object after the system performs dAPI edit command execution.
 
 Structure:
 
@@ -2477,7 +3276,9 @@ Because our URL query is successful, it will execute your business logic inside 
 """"""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPostQueryRead controls the data API's post query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPostQueryRead function only if the communication with the web server is successful. By default, APIPostQueryRead returns **false**.
+APIPostQueryRead controls the data API's post query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPostQueryRead function if the communication with the web server is successful. By default, APIPostQueryRead returns **false**.
+
+One of the common usage of APIPostQueryRead is your business logic of manipulating the result object after the system performs dAPI read command execution.
 
 Structure:
 
@@ -2562,7 +3363,9 @@ Because our URL query is successful, it will execute your business logic inside 
 """"""""""""""""""""""
 `Back to Top (Model Methods)`_
 
-APIPostQuerySchema controls the data API's post query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPostQuerySchema function only if the communication with the web server is successful. By default, APIPostQuerySchema returns **false**.
+APIPostQuerySchema controls the data API's post query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPostQuerySchema function if the communication with the web server is successful. By default, APIPostQuerySchema returns **false**.
+
+One of the common usage of APIPostQuerySchema is your business logic of manipulating the result object after the system performs dAPI schema command execution.
 
 Structure:
 
@@ -3142,6 +3945,109 @@ Structure:
     # d stands for data
     http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/method/{METHOD_NAME}/{ID}
 
+Suppose you have 4 records in the Friend model. Our goal here is to regenerate the person's nationality in the database where the available options are the following: Chinese, Filipino, and Others.
+
+.. image:: dapi/assets/friendnationalityinitial.png
+
+|
+
+Go to the **friend.go** in the models folder and let's create a custom function that allows the system to regenerate the person's nationality.
+
+.. code-block:: go
+
+    // Friend Model !
+    type Friend struct {
+        uadmin.Model
+        // Some fields here
+    }
+
+    // RegenerateNationality generates the new nationality of a person based on the ID that was called in the URL using random number generator.
+    func (f Friend) RegenerateNationality() {
+        // Get the list of choices in the Nationality Field
+        // Available options: Chinese, Filipino, Others
+        choices := uadmin.Schema["friend"].FieldByName("Nationality").Choices
+
+        // Calculate how many choices are returned.
+        // Returns 4 because "-" is still part of the choices. "-" means nothing is selected or no value at all.
+        choiceCount := len(choices)
+
+        // Generate the random number from 1 to the number of choices.
+        randomNum := rand.Intn(choiceCount-1) + 1
+
+        // Check whether the selected Nationality value based on the requested ID is similar to the generated random number.
+        for int(f.Nationality) == randomNum {
+            // Regenerate the random number from 1 to the number of choices until it is no longer similar to the selected Nationality value.
+            randomNum = rand.Intn(choiceCount-1) + 1
+        }
+
+        // Assign the Nationality value using the newly generated random number and save it to the database.
+        f.Nationality = Nationality(randomNum)
+        uadmin.Save(&f)
+
+        // Get the Nationality Name by using GetString function to return string representation on an instance of a model.
+        // Example: 1 for Chinese, 2 for Filipino, 3 for Others
+        nationalityName := uadmin.GetString(f.Nationality)
+
+        // Display the result.
+        uadmin.Trail(uadmin.INFO, "Nationality : %s", nationalityName)
+    }
+
+Run your application and let's change the John Doe's Nationality.
+
+.. image:: dapi/assets/johndoenationalityinitial.png
+
+|
+
+In order to do that, execute the dAPI method command in the address bar.
+
+.. code-block:: bash
+
+    # friend is the model name
+    # RegenerateNationality is the method name initialized in friend.go. [NOTE: CASE-SENSITIVE]
+    # 1 is the database ID number for the Friend model.
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/admin/api/d/friend/method/RegenerateNationality/1/?x-csrf-token={YOUR_SESSION_KEY}
+
+Now go to the friend model in the uAdmin dashboard. As you can see, the John Doe's nationality has changed to Chinese.
+
+.. image:: dapi/assets/johndoenationalityresult.png
+
+|
+
+Check the terminal to see the output as well.
+
+.. code-block:: bash
+
+    [  INFO  ]   Nationality : Chinese
+
+You can also apply it to other people on your choice (e.g. Allen).
+
+.. image:: dapi/assets/allennationalityinitial.png
+
+|
+
+dAPI Query:
+
+.. code-block:: bash
+
+    # friend is the model name
+    # RegenerateNationality is the method name initialized in friend.go. [NOTE: CASE-SENSITIVE]
+    # 4 is the database ID number for the Friend model.
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/admin/api/d/friend/method/RegenerateNationality/4/?x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. image:: dapi/assets/allennationalityresult.png
+
+|
+
+Terminal:
+
+.. code-block:: bash
+
+    [  INFO  ]   Nationality : Filipino
+
 Special Parameters
 ------------------
 `Back to Top`_
@@ -3219,6 +4125,48 @@ Structure:
     # value can be either 0 (disabled) or 1 (enabled)
     http://api.example.com/{ROOT_URL}/api/d/{MODEL_NAME}/schema/?$choices={0,1}
 
+Suppose you have a Category M2M field in the Item model.
+
+.. image:: dapi/assets/categorym2mitemmodel.png
+
+|
+
+Run your application and call this URL to read the full schema of the Item model where M2M field is not preloaded.
+
+.. code-block:: bash
+
+    # item is the model name
+    # $ represents a symbol for special parameters
+    # 0 is the value to disable preloading on foreign key and M2M choices.
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/?$choices=0
+
+Result:
+
+.. image:: dapi/assets/choices0result.png
+   :align: center
+
+|
+
+It returns a JSON object representing uAdmin's ModelSchema of the Item model. The Choices value is null in the Category M2M field.
+
+Now call this URL to read the full schema of the Item model where M2M field is preloaded.
+
+.. code-block:: bash
+
+    # item is the model name
+    # $ represents a symbol for special parameters
+    # 1 is the value to enable preloading on foreign key and M2M choices.
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/?$choices=1
+
+Result:
+
+.. image:: dapi/assets/choices1result.png
+   :align: center
+
+|
+
+It returns a JSON object representing uAdmin's ModelSchema of the Item model. The Choices value returns all available options covered in the Category M2M field.
+
 **$distinct**
 ^^^^^^^^^^^^^
 `Back to Top (Special Parameters)`_
@@ -3278,7 +4226,7 @@ Run your application and call this URL to read a record that displays the list o
 .. code-block:: bash
 
     # item is the model name
-    # id and rating are field names
+    # $ represents a symbol for special parameters
     # 0 is the value to display the list of existing records
     http://api.example.com/{ROOT_URL}/api/d/item/read/?$deleted=0
 
@@ -3292,7 +4240,7 @@ Now let's call this URL to read a record that displays the list of both deleted 
 .. code-block:: bash
 
     # item is the model name
-    # id and rating are field names
+    # $ represents a symbol for special parameters
     # 1 is the value to display the list of both deleted and existing records
     http://api.example.com/{ROOT_URL}/api/d/item/read/?$deleted=1
 

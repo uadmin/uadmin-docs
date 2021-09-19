@@ -1025,7 +1025,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="c1"># __re is an operator that defines a search pattern</span>
 <span class="c1"># %20 represents a space in an encoded URL</span>
 <span class="c1"># [M,P] is a list that can be letter M or P</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/?name__re<span class="o">=</span>iPad%20<span class="o">[</span>M,P<span class="o">]</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?name__re<span class="o">=</span>iPad%20<span class="o">[</span>M,P<span class="o">]</span>
 </pre></div>
 </div>
 <p>Result:</p>
@@ -1111,7 +1111,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 </div>
 <p>It returns a list of records where the name of an item starts with “iPad”.</p>
 <p>Now let’s search the substring “ipad” where p is the lowercase letter and see what happens.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/?name__istartswith<span class="o">=</span>ipad
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?name__istartswith<span class="o">=</span>ipad
 </pre></div>
 </div>
 <p>Result:</p>
@@ -1144,7 +1144,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="c1"># description is a field name</span>
 <span class="c1"># __iendswith is an operator that will search for string values that</span>
 <span class="c1"># ends with a given substring. This is case insensitive.</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/?description__iendswith<span class="o">=</span>device
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?description__iendswith<span class="o">=</span>device
 </pre></div>
 </div>
 <p>Result:</p>
@@ -1478,7 +1478,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Suppose you are logged in as <strong>admin</strong> and you have the first record in the Item model is named as “Robot”.</p>
+<p>Suppose you are logged in as <strong>admin</strong> and you have the first record in the Item model that is named as “Robot”.</p>
 <img alt="_images/itemfirstrecordrobot.png" src="_images/itemfirstrecordrobot.png" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1653,6 +1653,86 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Suppose that you have this record in your logs as shown below.</p>
+<img alt="_images/apilogaddinitial.png" src="_images/apilogaddinitial.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>And suppose you don’t have any records in the Document model.</p>
+<img alt="_images/emptyrecorddocument.png" src="_images/emptyrecorddocument.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to add a new record in the Document model with the following information below:</p>
+<ul class="simple">
+<li><p>Name: Programming</p></li>
+<li><p>Author: Admin</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name<span class="o">=</span>Programming<span class="p">&amp;</span><span class="nv">_author</span><span class="o">=</span>Admin<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="mi">1</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Check the Document model in the uAdmin dashboard to see the result.</p>
+<img alt="_images/documentsinglerecordadded.png" src="_images/documentsinglerecordadded.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Check your logs to see the result.</p>
+<img alt="_images/apilogaddtrueresult.png" src="_images/apilogaddtrueresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose you have changed your mind and decided to disable log recording when someone tried to perform dAPI add command. In order to do that, you need to apply APILogAdd function in the Go file inside the models folder (e.g. document.go for Document model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Document Model !</span>
+<span class="kd">type</span> <span class="nx">Document</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to false to disable log access to add method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Document</span><span class="p">)</span> <span class="nx">APILogAdd</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Now run your application and call this URL again to add a new record in the Document model with the following information below:</p>
+<ul class="simple">
+<li><p>Name: Programming</p></li>
+<li><p>Author: Admin</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name<span class="o">=</span>Programming<span class="p">&amp;</span><span class="nv">_author</span><span class="o">=</span>Admin<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="mi">2</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Check your logs to see the result.</p>
+<img alt="_images/apilogaddfalseresult.png" src="_images/apilogaddfalseresult.png" />
+<p>Although the dAPI add command works, it no longer records when someone tried to execute dAPI add command in the logs.</p>
 </section>
 <section id="apilogdelete">
 <h4><strong>APILogDelete</strong><a class="headerlink" href="#apilogdelete" title="Permalink to this headline">¶</a></h4>
@@ -1665,6 +1745,70 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Suppose that you have this record in your logs as shown below.</p>
+<img alt="_images/apilogaddfalseresult.png" src="_images/apilogaddfalseresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>And suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to delete the third record in the database.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 3 is an ID number</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/3/?x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query. Now go back to the Item model in the admin page and see what happens to the number of records in the Item model.</p>
+<img alt="_images/deleteoneresult.png" src="_images/deleteoneresult.png" />
+<p>As you can see, the “iPad Pro” record has been deleted in the Item model.</p>
+<p>Check your logs to see the result.</p>
+<img alt="_images/apilogdeletetrueresult.png" src="_images/apilogdeletetrueresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose you have changed your mind and decided to disable log recording when someone tried to perform dAPI delete command. In order to do that, you need to apply APILogDelete function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to false to disable log access to delete method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APILogDelete</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Now run your application and call this URL again to delete the third record in the database.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 3 is an ID number</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/3/?x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Check your logs to see the result.</p>
+<img alt="_images/apilogdeletefalseresult.png" src="_images/apilogdeletefalseresult.png" />
+<p>Although the dAPI delete command works, it no longer records when someone tried to execute dAPI delete command in the logs.</p>
 </section>
 <section id="apilogedit">
 <h4><strong>APILogEdit</strong><a class="headerlink" href="#apilogedit" title="Permalink to this headline">¶</a></h4>
@@ -1677,6 +1821,72 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Suppose that you have this record in your logs as shown below.</p>
+<img alt="_images/apilogdeletefalseresult.png" src="_images/apilogdeletefalseresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>And suppose you have the first record in the Item model that is named as “Robot”.</p>
+<img alt="_images/itemfirstrecordrobot.png" src="_images/itemfirstrecordrobot.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to edit the name of the first record in the database from “Robot” to “Supercomputer”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 1 is an ID number</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/1/?_name<span class="o">=</span>Supercomputer<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query. Now go back to the Item model in the admin page and check the results.</p>
+<img alt="_images/editoneresult.png" src="_images/editoneresult.png" />
+<p>As you can see, the first record in the Item model has been modified from “Robot” to “Supercomputer”.</p>
+<p>Check your logs to see the result.</p>
+<img alt="_images/apilogedittrueresult.png" src="_images/apilogedittrueresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose you have changed your mind and decided to disable log recording when someone tried to perform dAPI edit command. In order to do that, you need to apply APILogEdit function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to false to disable log access to edit method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APILogEdit</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Now run your application and call this URL again to edit the name of the first record in the database from “Robot” to “Supercomputer”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 1 is an ID number</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/1/?_name<span class="o">=</span>Supercomputer<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Check your logs to see the result.</p>
+<img alt="_images/apilogeditfalseresult.png" src="_images/apilogeditfalseresult.png" />
+<p>Although the dAPI edit command works, it no longer records when someone tried to execute dAPI edit command in the logs.</p>
 </section>
 <section id="apilogread">
 <h4><strong>APILogRead</strong><a class="headerlink" href="#apilogread" title="Permalink to this headline">¶</a></h4>
@@ -1689,6 +1899,46 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Our goal here is to enable log recording when someone tried to perform dAPI read command. In order to do that, you need to apply APILogRead function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable log access to read method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APILogRead</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Suppose that you have this record in your logs as shown below.</p>
+<img alt="_images/apilogeditfalseresult.png" src="_images/apilogeditfalseresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>And suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read the second record in the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># 2 is an ID number</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/2/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/readoneresult.png" class="align-center" src="_images/readoneresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing an item where ID=2.</p>
+<p>Check your logs to see the result.</p>
+<img alt="_images/apilogreadtrueresult.png" src="_images/apilogreadtrueresult.png" />
+<p>It now records when someone tried to execute dAPI read command in the logs.</p>
 </section>
 <section id="apilogschema">
 <h4><strong>APILogSchema</strong><a class="headerlink" href="#apilogschema" title="Permalink to this headline">¶</a></h4>
@@ -1701,11 +1951,61 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Suppose that you have this record in your logs as shown below.</p>
+<img alt="_images/apilogreadfalseresult.png" src="_images/apilogreadfalseresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read the full schema of the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/schema/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/schemaresult.png" class="align-center" src="_images/schemaresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing uAdmin’s ModelSchema of the Item model.</p>
+<p>Check your logs to see the result.</p>
+<img alt="_images/apilogschematrueresult.png" src="_images/apilogschematrueresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Suppose you have changed your mind and decided to disable log recording when someone tried to perform dAPI schema command. In order to do that, you need to apply APILogSchema function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to false to disable log access to schema method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APILogSchema</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Now run your application and call this URL again to read the full schema of the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/schema/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/schemaresult.png" class="align-center" src="_images/schemaresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Check your logs to see the result.</p>
+<img alt="_images/apilogschemafalseresult.png" src="_images/apilogschemafalseresult.png" />
+<p>Although the dAPI schema command works, it no longer records when someone tried to execute dAPI schema command in the logs.</p>
 </section>
 <section id="apiprequeryadd">
 <h4><strong>APIPreQueryAdd</strong><a class="headerlink" href="#apiprequeryadd" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPreQueryAdd controls the data API’s pre query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPreQueryAdd function regardless even if the communication with the web server is not successful. By default, APIPreQueryAdd returns <strong>false</strong>.</p>
+<p>APIPreQueryAdd controls the data API’s pre query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPreQueryAdd function if the communication with the web server is successful. By default, APIPreQueryAdd returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPreQueryAdd is your business logic of validating something first before the system performs dAPI add command execution.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to add method</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryAdd</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
@@ -1713,11 +2013,98 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Our goal here is to restrict access to dAPI add if the client’s domain is localhost. In order to do that, you need to apply APIPreQueryAdd function in the Go file inside the models folder (e.g. document.go for Document model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Document Model !</span>
+<span class="kd">type</span> <span class="nx">Document</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable pre query access to add method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Document</span><span class="p">)</span> <span class="nx">APIPreQueryAdd</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Get the client host and split it by colon.</span>
+    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
+    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
+
+    <span class="c1">// If the domain is localhost</span>
+    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
+        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI add access.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI add access.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI add access.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI add access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Suppose you don’t have any records in the Document model.</p>
+<img alt="_images/emptyrecorddocument.png" src="_images/emptyrecorddocument.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to add multiple records in the Document model with the following information below. Let’s use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).</p>
+<p><strong>First Record</strong></p>
+<ul class="simple">
+<li><p>Name: Golang</p></li>
+<li><p>Author: John</p></li>
+</ul>
+<p><strong>Second Record</strong></p>
+<ul class="simple">
+<li><p>Name: uAdmin</p></li>
+<li><p>Author: Adam</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+<span class="c1"># __0 is the first index</span>
+<span class="c1"># __1 is the second index</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://127.0.0.1:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name__0<span class="o">=</span>Golang<span class="p">&amp;</span><span class="nv">_author__0</span><span class="o">=</span>John<span class="p">&amp;</span><span class="nv">_name__1</span><span class="o">=</span>uAdmin<span class="p">&amp;</span><span class="nv">_author__1</span><span class="o">=</span>Adam<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">1</span><span class="p">,</span>
+        <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns an array with a list of IDs for the newly created records, status and the rows affected by your query.</p>
+<p>Check the Document model in the uAdmin dashboard to see the results.</p>
+<img alt="_images/addmultipleresult.png" src="_images/addmultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to your terminal and see the results performed by APIPreQueryAdd.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI add access.
+</pre></div>
+</div>
+<p>Now let’s call this URL again using the localhost domain.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+<span class="c1"># __0 is the first index</span>
+<span class="c1"># __1 is the second index</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://localhost:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name__0<span class="o">=</span>Golang<span class="p">&amp;</span><span class="nv">_author__0</span><span class="o">=</span>John<span class="p">&amp;</span><span class="nv">_name__1</span><span class="o">=</span>uAdmin<span class="p">&amp;</span><span class="nv">_author__1</span><span class="o">=</span>Adam<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI add access.
+</pre></div>
+</div>
 </section>
 <section id="apiprequerydelete">
 <h4><strong>APIPreQueryDelete</strong><a class="headerlink" href="#apiprequerydelete" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPreQueryDelete controls the data API’s pre query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPreQueryDelete function regardless even if the communication with the web server is not successful. By default, APIPreQueryDelete returns <strong>false</strong>.</p>
+<p>APIPreQueryDelete controls the data API’s pre query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPreQueryDelete if the communication with the web server is successful. By default, APIPreQueryDelete returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPreQueryDelete is your business logic of validating something first before the system performs dAPI delete command execution.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to delete method</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryDelete</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>  <span class="p">{</span>
@@ -1725,11 +2112,82 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Our goal here is to restrict access to dAPI delete if the client’s domain is localhost. In order to do that, you need to apply APIPreQueryDelete function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable pre query access to delete method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPreQueryDelete</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Get the client host and split it by colon.</span>
+    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
+    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
+
+    <span class="c1">// If the domain is localhost</span>
+    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
+        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI delete access.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI delete access.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI delete access.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI delete access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to delete records where the name of an item contains “iPad”. Let’s use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://127.0.0.1:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/?name__contains<span class="o">=</span>iPad<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>Check the Item model in the uAdmin dashboard to see the results.</p>
+<img alt="_images/deletemultipleresult.png" src="_images/deletemultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to your terminal and see the results performed by APIPreQueryDelete.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI delete access.
+</pre></div>
+</div>
+<p>Now let’s call this URL again using the localhost domain.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://localhost:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/?name__contains<span class="o">=</span>iPad<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI delete access.
+</pre></div>
+</div>
 </section>
 <section id="apiprequeryedit">
 <h4><strong>APIPreQueryEdit</strong><a class="headerlink" href="#apiprequeryedit" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPreQueryEdit controls the data API’s pre query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPreQueryEdit function regardless even if the communication with the web server is not successful. By default, APIPreQueryEdit returns <strong>false</strong>.</p>
+<p>APIPreQueryEdit controls the data API’s pre query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPreQueryEdit function if the communication with the web server is successful. By default, APIPreQueryEdit returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPreQueryEdit is your business logic of validating something first before the system performs dAPI edit command execution.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to edit method</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryEdit</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
@@ -1737,11 +2195,85 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Our goal here is to restrict access to dAPI edit if the client’s domain is localhost. In order to do that, you need to apply APIPreQueryEdit function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable pre query access to edit method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPreQueryEdit</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Get the client host and split it by colon.</span>
+    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
+    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
+
+    <span class="c1">// If the domain is localhost</span>
+    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
+        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI edit access.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI edit access.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI edit access.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI edit access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model where all iPad items have a rating of 4.</p>
+<img alt="_images/itemipadoldrating.png" src="_images/itemipadoldrating.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to edit the rating of all iPad items to a value of 5. Let’s use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+<span class="c1"># rating=4&amp;_rating=5 means that where rating is equal to 4, change the</span>
+<span class="c1"># rating value to 5</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://127.0.0.1:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/?rating<span class="o">=</span><span class="m">4</span><span class="p">&amp;</span><span class="nv">_rating</span><span class="o">=</span><span class="m">5</span><span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Check the Item model in the uAdmin dashboard to see the results.</p>
+<img alt="_images/editmultipleresult.png" src="_images/editmultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to your terminal and see the results performed by APIPreQueryEdit.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI edit access.
+</pre></div>
+</div>
+<p>Now let’s call this URL again using the localhost domain.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+<span class="c1"># rating=4&amp;_rating=5 means that where rating is equal to 4, change the</span>
+<span class="c1"># rating value to 5</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://localhost:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/?rating<span class="o">=</span><span class="m">4</span><span class="p">&amp;</span><span class="nv">_rating</span><span class="o">=</span><span class="m">5</span><span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI edit access.
+</pre></div>
+</div>
 </section>
 <section id="apiprequeryread">
 <h4><strong>APIPreQueryRead</strong><a class="headerlink" href="#apiprequeryread" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPreQueryRead controls the data API’s pre query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPreQueryRead function regardless even if the communication with the web server is not successful. By default, APIPreQueryRead returns <strong>false</strong>.</p>
+<p>APIPreQueryRead controls the data API’s pre query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPreQueryRead function if the communication with the web server is successful. By default, APIPreQueryRead returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPreQueryRead is your business logic of validating something first before the system performs dAPI read command execution.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to read method</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryRead</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
@@ -1749,11 +2281,66 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Our goal here is to restrict access to dAPI read if the client’s domain is localhost. In order to do that, you need to apply APIPreQueryRead function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable pre query access to read method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPreQueryRead</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Get the client host and split it by colon.</span>
+    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
+    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
+
+    <span class="c1">// If the domain is localhost</span>
+    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
+        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI read access.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI read access.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI read access.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI read access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Run your application and call this URL without assigning any query. Let’s use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># This API call will read all records in the Item model.</span>
+http://127.0.0.1:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/readallresult.png" class="align-center" src="_images/readallresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON array with all items in the database.</p>
+<p>Go to your terminal and see the results performed by APIPreQueryRead.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI <span class="nb">read</span> access.
+</pre></div>
+</div>
+<p>Now let’s call this URL again using the localhost domain.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># This API call will read all records in the Item model.</span>
+http://localhost:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/
+</pre></div>
+</div>
+<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI <span class="nb">read</span> access.
+</pre></div>
+</div>
 </section>
 <section id="apiprequeryschema">
 <h4><strong>APIPreQuerySchema</strong><a class="headerlink" href="#apiprequeryschema" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPreQuerySchema controls the data API’s pre query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPreQuerySchema function regardless even if the communication with the web server is not successful. By default, APIPreQuerySchema returns <strong>false</strong>.</p>
+<p>APIPreQuerySchema controls the data API’s pre query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPreQuerySchema function if the communication with the web server is successful. By default, APIPreQuerySchema returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPreQuerySchema is your business logic of validating something first before the system performs dAPI schema command execution.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to schema method</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQuerySchema</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
@@ -1761,11 +2348,64 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Our goal here is to restrict access to dAPI schema if the client’s domain is localhost. In order to do that, you need to apply APIPreQuerySchema function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable pre query access to schema method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPreQuerySchema</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Get the client host and split it by colon.</span>
+    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
+    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
+
+    <span class="c1">// If the domain is localhost</span>
+    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
+        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI schema access.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI schema access.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI schema access.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI schema access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Run your application and call this URL to read the full schema of the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/schema/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/schemaresult.png" class="align-center" src="_images/schemaresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing uAdmin’s ModelSchema of the Item model.</p>
+<p>Go to your terminal and see the results performed by APIPreQuerySchema.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI schema access.
+</pre></div>
+</div>
+<p>Now let’s call this URL again using the localhost domain.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/schema/
+</pre></div>
+</div>
+<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI schema access.
+</pre></div>
+</div>
 </section>
 <section id="apipostqueryadd">
 <h4><strong>APIPostQueryAdd</strong><a class="headerlink" href="#apipostqueryadd" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPostQueryAdd controls the data API’s post query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPostQueryAdd function only if the communication with the web server is successful. By default, APIPostQueryAdd returns <strong>false</strong>.</p>
+<p>APIPostQueryAdd controls the data API’s post query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPostQueryAdd function if the communication with the web server is successful. By default, APIPostQueryAdd returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPostQueryAdd is your business logic of manipulating the result object after the system performs dAPI add command execution.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to add method</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryAdd</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
@@ -1875,7 +2515,8 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <section id="apipostquerydelete">
 <h4><strong>APIPostQueryDelete</strong><a class="headerlink" href="#apipostquerydelete" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPostQueryDelete controls the data API’s post query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPostQueryDelete function only if the communication with the web server is successful. By default, APIPostQueryDelete returns <strong>false</strong>.</p>
+<p>APIPostQueryDelete controls the data API’s post query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPostQueryDelete function if the communication with the web server is successful. By default, APIPostQueryDelete returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPostQueryDelete is your business logic of manipulating the result object after the system performs dAPI delete command execution.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to delete method</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryDelete</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span>  <span class="p">{</span>
@@ -1942,7 +2583,8 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <section id="apipostqueryedit">
 <h4><strong>APIPostQueryEdit</strong><a class="headerlink" href="#apipostqueryedit" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPostQueryEdit controls the data API’s post query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPostQueryEdit function only if the communication with the web server is successful. By default, APIPostQueryEdit returns <strong>false</strong>.</p>
+<p>APIPostQueryEdit controls the data API’s post query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPostQueryEdit function if the communication with the web server is successful. By default, APIPostQueryEdit returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPostQueryEdit is your business logic of manipulating the result object after the system performs dAPI edit command execution.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to edit method</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryEdit</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
@@ -2010,7 +2652,8 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <section id="apipostqueryread">
 <h4><strong>APIPostQueryRead</strong><a class="headerlink" href="#apipostqueryread" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPostQueryRead controls the data API’s post query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPostQueryRead function only if the communication with the web server is successful. By default, APIPostQueryRead returns <strong>false</strong>.</p>
+<p>APIPostQueryRead controls the data API’s post query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPostQueryRead function if the communication with the web server is successful. By default, APIPostQueryRead returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPostQueryRead is your business logic of manipulating the result object after the system performs dAPI read command execution.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to read method</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQueryRead</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
@@ -2079,7 +2722,8 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <section id="apipostqueryschema">
 <h4><strong>APIPostQuerySchema</strong><a class="headerlink" href="#apipostqueryschema" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPostQuerySchema controls the data API’s post query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPostQuerySchema function only if the communication with the web server is successful. By default, APIPostQuerySchema returns <strong>false</strong>.</p>
+<p>APIPostQuerySchema controls the data API’s post query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPostQuerySchema function if the communication with the web server is successful. By default, APIPostQuerySchema returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPostQuerySchema is your business logic of manipulating the result object after the system performs dAPI schema command execution.</p>
 <p>Structure:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable post query access to schema method</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPostQuerySchema</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
@@ -2530,6 +3174,94 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/method/<span class="o">{</span>METHOD_NAME<span class="o">}</span>/<span class="o">{</span>ID<span class="o">}</span>
 </pre></div>
 </div>
+<p>Suppose you have 4 records in the Friend model. Our goal here is to regenerate the person’s nationality in the database where the available options are the following: Chinese, Filipino, and Others.</p>
+<img alt="_images/friendnationalityinitial.png" src="_images/friendnationalityinitial.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to the <strong>friend.go</strong> in the models folder and let’s create a custom function that allows the system to regenerate the person’s nationality.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Friend Model !</span>
+<span class="kd">type</span> <span class="nx">Friend</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Some fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// RegenerateNationality generates the new nationality of a person based on the ID that was called in the URL using random number generator.</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="nx">Friend</span><span class="p">)</span> <span class="nx">RegenerateNationality</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Get the list of choices in the Nationality Field</span>
+    <span class="c1">// Available options: Chinese, Filipino, Others</span>
+    <span class="nx">choices</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Schema</span><span class="p">[</span><span class="s">&quot;friend&quot;</span><span class="p">].</span><span class="nx">FieldByName</span><span class="p">(</span><span class="s">&quot;Nationality&quot;</span><span class="p">).</span><span class="nx">Choices</span>
+
+    <span class="c1">// Calculate how many choices are returned.</span>
+    <span class="c1">// Returns 4 because &quot;-&quot; is still part of the choices. &quot;-&quot; means nothing is selected or no value at all.</span>
+    <span class="nx">choiceCount</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">choices</span><span class="p">)</span>
+
+    <span class="c1">// Generate the random number from 1 to the number of choices.</span>
+    <span class="nx">randomNum</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="nx">choiceCount</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="c1">// Check whether the selected Nationality value based on the requested ID is similar to the generated random number.</span>
+    <span class="k">for</span> <span class="nb">int</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Nationality</span><span class="p">)</span> <span class="o">==</span> <span class="nx">randomNum</span> <span class="p">{</span>
+        <span class="c1">// Regenerate the random number from 1 to the number of choices until it is no longer similar to the selected Nationality value.</span>
+        <span class="nx">randomNum</span> <span class="p">=</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="nx">choiceCount</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Assign the Nationality value using the newly generated random number and save it to the database.</span>
+    <span class="nx">f</span><span class="p">.</span><span class="nx">Nationality</span> <span class="p">=</span> <span class="nx">Nationality</span><span class="p">(</span><span class="nx">randomNum</span><span class="p">)</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">f</span><span class="p">)</span>
+
+    <span class="c1">// Get the Nationality Name by using GetString function to return string representation on an instance of a model.</span>
+    <span class="c1">// Example: 1 for Chinese, 2 for Filipino, 3 for Others</span>
+    <span class="nx">nationalityName</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetString</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Nationality</span><span class="p">)</span>
+
+    <span class="c1">// Display the result.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">INFO</span><span class="p">,</span> <span class="s">&quot;Nationality : %s&quot;</span><span class="p">,</span> <span class="nx">nationalityName</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run your application and let’s change the John Doe’s Nationality.</p>
+<img alt="_images/johndoenationalityinitial.png" src="_images/johndoenationalityinitial.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In order to do that, execute the dAPI method command in the address bar.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># friend is the model name</span>
+<span class="c1"># RegenerateNationality is the method name initialized in friend.go. [NOTE: CASE-SENSITIVE]</span>
+<span class="c1"># 1 is the database ID number for the Friend model.</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/admin/api/d/friend/method/RegenerateNationality/1/?x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now go to the friend model in the uAdmin dashboard. As you can see, the John Doe’s nationality has changed to Chinese.</p>
+<img alt="_images/johndoenationalityresult.png" src="_images/johndoenationalityresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Check the terminal to see the output as well.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   Nationality : Chinese
+</pre></div>
+</div>
+<p>You can also apply it to other people on your choice (e.g. Allen).</p>
+<img alt="_images/allennationalityinitial.png" src="_images/allennationalityinitial.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>dAPI Query:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># friend is the model name</span>
+<span class="c1"># RegenerateNationality is the method name initialized in friend.go. [NOTE: CASE-SENSITIVE]</span>
+<span class="c1"># 4 is the database ID number for the Friend model.</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://api.example.com/admin/api/d/friend/method/RegenerateNationality/4/?x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/allennationalityresult.png" src="_images/allennationalityresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  INFO  <span class="o">]</span>   Nationality : Filipino
+</pre></div>
+</div>
 </section>
 </section>
 <section id="special-parameters">
@@ -2602,6 +3334,37 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/<span class="o">{</span>MODEL_NAME<span class="o">}</span>/schema/?<span class="nv">$choices</span><span class="o">={</span><span class="m">0</span>,1<span class="o">}</span>
 </pre></div>
 </div>
+<p>Suppose you have a Category M2M field in the Item model.</p>
+<img alt="_images/categorym2mitemmodel.png" src="_images/categorym2mitemmodel.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to read the full schema of the Item model where M2M field is not preloaded.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+<span class="c1"># 0 is the value to disable preloading on foreign key and M2M choices.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/schema/?<span class="nv">$choices</span><span class="o">=</span><span class="m">0</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/choices0result.png" class="align-center" src="_images/choices0result.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing uAdmin’s ModelSchema of the Item model. The Choices value is null in the Category M2M field.</p>
+<p>Now call this URL to read the full schema of the Item model where M2M field is preloaded.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
+<span class="c1"># 1 is the value to enable preloading on foreign key and M2M choices.</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/schema/?<span class="nv">$choices</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/choices1result.png" class="align-center" src="_images/choices1result.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing uAdmin’s ModelSchema of the Item model. The Choices value returns all available options covered in the Category M2M field.</p>
 </section>
 <section id="distinct">
 <h3><strong>$distinct</strong><a class="headerlink" href="#distinct" title="Permalink to this headline">¶</a></h3>
@@ -2648,7 +3411,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 </div>
 <p>Run your application and call this URL to read a record that displays the list of existing records in the Item model.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
-<span class="c1"># id and rating are field names</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
 <span class="c1"># 0 is the value to display the list of existing records</span>
 http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$deleted</span><span class="o">=</span><span class="m">0</span>
 </pre></div>
@@ -2657,7 +3420,7 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <img alt="_images/deleted0result.png" class="align-center" src="_images/deleted0result.png" />
 <p>Now let’s call this URL to read a record that displays the list of both deleted and existing records in the Item model.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is the model name</span>
-<span class="c1"># id and rating are field names</span>
+<span class="c1"># $ represents a symbol for special parameters</span>
 <span class="c1"># 1 is the value to display the list of both deleted and existing records</span>
 http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/?<span class="nv">$deleted</span><span class="o">=</span><span class="m">1</span>
 </pre></div>

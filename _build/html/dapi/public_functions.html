@@ -80,7 +80,7 @@
 <section id="uadmin-apipublicadder">
 <h2>uadmin.APIPublicAdder<a class="headerlink" href="#uadmin-apipublicadder" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#public-functions">Back To Top</a></p>
-<p>APIPublicAdder is an interface that contains the method APIPublicAdd with the type of func(*http.Request) bool. If the value is true, anyone will have permission access to add the record in the model using the dAPI add method even if the account is not logged in.</p>
+<p>APIPublicAdder is an interface for models to control public access to add function in dAPI.</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>
@@ -98,7 +98,7 @@
 <section id="uadmin-apipublicdeleter">
 <h2>uadmin.APIPublicDeleter<a class="headerlink" href="#uadmin-apipublicdeleter" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#public-functions">Back To Top</a></p>
-<p>APIPublicDeleter is an interface that contains the method APIPublicDelete with the type of func(*http.Request) bool. If the value is true, anyone will have permission access to delete the record in the model using the dAPI delete method even if the account is not logged in.</p>
+<p>APIPublicDeleter is an interface for models to control public access to delete function in dAPI.</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>
@@ -116,7 +116,7 @@
 <section id="uadmin-apipubliceditor">
 <h2>uadmin.APIPublicEditor<a class="headerlink" href="#uadmin-apipubliceditor" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#public-functions">Back To Top</a></p>
-<p>APIPublicEditor is an interface that contains the method APIPublicEdit with the type of func(*http.Request) bool. If the value is true, anyone will have permission access to edit the record in the model using the dAPI edit method even if the account is not logged in.</p>
+<p>APIPublicEditor is an interface for models to control public access to edit function in dAPI.</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>
@@ -134,7 +134,7 @@
 <section id="uadmin-apipublicreader">
 <h2>uadmin.APIPublicReader<a class="headerlink" href="#uadmin-apipublicreader" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#public-functions">Back To Top</a></p>
-<p>APIPublicReader is an interface that contains the method APIPublicRead with the type of func(*http.Request) bool. If the value is true, anyone will have permission access to read the record in the model using the dAPI read method even if the account is not logged in.</p>
+<p>APIPublicReader is an interface for models to control public access to read function in dAPI.</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>
@@ -152,7 +152,7 @@
 <section id="uadmin-apipublicschemer">
 <h2>uadmin.APIPublicSchemer<a class="headerlink" href="#uadmin-apipublicschemer" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/public_functions.html#public-functions">Back To Top</a></p>
-<p>APIPublicSchemer is an interface that contains the method APIPublicSchema with the type of func(*http.Request) bool. If the value is true, anyone will have permission access to read the full schema of the model using the dAPI schema method even if the account is not logged in.</p>
+<p>APIPublicSchemer is an interface for models to control public access to schema function in dAPI.</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>

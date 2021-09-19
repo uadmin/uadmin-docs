@@ -33,7 +33,7 @@ uadmin.APIDisabledAdder
 -----------------------
 `Back To Top`_
 
-APIDisabledAdder is an interface that contains the method APIDisabledAdd with the type of func(\*http.Request) bool. If the value is true, the user will not have permission access to add the record in the model using the dAPI add method.
+APIDisabledAdder is an interface for models to disable access to add function in dAPI.
 
 Type:
 
@@ -57,7 +57,7 @@ uadmin.APIDisabledDeleter
 -------------------------
 `Back To Top`_
 
-APIDisabledDeleter is an interface that contains the method APIDisabledDelete with the type of func(\*http.Request) bool. If the value is true, the user will not have permission access to delete the record in the model using the dAPI delete method.
+APIDisabledDeleter is an interface for models to disable access to delete function in dAPI.
 
 Type:
 
@@ -81,7 +81,7 @@ uadmin.APIDisabledEditor
 ------------------------
 `Back To Top`_
 
-APIDisabledEditor is an interface that contains the method APIDisabledEdit with the type of func(\*http.Request) bool. If the value is true, the user will not have permission access to edit the record in the model using the dAPI edit method.
+APIDisabledEditor is an interface for models to disable access to edit function in dAPI.
 
 Type:
 
@@ -105,7 +105,7 @@ uadmin.APIDisabledReader
 ------------------------
 `Back To Top`_
 
-APIDisabledReader is an interface that contains the method APIDisabledRead with the type of func(\*http.Request) bool. If the value is true, the user will not have permission access to read the record in the model using the dAPI read method.
+APIDisabledReader is an interface for models to disable access to read function in dAPI.
 
 Type:
 
@@ -131,7 +131,7 @@ uadmin.APIDisabledSchemer
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/dapi/disabled_functions.html#disabled-functions
 
-APIDisabledSchemer is an interface that contains the method APIDisabledSchema with the type of func(\*http.Request) bool. If the value is true, the user will not have permission access to read the full schema of the model using the dAPI schema method.
+APIDisabledSchemer is an interface for models to disable access to schema function in dAPI.
 
 Type:
 

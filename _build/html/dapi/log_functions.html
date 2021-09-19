@@ -166,7 +166,7 @@ http://api.example.com/api/d/document/add/?_name<span class="o">=</span>Programm
 <section id="uadmin-apilogadder">
 <h2>uadmin.APILogAdder<a class="headerlink" href="#uadmin-apilogadder" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
-<p>APILogAdder is an interface that contains the method APILogAdd with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as Added when he use the dAPI add method.</p>
+<p>APILogAdder is an interface for models to control logging their add function in dAPI.</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>
@@ -255,7 +255,7 @@ http://api.example.com/api/d/item/delete/4/
 <section id="uadmin-apilogdeleter">
 <h2>uadmin.APILogDeleter<a class="headerlink" href="#uadmin-apilogdeleter" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
-<p>APILogDeleter is an interface that contains the method APILogDelete with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as Deleted when he use the dAPI delete method.</p>
+<p>APILogDeleter is an interface for models to control logging their delete function in dAPI.</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>
@@ -352,7 +352,7 @@ http://api.example.com/api/d/item/edit/1/?_name<span class="o">=</span>Supercomp
 <section id="uadmin-apilogeditor">
 <h2>uadmin.APILogEditor<a class="headerlink" href="#uadmin-apilogeditor" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
-<p>APILogEditor is an interface that contains the method APILogEdit with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as Modified when he use the dAPI edit method.</p>
+<p>APILogEditor is an interface for models to control logging their edit function in dAPI.</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>
@@ -436,7 +436,7 @@ http://api.example.com/api/d/item/read/2/
 <section id="uadmin-apilogreader">
 <h2>uadmin.APILogReader<a class="headerlink" href="#uadmin-apilogreader" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
-<p>APILogReader is an interface that contains the method APILogRead with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as Read when he use the dAPI read method.</p>
+<p>APILogReader is an interface for models to control logging their read function in dAPI.</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>
@@ -511,7 +511,7 @@ http://api.example.com/api/d/item/schema/
 <section id="uadmin-apilogschemer">
 <h2>uadmin.APILogSchemer<a class="headerlink" href="#uadmin-apilogschemer" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions">Back To Top</a></p>
-<p>APILogSchemer is an interface that contains the method APILogSchema with the type of func(*http.Request) bool. If the value is true, the system will track the user action in the logs as GetSchema when he use the dAPI schema method.</p>
+<p>APILogSchemer is an interface for models to control logging their schema function in dAPI.</p>
 <p>Type:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span>
 </pre></div>

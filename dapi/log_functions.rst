@@ -143,7 +143,7 @@ uadmin.APILogAdder
 ------------------
 `Back To Top`_
 
-APILogAdder is an interface that contains the method APILogAdd with the type of func(\*http.Request) bool. If the value is true, the system will track the user action in the logs as Added when he use the dAPI add method.
+APILogAdder is an interface for models to control logging their add function in dAPI.
 
 Type:
 
@@ -264,7 +264,7 @@ uadmin.APILogDeleter
 --------------------
 `Back To Top`_
 
-APILogDeleter is an interface that contains the method APILogDelete with the type of func(\*http.Request) bool. If the value is true, the system will track the user action in the logs as Deleted when he use the dAPI delete method.
+APILogDeleter is an interface for models to control logging their delete function in dAPI.
 
 Type:
 
@@ -394,7 +394,7 @@ uadmin.APILogEditor
 -------------------
 `Back To Top`_
 
-APILogEditor is an interface that contains the method APILogEdit with the type of func(\*http.Request) bool. If the value is true, the system will track the user action in the logs as Modified when he use the dAPI edit method.
+APILogEditor is an interface for models to control logging their edit function in dAPI.
 
 Type:
 
@@ -510,7 +510,7 @@ uadmin.APILogReader
 -------------------
 `Back To Top`_
 
-APILogReader is an interface that contains the method APILogRead with the type of func(\*http.Request) bool. If the value is true, the system will track the user action in the logs as Read when he use the dAPI read method.
+APILogReader is an interface for models to control logging their read function in dAPI.
 
 Type:
 
@@ -615,7 +615,7 @@ uadmin.APILogSchemer
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/dapi/log_functions.html#log-functions
 
-APILogSchemer is an interface that contains the method APILogSchema with the type of func(\*http.Request) bool. If the value is true, the system will track the user action in the logs as GetSchema when he use the dAPI schema method.
+APILogSchemer is an interface for models to control logging their schema function in dAPI.
 
 Type:
 

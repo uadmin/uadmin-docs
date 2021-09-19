@@ -33,6 +33,8 @@ uadmin.APIPostQueryAdder
 ------------------------
 `Back To Top`_
 
+APIPostQueryAdder is an interface for models to run after processing add function in dAPI and before returning the results. Returning false stops the rest of the process from happening.
+
 Type:
 
 .. code-block:: go
@@ -54,6 +56,8 @@ Type:
 uadmin.APIPostQueryDeleter
 --------------------------
 `Back To Top`_
+
+APIPostQueryDeleter is an interface for models to run after processing delete function in dAPI and before returning the results. Returning false stops the rest of the process from happening.
 
 Type:
 
@@ -77,6 +81,8 @@ uadmin.APIPostQueryEditor
 -------------------------
 `Back To Top`_
 
+APIPostQueryEditor is an interface for models to run after processing edit function in dAPI and before returning the results. Returning false stops the rest of the process from happening.
+
 Type:
 
 .. code-block:: go
@@ -98,6 +104,8 @@ Type:
 uadmin.APIPostQueryReader
 -------------------------
 `Back To Top`_
+
+APIPostQueryReader is an interface for models to run after processing read function in dAPI and before returning the results. Returning false stops the rest of the process from happening.
 
 Type:
 
@@ -122,6 +130,8 @@ uadmin.APIPostQuerySchemer
 `Back To Top`_
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/dapi/post_query_functions.html#post-query-functions
+
+APIPostQuerySchemer is an interface for models to run after processing schema function in dAPI and before returning the results. Returning false stops the rest of the process from happening.
 
 Type:
 

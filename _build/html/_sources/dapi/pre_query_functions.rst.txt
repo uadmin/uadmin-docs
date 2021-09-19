@@ -33,6 +33,8 @@ uadmin.APIPreQueryAdder
 -----------------------
 `Back To Top`_
 
+APIPreQueryAdder is an interface for models to run before processing add function in dAPI. Returning false stops the rest of the process from happening.
+
 Type:
 
 .. code-block:: go
@@ -54,6 +56,8 @@ Type:
 uadmin.APIPreQueryDeleter
 -------------------------
 `Back To Top`_
+
+APIPreQueryDeleter is an interface for models to run before processing delete function in dAPI. Returning false stops the rest of the process from happening.
 
 Type:
 
@@ -77,6 +81,8 @@ uadmin.APIPreQueryEditor
 ------------------------
 `Back To Top`_
 
+APIPreQueryEditor is an interface for models to run before processing edit function in dAPI. Returning false stops the rest of the process from happening.
+
 Type:
 
 .. code-block:: go
@@ -98,6 +104,8 @@ Type:
 uadmin.APIPreQueryReader
 ------------------------
 `Back To Top`_
+
+APIPreQueryReader is an interface for models to run before processing read function in dAPI. Returning false stops the rest of the process from happening.
 
 Type:
 
@@ -122,6 +130,8 @@ uadmin.APIPreQuerySchemer
 `Back To Top`_
 
 .. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/dapi/pre_query_functions.html#pre-query-functions
+
+APIPreQuerySchemer is an interface for models to run before processing schema function in dAPI. Returning false stops the rest of the process from happening.
 
 Type:
 
