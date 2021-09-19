@@ -333,7 +333,7 @@ Apply the following codes in **main.go** file below to create MySQL database:
             Type:     "mysql", // sqlite, mysql, postgres
             Name:     "todo",  // File/DB name
             User:     "root",
-            Password: "(your MySQL password",
+            Password: "(your MySQL password)",
             Host:     "127.0.0.1",
             Port:     3306,
         }

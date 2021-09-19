@@ -600,23 +600,17 @@
         <span class="s">&quot;Todo&quot;</span><span class="p">:</span> <span class="s">&quot;ItemID&quot;</span><span class="p">,</span>
     <span class="p">})</span>
 
-    <span class="c1">// Assign Site Name in the Settings</span>
-    <span class="nx">setting</span> <span class="p">=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.SiteName&quot;</span><span class="p">)</span>
-    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;Todo List&quot;</span><span class="p">})</span>
-    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+    <span class="c1">// Call InitializeRootURL function to change the RootURL value in the Settings model.</span>
+    <span class="nx">InitializeRootURL</span><span class="p">()</span>
+
+    <span class="c1">// Call InitializeSiteName function to assign the SiteName value in the Settings model.</span>
+    <span class="nx">InitializeSiteName</span><span class="p">()</span>
 
     <span class="c1">// API Handler</span>
     <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/api/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">api</span><span class="p">.</span><span class="nx">Handler</span><span class="p">))</span>
 
     <span class="c1">// Page Handler</span>
     <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/page/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">views</span><span class="p">.</span><span class="nx">HTTPHandler</span><span class="p">))</span>
-
-    <span class="c1">// Call InitializeRootURL function to change the RootURL value in the Settings model.</span>
-    <span class="nx">InitializeRootURL</span><span class="p">()</span>
-
-    <span class="c1">// Call InitializeSiteName function to assign the SiteName value in the Settings model.</span>
-    <span class="nx">InitializeSiteName</span><span class="p">()</span>
 
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">()</span>
 <span class="p">}</span>

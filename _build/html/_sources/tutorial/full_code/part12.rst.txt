@@ -442,11 +442,11 @@ main.go
             "Todo": "ItemID",
         })
 
-        // API Handler
-        http.HandleFunc("/api/", uadmin.Handler(api.Handler))
-
         // Call InitializeRootURL function to change the RootURL value in the Settings model.
         InitializeRootURL()
+
+        // API Handler
+        http.HandleFunc("/api/", uadmin.Handler(api.Handler))
 
         uadmin.StartServer()
     }

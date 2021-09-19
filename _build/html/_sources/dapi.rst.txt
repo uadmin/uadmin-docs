@@ -2137,6 +2137,8 @@ Check your logs to see the result.
 
 .. image:: dapi/assets/apilogaddfalseresult.png
 
+|
+
 Although the dAPI add command works, it no longer records when someone tried to execute dAPI add command in the logs.
 
 **APILogDelete**
@@ -2234,6 +2236,8 @@ Result:
 Check your logs to see the result.
 
 .. image:: dapi/assets/apilogdeletefalseresult.png
+
+|
 
 Although the dAPI delete command works, it no longer records when someone tried to execute dAPI delete command in the logs.
 
@@ -2335,6 +2339,8 @@ Check your logs to see the result.
 
 .. image:: dapi/assets/apilogeditfalseresult.png
 
+|
+
 Although the dAPI edit command works, it no longer records when someone tried to execute dAPI edit command in the logs.
 
 **APILogRead**
@@ -2401,6 +2407,8 @@ It returns a JSON object representing an item where ID=2.
 Check your logs to see the result.
 
 .. image:: dapi/assets/apilogreadtrueresult.png
+
+|
 
 It now records when someone tried to execute dAPI read command in the logs.
 
@@ -2481,6 +2489,8 @@ Result:
 Check your logs to see the result.
 
 .. image:: dapi/assets/apilogschemafalseresult.png
+
+|
 
 Although the dAPI schema command works, it no longer records when someone tried to execute dAPI schema command in the logs.
 

@@ -30,17 +30,17 @@ func main() {
 		"Todo": "ItemID",
 	})
 
-	// API Handler
-	http.HandleFunc("/api/", uadmin.Handler(api.Handler))
-
-	// Page Handler
-	http.HandleFunc("/page/", uadmin.Handler(views.PageHandler))
-
 	// Call InitializeRootURL function to change the RootURL value in the Settings model.
 	InitializeRootURL()
 
 	// Call InitializeSiteName function to assign the SiteName value in the Settings model.
 	InitializeSiteName()
+
+	// API Handler
+	http.HandleFunc("/api/", uadmin.Handler(api.Handler))
+
+	// Page Handler
+	http.HandleFunc("/page/", uadmin.Handler(views.PageHandler))
 
 	uadmin.StartServer()
 }

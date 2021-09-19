@@ -501,11 +501,11 @@
         <span class="s">&quot;Todo&quot;</span><span class="p">:</span> <span class="s">&quot;ItemID&quot;</span><span class="p">,</span>
     <span class="p">})</span>
 
-    <span class="c1">// API Handler</span>
-    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/api/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">api</span><span class="p">.</span><span class="nx">Handler</span><span class="p">))</span>
-
     <span class="c1">// Call InitializeRootURL function to change the RootURL value in the Settings model.</span>
     <span class="nx">InitializeRootURL</span><span class="p">()</span>
+
+    <span class="c1">// API Handler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/api/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">api</span><span class="p">.</span><span class="nx">Handler</span><span class="p">))</span>
 
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">()</span>
 <span class="p">}</span>

@@ -2,7 +2,7 @@ uAdmin Tutorial Part 17 - Wrapping Up Your Application
 ======================================================
 So far you have developed this really cool application that you want to show to your your customer or even to the world. Before you dockerize your application, let's customize your dashboard in a fashionable way. Making it look good and customizing it to meet your customers requirements is important to the success of your app.
 
-First of all, open "DASHBOARD MENUS".
+First of all, open **DASHBOARD MENUS**.
 
 .. image:: assets/dashboardmenuhighlighted.png
 
@@ -57,10 +57,12 @@ Go to the main.go and assign site name in the settings.
 .. code-block:: go
 
     func main() {
-        // Some codes
+        // RegisterInlines codes
 
         // Call InitializeSiteName function to assign the SiteName value in the Settings model.
         InitializeSiteName()
+
+        // UI Handlers
     }
 
     func InitializeSiteName() {

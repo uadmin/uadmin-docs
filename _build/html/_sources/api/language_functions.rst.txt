@@ -80,7 +80,7 @@ uadmin.CustomTranslation
         "uadmin/system",
     }
 
-CustomTranslation is where you can register custom translation files. To register a custom translation file, always assign it with it's key in the this format "category/name". For example:
+CustomTranslation is where you can register custom translation files. To register a custom translation file, always assign it with its key in the this format "{CATEGORY_NAME}/{FILENAME}". For example:
 
 .. code-block:: go
 
@@ -88,24 +88,197 @@ CustomTranslation is where you can register custom translation files. To registe
 
 This will register the file and you will be able to use it if `uadmin.Tf`. By default there is only one registed custom translation wich is "uadmin/system".
 
-Another example: Suppose that English is the only active language in your application. Go to the main.go and apply the following codes below. It should be placed before uadmin.Register.
+Let's create an HTML file named **index.html** inside the templates folder. It constructs two link texts for the languages which are English and Chinese, and a sample sentence in big heading text.
+
+.. code-block:: html
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+      </head>
+      <body>
+        <a href="?language=en">English</a>
+        <a href="?language=zh">Chinese</a>
+
+        <!-- Tf is function for translating strings into any given language. -->
+        <!-- page/index is where to get the translation from. -->
+        <!-- .Language is the language code coming from the PageContext struct in views/page.go. -->
+        <!-- "This is a sentence." is the value that we are going to translate based on the given language code. -->
+        <h1>{{Tf "page/index" .Language "This is a sentence."}}</h1>
+      </body>
+    </html>
+
+Once you are done with this step, create a file called **page.go** to implement the PageHandler in the views folder.
 
 .. code-block:: go
 
-    func main(){
-        // Place it here
-        uadmin.CustomTranslation = []string{"models/custom", "models/todo_custom"}
+    package views
 
-        uadmin.Register(
-            // Some codes
-        )
+    import (
+        "net/http"
+
+        "github.com/uadmin/uadmin"
+    )
+
+    // Build a custom struct to store the language code here so that it can communicate to the Tf that we assigned in index.html.
+    type PageContext struct {
+        Language string
     }
 
-From your project folder, go to static/i18n/models. You will notice that two JSON files are created in the models folder.
+    // PageHandler allows the system to create a connection to the HTML pages.
+    func PageHandler(w http.ResponseWriter, r *http.Request) {
+        // Get the value of the language key in the URL requested by client.
+        // e.g. http://api.example.com/?language=en
+        lang := r.URL.Query().Get("language")
 
-.. image:: ../assets/customtranslationcreate.png
+        // Check whether the client passes the URL query where the given language key contains a value.
+        if lang != "" {
+            // Assign the name, value, and path to build the language cookie.
+            langC := http.Cookie{
+                Name:  "language",
+                Value: lang,
+                Path:  "/",
+            }
+            // Set the language cookie to the browser.
+            http.SetCookie(w, &langC)
 
-Every JSON file is per language. In other words, if you have 2 languages available in your application, there will be a total of 4 created JSON files.
+        } else {
+            // If no language cookie has been found
+            if langC, err := r.Cookie("language"); err != nil || (langC != nil && langC.Value == "") {
+                // Get the default language code from the database instead and assign to this variable.
+                lang = uadmin.GetDefaultLanguage().Code
+            } else {
+                // Assign the value from the language cookie in this variable.
+                lang = langC.Value
+            }
+        }
+
+        // Assign the language code in the custom struct to be passed in the front-end part
+        context := PageContext{
+            Language: lang,
+        }
+
+        // Pass the context to the specified HTML path.
+        uadmin.RenderHTML(w, r, "templates/index.html", context)
+    }
+
+Establish a connection in the **main.go** to the views by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.
+
+.. code-block:: go
+
+    package main
+
+    import (
+        "net/http"
+
+        // Specify the username that you used inside github.com folder
+        "github.com/username/project_name/views"
+
+        "github.com/uadmin/uadmin"
+    )
+
+    func main() {
+        // To avoid having issues when running an application, register function should be called.
+        uadmin.Register()
+
+        // Assign the Root URL value to /admin/. This code allows to resolve multiple registration issue when running an application.
+        uadmin.RootURL = "/admin/" // Applies on first build only
+        setting := uadmin.Setting{}
+        uadmin.Get(&setting, "code = ?", "uAdmin.RootURL")
+        setting.ParseFormValue([]string{"/admin/"})
+        setting.Save()
+
+        // Assign the path where to register the custom translation files in static/i18n.
+        // Format: "{CATEGORY_NAME}/{FILENAME}"
+        uadmin.CustomTranslation = append(uadmin.CustomTranslation, "page/index")
+
+        // Register the Page Handler
+        http.HandleFunc("/", uadmin.Handler(views.PageHandler))
+
+        uadmin.StartServer()
+    }
+
+Now run your application, go to http://localhost:8080/ and see what happens.
+
+.. image:: assets/language_page_ui.png
+
+|
+
+At the moment, if you click the Chinese link text, you may notice that it doesn't translate automatically in the UI. It's because we need to activate the Chinese language in the Language model on uAdmin dashboard. In order to do that, go to http://localhost:8080/admin and open **LANGUAGES** model.
+
+.. image:: ../assets/languageshighlighted.png
+
+|
+
+Activate the Chinese language in the form and save it. This should mark as checked in the table.
+
+.. image:: assets/chineseactive.png
+
+|
+
+Go to **/static/i18n/page** path. This is where the translation files are registered and that's the usage of **uadmin.CustomTranslation**. Page is the category name and index.(code).json is the filename.
+
+.. image:: assets/i18nindex.png
+
+|
+
+You may notice that even if the Chinese language is activated in the Language model, it still does not generate the translation file for Chinese in **/static/i18n/page** path. In order to take effect, you need to rebuild an application.
+
+After you rebuild an application, revisit the **/static/i18n/page** path. You must be able to see the **index.zh.json** now. This is the translation file for Chinese. At the moment, both of them are empty object.
+
+.. image:: assets/i18nindexzh.png
+
+|
+
+Go to http://localhost:8080/ and let's select the English and Chinese link texts back and forth.
+
+.. image:: assets/englishchineselinktexthighlighted.png
+
+|
+
+Go back to **/static/i18n/page** path and you may notice that both English and Chinese translation files generated the key "This is a sentence." inside an object.
+
+**index.en.json**
+
+.. code-block:: JSON
+
+    {
+      "This is a sentence.": "This is a sentence."
+    }
+
+**index.zh.json**
+
+.. code-block:: JSON
+
+    {
+      "This is a sentence.": "Translate me ---> This is a sentence."
+    }
+
+The keyword **Translate me** is something that you have to assign the translation manually. In this example, let's mock up the Chinese translated text for "This is a sentence." and apply it in the **index.zh.json** translation file.
+
+.. code-block:: JSON
+
+    {
+      "This is a sentence.": "这是一个句子。"
+    }
+
+Now go back to http://localhost:8080/, select the Chinese link text and see what happens.
+
+.. image:: assets/chineselinktexthighlighted.png
+
+|
+
+Result:
+
+.. image:: assets/chineselanguageapplied.png
+
+|
+
+Congratulations! You have created a multilingual application covering the English and Chinese languages.
 
 Quiz:
 

@@ -503,14 +503,14 @@ main.go
             "Todo": "ItemID",
         })
 
+        // Call InitializeRootURL function to change the RootURL value in the Settings model.
+        InitializeRootURL()
+
         // API Handler
         http.HandleFunc("/api/", uadmin.Handler(api.Handler))
 
         // Page Handler
         http.HandleFunc("/page/", uadmin.Handler(views.HTTPHandler))
-
-        // Call InitializeRootURL function to change the RootURL value in the Settings model.
-        InitializeRootURL()
 
         uadmin.StartServer()
     }

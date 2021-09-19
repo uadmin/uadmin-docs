@@ -538,23 +538,17 @@ main.go
             "Todo": "ItemID",
         })
 
-        // Assign Site Name in the Settings
-        setting = uadmin.Setting{}
-        uadmin.Get(&setting, "code = ?", "uAdmin.SiteName")
-        setting.ParseFormValue([]string{"Todo List"})
-        setting.Save()
+        // Call InitializeRootURL function to change the RootURL value in the Settings model.
+        InitializeRootURL()
+
+        // Call InitializeSiteName function to assign the SiteName value in the Settings model.
+        InitializeSiteName()
 
         // API Handler
         http.HandleFunc("/api/", uadmin.Handler(api.Handler))
 
         // Page Handler
         http.HandleFunc("/page/", uadmin.Handler(views.HTTPHandler))
-
-        // Call InitializeRootURL function to change the RootURL value in the Settings model.
-        InitializeRootURL()
-
-        // Call InitializeSiteName function to assign the SiteName value in the Settings model.
-        InitializeSiteName()
 
         uadmin.StartServer()
     }

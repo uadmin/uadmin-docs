@@ -126,25 +126,180 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>CustomTranslation is where you can register custom translation files. To register a custom translation file, always assign it with it’s key in the this format “category/name”. For example:</p>
+<p>CustomTranslation is where you can register custom translation files. To register a custom translation file, always assign it with its key in the this format “{CATEGORY_NAME}/{FILENAME}”. For example:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">CustomTranslation</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">CustomTranslation</span><span class="p">,</span> <span class="s">&quot;ui/billing&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This will register the file and you will be able to use it if <cite>uadmin.Tf</cite>. By default there is only one registed custom translation wich is “uadmin/system”.</p>
-<p>Another example: Suppose that English is the only active language in your application. Go to the main.go and apply the following codes below. It should be placed before uadmin.Register.</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
-    <span class="c1">// Place it here</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">CustomTranslation</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;models/custom&quot;</span><span class="p">,</span> <span class="s">&quot;models/todo_custom&quot;</span><span class="p">}</span>
+<p>Let’s create an HTML file named <strong>index.html</strong> inside the templates folder. It constructs two link texts for the languages which are English and Chinese, and a sample sentence in big heading text.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;IE=edge&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Document<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;?language=en&quot;</span><span class="p">&gt;</span>English<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;?language=zh&quot;</span><span class="p">&gt;</span>Chinese<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span>
-        <span class="c1">// Some codes</span>
-    <span class="p">)</span>
+    <span class="c">&lt;!-- Tf is function for translating strings into any given language. --&gt;</span>
+    <span class="c">&lt;!-- page/index is where to get the translation from. --&gt;</span>
+    <span class="c">&lt;!-- .Language is the language code coming from the PageContext struct in views/page.go. --&gt;</span>
+    <span class="c">&lt;!-- &quot;This is a sentence.&quot; is the value that we are going to translate based on the given language code. --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{Tf &quot;page/index&quot; .Language &quot;This is a sentence.&quot;}}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Once you are done with this step, create a file called <strong>page.go</strong> to implement the PageHandler in the views folder.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">views</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// Build a custom struct to store the language code here so that it can communicate to the Tf that we assigned in index.html.</span>
+<span class="kd">type</span> <span class="nx">PageContext</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Language</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c1">// PageHandler allows the system to create a connection to the HTML pages.</span>
+<span class="kd">func</span> <span class="nx">PageHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Get the value of the language key in the URL requested by client.</span>
+    <span class="c1">// e.g. http://api.example.com/?language=en</span>
+    <span class="nx">lang</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Query</span><span class="p">().</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;language&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Check whether the client passes the URL query where the given language key contains a value.</span>
+    <span class="k">if</span> <span class="nx">lang</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span> <span class="p">{</span>
+        <span class="c1">// Assign the name, value, and path to build the language cookie.</span>
+        <span class="nx">langC</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Cookie</span><span class="p">{</span>
+            <span class="nx">Name</span><span class="p">:</span>  <span class="s">&quot;language&quot;</span><span class="p">,</span>
+            <span class="nx">Value</span><span class="p">:</span> <span class="nx">lang</span><span class="p">,</span>
+            <span class="nx">Path</span><span class="p">:</span>  <span class="s">&quot;/&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="c1">// Set the language cookie to the browser.</span>
+        <span class="nx">http</span><span class="p">.</span><span class="nx">SetCookie</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">langC</span><span class="p">)</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// If no language cookie has been found</span>
+        <span class="k">if</span> <span class="nx">langC</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Cookie</span><span class="p">(</span><span class="s">&quot;language&quot;</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="o">||</span> <span class="p">(</span><span class="nx">langC</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="nx">langC</span><span class="p">.</span><span class="nx">Value</span> <span class="o">==</span> <span class="s">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Get the default language code from the database instead and assign to this variable.</span>
+            <span class="nx">lang</span> <span class="p">=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">GetDefaultLanguage</span><span class="p">().</span><span class="nx">Code</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// Assign the value from the language cookie in this variable.</span>
+            <span class="nx">lang</span> <span class="p">=</span> <span class="nx">langC</span><span class="p">.</span><span class="nx">Value</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Assign the language code in the custom struct to be passed in the front-end part</span>
+    <span class="nx">context</span> <span class="o">:=</span> <span class="nx">PageContext</span><span class="p">{</span>
+        <span class="nx">Language</span><span class="p">:</span> <span class="nx">lang</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Pass the context to the specified HTML path.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RenderHTML</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="s">&quot;templates/index.html&quot;</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>From your project folder, go to static/i18n/models. You will notice that two JSON files are created in the models folder.</p>
-<img alt="../_images/customtranslationcreate.png" src="../_images/customtranslationcreate.png" />
-<p>Every JSON file is per language. In other words, if you have 2 languages available in your application, there will be a total of 4 created JSON files.</p>
+<p>Establish a connection in the <strong>main.go</strong> to the views by using http.HandleFunc. It should be placed after the uadmin.Register and before the StartServer.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+
+    <span class="c1">// Specify the username that you used inside github.com folder</span>
+    <span class="s">&quot;github.com/username/project_name/views&quot;</span>
+
+    <span class="s">&quot;github.com/uadmin/uadmin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// To avoid having issues when running an application, register function should be called.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Register</span><span class="p">()</span>
+
+    <span class="c1">// Assign the Root URL value to /admin/. This code allows to resolve multiple registration issue when running an application.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RootURL</span> <span class="p">=</span> <span class="s">&quot;/admin/&quot;</span> <span class="c1">// Applies on first build only</span>
+    <span class="nx">setting</span> <span class="o">:=</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{}</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">setting</span><span class="p">,</span> <span class="s">&quot;code = ?&quot;</span><span class="p">,</span> <span class="s">&quot;uAdmin.RootURL&quot;</span><span class="p">)</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">ParseFormValue</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;/admin/&quot;</span><span class="p">})</span>
+    <span class="nx">setting</span><span class="p">.</span><span class="nx">Save</span><span class="p">()</span>
+
+    <span class="c1">// Assign the path where to register the custom translation files in static/i18n.</span>
+    <span class="c1">// Format: &quot;{CATEGORY_NAME}/{FILENAME}&quot;</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">CustomTranslation</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">CustomTranslation</span><span class="p">,</span> <span class="s">&quot;page/index&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Register the Page Handler</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Handler</span><span class="p">(</span><span class="nx">views</span><span class="p">.</span><span class="nx">PageHandler</span><span class="p">))</span>
+
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now run your application, go to <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a> and see what happens.</p>
+<img alt="../_images/language_page_ui.png" src="../_images/language_page_ui.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>At the moment, if you click the Chinese link text, you may notice that it doesn’t translate automatically in the UI. It’s because we need to activate the Chinese language in the Language model on uAdmin dashboard. In order to do that, go to <a class="reference external" href="http://localhost:8080/admin">http://localhost:8080/admin</a> and open <strong>LANGUAGES</strong> model.</p>
+<img alt="../_images/languageshighlighted.png" src="../_images/languageshighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Activate the Chinese language in the form and save it. This should mark as checked in the table.</p>
+<img alt="../_images/chineseactive.png" src="../_images/chineseactive.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to <strong>/static/i18n/page</strong> path. This is where the translation files are registered and that’s the usage of <strong>uadmin.CustomTranslation</strong>. Page is the category name and index.(code).json is the filename.</p>
+<img alt="../_images/i18nindex.png" src="../_images/i18nindex.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You may notice that even if the Chinese language is activated in the Language model, it still does not generate the translation file for Chinese in <strong>/static/i18n/page</strong> path. In order to take effect, you need to rebuild an application.</p>
+<p>After you rebuild an application, revisit the <strong>/static/i18n/page</strong> path. You must be able to see the <strong>index.zh.json</strong> now. This is the translation file for Chinese. At the moment, both of them are empty object.</p>
+<img alt="../_images/i18nindexzh.png" src="../_images/i18nindexzh.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a> and let’s select the English and Chinese link texts back and forth.</p>
+<img alt="../_images/englishchineselinktexthighlighted.png" src="../_images/englishchineselinktexthighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go back to <strong>/static/i18n/page</strong> path and you may notice that both English and Chinese translation files generated the key “This is a sentence.” inside an object.</p>
+<p><strong>index.en.json</strong></p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;This is a sentence.&quot;</span><span class="p">:</span> <span class="s2">&quot;This is a sentence.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>index.zh.json</strong></p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;This is a sentence.&quot;</span><span class="p">:</span> <span class="s2">&quot;Translate me ---&gt; This is a sentence.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The keyword <strong>Translate me</strong> is something that you have to assign the translation manually. In this example, let’s mock up the Chinese translated text for “This is a sentence.” and apply it in the <strong>index.zh.json</strong> translation file.</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;This is a sentence.&quot;</span><span class="p">:</span> <span class="s2">&quot;这是一个句子。&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now go back to <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a>, select the Chinese link text and see what happens.</p>
+<img alt="../_images/chineselinktexthighlighted.png" src="../_images/chineselinktexthighlighted.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Result:</p>
+<img alt="../_images/chineselanguageapplied.png" src="../_images/chineselanguageapplied.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Congratulations! You have created a multilingual application covering the English and Chinese languages.</p>
 <p>Quiz:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/miscellaneous-functions-2.html">Miscellaneous Functions (2)</a></p></li>
