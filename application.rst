@@ -3,8 +3,8 @@ uAdmin Applications
 Here are all sample applications built in uAdmin that you can choose with different concepts and business logic.
 
 * `Todo List`_
-* `Document System`_
 * `Login System`_
+* `Document System`_
 
 **Todo List**
 -------------
