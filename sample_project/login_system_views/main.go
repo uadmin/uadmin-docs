@@ -9,7 +9,7 @@ import (
 
 func main() {
 	// Assign RootURL value as "/admin/" and Site Name as "Login System"
-	// NOTE: This code works only on first build.
+	// NOTE: This code works only if database does not exist yet.
 	uadmin.RootURL = "/admin/"
 	uadmin.SiteName = "Login System"
 

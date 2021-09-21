@@ -535,7 +535,7 @@ main.go
         )
 
         // Assign Site Name value as "Document System"
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.SiteName = "Document System"
 
         // Activates a uAdmin server

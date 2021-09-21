@@ -300,7 +300,7 @@ Let's set the ReportingLevel to 1 to show that the debugging process is working.
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.ReportingLevel = 1
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -377,7 +377,7 @@ Go to the main.go and set the ReportTimeStamp value as true.
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.ReportTimeStamp = true
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----

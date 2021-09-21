@@ -12,6 +12,8 @@ Github: https://github.com/uadmin/uadmin
 
 GoDoc: https://godoc.org/github.com/uadmin/uadmin
 
+Slack: https://gophers.slack.com/messages/uadmin/
+
 Medium: https://medium.com/@twistedhardware
 
 Twitter: https://twitter.com/uAdminio

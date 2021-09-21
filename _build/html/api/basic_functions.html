@@ -82,7 +82,7 @@
 <p>To assign a value in the code, follow this approach supposedly you have favicon.ico in your custom folder:</p>
 <img alt="../_images/favicon_highlighted.png" src="../_images/favicon_highlighted.png" />
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">FavIcon</span> <span class="p">=</span> <span class="s">&quot;/static/custom/favicon.ico&quot;</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -110,7 +110,7 @@
 <p>To assign a value in the code, follow this approach supposedly you have logo.png in your custom folder:</p>
 <img alt="../_images/logo_highlighted.png" src="../_images/logo_highlighted.png" />
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Logo</span> <span class="p">=</span> <span class="s">&quot;/static/custom/logo.png&quot;</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -149,7 +149,7 @@
 <p>To assign a value in the code, follow this approach:</p>
 <p>Let’s set the MaxImageWidth to 360 pixels and the MaxImageHeight to 240 pixels.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">MaxImageWidth</span> <span class="p">=</span> <span class="mi">360</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">MaxImageHeight</span> <span class="p">=</span> <span class="mi">240</span>
 
@@ -206,7 +206,7 @@
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Some codes</span>
 
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">MaxUploadFileSize</span> <span class="p">=</span> <span class="nb">int64</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -246,7 +246,7 @@
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Some codes</span>
 
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">PageLength</span> <span class="p">=</span> <span class="mi">4</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -323,7 +323,7 @@
 </div>
 <p>Exit your application and go to the main.go. This time, set the status of the RetainMediaVersions to true.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RetainMediaVersions</span> <span class="p">=</span> <span class="kc">true</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -375,7 +375,7 @@
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Some codes</span>
 
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">RootURL</span> <span class="p">=</span> <span class="s">&quot;/admin/&quot;</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -420,7 +420,7 @@
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Some codes</span>
 
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">SiteName</span> <span class="p">=</span> <span class="s">&quot;Todo List&quot;</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -542,7 +542,7 @@
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Some codes</span>
 
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Theme</span> <span class="p">=</span> <span class="s">&quot;custom&quot;</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>

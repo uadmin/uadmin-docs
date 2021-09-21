@@ -60,7 +60,7 @@ Go to the main.go and assign your IP address connected on your PC in the Allowed
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.AllowedIPs = "192.168.1.1"
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -162,7 +162,7 @@ Go to the main.go and assign your IP address connected on your PC in the Blocked
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.BlockedIPs = "192.168.1.1"
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -313,7 +313,7 @@ Go to the main.go in your Todo list project and apply **8000** as a port number.
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.Port = 8000
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -367,7 +367,7 @@ Go to the main.go and apply the following codes below:
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.RateLimit = 1
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -432,7 +432,7 @@ Go to the main.go and apply the following codes below:
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.RateLimitBurst = 3
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -492,7 +492,7 @@ Example:
     )
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         // Block access of a user
         uadmin.RestrictSessionIP = true
 

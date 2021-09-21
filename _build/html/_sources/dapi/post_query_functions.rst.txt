@@ -21,7 +21,7 @@ uadmin.APIPostQueryAdd
 ----------------------
 `Back To Top`_
 
-APIPostQueryAdd controls the data API's post query for add commands.
+APIPostQueryAdd controls the data API's post query for add commands. By default, APIPostQueryAdd returns **false**.
 
 Type:
 
@@ -45,7 +45,7 @@ uadmin.APIPostQueryDelete
 -------------------------
 `Back To Top`_
 
-APIPostQueryDelete controls the data API's post query for delete commands.
+APIPostQueryDelete controls the data API's post query for delete commands. By default, APIPostQueryDelete returns **false**.
 
 Type:
 
@@ -69,7 +69,7 @@ uadmin.APIPostQueryEdit
 -----------------------
 `Back To Top`_
 
-APIPostQueryEdit controls the data API's post query for edit commands.
+APIPostQueryEdit controls the data API's post query for edit commands. By default, APIPostQueryEdit returns **false**.
 
 Type:
 
@@ -93,7 +93,7 @@ uadmin.APIPostQueryRead
 -----------------------
 `Back To Top`_
 
-APIPostQueryRead controls the data API's post query for read commands.
+APIPostQueryRead controls the data API's post query for read commands. By default, APIPostQueryRead returns **false**.
 
 Type:
 
@@ -117,7 +117,7 @@ uadmin.APIPostQuerySchema
 -------------------------
 `Back To Top`_
 
-APIPostQuerySchema controls the data API's post query for schema commands.
+APIPostQuerySchema controls the data API's post query for schema commands. By default, APIPostQuerySchema returns **false**.
 
 Type:
 

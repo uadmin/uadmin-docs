@@ -466,7 +466,7 @@
 <p>To assign a value in the code, follow this approach:</p>
 <p>You can apply any of these in main.go.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">OTPAlgorithm</span> <span class="p">=</span> <span class="s">&quot;sha256&quot;</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -479,7 +479,7 @@
 
     <span class="c1">// OR</span>
 
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">OTPAlgorithm</span> <span class="p">=</span> <span class="s">&quot;sha512&quot;</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -509,7 +509,7 @@
 <p>To assign a value in the code, follow this approach:</p>
 <p>Go to the main.go and set the OTPDigits to 8.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">OTPDigits</span> <span class="p">=</span> <span class="mi">8</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -544,7 +544,7 @@
 <p>To assign a value in the code, follow this approach:</p>
 <p>Go to the main.go and set the OTPPeriod to 10 seconds.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">OTPPeriod</span> <span class="p">=</span> <span class="nb">uint</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -582,7 +582,7 @@
 <p>To assign a value in the code, follow this approach:</p>
 <p>Go to the main.go and set the OTPSkew to 2 minutes.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">OTPSkew</span> <span class="p">=</span> <span class="nb">uint</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -644,7 +644,7 @@
 </div>
 <p>Go to the main.go and apply this function as “true”.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">PublicMedia</span> <span class="p">=</span> <span class="kc">true</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>

@@ -391,7 +391,7 @@
 <p>To assign a value in the code, follow this approach:</p>
 <p>Go to the main.go. Set this function as true.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">DebugDB</span> <span class="p">=</span> <span class="kc">true</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -502,7 +502,7 @@
 <p>To assign a value in the code, follow this approach:</p>
 <p>Example:</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="c1">// Enable</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">OptimizeSQLQuery</span> <span class="p">=</span> <span class="kc">true</span>
 

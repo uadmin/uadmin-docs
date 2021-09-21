@@ -1600,16 +1600,16 @@ Methods
 * `APILogEdit`_
 * `APILogRead`_
 * `APILogSchema`_
-* `APIPreQueryAdd`_
-* `APIPreQueryDelete`_
-* `APIPreQueryEdit`_
-* `APIPreQueryRead`_
-* `APIPreQuerySchema`_
 * `APIPostQueryAdd`_
 * `APIPostQueryDelete`_
 * `APIPostQueryEdit`_
 * `APIPostQueryRead`_
 * `APIPostQuerySchema`_
+* `APIPreQueryAdd`_
+* `APIPreQueryDelete`_
+* `APIPreQueryEdit`_
+* `APIPreQueryRead`_
+* `APIPreQuerySchema`_
 * `APIPublicAdd`_
 * `APIPublicDelete`_
 * `APIPublicEdit`_
@@ -2494,6 +2494,493 @@ Check your logs to see the result.
 
 Although the dAPI schema command works, it no longer records when someone tried to execute dAPI schema command in the logs.
 
+**APIPostQueryAdd**
+"""""""""""""""""""
+`Back to Top (Model Methods)`_
+
+APIPostQueryAdd controls the data API's post query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPostQueryAdd function if the communication with the web server is successful. By default, APIPostQueryAdd returns **false**.
+
+One of the common usage of APIPostQueryAdd is your business logic of manipulating the result object after the system performs dAPI add command execution.
+
+Structure:
+
+.. code-block:: go
+
+    // Return the value to true to enable post query access to add method
+    func (Model) APIPostQueryAdd(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        return true
+    }
+
+Behind the scenes, it returns an array with a list of IDs for the newly created records, status and the rows affected by your query once you performed dAPI add command in the URL.
+
+.. code-block:: JSON
+
+    {
+        "id": [
+            1
+        ],
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+Our goal here is to print the number of rows affected by your query, and the name of a created item filtered out by ID displayed in the web. In order to do that, you need to apply APIPostQueryAdd function in the Go file inside the models folder (e.g. document.go for Document model). Use the third parameter **res** in the APIPostQueryAdd function to return an array with a list of IDs for the newly created records, status and the rows affected by your query once you performed dAPI add command in the URL.
+
+.. code-block:: go
+
+    // Document Model !
+    type Document struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable post query access to add field
+    func (Document) APIPostQueryAdd(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        // Initialize the Document model as an array.
+        documents := []Document{}
+
+        // Filter the document records by the list of returned IDs in the database.
+        uadmin.Filter(&documents, "id IN (?)", res["id"])
+
+        // Print the list of created documents in the terminal.
+        uadmin.Trail(uadmin.INFO, "List of created documents")
+        uadmin.Trail(uadmin.INFO, "-------------------------")
+        for _, value := range documents {
+            uadmin.Trail(uadmin.INFO, "Name : %s", value.Name)
+            uadmin.Trail(uadmin.INFO, "Author : %s", value.Author)
+
+            // Add a space here for better design output.
+            uadmin.Trail(uadmin.INFO, "")
+        }
+
+        // Print the number of rows affected by your query in the terminal.
+        uadmin.Trail(uadmin.INFO, "Number of rows affected by your query : %d", res["rows_count"])
+
+        return true
+    }
+    // -----------------------------------------------------------
+
+Suppose you don't have any records in the Document model.
+
+.. image:: dapi/assets/emptyrecorddocument.png
+
+|
+
+Run your application and call this URL to add multiple records in the Document model with the following information below:
+
+**First Record**
+
+* Name: Golang
+* Author: John
+
+**Second Record**
+
+* Name: uAdmin
+* Author: Adam
+
+.. code-block:: bash
+
+    # document is a model name
+    # name and author are field names
+    # __0 is the first index
+    # __1 is the second index
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/document/add/?_name__0=Golang&_author__0=John&_name__1=uAdmin&_author__1=Adam&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "id": [
+            1,
+            2
+        ],
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+It returns an array with a list of IDs for the newly created records, status and the rows affected by your query.
+
+Check the Document model in the uAdmin dashboard to see the results.
+
+.. image:: dapi/assets/addmultipleresult.png
+
+|
+
+Because our URL query is successful, it will execute your business logic inside the APIPostQueryAdd function. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  INFO  ]   List of created documents
+    [  INFO  ]   -------------------------
+    [  INFO  ]   Name : Golang
+    [  INFO  ]   Author : John
+    [  INFO  ]
+    [  INFO  ]   Name : uAdmin
+    [  INFO  ]   Author : Adam
+    [  INFO  ]
+    [  INFO  ]   Number of rows affected by your query : 2
+
+**APIPostQueryDelete**
+""""""""""""""""""""""
+`Back to Top (Model Methods)`_
+
+APIPostQueryDelete controls the data API's post query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPostQueryDelete function if the communication with the web server is successful. By default, APIPostQueryDelete returns **false**.
+
+One of the common usage of APIPostQueryDelete is your business logic of manipulating the result object after the system performs dAPI delete command execution.
+
+Structure:
+
+.. code-block:: go
+
+    // Return the value to true to enable post query access to delete method
+    func (Model) APIPostQueryDelete(w http.ResponseWriter, r *http.Request, res map[string]interface{})  {
+        return true
+    }
+
+Behind the scenes, it returns the status and the rows affected by your query once you performed dAPI delete command in the URL.
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+Our goal here is to print the number of rows affected by your query from the result object displayed in the web. In order to do that, you need to apply APIPostQueryDelete function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter **res** in the APIPostQueryDelete function to return the status and the rows affected by your query once you performed dAPI delete command in the URL.
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable post query access to delete field
+    func (Item) APIPostQueryDelete(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        // Print the number of rows affected by your query in the terminal.
+        uadmin.Trail(uadmin.INFO, "Number of rows affected by your query : %d", res["rows_count"])
+
+        return true
+    }
+    // -----------------------------------------------------------
+
+Suppose you have five records in the Item model.
+
+.. image:: dapi/assets/itemfiverecords.png
+
+|
+
+Run your application and call this URL to delete records where the name of an item contains "iPad".
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/delete/?name__contains=iPad&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+It returns the status and the rows affected by your query.
+
+Check the Item model in the uAdmin dashboard to see the results.
+
+.. image:: dapi/assets/deletemultipleresult.png
+
+|
+
+Because our URL query is successful, it will execute your business logic inside the APIPostQueryDelete function. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  INFO  ]   Number of rows affected by your query : 2
+
+**APIPostQueryEdit**
+""""""""""""""""""""
+`Back to Top (Model Methods)`_
+
+APIPostQueryEdit controls the data API's post query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPostQueryEdit function if the communication with the web server is successful. By default, APIPostQueryEdit returns **false**.
+
+One of the common usage of APIPostQueryEdit is your business logic of manipulating the result object after the system performs dAPI edit command execution.
+
+Structure:
+
+.. code-block:: go
+
+    // Return the value to true to enable post query access to edit method
+    func (Model) APIPostQueryEdit(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        return true
+    }
+
+Behind the scenes, it returns the status and the rows affected by your query once you performed dAPI edit command in the URL.
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 1,
+        "status": "ok"
+    }
+
+Our goal here is to print the number of rows affected by your query from the result object displayed in the web. In order to do that, you need to apply APIPostQueryEdit function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter **res** in the APIPostQueryEdit function to return the status and the rows affected by your query once you performed dAPI edit command in the URL.
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable post query access to edit field
+    func (Item) APIPostQueryEdit(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        // Print the number of rows affected by your query in the terminal.
+        uadmin.Trail(uadmin.INFO, "Number of rows affected by your query : %d", res["rows_count"])
+
+        return true
+    }
+    // -----------------------------------------------------------
+
+Suppose you have five records in the Item model where all iPad items have a rating of 4.
+
+.. image:: dapi/assets/itemipadoldrating.png
+
+|
+
+Run your application and call this URL to edit the rating of all iPad items to a value of 5.
+
+.. code-block:: bash
+
+    # item is a model name
+    # name is a field name
+    # __contains is an operator that will search for string values that contract
+    # rating=4&_rating=5 means that where rating is equal to 4, change the
+    # rating value to 5
+    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
+    http://api.example.com/{ROOT_URL}/api/d/item/edit/?rating=4&_rating=5&x-csrf-token={YOUR_SESSION_KEY}
+
+Result:
+
+.. code-block:: JSON
+
+    {
+        "rows_count": 2,
+        "status": "ok"
+    }
+
+Check the Item model in the uAdmin dashboard to see the results.
+
+.. image:: dapi/assets/editmultipleresult.png
+
+|
+
+Because our URL query is successful, it will execute your business logic inside the APIPostQueryEdit function. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  INFO  ]   Number of rows affected by your query : 2
+
+**APIPostQueryRead**
+""""""""""""""""""""
+`Back to Top (Model Methods)`_
+
+APIPostQueryRead controls the data API's post query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPostQueryRead function if the communication with the web server is successful. By default, APIPostQueryRead returns **false**.
+
+One of the common usage of APIPostQueryRead is your business logic of manipulating the result object after the system performs dAPI read command execution.
+
+Structure:
+
+.. code-block:: go
+
+    // Return the value to true to enable post query access to read method
+    func (Model) APIPostQueryRead(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        return true
+    }
+
+Run your application and call this URL without assigning any query.
+
+.. code-block:: bash
+
+    # item is a model name
+    # This API call will read all records in the Item model.
+    http://api.example.com/{ROOT_URL}/api/d/item/read/
+
+Result:
+
+.. image:: dapi/assets/readallresult.png
+   :align: center
+
+|
+
+It returns a JSON array with all items in the database.
+
+Our goal here now is to print only the name of all items in the terminal from the result object displayed in the web. In order to do that, you need to apply APIPostQueryRead function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter **res** in the APIPostQueryRead function to return a JSON array with all items in the database to the terminal.
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable post query access to read field
+    func (Item) APIPostQueryRead(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        // Convert the result object to a type of Item model because the structure of the result object is very similar to the structure of Item model.
+        items := *res["result"].(*[]Item)
+        uadmin.Trail(uadmin.INFO, "Item Names")
+
+        // Loop the values of the item model.
+        for _, item := range items {
+            // Print the item name in the terminal.
+            uadmin.Trail(uadmin.INFO, "- %s", item.Name)
+        }
+
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application again and call this URL without assigning any query.
+
+.. code-block:: bash
+
+    # item is a model name
+    # This API call will read all records in the Item model.
+    http://api.example.com/{ROOT_URL}/api/d/item/read/
+
+Result:
+
+.. image:: dapi/assets/readallresult.png
+   :align: center
+
+|
+
+Because our URL query is successful, it will execute your business logic inside the APIPostQueryRead function. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  INFO  ]   Item Names
+    [  INFO  ]   - Robot
+    [  INFO  ]   - iPad Mini
+    [  INFO  ]   - iPad Pro
+    [  INFO  ]   - Ballpen
+    [  INFO  ]   - Speaker
+
+**APIPostQuerySchema**
+""""""""""""""""""""""
+`Back to Top (Model Methods)`_
+
+APIPostQuerySchema controls the data API's post query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPostQuerySchema function if the communication with the web server is successful. By default, APIPostQuerySchema returns **false**.
+
+One of the common usage of APIPostQuerySchema is your business logic of manipulating the result object after the system performs dAPI schema command execution.
+
+Structure:
+
+.. code-block:: go
+
+    // Return the value to true to enable post query access to schema method
+    func (Model) APIPostQuerySchema(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        return true
+    }
+
+Run your application and call this URL to read the full schema of the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/
+
+Result:
+
+.. image:: dapi/assets/schemaresult.png
+   :align: center
+
+|
+
+It returns a JSON object representing uAdmin's ModelSchema of the Item model.
+
+Our goal here now is to print some field values in the terminal such as Name, Model Name, and Table Name from the result object displayed in the web. In order to do that, you need to apply APIPostQuerySchema function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter **res** in the APIPostQuerySchema function to return a JSON object representing uAdmin's ModelSchema of the Item model to the terminal.
+
+.. code-block:: go
+
+    // Item Model !
+    type Item struct {
+        uadmin.Model
+        // Your fields here
+    }
+
+    // ----------------- ADD THIS CODE ---------------------------
+    // Return the value to true to enable post query access to schema method
+    func (Item) APIPostQuerySchema(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
+        // Convert the result object to a type of ModelSchema because the structure of the result object is very similar to the structure of ModelSchema.
+        modelSchema := res["result"].(uadmin.ModelSchema)
+
+        // Print the name, display name, and table name in the terminal.
+        uadmin.Trail(uadmin.INFO, "Name : %s", modelSchema.Name)
+        uadmin.Trail(uadmin.INFO, "Display Name : %s", modelSchema.DisplayName)
+        uadmin.Trail(uadmin.INFO, "Table Name : %s", modelSchema.TableName)
+
+        // Loop the values of the inline object.
+        for _, i := range modelSchema.Inlines {
+            // We assigned the variable as (*i) in order to remove the pointer in the variable type then access the name field to display the name of the inline.
+            uadmin.Trail(uadmin.INFO, "Inline Name : %s", (*i).Name)
+
+            // Print the field names of this inline.
+            uadmin.Trail(uadmin.INFO, "Field Names")
+            for _, f := range (*i).Fields {
+                uadmin.Trail(uadmin.INFO, "- %s", f.Name)
+            }
+        }
+
+        return true
+    }
+    // -----------------------------------------------------------
+
+Now run your application again and call this URL to read the full schema of the Item model.
+
+.. code-block:: bash
+
+    # item is a model name
+    http://api.example.com/{ROOT_URL}/api/d/item/schema/
+
+Result:
+
+.. image:: dapi/assets/schemaresult.png
+   :align: center
+
+|
+
+Because our URL query is successful, it will execute your business logic inside the APIPostQuerySchema function. Now go to your terminal and see the results:
+
+.. code-block:: bash
+
+    [  INFO  ]   Name : Item
+    [  INFO  ]   Display Name : Item
+    [  INFO  ]   Table Name : items
+    [  INFO  ]   Inline Name : Todo
+    [  INFO  ]   Field Names
+    [  INFO  ]   - ID
+    [  INFO  ]   - Name
+    [  INFO  ]   - Description
+    [  INFO  ]   - Category
+    [  INFO  ]   - Friend
+    [  INFO  ]   - Item
+    [  INFO  ]   - TargetDate
+    [  INFO  ]   - Progress
+
 **APIPreQueryAdd**
 """"""""""""""""""
 `Back to Top (Model Methods)`_
@@ -2983,493 +3470,6 @@ You may notice that in the webpage part, it returns a blank white page. Now go t
 .. code-block:: bash
 
     [  ERROR ]   The localhost HTTP request is not authorized for dAPI schema access.
-
-**APIPostQueryAdd**
-"""""""""""""""""""
-`Back to Top (Model Methods)`_
-
-APIPostQueryAdd controls the data API's post query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPostQueryAdd function if the communication with the web server is successful. By default, APIPostQueryAdd returns **false**.
-
-One of the common usage of APIPostQueryAdd is your business logic of manipulating the result object after the system performs dAPI add command execution.
-
-Structure:
-
-.. code-block:: go
-
-    // Return the value to true to enable post query access to add method
-    func (Model) APIPostQueryAdd(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
-        return true
-    }
-
-Behind the scenes, it returns an array with a list of IDs for the newly created records, status and the rows affected by your query once you performed dAPI add command in the URL.
-
-.. code-block:: JSON
-
-    {
-        "id": [
-            1
-        ],
-        "rows_count": 1,
-        "status": "ok"
-    }
-
-Our goal here is to print the number of rows affected by your query, and the name of a created item filtered out by ID displayed in the web. In order to do that, you need to apply APIPostQueryAdd function in the Go file inside the models folder (e.g. document.go for Document model). Use the third parameter **res** in the APIPostQueryAdd function to return an array with a list of IDs for the newly created records, status and the rows affected by your query once you performed dAPI add command in the URL.
-
-.. code-block:: go
-
-    // Document Model !
-    type Document struct {
-        uadmin.Model
-        // Your fields here
-    }
-
-    // ----------------- ADD THIS CODE ---------------------------
-    // Return the value to true to enable post query access to add field
-    func (Document) APIPostQueryAdd(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
-        // Initialize the Document model as an array.
-        documents := []Document{}
-
-        // Filter the document records by the list of returned IDs in the database.
-        uadmin.Filter(&documents, "id IN (?)", res["id"])
-
-        // Print the list of created documents in the terminal.
-        uadmin.Trail(uadmin.INFO, "List of created documents")
-        uadmin.Trail(uadmin.INFO, "-------------------------")
-        for _, value := range documents {
-            uadmin.Trail(uadmin.INFO, "Name : %s", value.Name)
-            uadmin.Trail(uadmin.INFO, "Author : %s", value.Author)
-
-            // Add a space here for better design output.
-            uadmin.Trail(uadmin.INFO, "")
-        }
-
-        // Print the number of rows affected by your query in the terminal.
-        uadmin.Trail(uadmin.INFO, "Number of rows affected by your query : %d", res["rows_count"])
-
-        return true
-    }
-    // -----------------------------------------------------------
-
-Suppose you don't have any records in the Document model.
-
-.. image:: dapi/assets/emptyrecorddocument.png
-
-|
-
-Run your application and call this URL to add multiple records in the Document model with the following information below:
-
-**First Record**
-
-* Name: Golang
-* Author: John
-
-**Second Record**
-
-* Name: uAdmin
-* Author: Adam
-
-.. code-block:: bash
-
-    # document is a model name
-    # name and author are field names
-    # __0 is the first index
-    # __1 is the second index
-    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
-    http://api.example.com/{ROOT_URL}/api/d/document/add/?_name__0=Golang&_author__0=John&_name__1=uAdmin&_author__1=Adam&x-csrf-token={YOUR_SESSION_KEY}
-
-Result:
-
-.. code-block:: JSON
-
-    {
-        "id": [
-            1,
-            2
-        ],
-        "rows_count": 2,
-        "status": "ok"
-    }
-
-It returns an array with a list of IDs for the newly created records, status and the rows affected by your query.
-
-Check the Document model in the uAdmin dashboard to see the results.
-
-.. image:: dapi/assets/addmultipleresult.png
-
-|
-
-Because our URL query is successful, it will execute your business logic inside the APIPostQueryAdd function. Now go to your terminal and see the results:
-
-.. code-block:: bash
-
-    [  INFO  ]   List of created documents
-    [  INFO  ]   -------------------------
-    [  INFO  ]   Name : Golang
-    [  INFO  ]   Author : John
-    [  INFO  ]
-    [  INFO  ]   Name : uAdmin
-    [  INFO  ]   Author : Adam
-    [  INFO  ]
-    [  INFO  ]   Number of rows affected by your query : 2
-
-**APIPostQueryDelete**
-""""""""""""""""""""""
-`Back to Top (Model Methods)`_
-
-APIPostQueryDelete controls the data API's post query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPostQueryDelete function if the communication with the web server is successful. By default, APIPostQueryDelete returns **false**.
-
-One of the common usage of APIPostQueryDelete is your business logic of manipulating the result object after the system performs dAPI delete command execution.
-
-Structure:
-
-.. code-block:: go
-
-    // Return the value to true to enable post query access to delete method
-    func (Model) APIPostQueryDelete(w http.ResponseWriter, r *http.Request, res map[string]interface{})  {
-        return true
-    }
-
-Behind the scenes, it returns the status and the rows affected by your query once you performed dAPI delete command in the URL.
-
-.. code-block:: JSON
-
-    {
-        "rows_count": 1,
-        "status": "ok"
-    }
-
-Our goal here is to print the number of rows affected by your query from the result object displayed in the web. In order to do that, you need to apply APIPostQueryDelete function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter **res** in the APIPostQueryDelete function to return the status and the rows affected by your query once you performed dAPI delete command in the URL.
-
-.. code-block:: go
-
-    // Item Model !
-    type Item struct {
-        uadmin.Model
-        // Your fields here
-    }
-
-    // ----------------- ADD THIS CODE ---------------------------
-    // Return the value to true to enable post query access to delete field
-    func (Item) APIPostQueryDelete(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
-        // Print the number of rows affected by your query in the terminal.
-        uadmin.Trail(uadmin.INFO, "Number of rows affected by your query : %d", res["rows_count"])
-
-        return true
-    }
-    // -----------------------------------------------------------
-
-Suppose you have five records in the Item model.
-
-.. image:: dapi/assets/itemfiverecords.png
-
-|
-
-Run your application and call this URL to delete records where the name of an item contains "iPad".
-
-.. code-block:: bash
-
-    # item is a model name
-    # name is a field name
-    # __contains is an operator that will search for string values that contract
-    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
-    http://api.example.com/{ROOT_URL}/api/d/item/delete/?name__contains=iPad&x-csrf-token={YOUR_SESSION_KEY}
-
-Result:
-
-.. code-block:: JSON
-
-    {
-        "rows_count": 2,
-        "status": "ok"
-    }
-
-It returns the status and the rows affected by your query.
-
-Check the Item model in the uAdmin dashboard to see the results.
-
-.. image:: dapi/assets/deletemultipleresult.png
-
-|
-
-Because our URL query is successful, it will execute your business logic inside the APIPostQueryDelete function. Now go to your terminal and see the results:
-
-.. code-block:: bash
-
-    [  INFO  ]   Number of rows affected by your query : 2
-
-**APIPostQueryEdit**
-""""""""""""""""""""
-`Back to Top (Model Methods)`_
-
-APIPostQueryEdit controls the data API's post query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPostQueryEdit function if the communication with the web server is successful. By default, APIPostQueryEdit returns **false**.
-
-One of the common usage of APIPostQueryEdit is your business logic of manipulating the result object after the system performs dAPI edit command execution.
-
-Structure:
-
-.. code-block:: go
-
-    // Return the value to true to enable post query access to edit method
-    func (Model) APIPostQueryEdit(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
-        return true
-    }
-
-Behind the scenes, it returns the status and the rows affected by your query once you performed dAPI edit command in the URL.
-
-.. code-block:: JSON
-
-    {
-        "rows_count": 1,
-        "status": "ok"
-    }
-
-Our goal here is to print the number of rows affected by your query from the result object displayed in the web. In order to do that, you need to apply APIPostQueryEdit function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter **res** in the APIPostQueryEdit function to return the status and the rows affected by your query once you performed dAPI edit command in the URL.
-
-.. code-block:: go
-
-    // Item Model !
-    type Item struct {
-        uadmin.Model
-        // Your fields here
-    }
-
-    // ----------------- ADD THIS CODE ---------------------------
-    // Return the value to true to enable post query access to edit field
-    func (Item) APIPostQueryEdit(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
-        // Print the number of rows affected by your query in the terminal.
-        uadmin.Trail(uadmin.INFO, "Number of rows affected by your query : %d", res["rows_count"])
-
-        return true
-    }
-    // -----------------------------------------------------------
-
-Suppose you have five records in the Item model where all iPad items have a rating of 4.
-
-.. image:: dapi/assets/itemipadoldrating.png
-
-|
-
-Run your application and call this URL to edit the rating of all iPad items to a value of 5.
-
-.. code-block:: bash
-
-    # item is a model name
-    # name is a field name
-    # __contains is an operator that will search for string values that contract
-    # rating=4&_rating=5 means that where rating is equal to 4, change the
-    # rating value to 5
-    # NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.
-    http://api.example.com/{ROOT_URL}/api/d/item/edit/?rating=4&_rating=5&x-csrf-token={YOUR_SESSION_KEY}
-
-Result:
-
-.. code-block:: JSON
-
-    {
-        "rows_count": 2,
-        "status": "ok"
-    }
-
-Check the Item model in the uAdmin dashboard to see the results.
-
-.. image:: dapi/assets/editmultipleresult.png
-
-|
-
-Because our URL query is successful, it will execute your business logic inside the APIPostQueryEdit function. Now go to your terminal and see the results:
-
-.. code-block:: bash
-
-    [  INFO  ]   Number of rows affected by your query : 2
-
-**APIPostQueryRead**
-""""""""""""""""""""
-`Back to Top (Model Methods)`_
-
-APIPostQueryRead controls the data API's post query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPostQueryRead function if the communication with the web server is successful. By default, APIPostQueryRead returns **false**.
-
-One of the common usage of APIPostQueryRead is your business logic of manipulating the result object after the system performs dAPI read command execution.
-
-Structure:
-
-.. code-block:: go
-
-    // Return the value to true to enable post query access to read method
-    func (Model) APIPostQueryRead(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
-        return true
-    }
-
-Run your application and call this URL without assigning any query.
-
-.. code-block:: bash
-
-    # item is a model name
-    # This API call will read all records in the Item model.
-    http://api.example.com/{ROOT_URL}/api/d/item/read/
-
-Result:
-
-.. image:: dapi/assets/readallresult.png
-   :align: center
-
-|
-
-It returns a JSON array with all items in the database.
-
-Our goal here now is to print only the name of all items in the terminal from the result object displayed in the web. In order to do that, you need to apply APIPostQueryRead function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter **res** in the APIPostQueryRead function to return a JSON array with all items in the database to the terminal.
-
-.. code-block:: go
-
-    // Item Model !
-    type Item struct {
-        uadmin.Model
-        // Your fields here
-    }
-
-    // ----------------- ADD THIS CODE ---------------------------
-    // Return the value to true to enable post query access to read field
-    func (Item) APIPostQueryRead(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
-        // Convert the result object to a type of Item model because the structure of the result object is very similar to the structure of Item model.
-        items := *res["result"].(*[]Item)
-        uadmin.Trail(uadmin.INFO, "Item Names")
-
-        // Loop the values of the item model.
-        for _, item := range items {
-            // Print the item name in the terminal.
-            uadmin.Trail(uadmin.INFO, "- %s", item.Name)
-        }
-
-        return true
-    }
-    // -----------------------------------------------------------
-
-Now run your application again and call this URL without assigning any query.
-
-.. code-block:: bash
-
-    # item is a model name
-    # This API call will read all records in the Item model.
-    http://api.example.com/{ROOT_URL}/api/d/item/read/
-
-Result:
-
-.. image:: dapi/assets/readallresult.png
-   :align: center
-
-|
-
-Because our URL query is successful, it will execute your business logic inside the APIPostQueryRead function. Now go to your terminal and see the results:
-
-.. code-block:: bash
-
-    [  INFO  ]   Item Names
-    [  INFO  ]   - Robot
-    [  INFO  ]   - iPad Mini
-    [  INFO  ]   - iPad Pro
-    [  INFO  ]   - Ballpen
-    [  INFO  ]   - Speaker
-
-**APIPostQuerySchema**
-""""""""""""""""""""""
-`Back to Top (Model Methods)`_
-
-APIPostQuerySchema controls the data API's post query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPostQuerySchema function if the communication with the web server is successful. By default, APIPostQuerySchema returns **false**.
-
-One of the common usage of APIPostQuerySchema is your business logic of manipulating the result object after the system performs dAPI schema command execution.
-
-Structure:
-
-.. code-block:: go
-
-    // Return the value to true to enable post query access to schema method
-    func (Model) APIPostQuerySchema(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
-        return true
-    }
-
-Run your application and call this URL to read the full schema of the Item model.
-
-.. code-block:: bash
-
-    # item is a model name
-    http://api.example.com/{ROOT_URL}/api/d/item/schema/
-
-Result:
-
-.. image:: dapi/assets/schemaresult.png
-   :align: center
-
-|
-
-It returns a JSON object representing uAdmin's ModelSchema of the Item model.
-
-Our goal here now is to print some field values in the terminal such as Name, Model Name, and Table Name from the result object displayed in the web. In order to do that, you need to apply APIPostQuerySchema function in the Go file inside the models folder (e.g. item.go for Item model). Use the third parameter **res** in the APIPostQuerySchema function to return a JSON object representing uAdmin's ModelSchema of the Item model to the terminal.
-
-.. code-block:: go
-
-    // Item Model !
-    type Item struct {
-        uadmin.Model
-        // Your fields here
-    }
-
-    // ----------------- ADD THIS CODE ---------------------------
-    // Return the value to true to enable post query access to schema method
-    func (Item) APIPostQuerySchema(w http.ResponseWriter, r *http.Request, res map[string]interface{}) bool {
-        // Convert the result object to a type of ModelSchema because the structure of the result object is very similar to the structure of ModelSchema.
-        modelSchema := res["result"].(uadmin.ModelSchema)
-
-        // Print the name, display name, and table name in the terminal.
-        uadmin.Trail(uadmin.INFO, "Name : %s", modelSchema.Name)
-        uadmin.Trail(uadmin.INFO, "Display Name : %s", modelSchema.DisplayName)
-        uadmin.Trail(uadmin.INFO, "Table Name : %s", modelSchema.TableName)
-
-        // Loop the values of the inline object.
-        for _, i := range modelSchema.Inlines {
-            // We assigned the variable as (*i) in order to remove the pointer in the variable type then access the name field to display the name of the inline.
-            uadmin.Trail(uadmin.INFO, "Inline Name : %s", (*i).Name)
-
-            // Print the field names of this inline.
-            uadmin.Trail(uadmin.INFO, "Field Names")
-            for _, f := range (*i).Fields {
-                uadmin.Trail(uadmin.INFO, "- %s", f.Name)
-            }
-        }
-
-        return true
-    }
-    // -----------------------------------------------------------
-
-Now run your application again and call this URL to read the full schema of the Item model.
-
-.. code-block:: bash
-
-    # item is a model name
-    http://api.example.com/{ROOT_URL}/api/d/item/schema/
-
-Result:
-
-.. image:: dapi/assets/schemaresult.png
-   :align: center
-
-|
-
-Because our URL query is successful, it will execute your business logic inside the APIPostQuerySchema function. Now go to your terminal and see the results:
-
-.. code-block:: bash
-
-    [  INFO  ]   Name : Item
-    [  INFO  ]   Display Name : Item
-    [  INFO  ]   Table Name : items
-    [  INFO  ]   Inline Name : Todo
-    [  INFO  ]   Field Names
-    [  INFO  ]   - ID
-    [  INFO  ]   - Name
-    [  INFO  ]   - Description
-    [  INFO  ]   - Category
-    [  INFO  ]   - Friend
-    [  INFO  ]   - Item
-    [  INFO  ]   - TargetDate
-    [  INFO  ]   - Progress
 
 **APIPublicAdd**
 """"""""""""""""

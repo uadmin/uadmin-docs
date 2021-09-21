@@ -21,7 +21,7 @@ uadmin.APIPreQueryAdd
 ---------------------
 `Back To Top`_
 
-APIPreQueryAdd controls the data API's pre query for add commands.
+APIPreQueryAdd controls the data API's pre query for add commands. By default, APIPreQueryAdd returns **false**.
 
 Type:
 
@@ -45,7 +45,7 @@ uadmin.APIPreQueryDelete
 ------------------------
 `Back To Top`_
 
-APIPreQueryDelete controls the data API's pre query for delete commands.
+APIPreQueryDelete controls the data API's pre query for delete commands. By default, APIPreQueryDelete returns **false**.
 
 Type:
 
@@ -69,7 +69,7 @@ uadmin.APIPreQueryEdit
 ----------------------
 `Back To Top`_
 
-APIPreQueryEdit controls the data API's pre query for edit commands.
+APIPreQueryEdit controls the data API's pre query for edit commands. By default, APIPreQueryEdit returns **false**.
 
 Type:
 
@@ -93,7 +93,7 @@ uadmin.APIPreQueryRead
 ----------------------
 `Back To Top`_
 
-APIPreQueryRead controls the data API's pre query for read commands.
+APIPreQueryRead controls the data API's pre query for read commands. By default, APIPreQueryRead returns **false**.
 
 Type:
 
@@ -117,7 +117,7 @@ uadmin.APIPreQuerySchema
 ------------------------
 `Back To Top`_
 
-APIPreQuerySchema controls the data API's pre query for schema commands.
+APIPreQuerySchema controls the data API's pre query for schema commands. By default, APIPreQuerySchema returns **false**.
 
 Type:
 

@@ -421,7 +421,7 @@ Go to the main.go. Set this function as true.
 .. code-block:: go
 
     func main(){
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.DebugDB = true
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -562,7 +562,7 @@ Example:
 .. code-block:: go
 
     func main(){
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         // Enable
         uadmin.OptimizeSQLQuery = true
 

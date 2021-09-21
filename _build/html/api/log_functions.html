@@ -275,7 +275,7 @@
 <p>To assign a value in the code, follow this approach:</p>
 <p>Go to the main.go and apply this function to “true”. Put it above the uadmin.Register.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">LogAdd</span> <span class="p">=</span> <span class="kc">true</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -377,7 +377,7 @@
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">LogRead</span> <span class="p">=</span> <span class="kc">false</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">LogEdit</span> <span class="p">=</span> <span class="kc">false</span>
 
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">LogDelete</span> <span class="p">=</span> <span class="kc">true</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -467,7 +467,7 @@
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">LogAdd</span> <span class="p">=</span> <span class="kc">false</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">LogRead</span> <span class="p">=</span> <span class="kc">false</span>
 
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">LogEdit</span> <span class="p">=</span> <span class="kc">true</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>
@@ -581,7 +581,7 @@
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">LogAdd</span> <span class="p">=</span> <span class="kc">false</span>
 
-    <span class="c1">// NOTE: This code works only on first build.</span>
+    <span class="c1">// NOTE: This code works only if database does not exist yet.</span>
     <span class="nx">uadmin</span><span class="p">.</span><span class="nx">LogRead</span> <span class="p">=</span> <span class="kc">true</span>
 
     <span class="c1">// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----</span>

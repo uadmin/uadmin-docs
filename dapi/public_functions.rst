@@ -21,7 +21,7 @@ uadmin.APIPublicAdd
 -------------------
 `Back To Top`_
 
-APIPublicAdd controls the data API's public for add commands.
+APIPublicAdd controls the data API's public for add commands. By default, APIPublicAdd returns **false**.
 
 Type:
 
@@ -45,7 +45,7 @@ uadmin.APIPublicDelete
 ----------------------
 `Back To Top`_
 
-APIPublicDelete controls the data API's public for delete commands.
+APIPublicDelete controls the data API's public for delete commands. By default, APIPublicDelete returns **false**.
 
 Type:
 
@@ -69,7 +69,7 @@ uadmin.APIPublicEdit
 --------------------
 `Back To Top`_
 
-APIPublicEdit controls the data API's public for edit commands.
+APIPublicEdit controls the data API's public for edit commands. By default, APIPublicEdit returns **false**.
 
 Type:
 
@@ -93,7 +93,7 @@ uadmin.APIPublicRead
 --------------------
 `Back To Top`_
 
-APIPublicRead controls the data API's public for read commands.
+APIPublicRead controls the data API's public for read commands. By default, APIPublicRead returns **false**.
 
 Type:
 
@@ -117,7 +117,7 @@ uadmin.APIPublicSchema
 ----------------------
 `Back To Top`_
 
-APIPublicSchema controls the data API's public for schema commands.
+APIPublicSchema controls the data API's public for schema commands. By default, APIPublicSchema returns **false**.
 
 Type:
 

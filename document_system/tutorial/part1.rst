@@ -28,7 +28,7 @@ Use your favorite editor to create "main.go” inside that path. Put the followi
 
     func main() {
         // Assign Site Name value as "Document System"
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.SiteName = "Document System"
 
         // Activates a uAdmin server
@@ -44,7 +44,7 @@ Sample:
 
     func main(){
         // Assign BindIP value to "127.0.0.1" in the Settings
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.BindIP = "127.0.0.1"
     }
 

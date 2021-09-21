@@ -492,7 +492,7 @@ You can apply any of these in main.go.
 .. code-block:: go
 
     func main(){
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.OTPAlgorithm = "sha256"
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -505,7 +505,7 @@ You can apply any of these in main.go.
 
         // OR
 
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.OTPAlgorithm = "sha512"
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -543,7 +543,7 @@ Go to the main.go and set the OTPDigits to 8.
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.OTPDigits = 8
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -589,7 +589,7 @@ Go to the main.go and set the OTPPeriod to 10 seconds.
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.OTPPeriod = uint(10)
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -637,7 +637,7 @@ Go to the main.go and set the OTPSkew to 2 minutes.
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.OTPSkew = uint(2)
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -720,7 +720,7 @@ Go to the main.go and apply this function as "true".
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.PublicMedia = true
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----

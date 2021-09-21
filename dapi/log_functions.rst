@@ -21,7 +21,7 @@ uadmin.APILogAdd
 ----------------
 `Back To Top`_
 
-APILogAdd controls the data API's logging for add commands.
+APILogAdd controls the data API's logging for add commands. By default, APILogAdd returns **true**.
 
 Type:
 
@@ -155,7 +155,7 @@ uadmin.APILogDelete
 -------------------
 `Back To Top`_
 
-APILogDelete controls the data API's logging for delete commands.
+APILogDelete controls the data API's logging for delete commands. By default, APILogDelete returns **true**.
 
 Type:
 
@@ -276,7 +276,7 @@ uadmin.APILogEdit
 -----------------
 `Back To Top`_
 
-APILogEdit controls the data API's logging for edit commands.
+APILogEdit controls the data API's logging for edit commands. By default, APILogEdit returns **true**.
 
 Type:
 
@@ -406,7 +406,7 @@ uadmin.APILogRead
 -----------------
 `Back To Top`_
 
-APILogRead controls the data API's logging for read commands.
+APILogRead controls the data API's logging for read commands. By default, APILogRead returns **false**.
 
 Type:
 
@@ -522,7 +522,7 @@ uadmin.APILogSchema
 -------------------
 `Back To Top`_
 
-APILogSchema controls the data API's logging for schema commands.
+APILogSchema controls the data API's logging for schema commands. By default, APILogSchema returns **true**.
 
 Type:
 

@@ -21,7 +21,7 @@ uadmin.APIDisabledAdd
 ---------------------
 `Back To Top`_
 
-APIDisabledAdd controls the data API's disabled for add commands.
+APIDisabledAdd controls the data API's disabled for add commands. By default, APIDisabledAdd returns **false**.
 
 Type:
 
@@ -45,7 +45,7 @@ uadmin.APIDisabledDelete
 ------------------------
 `Back To Top`_
 
-APIDisabledDelete controls the data API's disabled for delete commands.
+APIDisabledDelete controls the data API's disabled for delete commands. By default, APIDisabledDelete returns **false**.
 
 Type:
 
@@ -69,7 +69,7 @@ uadmin.APIDisabledEdit
 ----------------------
 `Back To Top`_
 
-APIDisabledEdit controls the data API's disabled for edit commands.
+APIDisabledEdit controls the data API's disabled for edit commands. By default, APIDisabledEdit returns **false**.
 
 Type:
 
@@ -93,7 +93,7 @@ uadmin.APIDisabledRead
 ----------------------
 `Back To Top`_
 
-APIDisabledRead controls the data API's disabled for read commands.
+APIDisabledRead controls the data API's disabled for read commands. By default, APIDisabledRead returns **false**.
 
 Type:
 
@@ -117,7 +117,7 @@ uadmin.APIDisabledSchema
 ------------------------
 `Back To Top`_
 
-APIDisabledSchema controls the data API's disabled for schema commands.
+APIDisabledSchema controls the data API's disabled for schema commands. By default, APIDisabledSchema returns **false**.
 
 Type:
 

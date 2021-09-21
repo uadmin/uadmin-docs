@@ -41,7 +41,7 @@ To assign a value in the code, follow this approach supposedly you have favicon.
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.FavIcon = "/static/custom/favicon.ico"
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -79,7 +79,7 @@ To assign a value in the code, follow this approach supposedly you have logo.png
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.Logo = "/static/custom/logo.png"
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -134,7 +134,7 @@ Let's set the MaxImageWidth to 360 pixels and the MaxImageHeight to 240 pixels.
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.MaxImageWidth = 360
         uadmin.MaxImageHeight = 240
 
@@ -206,7 +206,7 @@ Go to the main.go. Let's set the MaxUploadFileSize value to 1 MB. It is 1 multip
     func main() {
         // Some codes
 
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.MaxUploadFileSize = int64(1 * 1024 * 1024)
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -259,7 +259,7 @@ Go to the main.go and apply the PageLength function.
     func main() {
         // Some codes
 
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.PageLength = 4
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -360,7 +360,7 @@ Exit your application and go to the main.go. This time, set the status of the Re
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.RetainMediaVersions = true
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -429,7 +429,7 @@ Go to the main.go and assign the RootURL value as **/admin/**.
     func main() {
         // Some codes
 
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.RootURL = "/admin/"
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -485,7 +485,7 @@ Go to the main.go and assign the SiteName value as **Todo List**.
     func main() {
         // Some codes
 
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.SiteName = "Todo List"
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -642,7 +642,7 @@ Now go to main.go and apply the Theme function that assigns the custom folder.
     func main() {
         // Some codes
 
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.Theme = "custom"
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----

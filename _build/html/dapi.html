@@ -1303,16 +1303,16 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <li><p><a class="reference internal" href="#apilogedit">APILogEdit</a></p></li>
 <li><p><a class="reference internal" href="#apilogread">APILogRead</a></p></li>
 <li><p><a class="reference internal" href="#apilogschema">APILogSchema</a></p></li>
-<li><p><a class="reference internal" href="#apiprequeryadd">APIPreQueryAdd</a></p></li>
-<li><p><a class="reference internal" href="#apiprequerydelete">APIPreQueryDelete</a></p></li>
-<li><p><a class="reference internal" href="#apiprequeryedit">APIPreQueryEdit</a></p></li>
-<li><p><a class="reference internal" href="#apiprequeryread">APIPreQueryRead</a></p></li>
-<li><p><a class="reference internal" href="#apiprequeryschema">APIPreQuerySchema</a></p></li>
 <li><p><a class="reference internal" href="#apipostqueryadd">APIPostQueryAdd</a></p></li>
 <li><p><a class="reference internal" href="#apipostquerydelete">APIPostQueryDelete</a></p></li>
 <li><p><a class="reference internal" href="#apipostqueryedit">APIPostQueryEdit</a></p></li>
 <li><p><a class="reference internal" href="#apipostqueryread">APIPostQueryRead</a></p></li>
 <li><p><a class="reference internal" href="#apipostqueryschema">APIPostQuerySchema</a></p></li>
+<li><p><a class="reference internal" href="#apiprequeryadd">APIPreQueryAdd</a></p></li>
+<li><p><a class="reference internal" href="#apiprequerydelete">APIPreQueryDelete</a></p></li>
+<li><p><a class="reference internal" href="#apiprequeryedit">APIPreQueryEdit</a></p></li>
+<li><p><a class="reference internal" href="#apiprequeryread">APIPreQueryRead</a></p></li>
+<li><p><a class="reference internal" href="#apiprequeryschema">APIPreQuerySchema</a></p></li>
 <li><p><a class="reference internal" href="#apipublicadd">APIPublicAdd</a></p></li>
 <li><p><a class="reference internal" href="#apipublicdelete">APIPublicDelete</a></p></li>
 <li><p><a class="reference internal" href="#apipublicedit">APIPublicEdit</a></p></li>
@@ -2016,406 +2016,6 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 </div>
 <p>Although the dAPI schema command works, it no longer records when someone tried to execute dAPI schema command in the logs.</p>
 </section>
-<section id="apiprequeryadd">
-<h4><strong>APIPreQueryAdd</strong><a class="headerlink" href="#apiprequeryadd" title="Permalink to this headline">¶</a></h4>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPreQueryAdd controls the data API’s pre query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPreQueryAdd function if the communication with the web server is successful. By default, APIPreQueryAdd returns <strong>false</strong>.</p>
-<p>One of the common usage of APIPreQueryAdd is your business logic of validating something first before the system performs dAPI add command execution.</p>
-<p>Structure:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to add method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryAdd</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Our goal here is to restrict access to dAPI add if the client’s domain is localhost. In order to do that, you need to apply APIPreQueryAdd function in the Go file inside the models folder (e.g. document.go for Document model).</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Document Model !</span>
-<span class="kd">type</span> <span class="nx">Document</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
-    <span class="c1">// Your fields here</span>
-<span class="p">}</span>
-
-<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
-<span class="c1">// Return the value to true to enable pre query access to add method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Document</span><span class="p">)</span> <span class="nx">APIPreQueryAdd</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-    <span class="c1">// Get the client host and split it by colon.</span>
-    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
-    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
-
-    <span class="c1">// If the domain is localhost</span>
-    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
-        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI add access.</span>
-        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI add access.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">false</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI add access.</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI add access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-<span class="c1">// -----------------------------------------------------------</span>
-</pre></div>
-</div>
-<p>Suppose you don’t have any records in the Document model.</p>
-<img alt="_images/emptyrecorddocument.png" src="_images/emptyrecorddocument.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Run your application and call this URL to add multiple records in the Document model with the following information below. Let’s use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).</p>
-<p><strong>First Record</strong></p>
-<ul class="simple">
-<li><p>Name: Golang</p></li>
-<li><p>Author: John</p></li>
-</ul>
-<p><strong>Second Record</strong></p>
-<ul class="simple">
-<li><p>Name: uAdmin</p></li>
-<li><p>Author: Adam</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
-<span class="c1"># name and author are field names</span>
-<span class="c1"># __0 is the first index</span>
-<span class="c1"># __1 is the second index</span>
-<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
-http://127.0.0.1:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name__0<span class="o">=</span>Golang<span class="p">&amp;</span><span class="nv">_author__0</span><span class="o">=</span>John<span class="p">&amp;</span><span class="nv">_name__1</span><span class="o">=</span>uAdmin<span class="p">&amp;</span><span class="nv">_author__1</span><span class="o">=</span>Adam<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
-</pre></div>
-</div>
-<p>Result:</p>
-<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="mi">1</span><span class="p">,</span>
-        <span class="mi">2</span>
-    <span class="p">],</span>
-    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>It returns an array with a list of IDs for the newly created records, status and the rows affected by your query.</p>
-<p>Check the Document model in the uAdmin dashboard to see the results.</p>
-<img alt="_images/addmultipleresult.png" src="_images/addmultipleresult.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Go to your terminal and see the results performed by APIPreQueryAdd.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI add access.
-</pre></div>
-</div>
-<p>Now let’s call this URL again using the localhost domain.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
-<span class="c1"># name and author are field names</span>
-<span class="c1"># __0 is the first index</span>
-<span class="c1"># __1 is the second index</span>
-<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
-http://localhost:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name__0<span class="o">=</span>Golang<span class="p">&amp;</span><span class="nv">_author__0</span><span class="o">=</span>John<span class="p">&amp;</span><span class="nv">_name__1</span><span class="o">=</span>uAdmin<span class="p">&amp;</span><span class="nv">_author__1</span><span class="o">=</span>Adam<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
-</pre></div>
-</div>
-<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI add access.
-</pre></div>
-</div>
-</section>
-<section id="apiprequerydelete">
-<h4><strong>APIPreQueryDelete</strong><a class="headerlink" href="#apiprequerydelete" title="Permalink to this headline">¶</a></h4>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPreQueryDelete controls the data API’s pre query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPreQueryDelete if the communication with the web server is successful. By default, APIPreQueryDelete returns <strong>false</strong>.</p>
-<p>One of the common usage of APIPreQueryDelete is your business logic of validating something first before the system performs dAPI delete command execution.</p>
-<p>Structure:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to delete method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryDelete</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>  <span class="p">{</span>
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Our goal here is to restrict access to dAPI delete if the client’s domain is localhost. In order to do that, you need to apply APIPreQueryDelete function in the Go file inside the models folder (e.g. item.go for Item model).</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
-<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
-    <span class="c1">// Your fields here</span>
-<span class="p">}</span>
-
-<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
-<span class="c1">// Return the value to true to enable pre query access to delete method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPreQueryDelete</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-    <span class="c1">// Get the client host and split it by colon.</span>
-    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
-    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
-
-    <span class="c1">// If the domain is localhost</span>
-    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
-        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI delete access.</span>
-        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI delete access.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">false</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI delete access.</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI delete access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-<span class="c1">// -----------------------------------------------------------</span>
-</pre></div>
-</div>
-<p>Suppose you have five records in the Item model.</p>
-<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Run your application and call this URL to delete records where the name of an item contains “iPad”. Let’s use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
-<span class="c1"># name is a field name</span>
-<span class="c1"># __contains is an operator that will search for string values that contract</span>
-<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
-http://127.0.0.1:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/?name__contains<span class="o">=</span>iPad<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
-</pre></div>
-</div>
-<p>Result:</p>
-<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>It returns the status and the rows affected by your query.</p>
-<p>Check the Item model in the uAdmin dashboard to see the results.</p>
-<img alt="_images/deletemultipleresult.png" src="_images/deletemultipleresult.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Go to your terminal and see the results performed by APIPreQueryDelete.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI delete access.
-</pre></div>
-</div>
-<p>Now let’s call this URL again using the localhost domain.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
-<span class="c1"># name is a field name</span>
-<span class="c1"># __contains is an operator that will search for string values that contract</span>
-<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
-http://localhost:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/?name__contains<span class="o">=</span>iPad<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
-</pre></div>
-</div>
-<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI delete access.
-</pre></div>
-</div>
-</section>
-<section id="apiprequeryedit">
-<h4><strong>APIPreQueryEdit</strong><a class="headerlink" href="#apiprequeryedit" title="Permalink to this headline">¶</a></h4>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPreQueryEdit controls the data API’s pre query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPreQueryEdit function if the communication with the web server is successful. By default, APIPreQueryEdit returns <strong>false</strong>.</p>
-<p>One of the common usage of APIPreQueryEdit is your business logic of validating something first before the system performs dAPI edit command execution.</p>
-<p>Structure:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to edit method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryEdit</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Our goal here is to restrict access to dAPI edit if the client’s domain is localhost. In order to do that, you need to apply APIPreQueryEdit function in the Go file inside the models folder (e.g. item.go for Item model).</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
-<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
-    <span class="c1">// Your fields here</span>
-<span class="p">}</span>
-
-<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
-<span class="c1">// Return the value to true to enable pre query access to edit method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPreQueryEdit</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-    <span class="c1">// Get the client host and split it by colon.</span>
-    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
-    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
-
-    <span class="c1">// If the domain is localhost</span>
-    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
-        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI edit access.</span>
-        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI edit access.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">false</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI edit access.</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI edit access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-<span class="c1">// -----------------------------------------------------------</span>
-</pre></div>
-</div>
-<p>Suppose you have five records in the Item model where all iPad items have a rating of 4.</p>
-<img alt="_images/itemipadoldrating.png" src="_images/itemipadoldrating.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Run your application and call this URL to edit the rating of all iPad items to a value of 5. Let’s use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
-<span class="c1"># name is a field name</span>
-<span class="c1"># __contains is an operator that will search for string values that contract</span>
-<span class="c1"># rating=4&amp;_rating=5 means that where rating is equal to 4, change the</span>
-<span class="c1"># rating value to 5</span>
-<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
-http://127.0.0.1:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/?rating<span class="o">=</span><span class="m">4</span><span class="p">&amp;</span><span class="nv">_rating</span><span class="o">=</span><span class="m">5</span><span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
-</pre></div>
-</div>
-<p>Result:</p>
-<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Check the Item model in the uAdmin dashboard to see the results.</p>
-<img alt="_images/editmultipleresult.png" src="_images/editmultipleresult.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Go to your terminal and see the results performed by APIPreQueryEdit.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI edit access.
-</pre></div>
-</div>
-<p>Now let’s call this URL again using the localhost domain.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
-<span class="c1"># name is a field name</span>
-<span class="c1"># __contains is an operator that will search for string values that contract</span>
-<span class="c1"># rating=4&amp;_rating=5 means that where rating is equal to 4, change the</span>
-<span class="c1"># rating value to 5</span>
-<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
-http://localhost:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/?rating<span class="o">=</span><span class="m">4</span><span class="p">&amp;</span><span class="nv">_rating</span><span class="o">=</span><span class="m">5</span><span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
-</pre></div>
-</div>
-<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI edit access.
-</pre></div>
-</div>
-</section>
-<section id="apiprequeryread">
-<h4><strong>APIPreQueryRead</strong><a class="headerlink" href="#apiprequeryread" title="Permalink to this headline">¶</a></h4>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPreQueryRead controls the data API’s pre query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPreQueryRead function if the communication with the web server is successful. By default, APIPreQueryRead returns <strong>false</strong>.</p>
-<p>One of the common usage of APIPreQueryRead is your business logic of validating something first before the system performs dAPI read command execution.</p>
-<p>Structure:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to read method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryRead</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Our goal here is to restrict access to dAPI read if the client’s domain is localhost. In order to do that, you need to apply APIPreQueryRead function in the Go file inside the models folder (e.g. item.go for Item model).</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
-<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
-    <span class="c1">// Your fields here</span>
-<span class="p">}</span>
-
-<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
-<span class="c1">// Return the value to true to enable pre query access to read method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPreQueryRead</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-    <span class="c1">// Get the client host and split it by colon.</span>
-    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
-    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
-
-    <span class="c1">// If the domain is localhost</span>
-    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
-        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI read access.</span>
-        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI read access.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">false</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI read access.</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI read access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-<span class="c1">// -----------------------------------------------------------</span>
-</pre></div>
-</div>
-<p>Run your application and call this URL without assigning any query. Let’s use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
-<span class="c1"># This API call will read all records in the Item model.</span>
-http://127.0.0.1:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/
-</pre></div>
-</div>
-<p>Result:</p>
-<img alt="_images/readallresult.png" class="align-center" src="_images/readallresult.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>It returns a JSON array with all items in the database.</p>
-<p>Go to your terminal and see the results performed by APIPreQueryRead.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI <span class="nb">read</span> access.
-</pre></div>
-</div>
-<p>Now let’s call this URL again using the localhost domain.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
-<span class="c1"># This API call will read all records in the Item model.</span>
-http://localhost:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/
-</pre></div>
-</div>
-<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI <span class="nb">read</span> access.
-</pre></div>
-</div>
-</section>
-<section id="apiprequeryschema">
-<h4><strong>APIPreQuerySchema</strong><a class="headerlink" href="#apiprequeryschema" title="Permalink to this headline">¶</a></h4>
-<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
-<p>APIPreQuerySchema controls the data API’s pre query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPreQuerySchema function if the communication with the web server is successful. By default, APIPreQuerySchema returns <strong>false</strong>.</p>
-<p>One of the common usage of APIPreQuerySchema is your business logic of validating something first before the system performs dAPI schema command execution.</p>
-<p>Structure:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to schema method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQuerySchema</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Our goal here is to restrict access to dAPI schema if the client’s domain is localhost. In order to do that, you need to apply APIPreQuerySchema function in the Go file inside the models folder (e.g. item.go for Item model).</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
-<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
-    <span class="c1">// Your fields here</span>
-<span class="p">}</span>
-
-<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
-<span class="c1">// Return the value to true to enable pre query access to schema method</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPreQuerySchema</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-    <span class="c1">// Get the client host and split it by colon.</span>
-    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
-    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
-
-    <span class="c1">// If the domain is localhost</span>
-    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
-        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI schema access.</span>
-        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI schema access.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">false</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI schema access.</span>
-    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI schema access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-<span class="c1">// -----------------------------------------------------------</span>
-</pre></div>
-</div>
-<p>Run your application and call this URL to read the full schema of the Item model.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/schema/
-</pre></div>
-</div>
-<p>Result:</p>
-<img alt="_images/schemaresult.png" class="align-center" src="_images/schemaresult.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>It returns a JSON object representing uAdmin’s ModelSchema of the Item model.</p>
-<p>Go to your terminal and see the results performed by APIPreQuerySchema.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI schema access.
-</pre></div>
-</div>
-<p>Now let’s call this URL again using the localhost domain.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
-http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/schema/
-</pre></div>
-</div>
-<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI schema access.
-</pre></div>
-</div>
-</section>
 <section id="apipostqueryadd">
 <h4><strong>APIPostQueryAdd</strong><a class="headerlink" href="#apipostqueryadd" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
@@ -2816,6 +2416,406 @@ http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/
 <span class="o">[</span>  INFO  <span class="o">]</span>   - Item
 <span class="o">[</span>  INFO  <span class="o">]</span>   - TargetDate
 <span class="o">[</span>  INFO  <span class="o">]</span>   - Progress
+</pre></div>
+</div>
+</section>
+<section id="apiprequeryadd">
+<h4><strong>APIPreQueryAdd</strong><a class="headerlink" href="#apiprequeryadd" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPreQueryAdd controls the data API’s pre query for add commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using add command, it will execute the process in the APIPreQueryAdd function if the communication with the web server is successful. By default, APIPreQueryAdd returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPreQueryAdd is your business logic of validating something first before the system performs dAPI add command execution.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to add method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryAdd</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Our goal here is to restrict access to dAPI add if the client’s domain is localhost. In order to do that, you need to apply APIPreQueryAdd function in the Go file inside the models folder (e.g. document.go for Document model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Document Model !</span>
+<span class="kd">type</span> <span class="nx">Document</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable pre query access to add method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Document</span><span class="p">)</span> <span class="nx">APIPreQueryAdd</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Get the client host and split it by colon.</span>
+    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
+    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
+
+    <span class="c1">// If the domain is localhost</span>
+    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
+        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI add access.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI add access.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI add access.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI add access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Suppose you don’t have any records in the Document model.</p>
+<img alt="_images/emptyrecorddocument.png" src="_images/emptyrecorddocument.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to add multiple records in the Document model with the following information below. Let’s use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).</p>
+<p><strong>First Record</strong></p>
+<ul class="simple">
+<li><p>Name: Golang</p></li>
+<li><p>Author: John</p></li>
+</ul>
+<p><strong>Second Record</strong></p>
+<ul class="simple">
+<li><p>Name: uAdmin</p></li>
+<li><p>Author: Adam</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+<span class="c1"># __0 is the first index</span>
+<span class="c1"># __1 is the second index</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://127.0.0.1:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name__0<span class="o">=</span>Golang<span class="p">&amp;</span><span class="nv">_author__0</span><span class="o">=</span>John<span class="p">&amp;</span><span class="nv">_name__1</span><span class="o">=</span>uAdmin<span class="p">&amp;</span><span class="nv">_author__1</span><span class="o">=</span>Adam<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">1</span><span class="p">,</span>
+        <span class="mi">2</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns an array with a list of IDs for the newly created records, status and the rows affected by your query.</p>
+<p>Check the Document model in the uAdmin dashboard to see the results.</p>
+<img alt="_images/addmultipleresult.png" src="_images/addmultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to your terminal and see the results performed by APIPreQueryAdd.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI add access.
+</pre></div>
+</div>
+<p>Now let’s call this URL again using the localhost domain.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># document is a model name</span>
+<span class="c1"># name and author are field names</span>
+<span class="c1"># __0 is the first index</span>
+<span class="c1"># __1 is the second index</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://localhost:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/document/add/?_name__0<span class="o">=</span>Golang<span class="p">&amp;</span><span class="nv">_author__0</span><span class="o">=</span>John<span class="p">&amp;</span><span class="nv">_name__1</span><span class="o">=</span>uAdmin<span class="p">&amp;</span><span class="nv">_author__1</span><span class="o">=</span>Adam<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI add access.
+</pre></div>
+</div>
+</section>
+<section id="apiprequerydelete">
+<h4><strong>APIPreQueryDelete</strong><a class="headerlink" href="#apiprequerydelete" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPreQueryDelete controls the data API’s pre query for delete commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using delete command, it will execute the process in the APIPreQueryDelete if the communication with the web server is successful. By default, APIPreQueryDelete returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPreQueryDelete is your business logic of validating something first before the system performs dAPI delete command execution.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to delete method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryDelete</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Our goal here is to restrict access to dAPI delete if the client’s domain is localhost. In order to do that, you need to apply APIPreQueryDelete function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable pre query access to delete method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPreQueryDelete</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Get the client host and split it by colon.</span>
+    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
+    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
+
+    <span class="c1">// If the domain is localhost</span>
+    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
+        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI delete access.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI delete access.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI delete access.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI delete access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model.</p>
+<img alt="_images/itemfiverecords.png" src="_images/itemfiverecords.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to delete records where the name of an item contains “iPad”. Let’s use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://127.0.0.1:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/?name__contains<span class="o">=</span>iPad<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It returns the status and the rows affected by your query.</p>
+<p>Check the Item model in the uAdmin dashboard to see the results.</p>
+<img alt="_images/deletemultipleresult.png" src="_images/deletemultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to your terminal and see the results performed by APIPreQueryDelete.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI delete access.
+</pre></div>
+</div>
+<p>Now let’s call this URL again using the localhost domain.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://localhost:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/delete/?name__contains<span class="o">=</span>iPad<span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI delete access.
+</pre></div>
+</div>
+</section>
+<section id="apiprequeryedit">
+<h4><strong>APIPreQueryEdit</strong><a class="headerlink" href="#apiprequeryedit" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPreQueryEdit controls the data API’s pre query for edit commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using edit command, it will execute the process in the APIPreQueryEdit function if the communication with the web server is successful. By default, APIPreQueryEdit returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPreQueryEdit is your business logic of validating something first before the system performs dAPI edit command execution.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to edit method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryEdit</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Our goal here is to restrict access to dAPI edit if the client’s domain is localhost. In order to do that, you need to apply APIPreQueryEdit function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable pre query access to edit method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPreQueryEdit</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Get the client host and split it by colon.</span>
+    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
+    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
+
+    <span class="c1">// If the domain is localhost</span>
+    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
+        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI edit access.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI edit access.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI edit access.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI edit access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Suppose you have five records in the Item model where all iPad items have a rating of 4.</p>
+<img alt="_images/itemipadoldrating.png" src="_images/itemipadoldrating.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run your application and call this URL to edit the rating of all iPad items to a value of 5. Let’s use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+<span class="c1"># rating=4&amp;_rating=5 means that where rating is equal to 4, change the</span>
+<span class="c1"># rating value to 5</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://127.0.0.1:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/?rating<span class="o">=</span><span class="m">4</span><span class="p">&amp;</span><span class="nv">_rating</span><span class="o">=</span><span class="m">5</span><span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;rows_count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Check the Item model in the uAdmin dashboard to see the results.</p>
+<img alt="_images/editmultipleresult.png" src="_images/editmultipleresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to your terminal and see the results performed by APIPreQueryEdit.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI edit access.
+</pre></div>
+</div>
+<p>Now let’s call this URL again using the localhost domain.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># name is a field name</span>
+<span class="c1"># __contains is an operator that will search for string values that contract</span>
+<span class="c1"># rating=4&amp;_rating=5 means that where rating is equal to 4, change the</span>
+<span class="c1"># rating value to 5</span>
+<span class="c1"># NOTE: You need to pass the session key and assign it to the x-csrf-token in order to make it work.</span>
+http://localhost:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/edit/?rating<span class="o">=</span><span class="m">4</span><span class="p">&amp;</span><span class="nv">_rating</span><span class="o">=</span><span class="m">5</span><span class="p">&amp;</span>x-csrf-token<span class="o">={</span>YOUR_SESSION_KEY<span class="o">}</span>
+</pre></div>
+</div>
+<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI edit access.
+</pre></div>
+</div>
+</section>
+<section id="apiprequeryread">
+<h4><strong>APIPreQueryRead</strong><a class="headerlink" href="#apiprequeryread" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPreQueryRead controls the data API’s pre query for read commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using read command, it will execute the process in the APIPreQueryRead function if the communication with the web server is successful. By default, APIPreQueryRead returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPreQueryRead is your business logic of validating something first before the system performs dAPI read command execution.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to read method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQueryRead</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Our goal here is to restrict access to dAPI read if the client’s domain is localhost. In order to do that, you need to apply APIPreQueryRead function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable pre query access to read method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPreQueryRead</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Get the client host and split it by colon.</span>
+    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
+    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
+
+    <span class="c1">// If the domain is localhost</span>
+    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
+        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI read access.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI read access.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI read access.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI read access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Run your application and call this URL without assigning any query. Let’s use a different domain other than localhost (e.g. Loopback address 127.0.0.1:8080).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># This API call will read all records in the Item model.</span>
+http://127.0.0.1:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/readallresult.png" class="align-center" src="_images/readallresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON array with all items in the database.</p>
+<p>Go to your terminal and see the results performed by APIPreQueryRead.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI <span class="nb">read</span> access.
+</pre></div>
+</div>
+<p>Now let’s call this URL again using the localhost domain.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+<span class="c1"># This API call will read all records in the Item model.</span>
+http://localhost:8080/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/read/
+</pre></div>
+</div>
+<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI <span class="nb">read</span> access.
+</pre></div>
+</div>
+</section>
+<section id="apiprequeryschema">
+<h4><strong>APIPreQuerySchema</strong><a class="headerlink" href="#apiprequeryschema" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/dapi.html#model-methods">Back to Top (Model Methods)</a></p>
+<p>APIPreQuerySchema controls the data API’s pre query for schema commands. The purpose of this model function is that after you send XHR request to the server given an assigned model using schema command, it will execute the process in the APIPreQuerySchema function if the communication with the web server is successful. By default, APIPreQuerySchema returns <strong>false</strong>.</p>
+<p>One of the common usage of APIPreQuerySchema is your business logic of validating something first before the system performs dAPI schema command execution.</p>
+<p>Structure:</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the value to true to enable pre query access to schema method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Model</span><span class="p">)</span> <span class="nx">APIPreQuerySchema</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Our goal here is to restrict access to dAPI schema if the client’s domain is localhost. In order to do that, you need to apply APIPreQuerySchema function in the Go file inside the models folder (e.g. item.go for Item model).</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Item Model !</span>
+<span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Model</span>
+    <span class="c1">// Your fields here</span>
+<span class="p">}</span>
+
+<span class="c1">// ----------------- ADD THIS CODE ---------------------------</span>
+<span class="c1">// Return the value to true to enable pre query access to schema method</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">Item</span><span class="p">)</span> <span class="nx">APIPreQuerySchema</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="c1">// Get the client host and split it by colon.</span>
+    <span class="c1">// r.Host returns something like this: &quot;localhost:8080&quot;</span>
+    <span class="nx">host</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">Split</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">)</span>
+
+    <span class="c1">// If the domain is localhost</span>
+    <span class="k">if</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;localhost&quot;</span> <span class="p">{</span>
+        <span class="c1">// Return the failed result to notify the user that his domain is not authorized for dAPI schema access.</span>
+        <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="s">&quot;The localhost HTTP request is not authorized for dAPI schema access.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the success result to notify the user that his domain is authorized for dAPI schema access.</span>
+    <span class="nx">uadmin</span><span class="p">.</span><span class="nx">Trail</span><span class="p">(</span><span class="nx">uadmin</span><span class="p">.</span><span class="nx">OK</span><span class="p">,</span> <span class="s">&quot;The %s HTTP request is authorized for dAPI schema access.&quot;</span><span class="p">,</span> <span class="nx">host</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="c1">// -----------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Run your application and call this URL to read the full schema of the Item model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/schema/
+</pre></div>
+</div>
+<p>Result:</p>
+<img alt="_images/schemaresult.png" class="align-center" src="_images/schemaresult.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It returns a JSON object representing uAdmin’s ModelSchema of the Item model.</p>
+<p>Go to your terminal and see the results performed by APIPreQuerySchema.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>   OK   <span class="o">]</span>   The <span class="m">127</span>.0.0.1 HTTP request is authorized <span class="k">for</span> dAPI schema access.
+</pre></div>
+</div>
+<p>Now let’s call this URL again using the localhost domain.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># item is a model name</span>
+http://api.example.com/<span class="o">{</span>ROOT_URL<span class="o">}</span>/api/d/item/schema/
+</pre></div>
+</div>
+<p>You may notice that in the webpage part, it returns a blank white page. Now go to your terminal and see the results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>  ERROR <span class="o">]</span>   The localhost HTTP request is not authorized <span class="k">for</span> dAPI schema access.
 </pre></div>
 </div>
 </section>

@@ -44,7 +44,7 @@ Example:
     )
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         // Allows a translation to store data in a cache memory
         uadmin.CacheTranslation = true
 
@@ -186,7 +186,10 @@ Establish a connection in the **main.go** to the views by using http.HandleFunc.
         uadmin.Register()
 
         // Assign the Root URL value to /admin/. This code allows to resolve multiple registration issue when running an application.
-        uadmin.RootURL = "/admin/" // Applies on first build only
+        // NOTE: This code works only if database does not exist yet.
+        uadmin.RootURL = "/admin/" 
+
+        // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
         setting := uadmin.Setting{}
         uadmin.Get(&setting, "code = ?", "uAdmin.RootURL")
         setting.ParseFormValue([]string{"/admin/"})

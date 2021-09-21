@@ -40,7 +40,7 @@ Go to the main.go and apply the following codes below:
 .. code-block:: go
 
     func main(){
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.EmailFrom = "myemail@integritynet.biz"
         uadmin.EmailUsername = "myemail@integritynet.biz"
         uadmin.EmailPassword = "abc123"

@@ -268,7 +268,7 @@ Go to the main.go and apply this function to "true”. Put it above the uadmin.R
 .. code-block:: go
 
     func main() {
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.LogAdd = true
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -392,7 +392,7 @@ Go to the main.go and apply the LogDelete function to "true”. Put it above the
         uadmin.LogRead = false
         uadmin.LogEdit = false
 
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.LogDelete = true
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -503,7 +503,7 @@ Go to the main.go and apply the LogEdit function to "true”. Put it above the u
         uadmin.LogAdd = false
         uadmin.LogRead = false
 
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.LogEdit = true
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
@@ -643,7 +643,7 @@ Go to the main.go and apply the LogRead function to "true”. Put it above the u
     func main() {
         uadmin.LogAdd = false
 
-        // NOTE: This code works only on first build.
+        // NOTE: This code works only if database does not exist yet.
         uadmin.LogRead = true
 
         // ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
