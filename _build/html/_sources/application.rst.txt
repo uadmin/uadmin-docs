@@ -13,7 +13,9 @@ Here are all sample applications built in uAdmin that you can choose with differ
 
 Todo List application allows you to create tasks, make a description for them, and organize them in a specific category. You can also add a friend to be a part of your activity, as well as an item needed in order to accomplish your tasks. In every task, there is a progress bar feature that you can set to show or measure how much work you have accomplished in a specific task.
 
-**DIFFICULTY LEVEL: EASY**
+.. raw:: html
+
+  <b style="color:blue">DIFFICULTY LEVEL: EASY</b>
 
 Tutorial Link: https://uadmin-docs.readthedocs.io/en/latest/coverage.html
 
@@ -30,7 +32,9 @@ Tutorial Link: https://uadmin-docs.readthedocs.io/en/latest/coverage.html
 
 Login System allows you to login in two ways: either with or without OTP, and log out on custom HTML template.
 
-**DIFFICULTY LEVEL: MEDIUM**
+.. raw:: html
+
+  <b style="color:blue">DIFFICULTY LEVEL: MEDIUM</b>
 
 Tutorial Link: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/coverage.html
 
@@ -47,7 +51,9 @@ Tutorial Link: https://uadmin-docs.readthedocs.io/en/latest/login_system_views/c
 
 Document System allows you to get user and group permissions, customize the Count and AdminPage function based on the user ID, use schema form modifier to customize the fields and schema list modifier to customize the records.
 
-**DIFFICULTY LEVEL: HARD**
+.. raw:: html
+
+  <b style="color:blue">DIFFICULTY LEVEL: HARD</b>
 
 Tutorial Link: https://uadmin-docs.readthedocs.io/en/latest/document_system/coverage.html
 
