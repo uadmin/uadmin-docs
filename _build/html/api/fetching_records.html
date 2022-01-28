@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>For Fetching Records &#8212; uadmin 0.6 documentation</title>
+    <title>For Fetching Records &#8212; uadmin 0.7 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pyramid.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="email_functions.html" title="Email Functions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.7 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API Reference</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">For Fetching Records</a></li> 
       </ul>
@@ -59,22 +59,41 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#uadmin-adminpage">uadmin.AdminPage</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-all">uadmin.All</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-avg">uadmin.Avg</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-avgtable">uadmin.AvgTable</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-choice">uadmin.Choice</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-count">uadmin.Count</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-counttable">uadmin.CountTable</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-filter">uadmin.Filter</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-filterbuilder">uadmin.FilterBuilder</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-filterlist">uadmin.FilterList</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-filtersorted">uadmin.FilterSorted</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-filtersortedtable">uadmin.FilterSortedTable</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-filtersortedvalue">uadmin.FilterSortedValue</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-filtertable">uadmin.FilterTable</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-get">uadmin.Get</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getfieldsapi">uadmin.GetFieldsAPI</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getform">uadmin.GetForm</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getid">uadmin.GetID</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getimagesizer">uadmin.GetImageSizer</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getmodelsapi">uadmin.GetModelsAPI</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-getsorted">uadmin.GetSorted</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-getsortedtable">uadmin.GetSortedTable</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getstring">uadmin.GetString</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-getstringer">uadmin.GetStringer</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-gettable">uadmin.GetTable</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-getvaluesorted">uadmin.GetValueSorted</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-max">uadmin.Max</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-maxtable">uadmin.MaxTable</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-min">uadmin.Min</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-mintable">uadmin.MinTable</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-preload">uadmin.Preload</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-renderhtml">uadmin.RenderHTML</a></p></li>
 <li><p><a class="reference internal" href="#uadmin-rendermultihtml">uadmin.RenderMultiHTML</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-std">uadmin.Std</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-stdtable">uadmin.StdTable</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-sum">uadmin.Sum</a></p></li>
+<li><p><a class="reference internal" href="#uadmin-sumtable">uadmin.SumTable</a></p></li>
 </ul>
 <section id="uadmin-adminpage">
 <h2>uadmin.AdminPage<a class="headerlink" href="#uadmin-adminpage" title="Permalink to this headline">¶</a></h2>
@@ -182,6 +201,22 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/all-and-get.html">All and Get</a></p></li>
 </ul>
+</section>
+<section id="uadmin-avg">
+<h2>uadmin.Avg<a class="headerlink" href="#uadmin-avg" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Avg</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">column</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">float64</span>
+</pre></div>
+</div>
+<p>Avg return the average of a column in a table based on a filter.</p>
+</section>
+<section id="uadmin-avgtable">
+<h2>uadmin.AvgTable<a class="headerlink" href="#uadmin-avgtable" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">AvgTable</span><span class="p">(</span><span class="nx">table</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">column</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">float64</span>
+</pre></div>
+</div>
+<p>AvgTable return the average of a column in a table based on a filter.</p>
 </section>
 <section id="uadmin-choice">
 <h2>uadmin.Choice<a class="headerlink" href="#uadmin-choice" title="Permalink to this headline">¶</a></h2>
@@ -314,6 +349,14 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/count.html">Count</a></p></li>
 </ul>
+</section>
+<section id="uadmin-counttable">
+<h2>uadmin.CountTable<a class="headerlink" href="#uadmin-counttable" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">CountTable</span><span class="p">(</span><span class="nx">table</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">int</span>
+</pre></div>
+</div>
+<p>CountTable return the count of records in a table based on a filter.</p>
 </section>
 <section id="uadmin-filter">
 <h2>uadmin.Filter<a class="headerlink" href="#uadmin-filter" title="Permalink to this headline">¶</a></h2>
@@ -643,6 +686,38 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter-list-get-form-and-stringer.html">Filter List, Get Form, and Get Stringer</a></p></li>
 </ul>
+</section>
+<section id="uadmin-filtersorted">
+<h2>uadmin.FilterSorted<a class="headerlink" href="#uadmin-filtersorted" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">FilterSorted</span><span class="p">(</span><span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>FilterSorted fetches and sorts the records from the database.</p>
+</section>
+<section id="uadmin-filtersortedtable">
+<h2>uadmin.FilterSortedTable<a class="headerlink" href="#uadmin-filtersortedtable" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">FilterSortedTable</span><span class="p">(</span><span class="nx">table</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>FilterSortedTable fetches and sorts the records from the database. It allows you to pass a table name instead of just an array of model.</p>
+</section>
+<section id="uadmin-filtersortedvalue">
+<h2>uadmin.FilterSortedValue<a class="headerlink" href="#uadmin-filtersortedvalue" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">FilterSortedValue</span><span class="p">(</span><span class="nx">table</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">column</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>FilterSortedValue allows you to sort the result and get single column from a table instead of reading data that you don’t need.</p>
+</section>
+<section id="uadmin-filtertable">
+<h2>uadmin.FilterTable<a class="headerlink" href="#uadmin-filtertable" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">FilterTable</span><span class="p">(</span><span class="nx">table</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>FilterTable is like Filter but you can pass a table name that allows you to put FORCE INDEX after the table name.</p>
 </section>
 <section id="uadmin-get">
 <h2>uadmin.Get<a class="headerlink" href="#uadmin-get" title="Permalink to this headline">¶</a></h2>
@@ -1005,6 +1080,22 @@
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-fields-api-and-get-models-api.html">Get Fields API and Get Models API</a></p></li>
 </ul>
 </section>
+<section id="uadmin-getsorted">
+<h2>uadmin.GetSorted<a class="headerlink" href="#uadmin-getsorted" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetSorted</span><span class="p">(</span><span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>GetSorted fetches and sorts the first record from the database matching query and args.</p>
+</section>
+<section id="uadmin-getsortedtable">
+<h2>uadmin.GetSortedTable<a class="headerlink" href="#uadmin-getsortedtable" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetSortedTable</span><span class="p">(</span><span class="nx">table</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>GetSortedTable fetches and sorts the first record from the database matching query and args. It allows you to pass a table name instead of just an array of model.</p>
+</section>
 <section id="uadmin-getstring">
 <h2>uadmin.GetString<a class="headerlink" href="#uadmin-getstring" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
@@ -1103,6 +1194,54 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter-list-get-form-and-stringer.html">Filter List, Get Form, and Get Stringer</a></p></li>
 </ul>
+</section>
+<section id="uadmin-gettable">
+<h2>uadmin.GetTable<a class="headerlink" href="#uadmin-gettable" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetTable</span><span class="p">(</span><span class="nx">table</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>GetTable is like Get but you can pass a table name that allows you to put FORCE INDEX after the table name.</p>
+</section>
+<section id="uadmin-getvaluesorted">
+<h2>uadmin.GetValueSorted<a class="headerlink" href="#uadmin-getvaluesorted" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">GetValueSorted</span><span class="p">(</span><span class="nx">table</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">column</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">order</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">asc</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>GetValueSorted allows you to sort the result and get single column from a table instead of reading data that you don’t need.</p>
+</section>
+<section id="uadmin-max">
+<h2>uadmin.Max<a class="headerlink" href="#uadmin-max" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Max</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">column</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">float64</span>
+</pre></div>
+</div>
+<p>Max return the maximum of a column in a table based on a filter.</p>
+</section>
+<section id="uadmin-maxtable">
+<h2>uadmin.MaxTable<a class="headerlink" href="#uadmin-maxtable" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">MaxTable</span><span class="p">(</span><span class="nx">table</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">column</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">float64</span>
+</pre></div>
+</div>
+<p>MaxTable return the maximum of a column in a table based on a filter.</p>
+</section>
+<section id="uadmin-min">
+<h2>uadmin.Min<a class="headerlink" href="#uadmin-min" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Min</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">column</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">float64</span>
+</pre></div>
+</div>
+<p>Min return the minimum of a column in a table based on a filter.</p>
+</section>
+<section id="uadmin-mintable">
+<h2>uadmin.MinTable<a class="headerlink" href="#uadmin-mintable" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">MinTable</span><span class="p">(</span><span class="nx">table</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">column</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">float64</span>
+</pre></div>
+</div>
+<p>MinTable return the minimum of a column in a table based on a filter.</p>
 </section>
 <section id="uadmin-preload">
 <h2>uadmin.Preload<a class="headerlink" href="#uadmin-preload" title="Permalink to this headline">¶</a></h2>
@@ -1582,6 +1721,38 @@
 <p>Congratulations! You have created an application that renders multiple HTML.</p>
 </section>
 </section>
+<section id="uadmin-std">
+<h2>uadmin.Std<a class="headerlink" href="#uadmin-std" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Std</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">column</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">float64</span>
+</pre></div>
+</div>
+<p>Std return the standard diviation of a column in a table based on a filter.</p>
+</section>
+<section id="uadmin-stdtable">
+<h2>uadmin.StdTable<a class="headerlink" href="#uadmin-stdtable" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">StdTable</span><span class="p">(</span><span class="nx">table</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">column</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">float64</span>
+</pre></div>
+</div>
+<p>StdTable return the standard diviation of a column in a table based on a filter.</p>
+</section>
+<section id="uadmin-sum">
+<h2>uadmin.Sum<a class="headerlink" href="#uadmin-sum" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">Sum</span><span class="p">(</span><span class="nx">a</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">column</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">float64</span>
+</pre></div>
+</div>
+<p>Sum return the sum of a column in a table based on a filter</p>
+</section>
+<section id="uadmin-sumtable">
+<h2>uadmin.SumTable<a class="headerlink" href="#uadmin-sumtable" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records">Back To Top</a></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">SumTable</span><span class="p">(</span><span class="nx">table</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">column</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">query</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">float64</span>
+</pre></div>
+</div>
+<p>SumTable return the sum of a column in a table based on a filter.</p>
+</section>
 </section>
 
 
@@ -1608,12 +1779,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="email_functions.html"
-                        title="previous chapter">Email Functions</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="handler_functions.html"
-                        title="next chapter">Handler Functions</a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="email_functions.html"
+                          title="previous chapter">Email Functions</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="handler_functions.html"
+                          title="next chapter">Handler Functions</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -1647,14 +1822,14 @@
         <li class="right" >
           <a href="email_functions.html" title="Email Functions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">uadmin 0.7 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">For Fetching Records</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, uadmin.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
   </body>
 </html>

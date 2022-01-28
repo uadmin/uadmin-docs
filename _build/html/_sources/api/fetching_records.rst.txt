@@ -8,22 +8,41 @@ In this section, we will cover the following functions in-depth listed below:
 
 * `uadmin.AdminPage`_
 * `uadmin.All`_
+* `uadmin.Avg`_
+* `uadmin.AvgTable`_
 * `uadmin.Choice`_
 * `uadmin.Count`_
+* `uadmin.CountTable`_
 * `uadmin.Filter`_
 * `uadmin.FilterBuilder`_
 * `uadmin.FilterList`_
+* `uadmin.FilterSorted`_
+* `uadmin.FilterSortedTable`_
+* `uadmin.FilterSortedValue`_
+* `uadmin.FilterTable`_
 * `uadmin.Get`_
 * `uadmin.GetFieldsAPI`_
 * `uadmin.GetForm`_
 * `uadmin.GetID`_
 * `uadmin.GetImageSizer`_
 * `uadmin.GetModelsAPI`_
+* `uadmin.GetSorted`_
+* `uadmin.GetSortedTable`_
 * `uadmin.GetString`_
 * `uadmin.GetStringer`_
+* `uadmin.GetTable`_
+* `uadmin.GetValueSorted`_
+* `uadmin.Max`_
+* `uadmin.MaxTable`_
+* `uadmin.Min`_
+* `uadmin.MinTable`_
 * `uadmin.Preload`_
 * `uadmin.RenderHTML`_
 * `uadmin.RenderMultiHTML`_
+* `uadmin.Std`_
+* `uadmin.StdTable`_
+* `uadmin.Sum`_
+* `uadmin.SumTable`_
 
 uadmin.AdminPage
 ----------------
@@ -168,6 +187,26 @@ Run your application and see what happens.
 Quiz:
 
 * `All and Get`_
+
+uadmin.Avg
+----------
+`Back To Top`_
+
+.. code-block:: go
+
+    func Avg(a interface{}, column string, query interface{}, args ...interface{}) float64
+
+Avg return the average of a column in a table based on a filter.
+
+uadmin.AvgTable
+---------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func AvgTable(table string, column string, query interface{}, args ...interface{}) float64
+
+AvgTable return the average of a column in a table based on a filter.
 
 uadmin.Choice
 -------------
@@ -332,6 +371,16 @@ Quiz:
 
 .. _Count: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/count.html
 
+uadmin.CountTable
+-----------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func CountTable(table string, query interface{}, args ...interface{}) int
+
+CountTable return the count of records in a table based on a filter.
+
 uadmin.Filter
 -------------
 `Back To Top`_
@@ -351,8 +400,6 @@ Parameters:
     **args ...interface{}:** Is the series of arguments for query input
 
 Before we proceed to the examples, read `Tutorial Part 9 - Introduction to API`_ to familiarize how API works in uAdmin.
-
-.. _Tutorial Part 9 - Introduction to API: https://uadmin-docs.readthedocs.io/en/latest/tutorial/part9.html
 
 * `Example #1: Assigning Multiple Values in a Parameter`_
 * `Example #2: Returning the Name`_
@@ -733,6 +780,46 @@ As expected, the API is now returning a CreatedAt value because the CreatedAt fi
 Quiz:
 
 * `Filter List, Get Form, and Get Stringer`_
+
+uadmin.FilterSorted
+-------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func FilterSorted(order string, asc bool, a interface{}, query interface{}, args ...interface{}) (err error)
+
+FilterSorted fetches and sorts the records from the database.
+
+uadmin.FilterSortedTable
+------------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func FilterSortedTable(table string, order string, asc bool, a interface{}, query interface{}, args ...interface{}) (err error)
+
+FilterSortedTable fetches and sorts the records from the database. It allows you to pass a table name instead of just an array of model.
+
+uadmin.FilterSortedValue
+------------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func FilterSortedValue(table string, column string, order string, asc bool, a interface{}, query interface{}, args ...interface{}) (err error)
+
+FilterSortedValue allows you to sort the result and get single column from a table instead of reading data that you don't need.
+
+uadmin.FilterTable
+------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func FilterTable(table string, a interface{}, query interface{}, args ...interface{}) (err error)
+
+FilterTable is like Filter but you can pass a table name that allows you to put FORCE INDEX after the table name.
 
 uadmin.Get
 ----------
@@ -1184,6 +1271,26 @@ Quiz:
 
 .. _Get Fields API and Get Models API: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/get-fields-api-and-get-models-api.html
 
+uadmin.GetSorted
+----------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func GetSorted(order string, asc bool, a interface{}, query interface{}, args ...interface{}) (err error)
+
+GetSorted fetches and sorts the first record from the database matching query and args.
+
+uadmin.GetSortedTable
+---------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func GetSortedTable(table string, order string, asc bool, a interface{}, query interface{}, args ...interface{}) (err error)
+
+GetSortedTable fetches and sorts the first record from the database matching query and args. It allows you to pass a table name instead of just an array of model.
+
 uadmin.GetString
 ----------------
 `Back To Top`_
@@ -1310,6 +1417,66 @@ Quiz:
 * `Filter List, Get Form, and Get Stringer`_
 
 .. _Filter List, Get Form, and Get Stringer: https://uadmin-docs.readthedocs.io/en/latest/_static/quiz/filter-list-get-form-and-stringer.html
+
+uadmin.GetTable
+---------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func GetTable(table string, a interface{}, query interface{}, args ...interface{}) (err error)
+
+GetTable is like Get but you can pass a table name that allows you to put FORCE INDEX after the table name.
+
+uadmin.GetValueSorted
+---------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func GetValueSorted(table string, column string, order string, asc bool, a interface{}, query interface{}, args ...interface{}) (err error)
+
+GetValueSorted allows you to sort the result and get single column from a table instead of reading data that you don't need.
+
+uadmin.Max
+----------
+`Back To Top`_
+
+.. code-block:: go
+
+    func Max(a interface{}, column string, query interface{}, args ...interface{}) float64
+
+Max return the maximum of a column in a table based on a filter.
+
+uadmin.MaxTable
+---------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func MaxTable(table string, column string, query interface{}, args ...interface{}) float64
+
+MaxTable return the maximum of a column in a table based on a filter.
+
+uadmin.Min
+----------
+`Back To Top`_
+
+.. code-block:: go
+
+    func Min(a interface{}, column string, query interface{}, args ...interface{}) float64
+
+Min return the minimum of a column in a table based on a filter.
+
+uadmin.MinTable
+---------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func MinTable(table string, column string, query interface{}, args ...interface{}) float64
+
+MinTable return the minimum of a column in a table based on a filter.
 
 uadmin.Preload
 --------------
@@ -1565,8 +1732,6 @@ Quiz:
 uadmin.RenderMultiHTML
 ----------------------
 `Back To Top`_
-
-.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records
 
 .. code-block:: go
 
@@ -1863,3 +2028,45 @@ Go back again to your browser. Click the Home Page button. Right click your mous
 .. image:: assets/home_page_view_source_partial.png
 
 Congratulations! You have created an application that renders multiple HTML.
+
+uadmin.Std
+----------
+`Back To Top`_
+
+.. code-block:: go
+
+    func Std(a interface{}, column string, query interface{}, args ...interface{}) float64
+
+Std return the standard diviation of a column in a table based on a filter.
+
+uadmin.StdTable
+---------------
+`Back To Top`_
+
+.. code-block:: go
+
+    func StdTable(table string, column string, query interface{}, args ...interface{}) float64
+
+StdTable return the standard diviation of a column in a table based on a filter.
+
+uadmin.Sum
+----------
+`Back To Top`_
+
+.. code-block:: go
+
+    func Sum(a interface{}, column string, query interface{}, args ...interface{}) float64
+
+Sum return the sum of a column in a table based on a filter
+
+uadmin.SumTable
+---------------
+`Back To Top`_
+
+.. _Back To Top: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#for-fetching-records
+
+.. code-block:: go
+
+    func SumTable(table string, column string, query interface{}, args ...interface{}) float64
+
+SumTable return the sum of a column in a table based on a filter.

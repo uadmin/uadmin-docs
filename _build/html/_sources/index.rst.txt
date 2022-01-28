@@ -127,12 +127,6 @@ Go to `uAdmin Tutorials`_ section for the continuation.
 
 .. _system models: https://uadmin-docs.readthedocs.io/en/latest/system_reference.html
 
-Dockerize Your App
-^^^^^^^^^^^^^^^^^^
-.. code-block:: bash
-
-   docker create
-
 
 Update uAdmin to latest version
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -143,7 +137,7 @@ Open your terminal and apply the following commands:
     $ cd ~/go/src/github.com/uadmin/uadmin
     $ go install
     $ uadmin version
-    [  INFO  ]   0.6.2
+    [  INFO  ]   0.7.4
 
 .. toctree::
    :maxdepth: 1

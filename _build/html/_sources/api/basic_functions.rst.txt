@@ -6,6 +6,7 @@ Basic Functions
 
 In this section, we will cover the following functions in-depth listed below:
 
+* `uadmin.DisableAdminUI`_
 * `uadmin.FavIcon`_
 * `uadmin.Logo`_
 * `uadmin.MaxImageHeight`_
@@ -18,6 +19,16 @@ In this section, we will cover the following functions in-depth listed below:
 * `uadmin.ServerReady`_
 * `uadmin.StartServer`_
 * `uadmin.Theme`_
+
+uadmin.DisableAdminUI
+---------------------
+`Back To Top`_
+
+.. code-block:: go
+
+    var DisableAdminUI = false
+
+DisableAdminUI disables access to the UI and all related APIs.
 
 uadmin.FavIcon
 --------------
