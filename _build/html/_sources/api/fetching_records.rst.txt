@@ -206,7 +206,7 @@ uadmin.AvgTable
 
     func AvgTable(table string, column string, query interface{}, args ...interface{}) float64
 
-AvgTable return the average of a column in a table based on a filter.
+AvgTable return the average of a column in a table based on a filter. It allows you to pass a table name instead of just an array of model.
 
 uadmin.Choice
 -------------
@@ -379,7 +379,7 @@ uadmin.CountTable
 
     func CountTable(table string, query interface{}, args ...interface{}) int
 
-CountTable return the count of records in a table based on a filter.
+CountTable return the count of records in a table based on a filter. It allows you to pass a table name instead of just an array of model.
 
 uadmin.Filter
 -------------
@@ -2037,7 +2037,7 @@ uadmin.Std
 
     func Std(a interface{}, column string, query interface{}, args ...interface{}) float64
 
-Std return the standard diviation of a column in a table based on a filter.
+Std return the standard deviation of a column in a table based on a filter.
 
 uadmin.StdTable
 ---------------
@@ -2047,7 +2047,7 @@ uadmin.StdTable
 
     func StdTable(table string, column string, query interface{}, args ...interface{}) float64
 
-StdTable return the standard diviation of a column in a table based on a filter.
+StdTable return the standard deviation of a column in a table based on a filter. It allows you to pass a table name instead of just an array of model.
 
 uadmin.Sum
 ----------
@@ -2069,4 +2069,4 @@ uadmin.SumTable
 
     func SumTable(table string, column string, query interface{}, args ...interface{}) float64
 
-SumTable return the sum of a column in a table based on a filter.
+SumTable return the sum of a column in a table based on a filter. It allows you to pass a table name instead of just an array of model.
