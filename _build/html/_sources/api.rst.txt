@@ -22,6 +22,8 @@ Full List
 * `uadmin.Approval`_
 * `uadmin.ApprovalAction`_
 * `uadmin.ApprovalHandleFunc`_
+* `uadmin.Avg`_
+* `uadmin.AvgTable`_
 * `uadmin.BindIP`_
 * `uadmin.BlockedIPs`_
 * `uadmin.CacheTranslation`_
@@ -30,6 +32,7 @@ Full List
 * `uadmin.ClearDB`_
 * `uadmin.CookieTimeout`_
 * `uadmin.Count`_
+* `uadmin.CountTable`_
 * `uadmin.CRITICAL`_
 * `uadmin.CachePermissions`_
 * `uadmin.CacheSessions`_
@@ -44,6 +47,7 @@ Full List
 * `uadmin.DefaultMediaPermission`_
 * `uadmin.Delete`_
 * `uadmin.DeleteList`_
+* `uadmin.DisableAdminUI`_
 * `uadmin.EmailFrom`_
 * `uadmin.EmailPassword`_
 * `uadmin.EmailSMTPServer`_
@@ -60,6 +64,10 @@ Full List
 * `uadmin.Filter`_
 * `uadmin.FilterBuilder`_
 * `uadmin.FilterList`_
+* `uadmin.FilterSorted`_
+* `uadmin.FilterSortedTable`_
+* `uadmin.FilterSortedValue`_
+* `uadmin.FilterTable`_
 * `uadmin.GenerateBase32`_
 * `uadmin.GenerateBase64`_
 * `uadmin.Get`_
@@ -74,9 +82,13 @@ Full List
 * `uadmin.GetModelsAPI`_
 * `uadmin.GetRemoteIP`_
 * `uadmin.GetSetting`_
+* `uadmin.GetSorted`_
+* `uadmin.GetSortedTable`_
 * `uadmin.GetString`_
 * `uadmin.GetStringer`_
+* `uadmin.GetTable`_
 * `uadmin.GetUserFromRequest`_
+* `uadmin.GetValueSorted`_
 * `uadmin.GroupPermission`_
 * `uadmin.Handler`_
 * `uadmin.HideInDashboarder`_
@@ -97,9 +109,13 @@ Full List
 * `uadmin.Logout`_
 * `uadmin.LogRead`_
 * `uadmin.LogTrail`_
+* `uadmin.Max`_
 * `uadmin.MaxImageHeight`_
 * `uadmin.MaxImageWidth`_
+* `uadmin.MaxTable`_
 * `uadmin.MaxUploadFileSize`_
+* `uadmin.Min`_
+* `uadmin.MinTable`_
 * `uadmin.Model`_
 * `uadmin.ModelList`_
 * `uadmin.ModelSchema`_
@@ -145,6 +161,10 @@ Full List
 * `uadmin.StartSecureServer`_
 * `uadmin.StartServer`_
 * `uadmin.StaticHandler`_
+* `uadmin.Std`_
+* `uadmin.StdTable`_
+* `uadmin.Sum`_
+* `uadmin.SumTable`_
 * `uadmin.Syslogf`_
 * `uadmin.SystemMetrics`_
 * `uadmin.Tf`_
@@ -214,6 +234,7 @@ Categorized List
 ^^^^^^^^^^^^^^^^^^^
 `Back To Top (Categorized List)`_
 
+* `uadmin.DisableAdminUI`_
 * `uadmin.FavIcon`_
 * `uadmin.Logo`_
 * `uadmin.MaxImageHeight`_
@@ -266,23 +287,41 @@ Categorized List
 
 * `uadmin.AdminPage`_
 * `uadmin.All`_
+* `uadmin.Avg`_
+* `uadmin.AvgTable`_
 * `uadmin.Choice`_
 * `uadmin.Count`_
+* `uadmin.CountTable`_
 * `uadmin.Filter`_
 * `uadmin.FilterBuilder`_
 * `uadmin.FilterList`_
+* `uadmin.FilterSorted`_
+* `uadmin.FilterSortedTable`_
+* `uadmin.FilterSortedValue`_
+* `uadmin.FilterTable`_
 * `uadmin.Get`_
 * `uadmin.GetFieldsAPI`_
 * `uadmin.GetForm`_
 * `uadmin.GetID`_
 * `uadmin.GetImageSizer`_
 * `uadmin.GetModelsAPI`_
-* `uadmin.GetSetting`_
+* `uadmin.GetSorted`_
+* `uadmin.GetSortedTable`_
 * `uadmin.GetString`_
 * `uadmin.GetStringer`_
+* `uadmin.GetTable`_
+* `uadmin.GetValueSorted`_
+* `uadmin.Max`_
+* `uadmin.MaxTable`_
+* `uadmin.Min`_
+* `uadmin.MinTable`_
 * `uadmin.Preload`_
 * `uadmin.RenderHTML`_
 * `uadmin.RenderMultiHTML`_
+* `uadmin.Std`_
+* `uadmin.StdTable`_
+* `uadmin.Sum`_
+* `uadmin.SumTable`_
 
 **Handler Functions**
 ^^^^^^^^^^^^^^^^^^^^^
@@ -475,6 +514,8 @@ Page:
 .. _uadmin.Approval: https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approval
 .. _uadmin.ApprovalAction: https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approvalaction
 .. _uadmin.ApprovalHandleFunc: https://uadmin-docs.readthedocs.io/en/latest/api/approval_functions.html#uadmin-approvalhandlefunc
+.. _uadmin.Avg: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-avg
+.. _uadmin.AvgTable: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-avgtable
 .. _uadmin.BindIP: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-bindip
 .. _uadmin.BlockedIPs: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-blockedips
 .. _uadmin.CachePermissions: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cachepermissions
@@ -486,6 +527,7 @@ Page:
 .. _uadmin.ClearDB: https://uadmin-docs.readthedocs.io/en/latest/api/database_functions.html#uadmin-cleardb
 .. _uadmin.CookieTimeout: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-cookietimeout
 .. _uadmin.Count: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-count
+.. _uadmin.CountTable: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-counttable
 .. _uadmin.CRITICAL: https://uadmin-docs.readthedocs.io/en/latest/api/print_functions.html#uadmin-critical
 .. _uadmin.CustomTranslation: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-customtranslation
 .. _uadmin.DashboardMenu: https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-dashboardmenu
@@ -497,6 +539,7 @@ Page:
 .. _uadmin.DefaultMediaPermission: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-defaultmediapermission
 .. _uadmin.Delete: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-delete
 .. _uadmin.DeleteList: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-deletelist
+.. _uadmin.DisableAdminUI: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-disableadminui
 .. _uadmin.EmailFrom: https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailfrom
 .. _uadmin.EmailPassword: https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailpassword
 .. _uadmin.EmailSMTPServer: https://uadmin-docs.readthedocs.io/en/latest/api/email_functions.html#uadmin-emailsmtpserver
@@ -513,6 +556,10 @@ Page:
 .. _uadmin.Filter: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filter
 .. _uadmin.FilterBuilder: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filterbuilder
 .. _uadmin.FilterList: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filterlist
+.. _uadmin.FilterSorted: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filtersorted
+.. _uadmin.FilterSortedTable: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filtersortedtable
+.. _uadmin.FilterSortedValue: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filtersortedvalue
+.. _uadmin.FilterTable: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-filtertable
 .. _uadmin.GenerateBase32: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-generatebase32
 .. _uadmin.GenerateBase64: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-generatebase64
 .. _uadmin.Get: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-get
@@ -525,11 +572,15 @@ Page:
 .. _uadmin.GetID: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getid
 .. _uadmin.GetImageSizer: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getimagesizer
 .. _uadmin.GetModelsAPI: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getmodelsapi
+.. _uadmin.GetSorted: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getsorted
+.. _uadmin.GetSortedTable: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getsortedtable
 .. _uadmin.GetRemoteIP: https://uadmin-docs.readthedocs.io/en/latest/api/network_functions.html#uadmin-getremoteip
 .. _uadmin.GetSetting: https://uadmin-docs.readthedocs.io/en/latest/api/setting_functions.html#uadmin-getsetting
 .. _uadmin.GetString: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getstring
 .. _uadmin.GetStringer: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getstringer
+.. _uadmin.GetTable: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-gettable
 .. _uadmin.GetUserFromRequest: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-getuserfromrequest
+.. _uadmin.GetValueSorted: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-getvaluesorted
 .. _uadmin.GroupPermission: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-grouppermission
 .. _uadmin.Handler: https://uadmin-docs.readthedocs.io/en/latest/api/handler_functions.html#uadmin-handler
 .. _uadmin.HideInDashboarder: https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-hideindashboarder
@@ -550,9 +601,13 @@ Page:
 .. _uadmin.Logout: https://uadmin-docs.readthedocs.io/en/latest/api/user_functions.html#uadmin-logout
 .. _uadmin.LogRead: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logread
 .. _uadmin.LogTrail: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-logtrail
+.. _uadmin.Max: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-max
 .. _uadmin.MaxImageHeight: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maximageheight
 .. _uadmin.MaxImageWidth: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maximagewidth
+.. _uadmin.MaxTable: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-maxtable
 .. _uadmin.MaxUploadFileSize: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-maxuploadfilesize
+.. _uadmin.Min: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-min
+.. _uadmin.MinTable: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-mintable
 .. _uadmin.Model: https://uadmin-docs.readthedocs.io/en/latest/api/model_functions.html#uadmin-model
 .. _uadmin.ModelList: https://uadmin-docs.readthedocs.io/en/latest/api/ab_test_functions.html#uadmin-modellist
 .. _uadmin.ModelSchema: https://uadmin-docs.readthedocs.io/en/latest/api/customizing_records.html#uadmin-modelschema
@@ -598,6 +653,10 @@ Page:
 .. _uadmin.StartSecureServer: https://uadmin-docs.readthedocs.io/en/latest/api/security_functions.html#uadmin-startsecureserver
 .. _uadmin.StartServer: https://uadmin-docs.readthedocs.io/en/latest/api/basic_functions.html#uadmin-startserver
 .. _uadmin.StaticHandler: https://uadmin-docs.readthedocs.io/en/latest/api/handler_functions.html#uadmin-statichandler
+.. _uadmin.Std: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-std
+.. _uadmin.StdTable: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-stdtable
+.. _uadmin.Sum: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-sum
+.. _uadmin.SumTable: https://uadmin-docs.readthedocs.io/en/latest/api/fetching_records.html#uadmin-sumtable
 .. _uadmin.Syslogf: https://uadmin-docs.readthedocs.io/en/latest/api/log_functions.html#uadmin-syslogf
 .. _uadmin.SystemMetrics: https://uadmin-docs.readthedocs.io/en/latest/api/metric_functions.html#uadmin-systemmetrics
 .. _uadmin.Tf: https://uadmin-docs.readthedocs.io/en/latest/api/language_functions.html#uadmin-tf
