@@ -41,7 +41,7 @@ Open **/models/todo.go** and add a new method called **Validate** to your Todo s
         if uadmin.Count(&todo, "name = ? AND id <> ?", t.Name, t.ID) != 0 {
             errMsg["Name"] = "This todo name is already in the system"
         }
-        return
+        return errMsg
     }
 
 Notice that the receiver for Validate() is not a pointer but the struct type. Also notice that the return is a map where the key is the field name and the value is the error message.
